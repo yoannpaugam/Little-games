@@ -1,0 +1,178 @@
+/* Jeu « Affiches de cinéma ». Toutes les classes sont préfixées .mp- */
+
+.mp { --mp-blur: 18px; --mp-reserve: 300px; max-width: 1100px; margin: 0 auto; padding: 0 1rem 1rem; }
+.mp .icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Barre du haut ---------- */
+.mp-bar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: .5rem;
+  padding: .6rem 0;
+  background: linear-gradient(var(--bg) 70%, transparent);
+}
+.mp-title { flex: 1; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mp-score { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: .25rem; white-space: nowrap; }
+.mp-score strong { color: var(--accent); }
+.mp-icon-btn {
+  display: grid; place-items: center; width: 42px; height: 42px; flex: none;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.mp-icon-btn:hover, .mp-icon-btn:focus-visible { border-color: var(--accent); background: var(--bg-3); outline: none; }
+
+/* ---------- Boutons ---------- */
+.mp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-height: 46px; padding: 0 1.1rem;
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-weight: 600; white-space: nowrap;
+  transition: background .15s, border-color .15s, transform .1s;
+}
+.mp-btn:hover, .mp-btn:focus-visible { border-color: var(--accent); outline: none; }
+.mp-btn:active { transform: scale(.97); }
+.mp-btn:disabled { opacity: .6; cursor: default; }
+.mp-btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.mp-btn-primary:hover, .mp-btn-primary:focus-visible { background: #f3c467; box-shadow: 0 0 0 3px #e8b04a44; }
+.mp-btn-ghost { background: transparent; color: var(--muted); }
+.mp-btn-ghost:hover { color: var(--text); }
+.mp-btn-danger { border-color: #ff6b6b66; color: var(--err); background: transparent; }
+.mp-btn-danger:hover { border-color: var(--err); }
+.mp-wide { width: 100%; }
+.mp-link { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Affiche ---------- */
+.mp-poster {
+  position: relative; overflow: hidden;
+  aspect-ratio: 2 / 3; width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(160deg, #2a2530, #121015);
+  box-shadow: 0 20px 50px -20px #000, 0 0 0 1px #ffffff10;
+  isolation: isolate;
+}
+.mp-poster img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center top; /* même format pour toutes : recadrage léger au 2:3 */
+  filter: blur(var(--mp-blur)) saturate(1.1);
+  transform: scale(1.15);
+  opacity: 0;
+  transition: filter .9s ease, transform .9s ease, opacity .4s ease;
+  user-select: none; -webkit-user-drag: none; pointer-events: none;
+}
+.mp-poster.is-loaded img { opacity: 1; }
+.mp-poster.is-revealed img { filter: none; transform: none; }
+.mp-poster-empty {
+  position: absolute; inset: 0; display: grid; place-content: center; gap: .5rem;
+  text-align: center; padding: 1rem; color: var(--muted); z-index: -1;
+}
+.mp-poster-empty span { font-family: var(--font-display); font-size: 5rem; line-height: 1; color: #ffffff22; }
+.mp-poster-empty small { font-size: .8rem; }
+.mp-poster.is-loaded .mp-poster-empty { display: none; }
+
+/* ---------- Vue jeu ---------- */
+.mp-stage { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+.mp-stage.is-solved { --mp-reserve: 390px; }
+.mp-meta { display: flex; align-items: center; justify-content: center; gap: .8rem; min-height: 2.2rem; }
+.mp-counter { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.mp-year {
+  font-family: var(--font-display); font-size: 2rem; line-height: 1; letter-spacing: .06em;
+  background: none; border: 0; color: var(--accent); cursor: pointer; padding: .1rem .6rem; border-radius: 8px;
+  transition: background .15s;
+}
+button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outline: none; }
+.mp-year.is-hidden { color: #ffffff1a; cursor: default; }
+
+.mp-poster-row { position: relative; display: flex; align-items: center; gap: .75rem; width: 100%; justify-content: center; }
+/* L'affiche s'adapte à la hauteur de l'écran pour éviter le défilement */
+.mp-poster-row .mp-poster { width: min(360px, 68vw, calc((100dvh - var(--mp-reserve)) * 2 / 3)); min-width: 140px; transition: width .5s ease; }
+.mp-nav {
+  display: grid; place-items: center; width: 48px; height: 48px; flex: none;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; color: var(--muted);
+  transition: color .15s, border-color .15s;
+}
+.mp-nav:hover, .mp-nav:focus-visible { color: var(--text); border-color: var(--accent); outline: none; }
+
+.mp-form, .mp-solved { width: min(460px, 100%); }
+.mp-input-row { display: flex; gap: .5rem; }
+.mp-input {
+  flex: 1; min-width: 0; min-height: 50px; padding: 0 1.1rem;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px;
+  font-size: 1.05rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+.mp-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px #e8b04a33; }
+.mp-form .mp-btn { min-height: 50px; }
+.mp-feedback { min-height: 1.3em; margin: .4rem 0 0; text-align: center; font-weight: 600; }
+.mp-feedback.is-error { color: var(--err); }
+.mp-feedback.is-near { color: #ffb36b; }
+.shake { animation: mp-shake .4s; }
+@keyframes mp-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.mp-solved { display: flex; flex-direction: column; align-items: center; gap: .6rem; animation: mp-pop .5s ease; }
+.mp-reveal { text-align: center; }
+.mp-bravo { display: inline-flex; align-items: center; gap: .3rem; margin: 0; color: var(--ok); font-weight: 700; }
+.mp-film-title { margin: .1rem 0 0; font-size: 1.4rem; line-height: 1.2; }
+.mp-original { margin: .2rem 0 0; color: var(--muted); font-style: italic; }
+.mp-details { margin: .4rem 0 0; color: var(--muted); }
+.mp-stage.is-solved .mp-poster { box-shadow: 0 20px 60px -20px #000, 0 0 0 2px var(--ok); }
+@keyframes mp-pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.mp-skip { display: flex; gap: .5rem; }
+
+/* ---------- Vue grille ---------- */
+.mp-grid-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: .25rem 0 1rem; color: var(--muted); flex-wrap: wrap; }
+.mp-grid-head p { margin: 0; }
+.mp-grid-head strong { color: var(--accent); }
+.mp-select { min-height: 40px; padding: 0 .8rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; }
+
+.mp-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.4rem, 1.5vw, 1.1rem); }
+.mp-card {
+  display: flex; flex-direction: column; gap: .3rem; padding: 0; text-align: left;
+  background: none; border: 0; cursor: pointer; min-width: 0;
+  scroll-margin: 120px;
+}
+.mp-card .mp-poster { --mp-blur: 10px; border-radius: 6px; transition: transform .15s, box-shadow .15s; }
+.mp-card:hover .mp-poster, .mp-card:focus-visible .mp-poster { transform: translateY(-3px); box-shadow: 0 0 0 2px var(--accent); }
+.mp-card:focus-visible { outline: none; }
+.mp-card.is-found .mp-poster { box-shadow: 0 0 0 1px #5fd08a88; }
+.mp-card.is-target .mp-poster { box-shadow: 0 0 0 2px var(--accent), 0 0 24px #e8b04a55; }
+.mp-card-year { font-family: var(--font-display); font-size: clamp(.95rem, 2.2vw, 1.3rem); letter-spacing: .05em; color: var(--accent); line-height: 1; }
+.mp-card-title { font-size: clamp(.65rem, 1.6vw, .85rem); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mp-card .mp-poster-empty span { font-size: 2.5rem; }
+.mp-card .mp-poster-empty small { display: none; }
+
+/* ---------- Réglages ---------- */
+.mp-settings { max-width: 560px; margin: 0 auto; display: grid; gap: 1.25rem; }
+.mp-settings fieldset { margin: 0; padding: 1.1rem 1.2rem 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); display: grid; gap: .6rem; }
+.mp-settings legend { padding: 0 .4rem; font-weight: 700; color: var(--accent); }
+.mp-option { display: flex; gap: .7rem; align-items: flex-start; padding: .5rem .6rem; border-radius: 10px; cursor: pointer; }
+.mp-option:hover { background: var(--bg-3); }
+.mp-option input { accent-color: var(--accent); margin-top: .25rem; width: 1.1rem; height: 1.1rem; }
+.mp-option span { display: grid; gap: .1rem; }
+.mp-option small, .mp-hint { color: var(--muted); font-size: .88rem; line-height: 1.45; margin: 0; }
+.mp-settings .mp-btn-ghost, .mp-settings .mp-btn-danger { justify-self: start; }
+
+
+@media (max-width: 560px) {
+  .mp { --mp-reserve: 230px; }
+  .mp-stage.is-solved { --mp-reserve: 330px; }
+  .mp-bar { padding: .45rem 0; }
+  .mp-icon-btn { width: 38px; height: 38px; }
+  /* Flèches posées sur les bords de l'affiche ; la rangée Précédent/Passer devient inutile */
+  .mp-poster-row .mp-poster { width: min(360px, calc(100vw - 2.5rem), calc((100dvh - var(--mp-reserve)) * 2 / 3)); }
+  .mp-nav { position: absolute; top: 50%; z-index: 2; width: 40px; height: 40px; transform: translateY(-50%);
+    background: #0d0c0fb3; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text); }
+  .mp-nav:first-child { left: .25rem; }
+  .mp-nav:last-child { right: .25rem; }
+  .mp-skip { display: none; }
+  .mp-input, .mp-form .mp-btn { min-height: 46px; }
+  .mp-score { display: none; }
+  .mp-title { font-size: 1.3rem; }
+  .mp-card-title { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp *, .mp *::before { transition: none !important; animation: none !important; }
+}
