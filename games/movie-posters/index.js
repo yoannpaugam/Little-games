@@ -113,6 +113,7 @@ export async function mount(container, ctx) {
   // ---------------------------------------------------------------- vue : jeu
   function renderPlay(id) {
     resetView();
+    container.classList.add('is-play');
     if (id && byId.has(id)) currentId = id;
     store.set('current', currentId);
     const film = byId.get(currentId);
@@ -128,7 +129,7 @@ export async function mount(container, ctx) {
 
     const yearBtn = (settings.order === 'chrono' || solved)
       ? h('button.mp-year', { title: 'Voir toutes les affiches de cette période', onclick: () => ctx.navigate('grille', film.year) }, film.year)
-      : h('div.mp-year.is-hidden', { 'aria-hidden': 'true' }, '····');
+      : null;
 
     const poster = posterImg(film, { reveal: solved });
     const feedback = h('p.mp-feedback', { role: 'status', 'aria-live': 'polite' });
@@ -160,7 +161,7 @@ export async function mount(container, ctx) {
           poster.classList.add('is-revealed');
           poster.querySelector('img')?.setAttribute('alt', `Affiche de ${film.title}`);
           stage.classList.add('is-solved');
-          yearBtn.replaceWith(h('button.mp-year', { onclick: () => ctx.navigate('grille', film.year) }, film.year));
+          if (!yearBtn) stage.querySelector('.mp-meta').append(h('button.mp-year', { onclick: () => ctx.navigate('grille', film.year) }, film.year));
           form.replaceWith(solvedPanel());
           bar.replaceWith((bar = topBar('Affiches de cinéma')));
         } else {
@@ -185,11 +186,10 @@ export async function mount(container, ctx) {
     };
 
     const stage = h('section.mp-stage', { class: `mp-stage${solved ? ' is-solved' : ''}` },
-      h('div.mp-counter', `${idx + 1} / ${order.length}`),
-      yearBtn,
+      h('div.mp-meta', h('span.mp-counter', `${idx + 1} / ${order.length}`), yearBtn),
       h('div.mp-poster-row',
         h('button.mp-nav', { 'aria-label': 'Film précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
-        poster,
+        h('div.mp-poster-box', poster),
         h('button.mp-nav', { 'aria-label': 'Film suivant', title: 'Suivant (→)', onclick: () => go(1) }, icon('next'))
       ),
       solved ? solvedPanel() : form,
@@ -200,7 +200,7 @@ export async function mount(container, ctx) {
     );
 
     let bar = topBar('Affiches de cinéma');
-    container.replaceChildren(bar, stage, footer());
+    container.replaceChildren(bar, stage);
     if (!solved && matchMedia('(hover: hover)').matches) input.focus();
 
     onKey((e) => {
@@ -214,6 +214,7 @@ export async function mount(container, ctx) {
   // ---------------------------------------------------------------- vue : grille
   function renderGrid(year) {
     resetView();
+    container.classList.remove('is-play');
     const sorted = [...films].sort((a, b) => a.year - b.year || a.title.localeCompare(b.title, 'fr'));
     const years = [...new Set(sorted.map((f) => f.year))];
     const target = Number(year) || null;
@@ -247,8 +248,7 @@ export async function mount(container, ctx) {
         h('p', h('strong', nFound), ` trouvés sur ${sorted.length} · triés par année de sortie`),
         jump
       ),
-      h('div.mp-grid', cards),
-      footer()
+      h('div.mp-grid', cards)
     );
 
     function scrollToYear(y, smooth) {
@@ -265,6 +265,7 @@ export async function mount(container, ctx) {
   // ---------------------------------------------------------------- vue : réglages
   function renderSettings() {
     resetView();
+    container.classList.remove('is-play');
     const radio = (name, value, label, desc) => h('label.mp-option',
       h('input', { type: 'radio', name, value, checked: settings[name] === value, onchange: () => {
         saveSettings({ [name]: value });
@@ -326,17 +327,13 @@ export async function mount(container, ctx) {
           h('p.mp-hint', `${Object.keys(found).length} film(s) trouvé(s) sur ${films.length}.`),
           resetBtn
         ),
-        h('button.mp-btn.mp-btn-primary.mp-wide', { type: 'button', onclick: () => ctx.navigate('film', currentId) }, 'Retour au jeu')
-      ),
-      footer()
+        h('button.mp-btn.mp-btn-primary.mp-wide', { type: 'button', onclick: () => ctx.navigate('film', currentId) }, 'Retour au jeu'),
+        h('p.mp-version', `Little Games · version ${ctx.version || '?'}`)
+      )
     );
     keyInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); saveKey(); } });
   }
 
-  function footer() {
-    return h('footer.mp-footer', 'Affiches : ', h('a', { href: 'https://www.themoviedb.org/', target: '_blank', rel: 'noopener' }, 'TMDB'),
-      '. Ce produit utilise l’API TMDB sans être approuvé ni certifié par TMDB. Les affiches appartiennent à leurs ayants droit.');
-  }
 
   // ---------------------------------------------------------------- routage interne
   function update(path) {
@@ -352,7 +349,7 @@ export async function mount(container, ctx) {
     update,
     destroy() {
       resetView();
-      container.classList.remove('mp');
+      container.classList.remove('mp', 'is-play');
     },
   };
 }

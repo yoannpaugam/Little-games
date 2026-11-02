@@ -1,13 +1,13 @@
 /* Jeu « Affiches de cinéma ». Toutes les classes sont préfixées .mp- */
 
-.mp { --mp-blur: 18px; max-width: 1100px; margin: 0 auto; padding: 0 1rem 2rem; }
+.mp { --mp-blur: 18px; max-width: 1100px; margin: 0 auto; padding: 0 1rem 1rem; }
 .mp .icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
 /* ---------- Barre du haut ---------- */
 .mp-bar {
   position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center; gap: .5rem;
-  padding: .75rem 0;
+  padding: .6rem 0;
   background: linear-gradient(var(--bg) 70%, transparent);
 }
 .mp-title { flex: 1; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -69,18 +69,30 @@
 .mp-poster.is-loaded .mp-poster-empty { display: none; }
 
 /* ---------- Vue jeu ---------- */
-.mp-stage { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: .25rem; }
-.mp-counter { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; margin-bottom: -.5rem; }
+.mp-stage { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+.mp-meta { display: flex; align-items: center; justify-content: center; gap: .8rem; min-height: 2.2rem; }
+.mp-counter { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
 .mp-year {
-  font-family: var(--font-display); font-size: 2.6rem; line-height: 1; letter-spacing: .06em;
+  font-family: var(--font-display); font-size: 2rem; line-height: 1; letter-spacing: .06em;
   background: none; border: 0; color: var(--accent); cursor: pointer; padding: .1rem .6rem; border-radius: 8px;
   transition: background .15s;
 }
 button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outline: none; }
 .mp-year.is-hidden { color: #ffffff1a; cursor: default; }
 
-.mp-poster-row { display: flex; align-items: center; gap: .75rem; width: 100%; justify-content: center; }
-.mp-poster-row .mp-poster { width: min(360px, 68vw); }
+/* Écran de jeu : occupe exactement la hauteur visible, l'affiche prend tout l'espace restant */
+.mp.is-play {
+  display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh;
+  padding-bottom: max(.75rem, env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+.mp.is-play .mp-bar { position: static; flex: none; }
+.mp.is-play .mp-stage { flex: 1; min-height: 0; }
+.mp-stage > * { flex: none; }
+.mp-poster-row { position: relative; flex: 1 1 auto !important; min-height: 0; display: flex; align-items: center; gap: .75rem; width: 100%; justify-content: center; }
+.mp-poster-box { flex: 1; min-width: 0; height: 100%; container-type: size; display: grid; place-items: center; }
+.mp-poster-box .mp-poster { width: min(100cqw, 100cqh * 2 / 3, 420px); }
 .mp-nav {
   display: grid; place-items: center; width: 48px; height: 48px; flex: none;
   background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; color: var(--muted);
@@ -98,7 +110,7 @@ button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outl
 }
 .mp-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px #e8b04a33; }
 .mp-form .mp-btn { min-height: 50px; }
-.mp-feedback { min-height: 1.5em; margin: .6rem 0 0; text-align: center; font-weight: 600; }
+.mp-feedback { min-height: 1.3em; margin: .4rem 0 0; text-align: center; font-weight: 600; }
 .mp-feedback.is-error { color: var(--err); }
 .mp-feedback.is-near { color: #ffb36b; }
 .shake { animation: mp-shake .4s; }
@@ -108,10 +120,10 @@ button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outl
   40%, 80% { transform: translateX(8px); }
 }
 
-.mp-solved { display: flex; flex-direction: column; align-items: center; gap: 1rem; animation: mp-pop .5s ease; }
+.mp-solved { display: flex; flex-direction: column; align-items: center; gap: .6rem; animation: mp-pop .5s ease; }
 .mp-reveal { text-align: center; }
 .mp-bravo { display: inline-flex; align-items: center; gap: .3rem; margin: 0; color: var(--ok); font-weight: 700; }
-.mp-film-title { margin: .2rem 0 0; font-size: 1.6rem; line-height: 1.2; }
+.mp-film-title { margin: .1rem 0 0; font-size: 1.4rem; line-height: 1.2; }
 .mp-original { margin: .2rem 0 0; color: var(--muted); font-style: italic; }
 .mp-details { margin: .4rem 0 0; color: var(--muted); }
 .mp-stage.is-solved .mp-poster { box-shadow: 0 20px 60px -20px #000, 0 0 0 2px var(--ok); }
@@ -142,8 +154,10 @@ button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outl
 .mp-card .mp-poster-empty small { display: none; }
 
 /* ---------- Réglages ---------- */
-.mp-settings { max-width: 560px; margin: 0 auto; display: grid; gap: 1.25rem; }
-.mp-settings fieldset { margin: 0; padding: 1.1rem 1.2rem 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); display: grid; gap: .6rem; }
+.mp-settings { max-width: 560px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.mp-settings .mp-input-row { flex-wrap: wrap; }
+.mp-settings .mp-input-row .mp-input { min-width: 12rem; }
+.mp-settings fieldset { min-width: 0; margin: 0; padding: 1.1rem 1.2rem 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); display: grid; grid-template-columns: minmax(0, 1fr); gap: .6rem; }
 .mp-settings legend { padding: 0 .4rem; font-weight: 700; color: var(--accent); }
 .mp-option { display: flex; gap: .7rem; align-items: flex-start; padding: .5rem .6rem; border-radius: 10px; cursor: pointer; }
 .mp-option:hover { background: var(--bg-3); }
@@ -152,17 +166,35 @@ button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outl
 .mp-option small, .mp-hint { color: var(--muted); font-size: .88rem; line-height: 1.45; margin: 0; }
 .mp-settings .mp-btn-ghost, .mp-settings .mp-btn-danger { justify-self: start; }
 
-.mp-footer { margin-top: 3rem; text-align: center; font-size: .75rem; color: #6c6573; line-height: 1.5; }
-.mp-footer a { color: inherit; }
 
 @media (max-width: 560px) {
-  .mp-nav { width: 40px; height: 40px; }
-  .mp-poster-row { gap: .4rem; }
-  .mp-year { font-size: 2.1rem; }
+  .mp-bar { padding: .45rem 0; }
+  .mp-icon-btn { width: 38px; height: 38px; }
+  /* Flèches posées sur les bords de l'affiche ; la rangée Précédent/Passer devient inutile */
+  .mp-nav { position: absolute; top: 50%; z-index: 2; width: 40px; height: 40px; transform: translateY(-50%);
+    background: #0d0c0fb3; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text); }
+  .mp-nav:first-child { left: .25rem; }
+  .mp-nav:last-child { right: .25rem; }
+  .mp-skip { display: none; }
+  .mp-input, .mp-form .mp-btn { min-height: 46px; }
   .mp-score { display: none; }
   .mp-title { font-size: 1.3rem; }
+  .mp { padding-left: .75rem; padding-right: .75rem; }
+  .mp-stage { gap: .5rem; }
+  .mp-film-title { font-size: 1.2rem; }
+  .mp-solved .mp-btn { min-height: 42px; }
   .mp-card-title { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .mp *, .mp *::before { transition: none !important; animation: none !important; }
 }
+
+/* Écrans très bas (téléphone en paysage) */
+@media (max-height: 520px) {
+  .mp-meta { min-height: 1.6rem; }
+  .mp-year { font-size: 1.5rem; }
+  .mp-skip { display: none; }
+  .mp-bravo, .mp-original { display: none; }
+}
+
+.mp-version { margin: .5rem 0 0; text-align: center; font-size: .8rem; color: var(--muted); opacity: .7; }

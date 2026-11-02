@@ -4,6 +4,9 @@
 import { GAMES } from '../games/registry.js';
 import { h } from './core/dom.js';
 
+// Version affichée dans les réglages des jeux. À incrémenter à chaque mise en ligne.
+export const APP_VERSION = '1.2.0';
+
 const root = document.getElementById('app');
 let current = null; // { id, instance }
 
@@ -64,7 +67,7 @@ async function route() {
     path,
     navigate: (...p) => navigate(game.id, ...p),
     home: () => navigate(''),
-    baseUrl: new URL(`../games/${game.id}/`, import.meta.url),
+    version: APP_VERSION,
   });
   current = { id: game.id, instance };
 }

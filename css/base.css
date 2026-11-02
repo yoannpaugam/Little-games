@@ -35,11 +35,11 @@ a { color: var(--accent); }
 .loading { padding: 30vh 1rem; text-align: center; color: var(--muted); }
 
 /* ---------- Accueil ---------- */
-.home { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.home { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 3rem; overflow-x: hidden; }
 .home-header { text-align: center; margin-bottom: 2.5rem; }
 .logo {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 12vw, 5rem);
+  font-size: clamp(2.6rem, 11vw, 5rem);
   letter-spacing: .04em;
   line-height: .9;
   margin: 0;
