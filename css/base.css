@@ -1,0 +1,66 @@
+/* Styles communs à toute l'application (accueil + variables partagées par les jeux). */
+
+:root {
+  --bg: #0d0c0f;
+  --bg-2: #17151b;
+  --bg-3: #221f27;
+  --line: #2e2a34;
+  --text: #f3efe8;
+  --muted: #9b94a3;
+  --accent: #e8b04a;
+  --accent-ink: #1a1305;
+  --ok: #5fd08a;
+  --err: #ff6b6b;
+  --radius: 14px;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Bebas Neue', 'Oswald', Impact, 'Arial Narrow', sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 50% -200px, #2a1f10 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--accent); }
+
+.loading { padding: 30vh 1rem; text-align: center; color: var(--muted); }
+
+/* ---------- Accueil ---------- */
+.home { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.home-header { text-align: center; margin-bottom: 2.5rem; }
+.logo {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 12vw, 5rem);
+  letter-spacing: .04em;
+  line-height: .9;
+  margin: 0;
+}
+.logo span { color: var(--accent); margin-left: .2em; }
+.tagline { color: var(--muted); margin: .75rem 0 0; }
+
+.game-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.game-card {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+a.game-card:hover, a.game-card:focus-visible { transform: translateY(-2px); border-color: var(--accent); background: var(--bg-3); outline: none; }
+.game-card.soon { opacity: .5; border-style: dashed; }
+.game-emoji { font-size: 2.2rem; line-height: 1; }
+.game-meta { display: grid; gap: .2rem; }
+.game-meta strong { font-size: 1.15rem; }
+.game-meta small { color: var(--muted); }
