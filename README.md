@@ -21,7 +21,10 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 
 ## 🖼️ Les affiches
 
-Aucune affiche n'est livrée avec le code : elles appartiennent à leurs ayants droit. Elles proviennent de **[TMDB](https://www.themoviedb.org/)** (The Movie Database), qui les sert gratuitement. Il te faut une **clé API TMDB** gratuite : crée un compte, puis va dans *Paramètres → API*.
+Aucune affiche n'est livrée avec le code : elles appartiennent à leurs ayants droit.
+
+**Par défaut (sans rien configurer)**, le jeu cherche chaque affiche sur Wikipédia, directement depuis le navigateur, puis la garde en mémoire sur l'appareil. Il n'affiche une image que si le titre de l'article Wikipédia correspond au film. Les options ci-dessous (TMDB) donnent des affiches en meilleure qualité et évitent toute recherche.
+ Elles proviennent de **[TMDB](https://www.themoviedb.org/)** (The Movie Database), qui les sert gratuitement. Il te faut une **clé API TMDB** gratuite : crée un compte, puis va dans *Paramètres → API*.
 
 Il y a deux façons de s'en servir :
 

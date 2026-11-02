@@ -2,17 +2,20 @@
 // Ordre de priorité pour chaque film :
 //   1. data/posters.json → "file"  : image locale (générée par scripts/fetch-posters.mjs --download)
 //   2. data/posters.json → "tmdb"  : chemin d'affiche TMDB (servie par image.tmdb.org)
-//   3. cache navigateur            : résolu en direct via l'API TMDB (clé dans les réglages)
+//   3. cache navigateur            : affiche déjà trouvée en direct sur cet appareil
+//   4. recherche en direct         : API TMDB si une clé est renseignée, sinon (ou à défaut) Wikipédia
 // Les affiches restent la propriété de leurs ayants droit ; aucune n'est livrée avec le code.
 
 import { createStore } from '../../js/core/storage.js';
+import { isMatch } from '../../js/core/fuzzy.js';
 
 const BASE = new URL('./', import.meta.url);
 const IMG = 'https://image.tmdb.org/t/p/';
 const cache = createStore('affiches-posters');
 
 let manifest = {};
-let liveCache = cache.get('live', {});
+// id → "/chemin-tmdb.jpg" | "https://…" (Wikipédia) | null (introuvable)
+let liveCache = cache.get('live2', {});
 const pending = new Map();
 const queue = [];
 let active = 0;
@@ -20,7 +23,7 @@ const MAX_CONCURRENT = 4;
 
 export async function loadManifest() {
   try {
-    const res = await fetch(new URL('data/posters.json', BASE));
+    const res = await fetch(new URL('data/posters.json', BASE), { cache: 'no-cache' });
     if (res.ok) manifest = await res.json();
   } catch {
     manifest = {};
@@ -28,24 +31,26 @@ export async function loadManifest() {
   return manifest;
 }
 
+function toUrl(value, size) {
+  if (!value) return null;
+  return value.startsWith('http') ? value : IMG + size + value;
+}
+
 /** URL d'affiche connue immédiatement (ou null). size : 'w342' | 'w500' | 'w780' */
 export function posterUrl(film, size = 'w500') {
   const m = manifest[film.id];
   if (m?.file) return new URL(m.file, BASE).href;
-  const path = m?.tmdb || liveCache[film.id];
-  if (path) return IMG + size + path;
-  return null;
+  return toUrl(m?.tmdb || liveCache[film.id], size);
 }
 
 export function hasPoster(film) {
   return Boolean(posterUrl(film));
 }
 
-/** Tente de trouver l'affiche via l'API TMDB. Renvoie l'URL ou null. */
+/** Cherche l'affiche en direct (TMDB si clé, sinon Wikipédia). Renvoie l'URL ou null. */
 export function resolvePoster(film, settings, size = 'w500') {
   const known = posterUrl(film, size);
   if (known) return Promise.resolve(known);
-  if (!settings.tmdbKey) return Promise.resolve(null);
   if (liveCache[film.id] === null) return Promise.resolve(null); // déjà cherché, introuvable
   if (!pending.has(film.id)) {
     pending.set(film.id, new Promise((resolve) => {
@@ -53,18 +58,38 @@ export function resolvePoster(film, settings, size = 'w500') {
       pump();
     }));
   }
-  return pending.get(film.id).then((path) => (path ? IMG + size + path : null));
+  return pending.get(film.id).then((value) => toUrl(value, size));
+}
+
+async function findPoster(film, settings) {
+  let networkError = false;
+  if (settings.tmdbKey) {
+    try {
+      const path = await searchTmdb(film, settings);
+      if (path) return path;
+    } catch {
+      networkError = true;
+    }
+  }
+  try {
+    const url = await searchWikipedia(film, settings);
+    if (url) return url;
+  } catch {
+    networkError = true;
+  }
+  if (networkError) throw new Error('réseau');
+  return null;
 }
 
 function pump() {
   while (active < MAX_CONCURRENT && queue.length) {
     const job = queue.shift();
     active++;
-    searchTmdb(job.film, job.settings)
-      .then((path) => {
-        liveCache[job.film.id] = path;
-        cache.set('live', liveCache);
-        job.resolve(path);
+    findPoster(job.film, job.settings)
+      .then((value) => {
+        liveCache[job.film.id] = value;
+        cache.set('live2', liveCache);
+        job.resolve(value);
       })
       .catch(() => job.resolve(null)) // erreur réseau : on retentera plus tard
       .finally(() => {
@@ -75,9 +100,37 @@ function pump() {
   }
 }
 
+// ------------------------------------------------------------------ Wikipédia (sans clé)
+
+async function searchWikipedia(film, settings) {
+  const names = [film.title, film.original, ...(film.alt || [])].filter(Boolean);
+  const fr = settings.posterLang !== 'en-US';
+  const attempts = fr
+    ? [['fr', `${film.title} film ${film.year}`], ['en', `${film.original || film.title} ${film.year} film`]]
+    : [['en', `${film.original || film.title} ${film.year} film`], ['fr', `${film.title} film ${film.year}`]];
+  for (const [lang, query] of attempts) {
+    const url = new URL(`https://${lang}.wikipedia.org/w/api.php`);
+    Object.entries({
+      action: 'query', format: 'json', formatversion: '2', origin: '*',
+      generator: 'search', gsrsearch: query, gsrlimit: '5', gsrnamespace: '0',
+      prop: 'pageimages', piprop: 'thumbnail', pithumbsize: '500', pilicense: 'any',
+    }).forEach(([k, v]) => url.searchParams.set(k, v));
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Wikipédia ${res.status}`);
+    const data = await res.json();
+    const pages = (data.query?.pages || []).sort((a, b) => a.index - b.index);
+    // On n'accepte qu'un article dont le titre correspond au film (sinon mieux vaut pas d'affiche qu'une mauvaise)
+    const hit = pages.find((p) => p.thumbnail?.source && isMatch(p.title.replace(/\s*\([^)]*\)\s*$/, ''), names));
+    if (hit) return hit.thumbnail.source;
+  }
+  return null;
+}
+
+// ------------------------------------------------------------------ TMDB (clé optionnelle)
+
 export function clearLiveCache() {
   liveCache = {};
-  cache.set('live', liveCache);
+  cache.set('live2', liveCache);
 }
 
 export async function testTmdbKey(key) {

@@ -5,7 +5,7 @@ import { GAMES } from '../games/registry.js';
 import { h } from './core/dom.js';
 
 // Version affichée dans les réglages des jeux. À incrémenter à chaque mise en ligne.
-export const APP_VERSION = '1.2.0';
+export const APP_VERSION = '1.3.0';
 
 const root = document.getElementById('app');
 let current = null; // { id, instance }

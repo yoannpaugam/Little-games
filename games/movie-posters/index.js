@@ -79,13 +79,11 @@ export async function mount(container, ctx) {
     const wrap = h('div.mp-poster', { class: `mp-poster${reveal ? ' is-revealed' : ''}` });
     const placeholder = h('div.mp-poster-empty',
       h('span', '?'),
-      h('small', settings.tmdbKey ? 'Recherche de l’affiche…' : 'Affiche non disponible')
+      h('small', 'Recherche de l’affiche…')
     );
     const setSrc = (url) => {
       if (!url) {
-        placeholder.querySelector('small').textContent = settings.tmdbKey
-          ? 'Affiche introuvable'
-          : 'Affiche non disponible — voir Réglages';
+        placeholder.querySelector('small').textContent = 'Affiche introuvable';
         return;
       }
       // alt neutre : le titre ne doit pas fuiter avant d'avoir trouvé
@@ -315,8 +313,8 @@ export async function mount(container, ctx) {
           radio('blur', 'medium', 'Moyen'),
           radio('blur', 'strong', 'Fort', 'Pour les cinéphiles.')
         ),
-        h('fieldset', h('legend', 'Affiches (TMDB)'),
-          h('p.mp-hint', 'Les affiches proviennent de The Movie Database. Si certaines ne s’affichent pas, renseigne une clé API gratuite (themoviedb.org → Paramètres → API) : elles seront recherchées automatiquement et mémorisées sur cet appareil.'),
+        h('fieldset', h('legend', 'Affiches'),
+          h('p.mp-hint', 'Par défaut, les affiches sont cherchées sur Wikipédia, sans rien configurer. Pour des affiches en meilleure qualité, tu peux ajouter une clé API gratuite The Movie Database (themoviedb.org → Paramètres → API).'),
           h('div.mp-input-row', keyInput, h('button.mp-btn', { type: 'button', onclick: saveKey }, 'Enregistrer')),
           keyStatus,
           radio('posterLang', 'fr-FR', 'Affiches françaises'),
