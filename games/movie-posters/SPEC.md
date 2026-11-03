@@ -14,7 +14,8 @@ On montre au joueur l'affiche **floutée** d'un film célèbre, et il doit retro
 - Affiche floutée, avec en dessous un champ « Titre du film » et un bouton **Valider** (la touche Entrée valide aussi).
 - Flèches **précédent / suivant** et bouton **Passer** : on peut naviguer sans répondre. Les flèches du clavier ← → marchent aussi.
 - Mauvaise réponse : un message d'erreur s'affiche (en rouge ; en orange « Tu chauffes ! » si la réponse est proche) et le formulaire tremble. On peut réessayer autant de fois qu'on veut.
-- Bonne réponse : l'affiche se défloute (animation) et on voit **Bravo !**, le titre, le titre original, l'**année** et le **réalisateur**. Un bouton **Film suivant** prend le focus.
+- Bonne réponse : l'affiche se défloute (animation) et on voit **Bravo !**, le titre, puis sur une ligne le titre original, l'**année** et le **réalisateur**. Ce panneau a la même hauteur que le formulaire : l'affiche ne change pas de taille. Un bouton **Suivant** prend le focus.
+- Sur un téléphone en paysage, l'affiche est à gauche et les commandes à droite (comme Visages).
 - Les films trouvés le restent : en revenant dessus, on voit l'affiche nette et les informations.
 
 ## Tolérance aux fautes
