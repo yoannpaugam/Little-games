@@ -1,11 +1,11 @@
 // Coquille de l'application : accueil + routeur par hash (#/jeu/sous-page).
 // Chaque jeu est un module autonome déclaré dans games/registry.js.
 
-import { GAMES } from '../games/registry.js?v=1.5.0';
-import { h } from './core/dom.js?v=1.5.0';
+import { GAMES } from '../games/registry.js?v=1.6.0';
+import { h } from './core/dom.js?v=1.6.0';
 
 // Version affichée dans les réglages des jeux. À incrémenter à chaque mise en ligne.
-export const APP_VERSION = '1.5.0';
+export const APP_VERSION = '1.6.0';
 
 const root = document.getElementById('app');
 let current = null; // { id, instance }
@@ -38,13 +38,17 @@ function renderHome() {
             )
           )
         ),
-        h('li.game-card.soon', h('span.game-emoji', '✨'), h('span.game-meta', h('strong', 'Bientôt'), h('small', 'Devinettes, quiz, et plus encore…')))
+        h('li.game-card.soon', h('span.game-emoji', '✨'), h('span.game-meta', h('strong', 'Bientôt'), h('small', 'Devinettes, quiz et plus encore…')))
       )
     )
   );
 }
 
+// Chaque navigation reçoit un numéro : un jeu qui finit de se charger après qu'on a changé d'écran est abandonné.
+let navSeq = 0;
+
 async function route() {
+  const token = ++navSeq;
   const { gameId, path } = parseHash();
   const game = GAMES.find((g) => g.id === gameId);
 
@@ -59,16 +63,31 @@ async function route() {
     return;
   }
   current?.instance?.destroy?.();
+  current = null;
   root.replaceChildren(h('div.loading', 'Chargement…'));
-  const mod = await game.load();
-  const container = h('div.game-root');
-  root.replaceChildren(container);
-  const instance = await mod.mount(container, {
-    path,
-    navigate: (...p) => navigate(game.id, ...p),
-    home: () => navigate(''),
-    version: APP_VERSION,
-  });
+  let instance = null;
+  try {
+    const mod = await game.load();
+    if (token !== navSeq) return;
+    const container = h('div.game-root');
+    root.replaceChildren(container);
+    instance = await mod.mount(container, {
+      path,
+      navigate: (...p) => navigate(game.id, ...p),
+      home: () => navigate(''),
+      version: APP_VERSION,
+    });
+  } catch (err) {
+    if (token !== navSeq) return;
+    console.error(err);
+    root.replaceChildren(h('div.loading',
+      h('p', 'Impossible de charger le jeu. Vérifie ta connexion.'),
+      h('button.retry', { type: 'button', onclick: () => location.reload() }, 'Réessayer'),
+      h('p', h('a', { href: '#/' }, 'Retour à l’accueil'))
+    ));
+    return;
+  }
+  if (token !== navSeq) { instance?.destroy?.(); return; } // on a changé d'écran pendant le chargement
   current = { id: game.id, instance };
 }
 

@@ -33,6 +33,7 @@ button, input, select { font: inherit; color: inherit; }
 a { color: var(--accent); }
 
 .loading { padding: 30vh 1rem; text-align: center; color: var(--muted); }
+.loading .retry { min-height: 44px; padding: 0 1.2rem; border-radius: 999px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); font-weight: 600; cursor: pointer; }
 
 /* ---------- Accueil ---------- */
 .home { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 3rem; overflow-x: hidden; }
@@ -59,7 +60,7 @@ a { color: var(--accent); }
   transition: transform .15s ease, border-color .15s ease, background .15s ease;
 }
 a.game-card:hover, a.game-card:focus-visible { transform: translateY(-2px); border-color: var(--accent); background: var(--bg-3); outline: none; }
-.game-card.soon { opacity: .5; border-style: dashed; }
+.game-card.soon { opacity: .75; border-style: dashed; }
 .game-emoji { font-size: 2.2rem; line-height: 1; }
 .game-meta { display: grid; gap: .2rem; }
 .game-meta strong { font-size: 1.15rem; }

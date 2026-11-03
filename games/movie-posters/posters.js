@@ -6,16 +6,21 @@
 //   4. recherche en direct         : API TMDB si une clé est renseignée, sinon (ou à défaut) Wikipédia
 // Les affiches restent la propriété de leurs ayants droit ; aucune n'est livrée avec le code.
 
-import { createStore } from '../../js/core/storage.js?v=1.5.0';
-import { isMatch } from '../../js/core/fuzzy.js?v=1.5.0';
+import { createStore } from '../../js/core/storage.js?v=1.6.0';
+import { isMatch } from '../../js/core/fuzzy.js?v=1.6.0';
 
 const BASE = new URL('./', import.meta.url);
 const IMG = 'https://image.tmdb.org/t/p/';
 const cache = createStore('affiches-posters');
 
 let manifest = {};
-// id → "/chemin-tmdb.jpg" | "https://…" (Wikipédia) | null (introuvable)
-let liveCache = cache.get('live2', {});
+// id → "/chemin-tmdb.jpg" | "https://…" (Wikipédia) | { miss: date } (introuvable, réessayé après MISS_TTL)
+// « live3 » remplace « live2 », qui gardait les échecs pour toujours : on repart d'un cache propre.
+let liveCache = cache.get('live3', {});
+cache.remove('live2');
+const MISS_TTL = 3 * 24 * 3600 * 1000;
+const isUrl = (v) => typeof v === 'string' && v.length > 0;
+const isFreshMiss = (v) => v && typeof v === 'object' && Date.now() - (v.miss || 0) < MISS_TTL;
 const pending = new Map();
 const queue = [];
 let active = 0;
@@ -32,7 +37,7 @@ export async function loadManifest() {
 }
 
 function toUrl(value, size) {
-  if (!value) return null;
+  if (!isUrl(value)) return null;
   return value.startsWith('http') ? value : IMG + size + value;
 }
 
@@ -48,17 +53,44 @@ export function hasPoster(film) {
 }
 
 /** Cherche l'affiche en direct (TMDB si clé, sinon Wikipédia). Renvoie l'URL ou null. */
-export function resolvePoster(film, settings, size = 'w500') {
+// priority : true pour l'affiche de l'écran de jeu, qui passe avant celles de la grille.
+export function resolvePoster(film, settings, size = 'w500', { priority = false } = {}) {
   const known = posterUrl(film, size);
   if (known) return Promise.resolve(known);
-  if (liveCache[film.id] === null) return Promise.resolve(null); // déjà cherché, introuvable
+  if (isFreshMiss(liveCache[film.id])) return Promise.resolve(null); // cherché récemment, introuvable
   if (!pending.has(film.id)) {
     pending.set(film.id, new Promise((resolve) => {
-      queue.push({ film, settings, resolve });
+      const job = { film, settings, resolve };
+      if (priority) queue.unshift(job); else queue.push(job);
       pump();
     }));
+  } else if (priority) {
+    const i = queue.findIndex((j) => j.film.id === film.id);
+    if (i > 0) queue.unshift(...queue.splice(i, 1));
   }
   return pending.get(film.id).then((value) => toUrl(value, size));
+}
+
+/** Abandonne les recherches pas encore lancées (ex. : on quitte la grille). */
+export function dropQueued() {
+  for (const job of queue.splice(0)) {
+    pending.delete(job.film.id);
+    job.resolve(null);
+  }
+}
+
+/** Oublie une affiche dont l'image ne se charge plus, pour la rechercher à nouveau plus tard. */
+export function forgetPoster(film) {
+  if (isUrl(liveCache[film.id])) {
+    delete liveCache[film.id];
+    cache.set('live3', liveCache);
+  }
+}
+
+/** Oublie les films marqués « introuvables » (ex. : après l'ajout d'une clé TMDB). */
+export function clearMisses() {
+  for (const [id, v] of Object.entries(liveCache)) if (!isUrl(v)) delete liveCache[id];
+  cache.set('live3', liveCache);
 }
 
 async function findPoster(film, settings) {
@@ -87,8 +119,8 @@ function pump() {
     active++;
     findPoster(job.film, job.settings)
       .then((value) => {
-        liveCache[job.film.id] = value;
-        cache.set('live2', liveCache);
+        liveCache[job.film.id] = value || { miss: Date.now() };
+        cache.set('live3', liveCache);
         job.resolve(value);
       })
       .catch(() => job.resolve(null)) // erreur réseau : on retentera plus tard
@@ -106,34 +138,61 @@ async function searchWikipedia(film) {
   const names = [film.title, film.original, ...(film.alt || [])].filter(Boolean);
   // Wikipédia en anglais uniquement : ses articles de films ont l'affiche dans l'infobox.
   // (Wikipédia en français n'héberge pas d'affiches : l'image principale y est souvent une photo sans rapport.)
+  const main = film.original || film.title;
   const attempts = [
-    ['en', `${film.original || film.title} ${film.year} film`],
-    ...(film.original ? [['en', `${film.title} ${film.year} film`]] : []),
-    ['en', `${film.original || film.title} film`],
+    `${main} ${film.year} film`,
+    ...(film.original ? [`${film.title} ${film.year} film`] : []),
+    `${main} film`,
   ];
-  for (const [lang, query] of attempts) {
-    const url = new URL(`https://${lang}.wikipedia.org/w/api.php`);
-    Object.entries({
-      action: 'query', format: 'json', formatversion: '2', origin: '*',
+  for (const query of attempts) {
+    const pages = await wikipediaQuery({
       generator: 'search', gsrsearch: query, gsrlimit: '5', gsrnamespace: '0',
-      prop: 'pageimages', piprop: 'thumbnail', pithumbsize: '500', pilicense: 'any',
-    }).forEach(([k, v]) => url.searchParams.set(k, v));
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Wikipédia ${res.status}`);
-    const data = await res.json();
-    const pages = (data.query?.pages || []).sort((a, b) => a.index - b.index);
-    // On n'accepte qu'un article dont le titre correspond au film (sinon mieux vaut pas d'affiche qu'une mauvaise)
-    const hit = pages.find((p) => p.thumbnail?.source && isMatch(p.title.replace(/\s*\([^)]*\)\s*$/, ''), names));
+    });
+    const hit = pickWikipediaPage(pages, names, film.year);
     if (hit) return hit.thumbnail.source;
   }
   return null;
+}
+
+async function wikipediaQuery(params) {
+  const url = new URL('https://en.wikipedia.org/w/api.php');
+  Object.entries({
+    action: 'query', format: 'json', formatversion: '2', origin: '*',
+    prop: 'pageimages|description', piprop: 'thumbnail', pithumbsize: '500', pilicense: 'any',
+    ...params,
+  }).forEach(([k, v]) => url.searchParams.set(k, v));
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Wikipédia ${res.status}`);
+  const data = await res.json();
+  // MediaWiki signale ses erreurs (limite de requêtes, surcharge…) avec un statut 200 : on réessaiera plus tard.
+  if (data.error) throw new Error(`Wikipédia ${data.error.code || 'erreur'}`);
+  return (data.query?.pages || []).sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+}
+
+/**
+ * Choisit l'article du film parmi les résultats de recherche (null si aucun ne convient : mieux vaut pas d'affiche qu'une mauvaise).
+ * Accepté : un article dont le titre correspond au film (« Titanic (1997 film) », « Léon: The Professional »),
+ * ou le premier résultat s'il est décrit comme un film de la bonne année (« 1988 film by Luc Besson »),
+ * pour les films dont l'article anglais porte un autre titre (Le Grand Bleu → The Big Blue).
+ */
+export function pickWikipediaPage(pages, names, year) {
+  const withImage = pages.filter((p) => p.thumbnail?.source);
+  const clean = (title) => title.replace(/\s*\([^)]*\)\s*$/, '');
+  const byTitle = withImage.find((p) => {
+    const t = clean(p.title);
+    return isMatch(t, names) || isMatch(t.split(/\s*:\s*/)[0], names);
+  });
+  if (byTitle) return byTitle;
+  const first = pages[0];
+  const isFilmOfYear = (p) => /\bfilm\b/i.test(p?.description || '') && (p.description.includes(String(year)) || p.title.includes(`(${year} film)`));
+  return first?.thumbnail?.source && isFilmOfYear(first) ? first : null;
 }
 
 // ------------------------------------------------------------------ TMDB (clé optionnelle)
 
 export function clearLiveCache() {
   liveCache = {};
-  cache.set('live2', liveCache);
+  cache.set('live3', liveCache);
 }
 
 export async function testTmdbKey(key) {

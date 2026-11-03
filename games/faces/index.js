@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.5.0';
-import { createStore } from '../../js/core/storage.js?v=1.5.0';
-import { buildAnswers, checkAnswer, matchFileName, findByName } from './answers.js?v=1.5.0';
-import * as P from './photos.js?v=1.5.0';
+import { h, icon } from '../../js/core/dom.js?v=1.6.0';
+import { createStore } from '../../js/core/storage.js?v=1.6.0';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.6.0';
+import * as P from './photos.js?v=1.6.0';
 
 // Version 1 du format des données enregistrées. Pour changer ce format : version: 2 + migrate(from, store).
 const store = createStore('visages', { version: 1 });
@@ -43,13 +43,17 @@ export async function mount(container, ctx) {
   container.replaceChildren(h('div.loading', 'Chargement des célébrités…'));
 
   const [celebs] = await Promise.all([
-    fetch(new URL('./data/celebs.json' + new URL(import.meta.url).search, import.meta.url), { cache: 'no-cache' }).then((r) => r.json()),
+    fetch(new URL('./data/celebs.json' + new URL(import.meta.url).search, import.meta.url), { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`celebs.json : ${r.status}`); return r.json(); }),
     P.init(),
   ]);
   const byId = new Map(celebs.map((c) => [c.id, c]));
   const answers = buildAnswers(celebs);
+  const owners = buildOwners(answers);
 
   let settings = { ...DEFAULT_SETTINGS, ...store.get('settings', {}) };
+  if (!Array.isArray(settings.order)) settings.order = [...P.PARTS];
+  if (!Array.isArray(settings.off)) settings.off = [];
+  if (!['all', 'f', 'm'].includes(settings.who)) settings.who = 'all';
   settings.order = [...settings.order.filter((p) => P.PARTS.includes(p)), ...P.PARTS.filter((p) => !settings.order.includes(p))];
   const found = { portrait: {}, enfance: {}, ...store.get('found', {}) };  // kind → id → { t, n }
   const given = { portrait: {}, enfance: {}, ...store.get('given', {}) };  // kind → id → t (solution affichée)
@@ -59,6 +63,9 @@ export async function mount(container, ctx) {
   let lastMode = null;
   let phKind = 'portrait';
   let cleanup = [];
+  let viewSeq = 0;        // change à chaque vue : une tâche qui finit après un changement de vue n'y touche plus
+  let importing = false;  // un seul import à la fois, quelle que soit la vue
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function reseed() {
     const s = Math.floor(Math.random() * 2 ** 31);
@@ -79,6 +86,7 @@ export async function mount(container, ctx) {
     cleanup.push(() => target.removeEventListener(type, fn, opts));
   }
   function resetView() {
+    viewSeq++;
     cleanup.forEach((fn) => fn());
     cleanup = [];
     container.classList.remove('is-play', 'is-full');
@@ -113,6 +121,7 @@ export async function mount(container, ctx) {
         type: 'button',
         onclick: () => {
           if (d.length) ctx.navigate(route);
+          else if (n) ctx.navigate('reglages');
           else { phKind = kind; ctx.navigate('photos', kind === 'enfance' ? 'enfance' : ''); }
         },
       },
@@ -120,14 +129,15 @@ export async function mount(container, ctx) {
         h('span.vz-mode-meta',
           h('strong', title),
           h('small', desc),
-          h('em', d.length ? `${f} trouvée${f > 1 ? 's' : ''} sur ${d.length} · ${n} photo${n > 1 ? 's' : ''}` : 'Aucune photo pour l’instant : touche pour en ajouter')
+          h('em', d.length ? `${f} trouvée${f > 1 ? 's' : ''} sur ${d.length} · ${n} photo${n > 1 ? 's' : ''}`
+            : n ? 'Aucune photo avec le filtre actuel (Réglages)' : 'Aucune photo pour l’instant : touche pour en ajouter')
         )
       );
     };
     container.replaceChildren(
       topBar('Visages'),
       h('section.vz-home',
-        h('p.vz-lead', 'Qui se cache derrière cette photo ?'),
+        h('p.vz-lead', 'Qui se cache derrière ces visages ?'),
         card('portraits', 'Portraits', 'Les yeux d’abord, puis le visage se dévoile pièce par pièce.',
           '<svg viewBox="0 0 64 96"><ellipse cx="22" cy="40" rx="9" ry="6" fill="#e8b04a"/><ellipse cx="42" cy="40" rx="9" ry="6" fill="#e8b04a"/><ellipse cx="32" cy="53" rx="5" ry="8" fill="#e8b04a33"/><ellipse cx="32" cy="67" rx="10" ry="5" fill="#e8b04a33"/></svg>'),
         card('enfance', 'Photos d’enfance', 'La photo est visible dès le début : reconnais la star quand elle était petite.',
@@ -147,11 +157,14 @@ export async function mount(container, ctx) {
     const bar = () => topBar(MODES[route].title, { back: () => ctx.navigate(), kind });
 
     if (!d.length) {
+      const filtered = P.count(kind) > 0; // des photos existent, mais le filtre femmes/hommes les écarte
       container.replaceChildren(bar(), h('div.vz-empty',
-        h('p', kind === 'portrait'
-          ? 'Aucun portrait pour l’instant. Importe des photos de célébrités pour commencer.'
+        h('p', filtered ? `Aucune photo avec le filtre actuel (${settings.who === 'f' ? 'femmes' : 'hommes'} seulement).`
+          : kind === 'portrait' ? 'Aucun portrait pour l’instant. Importe des photos de célébrités pour commencer.'
           : 'Aucune photo d’enfance pour l’instant. Importe-en pour jouer à ce mode.'),
-        h('button.vz-btn.vz-btn-primary', { onclick: () => { phKind = kind; ctx.navigate('photos', kind === 'enfance' ? 'enfance' : ''); } }, 'Ajouter des photos')
+        filtered
+          ? h('button.vz-btn.vz-btn-primary', { onclick: () => ctx.navigate('reglages') }, 'Changer le filtre')
+          : h('button.vz-btn.vz-btn-primary', { onclick: () => { phKind = kind; ctx.navigate('photos', kind === 'enfance' ? 'enfance' : ''); } }, 'Ajouter des photos')
       ));
       return;
     }
@@ -183,6 +196,8 @@ export async function mount(container, ctx) {
       type: 'text', placeholder: 'Qui est-ce ?', autocomplete: 'off', autocapitalize: 'words', spellcheck: false,
       'aria-label': 'Nom de la célébrité', enterKeyHint: 'done',
     });
+    input.setAttribute('autocorrect', 'off'); // pas via h() : sur Safari, la propriété est booléenne
+    const announce = h('p.vz-sr', { role: 'status', 'aria-live': 'polite' });
     const revealLabel = h('span.vz-ellipsis');
     const revealBtn = h('button.vz-btn.vz-grow', { type: 'button', onclick: reveal }, revealLabel);
     let attempts = 0;
@@ -200,7 +215,7 @@ export async function mount(container, ctx) {
       onsubmit: (e) => {
         e.preventDefault();
         const guess = input.value.trim();
-        const r = checkAnswer(guess, answers.get(id));
+        const r = checkAnswer(guess, answers.get(id), owners);
         if (!r) { input.focus(); return; }
         if (r.ok) return finish(true);
         attempts++;
@@ -237,12 +252,14 @@ export async function mount(container, ctx) {
       }
       input.blur();
       answerBox.replaceChildren(solvedPanel());
+      announce.textContent = `${ok ? 'Bravo ! ' : ''}C’était ${celeb.name}.`;
+      canvas.setAttribute('aria-label', `Photo de ${celeb.name}`);
       stage.classList.add(ok ? 'is-solved' : 'is-given');
       updChips();
       head.replaceWith((head = bar()));
       const from = maskA, t0 = performance.now();
       const step = (now) => {
-        const k = Math.min((now - t0) / 700, 1);
+        const k = reduceMotion ? 1 : Math.min((now - t0) / 700, 1);
         maskA = from * (1 - (1 - (1 - k) ** 3));
         paint();
         if (k < 1) anim = requestAnimationFrame(step);
@@ -265,8 +282,12 @@ export async function mount(container, ctx) {
         const nid = d[(idx + k) % d.length];
         if (!solved(kind, nid)) return ctx.navigate(route, nid);
       }
-      feedback.textContent = 'Tout est trouvé ! Ajoute d’autres photos ou efface la progression.';
-      feedback.className = 'vz-feedback';
+      // Plus rien à trouver : le message va dans le panneau visible (le formulaire a pu disparaître)
+      const msg = 'Tout est trouvé ! Ajoute d’autres photos ou efface la progression.';
+      announce.textContent = msg;
+      const nextBtn = answerBox.querySelector('.vz-solved .vz-btn-primary');
+      if (nextBtn) { nextBtn.textContent = 'Tout est trouvé ✓'; nextBtn.disabled = true; }
+      else { feedback.textContent = msg; feedback.className = 'vz-feedback'; }
     }
 
     const isSolved = solved(kind, id);
@@ -284,7 +305,7 @@ export async function mount(container, ctx) {
     );
     let head = bar();
     updChips();
-    container.replaceChildren(head, stage);
+    container.replaceChildren(head, stage, announce);
     if (!isSolved && matchMedia('(hover: hover)').matches) input.focus({ preventScroll: true });
 
     on(document, 'keydown', (e) => {
@@ -311,8 +332,8 @@ export async function mount(container, ctx) {
     }, k === 'portrait' ? 'Portraits' : 'Enfance', h('small')))));
     const multi = h('input', { type: 'file', accept: 'image/*', multiple: true, hidden: true, onchange: (e) => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) importBatch(fs); } });
     const single = h('input', { type: 'file', accept: 'image/*', hidden: true });
-    const search = h('input.vz-input.vz-small', { type: 'search', placeholder: 'Rechercher une personne…', oninput: filter });
-    const sel = h('select.vz-select', { onchange: filter },
+    const search = h('input.vz-input.vz-small', { type: 'search', placeholder: 'Rechercher…', 'aria-label': 'Rechercher une personne', oninput: filter });
+    const sel = h('select.vz-select', { onchange: filter, 'aria-label': 'Filtrer les photos' },
       h('option', { value: 'all' }, 'Toutes'), h('option', { value: 'miss' }, 'À ajouter'),
       h('option', { value: 'has' }, 'Ajoutées'), h('option', { value: 'check' }, 'À vérifier'));
     const list = h('div.vz-list');
@@ -362,10 +383,10 @@ export async function mount(container, ctx) {
       filter();
     }
 
-    let busy = false;
     async function importBatch(files, target) {
-      if (busy) return;
-      busy = true;
+      if (importing) { status.textContent = 'Un import est déjà en cours, patiente un instant…'; return; }
+      importing = true;
+      const v = viewSeq;
       const unknown = [];
       let ok = 0, noFace = 0;
       status.textContent = 'Chargement de la détection de visage…';
@@ -388,8 +409,9 @@ export async function mount(container, ctx) {
       if (noFace) msg += ` ${noFace} sans visage détecté : filtre « À vérifier » pour les placer à la main.`;
       if (!detectorOk) msg += ' Détection de visage indisponible : zones placées au centre.';
       if (!P.persistent) msg += ' Attention : ce navigateur n’enregistre pas les photos.';
+      importing = false;
+      if (v !== viewSeq) return; // on a quitté l'écran Photos pendant l'import
       status.textContent = msg.trim();
-      busy = false;
       refresh();
       if (target && ok) openPreview(target.kind, target.id, refresh);
       if (unknown.length) openUnknown(unknown, refresh);
@@ -428,22 +450,46 @@ export async function mount(container, ctx) {
   }
 
   // ---------------------------------------------------------------- fenêtres
-  function dialog(...content) {
-    const box = h('div.vz-dialog-box', ...content);
+  let dialogSeq = 0;
+  /** Fenêtre modale : Échap ou un clic à côté la ferme, le focus y entre puis revient où il était. */
+  function dialog(title, ...content) {
+    const titleId = `vz-dlg-${++dialogSeq}`;
+    const box = h('div.vz-dialog-box', { role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': titleId }, h(`h3#${titleId}`, title), ...content);
     const dlg = h('div.vz-dialog', { onclick: (e) => { if (e.target === dlg) close(); } }, box);
-    const close = () => dlg.remove();
+    const previous = document.activeElement;
+    const onClose = [];
+    let closed = false;
+    const onKeyDown = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
+    function close() {
+      if (closed) return;
+      closed = true;
+      document.removeEventListener('keydown', onKeyDown, true);
+      onClose.forEach((fn) => fn());
+      dlg.remove();
+      if (previous?.isConnected) previous.focus?.({ preventScroll: true });
+    }
+    document.addEventListener('keydown', onKeyDown, true);
     container.append(dlg);
     cleanup.push(close);
-    return { dlg, box, close };
+    requestAnimationFrame(() => box.querySelector('button, input:not([type=file]), [tabindex]')?.focus({ preventScroll: true }));
+    return { dlg, box, close, onClose: (fn) => onClose.push(fn) };
   }
 
+  let previewOpening = false;
   async function openPreview(kind, id, onChange) {
+    if (previewOpening || container.querySelector('.vz-dialog')) return; // pas deux fenêtres l'une sur l'autre
+    previewOpening = true;
+    const v = viewSeq;
+    try { await openPreviewNow(kind, id, onChange, v); } finally { previewOpening = false; }
+  }
+  async function openPreviewNow(kind, id, onChange, v) {
     const c = byId.get(id);
     const key = P.pkey(kind, id);
     const canvas = h('canvas');
     const wrap = h('div.vz-pv', canvas);
-    const msg = h('p.vz-pv-msg');
+    const msg = h('p.vz-pv-msg', { role: 'status' });
     let img = await P.bitmap(key);
+    if (v !== viewSeq) return;
     let pick = 0, A = null, geo = null;
     const draw = () => { const rec = P.PHOTOS.get(key); if (rec) geo = P.drawPreview(canvas, img, rec, A); };
     const say = () => {
@@ -472,19 +518,26 @@ export async function mount(container, ctx) {
     } }, 'Supprimer');
     const replace = h('input', { type: 'file', accept: 'image/*', hidden: true, onchange: async (e) => {
       const f = e.target.files[0];
+      e.target.value = '';
       if (!f) return;
+      if (importing) { msg.textContent = 'Un import est déjà en cours, patiente un instant…'; return; }
+      importing = true;
       msg.textContent = 'Analyse…';
-      await P.loadDetector();
-      await P.importFile(f, id, kind);
-      img = await P.bitmap(key);
-      say(); draw(); onChange?.();
+      try {
+        await P.loadDetector();
+        await P.importFile(f, id, kind);
+        img = await P.bitmap(key);
+        say(); draw(); onChange?.();
+      } catch (err) {
+        console.warn(err);
+        msg.textContent = 'Cette image n’a pas pu être lue. Essaie une photo JPEG ou PNG.';
+      } finally { importing = false; }
     } });
-    const d = dialog(
-      h('h3', c.name),
+    const d = dialog(c.name,
       h('p.vz-sub', `${KIND_LABEL[kind]} · ${c.job}`),
       wrap, msg,
       h('div.vz-dialog-btns',
-        h('button.vz-btn', { type: 'button', onclick: () => { pick = 1; A = null; wrap.classList.add('is-pick'); say(); draw(); } }, 'Placer à la main'),
+        h('button.vz-btn', { type: 'button', onclick: () => { pick = 1; A = null; wrap.classList.add('is-pick'); say(); draw(); } }, 'Placer'),
         h('label.vz-btn', 'Remplacer', replace),
         delBtn,
         h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => d.close() }, 'Fermer')
@@ -493,38 +546,52 @@ export async function mount(container, ctx) {
     d.box.classList.add('is-tall');
     const ro = new ResizeObserver(draw);
     ro.observe(wrap);
-    cleanup.push(() => ro.disconnect());
+    d.onClose(() => ro.disconnect());
     say();
   }
 
   function openUnknown(files, onChange) {
     const datalist = h('datalist#vz-names', celebs.map((c) => h('option', { value: c.name })));
+    const urls = [];
     const rows = files.map((f) => {
       const url = URL.createObjectURL(f);
-      const input = h('input.vz-input.vz-small', { placeholder: f.name, list: 'vz-names' });
+      urls.push(url);
+      const input = h('input.vz-input.vz-small', { placeholder: f.name, 'aria-label': `Nom de la personne sur ${f.name}`, autocomplete: 'off' });
       input.setAttribute('list', 'vz-names');
-      const btn = h('button.vz-btn.vz-btn-sm', { type: 'button' }, 'OK');
+      input.setAttribute('autocorrect', 'off');
+      const btn = h('button.vz-btn.vz-btn-sm', { type: 'button' }, 'Valider');
       const row = h('div.vz-unknown', h('img', { src: url, alt: '' }), input, btn);
+      let pending = false;
       const assign = async () => {
+        if (pending || row.classList.contains('is-done')) return;
         const c = findByName(input.value, celebs, answers);
         if (!c) { input.classList.add('is-bad'); return; }
+        pending = true;
         btn.disabled = true; btn.textContent = '…';
-        await P.importFile(f, c.id, matchFileName(f.name, celebs, answers).kid ? 'enfance' : phKind);
-        input.value = c.name; input.disabled = true; btn.textContent = '✓';
-        row.classList.add('is-done');
-        onChange?.();
+        try {
+          await P.importFile(f, c.id, matchFileName(f.name, celebs, answers).kid ? 'enfance' : phKind);
+          input.value = c.name; input.disabled = true; btn.textContent = '✓';
+          row.classList.add('is-done');
+          onChange?.();
+        } catch (err) {
+          console.warn(err);
+          btn.disabled = false; btn.textContent = 'Valider';
+          input.classList.add('is-bad');
+          input.value = '';
+          input.placeholder = 'Image illisible';
+        } finally { pending = false; }
       };
       btn.addEventListener('click', assign);
       input.addEventListener('keydown', (e) => { if (e.key === 'Enter') assign(); });
       return row;
     });
-    const d = dialog(
-      h('h3', 'Photos non reconnues'),
+    const d = dialog('Photos non reconnues',
       h('p.vz-sub', 'Indique de qui il s’agit pour chaque photo.'),
       datalist,
       h('div.vz-unknown-list', rows),
       h('div.vz-dialog-btns', h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => d.close() }, 'Terminé'))
     );
+    d.onClose(() => urls.forEach((u) => URL.revokeObjectURL(u)));
   }
 
   // ---------------------------------------------------------------- vue : réglages
@@ -566,13 +633,20 @@ export async function mount(container, ctx) {
       let armed = false;
       const btn = h('button.vz-btn.vz-btn-danger', { type: 'button', onclick: async () => {
         if (!armed) { armed = true; btn.textContent = 'Confirmer ?'; return; }
-        await fn();
+        armed = false;
+        try { await fn(); } catch { btn.textContent = 'Import en cours, réessaie dans un instant'; return; }
         btn.textContent = done;
         btn.disabled = true;
       } }, label);
       return btn;
     };
-    const nFound = Object.keys(found.portrait).length + Object.keys(found.enfance).length;
+    const dataHint = h('p.vz-hint');
+    const updHint = () => {
+      const nFound = Object.keys(found.portrait).length + Object.keys(found.enfance).length;
+      dataHint.textContent = `${plural(nFound, 'célébrité trouvée', 'célébrités trouvées')} · ${plural(P.count('portrait'), 'portrait', 'portraits')} et ${plural(P.count('enfance'), 'photo d’enfance', 'photos d’enfance')} sur cet appareil.`
+        + (P.persistent ? '' : ' Ce navigateur n’enregistre pas les photos : elles seront perdues en fermant la page.');
+    };
+    updHint();
 
     container.replaceChildren(
       topBar('Réglages', { back: backFromTools }),
@@ -584,13 +658,17 @@ export async function mount(container, ctx) {
           radio('all', 'Tout le monde'), radio('f', 'Femmes'), radio('m', 'Hommes'),
           h('button.vz-btn.vz-btn-ghost', { type: 'button', onclick: (e) => { seed = reseed(); e.currentTarget.textContent = '✓ Ordre mélangé'; } }, 'Mélanger à nouveau')),
         h('fieldset', h('legend', 'Progression et photos'),
-          h('p.vz-hint', `${nFound} trouvaille(s) · ${P.count('portrait')} portrait(s) et ${P.count('enfance')} photo(s) d’enfance sur cet appareil.`
-            + (P.persistent ? '' : ' Ce navigateur n’enregistre pas les photos : elles seront perdues en fermant la page.')),
+          dataHint,
           twoStep('Effacer ma progression', '✓ Progression effacée', () => {
             found.portrait = {}; found.enfance = {}; given.portrait = {}; given.enfance = {}; rev = {};
             store.set('found', found); store.set('given', given); store.set('rev', rev);
+            updHint();
           }),
-          twoStep('Supprimer toutes les photos', '✓ Photos supprimées', () => P.clearAll())),
+          twoStep('Supprimer toutes les photos', '✓ Photos supprimées', async () => {
+            if (importing) throw new Error('import en cours');
+            await P.clearAll();
+            updHint();
+          })),
         h('button.vz-btn.vz-btn-primary.vz-wide', { type: 'button', onclick: backFromTools }, lastMode ? 'Retour au jeu' : 'Retour'),
         h('p.vz-version', `Little Games · version ${ctx.version || '?'}`)
       )
@@ -618,6 +696,8 @@ export async function mount(container, ctx) {
 }
 
 // ------------------------------------------------------------------ utilitaires
+
+const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`;
 
 function seededShuffle(arr, seed) {
   let s = seed >>> 0 || 1;

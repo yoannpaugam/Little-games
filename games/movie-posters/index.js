@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.5.0';
-import { createStore } from '../../js/core/storage.js?v=1.5.0';
-import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.5.0';
-import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache } from './posters.js?v=1.5.0';
+import { h, icon } from '../../js/core/dom.js?v=1.6.0';
+import { createStore } from '../../js/core/storage.js?v=1.6.0';
+import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.6.0';
+import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster } from './posters.js?v=1.6.0';
 
 const store = createStore('affiches');
 const DEFAULT_SETTINGS = { order: 'random', blur: 'medium', tmdbKey: '', posterLang: 'fr-FR' };
@@ -21,11 +21,12 @@ export async function mount(container, ctx) {
   container.replaceChildren(h('div.loading', 'Chargement des films…'));
 
   const [films] = await Promise.all([
-    fetch(new URL('./data/films.json' + new URL(import.meta.url).search, import.meta.url), { cache: 'no-cache' }).then((r) => r.json()),
+    fetch(new URL('./data/films.json' + new URL(import.meta.url).search, import.meta.url), { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`films.json : ${r.status}`); return r.json(); }),
     loadManifest(),
   ]);
   const byId = new Map(films.map((f) => [f.id, f]));
   const answers = buildAnswers(films);
+  const answerOwners = ownersOf(answers);
 
   let settings = { ...DEFAULT_SETTINGS, ...store.get('settings', {}) };
   let found = store.get('found', {}); // id → timestamp
@@ -75,7 +76,7 @@ export async function mount(container, ctx) {
   }
 
   // ---------------------------------------------------------------- image d'affiche
-  function posterImg(film, { size = 'w500', reveal = false, lazy = false } = {}) {
+  function posterImg(film, { size = 'w500', reveal = false, lazy = false, priority = false } = {}) {
     const wrap = h('div.mp-poster', { class: `mp-poster${reveal ? ' is-revealed' : ''}` });
     const placeholder = h('div.mp-poster-empty',
       h('span', '?'),
@@ -89,7 +90,7 @@ export async function mount(container, ctx) {
       // alt neutre : le titre ne doit pas fuiter avant d'avoir trouvé
       const img = h('img', { src: url, alt: reveal ? `Affiche de ${film.title}` : 'Affiche mystère', loading: lazy ? 'lazy' : 'eager', decoding: 'async', draggable: false });
       img.addEventListener('load', () => wrap.classList.add('is-loaded'));
-      img.addEventListener('error', () => { img.remove(); placeholder.querySelector('small').textContent = 'Image indisponible'; });
+      img.addEventListener('error', () => { img.remove(); forgetPoster(film); placeholder.querySelector('small').textContent = 'Image indisponible'; });
       wrap.prepend(img);
     };
     wrap.append(placeholder);
@@ -104,7 +105,7 @@ export async function mount(container, ctx) {
       }, { rootMargin: '400px' });
       io.observe(wrap);
       cleanup.push(() => io.disconnect());
-    } else resolvePoster(film, settings, size).then(setSrc);
+    } else resolvePoster(film, settings, size, { priority }).then(setSrc);
     return wrap;
   }
 
@@ -129,19 +130,23 @@ export async function mount(container, ctx) {
       ? h('button.mp-year', { title: 'Voir toutes les affiches de cette période', onclick: () => ctx.navigate('grille', film.year) }, film.year)
       : null;
 
-    const poster = posterImg(film, { reveal: solved });
+    const poster = posterImg(film, { reveal: solved, priority: true });
     const feedback = h('p.mp-feedback', { role: 'status', 'aria-live': 'polite' });
+    const announce = h('p.mp-sr', { role: 'status', 'aria-live': 'polite' }); // annonce la bonne réponse aux lecteurs d'écran
     const input = h('input.mp-input', {
       type: 'text', placeholder: 'Titre du film…', autocomplete: 'off', autocapitalize: 'off', spellcheck: false,
       'aria-label': 'Titre du film', enterKeyHint: 'done',
     });
+    input.setAttribute('autocorrect', 'off'); // pas via h() : sur Safari, la propriété est booléenne
     let attempts = 0;
 
     const infoBlock = () => h('div.mp-reveal',
       h('p.mp-bravo', icon('check'), ' Bravo !'),
       h('h2.mp-film-title', film.title),
-      film.original ? h('p.mp-original', film.original) : null,
+      // Titre original, année et réalisateur sur une seule ligne : le panneau garde la hauteur du formulaire,
+      // l'affiche ne change donc pas de taille quand on trouve la réponse.
       h('p.mp-details',
+        film.original ? h('span.mp-original', h('i', film.original), ' · ') : null,
         h('button.mp-link', { onclick: () => ctx.navigate('grille', film.year) }, film.year),
         ' · ', film.director
       )
@@ -153,7 +158,8 @@ export async function mount(container, ctx) {
         const guess = input.value.trim();
         if (!guess) { input.focus(); return; }
         attempts++;
-        if (isMatch(guess, answers.get(film.id))) {
+        const verdict = judge(guess, film.id, answers, answerOwners);
+        if (verdict.ok) {
           found[film.id] = Date.now();
           store.set('found', found);
           poster.classList.add('is-revealed');
@@ -161,10 +167,11 @@ export async function mount(container, ctx) {
           stage.classList.add('is-solved');
           if (!yearBtn) stage.querySelector('.mp-meta').append(h('button.mp-year', { onclick: () => ctx.navigate('grille', film.year) }, film.year));
           form.replaceWith(solvedPanel());
+          announce.textContent = `Bravo ! C’était ${film.title}.`;
           bar.replaceWith((bar = topBar('Affiches de cinéma')));
         } else {
-          const near = closeness(guess, answers.get(film.id)) < 0.25;
-          feedback.textContent = near ? 'Tu chauffes ! Vérifie l’orthographe ou le titre exact.' : WRONG[(attempts - 1) % WRONG.length];
+          const near = verdict.near;
+          feedback.textContent = near ? 'Tu chauffes ! Vérifie l’orthographe.' : WRONG[(attempts - 1) % WRONG.length];
           feedback.className = `mp-feedback is-error${near ? ' is-near' : ''}`;
           form.classList.remove('shake');
           void form.offsetWidth;
@@ -178,7 +185,7 @@ export async function mount(container, ctx) {
     );
 
     const solvedPanel = () => {
-      const next = h('button.mp-btn.mp-btn-primary', { type: 'button', onclick: () => go(1) }, 'Film suivant', icon('next'));
+      const next = h('button.mp-btn.mp-btn-primary', { type: 'button', onclick: () => go(1) }, 'Suivant', icon('next'));
       setTimeout(() => next.focus(), 50);
       return h('div.mp-solved', infoBlock(), next);
     };
@@ -186,9 +193,9 @@ export async function mount(container, ctx) {
     const stage = h('section.mp-stage', { class: `mp-stage${solved ? ' is-solved' : ''}` },
       h('div.mp-meta', h('span.mp-counter', `${idx + 1} / ${order.length}`), yearBtn),
       h('div.mp-poster-row',
-        h('button.mp-nav', { 'aria-label': 'Film précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
+        h('button.mp-nav', { 'aria-label': 'Précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
         h('div.mp-poster-box', poster),
-        h('button.mp-nav', { 'aria-label': 'Film suivant', title: 'Suivant (→)', onclick: () => go(1) }, icon('next'))
+        h('button.mp-nav', { 'aria-label': 'Suivant', title: 'Suivant (→)', onclick: () => go(1) }, icon('next'))
       ),
       solved ? solvedPanel() : form,
       h('div.mp-skip',
@@ -198,7 +205,7 @@ export async function mount(container, ctx) {
     );
 
     let bar = topBar('Affiches de cinéma');
-    container.replaceChildren(bar, stage);
+    container.replaceChildren(bar, stage, announce);
     if (!solved && matchMedia('(hover: hover)').matches) input.focus();
 
     onKey((e) => {
@@ -212,6 +219,7 @@ export async function mount(container, ctx) {
   // ---------------------------------------------------------------- vue : grille
   function renderGrid(year) {
     resetView();
+    cleanup.push(dropQueued); // en quittant la grille, les affiches pas encore cherchées ne retardent plus le jeu
     container.classList.remove('is-play');
     const sorted = [...films].sort((a, b) => a.year - b.year || a.title.localeCompare(b.title, 'fr'));
     const years = [...new Set(sorted.map((f) => f.year))];
@@ -243,7 +251,7 @@ export async function mount(container, ctx) {
     container.replaceChildren(
       topBar('Toutes les affiches', { back: () => ctx.navigate('film', currentId) }),
       h('div.mp-grid-head',
-        h('p', h('strong', nFound), ` trouvés sur ${sorted.length} · triés par année de sortie`),
+        h('p', h('strong', nFound), ` trouvé${nFound > 1 ? 's' : ''} sur ${sorted.length} · triés par année de sortie`),
         jump
       ),
       h('div.mp-grid', cards)
@@ -281,7 +289,9 @@ export async function mount(container, ctx) {
       if (!key) { keyStatus.textContent = 'Clé supprimée.'; return; }
       keyStatus.textContent = 'Vérification…';
       try {
-        keyStatus.textContent = (await testTmdbKey(key)) ? '✓ Clé valide, les affiches manquantes seront chargées.' : '✗ Clé refusée par TMDB.';
+        const ok = await testTmdbKey(key);
+        if (ok) clearMisses(); // les films « introuvables » seront cherchés à nouveau, avec TMDB
+        keyStatus.textContent = ok ? '✓ Clé valide, les affiches manquantes seront chargées.' : '✗ Clé refusée par TMDB.';
       } catch {
         keyStatus.textContent = '✗ Impossible de joindre TMDB.';
       }
@@ -322,7 +332,7 @@ export async function mount(container, ctx) {
           h('button.mp-btn.mp-btn-ghost', { type: 'button', onclick: (e) => { clearLiveCache(); e.currentTarget.textContent = '✓ Cache vidé'; } }, 'Vider le cache des affiches')
         ),
         h('fieldset', h('legend', 'Progression'),
-          h('p.mp-hint', `${Object.keys(found).length} film(s) trouvé(s) sur ${films.length}.`),
+          h('p.mp-hint', `${plural(Object.keys(found).length, 'film trouvé', 'films trouvés')} sur ${films.length}.`),
           resetBtn
         ),
         h('button.mp-btn.mp-btn-primary.mp-wide', { type: 'button', onclick: () => ctx.navigate('film', currentId) }, 'Retour au jeu'),
@@ -355,7 +365,7 @@ export async function mount(container, ctx) {
 // ------------------------------------------------------------------ utilitaires
 
 /** Réponses acceptées : titre FR, titre original, alternatives, + parties avant/après ":" si non ambiguës. */
-function buildAnswers(films) {
+export function buildAnswers(films) {
   const SPLIT = /\s*(?::|–|—| - )\s*/;
   const owners = new Map();
   const note = (str, id) => {
@@ -374,6 +384,8 @@ function buildAnswers(films) {
       if (parts.length > 1) note(parts[0], f.id);
     }
   }
+  const fullNames = [...base].flatMap(([id, list]) => list.map((s) => [normalize(s), id]));
+  const prefixOfOther = (n, id) => fullNames.some(([full, other]) => other !== id && full.startsWith(n + ' '));
   const result = new Map();
   for (const f of films) {
     const list = [...base.get(f.id)];
@@ -382,12 +394,42 @@ function buildAnswers(films) {
       if (parts.length < 2) continue;
       const head = parts[0];
       const tail = parts.slice(1).join(' ');
-      if (owners.get(normalize(head))?.size === 1) list.push(head); // ex. « Kill Bill »
-      if (normalize(tail).replace(/ /g, '').length >= 6 && !owners.has(normalize(tail))) list.push(tail); // ex. « Les Deux Tours »
+      // Partie avant « : » si elle ne désigne qu'un film, ni le début du titre d'un autre (« Astérix et Obélix »)
+      const nh = normalize(head);
+      if (owners.get(nh)?.size === 1 && !prefixOfOther(nh, f.id)) list.push(head); // ex. « Kill Bill »
+      // Partie après « : », sauf les mentions génériques (« Volume 1 », « Deuxième partie »)
+      const nt = normalize(tail);
+      if (nt.replace(/ /g, '').length >= 6 && !owners.has(nt) && !GENERIC_TAIL.test(nt)) list.push(tail); // ex. « Les Deux Tours »
     }
     result.set(f.id, [...new Set(list)]);
   }
   return result;
+}
+
+const GENERIC_TAIL = /^(vol|volume|partie|part|chapitre|chapitres|episode|premiere partie|deuxieme partie|seconde partie|\d+(e|eme)? partie)\b/;
+const compact = (s) => normalize(s).replace(/ /g, '');
+const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`;
+
+/**
+ * Juge une proposition pour un film → { ok, near }.
+ * Une réponse qui est exactement celle d'un autre film est refusée (« Titane » n'est pas « Titanic »).
+ */
+export function judge(guess, id, answers, owners) {
+  const other = owners.get(compact(guess));
+  if (other && !other.has(id)) return { ok: false, near: false };
+  if (isMatch(guess, answers.get(id))) return { ok: true, near: false };
+  return { ok: false, near: closeness(guess, answers.get(id)) < 0.25 };
+}
+
+/** Réponse normalisée (sans espaces) → films qui l'acceptent. */
+export function ownersOf(answers) {
+  const owners = new Map();
+  for (const [id, list] of answers) for (const s of list) {
+    const k = compact(s);
+    if (!owners.has(k)) owners.set(k, new Set());
+    owners.get(k).add(id);
+  }
+  return owners;
 }
 
 function seededShuffle(arr, seed) {

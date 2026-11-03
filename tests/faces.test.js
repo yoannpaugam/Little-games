@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { buildAnswers, checkAnswer, matchFileName, findByName } from '../games/faces/answers.js';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from '../games/faces/answers.js';
 
 const celebs = JSON.parse(await readFile(new URL('../games/faces/data/celebs.json', import.meta.url), 'utf8'));
 const answers = buildAnswers(celebs);
@@ -41,4 +41,29 @@ test('reconnaît les noms de fichiers', () => {
   assert.equal(matchFileName('celine_dion_portrait.png', celebs, answers).id, 'celine-dion');
   assert.equal(matchFileName('IMG_2034.jpg', celebs, answers).id, null);
   assert.equal(findByName('leonardo di caprio', celebs, answers)?.id, 'leonardo-dicaprio');
+});
+
+test('prénoms composés : le nom de famille seul est accepté', () => {
+  assert.ok(check('Belmondo', 'jean-paul-belmondo').ok);
+  assert.ok(check('Goldman', 'jean-jacques-goldman').ok);
+  assert.ok(check('Trintignant', 'jean-louis-trintignant').ok);
+  assert.ok(check('de Funès', 'louis-de-funes').ok);
+});
+
+const owners = buildOwners(answers);
+const strict = (guess, id) => checkAnswer(guess, answers.get(id), owners);
+
+test('un nom proche ou celui d’une autre célébrité n’est pas accepté', () => {
+  assert.ok(!strict('Carey', 'jim-carrey').ok);
+  assert.ok(!strict('Dalida', 'dua-lipa').ok);
+  assert.ok(!strict('Jean', 'james-dean').ok);
+  assert.ok(!strict('Hugh', 'florence-pugh').ok);
+  assert.ok(!strict('Bono', 'dany-boon').ok);
+  assert.ok(strict('Carrey', 'jim-carrey').ok);
+  assert.ok(strict('Bourgoin', 'louise-bourgoin').ok);
+});
+
+test('le prénom seul donne un indice au lieu de passer', () => {
+  assert.equal(strict('Christophe', 'christophe-mae').hint, 'Il manque le nom de famille.');
+  assert.ok(!strict('Christophe', 'christophe-mae').ok);
 });
