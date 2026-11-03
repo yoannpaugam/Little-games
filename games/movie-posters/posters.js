@@ -6,8 +6,8 @@
 //   4. recherche en direct         : API TMDB si une clé est renseignée, sinon (ou à défaut) Wikipédia
 // Les affiches restent la propriété de leurs ayants droit ; aucune n'est livrée avec le code.
 
-import { createStore } from '../../js/core/storage.js';
-import { isMatch } from '../../js/core/fuzzy.js';
+import { createStore } from '../../js/core/storage.js?v=1.4.0';
+import { isMatch } from '../../js/core/fuzzy.js?v=1.4.0';
 
 const BASE = new URL('./', import.meta.url);
 const IMG = 'https://image.tmdb.org/t/p/';
@@ -102,12 +102,15 @@ function pump() {
 
 // ------------------------------------------------------------------ Wikipédia (sans clé)
 
-async function searchWikipedia(film, settings) {
+async function searchWikipedia(film) {
   const names = [film.title, film.original, ...(film.alt || [])].filter(Boolean);
-  const fr = settings.posterLang !== 'en-US';
-  const attempts = fr
-    ? [['fr', `${film.title} film ${film.year}`], ['en', `${film.original || film.title} ${film.year} film`]]
-    : [['en', `${film.original || film.title} ${film.year} film`], ['fr', `${film.title} film ${film.year}`]];
+  // Wikipédia en anglais uniquement : ses articles de films ont l'affiche dans l'infobox.
+  // (Wikipédia en français n'héberge pas d'affiches : l'image principale y est souvent une photo sans rapport.)
+  const attempts = [
+    ['en', `${film.original || film.title} ${film.year} film`],
+    ...(film.original ? [['en', `${film.title} ${film.year} film`]] : []),
+    ['en', `${film.original || film.title} film`],
+  ];
   for (const [lang, query] of attempts) {
     const url = new URL(`https://${lang}.wikipedia.org/w/api.php`);
     Object.entries({

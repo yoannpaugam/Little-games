@@ -92,7 +92,8 @@ button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outl
 .mp-stage > * { flex: none; }
 .mp-poster-row { position: relative; flex: 1 1 auto !important; min-height: 0; display: flex; align-items: center; gap: .75rem; width: 100%; justify-content: center; }
 .mp-poster-box { flex: 1; min-width: 0; height: 100%; container-type: size; display: grid; place-items: center; }
-.mp-poster-box .mp-poster { width: min(100cqw, 100cqh * 2 / 3, 420px); }
+/* Affiche volontairement plus petite que l'espace disponible, pour laisser respirer l'écran */
+.mp-poster-box .mp-poster { width: min(72cqw, 100cqh * 0.86 * 2 / 3, 300px); }
 .mp-nav {
   display: grid; place-items: center; width: 48px; height: 48px; flex: none;
   background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; color: var(--muted);

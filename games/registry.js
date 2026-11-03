@@ -9,6 +9,6 @@ export const GAMES = [
     description: 'Retrouve le film derrière l’affiche floutée.',
     emoji: '🎬',
     accent: '#e8b04a',
-    load: () => import('./movie-posters/index.js'),
+    load: () => import('./movie-posters/index.js?v=1.4.0'),
   },
 ];

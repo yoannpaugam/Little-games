@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js';
-import { createStore } from '../../js/core/storage.js';
-import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js';
-import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache } from './posters.js';
+import { h, icon } from '../../js/core/dom.js?v=1.4.0';
+import { createStore } from '../../js/core/storage.js?v=1.4.0';
+import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.4.0';
+import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache } from './posters.js?v=1.4.0';
 
 const store = createStore('affiches');
 const DEFAULT_SETTINGS = { order: 'random', blur: 'medium', tmdbKey: '', posterLang: 'fr-FR' };
@@ -21,7 +21,7 @@ export async function mount(container, ctx) {
   container.replaceChildren(h('div.loading', 'Chargement des films…'));
 
   const [films] = await Promise.all([
-    fetch(new URL('./data/films.json', import.meta.url)).then((r) => r.json()),
+    fetch(new URL('./data/films.json' + new URL(import.meta.url).search, import.meta.url), { cache: 'no-cache' }).then((r) => r.json()),
     loadManifest(),
   ]);
   const byId = new Map(films.map((f) => [f.id, f]));
@@ -408,7 +408,7 @@ function seededShuffle(arr, seed) {
 }
 
 function ensureStyles() {
-  const href = new URL('./styles.css', import.meta.url).href;
+  const href = new URL('./styles.css' + new URL(import.meta.url).search, import.meta.url).href;
   if (!document.querySelector(`link[href="${href}"]`)) {
     document.head.append(h('link', { rel: 'stylesheet', href }));
   }
