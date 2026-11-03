@@ -90,8 +90,9 @@ games/faces/             Le jeu « Visages », autonome
   ├─ vendor/, models/    face-api et ses modèles
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs   Récupération des affiches (Node 18+)
-tests/                   Tests de la tolérance aux fautes (npm test)
+tests/                   Tests : tolérance aux fautes, catalogues, stockage (npm test)
 CLAUDE.md                Consignes pour Claude (architecture, coordination, livraison)
+SECURITY.md              Données, protections en place et règles de sécurité
 .claude/agents/          Agents spécialisés : game design, UX mobile, architecture, QA, contenus,
                          performance/PWA, multijoueur, conformité, coordination des versions
 ```

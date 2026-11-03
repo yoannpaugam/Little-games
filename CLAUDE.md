@@ -34,6 +34,13 @@ Une conversation s'occupe d'un seul jeu, et plusieurs pull requests peuvent êtr
 - `css/base.css`, `index.html`, `js/app.js` : on n'y touche que si c'est nécessaire, et on le signale.
 - On ne livre aucune image protégée dans le dépôt (affiches, photos de célébrités).
 
+## Sécurité et données (détails dans `SECURITY.md`)
+- **Catalogues** : en JSON dans le dépôt, vérifiés par `tests/catalogs.test.js`. Un nouveau catalogue ajoute ses règles dans ce test.
+- **Données du joueur** : sur son appareil, avec `createStore(jeu, { version, migrate })`. On ne change jamais le format enregistré sans augmenter `version` et écrire la migration.
+- **CSP** dans `index.html` : toute nouvelle source externe (API, CDN, service temps réel) y est ajoutée dans la même pull request. Pas de script externe : les bibliothèques vont dans le dossier du jeu, avec leur licence.
+- **Pas d'`innerHTML`** avec des données externes : on construit le DOM avec `h()`.
+- **Aucun secret dans le dépôt.** Pour un futur service en ligne (Supabase…), seule la clé publique est autorisée, la *Row Level Security* est obligatoire et le mode de secours hors ligne doit fonctionner.
+
 ## Livraison (règle de Yoann)
 1. Partir de `main` à jour et créer une branche `jeu/<id>-v<x.y.z>`. Pour l'outillage ou le nettoyage : `outils/…` ou `maintenance/…`.
 2. Vérifier :
