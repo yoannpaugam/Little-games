@@ -271,7 +271,8 @@
 
 /* ---------- Remplir à la suite ---------- */
 .vz-photos-actions { display: flex; gap: .5rem; }
-.vz-photos-actions .vz-btn { flex: 1; }
+.vz-photos-actions .vz-btn { flex: 1; padding: 0 .8rem; }
+.vz-photos-actions .vz-btn-primary { flex: 2; }
 .vz-fill { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6rem; max-width: 520px; width: 100%; margin: 0 auto; overflow: auto; }
 .vz-fill-progress { margin: 0; text-align: center; color: var(--muted); font-size: .9rem; }
 .vz-fill-card { display: flex; flex-direction: column; gap: .55rem; padding: 1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); }
@@ -305,3 +306,12 @@
   .vz-fill-card > a, .vz-fill-card > button, .vz-fill-zone, .vz-fill-row { grid-column: 2; }
   .vz-fill-zone { min-height: 42px; }
 }
+
+/* ---------- Lignes de l'écran Photos : carte cliquable + poubelle ---------- */
+.vz-row-card { flex: 1; min-width: 0; display: flex; align-items: center; gap: .7rem; padding: 0; background: none; border: 0; text-align: left; cursor: pointer; color: inherit; font: inherit; border-radius: 8px; }
+.vz-row-card .vz-thumb { display: grid; place-items: center; }
+.vz-row-card:hover .vz-thumb:not(.has) { border-color: var(--accent); color: var(--accent); }
+.vz-row-trash { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; }
+.vz-row-trash:hover { color: var(--err); background: #ff6b6b14; }
+.vz-row-trash .icon { width: 1.2em; height: 1.2em; }
+.vz-link { background: none; border: 0; padding: .4rem 0; color: var(--accent); font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }

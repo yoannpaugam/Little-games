@@ -16,7 +16,8 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - Import multiple ou glisser-déposer. Le nom du fichier identifie la personne (« omar-sy.jpg »), avec une tolérance aux fautes. Si le nom contient « enfant », « child », « bébé », etc., la photo est rangée en photo d'enfance.
 - Les fichiers non reconnus sont listés : on indique à la main de qui il s'agit (champ avec suggestions).
 - La liste des 300 célébrités a une recherche et un filtre (toutes, à ajouter, ajoutées, à vérifier).
-- On touche une case vide pour ajouter la photo d'une seule personne. Chaque ligne a des liens Wikipédia et Images pour trouver une photo.
+- **Toucher la carte** d'une personne sans photo colle directement l'image copiée (appui long sur une photo → « Copier l'image »). Le navigateur ne doit pas refuser l'accès au presse-papiers ; s'il le refuse, une petite fenêtre propose de coller par appui long, ou de choisir un fichier. Sur ordinateur, Ctrl+V colle pour la dernière carte touchée. Toucher la carte d'une personne qui a déjà une photo ouvre l'aperçu.
+- Chaque ligne a un lien **Images** (recherche d'images, avec « enfant » dans l'onglet Enfance) et une **poubelle** qui retire la célébrité du jeu, sans confirmation mais avec « Annuler ». Les célébrités retirées ne sont plus proposées. On les retrouve avec le filtre « Retirées », où l'icône les remet dans le jeu. La liste se copie depuis les Réglages, pour les retirer ensuite du catalogue.
 - Les images sont réduites à 1100 px au plus. Une miniature est générée.
 - **Remplir à la suite** (le plus rapide) : une seule personne à la fois, la première sans photo par ordre alphabétique.
   - « Chercher une image » ouvre une recherche d'images dans un autre onglet.
@@ -66,6 +67,7 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - **Ordre de dévoilement** des 5 parties (↑ ↓). Chaque partie peut être désactivée, mais au moins une doit rester active. Par défaut : yeux, bouche, nez, oreilles, front + cheveux.
 - Célébrités : tout le monde, femmes ou hommes.
 - Mélanger à nouveau.
+- Célébrités retirées : leur nombre, « Copier la liste » (noms et identifiants) et « Tout remettre ».
 - Effacer la progression et supprimer toutes les photos, avec une confirmation en deux clics.
 
 ## Persistance (sur l'appareil)
@@ -77,6 +79,7 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
   - `given` (solution affichée)
   - `rev` (parties dévoilées)
   - `fillSkip` (personnes passées dans « Remplir à la suite », par type de photo)
+  - `excluded` (célébrités retirées avec la poubelle)
 - IndexedDB `little-games-visages` : photo, miniature, zones, cadrage, et si la détection a été automatique ou faite à la main.
 
 ## Navigation (URL)
