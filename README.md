@@ -91,6 +91,9 @@ games/faces/             Le jeu « Visages », autonome
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs   Récupération des affiches (Node 18+)
 tests/                   Tests de la tolérance aux fautes (npm test)
+CLAUDE.md                Consignes pour Claude (architecture, coordination, livraison)
+.claude/agents/          Agents spécialisés : game design, UX mobile, architecture, QA, contenus,
+                         performance/PWA, multijoueur, conformité, coordination des versions
 ```
 
 **Contrat d'un jeu** : `games/<id>/index.js` exporte `mount(container, ctx)` et renvoie `{ update(path), destroy() }`.
