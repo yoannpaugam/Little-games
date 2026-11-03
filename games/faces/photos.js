@@ -55,7 +55,14 @@ function run(mode, fn) {
 }
 export async function put(rec) {
   PHOTOS.set(rec.key, rec); dropCache(rec.key);
-  try { await run('readwrite', (st) => st.put(rec)); } catch { persistent = false; }
+  try { await run('readwrite', (st) => st.put(rec)); requestPersistence(); } catch { persistent = false; }
+}
+let persistAsked = false;
+/** Demande au navigateur de ne pas effacer les photos quand l'appareil manque de place (une fois par session). */
+function requestPersistence() {
+  if (persistAsked) return;
+  persistAsked = true;
+  navigator.storage?.persisted?.().then((done) => done || navigator.storage.persist?.()).catch(() => {});
 }
 export async function remove(key) {
   PHOTOS.delete(key); dropCache(key);
