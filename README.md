@@ -6,6 +6,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | Jeu | Dossier | Statut |
 | --- | --- | --- |
 | 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
+| 👤 Visages (portraits et photos d'enfance) | `games/faces/` | ✅ jouable |
 | Devinettes, quiz… | — | à venir |
 
 ---
@@ -54,6 +55,14 @@ Autres options : `--lang en-US` (affiches originales), `--force` (tout refaire),
 
 Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, recadrage léger via CSS).
 
+## 👤 Les photos de Visages
+
+Aucune photo n'est livrée avec le code. Chaque joueur importe ses photos dans le jeu, depuis l'icône 🖼️ **Photos**. Elles restent enregistrées dans le navigateur de son appareil (IndexedDB).
+
+- Nomme chaque fichier avec le nom de la personne : `omar-sy.jpg`, `Céline Dion.png`. Ajoute « enfant » pour une photo d'enfance : `omar-sy-enfant.jpg`. Ensuite, importe-les tous d'un coup : ils sont rangés automatiquement. Le jeu te demande à qui correspondent les fichiers qu'il ne reconnaît pas.
+- Le visage est repéré automatiquement à l'import, avec [face-api](https://github.com/vladmandic/face-api) (licence MIT, fichiers dans `games/faces/vendor/` et `games/faces/models/`, environ 7 Mo, chargés seulement au premier import). Si un visage n'est pas trouvé, on le place à la main en deux touches.
+- Toutes les photos sont affichées au même format que les affiches : 2:3, recadrées autour du visage.
+
 ## 🧱 Architecture (pensée pour migrer facilement)
 
 ```
@@ -72,6 +81,14 @@ games/movie-posters/     Le jeu « Affiches de cinéma », autonome
   ├─ data/films.json     Les films (titre, titre original, alternatives, année, réalisateur)
   ├─ data/posters.json   Chemins des affiches (généré par le script)
   └─ SPEC.md             Spécification fonctionnelle du jeu
+games/faces/             Le jeu « Visages », autonome
+  ├─ index.js            Logique et vues (choix du mode, jeu, photos, réglages)
+  ├─ answers.js          Réponses acceptées, reconnaissance des noms de fichiers (testé)
+  ├─ photos.js           Stockage des photos, détection du visage, masque
+  ├─ styles.css          Styles du jeu (préfixe .vz-)
+  ├─ data/celebs.json    Les 300 célébrités (nom, profession, sexe, année de naissance, alternatives)
+  ├─ vendor/, models/    face-api et ses modèles
+  └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs   Récupération des affiches (Node 18+)
 tests/                   Tests de la tolérance aux fautes (npm test)
 ```
@@ -79,7 +96,7 @@ tests/                   Tests de la tolérance aux fautes (npm test)
 **Contrat d'un jeu** : `games/<id>/index.js` exporte `mount(container, ctx)` et renvoie `{ update(path), destroy() }`.
 `ctx` fournit `path` (le sous-chemin de l'URL), `navigate(...path)` et `home()`.
 Un jeu n'utilise que `js/core/`. Pour le transposer dans une autre application, copie son dossier et `js/core/` :
-- `data/films.json` et `SPEC.md` peuvent être repris tels quels dans n'importe quelle technologie (React Native, Flutter, Swift…) ;
+- `data/films.json`, `data/celebs.json` et les `SPEC.md` peuvent être repris tels quels dans n'importe quelle technologie (React Native, Flutter, Swift…) ;
 - `fuzzy.js` est du JavaScript pur, testé, que l'on peut porter facilement.
 
 ### Ajouter un jeu
@@ -96,6 +113,13 @@ Toutes ces réponses sont acceptées : `title`, `original` et chaque élément d
 Pour un titre en deux parties (avec « : »), la partie avant les deux-points est aussi acceptée si elle ne désigne qu'un seul film (ex. « Kill Bill »).
 La partie après les deux-points est acceptée aussi (ex. « Les Deux Tours »).
 Relance ensuite `node scripts/fetch-posters.mjs` pour les nouveaux films.
+
+### Modifier la liste des célébrités
+Édite `games/faces/data/celebs.json`. Exemple d'entrée :
+```json
+{ "id": "omar-sy", "name": "Omar Sy", "job": "Acteur", "g": "m", "born": 1978, "alt": ["autre réponse acceptée"] }
+```
+Garde des `id` stables : ils servent à retrouver les photos déjà importées et la progression.
 
 ---
 

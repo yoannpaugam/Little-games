@@ -1,0 +1,641 @@
+// Jeu « Visages » : reconnaître une célébrité à partir de son visage.
+// Contrat de module : export mount(container, ctx) → { update(path), destroy() }
+//   ctx.path : [] (choix du mode) | ['portraits', id?] | ['enfance', id?] | ['photos', 'enfance'?] | ['reglages']
+//   ctx.navigate : (...path) => change l'URL du jeu
+//   ctx.home     : () => retour à l'accueil
+
+import { h, icon } from '../../js/core/dom.js?v=1.4.0';
+import { createStore } from '../../js/core/storage.js?v=1.4.0';
+import { buildAnswers, checkAnswer, matchFileName, findByName } from './answers.js?v=1.4.0';
+import * as P from './photos.js?v=1.4.0';
+
+const store = createStore('visages');
+
+const PART_NAME = { eyes: 'Les yeux', mouth: 'La bouche', nose: 'Le nez', ears: 'Les oreilles', top: 'Front + cheveux' };
+const PART_BTN = { eyes: 'les yeux', mouth: 'la bouche', nose: 'le nez', ears: 'les oreilles', top: 'le front' };
+const PART_CHIP = { eyes: 'Yeux', mouth: 'Bouche', nose: 'Nez', ears: 'Oreilles', top: 'Front' };
+const MODES = {
+  portraits: { kind: 'portrait', title: 'Portraits' },
+  enfance: { kind: 'enfance', title: 'Enfance' },
+};
+const ROUTE_OF = { portrait: 'portraits', enfance: 'enfance' };
+const KIND_LABEL = { portrait: 'Portrait', enfance: 'Photo d’enfance' };
+const DEFAULT_SETTINGS = { order: [...P.PARTS], off: [], who: 'all' };
+const WRONG = ['Ce n’est pas ça… Réessaie !', 'Raté ! Encore un essai ?', 'Non, ce n’est pas cette personne.', 'Toujours pas… courage !'];
+
+const SVG = {
+  photo: '<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/>',
+  sliders: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
+};
+function svgIcon(name) {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('class', 'icon');
+  s.setAttribute('aria-hidden', 'true');
+  s.innerHTML = SVG[name];
+  return s;
+}
+
+export async function mount(container, ctx) {
+  ensureStyles();
+  container.classList.add('vz');
+  container.replaceChildren(h('div.loading', 'Chargement des célébrités…'));
+
+  const [celebs] = await Promise.all([
+    fetch(new URL('./data/celebs.json' + new URL(import.meta.url).search, import.meta.url), { cache: 'no-cache' }).then((r) => r.json()),
+    P.init(),
+  ]);
+  const byId = new Map(celebs.map((c) => [c.id, c]));
+  const answers = buildAnswers(celebs);
+
+  let settings = { ...DEFAULT_SETTINGS, ...store.get('settings', {}) };
+  settings.order = [...settings.order.filter((p) => P.PARTS.includes(p)), ...P.PARTS.filter((p) => !settings.order.includes(p))];
+  const found = { portrait: {}, enfance: {}, ...store.get('found', {}) };  // kind → id → { t, n }
+  const given = { portrait: {}, enfance: {}, ...store.get('given', {}) };  // kind → id → t (solution affichée)
+  let rev = store.get('rev', {});                                          // id → nombre de parties visibles
+  const current = store.get('current', {});                                // kind → id
+  let seed = store.get('seed', null) ?? reseed();
+  let lastMode = null;
+  let phKind = 'portrait';
+  let cleanup = [];
+
+  function reseed() {
+    const s = Math.floor(Math.random() * 2 ** 31);
+    store.set('seed', s);
+    return s;
+  }
+  const saveSettings = () => store.set('settings', settings);
+  const activeParts = () => settings.order.filter((p) => !settings.off.includes(p));
+  const solved = (kind, id) => Boolean(found[kind][id] || given[kind][id]);
+  const revealed = (id) => Math.min(Math.max(rev[id] || 1, 1), Math.max(activeParts().length, 1));
+  function deck(kind) {
+    return seededShuffle(celebs.map((c) => c.id), seed)
+      .filter((id) => P.has(kind, id) && (settings.who === 'all' || byId.get(id).g === settings.who));
+  }
+
+  function on(target, type, fn, opts) {
+    target.addEventListener(type, fn, opts);
+    cleanup.push(() => target.removeEventListener(type, fn, opts));
+  }
+  function resetView() {
+    cleanup.forEach((fn) => fn());
+    cleanup = [];
+    container.classList.remove('is-play', 'is-full');
+  }
+
+  // ---------------------------------------------------------------- barre du haut
+  function topBar(titleText, { back, kind } = {}) {
+    let score = null;
+    if (kind) {
+      const d = deck(kind);
+      score = h('span.vz-score', { title: 'Célébrités trouvées' }, h('strong', d.filter((id) => found[kind][id]).length), ` / ${d.length}`);
+    }
+    return h('header.vz-bar',
+      h('button.vz-icon-btn', { title: 'Retour', 'aria-label': 'Retour', onclick: back || ctx.home }, icon('back')),
+      h('h1.vz-title', titleText),
+      score,
+      h('button.vz-icon-btn', { title: 'Photos', 'aria-label': 'Photos', onclick: () => ctx.navigate('photos') }, svgIcon('photo')),
+      h('button.vz-icon-btn', { title: 'Réglages', 'aria-label': 'Réglages', onclick: () => ctx.navigate('reglages') }, svgIcon('sliders'))
+    );
+  }
+  const backFromTools = () => (lastMode ? ctx.navigate(lastMode) : ctx.navigate());
+
+  // ---------------------------------------------------------------- vue : choix du mode
+  function renderHome() {
+    resetView();
+    const card = (route, title, desc, pic) => {
+      const kind = MODES[route].kind;
+      const d = deck(kind);
+      const f = d.filter((id) => found[kind][id]).length;
+      const n = P.count(kind);
+      return h('button.vz-mode', {
+        type: 'button',
+        onclick: () => {
+          if (d.length) ctx.navigate(route);
+          else { phKind = kind; ctx.navigate('photos', kind === 'enfance' ? 'enfance' : ''); }
+        },
+      },
+        h('span.vz-mode-pic', { innerHTML: pic }),
+        h('span.vz-mode-meta',
+          h('strong', title),
+          h('small', desc),
+          h('em', d.length ? `${f} trouvée${f > 1 ? 's' : ''} sur ${d.length} · ${n} photo${n > 1 ? 's' : ''}` : 'Aucune photo pour l’instant : touche pour en ajouter')
+        )
+      );
+    };
+    container.replaceChildren(
+      topBar('Visages'),
+      h('section.vz-home',
+        h('p.vz-lead', 'Qui se cache derrière cette photo ?'),
+        card('portraits', 'Portraits', 'Les yeux d’abord, puis le visage se dévoile pièce par pièce.',
+          '<svg viewBox="0 0 64 96"><ellipse cx="22" cy="40" rx="9" ry="6" fill="#e8b04a"/><ellipse cx="42" cy="40" rx="9" ry="6" fill="#e8b04a"/><ellipse cx="32" cy="53" rx="5" ry="8" fill="#e8b04a33"/><ellipse cx="32" cy="67" rx="10" ry="5" fill="#e8b04a33"/></svg>'),
+        card('enfance', 'Photos d’enfance', 'La photo est visible dès le début : reconnais la star quand elle était petite.',
+          '<svg viewBox="0 0 64 96"><circle cx="32" cy="44" r="17" fill="#ff8a65"/><circle cx="26" cy="42" r="2.4" fill="#121015"/><circle cx="38" cy="42" r="2.4" fill="#121015"/><path d="M26 51q6 5 12 0" stroke="#121015" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M14 96q0-26 18-26t18 26" fill="#ff8a6577"/></svg>'),
+        P.PHOTOS.size ? null : h('p.vz-hint', `${celebs.length} célébrités au catalogue. Commence par importer leurs photos depuis ton appareil (icône photo en haut).`)
+      )
+    );
+  }
+
+  // ---------------------------------------------------------------- vue : jeu
+  function renderPlay(route, wantedId) {
+    resetView();
+    container.classList.add('is-play');
+    lastMode = route;
+    const kind = MODES[route].kind;
+    const d = deck(kind);
+    const bar = () => topBar(MODES[route].title, { back: () => ctx.navigate(), kind });
+
+    if (!d.length) {
+      container.replaceChildren(bar(), h('div.vz-empty',
+        h('p', kind === 'portrait'
+          ? 'Aucun portrait pour l’instant. Importe des photos de célébrités pour commencer.'
+          : 'Aucune photo d’enfance pour l’instant. Importe-en pour jouer à ce mode.'),
+        h('button.vz-btn.vz-btn-primary', { onclick: () => { phKind = kind; ctx.navigate('photos', kind === 'enfance' ? 'enfance' : ''); } }, 'Ajouter des photos')
+      ));
+      return;
+    }
+
+    let id = d.includes(wantedId) ? wantedId : d.includes(current[kind]) ? current[kind] : (d.find((x) => !solved(kind, x)) || d[0]);
+    current[kind] = id;
+    store.set('current', current);
+    const celeb = byId.get(id);
+    const rec = P.get(kind, id);
+    const idx = d.indexOf(id);
+    const go = (delta) => ctx.navigate(route, d[(idx + delta + d.length) % d.length]);
+    P.preload([1, -1].map((k) => P.pkey(kind, d[(idx + k + d.length) % d.length])));
+
+    let img = null;
+    let maskA = kind === 'portrait' && !solved(kind, id) ? 1 : 0;
+    let anim = 0;
+    const canvas = h('canvas.vz-canvas', { 'aria-label': 'Photo mystère', role: 'img' });
+    const frame = h('div.vz-frame', canvas);
+    const shownParts = () => (kind === 'portrait' ? (solved(kind, id) ? activeParts() : activeParts().slice(0, revealed(id))) : []);
+    const paint = () => P.drawPhoto(canvas, img, rec, shownParts(), maskA);
+    P.bitmap(rec.key).then((b) => { img = b; paint(); });
+    const ro = new ResizeObserver(paint);
+    ro.observe(frame);
+    cleanup.push(() => { ro.disconnect(); cancelAnimationFrame(anim); });
+
+    const chips = h('div.vz-chips');
+    const feedback = h('p.vz-feedback', { role: 'status', 'aria-live': 'polite' });
+    const input = h('input.vz-input', {
+      type: 'text', placeholder: 'Qui est-ce ?', autocomplete: 'off', autocapitalize: 'words', spellcheck: false,
+      'aria-label': 'Nom de la célébrité', enterKeyHint: 'done',
+    });
+    const revealLabel = h('span.vz-ellipsis');
+    const revealBtn = h('button.vz-btn.vz-grow', { type: 'button', onclick: reveal }, revealLabel);
+    let attempts = 0;
+
+    function updChips() {
+      const ap = activeParts();
+      const n = solved(kind, id) ? ap.length : revealed(id);
+      chips.replaceChildren(...(kind === 'portrait' ? ap.map((p, i) => h('span.vz-chip', { class: `vz-chip${i < n ? ' is-on' : ''}` }, PART_CHIP[p])) : []));
+      const next = ap[revealed(id)];
+      revealLabel.textContent = kind === 'portrait' && next ? `Voir ${PART_BTN[next]}` : 'Solution';
+      revealBtn.disabled = solved(kind, id);
+    }
+
+    const form = h('form.vz-form', {
+      onsubmit: (e) => {
+        e.preventDefault();
+        const guess = input.value.trim();
+        const r = checkAnswer(guess, answers.get(id));
+        if (!r) { input.focus(); return; }
+        if (r.ok) return finish(true);
+        attempts++;
+        feedback.textContent = r.near ? `Tu chauffes ! ${r.hint}` : WRONG[(attempts - 1) % WRONG.length];
+        feedback.className = `vz-feedback is-error${r.near ? ' is-near' : ''}`;
+        form.classList.remove('vz-shake');
+        void form.offsetWidth;
+        form.classList.add('vz-shake');
+        input.select();
+      },
+    }, h('div.vz-input-row', input, h('button.vz-btn.vz-btn-primary', { type: 'submit' }, 'Valider')));
+
+    function solvedPanel() {
+      const f = found[kind][id];
+      const next = h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: skip }, 'Suivant', icon('next'));
+      setTimeout(() => next.focus({ preventScroll: true }), 50);
+      return h('div.vz-solved',
+        h('div.vz-who',
+          f ? h('p.vz-bravo', icon('check'), ' Bravo !', kind === 'portrait' && f.n ? h('span', ` · ${f.n} indice${f.n > 1 ? 's' : ''}`) : null)
+            : h('p.vz-bravo.is-given', 'C’était…'),
+          h('h2.vz-name', celeb.name),
+          h('p.vz-job', `${celeb.job} · ${celeb.g === 'f' ? 'née' : 'né'} en ${celeb.born}`)
+        ),
+        next
+      );
+    }
+    function finish(ok) {
+      if (ok) {
+        found[kind][id] = { t: Date.now(), n: kind === 'portrait' ? revealed(id) : 0 };
+        store.set('found', found);
+      } else {
+        given[kind][id] = Date.now();
+        store.set('given', given);
+      }
+      input.blur();
+      answerBox.replaceChildren(solvedPanel());
+      stage.classList.add(ok ? 'is-solved' : 'is-given');
+      updChips();
+      head.replaceWith((head = bar()));
+      const from = maskA, t0 = performance.now();
+      const step = (now) => {
+        const k = Math.min((now - t0) / 700, 1);
+        maskA = from * (1 - (1 - (1 - k) ** 3));
+        paint();
+        if (k < 1) anim = requestAnimationFrame(step);
+      };
+      anim = requestAnimationFrame(step);
+    }
+    function reveal() {
+      if (solved(kind, id)) return;
+      const n = revealed(id);
+      if (kind === 'portrait' && n < activeParts().length) {
+        rev[id] = n + 1;
+        store.set('rev', rev);
+        updChips();
+        paint();
+        feedback.textContent = '';
+      } else finish(false);
+    }
+    function skip() {
+      for (let k = 1; k <= d.length; k++) {
+        const nid = d[(idx + k) % d.length];
+        if (!solved(kind, nid)) return ctx.navigate(route, nid);
+      }
+      feedback.textContent = 'Tout est trouvé ! Ajoute d’autres photos ou efface la progression.';
+      feedback.className = 'vz-feedback';
+    }
+
+    const isSolved = solved(kind, id);
+    const answerBox = h('div.vz-answer', isSolved ? solvedPanel() : [form, feedback]);
+    const stage = h('section.vz-stage', { class: `vz-stage${isSolved ? (found[kind][id] ? ' is-solved' : ' is-given') : ''}` },
+      h('div.vz-frame-box', frame),
+      chips,
+      answerBox,
+      h('div.vz-nav',
+        h('button.vz-btn.vz-arrow', { type: 'button', 'aria-label': 'Précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
+        revealBtn,
+        h('button.vz-btn', { type: 'button', onclick: skip }, 'Passer'),
+        h('button.vz-btn.vz-arrow', { type: 'button', 'aria-label': 'Suivant', title: 'Suivant (→)', onclick: () => go(1) }, icon('next'))
+      )
+    );
+    let head = bar();
+    updChips();
+    container.replaceChildren(head, stage);
+    if (!isSolved && matchMedia('(hover: hover)').matches) input.focus({ preventScroll: true });
+
+    on(document, 'keydown', (e) => {
+      if (container.querySelector('.vz-dialog')) return;
+      const typing = document.activeElement === input && input.value !== '';
+      if (typing || e.altKey || e.metaKey || e.ctrlKey) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+  }
+
+  // ---------------------------------------------------------------- vue : photos
+  function renderPhotos(kindArg) {
+    resetView();
+    container.classList.add('is-full');
+    if (kindArg === 'enfance') phKind = 'enfance';
+    else if (kindArg === 'portraits') phKind = 'portrait';
+
+    const status = h('p.vz-status', { role: 'status' });
+    const segBtns = {};
+    const seg = h('div.vz-seg', ['portrait', 'enfance'].map((k) => (segBtns[k] = h('button', {
+      type: 'button',
+      onclick: () => { phKind = k; refresh(); },
+    }, k === 'portrait' ? 'Portraits' : 'Enfance', h('small')))));
+    const multi = h('input', { type: 'file', accept: 'image/*', multiple: true, hidden: true, onchange: (e) => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) importBatch(fs); } });
+    const single = h('input', { type: 'file', accept: 'image/*', hidden: true });
+    const search = h('input.vz-input.vz-small', { type: 'search', placeholder: 'Rechercher une personne…', oninput: filter });
+    const sel = h('select.vz-select', { onchange: filter },
+      h('option', { value: 'all' }, 'Toutes'), h('option', { value: 'miss' }, 'À ajouter'),
+      h('option', { value: 'has' }, 'Ajoutées'), h('option', { value: 'check' }, 'À vérifier'));
+    const list = h('div.vz-list');
+    const drop = h('div.vz-drop', 'Dépose tes photos ici');
+
+    const rows = [...celebs].sort((a, b) => a.name.localeCompare(b.name, 'fr')).map((c) => {
+      const th = h('button.vz-thumb', { type: 'button', 'aria-label': `Photo de ${c.name}` });
+      const imgLink = h('a.vz-chip-link', { target: '_blank', rel: 'noopener' }, 'Images');
+      const row = h('div.vz-row', th,
+        h('div.vz-row-meta', h('strong', c.name), h('small', `${c.job} · ${c.born}`)),
+        h('a.vz-chip-link', { href: `https://fr.wikipedia.org/w/index.php?search=${encodeURIComponent(c.name)}`, target: '_blank', rel: 'noopener' }, 'Wiki'),
+        imgLink);
+      th.addEventListener('click', () => {
+        if (P.has(phKind, c.id)) openPreview(phKind, c.id, refresh);
+        else {
+          single.onchange = async (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) importBatch([f], { id: c.id, kind: phKind }); };
+          single.click();
+        }
+      });
+      return { c, row, th, imgLink, q: `${c.name} ${c.job}`.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase() };
+    });
+    list.append(...rows.map((r) => r.row));
+
+    function filter() {
+      const q = search.value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+      const f = sel.value;
+      for (const r of rows) {
+        const rec = P.get(phKind, r.c.id);
+        let show = !q || r.q.includes(q);
+        if (f === 'miss') show &&= !rec;
+        if (f === 'has') show &&= Boolean(rec);
+        if (f === 'check') show &&= Boolean(rec) && !rec.auto && !rec.manual;
+        r.row.hidden = !show;
+        if (!show) continue;
+        r.th.classList.toggle('has', Boolean(rec));
+        r.th.classList.toggle('warn', Boolean(rec) && !rec.auto && !rec.manual);
+        r.th.style.backgroundImage = rec ? `url(${P.thumbUrl(rec.key)})` : '';
+        r.th.textContent = rec ? '' : '+';
+        r.imgLink.href = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(r.c.name + (phKind === 'enfance' ? ' enfant' : ' portrait'))}`;
+      }
+    }
+    function refresh() {
+      for (const k of ['portrait', 'enfance']) {
+        segBtns[k].classList.toggle('is-on', k === phKind);
+        segBtns[k].querySelector('small').textContent = P.count(k) || '';
+      }
+      filter();
+    }
+
+    let busy = false;
+    async function importBatch(files, target) {
+      if (busy) return;
+      busy = true;
+      const unknown = [];
+      let ok = 0, noFace = 0;
+      status.textContent = 'Chargement de la détection de visage…';
+      const detectorOk = await P.loadDetector();
+      for (let i = 0; i < files.length; i++) {
+        status.textContent = `Analyse des photos… ${i + 1} / ${files.length}`;
+        const f = files[i];
+        let id, kind;
+        if (target) ({ id, kind } = target);
+        else {
+          const m = matchFileName(f.name, celebs, answers);
+          if (!m.id) { unknown.push(f); continue; }
+          id = m.id;
+          kind = m.kid ? 'enfance' : phKind;
+        }
+        try { if (!(await P.importFile(f, id, kind))) noFace++; ok++; }
+        catch (e) { console.warn(e); unknown.push(f); }
+      }
+      let msg = ok ? `${ok} photo${ok > 1 ? 's' : ''} ajoutée${ok > 1 ? 's' : ''}.` : '';
+      if (noFace) msg += ` ${noFace} sans visage détecté : filtre « À vérifier » pour les placer à la main.`;
+      if (!detectorOk) msg += ' Détection de visage indisponible : zones placées au centre.';
+      if (!P.persistent) msg += ' Attention : ce navigateur n’enregistre pas les photos.';
+      status.textContent = msg.trim();
+      busy = false;
+      refresh();
+      if (target && ok) openPreview(target.kind, target.id, refresh);
+      if (unknown.length) openUnknown(unknown, refresh);
+    }
+
+    on(document, 'dragenter', (e) => { e.preventDefault(); drop.classList.add('is-on'); });
+    on(document, 'dragover', (e) => e.preventDefault());
+    on(document, 'dragleave', (e) => { if (!e.relatedTarget) drop.classList.remove('is-on'); });
+    on(document, 'drop', (e) => {
+      e.preventDefault();
+      drop.classList.remove('is-on');
+      const fs = [...e.dataTransfer.files].filter((f) => f.type.startsWith('image/') || /\.(jpe?g|png|webp|gif|heic|avif)$/i.test(f.name));
+      if (fs.length) importBatch(fs);
+    });
+
+    container.replaceChildren(
+      topBar('Photos', { back: backFromTools }),
+      h('section.vz-photos',
+        h('div.vz-photos-top',
+          seg,
+          h('label.vz-btn.vz-btn-primary.vz-wide', 'Importer des photos…', multi),
+          h('details.vz-help',
+            h('summary', 'Comment ajouter les photos ?'),
+            h('p', 'Nomme chaque fichier avec le nom de la personne (« omar-sy.jpg », « Céline Dion.png »), puis importe-les tous d’un coup : ils sont rangés tout seuls. Ajoute « enfant » au nom (« omar-sy-enfant.jpg ») pour une photo d’enfance. Tu peux aussi toucher une case vide pour ajouter la photo d’une seule personne, ou glisser des fichiers sur cette page.'),
+            h('p', 'Le visage est repéré automatiquement. Touche une photo pour vérifier les zones ou les placer à la main. Les photos restent sur cet appareil.')
+          ),
+          h('div.vz-filter', search, sel),
+          status
+        ),
+        list
+      ),
+      single,
+      drop
+    );
+    refresh();
+  }
+
+  // ---------------------------------------------------------------- fenêtres
+  function dialog(...content) {
+    const box = h('div.vz-dialog-box', ...content);
+    const dlg = h('div.vz-dialog', { onclick: (e) => { if (e.target === dlg) close(); } }, box);
+    const close = () => dlg.remove();
+    container.append(dlg);
+    cleanup.push(close);
+    return { dlg, box, close };
+  }
+
+  async function openPreview(kind, id, onChange) {
+    const c = byId.get(id);
+    const key = P.pkey(kind, id);
+    const canvas = h('canvas');
+    const wrap = h('div.vz-pv', canvas);
+    const msg = h('p.vz-pv-msg');
+    let img = await P.bitmap(key);
+    let pick = 0, A = null, geo = null;
+    const draw = () => { const rec = P.PHOTOS.get(key); if (rec) geo = P.drawPreview(canvas, img, rec, A); };
+    const say = () => {
+      const rec = P.PHOTOS.get(key);
+      msg.classList.toggle('is-hl', pick > 0);
+      msg.textContent = pick === 1 ? '① Touche le milieu, entre les deux yeux'
+        : pick === 2 ? '② Touche maintenant le centre de la bouche'
+        : !rec ? '' : rec.manual ? 'Zones placées à la main.'
+        : rec.auto ? 'Visage détecté automatiquement. Le cadre blanc montre ce qui sera affiché.'
+        : 'Visage non détecté : place-le à la main pour un bon cadrage.';
+    };
+    canvas.addEventListener('pointerdown', async (e) => {
+      if (!pick || !geo) return;
+      const pt = geo.toImage(e.clientX, e.clientY);
+      if (!pt) return;
+      if (pick === 1) { A = pt; pick = 2; say(); draw(); return; }
+      await P.placeManually(key, A, pt);
+      img = await P.bitmap(key);
+      pick = 0; A = null; wrap.classList.remove('is-pick');
+      say(); draw(); onChange?.();
+    });
+    let armed = false;
+    const delBtn = h('button.vz-btn.vz-btn-danger', { type: 'button', onclick: async () => {
+      if (!armed) { armed = true; delBtn.textContent = 'Confirmer ?'; return; }
+      await P.remove(key); d.close(); onChange?.();
+    } }, 'Supprimer');
+    const replace = h('input', { type: 'file', accept: 'image/*', hidden: true, onchange: async (e) => {
+      const f = e.target.files[0];
+      if (!f) return;
+      msg.textContent = 'Analyse…';
+      await P.loadDetector();
+      await P.importFile(f, id, kind);
+      img = await P.bitmap(key);
+      say(); draw(); onChange?.();
+    } });
+    const d = dialog(
+      h('h3', c.name),
+      h('p.vz-sub', `${KIND_LABEL[kind]} · ${c.job}`),
+      wrap, msg,
+      h('div.vz-dialog-btns',
+        h('button.vz-btn', { type: 'button', onclick: () => { pick = 1; A = null; wrap.classList.add('is-pick'); say(); draw(); } }, 'Placer à la main'),
+        h('label.vz-btn', 'Remplacer', replace),
+        delBtn,
+        h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => d.close() }, 'Fermer')
+      )
+    );
+    d.box.classList.add('is-tall');
+    const ro = new ResizeObserver(draw);
+    ro.observe(wrap);
+    cleanup.push(() => ro.disconnect());
+    say();
+  }
+
+  function openUnknown(files, onChange) {
+    const datalist = h('datalist#vz-names', celebs.map((c) => h('option', { value: c.name })));
+    const rows = files.map((f) => {
+      const url = URL.createObjectURL(f);
+      const input = h('input.vz-input.vz-small', { placeholder: f.name, list: 'vz-names' });
+      input.setAttribute('list', 'vz-names');
+      const btn = h('button.vz-btn.vz-btn-sm', { type: 'button' }, 'OK');
+      const row = h('div.vz-unknown', h('img', { src: url, alt: '' }), input, btn);
+      const assign = async () => {
+        const c = findByName(input.value, celebs, answers);
+        if (!c) { input.classList.add('is-bad'); return; }
+        btn.disabled = true; btn.textContent = '…';
+        await P.importFile(f, c.id, matchFileName(f.name, celebs, answers).kid ? 'enfance' : phKind);
+        input.value = c.name; input.disabled = true; btn.textContent = '✓';
+        row.classList.add('is-done');
+        onChange?.();
+      };
+      btn.addEventListener('click', assign);
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') assign(); });
+      return row;
+    });
+    const d = dialog(
+      h('h3', 'Photos non reconnues'),
+      h('p.vz-sub', 'Indique de qui il s’agit pour chaque photo.'),
+      datalist,
+      h('div.vz-unknown-list', rows),
+      h('div.vz-dialog-btns', h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => d.close() }, 'Terminé'))
+    );
+  }
+
+  // ---------------------------------------------------------------- vue : réglages
+  function renderSettings() {
+    resetView();
+    const orderList = h('ol.vz-order');
+    function drawOrder() {
+      let n = 0;
+      orderList.replaceChildren(...settings.order.map((p, i) => {
+        const off = settings.off.includes(p);
+        if (!off) n++;
+        const move = (delta) => {
+          const o = settings.order;
+          [o[i], o[i + delta]] = [o[i + delta], o[i]];
+          saveSettings(); drawOrder();
+        };
+        return h('li', { class: off ? 'is-off' : '' },
+          h('span.vz-order-num', off ? '–' : n),
+          h('span.vz-order-name', PART_NAME[p]),
+          h('label.vz-switch', { title: off ? 'Activer' : 'Désactiver' },
+            h('input', { type: 'checkbox', checked: !off, 'aria-label': PART_NAME[p], onchange: (e) => {
+              if (e.target.checked) settings.off = settings.off.filter((x) => x !== p);
+              else if (activeParts().length > 1) settings.off.push(p);
+              else e.target.checked = true;
+              saveSettings(); drawOrder();
+            } }),
+            h('span')),
+          h('button.vz-move', { type: 'button', 'aria-label': 'Monter', disabled: i === 0, onclick: () => move(-1) }, '↑'),
+          h('button.vz-move', { type: 'button', 'aria-label': 'Descendre', disabled: i === settings.order.length - 1, onclick: () => move(1) }, '↓'));
+      }));
+    }
+    drawOrder();
+
+    const radio = (value, label) => h('label.vz-option',
+      h('input', { type: 'radio', name: 'vz-who', value, checked: settings.who === value, onchange: () => { settings.who = value; saveSettings(); } }),
+      h('span', h('strong', label)));
+
+    const twoStep = (label, done, fn) => {
+      let armed = false;
+      const btn = h('button.vz-btn.vz-btn-danger', { type: 'button', onclick: async () => {
+        if (!armed) { armed = true; btn.textContent = 'Confirmer ?'; return; }
+        await fn();
+        btn.textContent = done;
+        btn.disabled = true;
+      } }, label);
+      return btn;
+    };
+    const nFound = Object.keys(found.portrait).length + Object.keys(found.enfance).length;
+
+    container.replaceChildren(
+      topBar('Réglages', { back: backFromTools }),
+      h('section.vz-settings',
+        h('fieldset', h('legend', 'Ordre de dévoilement (Portraits)'),
+          h('p.vz-hint', 'La première partie est visible dès le début, les suivantes se dévoilent une par une. Une partie désactivée n’est jamais montrée avant la réponse.'),
+          orderList),
+        h('fieldset', h('legend', 'Célébrités'),
+          radio('all', 'Tout le monde'), radio('f', 'Femmes'), radio('m', 'Hommes'),
+          h('button.vz-btn.vz-btn-ghost', { type: 'button', onclick: (e) => { seed = reseed(); e.currentTarget.textContent = '✓ Ordre mélangé'; } }, 'Mélanger à nouveau')),
+        h('fieldset', h('legend', 'Progression et photos'),
+          h('p.vz-hint', `${nFound} trouvaille(s) · ${P.count('portrait')} portrait(s) et ${P.count('enfance')} photo(s) d’enfance sur cet appareil.`
+            + (P.persistent ? '' : ' Ce navigateur n’enregistre pas les photos : elles seront perdues en fermant la page.')),
+          twoStep('Effacer ma progression', '✓ Progression effacée', () => {
+            found.portrait = {}; found.enfance = {}; given.portrait = {}; given.enfance = {}; rev = {};
+            store.set('found', found); store.set('given', given); store.set('rev', rev);
+          }),
+          twoStep('Supprimer toutes les photos', '✓ Photos supprimées', () => P.clearAll())),
+        h('button.vz-btn.vz-btn-primary.vz-wide', { type: 'button', onclick: backFromTools }, lastMode ? 'Retour au jeu' : 'Retour'),
+        h('p.vz-version', `Little Games · version ${ctx.version || '?'}`)
+      )
+    );
+  }
+
+  // ---------------------------------------------------------------- routage interne
+  function update(path) {
+    const [view, arg] = path || [];
+    if (MODES[view]) renderPlay(view, arg);
+    else if (view === 'photos') renderPhotos(arg);
+    else if (view === 'reglages') renderSettings();
+    else renderHome();
+    window.scrollTo(0, 0);
+  }
+  update(ctx.path);
+
+  return {
+    update,
+    destroy() {
+      resetView();
+      container.classList.remove('vz');
+    },
+  };
+}
+
+// ------------------------------------------------------------------ utilitaires
+
+function seededShuffle(arr, seed) {
+  let s = seed >>> 0 || 1;
+  const rand = () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let t = s;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function ensureStyles() {
+  const href = new URL('./styles.css' + new URL(import.meta.url).search, import.meta.url).href;
+  if (!document.querySelector(`link[href="${href}"]`)) document.head.append(h('link', { rel: 'stylesheet', href }));
+}
