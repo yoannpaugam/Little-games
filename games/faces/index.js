@@ -1,13 +1,13 @@
 // Jeu « Visages » : reconnaître une célébrité à partir de son visage.
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
-//   ctx.path : [] (choix du mode) | ['portraits', id?] | ['enfance', id?] | ['photos', 'enfance'?] | ['reglages']
+//   ctx.path : [] (choix du mode) | ['portraits', id?] | ['enfance', id?] | ['photos', 'enfance'?] | ['remplir', 'enfance'?] | ['reglages']
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.6.0';
-import { createStore } from '../../js/core/storage.js?v=1.6.0';
-import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.6.0';
-import * as P from './photos.js?v=1.6.0';
+import { h, icon } from '../../js/core/dom.js?v=1.7.0';
+import { createStore } from '../../js/core/storage.js?v=1.7.0';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.7.0';
+import * as P from './photos.js?v=1.7.0';
 
 // Version 1 du format des données enregistrées. Pour changer ce format : version: 2 + migrate(from, store).
 const store = createStore('visages', { version: 1 });
@@ -27,6 +27,8 @@ const WRONG = ['Ce n’est pas ça… Réessaie !', 'Raté ! Encore un essai ?',
 const SVG = {
   photo: '<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/>',
   sliders: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
+  trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 002 2h6a2 2 0 002-2l1-12M9 7V4h6v3"/>',
+  restore: '<path d="M4 12a8 8 0 108-8 8 8 0 00-6 2.7"/><path d="M4 4v4h4"/>',
 };
 function svgIcon(name) {
   const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -57,7 +59,10 @@ export async function mount(container, ctx) {
   settings.order = [...settings.order.filter((p) => P.PARTS.includes(p)), ...P.PARTS.filter((p) => !settings.order.includes(p))];
   const found = { portrait: {}, enfance: {}, ...store.get('found', {}) };  // kind → id → { t, n }
   const given = { portrait: {}, enfance: {}, ...store.get('given', {}) };  // kind → id → t (solution affichée)
-  let rev = store.get('rev', {});                                          // id → nombre de parties visibles
+  let rev = store.get('rev', {});
+  // Célébrités retirées par le joueur (jugées peu connues) : masquées du jeu, à retirer du catalogue plus tard
+  const excluded = new Set(Array.isArray(store.get('excluded', null)) ? store.get('excluded') : []);
+  const saveExcluded = () => store.set('excluded', [...excluded]);                                          // id → nombre de parties visibles
   const current = store.get('current', {});                                // kind → id
   let seed = store.get('seed', null) ?? reseed();
   let lastMode = null;
@@ -78,7 +83,7 @@ export async function mount(container, ctx) {
   const revealed = (id) => Math.min(Math.max(rev[id] || 1, 1), Math.max(activeParts().length, 1));
   function deck(kind) {
     return seededShuffle(celebs.map((c) => c.id), seed)
-      .filter((id) => P.has(kind, id) && (settings.who === 'all' || byId.get(id).g === settings.who));
+      .filter((id) => P.has(kind, id) && !excluded.has(id) && (settings.who === 'all' || byId.get(id).g === settings.who));
   }
 
   function on(target, type, fn, opts) {
@@ -331,29 +336,27 @@ export async function mount(container, ctx) {
       onclick: () => { phKind = k; refresh(); },
     }, k === 'portrait' ? 'Portraits' : 'Enfance', h('small')))));
     const multi = h('input', { type: 'file', accept: 'image/*', multiple: true, hidden: true, onchange: (e) => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) importBatch(fs); } });
-    const single = h('input', { type: 'file', accept: 'image/*', hidden: true });
     const search = h('input.vz-input.vz-small', { type: 'search', placeholder: 'Rechercher…', 'aria-label': 'Rechercher une personne', oninput: filter });
     const sel = h('select.vz-select', { onchange: filter, 'aria-label': 'Filtrer les photos' },
       h('option', { value: 'all' }, 'Toutes'), h('option', { value: 'miss' }, 'À ajouter'),
-      h('option', { value: 'has' }, 'Ajoutées'), h('option', { value: 'check' }, 'À vérifier'));
+      h('option', { value: 'has' }, 'Ajoutées'), h('option', { value: 'check' }, 'À vérifier'),
+      h('option', { value: 'removed' }, 'Retirées'));
     const list = h('div.vz-list');
     const drop = h('div.vz-drop', 'Dépose tes photos ici');
 
     const rows = [...celebs].sort((a, b) => a.name.localeCompare(b.name, 'fr')).map((c) => {
-      const th = h('button.vz-thumb', { type: 'button', 'aria-label': `Photo de ${c.name}` });
+      const th = h('span.vz-thumb', { 'aria-hidden': 'true' });
       const imgLink = h('a.vz-chip-link', { target: '_blank', rel: 'noopener' }, 'Images');
-      const row = h('div.vz-row', th,
-        h('div.vz-row-meta', h('strong', c.name), h('small', `${c.job} · ${c.born}`)),
-        h('a.vz-chip-link', { href: `https://fr.wikipedia.org/w/index.php?search=${encodeURIComponent(c.name)}`, target: '_blank', rel: 'noopener' }, 'Wiki'),
-        imgLink);
-      th.addEventListener('click', () => {
+      // Toute la carte est un bouton : sans photo, elle colle l'image copiée ; avec photo, elle ouvre l'aperçu
+      const card = h('button.vz-row-card', { type: 'button' }, th,
+        h('span.vz-row-meta', h('strong', c.name), h('small', `${c.job} · ${c.born}`)));
+      const trash = h('button.vz-row-trash', { type: 'button', onclick: () => toggleExcluded(c) });
+      const row = h('div.vz-row', card, imgLink, trash);
+      card.addEventListener('click', () => {
         if (P.has(phKind, c.id)) openPreview(phKind, c.id, refresh);
-        else {
-          single.onchange = async (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) importBatch([f], { id: c.id, kind: phKind }); };
-          single.click();
-        }
+        else pasteFor(c);
       });
-      return { c, row, th, imgLink, q: `${c.name} ${c.job}`.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase() };
+      return { c, row, th, card, trash, imgLink, q: `${c.name} ${c.job}`.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase() };
     });
     list.append(...rows.map((r) => r.row));
 
@@ -362,7 +365,8 @@ export async function mount(container, ctx) {
       const f = sel.value;
       for (const r of rows) {
         const rec = P.get(phKind, r.c.id);
-        let show = !q || r.q.includes(q);
+        const out = excluded.has(r.c.id);
+        let show = (!q || r.q.includes(q)) && (f === 'removed' ? out : !out);
         if (f === 'miss') show &&= !rec;
         if (f === 'has') show &&= Boolean(rec);
         if (f === 'check') show &&= Boolean(rec) && !rec.auto && !rec.manual;
@@ -372,6 +376,10 @@ export async function mount(container, ctx) {
         r.th.classList.toggle('warn', Boolean(rec) && !rec.auto && !rec.manual);
         r.th.style.backgroundImage = rec ? `url(${P.thumbUrl(rec.key)})` : '';
         r.th.textContent = rec ? '' : '+';
+        r.card.setAttribute('aria-label', rec ? `${r.c.name} : voir la photo` : `${r.c.name} : coller l’image copiée`);
+        r.trash.replaceChildren(svgIcon(out ? 'restore' : 'trash'));
+        r.trash.setAttribute('aria-label', out ? `Remettre ${r.c.name}` : `Retirer ${r.c.name} (peu connu)`);
+        r.trash.title = out ? 'Remettre dans le jeu' : 'Retirer du jeu';
         r.imgLink.href = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(r.c.name + (phKind === 'enfance' ? ' enfant' : ' portrait'))}`;
       }
     }
@@ -417,6 +425,95 @@ export async function mount(container, ctx) {
       if (unknown.length) openUnknown(unknown, refresh);
     }
 
+    // Toucher une carte sans photo : on lit directement l'image copiée (appui long → « Copier l'image »).
+    // Si le navigateur refuse, une petite fenêtre propose de coller par appui long, ou de choisir un fichier.
+    async function pasteFor(c) {
+      if (importing) { status.textContent = 'Un import est déjà en cours, patiente un instant…'; return; }
+      const kind = phKind;
+      if (navigator.clipboard?.read) {
+        try {
+          for (const item of await navigator.clipboard.read()) {
+            const type = item.types.find((ty) => ty.startsWith('image/'));
+            if (type) return addPasted(await item.getType(type), c, kind);
+          }
+          status.textContent = 'Aucune image copiée : sur la photo, fais un appui long puis « Copier l’image ».';
+          return;
+        } catch { /* accès refusé : on passe par la fenêtre de collage */ }
+      }
+      openPasteDialog(c, kind);
+    }
+    async function addPasted(blob, c, kind) {
+      if (importing) return;
+      importing = true;
+      const v = viewSeq;
+      status.textContent = `Analyse de la photo de ${c.name}…`;
+      try {
+        await P.loadDetector();
+        const auto = await P.importFile(blob, c.id, kind);
+        if (v === viewSeq) status.textContent = `✓ Photo ajoutée pour ${c.name}` + (auto ? '' : ' · visage non détecté, touche la carte pour vérifier');
+      } catch (err) {
+        console.warn(err);
+        if (v === viewSeq) status.textContent = 'Cette image n’a pas pu être lue. Copie une autre photo (JPEG ou PNG).';
+      } finally {
+        importing = false;
+        if (v === viewSeq) refresh();
+      }
+    }
+    function openPasteDialog(c, kind) {
+      if (container.querySelector('.vz-dialog')) return;
+      const zone = h('div.vz-fill-zone', { 'aria-label': 'Zone où coller l’image', role: 'textbox' });
+      zone.setAttribute('contenteditable', 'true');
+      zone.setAttribute('inputmode', 'none');
+      zone.dataset.hint = 'Appui long ici → « Coller »';
+      const msg = h('p.vz-pv-msg', { role: 'status' });
+      const pick = h('input', { type: 'file', accept: 'image/*', hidden: true, onchange: (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) { d.close(); addPasted(f, c, kind); } } });
+      zone.addEventListener('input', () => { zone.textContent = ''; });
+      zone.addEventListener('paste', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        zone.textContent = '';
+        const data = e.clipboardData;
+        const f = [...(data?.files || [])].find((x) => x.type.startsWith('image/'))
+          || [...(data?.items || [])].find((it) => it.kind === 'file' && it.type.startsWith('image/'))?.getAsFile();
+        if (f) { d.close(); addPasted(f, c, kind); }
+        else msg.textContent = data?.getData('text') ? 'C’est un lien : sur la photo, choisis « Copier l’image ».' : 'Aucune image dans le presse-papiers.';
+      });
+      const d = dialog(c.name,
+        h('p.vz-sub', `${KIND_LABEL[kind]} · ${c.job}`),
+        zone, msg,
+        h('div.vz-dialog-btns',
+          h('label.vz-btn', 'Fichier…', pick),
+          h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => d.close() }, 'Fermer')));
+      requestAnimationFrame(() => zone.focus({ preventScroll: true }));
+    }
+    // Ctrl+V sur ordinateur : colle pour la dernière carte touchée sans photo
+    let pasteTarget = null;
+    list.addEventListener('pointerdown', (e) => {
+      const card = e.target.closest('.vz-row-card');
+      const r = card && rows.find((x) => x.card === card);
+      pasteTarget = r && !P.has(phKind, r.c.id) ? r.c : null;
+    });
+    on(document, 'paste', (e) => {
+      if (!pasteTarget || container.querySelector('.vz-dialog') || e.target.closest?.('input, textarea')) return;
+      const f = [...(e.clipboardData?.files || [])].find((x) => x.type.startsWith('image/'));
+      if (f) { e.preventDefault(); addPasted(f, pasteTarget, phKind); }
+    });
+
+    let lastExcluded = null;
+    function toggleExcluded(c) {
+      if (excluded.has(c.id)) {
+        excluded.delete(c.id);
+        status.textContent = `${c.name} est de retour dans le jeu.`;
+      } else {
+        excluded.add(c.id);
+        lastExcluded = c;
+        status.replaceChildren(`${c.name} est ${c.g === 'f' ? 'retirée' : 'retiré'} du jeu. `,
+          h('button.vz-link', { type: 'button', onclick: () => { excluded.delete(lastExcluded.id); saveExcluded(); status.textContent = `${lastExcluded.name} est de retour dans le jeu.`; refresh(); } }, 'Annuler'));
+      }
+      saveExcluded();
+      refresh();
+    }
+
     on(document, 'dragenter', (e) => { e.preventDefault(); drop.classList.add('is-on'); });
     on(document, 'dragover', (e) => e.preventDefault());
     on(document, 'dragleave', (e) => { if (!e.relatedTarget) drop.classList.remove('is-on'); });
@@ -432,7 +529,9 @@ export async function mount(container, ctx) {
       h('section.vz-photos',
         h('div.vz-photos-top',
           seg,
-          h('label.vz-btn.vz-btn-primary.vz-wide', 'Importer des photos…', multi),
+          h('div.vz-photos-actions',
+            h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => ctx.navigate('remplir', phKind === 'enfance' ? 'enfance' : '') }, 'Remplir à la suite'),
+            h('label.vz-btn', 'Fichiers…', multi)),
           h('details.vz-help',
             h('summary', 'Comment ajouter les photos ?'),
             h('p', 'Nomme chaque fichier avec le nom de la personne (« omar-sy.jpg », « Céline Dion.png »), puis importe-les tous d’un coup : ils sont rangés tout seuls. Ajoute « enfant » au nom (« omar-sy-enfant.jpg ») pour une photo d’enfance. Tu peux aussi toucher une case vide pour ajouter la photo d’une seule personne, ou glisser des fichiers sur cette page.'),
@@ -443,7 +542,6 @@ export async function mount(container, ctx) {
         ),
         list
       ),
-      single,
       drop
     );
     refresh();
@@ -594,6 +692,152 @@ export async function mount(container, ctx) {
     d.onClose(() => urls.forEach((u) => URL.revokeObjectURL(u)));
   }
 
+  // ---------------------------------------------------------------- vue : remplir à la suite
+  // Une personne à la fois : on cherche une image, on la copie, on la colle ici, et on passe à la suivante.
+  function renderFill(kindArg) {
+    resetView();
+    container.classList.add('is-full');
+    const kind = kindArg === 'enfance' ? 'enfance' : 'portrait';
+    phKind = kind;
+    const v = viewSeq;
+    const skips = store.get('fillSkip', {});
+    const skipped = new Set(Array.isArray(skips[kind]) ? skips[kind] : []);
+    const saveSkips = () => store.set('fillSkip', { ...store.get('fillSkip', {}), [kind]: [...skipped] });
+    const order = [...celebs].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+    const nextPerson = () => order.find((c) => !P.has(kind, c.id) && !skipped.has(c.id) && !excluded.has(c.id)) || null;
+    let cur = null;
+    let last = null; // dernière photo ajoutée : { id, auto }
+    let busy = false;
+
+    const progress = h('p.vz-fill-progress');
+    const name = h('h2.vz-fill-name');
+    const job = h('p.vz-fill-job');
+    const search = h('a.vz-btn.vz-btn-wide-link', { target: '_blank', rel: 'noopener' }, '1. Chercher une image ↗');
+    const status = h('p.vz-fill-status', { role: 'status', 'aria-live': 'polite' });
+    // Zone de collage : un appui long dessus fait apparaître « Coller » sur mobile ; Ctrl+V marche partout sur ordinateur.
+    const zone = h('div.vz-fill-zone', { contentEditable: 'true', inputMode: 'none', 'aria-label': 'Zone où coller l’image', role: 'textbox' });
+    zone.setAttribute('inputmode', 'none');
+    zone.setAttribute('contenteditable', 'true');
+    zone.dataset.hint = 'ou appui long ici → « Coller »';
+    const pasteBtn = h('button.vz-btn.vz-btn-primary.vz-wide', { type: 'button', onclick: pasteFromClipboard }, '2. Coller l’image copiée');
+    const file = h('input', { type: 'file', accept: 'image/*', hidden: true, onchange: (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) add(f); } });
+    const pickBtn = h('label.vz-btn', 'Fichier…', file);
+    const skipBtn = h('button.vz-btn', { type: 'button', onclick: skip }, 'Passer');
+    const lastThumb = h('div.vz-fill-thumb');
+    const lastText = h('p.vz-fill-last-text');
+    const undoBtn = h('button.vz-btn.vz-btn-sm.vz-btn-ghost', { type: 'button', onclick: undo }, 'Annuler');
+    const checkBtn = h('button.vz-btn.vz-btn-sm.vz-btn-ghost', { type: 'button', onclick: () => last && openPreview(kind, last.id, draw) }, 'Vérifier');
+    const lastBox = h('div.vz-fill-last', lastThumb, h('div.vz-fill-last-meta', lastText, h('div.vz-fill-last-btns', checkBtn, undoBtn)));
+    const card = h('div.vz-fill-card', name, job, search, pasteBtn, zone, h('div.vz-fill-row', pickBtn, skipBtn));
+    const done = h('div.vz-fill-done');
+
+    function draw() {
+      if (v !== viewSeq) return;
+      cur = nextPerson();
+      const n = P.count(kind);
+      progress.textContent = `${n} / ${celebs.length} ${kind === 'enfance' ? 'photos d’enfance' : 'portraits'}`
+        + (skipped.size ? ` · ${plural(skipped.size, 'personne passée', 'personnes passées')}` : '');
+      card.hidden = !cur;
+      done.hidden = Boolean(cur);
+      if (cur) {
+        name.textContent = cur.name;
+        job.textContent = `${cur.job} · ${cur.born}`;
+        search.href = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(cur.name + (kind === 'enfance' ? ' enfant' : ' portrait'))}`;
+      } else {
+        done.replaceChildren(
+          h('p', n >= celebs.length ? 'Toutes les photos sont ajoutées 🎉' : 'Plus personne à remplir pour l’instant.'),
+          skipped.size ? h('button.vz-btn', { type: 'button', onclick: () => { skipped.clear(); saveSkips(); draw(); } }, `Revoir les ${plural(skipped.size, 'personne passée', 'personnes passées')}`) : null,
+          h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => ctx.navigate(kind === 'enfance' ? 'enfance' : 'portraits') }, 'Jouer')
+        );
+      }
+      lastBox.hidden = !last;
+      if (last) {
+        const rec = P.get(kind, last.id);
+        lastThumb.style.backgroundImage = rec ? `url(${P.thumbUrl(rec.key)})` : '';
+        lastText.textContent = `✓ ${byId.get(last.id).name}` + (last.auto ? '' : ' · visage non détecté, à vérifier');
+      }
+    }
+
+    async function add(blob) {
+      if (!cur) return;
+      if (busy || importing) { status.textContent = 'Analyse en cours, patiente un instant…'; return; }
+      busy = importing = true;
+      const id = cur.id;
+      status.textContent = `Analyse de la photo de ${cur.name}…`;
+      try {
+        await P.loadDetector();
+        const auto = await P.importFile(blob, id, kind);
+        last = { id, auto };
+        status.textContent = '';
+      } catch (err) {
+        console.warn(err);
+        status.textContent = 'Cette image n’a pas pu être lue. Copie une autre photo (JPEG ou PNG).';
+      } finally {
+        busy = importing = false;
+        draw();
+      }
+    }
+
+    async function pasteFromClipboard() {
+      if (!navigator.clipboard?.read) {
+        status.textContent = 'Ce navigateur ne permet pas ce bouton : fais un appui long dans le cadre en pointillés, puis « Coller ».';
+        zone.focus();
+        return;
+      }
+      try {
+        for (const item of await navigator.clipboard.read()) {
+          const type = item.types.find((ty) => ty.startsWith('image/'));
+          if (type) return add(await item.getType(type));
+        }
+        status.textContent = 'Pas d’image copiée : fais un appui long sur la photo, puis « Copier l’image ».';
+      } catch {
+        status.textContent = 'Le navigateur a refusé l’accès : fais un appui long dans le cadre en pointillés, puis « Coller ».';
+        zone.focus();
+      }
+    }
+
+    function onPaste(e) {
+      if (e.target.closest?.('input, textarea') && e.target !== zone) return;
+      const data = e.clipboardData;
+      const fileItem = [...(data?.files || [])].find((f) => f.type.startsWith('image/'))
+        || [...(data?.items || [])].find((it) => it.kind === 'file' && it.type.startsWith('image/'))?.getAsFile();
+      e.preventDefault();
+      zone.textContent = '';
+      if (fileItem) add(fileItem);
+      else if (data?.getData('text')) status.textContent = 'C’est un lien, pas une image : sur la photo, choisis « Copier l’image » (et non « Copier l’adresse »).';
+    }
+
+    function skip() {
+      if (!cur) return;
+      skipped.add(cur.id);
+      saveSkips();
+      status.textContent = '';
+      draw();
+    }
+
+    async function undo() {
+      if (!last) return;
+      await P.remove(P.pkey(kind, last.id));
+      last = null;
+      status.textContent = 'Photo retirée.';
+      draw();
+    }
+
+    zone.addEventListener('input', () => { zone.textContent = ''; });
+    on(document, 'paste', onPaste);
+
+    const seg = h('div.vz-seg', ['portrait', 'enfance'].map((k) => h('button', {
+      type: 'button', class: k === kind ? 'is-on' : '',
+      onclick: () => { if (k !== kind) ctx.navigate('remplir', k === 'enfance' ? 'enfance' : ''); },
+    }, k === 'portrait' ? 'Portraits' : 'Enfance')));
+
+    container.replaceChildren(
+      topBar('Remplir à la suite', { back: () => ctx.navigate('photos', kind === 'enfance' ? 'enfance' : '') }),
+      h('section.vz-fill', seg, progress, card, done, status, lastBox)
+    );
+    draw();
+  }
+
   // ---------------------------------------------------------------- vue : réglages
   function renderSettings() {
     resetView();
@@ -640,6 +884,20 @@ export async function mount(container, ctx) {
       } }, label);
       return btn;
     };
+    function excludedFieldset() {
+      const hint = h('p.vz-hint');
+      const copy = h('button.vz-btn', { type: 'button', onclick: async () => {
+        const list = [...excluded].map((id) => byId.get(id)).filter(Boolean).map((c) => `${c.name} (${c.id})`).join('\n');
+        try { await navigator.clipboard.writeText(list); copy.textContent = '✓ Liste copiée'; }
+        catch { hint.textContent = list; }
+      } }, 'Copier la liste');
+      const reset = h('button.vz-btn.vz-btn-ghost', { type: 'button', onclick: () => { excluded.clear(); saveExcluded(); renderSettings(); } }, 'Tout remettre');
+      const n = excluded.size;
+      hint.textContent = n
+        ? `${plural(n, 'célébrité retirée', 'célébrités retirées')} du jeu sur cet appareil. Copie la liste et envoie-la pour les retirer du catalogue.`
+        : 'Aucune. Dans l’écran Photos, la poubelle au bout d’une ligne retire une célébrité trop peu connue.';
+      return h('fieldset', h('legend', 'Célébrités retirées'), hint, n ? h('div.vz-fill-row', copy, reset) : null);
+    }
     const dataHint = h('p.vz-hint');
     const updHint = () => {
       const nFound = Object.keys(found.portrait).length + Object.keys(found.enfance).length;
@@ -657,6 +915,7 @@ export async function mount(container, ctx) {
         h('fieldset', h('legend', 'Célébrités'),
           radio('all', 'Tout le monde'), radio('f', 'Femmes'), radio('m', 'Hommes'),
           h('button.vz-btn.vz-btn-ghost', { type: 'button', onclick: (e) => { seed = reseed(); e.currentTarget.textContent = '✓ Ordre mélangé'; } }, 'Mélanger à nouveau')),
+        excludedFieldset(),
         h('fieldset', h('legend', 'Progression et photos'),
           dataHint,
           twoStep('Effacer ma progression', '✓ Progression effacée', () => {
@@ -680,6 +939,7 @@ export async function mount(container, ctx) {
     const [view, arg] = path || [];
     if (MODES[view]) renderPlay(view, arg);
     else if (view === 'photos') renderPhotos(arg);
+    else if (view === 'remplir') renderFill(arg);
     else if (view === 'reglages') renderSettings();
     else renderHome();
     window.scrollTo(0, 0);
