@@ -54,14 +54,13 @@ const owners = buildOwners(answers);
 const strict = (guess, id) => checkAnswer(guess, answers.get(id), owners);
 
 test('un nom proche ou celui d’une autre célébrité n’est pas accepté', () => {
-  assert.ok(!strict('Brel', 'patrick-bruel').ok);
+  assert.ok(!strict('Carey', 'jim-carrey').ok);
   assert.ok(!strict('Dalida', 'dua-lipa').ok);
   assert.ok(!strict('Jean', 'james-dean').ok);
   assert.ok(!strict('Hugh', 'florence-pugh').ok);
-  assert.ok(!strict('Louise Bourgoin', 'louise-bourgeois').ok);
   assert.ok(!strict('Bono', 'dany-boon').ok);
-  assert.ok(strict('Louise Bourgeois', 'louise-bourgeois').ok);
-  assert.ok(strict('Bruel', 'patrick-bruel').ok);
+  assert.ok(strict('Carrey', 'jim-carrey').ok);
+  assert.ok(strict('Bourgoin', 'louise-bourgoin').ok);
 });
 
 test('le prénom seul donne un indice au lieu de passer', () => {

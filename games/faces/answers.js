@@ -11,7 +11,7 @@ const PARTICLES = new Set(['de', 'di', 'da', 'du', 'del', 'della', 'van', 'von',
 /**
  * Pour chaque célébrité : nom complet et alternatives (avec tolérance aux fautes),
  * nom de famille seul accepté s'il est unique dans le catalogue et fait au moins 4 lettres (sans faute de frappe,
- * pour qu'un nom proche ne passe pas : « Brel » n'est pas « Bruel »).
+ * pour qu'un nom proche ne passe pas : « Carey » n'est pas « Carrey »).
  * → Map id → { id, answers, first, last, lastKey, lastUnique }
  */
 export function buildAnswers(celebs) {
@@ -25,10 +25,14 @@ export function buildAnswers(celebs) {
   const parts = new Map(celebs.map((c) => [c.id, split(c)]));
   const lastCount = new Map();
   for (const { last } of parts.values()) if (last) lastCount.set(last, (lastCount.get(last) || 0) + 1);
+  // Le nom de famille ne vaut pas réponse s'il est aussi le nom complet d'une autre célébrité (Line Renaud / Renaud)
+  const fullOwner = new Map();
+  for (const c of celebs) for (const a of [c.name, ...(c.alt || [])]) fullOwner.set(compact(a), c.id);
   const result = new Map();
   for (const c of celebs) {
     const { first, last } = parts.get(c.id);
-    const lastUnique = Boolean(last && last.length >= 4 && lastCount.get(last) === 1);
+    const owner = last && fullOwner.get(last);
+    const lastUnique = Boolean(last && last.length >= 4 && lastCount.get(last) === 1 && (!owner || owner === c.id));
     result.set(c.id, {
       id: c.id,
       answers: [...new Set([c.name, ...(c.alt || [])])],

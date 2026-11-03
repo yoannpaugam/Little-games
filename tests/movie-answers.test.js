@@ -34,8 +34,12 @@ test('les mentions génériques après « : » ne suffisent pas', () => {
   assert.ok(!ok('Deuxième partie', 'Dune : Deuxième partie'));
 });
 
-test('« Astérix et Obélix » seul ne désigne pas un film précis', () => {
-  assert.ok(!ok('Astérix et Obélix', 'Astérix et Obélix : Mission Cléopâtre'));
+test('nouveaux films : titres et titres originaux', () => {
+  assert.ok(ok('Notting Hill', 'Coup de foudre à Notting Hill'));
+  assert.ok(ok('Twilight', 'Twilight, chapitre 1 : Fascination'));
+  assert.ok(ok('Frozen 2', 'La Reine des neiges 2'));
+  assert.ok(!ok('La Reine des neiges', 'La Reine des neiges 2'));
+  assert.ok(ok('Retour vers le futur 2', 'Retour vers le futur II'));
 });
 
 test('Wikipédia : choix de l’article', () => {
