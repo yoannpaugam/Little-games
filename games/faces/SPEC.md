@@ -18,6 +18,12 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - La liste des 300 célébrités a une recherche et un filtre (toutes, à ajouter, ajoutées, à vérifier).
 - On touche une case vide pour ajouter la photo d'une seule personne. Chaque ligne a des liens Wikipédia et Images pour trouver une photo.
 - Les images sont réduites à 1100 px au plus. Une miniature est générée.
+- **Remplir à la suite** (le plus rapide) : une seule personne à la fois, la première sans photo par ordre alphabétique.
+  - « Chercher une image » ouvre une recherche d'images dans un autre onglet.
+  - On copie la photo (appui long → « Copier l'image »), puis on revient et on touche « Coller l'image copiée ». Si le navigateur refuse, on fait un appui long dans le cadre en pointillés → « Coller ». Sur ordinateur, Ctrl+V marche partout.
+  - Le visage est repéré et la personne suivante s'affiche aussitôt.
+  - « Passer » écarte une personne (mémorisé, on peut revoir les personnes passées). « Annuler » retire la dernière photo ajoutée, « Vérifier » ouvre son aperçu.
+  - Un lien copié à la place de l'image est signalé : il faut choisir « Copier l'image ».
 
 ## Détection du visage
 - Elle se fait une seule fois, à l'import, avec face-api (SSD MobileNet et 68 points de repère), embarqué dans `vendor/` et `models/`. Ces fichiers ne sont chargés qu'au premier import.
@@ -70,10 +76,11 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
   - `found` (date et nombre d'indices)
   - `given` (solution affichée)
   - `rev` (parties dévoilées)
+  - `fillSkip` (personnes passées dans « Remplir à la suite », par type de photo)
 - IndexedDB `little-games-visages` : photo, miniature, zones, cadrage, et si la détection a été automatique ou faite à la main.
 
 ## Navigation (URL)
-`#/visages` (choix du mode) · `#/visages/portraits/<id>` · `#/visages/enfance/<id>` · `#/visages/photos` · `#/visages/reglages`
+`#/visages` (choix du mode) · `#/visages/portraits/<id>` · `#/visages/enfance/<id>` · `#/visages/photos` · `#/visages/remplir` (ou `/remplir/enfance`) · `#/visages/reglages`
 
 ## Pistes pour la suite
 - Partager un pack de photos entre appareils

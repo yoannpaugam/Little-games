@@ -1,13 +1,13 @@
 // Jeu « Visages » : reconnaître une célébrité à partir de son visage.
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
-//   ctx.path : [] (choix du mode) | ['portraits', id?] | ['enfance', id?] | ['photos', 'enfance'?] | ['reglages']
+//   ctx.path : [] (choix du mode) | ['portraits', id?] | ['enfance', id?] | ['photos', 'enfance'?] | ['remplir', 'enfance'?] | ['reglages']
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.6.0';
-import { createStore } from '../../js/core/storage.js?v=1.6.0';
-import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.6.0';
-import * as P from './photos.js?v=1.6.0';
+import { h, icon } from '../../js/core/dom.js?v=1.7.0';
+import { createStore } from '../../js/core/storage.js?v=1.7.0';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.7.0';
+import * as P from './photos.js?v=1.7.0';
 
 // Version 1 du format des données enregistrées. Pour changer ce format : version: 2 + migrate(from, store).
 const store = createStore('visages', { version: 1 });
@@ -432,7 +432,9 @@ export async function mount(container, ctx) {
       h('section.vz-photos',
         h('div.vz-photos-top',
           seg,
-          h('label.vz-btn.vz-btn-primary.vz-wide', 'Importer des photos…', multi),
+          h('div.vz-photos-actions',
+            h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => ctx.navigate('remplir', phKind === 'enfance' ? 'enfance' : '') }, 'Remplir à la suite'),
+            h('label.vz-btn', 'Importer des fichiers…', multi)),
           h('details.vz-help',
             h('summary', 'Comment ajouter les photos ?'),
             h('p', 'Nomme chaque fichier avec le nom de la personne (« omar-sy.jpg », « Céline Dion.png »), puis importe-les tous d’un coup : ils sont rangés tout seuls. Ajoute « enfant » au nom (« omar-sy-enfant.jpg ») pour une photo d’enfance. Tu peux aussi toucher une case vide pour ajouter la photo d’une seule personne, ou glisser des fichiers sur cette page.'),
@@ -594,6 +596,152 @@ export async function mount(container, ctx) {
     d.onClose(() => urls.forEach((u) => URL.revokeObjectURL(u)));
   }
 
+  // ---------------------------------------------------------------- vue : remplir à la suite
+  // Une personne à la fois : on cherche une image, on la copie, on la colle ici, et on passe à la suivante.
+  function renderFill(kindArg) {
+    resetView();
+    container.classList.add('is-full');
+    const kind = kindArg === 'enfance' ? 'enfance' : 'portrait';
+    phKind = kind;
+    const v = viewSeq;
+    const skips = store.get('fillSkip', {});
+    const skipped = new Set(Array.isArray(skips[kind]) ? skips[kind] : []);
+    const saveSkips = () => store.set('fillSkip', { ...store.get('fillSkip', {}), [kind]: [...skipped] });
+    const order = [...celebs].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+    const nextPerson = () => order.find((c) => !P.has(kind, c.id) && !skipped.has(c.id)) || null;
+    let cur = null;
+    let last = null; // dernière photo ajoutée : { id, auto }
+    let busy = false;
+
+    const progress = h('p.vz-fill-progress');
+    const name = h('h2.vz-fill-name');
+    const job = h('p.vz-fill-job');
+    const search = h('a.vz-btn.vz-btn-wide-link', { target: '_blank', rel: 'noopener' }, '1. Chercher une image ↗');
+    const status = h('p.vz-fill-status', { role: 'status', 'aria-live': 'polite' });
+    // Zone de collage : un appui long dessus fait apparaître « Coller » sur mobile ; Ctrl+V marche partout sur ordinateur.
+    const zone = h('div.vz-fill-zone', { contentEditable: 'true', inputMode: 'none', 'aria-label': 'Zone où coller l’image', role: 'textbox' });
+    zone.setAttribute('inputmode', 'none');
+    zone.setAttribute('contenteditable', 'true');
+    zone.dataset.hint = 'ou appui long ici → « Coller »';
+    const pasteBtn = h('button.vz-btn.vz-btn-primary.vz-wide', { type: 'button', onclick: pasteFromClipboard }, '2. Coller l’image copiée');
+    const file = h('input', { type: 'file', accept: 'image/*', hidden: true, onchange: (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) add(f); } });
+    const pickBtn = h('label.vz-btn', 'Fichier…', file);
+    const skipBtn = h('button.vz-btn', { type: 'button', onclick: skip }, 'Passer');
+    const lastThumb = h('div.vz-fill-thumb');
+    const lastText = h('p.vz-fill-last-text');
+    const undoBtn = h('button.vz-btn.vz-btn-sm.vz-btn-ghost', { type: 'button', onclick: undo }, 'Annuler');
+    const checkBtn = h('button.vz-btn.vz-btn-sm.vz-btn-ghost', { type: 'button', onclick: () => last && openPreview(kind, last.id, draw) }, 'Vérifier');
+    const lastBox = h('div.vz-fill-last', lastThumb, h('div.vz-fill-last-meta', lastText, h('div.vz-fill-last-btns', checkBtn, undoBtn)));
+    const card = h('div.vz-fill-card', name, job, search, pasteBtn, zone, h('div.vz-fill-row', pickBtn, skipBtn));
+    const done = h('div.vz-fill-done');
+
+    function draw() {
+      if (v !== viewSeq) return;
+      cur = nextPerson();
+      const n = P.count(kind);
+      progress.textContent = `${n} / ${celebs.length} ${kind === 'enfance' ? 'photos d’enfance' : 'portraits'}`
+        + (skipped.size ? ` · ${plural(skipped.size, 'personne passée', 'personnes passées')}` : '');
+      card.hidden = !cur;
+      done.hidden = Boolean(cur);
+      if (cur) {
+        name.textContent = cur.name;
+        job.textContent = `${cur.job} · ${cur.born}`;
+        search.href = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(cur.name + (kind === 'enfance' ? ' enfant' : ' portrait'))}`;
+      } else {
+        done.replaceChildren(
+          h('p', n >= celebs.length ? 'Toutes les photos sont ajoutées 🎉' : 'Plus personne à remplir pour l’instant.'),
+          skipped.size ? h('button.vz-btn', { type: 'button', onclick: () => { skipped.clear(); saveSkips(); draw(); } }, `Revoir les ${plural(skipped.size, 'personne passée', 'personnes passées')}`) : null,
+          h('button.vz-btn.vz-btn-primary', { type: 'button', onclick: () => ctx.navigate(kind === 'enfance' ? 'enfance' : 'portraits') }, 'Jouer')
+        );
+      }
+      lastBox.hidden = !last;
+      if (last) {
+        const rec = P.get(kind, last.id);
+        lastThumb.style.backgroundImage = rec ? `url(${P.thumbUrl(rec.key)})` : '';
+        lastText.textContent = `✓ ${byId.get(last.id).name}` + (last.auto ? '' : ' · visage non détecté, à vérifier');
+      }
+    }
+
+    async function add(blob) {
+      if (!cur) return;
+      if (busy || importing) { status.textContent = 'Analyse en cours, patiente un instant…'; return; }
+      busy = importing = true;
+      const id = cur.id;
+      status.textContent = `Analyse de la photo de ${cur.name}…`;
+      try {
+        await P.loadDetector();
+        const auto = await P.importFile(blob, id, kind);
+        last = { id, auto };
+        status.textContent = '';
+      } catch (err) {
+        console.warn(err);
+        status.textContent = 'Cette image n’a pas pu être lue. Copie une autre photo (JPEG ou PNG).';
+      } finally {
+        busy = importing = false;
+        draw();
+      }
+    }
+
+    async function pasteFromClipboard() {
+      if (!navigator.clipboard?.read) {
+        status.textContent = 'Ce navigateur ne permet pas ce bouton : fais un appui long dans le cadre en pointillés, puis « Coller ».';
+        zone.focus();
+        return;
+      }
+      try {
+        for (const item of await navigator.clipboard.read()) {
+          const type = item.types.find((ty) => ty.startsWith('image/'));
+          if (type) return add(await item.getType(type));
+        }
+        status.textContent = 'Pas d’image copiée : fais un appui long sur la photo, puis « Copier l’image ».';
+      } catch {
+        status.textContent = 'Le navigateur a refusé l’accès : fais un appui long dans le cadre en pointillés, puis « Coller ».';
+        zone.focus();
+      }
+    }
+
+    function onPaste(e) {
+      if (e.target.closest?.('input, textarea') && e.target !== zone) return;
+      const data = e.clipboardData;
+      const fileItem = [...(data?.files || [])].find((f) => f.type.startsWith('image/'))
+        || [...(data?.items || [])].find((it) => it.kind === 'file' && it.type.startsWith('image/'))?.getAsFile();
+      e.preventDefault();
+      zone.textContent = '';
+      if (fileItem) add(fileItem);
+      else if (data?.getData('text')) status.textContent = 'C’est un lien, pas une image : sur la photo, choisis « Copier l’image » (et non « Copier l’adresse »).';
+    }
+
+    function skip() {
+      if (!cur) return;
+      skipped.add(cur.id);
+      saveSkips();
+      status.textContent = '';
+      draw();
+    }
+
+    async function undo() {
+      if (!last) return;
+      await P.remove(P.pkey(kind, last.id));
+      last = null;
+      status.textContent = 'Photo retirée.';
+      draw();
+    }
+
+    zone.addEventListener('input', () => { zone.textContent = ''; });
+    on(document, 'paste', onPaste);
+
+    const seg = h('div.vz-seg', ['portrait', 'enfance'].map((k) => h('button', {
+      type: 'button', class: k === kind ? 'is-on' : '',
+      onclick: () => { if (k !== kind) ctx.navigate('remplir', k === 'enfance' ? 'enfance' : ''); },
+    }, k === 'portrait' ? 'Portraits' : 'Enfance')));
+
+    container.replaceChildren(
+      topBar('Remplir à la suite', { back: () => ctx.navigate('photos', kind === 'enfance' ? 'enfance' : '') }),
+      h('section.vz-fill', seg, progress, card, done, status, lastBox)
+    );
+    draw();
+  }
+
   // ---------------------------------------------------------------- vue : réglages
   function renderSettings() {
     resetView();
@@ -680,6 +828,7 @@ export async function mount(container, ctx) {
     const [view, arg] = path || [];
     if (MODES[view]) renderPlay(view, arg);
     else if (view === 'photos') renderPhotos(arg);
+    else if (view === 'remplir') renderFill(arg);
     else if (view === 'reglages') renderSettings();
     else renderHome();
     window.scrollTo(0, 0);

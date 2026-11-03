@@ -59,7 +59,8 @@ Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, reca
 
 Aucune photo n'est livrée avec le code. Chaque joueur importe ses photos dans le jeu, depuis l'icône 🖼️ **Photos**. Elles restent enregistrées dans le navigateur de son appareil (IndexedDB).
 
-- Nomme chaque fichier avec le nom de la personne : `omar-sy.jpg`, `Céline Dion.png`. Ajoute « enfant » pour une photo d'enfance : `omar-sy-enfant.jpg`. Ensuite, importe-les tous d'un coup : ils sont rangés automatiquement. Le jeu te demande à qui correspondent les fichiers qu'il ne reconnaît pas.
+- Le plus rapide : **Photos → Remplir à la suite**. Le jeu affiche une personne à la fois : on cherche une image, on la copie (appui long → « Copier l'image »), on revient et on la colle. Le jeu passe tout seul à la personne suivante.
+- Pour importer des fichiers déjà prêts : nomme chaque fichier avec le nom de la personne : `omar-sy.jpg`, `Céline Dion.png`. Ajoute « enfant » pour une photo d'enfance : `omar-sy-enfant.jpg`. Ensuite, importe-les tous d'un coup : ils sont rangés automatiquement. Le jeu te demande à qui correspondent les fichiers qu'il ne reconnaît pas.
 - Le visage est repéré automatiquement à l'import, avec [face-api](https://github.com/vladmandic/face-api) (licence MIT, fichiers dans `games/faces/vendor/` et `games/faces/models/`, environ 7 Mo, chargés seulement au premier import). Si un visage n'est pas trouvé, on le place à la main en deux touches.
 - Toutes les photos sont affichées au même format que les affiches : 2:3, recadrées autour du visage.
 
