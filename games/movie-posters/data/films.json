@@ -16,7 +16,8 @@
   "director": "James Cameron",
   "original": "Aliens",
   "alt": [
-   "Aliens"
+   "Aliens",
+   "Alien 2"
   ]
  },
  {
@@ -36,7 +37,10 @@
   "title": "La Folle Journée de Ferris Bueller",
   "year": 1986,
   "director": "John Hughes",
-  "original": "Ferris Bueller's Day Off"
+  "original": "Ferris Bueller's Day Off",
+  "alt": [
+   "Ferris Bueller"
+  ]
  },
  {
   "id": "the-fly-1986",
@@ -76,7 +80,10 @@
   "id": "top-gun-1986",
   "title": "Top Gun",
   "year": 1986,
-  "director": "Tony Scott"
+  "director": "Tony Scott",
+  "alt": [
+   "Top Gun 1"
+  ]
  },
  {
   "id": "au-revoir-les-enfants-1987",
@@ -231,7 +238,10 @@
   "title": "Indiana Jones et la Dernière Croisade",
   "year": 1989,
   "director": "Steven Spielberg",
-  "original": "Indiana Jones and the Last Crusade"
+  "original": "Indiana Jones and the Last Crusade",
+  "alt": [
+   "Indiana Jones 3"
+  ]
  },
  {
   "id": "majo-no-takkyubin-1989",
@@ -240,7 +250,8 @@
   "director": "Hayao Miyazaki",
   "original": "Majo no takkyūbin",
   "alt": [
-   "Kiki's Delivery Service"
+   "Kiki's Delivery Service",
+   "Kiki"
   ]
  },
  {
@@ -351,9 +362,10 @@
  },
  {
   "id": "point-break-1991",
-  "title": "Point Break",
+  "title": "Point Break : Extrême limite",
   "year": 1991,
   "director": "Kathryn Bigelow",
+  "original": "Point Break",
   "alt": [
    "Extreme limite"
   ]
@@ -644,7 +656,10 @@
   "id": "toy-story-1995",
   "title": "Toy Story",
   "year": 1995,
-  "director": "John Lasseter"
+  "director": "John Lasseter",
+  "alt": [
+   "Toy Story 1"
+  ]
  },
  {
   "id": "the-usual-suspects-1995",
@@ -677,7 +692,10 @@
   "title": "Mission impossible",
   "year": 1996,
   "director": "Brian De Palma",
-  "original": "Mission: Impossible"
+  "original": "Mission: Impossible",
+  "alt": [
+   "Mission impossible 1"
+  ]
  },
  {
   "id": "ridicule-1996",
@@ -721,7 +739,10 @@
   "title": "La vie est belle",
   "year": 1997,
   "director": "Roberto Benigni",
-  "original": "La vita è bella"
+  "original": "La vita è bella",
+  "alt": [
+   "Life Is Beautiful"
+  ]
  },
  {
   "id": "the-fifth-element-1997",
@@ -783,7 +804,10 @@
   "title": "Arnaques, Crimes et Botanique",
   "year": 1998,
   "director": "Guy Ritchie",
-  "original": "Lock, Stock and Two Smoking Barrels"
+  "original": "Lock, Stock and Two Smoking Barrels",
+  "alt": [
+   "Lock Stock"
+  ]
  },
  {
   "id": "lola-rennt-1998",
@@ -803,7 +827,10 @@
   "title": "Il faut sauver le soldat Ryan",
   "year": 1998,
   "director": "Steven Spielberg",
-  "original": "Saving Private Ryan"
+  "original": "Saving Private Ryan",
+  "alt": [
+   "Le Soldat Ryan"
+  ]
  },
  {
   "id": "kirikou-et-la-sorciere-1998",
@@ -1065,7 +1092,8 @@
   "director": "Jean-Pierre Jeunet",
   "alt": [
    "Amelie Poulain",
-   "Amelie"
+   "Amelie",
+   "Le Fabuleux Destin d'Amélie"
   ]
  },
  {
@@ -1079,7 +1107,10 @@
   "title": "Le Seigneur des anneaux : La Communauté de l'anneau",
   "year": 2001,
   "director": "Peter Jackson",
-  "original": "The Lord of the Rings: The Fellowship of the Ring"
+  "original": "The Lord of the Rings: The Fellowship of the Ring",
+  "alt": [
+   "Le Seigneur des anneaux 1"
+  ]
  },
  {
   "id": "sen-to-chihiro-no-kamikakushi-2001",
@@ -1106,7 +1137,8 @@
   "director": "Pete Docter",
   "original": "Monsters, Inc.",
   "alt": [
-   "Monstres & Cie"
+   "Monstres & Cie",
+   "Monstres et Compagnie"
   ]
  },
  {
@@ -1135,7 +1167,10 @@
   "id": "shrek-2001",
   "title": "Shrek",
   "year": 2001,
-  "director": "Andrew Adamson et Vicky Jenson"
+  "director": "Andrew Adamson et Vicky Jenson",
+  "alt": [
+   "Shrek 1"
+  ]
  },
  {
   "id": "28-days-later-2002",
@@ -1201,7 +1236,10 @@
   "title": "Le Seigneur des anneaux : Les Deux Tours",
   "year": 2002,
   "director": "Peter Jackson",
-  "original": "The Lord of the Rings: The Two Towers"
+  "original": "The Lord of the Rings: The Two Towers",
+  "alt": [
+   "Le Seigneur des anneaux 2"
+  ]
  },
  {
   "id": "lilo-stitch-2002",
@@ -1254,7 +1292,8 @@
   "director": "Quentin Tarantino",
   "original": "Kill Bill: Vol. 1",
   "alt": [
-   "Kill Bill"
+   "Kill Bill",
+   "Kill Bill 1"
   ]
  },
  {
@@ -1272,7 +1311,10 @@
   "title": "Le Seigneur des anneaux : Le Retour du roi",
   "year": 2003,
   "director": "Peter Jackson",
-  "original": "The Lord of the Rings: The Return of the King"
+  "original": "The Lord of the Rings: The Return of the King",
+  "alt": [
+   "Le Seigneur des anneaux 3"
+  ]
  },
  {
   "id": "les-triplettes-de-belleville-2003",
@@ -1322,7 +1364,8 @@
   "director": "Gore Verbinski",
   "original": "Pirates of the Caribbean: The Curse of the Black Pearl",
   "alt": [
-   "Pirates des Caraibes"
+   "Pirates des Caraibes",
+   "Pirates des Caraïbes 1"
   ]
  },
  {
@@ -1387,7 +1430,10 @@
   "title": "Les Indestructibles",
   "year": 2004,
   "director": "Brad Bird",
-  "original": "The Incredibles"
+  "original": "The Incredibles",
+  "alt": [
+   "Les Indestructibles 1"
+  ]
  },
  {
   "id": "million-dollar-baby-2004",
@@ -1493,7 +1539,10 @@
   "title": "La Vie des autres",
   "year": 2006,
   "director": "Florian Henckel von Donnersmarck",
-  "original": "Das Leben der Anderen"
+  "original": "Das Leben der Anderen",
+  "alt": [
+   "The Lives of Others"
+  ]
  },
  {
   "id": "the-devil-wears-prada-2006",
@@ -1591,7 +1640,10 @@
   "id": "la-mome-2007",
   "title": "La Môme",
   "year": 2007,
-  "director": "Olivier Dahan"
+  "director": "Olivier Dahan",
+  "alt": [
+   "La Vie en rose"
+  ]
  },
  {
   "id": "le-scaphandre-et-le-papillon-2007",
@@ -1643,7 +1695,10 @@
   "id": "bienvenue-chez-les-ch-tis-2008",
   "title": "Bienvenue chez les Ch'tis",
   "year": 2008,
-  "director": "Dany Boon"
+  "director": "Dany Boon",
+  "alt": [
+   "Les Ch'tis"
+  ]
  },
  {
   "id": "entre-les-murs-2008",
@@ -1723,7 +1778,10 @@
   "title": "Valse avec Bachir",
   "year": 2008,
   "director": "Ari Folman",
-  "original": "Vals Im Bashir"
+  "original": "Vals Im Bashir",
+  "alt": [
+   "Waltz with Bashir"
+  ]
  },
  {
   "id": "wall-e-2008",
@@ -1745,7 +1803,10 @@
   "id": "avatar-2009",
   "title": "Avatar",
   "year": 2009,
-  "director": "James Cameron"
+  "director": "James Cameron",
+  "alt": [
+   "Avatar 1"
+  ]
  },
  {
   "id": "coraline-2009",
@@ -1834,7 +1895,10 @@
   "title": "Dragons",
   "year": 2010,
   "director": "Dean DeBlois et Chris Sanders",
-  "original": "How to Train Your Dragon"
+  "original": "How to Train Your Dragon",
+  "alt": [
+   "Dragons 1"
+  ]
  },
  {
   "id": "incendies-2010",
@@ -1866,14 +1930,20 @@
   "title": "Moi, moche et méchant",
   "year": 2010,
   "director": "Pierre Coffin et Chris Renaud",
-  "original": "Despicable Me"
+  "original": "Despicable Me",
+  "alt": [
+   "Moi, moche et méchant 1"
+  ]
  },
  {
   "id": "tangled-2010",
   "title": "Raiponce",
   "year": 2010,
   "director": "Nathan Greno et Byron Howard",
-  "original": "Tangled"
+  "original": "Tangled",
+  "alt": [
+   "Rapunzel"
+  ]
  },
  {
   "id": "scott-pilgrim-vs-the-world-2010",
@@ -1913,7 +1983,8 @@
   "director": "David Yates",
   "original": "Harry Potter and the Deathly Hallows – Part 2",
   "alt": [
-   "Harry Potter 8"
+   "Harry Potter 8",
+   "Harry Potter 7 partie 2"
   ]
  },
  {
@@ -1977,7 +2048,10 @@
   "title": "Avengers",
   "year": 2012,
   "director": "Joss Whedon",
-  "original": "The Avengers"
+  "original": "The Avengers",
+  "alt": [
+   "Avengers 1"
+  ]
  },
  {
   "id": "de-rouille-et-d-os-2012",
@@ -2005,7 +2079,10 @@
   "title": "Hunger Games",
   "year": 2012,
   "director": "Gary Ross",
-  "original": "The Hunger Games"
+  "original": "The Hunger Games",
+  "alt": [
+   "Hunger Games 1"
+  ]
  },
  {
   "id": "life-of-pi-2012",
@@ -2021,7 +2098,8 @@
   "director": "Peter Jackson",
   "original": "The Hobbit: An Unexpected Journey",
   "alt": [
-   "Le Hobbit"
+   "Le Hobbit",
+   "Le Hobbit 1"
   ]
  },
  {
@@ -2095,7 +2173,10 @@
   "title": "La Reine des neiges",
   "year": 2013,
   "director": "Chris Buck et Jennifer Lee",
-  "original": "Frozen"
+  "original": "Frozen",
+  "alt": [
+   "La Reine des neiges 1"
+  ]
  },
  {
   "id": "la-vie-d-adele-chapitres-1-et-2-2013",
@@ -2183,7 +2264,10 @@
   "title": "La Grande Aventure Lego",
   "year": 2014,
   "director": "Phil Lord et Christopher Miller",
-  "original": "The Lego Movie"
+  "original": "The Lego Movie",
+  "alt": [
+   "Lego, le film"
+  ]
  },
  {
   "id": "guardians-of-the-galaxy-2014",
@@ -2274,7 +2358,8 @@
   "year": 2015,
   "director": "George Miller",
   "alt": [
-   "Mad Max"
+   "Mad Max",
+   "Mad Max 4"
   ]
  },
  {
@@ -2330,7 +2415,10 @@
   "title": "Vice-Versa",
   "year": 2015,
   "director": "Pete Docter",
-  "original": "Inside Out"
+  "original": "Inside Out",
+  "alt": [
+   "Vice-Versa 1"
+  ]
  },
  {
   "id": "deadpool-2016",
@@ -2359,7 +2447,9 @@
   "title": "Grave",
   "year": 2016,
   "director": "Julia Ducournau",
-  "original": "Raw"
+  "alt": [
+   "Raw"
+  ]
  },
  {
   "id": "la-la-land-2016",
@@ -2431,7 +2521,10 @@
   "title": "Zootopie",
   "year": 2016,
   "director": "Byron Howard et Rich Moore",
-  "original": "Zootopia"
+  "original": "Zootopia",
+  "alt": [
+   "Zootopie 1"
+  ]
  },
  {
   "id": "120-battements-par-minute-2017",
@@ -2531,7 +2624,8 @@
   "year": 2018,
   "director": "Anthony et Joe Russo",
   "alt": [
-   "Infinity War"
+   "Infinity War",
+   "Avengers 3"
   ]
  },
  {
@@ -2625,7 +2719,8 @@
   "year": 2019,
   "director": "Anthony et Joe Russo",
   "alt": [
-   "Endgame"
+   "Endgame",
+   "Avengers 4"
   ]
  },
  {
@@ -2782,7 +2877,11 @@
   "id": "dune-2021",
   "title": "Dune",
   "year": 2021,
-  "director": "Denis Villeneuve"
+  "director": "Denis Villeneuve",
+  "alt": [
+   "Dune 1",
+   "Dune : Première partie"
+  ]
  },
  {
   "id": "encanto-2021",
@@ -2953,7 +3052,10 @@
   "id": "top-gun-maverick-2022",
   "title": "Top Gun: Maverick",
   "year": 2022,
-  "director": "Joseph Kosinski"
+  "director": "Joseph Kosinski",
+  "alt": [
+   "Top Gun 2"
+  ]
  },
  {
   "id": "im-westen-nichts-neues-2022",
@@ -3055,7 +3157,8 @@
   "director": "Joaquim Dos Santos, Kemp Powers et Justin K. Thompson",
   "original": "Spider-Man: Across the Spider-Verse",
   "alt": [
-   "Across the Spider-Verse"
+   "Across the Spider-Verse",
+   "Spider-Verse 2"
   ]
  },
  {
@@ -3176,7 +3279,11 @@
   "id": "mission-impossible-the-final-reckoning-2025",
   "title": "Mission: Impossible – The Final Reckoning",
   "year": 2025,
-  "director": "Christopher McQuarrie"
+  "director": "Christopher McQuarrie",
+  "alt": [
+   "Mission impossible 8",
+   "The Final Reckoning"
+  ]
  },
  {
   "id": "sinners-2025",

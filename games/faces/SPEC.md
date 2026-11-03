@@ -52,7 +52,9 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - Réponses acceptées :
   - le nom complet
   - les alternatives
-  - le nom de famille seul, s'il est unique dans le catalogue et fait au moins 4 lettres
+  - le nom de famille seul, s'il est unique dans le catalogue et fait au moins 4 lettres, **sans faute** (« Brel » n'est pas « Bruel »). Le nom de famille est le dernier mot, avec ses particules (« de Funès ») ; un prénom composé ne compte pas dedans (« Belmondo » suffit).
+- Le nom exact d'une autre célébrité du catalogue est toujours refusé (« Dalida » n'est pas « Dua Lipa »).
+- Le prénom seul donne l'indice « Il manque le nom de famille ».
 
 ## Réglages
 - **Ordre de dévoilement** des 5 parties (↑ ↓). Chaque partie peut être désactivée, mais au moins une doit rester active. Par défaut : yeux, bouche, nez, oreilles, front + cheveux.

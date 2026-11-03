@@ -85,9 +85,10 @@ async function decode(blob) {
   try { return await createImageBitmap(blob); } catch { /* repli ci-dessous */ }
   return new Promise((res, rej) => {
     const img = new Image();
-    img.onload = () => res(img);
-    img.onerror = rej;
-    img.src = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
+    img.onload = () => { URL.revokeObjectURL(url); res(img); };
+    img.onerror = (e) => { URL.revokeObjectURL(url); rej(e); };
+    img.src = url;
   });
 }
 export async function bitmap(key) {
@@ -116,11 +117,16 @@ export function loadDetector() {
   if (detector) return detector;
   detector = new Promise((res) => {
     const s = document.createElement('script');
-    s.src = new URL('./vendor/face-api.js', import.meta.url).href;
+    s.src = new URL('./vendor/face-api.js' + new URL(import.meta.url).search, import.meta.url).href;
     s.onload = async () => {
       try {
         const fa = window.faceapi;
-        try { await fa.tf.setBackend('webgl'); } catch { await fa.tf.setBackend('cpu'); }
+        // setBackend renvoie false (sans erreur) quand WebGL est indisponible : on passe alors au processeur.
+        // Le moteur WebAssembly n'est pas livré, on le retire pour qu'il ne soit jamais tenté.
+        try { fa.tf.removeBackend?.('wasm'); } catch { /* absent */ }
+        let ok = false;
+        try { ok = await fa.tf.setBackend('webgl'); } catch { ok = false; }
+        if (!ok) await fa.tf.setBackend('cpu');
         await fa.tf.ready();
         const models = new URL('./models/', import.meta.url).href;
         await fa.nets.ssdMobilenetv1.loadFromUri(models);
