@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { buildAnswers, buildOwners, checkAnswer } from '../games/face-parts/answers.js';
+import { buildAnswers, buildOwners, checkAnswer } from '../games/faces/morceaux/answers.js';
 
-const people = JSON.parse(await readFile(new URL('../games/face-parts/data/people.json', import.meta.url), 'utf8'));
+const people = JSON.parse(await readFile(new URL('../games/faces/morceaux/data/people.json', import.meta.url), 'utf8'));
 const answers = buildAnswers(people);
 const owners = buildOwners(answers);
 const check = (guess, id) => checkAnswer(guess, answers.get(id), owners);
@@ -41,7 +41,7 @@ test('chaque entrée a les six boîtes de découpe', () => {
 });
 
 // ---- Cadrage et inclinaison (framing.js)
-import { tiltOf, isUpright, portraitRect, MAX_TILT } from '../games/face-parts/framing.js';
+import { tiltOf, isUpright, portraitRect, MAX_TILT } from '../games/faces/morceaux/framing.js';
 
 test('morceaux : cadre 2:3 serré sur la boîte complet, sans sortir de la photo', () => {
   for (const [nw, nh] of [[1280, 1600], [1280, 853], [1280, 1920]]) {

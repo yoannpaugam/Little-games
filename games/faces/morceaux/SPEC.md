@@ -1,4 +1,6 @@
-# Morceaux : spécification
+# Morceaux et Portraits de jeunesse : spécification
+
+Ces deux modes font partie du jeu **Visages** (depuis la 1.16.0, Morceaux n'est plus un jeu à part). Ils utilisent des photos du catalogue, alors que les modes Portraits et Enfance de Visages utilisent les photos importées par le joueur. Le même moteur sert aux deux modes ; ce qui change est décrit dans la section « Portraits de jeunesse ».
 
 Ce document décrit le jeu indépendamment de la technologie, pour pouvoir le refaire dans une autre application.
 
@@ -49,8 +51,17 @@ Liste des photos du catalogue avec auteur et licence (obligation Commons / CC).
 ## Persistance (sur l’appareil)
 `found`, `tries`, `given`, `stage` (palier atteint et séquence par personne), `current`, `seed`, `settings` (`view` : `bandes` ou `entiere`).
 
+## Portraits de jeunesse
+- Catalogue `data/jeunesse.json`, même format que `people.json`, avec un champ facultatif `year` (année de la photo). Il est vide tant que la liste n'a pas été fournie.
+- Il est construit par `scripts/celeb-quiz-builder.py --jeunesse` (`npm run jeunesse:build`), à partir d'une liste écrite à la main dans `scripts/jeunesse-seed.json` : `[{ "name": "…", "file": "fichier Commons", "year": 1975 }]`. Le nom doit être celui de `games/faces/data/celebs.json` : l'identifiant et les réponses acceptées sont alors repris de Visages. Le script ne cherche pas de photo de remplacement.
+- Écran : la photo est visible en entier dès le début, dans le même cadre 2:3 en plan rapproché que le visage dévoilé de Morceaux. L'étiquette indique « photo de 1975 » (ou « photo de jeunesse »). Entre les flèches, le bouton est **Solution**. 9 essais, comme Morceaux, mais sans bande à ajouter.
+- Bonne réponse : **Bravo !**, le nom, l'année de la photo et les crédits.
+- Catalogue vide : un écran explique comment le remplir, avec un bouton de retour à Visages.
+- Réglages : pas d'option d'affichage (elle ne sert qu'aux bandes).
+- Stockage séparé : `jeunesse` (mêmes clés que `morceaux`).
+
 ## Navigation (URL)
-`#/morceaux` · `#/morceaux/personne/<id>` · `#/morceaux/credits` · `#/morceaux/reglages` · `#/morceaux/debug` (boîtes de détection)
+`#/visages/morceaux` · `#/visages/morceaux/personne/<id>` · `…/credits` · `…/reglages` · `…/debug` (boîtes de détection), et la même chose sous `#/visages/jeunesse`. Les anciens liens `#/morceaux/…` redirigent vers `#/visages/morceaux/…`.
 
 ## Pistes pour la suite
 Filtres (genre, métier), plus de personnes, mode multijoueur (moins d’indices = plus de points).

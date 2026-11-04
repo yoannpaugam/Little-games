@@ -6,8 +6,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | Jeu | Dossier | Statut |
 | --- | --- | --- |
 | 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
-| 👤 Visages (portraits et photos d'enfance) | `games/faces/` | ✅ jouable |
-| 🧩 Morceaux | `games/face-parts/` | ✅ jouable |
+| 👤 Visages (portraits, enfance, Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
 
 ---
 
@@ -61,16 +60,24 @@ Autres options : `--lang en-US` (affiches originales), `--force` (tout refaire),
 
 Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, recadrage léger via CSS).
 
-## 🧩 Morceaux
+## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
-Deviner une célébrité à partir d’une bande du visage (yeux, nez ou bouche), qui s’élargit au fil des essais.
+Deux modes de Visages utilisent des photos du catalogue (et non celles du joueur) :
+- **Morceaux** : deviner une célébrité à partir d’une bande du visage (yeux, nez ou bouche), qui s’élargit au fil des essais ;
+- **Portraits de jeunesse** : deviner une célébrité sur une photo de jeunesse.
 
-Les photos viennent de **Wikimedia Commons** : `games/face-parts/data/people.json` contient l’URL et les régions de découpe `[x,y,w,h]` (aucune image dans le dépôt). Pour régénérer le catalogue :
+Les photos viennent de **Wikimedia Commons** : `games/faces/morceaux/data/people.json` (Morceaux) et `jeunesse.json` (jeunesse) contiennent l’URL et les régions de découpe `[x,y,w,h]` (aucune image dans le dépôt). Pour régénérer le catalogue :
 
 ```bash
 pip install requests mediapipe opencv-python-headless numpy
 npm run morceaux:build          # liste seed scripts/celeb-seed.json
 npm run morceaux:wikidata       # alternative : SPARQL Wikidata (peut timeout)
+```
+
+Pour les portraits de jeunesse, la liste des photos est fournie à la main dans `scripts/jeunesse-seed.json` (`name`, `file` Commons, `year` facultatif), puis :
+
+```bash
+python scripts/celeb-quiz-builder.py --jeunesse --top 300
 ```
 
 Le script écrit seulement le JSON ; le cache images reste dans `scripts/.celeb-cache/` (gitignoré).
@@ -109,15 +116,16 @@ games/faces/             Le jeu « Visages », autonome
   ├─ styles.css          Styles du jeu (préfixe .vz-)
   ├─ data/celebs.json    Les 300 célébrités (nom, profession, sexe, année de naissance, alternatives)
   ├─ vendor/, models/    face-api et ses modèles
-  └─ SPEC.md             Spécification fonctionnelle du jeu
-games/face-parts/        Le jeu « Morceaux », autonome
-  ├─ index.js            Logique et vues (jeu, crédits, réglages)
-  ├─ answers.js          Réponses acceptées (testé)
-  ├─ styles.css          Styles du jeu (préfixe .mx-)
-  ├─ data/people.json    Célébrités : URL Commons + boîtes de découpe
-  └─ SPEC.md             Spécification fonctionnelle du jeu
+  ├─ SPEC.md             Spécification fonctionnelle du jeu
+  └─ morceaux/           Modes « Morceaux » et « Portraits de jeunesse » (chargés à la demande)
+       ├─ index.js       Logique et vues (jeu, crédits, réglages, debug)
+       ├─ answers.js     Réponses acceptées (testé)
+       ├─ framing.js     Cadrage 2:3 et inclinaison des têtes (testé)
+       ├─ styles.css     Styles (préfixe .mx-)
+       ├─ data/          people.json (Morceaux), jeunesse.json (jeunesse)
+       └─ SPEC.md        Spécification des deux modes
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
-scripts/celeb-quiz-builder.py   Régions de visage pour Morceaux (MediaPipe)
+scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)
 scripts/celeb-seed.json         Liste seed Commons pour le builder
 tests/                   Tests : tolérance aux fautes, catalogues, stockage (npm test)
 CLAUDE.md                Consignes pour Claude (architecture, coordination, livraison)

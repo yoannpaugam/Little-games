@@ -1,13 +1,15 @@
 // Jeu « Visages » : reconnaître une célébrité à partir de son visage.
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (choix du mode) | ['portraits', id?] | ['enfance', id?] | ['photos', 'enfance'?] | ['remplir', 'enfance'?] | ['reglages']
+//              | ['morceaux', …] | ['jeunesse', …] : modes à photos du catalogue, dans ./morceaux/ (chargés à la demande)
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.15.0';
-import { createStore } from '../../js/core/storage.js?v=1.15.0';
-import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.15.0';
-import * as P from './photos.js?v=1.15.0';
+import { h, icon } from '../../js/core/dom.js?v=1.16.0';
+import { createStore } from '../../js/core/storage.js?v=1.16.0';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.16.0';
+import * as P from './photos.js?v=1.16.0';
+import { isUpright } from './morceaux/framing.js?v=1.16.0';
 
 // Version 1 du format des données enregistrées. Pour changer ce format : version: 2 + migrate(from, store).
 const store = createStore('visages', { version: 1 });
@@ -114,6 +116,61 @@ export async function mount(container, ctx) {
   }
   const backFromTools = () => (lastMode ? ctx.navigate(lastMode) : ctx.navigate());
 
+  // ---------------------------------------------------------------- modes du catalogue (Morceaux, Jeunesse)
+  let sub = null; // { mode, instance }
+  let subSeq = 0;
+  async function openSub(mode, rest) {
+    if (sub?.mode === mode) { sub.instance.update(rest); return; }
+    closeSub();
+    resetView();
+    const token = ++subSeq;
+    container.classList.remove('vz');
+    container.replaceChildren(h('div.loading', 'Chargement…'));
+    try {
+      const mod = await import('./morceaux/index.js?v=1.16.0');
+      if (token !== subSeq) return;
+      const instance = await mod.mount(container, {
+        path: rest,
+        mode,
+        navigate: (...p) => ctx.navigate(mode, ...p),
+        home: () => ctx.navigate(),
+        version: ctx.version,
+      });
+      if (token !== subSeq) { instance.destroy(); return; }
+      sub = { mode, instance };
+    } catch (err) {
+      if (token !== subSeq) return;
+      console.error(err);
+      container.replaceChildren(h('div.loading',
+        h('p', 'Impossible de charger ce mode. Vérifie ta connexion.'),
+        h('button.vz-btn', { type: 'button', onclick: () => ctx.navigate() }, 'Retour à Visages')));
+    }
+  }
+  function closeSub() {
+    subSeq++;
+    if (sub) { sub.instance.destroy(); sub = null; }
+    container.classList.add('vz');
+  }
+  // Nombre de photos des catalogues (affiché sur les cartes de l'accueil)
+  const subCounts = {};
+  const SUB_FILES = { morceaux: 'people.json', jeunesse: 'jeunesse.json' };
+  function subCard(mode, title, desc, pic) {
+    const info = h('em', subCounts[mode] == null ? '…' : subCountText(mode));
+    if (subCounts[mode] == null) {
+      fetch(new URL(`./morceaux/data/${SUB_FILES[mode]}` + new URL(import.meta.url).search, import.meta.url))
+        .then((r) => (r.ok ? r.json() : []))
+        .then((list) => { subCounts[mode] = Array.isArray(list) ? list.filter((p) => isUpright(p)).length : 0; info.textContent = subCountText(mode); })
+        .catch(() => { info.textContent = ''; });
+    }
+    return h('button.vz-mode', { type: 'button', onclick: () => ctx.navigate(mode) },
+      h('span.vz-mode-pic', { innerHTML: pic }),
+      h('span.vz-mode-meta', h('strong', title), h('small', desc), info));
+  }
+  function subCountText(mode) {
+    const n = subCounts[mode];
+    return n ? `${n} photo${n > 1 ? 's' : ''} au catalogue` : 'Bientôt : catalogue en préparation';
+  }
+
   // ---------------------------------------------------------------- vue : choix du mode
   function renderHome() {
     resetView();
@@ -143,6 +200,10 @@ export async function mount(container, ctx) {
       topBar('Visages'),
       h('section.vz-home',
         h('p.vz-lead', 'Qui se cache derrière ces visages ?'),
+        subCard('morceaux', 'Morceaux', 'Un œil, un nez ou une bouche : devine la star pièce par pièce.',
+          '<svg viewBox="0 0 64 96"><rect x="6" y="36" width="52" height="14" rx="3" fill="#7eb8da"/><ellipse cx="22" cy="43" rx="6" ry="4" fill="#121015"/><ellipse cx="42" cy="43" rx="6" ry="4" fill="#121015"/><rect x="6" y="58" width="52" height="10" rx="3" fill="#7eb8da44"/></svg>'),
+        subCard('jeunesse', 'Portraits de jeunesse', 'Une photo de la star quand elle était jeune : à toi de la reconnaître.',
+          '<svg viewBox="0 0 64 96"><circle cx="32" cy="42" r="15" fill="#c9a0dc"/><circle cx="27" cy="40" r="2.2" fill="#121015"/><circle cx="37" cy="40" r="2.2" fill="#121015"/><path d="M27 48q5 4 10 0" stroke="#121015" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M16 96q0-24 16-24t16 24" fill="#c9a0dc77"/></svg>'),
         card('portraits', 'Portraits', 'Les yeux d’abord, puis le visage se dévoile pièce par pièce.',
           '<svg viewBox="0 0 64 96"><ellipse cx="22" cy="40" rx="9" ry="6" fill="#e8b04a"/><ellipse cx="42" cy="40" rx="9" ry="6" fill="#e8b04a"/><ellipse cx="32" cy="53" rx="5" ry="8" fill="#e8b04a33"/><ellipse cx="32" cy="67" rx="10" ry="5" fill="#e8b04a33"/></svg>'),
         card('enfance', 'Photos d’enfance', 'La photo est visible dès le début : reconnais la star quand elle était petite.',
@@ -973,6 +1034,8 @@ export async function mount(container, ctx) {
   // ---------------------------------------------------------------- routage interne
   function update(path) {
     const [view, arg] = path || [];
+    if (view === 'morceaux' || view === 'jeunesse') { openSub(view, (path || []).slice(1)); return; }
+    if (sub || !container.classList.contains('vz')) closeSub();
     if (MODES[view]) renderPlay(view, arg);
     else if (view === 'photos') renderPhotos(arg);
     else if (view === 'remplir') renderFill(arg);
@@ -986,6 +1049,7 @@ export async function mount(container, ctx) {
   return {
     update,
     destroy() {
+      closeSub();
       resetView();
       container.classList.remove('vz');
     },

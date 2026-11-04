@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Construit games/face-parts/data/people.json pour le jeu « Morceaux ».
+Construit les catalogues des modes « Morceaux » et « Portraits de jeunesse » du jeu Visages :
+games/faces/morceaux/data/people.json (Morceaux) et games/faces/morceaux/data/jeunesse.json (--jeunesse).
 
   1. Wikidata (SPARQL)  → top N célébrités (sitelinks Wikipedia)
   2. Wikimedia Commons  → URL photo + auteur / licence
@@ -12,6 +13,14 @@ Cache local : scripts/.celeb-cache/ (gitignoré).
   pip install mediapipe opencv-python-headless numpy
   python scripts/celeb-quiz-builder.py --top 30          # seed Commons (défaut)
   python scripts/celeb-quiz-builder.py --wikidata --top 30
+  python scripts/celeb-quiz-builder.py --jeunesse --top 300   # photos de jeunesse
+
+Mode --jeunesse : la liste des photos est fournie à la main dans scripts/jeunesse-seed.json,
+une entrée par photo, avec le nom tel qu'il est écrit dans games/faces/data/celebs.json :
+  [ { "name": "Omar Sy", "file": "Nom exact du fichier sur Commons.jpg", "year": 1998 } ]
+« year » (année de la photo) est facultatif ; il est affiché dans le jeu. Le script récupère
+l'auteur et la licence sur Commons, calcule les boîtes et écarte les visages trop petits,
+trop tournés ou trop penchés. Il ne cherche pas d'autre photo à la place d'une photo écartée.
 
 Réseau via curl (User-Agent Wikimedia). Modèle FaceLandmarker dans scripts/.celeb-cache/models/.
 """
@@ -35,7 +44,9 @@ from mediapipe.tasks.python import BaseOptions
 from mediapipe.tasks.python import vision as mp_vision
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUT = ROOT / "games" / "face-parts" / "data" / "people.json"
+DEFAULT_OUT = ROOT / "games" / "faces" / "morceaux" / "data" / "people.json"
+JEUNESSE_OUT = ROOT / "games" / "faces" / "morceaux" / "data" / "jeunesse.json"
+JEUNESSE_SEED = Path(__file__).resolve().parent / "jeunesse-seed.json"
 CACHE = Path(__file__).resolve().parent / ".celeb-cache"
 MODEL_URL = (
     "https://storage.googleapis.com/mediapipe-models/"
@@ -403,6 +414,7 @@ def rows_from_seed(seed_path: Path):
             "license": "",
             "alt": s.get("alt") or [],
             "id_hint": slugify(s["name"]),
+            "year": s.get("year") or "",
         })
     return rows
 
@@ -626,12 +638,12 @@ def write_index(index_path: Path, rows):
     with open(index_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["rank", "wikidata_id", "name", "gender", "occupations",
-                    "sitelinks", "author", "license", "image_url", "upload_url"])
+                    "sitelinks", "author", "license", "image_url", "upload_url", "year"])
         for r in rows:
             w.writerow([r["rank"], r.get("qid", ""), r["name"], r.get("gender", "?"),
                         r.get("occupations", ""), r.get("sitelinks", 0),
                         r.get("author", ""), r.get("license", ""), r["image_url"],
-                        r.get("upload_url", "")])
+                        r.get("upload_url", ""), r.get("year", "")])
 
 
 def main():
@@ -656,12 +668,26 @@ def main():
                     help="réutilise le cache index.csv + raw/")
     ap.add_argument("--delay", type=float, default=0.35,
                     help="pause entre appels API (mode --from-faces)")
-    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--out", type=Path, default=None)
+    ap.add_argument("--jeunesse", action="store_true",
+                    help="catalogue « Portraits de jeunesse » à partir de scripts/jeunesse-seed.json")
     a = ap.parse_args()
+    if a.jeunesse:
+        if a.seed.name == "celeb-seed.json":
+            a.seed = JEUNESSE_SEED
+        if a.min_face == 120:
+            a.min_face = 80  # photos anciennes, souvent plus petites
+    if a.out is None:
+        a.out = JEUNESSE_OUT if a.jeunesse else DEFAULT_OUT
 
-    raw = CACHE / "raw"
-    index_path = CACHE / "index.csv"
-    skipped_path = CACHE / "skipped.csv"
+    cache = CACHE / "jeunesse" if a.jeunesse else CACHE
+    raw = cache / "raw"
+    index_path = cache / "index.csv"
+    skipped_path = cache / "skipped.csv"
+    faces_by_name = {}
+    if FACES_CELEBS.exists():
+        for c in json.loads(FACES_CELEBS.read_text(encoding="utf-8")):
+            faces_by_name[slugify(c["name"])] = c
     raw.mkdir(parents=True, exist_ok=True)
 
     if a.skip_fetch and index_path.exists():
@@ -687,6 +713,24 @@ def main():
             if not r["upload_url"]:
                 r["upload_url"] = resolve_upload_url(r["image_url"], a.width) or ""
         print(f"Reprise cache : {len(rows)} lignes, téléchargements manquants…")
+        download_all(rows, raw, a.width, workers=1)
+    elif a.jeunesse:
+        print(f"1/3 Photos de jeunesse ({a.seed.name})…")
+        if not a.seed.exists():
+            print(f"Introuvable : {a.seed}", file=sys.stderr)
+            sys.exit(1)
+        rows = rows_from_seed(a.seed)
+        for r in rows:
+            c = faces_by_name.get(slugify(r["name"]))
+            if c:  # même identifiant et mêmes réponses acceptées que Visages
+                r["id_hint"] = c["id"]
+                r["alt"] = r["alt"] or list(c.get("alt") or [])
+            else:
+                print(f"  Attention : « {r['name']} » n’est pas dans celebs.json", file=sys.stderr)
+        print(f"    {len(rows)} photos")
+        print("2/3 Licences + URL Commons puis téléchargement…")
+        fetch_licences_and_urls(rows, a.width)
+        write_index(index_path, rows)
         download_all(rows, raw, a.width, workers=1)
     elif a.from_faces:
         print(f"1/3 Catalogue Visages → Wikidata P18 ({FACES_CELEBS.name})…")
@@ -734,6 +778,10 @@ def main():
                 err = "photo non téléchargée"
             else:
                 boxes, err = process_photo(path, landmarker, a)
+            if err and a.jeunesse:
+                print(f"  {r['name']} : {err} (photo écartée)", flush=True)
+                skipped.append((stem, err))
+                continue
             if err:
                 print(f"  {r['name']} ({err}) → recherche photo alternative…", flush=True)
                 boxes = try_alternate_photo(r, raw, stem, landmarker, a)
@@ -761,6 +809,9 @@ def main():
             alts = r.get("alt") or []
             if alts:
                 entry["alt"] = list(alts)
+            year = str(r.get("year") or "").strip()
+            if a.jeunesse and year.isdigit():
+                entry["year"] = int(year)
             people.append(entry)
             if len(people) % 10 == 0:
                 print(f"    {len(people)} valides…")
