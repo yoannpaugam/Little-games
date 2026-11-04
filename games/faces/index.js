@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.9.0';
-import { createStore } from '../../js/core/storage.js?v=1.9.0';
-import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.9.0';
-import * as P from './photos.js?v=1.9.0';
+import { h, icon } from '../../js/core/dom.js?v=1.10.0';
+import { createStore } from '../../js/core/storage.js?v=1.10.0';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.10.0';
+import * as P from './photos.js?v=1.10.0';
 
 // Version 1 du format des données enregistrées. Pour changer ce format : version: 2 + migrate(from, store).
 const store = createStore('visages', { version: 1 });
