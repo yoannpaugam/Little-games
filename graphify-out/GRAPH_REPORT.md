@@ -1,7 +1,9 @@
 # Graph Report - little-games  (2026-11-04)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 51 files · ~76,760 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 7 file(s) not represented in the graph (top: .css 5, (none) 2)
 
 ## Summary
 - 572 nodes · 1125 edges · 26 communities
@@ -9,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3573bb71`
+- Built from commit: `9c72be0c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -47,11 +49,11 @@
 3. `mount()` - 25 edges
 4. `mount()` - 25 edges
 5. `main()` - 23 edges
-6. `normalize()` - 18 edges
-7. `mount()` - 18 edges
+6. `mount()` - 18 edges
+7. `normalize()` - 18 edges
 8. `icon()` - 18 edges
 9. `isMatch()` - 16 edges
-10. `renderPhotos()` - 14 edges
+10. `renderPlay()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Sécurité et données (détails dans `SECURITY.md`)` --references--> `h()`  [INFERRED]
@@ -108,7 +110,7 @@ Nodes (12): Cadre photo, Catalogue, Détection du visage, Import des photos, Nav
 
 ### Community 9 - "Coquille : routeur et liste des jeux"
 Cohesion: 0.21
-Nodes (10): ./books/index.js?v=1.17.0, ./faces/index.js?v=1.17.0, ./movie-posters/index.js?v=1.17.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
+Nodes (10): ./books/index.js?v=1.18.0, ./faces/index.js?v=1.18.0, ./movie-posters/index.js?v=1.18.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
@@ -175,7 +177,7 @@ Cohesion: 0.18
 Nodes (10): Bibliothèque, Catalogue, 📚 Livres : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ## Knowledge Gaps
-- **4 isolated node(s):** `./morceaux/index.js?v=1.17.0`, `./books/index.js?v=1.17.0`, `./faces/index.js?v=1.17.0`, `./movie-posters/index.js?v=1.17.0`
+- **4 isolated node(s):** `./morceaux/index.js?v=1.18.0`, `./movie-posters/index.js?v=1.18.0`, `./faces/index.js?v=1.18.0`, `./books/index.js?v=1.18.0`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 238 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
@@ -185,7 +187,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.299) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.17.0`, `./books/index.js?v=1.17.0`, `./faces/index.js?v=1.17.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.18.0`, `./movie-posters/index.js?v=1.18.0`, `./faces/index.js?v=1.18.0` to the rest of the system?**
   _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.07191961924907457 - nodes in this community are weakly interconnected._
