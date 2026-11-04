@@ -209,7 +209,7 @@ function coverCrop(W, H) {
 }
 /** Cadre 2:3 autour du visage : même cadrage pour toutes les photos d'un mode. */
 export function faceCrop(face, W, H, kind) {
-  const share = kind === 'enfance' ? 0.4 : 0.55;  // largeur du visage / largeur du cadre
+  const share = kind === 'enfance' ? 0.5 : 0.7;   // largeur du visage / largeur du cadre : découpe serrée en largeur
   const eyeAt = kind === 'enfance' ? 0.4 : 0.42;  // hauteur des yeux dans le cadre
   let w = face.fw / share, h = w * 1.5;
   const k = Math.min(1, W / w, H / h);
@@ -230,7 +230,13 @@ function makeThumb(src, crop) {
 }
 
 /** Importe un fichier image pour une célébrité. → true si le visage a été détecté. */
-export async function importFile(file, id, kind) {
+/** Cadre affiché : recalculé depuis le visage (même cadrage pour toutes les photos, même anciennes). */
+export function cropOf(rec) {
+  return rec.zones?.face && (rec.auto || rec.manual) ? faceCrop(rec.zones.face, rec.w, rec.h, rec.kind) : rec.crop;
+}
+
+/** Importe un fichier image pour une célébrité. extra.credit = { author, license } (photo sous licence libre). */
+export async function importFile(file, id, kind, extra = {}) {
   const img = await decode(file);
   const iw = img.width || img.naturalWidth, ih = img.height || img.naturalHeight;
   const s = Math.min(1, MAX_SIDE / Math.max(iw, ih));
@@ -243,7 +249,7 @@ export async function importFile(file, id, kind) {
   if (lm) { zones = zonesFromLandmarks(lm); crop = faceCrop(zones.face, W, H, kind); }
   else { const [A, B] = defaultPoints(W, H); zones = zonesFromPoints(A, B); crop = coverCrop(W, H); }
   const [blob, thumb] = await Promise.all([toBlob(cv, 0.88), makeThumb(cv, crop)]);
-  await put({ key: pkey(kind, id), id, kind, blob, thumb, w: W, h: H, zones, crop, auto: !!lm, manual: false, t: Date.now() });
+  await put({ key: pkey(kind, id), id, kind, blob, thumb, w: W, h: H, zones, crop, auto: !!lm, manual: false, t: Date.now(), credit: extra.credit || null });
   return !!lm;
 }
 
@@ -258,10 +264,13 @@ export async function placeManually(key, A, B) {
 }
 
 // ------------------------------------------------------------------ dessin
-let holes = null, mask = null;
+let holes = null, mask = null, small = null, small2 = null;
 
-/** Dessine la photo recadrée dans le canvas, masquée sauf les parties `parts` (opacité du masque : maskA). */
-export function drawPhoto(canvas, img, rec, parts, maskA) {
+/**
+ * Dessine la photo recadrée dans le canvas. Hors des parties `parts`, le reste du visage est
+ * fortement flouté (rest = 'blur', par défaut) ou masqué (rest = 'mask'). maskA : opacité de ce voile.
+ */
+export function drawPhoto(canvas, img, rec, parts, maskA, rest = 'blur') {
   const r = canvas.getBoundingClientRect();
   if (!r.width) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
@@ -273,7 +282,7 @@ export function drawPhoto(canvas, img, rec, parts, maskA) {
   c.fillStyle = '#121015';
   c.fillRect(0, 0, W, H);
   if (!img || !rec) return;
-  const cr = rec.crop, s = W / cr.w;
+  const cr = cropOf(rec), s = W / cr.w;
   c.drawImage(img, cr.x, cr.y, cr.w, cr.h, 0, 0, W, H);
   if (maskA <= 0) return;
 
@@ -303,11 +312,29 @@ export function drawPhoto(canvas, img, rec, parts, maskA) {
   const mc = mask.getContext('2d');
   mc.setTransform(1, 0, 0, 1, 0, 0);
   mc.globalCompositeOperation = 'source-over';
-  const g = mc.createLinearGradient(0, 0, W, H);
-  g.addColorStop(0, '#2a2530');
-  g.addColorStop(1, '#121015');
-  mc.fillStyle = g;
-  mc.fillRect(0, 0, W, H);
+  if (rest === 'mask') {
+    const g = mc.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, '#2a2530');
+    g.addColorStop(1, '#121015');
+    mc.fillStyle = g;
+    mc.fillRect(0, 0, W, H);
+  } else {
+    // Flou fort : la photo réduite à ~1/40 puis agrandie en deux étapes (marche sur tous les navigateurs),
+    // assombrie pour que les parties dévoilées ressortent.
+    small ||= document.createElement('canvas');
+    small2 ||= document.createElement('canvas');
+    const sw = Math.max(6, Math.round(W / 40)), sh = Math.max(9, Math.round(H / 40));
+    const mw = Math.max(sw, Math.round(W / 8)), mh = Math.max(sh, Math.round(H / 8));
+    if (small.width !== sw || small.height !== sh) { small.width = sw; small.height = sh; }
+    if (small2.width !== mw || small2.height !== mh) { small2.width = mw; small2.height = mh; }
+    const sc = small.getContext('2d'), s2 = small2.getContext('2d');
+    sc.imageSmoothingQuality = s2.imageSmoothingQuality = mc.imageSmoothingQuality = 'high';
+    sc.drawImage(img, cr.x, cr.y, cr.w, cr.h, 0, 0, sw, sh);
+    s2.drawImage(small, 0, 0, mw, mh);
+    mc.drawImage(small2, 0, 0, W, H);
+    mc.fillStyle = 'rgba(13, 12, 15, .35)';
+    mc.fillRect(0, 0, W, H);
+  }
   mc.globalCompositeOperation = 'destination-out';
   mc.drawImage(holes, 0, 0);
   mc.globalCompositeOperation = 'source-over';
@@ -330,7 +357,7 @@ export function drawPreview(canvas, img, rec, point) {
   c.clearRect(0, 0, W, H);
   if (!img) return null;
   c.drawImage(img, ox, oy, rec.w * sc, rec.h * sc);
-  const X = (x) => ox + x * sc, Y = (y) => oy + y * sc, cr = rec.crop;
+  const X = (x) => ox + x * sc, Y = (y) => oy + y * sc, cr = cropOf(rec);
   c.fillStyle = '#000a';
   c.beginPath();
   c.rect(ox, oy, rec.w * sc, rec.h * sc);

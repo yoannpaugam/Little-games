@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.10.0';
-import { createStore } from '../../js/core/storage.js?v=1.10.0';
-import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.10.0';
-import * as P from './photos.js?v=1.10.0';
+import { h, icon } from '../../js/core/dom.js?v=1.11.0';
+import { createStore } from '../../js/core/storage.js?v=1.11.0';
+import { buildAnswers, buildOwners, checkAnswer, matchFileName, findByName } from './answers.js?v=1.11.0';
+import * as P from './photos.js?v=1.11.0';
 
 // Version 1 du format des données enregistrées. Pour changer ce format : version: 2 + migrate(from, store).
 const store = createStore('visages', { version: 1 });
@@ -21,7 +21,7 @@ const MODES = {
 };
 const ROUTE_OF = { portrait: 'portraits', enfance: 'enfance' };
 const KIND_LABEL = { portrait: 'Portrait', enfance: 'Photo d’enfance' };
-const DEFAULT_SETTINGS = { order: [...P.PARTS], off: [], who: 'all' };
+const DEFAULT_SETTINGS = { order: [...P.PARTS], off: [], who: 'all', rest: 'blur' }; // rest : reste du visage flouté ou masqué
 const WRONG = ['Ce n’est pas ça… Réessaie !', 'Raté ! Encore un essai ?', 'Non, ce n’est pas cette personne.', 'Toujours pas… courage !'];
 
 const SVG = {
@@ -189,7 +189,7 @@ export async function mount(container, ctx) {
     const canvas = h('canvas.vz-canvas', { 'aria-label': 'Photo mystère', role: 'img' });
     const frame = h('div.vz-frame', canvas);
     const shownParts = () => (kind === 'portrait' ? (solved(kind, id) ? activeParts() : activeParts().slice(0, revealed(id))) : []);
-    const paint = () => P.drawPhoto(canvas, img, rec, shownParts(), maskA);
+    const paint = () => P.drawPhoto(canvas, img, rec, shownParts(), maskA, settings.rest === 'mask' ? 'mask' : 'blur');
     P.bitmap(rec.key).then((b) => { img = b; paint(); });
     const ro = new ResizeObserver(paint);
     ro.observe(frame);
@@ -335,7 +335,9 @@ export async function mount(container, ctx) {
       type: 'button',
       onclick: () => { phKind = k; refresh(); },
     }, k === 'portrait' ? 'Portraits' : 'Enfance', h('small')))));
-    const multi = h('input', { type: 'file', accept: 'image/*', multiple: true, hidden: true, onchange: (e) => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) importBatch(fs); } });
+    const multi = h('input', { type: 'file', accept: 'image/*,.json,.csv', multiple: true, hidden: true, onchange: (e) => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) importBatch(fs); } });
+    const folderInput = h('input', { type: 'file', multiple: true, hidden: true, onchange: (e) => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) importBatch(fs); } });
+    folderInput.setAttribute('webkitdirectory', '');
     const search = h('input.vz-input.vz-small', { type: 'search', placeholder: 'Rechercher…', 'aria-label': 'Rechercher une personne', oninput: filter });
     const sel = h('select.vz-select', { onchange: filter, 'aria-label': 'Filtrer les photos' },
       h('option', { value: 'all' }, 'Toutes'), h('option', { value: 'miss' }, 'À ajouter'),
@@ -399,18 +401,25 @@ export async function mount(container, ctx) {
       let ok = 0, noFace = 0;
       status.textContent = 'Chargement de la détection de visage…';
       const detectorOk = await P.loadDetector();
-      for (let i = 0; i < files.length; i++) {
-        status.textContent = `Analyse des photos… ${i + 1} / ${files.length}`;
-        const f = files[i];
+      // Fichiers de crédits joints (manifest.json ou index.csv d'un export) : auteur et licence de chaque photo
+      const credits = await readCredits(files.filter((f) => /\.(json|csv)$/i.test(f.name)));
+      let images = files.filter((f) => !/\.(json|csv)$/i.test(f.name) && !isPartCrop(f));
+      // Dossier d'export complet : la photo d'origine (raw/) passe avant la découpe « complet.jpg » de la même personne
+      const rawStems = new Set(images.filter((f) => !/^complet\./i.test(f.name)).map((f) => stemOf(photoLabel(f))));
+      images = images.filter((f) => !/^complet\./i.test(f.name) || !rawStems.has(stemOf(photoLabel(f))));
+      for (let i = 0; i < images.length; i++) {
+        status.textContent = `Analyse des photos… ${i + 1} / ${images.length}`;
+        const f = images[i];
+        const label = photoLabel(f);
         let id, kind;
         if (target) ({ id, kind } = target);
         else {
-          const m = matchFileName(f.name, celebs, answers);
+          const m = matchFileName(label, celebs, answers);
           if (!m.id) { unknown.push(f); continue; }
           id = m.id;
           kind = m.kid ? 'enfance' : phKind;
         }
-        try { if (!(await P.importFile(f, id, kind))) noFace++; ok++; }
+        try { if (!(await P.importFile(f, id, kind, { credit: credits.get(stemOf(label)) || null }))) noFace++; ok++; }
         catch (e) { console.warn(e); unknown.push(f); }
       }
       let msg = ok ? `${ok} photo${ok > 1 ? 's' : ''} ajoutée${ok > 1 ? 's' : ''}.` : '';
@@ -535,7 +544,10 @@ export async function mount(container, ctx) {
           h('details.vz-help',
             h('summary', 'Comment ajouter les photos ?'),
             h('p', 'Nomme chaque fichier avec le nom de la personne (« omar-sy.jpg », « Céline Dion.png »), puis importe-les tous d’un coup : ils sont rangés tout seuls. Ajoute « enfant » au nom (« omar-sy-enfant.jpg ») pour une photo d’enfance. Tu peux aussi toucher une case vide pour ajouter la photo d’une seule personne, ou glisser des fichiers sur cette page.'),
-            h('p', 'Le visage est repéré automatiquement. Touche une photo pour vérifier les zones ou les placer à la main. Les photos restent sur cet appareil.')
+            h('p', 'Le visage est repéré automatiquement. Touche une photo pour vérifier les zones ou les placer à la main. Les photos restent sur cet appareil.'),
+            h('p', 'Photos sous licence libre : sélectionne avec elles le fichier manifest.json ou index.csv qui les accompagne, ou importe tout le dossier (sur ordinateur). L’auteur et la licence de chaque photo sont alors enregistrés et affichés dans les ',
+              h('button.vz-link', { type: 'button', onclick: () => ctx.navigate('credits') }, 'crédits photo'), '.'),
+            h('label.vz-btn.vz-btn-sm', 'Importer un dossier…', folderInput)
           ),
           h('div.vz-filter', search, sel),
           status
@@ -631,8 +643,9 @@ export async function mount(container, ctx) {
         msg.textContent = 'Cette image n’a pas pu être lue. Essaie une photo JPEG ou PNG.';
       } finally { importing = false; }
     } });
+    const credit = P.PHOTOS.get(key)?.credit;
     const d = dialog(c.name,
-      h('p.vz-sub', `${KIND_LABEL[kind]} · ${c.job}`),
+      h('p.vz-sub', `${KIND_LABEL[kind]} · ${c.job}` + (credit ? ` · Photo : ${creditText(credit)}` : '')),
       wrap, msg,
       h('div.vz-dialog-btns',
         h('button.vz-btn', { type: 'button', onclick: () => { pick = 1; A = null; wrap.classList.add('is-pick'); say(); draw(); } }, 'Placer'),
@@ -838,6 +851,23 @@ export async function mount(container, ctx) {
     draw();
   }
 
+  // ---------------------------------------------------------------- vue : crédits photo
+  function renderCredits() {
+    resetView();
+    const recs = [...P.PHOTOS.values()].filter((r) => r.credit && byId.has(r.id))
+      .sort((a, b) => byId.get(a.id).name.localeCompare(byId.get(b.id).name, 'fr'));
+    container.replaceChildren(
+      topBar('Crédits photo', { back: () => ctx.navigate('photos') }),
+      h('section.vz-settings',
+        h('p.vz-hint', recs.length
+          ? 'Photos importées sur cet appareil avec leur auteur et leur licence (licences libres : l’attribution est obligatoire).'
+          : 'Aucun crédit enregistré. Importe des photos avec le fichier manifest.json ou index.csv qui les accompagne pour que l’auteur et la licence s’affichent ici.'),
+        recs.length ? h('ul.vz-credits', recs.map((r) => h('li',
+          h('strong', byId.get(r.id).name), ` · ${KIND_LABEL[r.kind]}`, h('br'),
+          h('small', creditText(r.credit))))) : null)
+    );
+  }
+
   // ---------------------------------------------------------------- vue : réglages
   function renderSettings() {
     resetView();
@@ -872,6 +902,9 @@ export async function mount(container, ctx) {
     const radio = (value, label) => h('label.vz-option',
       h('input', { type: 'radio', name: 'vz-who', value, checked: settings.who === value, onchange: () => { settings.who = value; saveSettings(); } }),
       h('span', h('strong', label)));
+    const restRadio = (value, label, desc) => h('label.vz-option',
+      h('input', { type: 'radio', name: 'vz-rest', value, checked: (settings.rest || 'blur') === value, onchange: () => { settings.rest = value; saveSettings(); } }),
+      h('span', h('strong', label), h('small', desc)));
 
     const twoStep = (label, done, fn) => {
       let armed = false;
@@ -911,7 +944,10 @@ export async function mount(container, ctx) {
       h('section.vz-settings',
         h('fieldset', h('legend', 'Ordre de dévoilement (Portraits)'),
           h('p.vz-hint', 'La première partie est visible dès le début, les suivantes se dévoilent une par une. Une partie désactivée n’est jamais montrée avant la réponse.'),
-          orderList),
+          orderList,
+          h('p.vz-hint', 'Le reste du visage :'),
+          restRadio('blur', 'Fortement flouté', 'On devine les couleurs et la silhouette, pas les traits.'),
+          restRadio('mask', 'Masqué', 'Seules les parties dévoilées sont visibles.')),
         h('fieldset', h('legend', 'Célébrités'),
           radio('all', 'Tout le monde'), radio('f', 'Femmes'), radio('m', 'Hommes'),
           h('button.vz-btn.vz-btn-ghost', { type: 'button', onclick: (e) => { seed = reseed(); e.currentTarget.textContent = '✓ Ordre mélangé'; } }, 'Mélanger à nouveau')),
@@ -940,6 +976,7 @@ export async function mount(container, ctx) {
     if (MODES[view]) renderPlay(view, arg);
     else if (view === 'photos') renderPhotos(arg);
     else if (view === 'remplir') renderFill(arg);
+    else if (view === 'credits') renderCredits();
     else if (view === 'reglages') renderSettings();
     else renderHome();
     window.scrollTo(0, 0);
@@ -958,6 +995,61 @@ export async function mount(container, ctx) {
 // ------------------------------------------------------------------ utilitaires
 
 const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`;
+
+// ------------------------------------------------------------------ crédits des photos importées
+const PART_FILES = /^(yeux|nez|bouche|haut|bas)\.(jpe?g|png|webp)$/i;
+/** Découpes partielles d'un export (yeux.jpg, nez.jpg…) : ignorées, le jeu fait ses propres zones. */
+const isPartCrop = (f) => PART_FILES.test(f.name) && Boolean(f.webkitRelativePath);
+/** Nom à reconnaître : « complet.jpg » dans un dossier « 0042_meryl_streep » → « 0042_meryl_streep.jpg ». */
+function photoLabel(f) {
+  const parts = (f.webkitRelativePath || '').split('/');
+  return /^complet\./i.test(f.name) && parts.length > 1 ? `${parts[parts.length - 2]}.jpg` : f.name;
+}
+const stemOf = (name) => name.replace(/\.[a-z0-9]+$/i, '').toLowerCase();
+const slugUnderscore = (s) => s.normalize('NFKD').replace(/[^\x00-\x7f]/g, '').replace(/[^a-zA-Z0-9]+/g, '_').replace(/^_+|_+$/g, '').toLowerCase();
+const creditText = (c) => [c.author || 'Auteur inconnu', c.license].filter(Boolean).join(' — ');
+
+/** Lit manifest.json ({ people: [{ id, author, license }] }) ou index.csv (rank, name, author, license) → Map nom de fichier → crédit. */
+async function readCredits(files) {
+  const map = new Map();
+  for (const f of files) {
+    try {
+      const text = await f.text();
+      if (/\.json$/i.test(f.name)) {
+        for (const p of JSON.parse(text).people || []) {
+          if (p?.id && (p.author || p.license)) map.set(String(p.id).toLowerCase(), { author: p.author || '', license: p.license || '' });
+        }
+      } else {
+        const rows = parseCsv(text);
+        const head = rows.shift()?.map((x) => x.trim().toLowerCase()) || [];
+        const col = (n) => head.indexOf(n);
+        for (const r of rows) {
+          const rank = r[col('rank')], name = r[col('name')];
+          if (!rank || !name) continue;
+          const stem = `${String(rank).padStart(4, '0')}_${slugUnderscore(name)}`;
+          if (!map.has(stem)) map.set(stem, { author: r[col('author')] || '', license: r[col('license')] || '' });
+        }
+      }
+    } catch (e) { console.warn('crédits illisibles', f.name, e); }
+  }
+  return map;
+}
+function parseCsv(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+      else if (ch === '"') q = false;
+      else cell += ch;
+    } else if (ch === '"') q = true;
+    else if (ch === ',') { row.push(cell); cell = ''; }
+    else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += ch;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter((r) => r.some((x) => x !== ''));
+}
 
 function seededShuffle(arr, seed) {
   let s = seed >>> 0 || 1;
