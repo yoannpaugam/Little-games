@@ -46,10 +46,15 @@ Comme Visages : `fuzzy.js`, nom complet, alternatives, nom de famille seul s’i
   - *Photo entière floutée* : le cadre 2:3 montre dès le début le même plan rapproché que le visage dévoilé, très floutée et assombrie. Seule la zone visible (les bandes) est nette, à sa place sur le visage. Les bandes ajoutées s'élargissent avec une transition, et la photo devient nette à la résolution.
 - Mélanger à nouveau.
 - Effacer la progression (confirmation en deux clics).
-- Lien vers la page **Crédits photo**.
+- Lien vers les **crédits photo** (en bas de la grille).
 
-## Crédits photo
-Liste des photos du catalogue avec auteur et licence (obligation Commons / CC).
+## Grille de toutes les photos
+- Icône grille de la barre du haut (elle remplace l'ancienne icône des crédits) : toutes les photos du mode, **5 par ligne**, en vignettes 2:3 en plan rapproché, comme la grille des affiches.
+- Ordre : celui du jeu (le numéro sur chaque vignette correspond au compteur « n / total »), pour que la position ne révèle rien du nom.
+- Une personne trouvée (ou dont la réponse a été donnée) a sa photo nette et son nom en dessous. Sinon, la photo est très floutée et assombrie. La personne en cours est mise en évidence et la grille s'ouvre positionnée sur elle.
+- Un clic sur une vignette ouvre cette personne dans l'écran de jeu.
+- Les vignettes utilisent une petite image Commons (330 px de large) ; si elle ne se charge pas, la photo d'origine.
+- **Crédits photo** (obligation Commons / CC) : en bas de la grille, une section dépliable liste toutes les photos avec auteur et licence, par ordre alphabétique. Le bouton « Crédits photo » en haut de la grille l'ouvre. Le crédit est aussi dans l'infobulle des vignettes déjà trouvées, et sous le nom quand on trouve.
 
 ## Persistance (sur l’appareil)
 `found`, `tries`, `given`, `stage` (palier atteint et séquence par personne), `current`, `seed`, `settings` (`view` : `bandes` ou `entiere`), `lowres` (photos de basse qualité : id → hauteur utile en px).
@@ -64,7 +69,7 @@ Liste des photos du catalogue avec auteur et licence (obligation Commons / CC).
 - Stockage séparé : `jeunesse` (mêmes clés que `morceaux`).
 
 ## Navigation (URL)
-`#/visages/morceaux` · `#/visages/morceaux/personne/<id>` · `…/credits` · `…/reglages` · `…/debug` (boîtes de détection) · `…/qualite` (analyse de la qualité), et la même chose sous `#/visages/jeunesse`. Les anciens liens `#/morceaux/…` redirigent vers `#/visages/morceaux/…`.
+`#/visages/morceaux` · `#/visages/morceaux/personne/<id>` · `…/grille` (toutes les photos) · `…/credits` (la grille, crédits ouverts) · `…/reglages` · `…/debug` (boîtes de détection) · `…/qualite` (analyse de la qualité), et la même chose sous `#/visages/jeunesse`. Les anciens liens `#/morceaux/…` redirigent vers `#/visages/morceaux/…`.
 
 ## Pistes pour la suite
 Filtres (genre, métier), plus de personnes, mode multijoueur (moins d’indices = plus de points).

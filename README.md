@@ -111,7 +111,7 @@ games/faces/             Le jeu « Visages », autonome
   ├─ data/celebs.json    Les 300 célébrités (source des catalogues Morceaux et jeunesse)
   ├─ SPEC.md             Spécification fonctionnelle du jeu
   └─ morceaux/           Modes « Morceaux » et « Portraits de jeunesse » (chargés à la demande)
-       ├─ index.js       Logique et vues (jeu, crédits, réglages, debug)
+       ├─ index.js       Logique et vues (jeu, grille et crédits, réglages, debug)
        ├─ answers.js     Réponses acceptées (testé)
        ├─ framing.js     Cadrage 2:3 et inclinaison des têtes (testé)
        ├─ styles.css     Styles (préfixe .mx-)

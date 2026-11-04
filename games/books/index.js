@@ -1,12 +1,12 @@
 // Jeu « Livres » : retrouver l'auteur d'un grand livre de la littérature, en 3 essais.
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
-//   ctx.path     : sous-chemin de l'URL (['livre', id] | ['bibliotheque'] | ['reglages'] | [])
+//   ctx.path     : sous-chemin de l'URL (['livre', id] | ['bibliotheque', annee?] | ['reglages'] | [])
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.20.0';
-import { createStore } from '../../js/core/storage.js?v=1.20.0';
-import { buildAuthors, checkAuthor, initialsOf } from './answers.js?v=1.20.0';
+import { h, icon } from '../../js/core/dom.js?v=1.21.0';
+import { createStore } from '../../js/core/storage.js?v=1.21.0';
+import { buildAuthors, checkAuthor, initialsOf } from './answers.js?v=1.21.0';
 
 const store = createStore('livres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };
@@ -151,7 +151,10 @@ export async function mount(container, ctx) {
       gaveUp ? h('p.lv-bravo.is-given', 'C’était…') : h('p.lv-bravo', icon('check'), ' Bravo !'),
       h('h2.lv-author-name', author.name),
       // Une seule ligne : le panneau garde la hauteur du formulaire, la couverture ne change pas de taille
-      h('p.lv-details', h('i', book.title), ` · ${book.year} · littérature ${author.from}`)
+      // L'année, cliquable (bibliothèque à cette période), passe en premier pour rester visible avec un long titre
+      h('p.lv-details',
+        h('button.lv-link', { type: 'button', title: 'Voir les livres de cette période', onclick: () => ctx.navigate('bibliotheque', book.year) }, book.year),
+        ' · ', h('i', book.title), ` · littérature ${author.from}`)
     );
     const solvedPanel = (gaveUp = !isFound && Boolean(given[book.id])) => {
       const next = h('button.lv-btn.lv-btn-primary', { type: 'button', onclick: () => go(1) }, 'Suivant', icon('next'));
@@ -237,15 +240,28 @@ export async function mount(container, ctx) {
   }
 
   // ---------------------------------------------------------------- vue : bibliothèque
-  function renderLibrary() {
+  // Comme la grille des affiches : « Aller à… » par siècle (l'année est déjà sur chaque couverture),
+  // ouverture sur une année (#/livres/bibliotheque/<année>) ou sur le livre en cours.
+  function renderLibrary(year) {
     resetView();
     container.classList.remove('is-play');
     const sorted = [...books].sort(byYear);
+    const target = Number(year) || null;
+    const seenCenturies = new Set();
+    const seenYears = new Set();
     const cards = sorted.map((book) => {
       const isFound = Boolean(found[book.id]);
       const isGiven = !isFound && Boolean(given[book.id]);
+      const c = centuryOf(book.year);
+      const firstC = !seenCenturies.has(c);
+      const firstY = !seenYears.has(book.year);
+      seenCenturies.add(c);
+      seenYears.add(book.year);
       return h('button.lv-card', {
-        class: `lv-card${isFound ? ' is-found' : isGiven ? ' is-given' : ''}${book.id === currentId ? ' is-current' : ''}`,
+        class: `lv-card${isFound ? ' is-found' : isGiven ? ' is-given' : ''}${target ? (target === book.year ? ' is-target' : '') : book.id === currentId ? ' is-current' : ''}`,
+        type: 'button',
+        id: firstY ? `lv-y-${book.year}` : null,
+        'data-century': firstC ? c : null,
         title: `${book.title} (${book.year})`,
         onclick: () => ctx.navigate('livre', book.id),
       },
@@ -253,14 +269,26 @@ export async function mount(container, ctx) {
         h('span.lv-card-name', isFound || isGiven ? authorOf.get(book.author).name : ' ')
       );
     });
+    const centuries = [...seenCenturies];
+    const jump = h('select.lv-select', {
+      'aria-label': 'Aller au siècle',
+      onchange: (e) => {
+        const el = container.querySelector(`.lv-card[data-century="${e.target.value}"]`);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      },
+    }, h('option', { value: '' }, 'Aller à…'),
+      centuries.map((c) => h('option', { value: c, selected: target ? centuryOf(target) === c : false }, centuryLabel(c))));
     const n = nFound();
     container.replaceChildren(
       topBar('Bibliothèque', { back: () => ctx.navigate('livre', currentId) }),
-      h('div.lv-grid-head', h('p', h('strong', n), ` auteur${n > 1 ? 's' : ''} trouvé${n > 1 ? 's' : ''} sur ${books.length} livres · du plus ancien au plus récent`)),
+      h('div.lv-grid-head',
+        h('p', h('strong', n), ` auteur${n > 1 ? 's' : ''} trouvé${n > 1 ? 's' : ''} sur ${books.length} livres · du plus ancien au plus récent`),
+        jump
+      ),
       h('div.lv-grid', cards)
     );
-    const cur = container.querySelector('.lv-card.is-current');
-    if (cur) requestAnimationFrame(() => cur.scrollIntoView({ block: 'center' }));
+    const el = target ? container.querySelector(`#lv-y-${target}`) : container.querySelector('.lv-card.is-current');
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ block: target ? 'start' : 'center' }));
     else window.scrollTo(0, 0);
   }
 
@@ -312,7 +340,7 @@ export async function mount(container, ctx) {
   // ---------------------------------------------------------------- routage interne
   function update(path) {
     const [view, arg] = path || [];
-    if (view === 'bibliotheque') renderLibrary();
+    if (view === 'bibliotheque') renderLibrary(arg);
     else if (view === 'reglages') renderSettings();
     else renderPlay(view === 'livre' ? arg : null);
     if (view !== 'bibliotheque') window.scrollTo(0, 0);
@@ -331,6 +359,15 @@ export async function mount(container, ctx) {
 // ------------------------------------------------------------------ utilitaires
 
 const byYear = (a, b) => a.year - b.year || a.title.localeCompare(b.title, 'fr');
+// Siècle d'une année (1320 → 14, 1999 → 20, 2000 → 20, 2001 → 21) et son libellé (« XIVe siècle »)
+const centuryOf = (y) => Math.ceil(y / 100);
+const ROMAN = [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+function centuryLabel(c) {
+  let n = c;
+  let r = '';
+  for (const [v, l] of ROMAN) while (n >= v) { r += l; n -= v; }
+  return `${r}${c === 1 ? 'er' : 'e'} siècle`;
+}
 const n2 = (n, one, many) => `${n} ${n > 1 ? many : one}`;
 
 function hash(str) {

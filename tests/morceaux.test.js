@@ -76,3 +76,22 @@ test('morceaux : qualité mesurée sur la hauteur utile du cadre', () => {
   assert.ok(low < LOW_RES);
   assert.equal(qualityOf(low), 'basse');
 });
+
+test('thumbUrl : petite image Commons pour la grille', async () => {
+  const { thumbUrl } = await import('../games/faces/morceaux/framing.js');
+  assert.equal(
+    thumbUrl('https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/A_B.jpg/1280px-A_B.jpg'),
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/A_B.jpg/330px-A_B.jpg'
+  );
+  assert.equal(
+    thumbUrl('https://upload.wikimedia.org/wikipedia/commons/6/65/Isabelle_Adjani_Cannes_2018.jpg'),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Isabelle_Adjani_Cannes_2018.jpg/330px-Isabelle_Adjani_Cannes_2018.jpg'
+  );
+  assert.equal(thumbUrl('https://upload.wikimedia.org/wikipedia/commons/1/12/Logo.svg'), 'https://upload.wikimedia.org/wikipedia/commons/1/12/Logo.svg');
+  // Presque toutes les photos du catalogue ont une petite image (les cas particuliers, comme un TIFF, gardent leur URL)
+  const { readFileSync } = await import('node:fs');
+  const people = JSON.parse(readFileSync(new URL('../games/faces/morceaux/data/people.json', import.meta.url)));
+  const kept = people.filter((p) => !/\/330px-/.test(thumbUrl(p.img)));
+  for (const p of kept) assert.equal(thumbUrl(p.img), p.img, p.id);
+  assert.ok(kept.length <= 5, kept.map((p) => p.id).join(', '));
+});
