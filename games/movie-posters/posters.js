@@ -6,8 +6,8 @@
 //   4. recherche en direct         : API TMDB si une clé est renseignée, sinon (ou à défaut) Wikipédia
 // Les affiches restent la propriété de leurs ayants droit ; aucune n'est livrée avec le code.
 
-import { createStore } from '../../js/core/storage.js?v=1.8.0';
-import { isMatch } from '../../js/core/fuzzy.js?v=1.8.0';
+import { createStore } from '../../js/core/storage.js?v=1.9.0';
+import { isMatch } from '../../js/core/fuzzy.js?v=1.9.0';
 
 const BASE = new URL('./', import.meta.url);
 const IMG = 'https://image.tmdb.org/t/p/';
@@ -20,7 +20,9 @@ let liveCache = cache.get('live3', {});
 cache.remove('live2');
 const MISS_TTL = 3 * 24 * 3600 * 1000;
 const isUrl = (v) => typeof v === 'string' && v.length > 0;
-const isFreshMiss = (v) => v && typeof v === 'object' && Date.now() - (v.miss || 0) < MISS_TTL;
+// Version de la recherche : un échec obtenu avec une ancienne version est ignoré, le film est recherché à nouveau.
+const SEARCH_VERSION = 2;
+const isFreshMiss = (v) => v && typeof v === 'object' && v.v === SEARCH_VERSION && Date.now() - (v.miss || 0) < MISS_TTL;
 const pending = new Map();
 const queue = [];
 let active = 0;
@@ -119,7 +121,7 @@ function pump() {
     active++;
     findPoster(job.film, job.settings)
       .then((value) => {
-        liveCache[job.film.id] = value || { miss: Date.now() };
+        liveCache[job.film.id] = value || { miss: Date.now(), v: SEARCH_VERSION };
         cache.set('live3', liveCache);
         job.resolve(value);
       })
@@ -139,6 +141,12 @@ async function searchWikipedia(film) {
   // Wikipédia en anglais uniquement : ses articles de films ont l'affiche dans l'infobox.
   // (Wikipédia en français n'héberge pas d'affiches : l'image principale y est souvent une photo sans rapport.)
   const main = film.original || film.title;
+  // 1. Titres d'articles exacts, en une seule requête : « Titanic (1997 film) », « Titanic (film) », « Titanic »…
+  //    Les redirections suivent les titres français vers l'article anglais (« Le Grand Bleu » → « The Big Blue »).
+  const exact = await wikipediaQuery({ titles: articleCandidates(film).join('|'), redirects: '1' });
+  const direct = pickExactPage(exact, film.year);
+  if (direct) return direct.thumbnail.source;
+  // 2. Recherche plein texte
   const attempts = [
     `${main} ${film.year} film`,
     ...(film.original ? [`${film.title} ${film.year} film`] : []),
@@ -167,6 +175,37 @@ async function wikipediaQuery(params) {
   // MediaWiki signale ses erreurs (limite de requêtes, surcharge…) avec un statut 200 : on réessaiera plus tard.
   if (data.error) throw new Error(`Wikipédia ${data.error.code || 'erreur'}`);
   return (data.query?.pages || []).sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+}
+
+/** Titres d'articles Wikipédia à essayer pour un film (le champ `wiki` du catalogue passe en premier). */
+export function articleCandidates(film) {
+  const names = [...new Set([film.original, film.title, ...(film.alt || [])].filter(Boolean))].slice(0, 4);
+  const list = [film.wiki, ...names.flatMap((n) => [`${n} (${film.year} film)`, `${n} (film)`, n])].filter(Boolean);
+  return [...new Set(list)].slice(0, 50); // l'API accepte 50 titres par requête
+}
+
+/**
+ * Parmi des articles demandés par leur titre exact, garde celui du film :
+ * « X (1997 film) » d'abord, puis un article décrit comme un film de la bonne année, puis « X (film) » décrit comme un film.
+ */
+export function pickExactPage(pages, year) {
+  const ok = pages.filter((p) => !p.missing && p.thumbnail?.source);
+  const desc = (p) => p.description || '';
+  return ok.find((p) => p.title.includes(`(${year} film)`))
+    || ok.find((p) => /\bfilm\b/i.test(desc(p)) && desc(p).includes(String(year)))
+    || ok.find((p) => /\(film\)$/.test(p.title) && /\bfilm\b/i.test(desc(p)) && !/\b(19|20)\d\d\b/.test(desc(p).replace(String(year), '')))
+    || null;
+}
+
+/** Recherche toutes les affiches (vérification depuis les réglages). onProgress(fait, total, introuvables). */
+export async function checkAllPosters(films, settings, onProgress) {
+  const missing = [];
+  let done = 0;
+  await Promise.all(films.map((f) => resolvePoster(f, settings).then((url) => {
+    if (!url) missing.push(f);
+    onProgress?.(++done, films.length, missing.length);
+  })));
+  return missing;
 }
 
 /**

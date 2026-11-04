@@ -1,7 +1,7 @@
 // Réponses acceptées et reconnaissance des noms de fichiers, pour le jeu « Visages ».
 // JavaScript pur (sans DOM) : testé dans tests/faces.test.js.
 
-import { normalize, levenshtein, tolerance, isMatch, closeness } from '../../js/core/fuzzy.js?v=1.8.0';
+import { normalize, levenshtein, tolerance, isMatch, closeness } from '../../js/core/fuzzy.js?v=1.9.0';
 
 const compact = (s) => normalize(s).replace(/ /g, '');
 

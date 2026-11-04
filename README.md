@@ -35,6 +35,12 @@ Les affiches sont cherchées automatiquement au fil du jeu et gardées en mémoi
 Il faut le faire une fois sur chaque appareil.
 
 ### Option B : une fois pour toutes, pour tout le monde (recommandé)
+**Sans rien installer, depuis GitHub :**
+1. Settings → Secrets and variables → Actions → **New repository secret** : nom `TMDB_API_KEY`, valeur = ta clé TMDB.
+2. Onglet **Actions** → **Affiches (TMDB)** → **Run workflow**.
+3. Le résultat arrive sur la branche `donnees/affiches-tmdb`. Le résumé du workflow liste les films introuvables. Il reste à fusionner cette branche par une pull request.
+
+**Ou sur ton ordinateur :**
 ```bash
 TMDB_API_KEY=ta_cle node scripts/fetch-posters.mjs
 git add games/movie-posters/data/posters.json && git commit -m "Affiches" && git push
