@@ -6,7 +6,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | Jeu | Dossier | Statut |
 | --- | --- | --- |
 | 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
-| 👤 Visages (portraits, enfance, Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
+| 👤 Visages (Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
 | 📚 Livres | `games/books/` | ✅ jouable |
 
 ---
@@ -87,15 +87,6 @@ python scripts/celeb-quiz-builder.py --jeunesse --top 300
 
 Le script écrit seulement le JSON ; le cache images reste dans `scripts/.celeb-cache/` (gitignoré).
 
-## 👤 Les photos de Visages
-
-Chaque joueur importe ses photos dans le jeu, depuis l'icône 🖼️ **Photos**. Elles sont enregistrées dans le navigateur de son appareil (IndexedDB).
-
-- Le plus rapide : **Photos → Remplir à la suite**. Le jeu affiche une personne à la fois : on cherche une image, on la copie (appui long → « Copier l'image »), on revient et on la colle. Le jeu passe tout seul à la personne suivante.
-- Pour importer des fichiers déjà prêts : nomme chaque fichier avec le nom de la personne : `omar-sy.jpg`, `Céline Dion.png`. Ajoute « enfant » pour une photo d'enfance : `omar-sy-enfant.jpg`. Ensuite, importe-les tous d'un coup : ils sont rangés automatiquement. Le jeu te demande à qui correspondent les fichiers qu'il ne reconnaît pas.
-- Le visage est repéré automatiquement à l'import, avec [face-api](https://github.com/vladmandic/face-api) (licence MIT, fichiers dans `games/faces/vendor/` et `games/faces/models/`, environ 7 Mo, chargés seulement au premier import). Si un visage n'est pas trouvé, on le place à la main en deux touches.
-- Toutes les photos sont affichées au même format que les affiches : 2:3, recadrées autour du visage.
-
 ## 🧱 Architecture (pensée pour migrer facilement)
 
 ```
@@ -115,12 +106,9 @@ games/movie-posters/     Le jeu « Affiches de cinéma », autonome
   ├─ data/posters.json   Chemins des affiches (généré par le script)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/faces/             Le jeu « Visages », autonome
-  ├─ index.js            Logique et vues (choix du mode, jeu, photos, réglages)
-  ├─ answers.js          Réponses acceptées, reconnaissance des noms de fichiers (testé)
-  ├─ photos.js           Stockage des photos, détection du visage, masque
-  ├─ styles.css          Styles du jeu (préfixe .vz-)
-  ├─ data/celebs.json    Les 300 célébrités (nom, profession, sexe, année de naissance, alternatives)
-  ├─ vendor/, models/    face-api et ses modèles
+  ├─ index.js            Choix du mode (Morceaux ou Portraits de jeunesse)
+  ├─ styles.css          Styles du choix du mode (préfixe .vz-)
+  ├─ data/celebs.json    Les 300 célébrités (source des catalogues Morceaux et jeunesse)
   ├─ SPEC.md             Spécification fonctionnelle du jeu
   └─ morceaux/           Modes « Morceaux » et « Portraits de jeunesse » (chargés à la demande)
        ├─ index.js       Logique et vues (jeu, crédits, réglages, debug)
@@ -171,7 +159,7 @@ Relance ensuite `node scripts/fetch-posters.mjs` pour les nouveaux films.
 ```json
 { "id": "omar-sy", "name": "Omar Sy", "job": "Acteur", "g": "m", "born": 1978, "alt": ["autre réponse acceptée"] }
 ```
-Garde des `id` stables : ils servent à retrouver les photos déjà importées et la progression.
+Garde des `id` stables : ils servent aux catalogues Morceaux et jeunesse, et à la progression.
 
 ---
 

@@ -8,7 +8,6 @@ Little Games est un site statique : il n'y a pas de serveur, de compte ni de bas
 | --- | --- | --- |
 | Catalogues (`games/*/data/*.json`) | Dépôt GitHub, servi par GitHub Pages | Public. Chaque modification passe par une pull request et `tests/catalogs.test.js`. Morceaux y ajoute des URL Commons + régions de découpe (pas d’images) |
 | Progression et réglages | `localStorage` de l'appareil (préfixe `little-games:<jeu>:`) | Le joueur, sur cet appareil seulement |
-| Photos de Visages | IndexedDB de l'appareil (`little-games-visages`) | Le joueur, sur cet appareil |
 | Clé TMDB (facultative) | `localStorage` de l'appareil | Le joueur qui l'a saisie |
 
 Requêtes vers des tiers : polices (Google Fonts), affiches (TMDB, Wikipédia, Wikimedia). Aucune donnée personnelle n'y est envoyée.
@@ -16,11 +15,10 @@ Requêtes vers des tiers : polices (Google Fonts), affiches (TMDB, Wikipédia, W
 ## Protections en place
 - **Politique de sécurité du contenu (CSP)**, dans `index.html`. Le navigateur refuse tout script, style, image ou connexion qui ne vient pas d'une source autorisée.
   - **Ajouter une source externe à un jeu** (nouvelle API, CDN, service temps réel…) : il faut l'ajouter à la CSP dans la même pull request, sinon elle sera bloquée.
-  - Pas de script externe (`script-src 'self'`) : les bibliothèques sont copiées dans le dossier du jeu, comme `games/faces/vendor/`, avec leur licence.
+  - Pas de script externe (`script-src 'self'`) : les bibliothèques sont copiées dans le dossier du jeu du jeu, avec leur licence.
 - **Pas d'`innerHTML` avec des données externes** : le DOM est construit avec `h()` (`js/core/dom.js`), qui insère du texte. `innerHTML` n'est autorisé que pour des constantes écrites dans le code (icônes SVG).
 - **Aucun secret dans le dépôt.** Le site est public : tout ce qui est dans le dépôt ou envoyé au navigateur est lisible par tous.
 - **Stockage versionné** : `createStore(jeu, { version, migrate })` transforme les anciennes données lors d'une mise à jour, au lieu de les effacer.
-- **Photos persistantes** : Visages demande au navigateur de ne pas effacer les photos quand l'appareil manque de place (`navigator.storage.persist()`).
 
 ## Réglages du dépôt GitHub (à faire par le propriétaire)
 - **Settings → Rules → Rulesets** : règle sur `main` avec *Require a pull request before merging* et *Block force pushes*.
