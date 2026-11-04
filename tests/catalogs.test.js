@@ -39,6 +39,7 @@ test('catalogue des films (affiches)', async () => {
     alt: [false, textList],
     year: [true, (v) => Number.isInteger(v) && v >= 1888 && v <= THIS_YEAR + 1],
     director: [true, text],
+    wiki: [false, text], // titre exact de l'article Wikipédia anglais, si la recherche se trompe
   }, 'films');
   // Un titre original identique au titre français est inutile
   films.forEach((f) => { if (f.original && f.original === f.title) errors.push(`films ${f.id} : original identique au titre`); });

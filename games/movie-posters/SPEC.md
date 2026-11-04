@@ -25,7 +25,9 @@ On montre au joueur l'affiche **floutée** d'un film célèbre, et il doit retro
 - Les numéros doivent être exacts : « Toy Story » ≠ « Toy Story 2 ».
 - Réponses acceptées : titre français, titre original, alternatives, partie avant « : » si elle ne désigne qu'un seul film (et n'est pas le début du titre d'un autre film), partie après « : » (au moins 6 lettres, sauf mentions génériques comme « Volume 1 » ou « Deuxième partie »).
 - Le titre exact d'un autre film du catalogue est toujours refusé (« Titane » n'est pas « Titanic »).
-- Affiches cherchées en direct : un film introuvable est réessayé au bout de 3 jours (ou tout de suite après l'ajout d'une clé TMDB). L'affiche de l'écran de jeu passe avant celles de la grille.
+- Affiches cherchées en direct, quand `posters.json` n'a pas le film : TMDB si une clé est renseignée, puis Wikipédia. Wikipédia est d'abord interrogée par titres d'articles exacts (« X (AAAA film) », « X (film) », « X », redirections comprises, ou le champ `wiki` du catalogue), puis par recherche plein texte. Un film introuvable est réessayé au bout de 3 jours, tout de suite après l'ajout d'une clé TMDB, ou quand la méthode de recherche change. L'affiche de l'écran de jeu passe avant celles de la grille.
+- **Remplir `posters.json` pour tous** : le workflow GitHub « Affiches (TMDB) » (secret `TMDB_API_KEY`) cherche toutes les affiches sur TMDB et pousse le résultat sur la branche `donnees/affiches-tmdb`.
+- **Réglages → Vérifier toutes les affiches** : cherche les 460 affiches depuis l'appareil et liste les introuvables, avec un bouton pour copier la liste.
 
 ## Réglages
 - **Ordre** :

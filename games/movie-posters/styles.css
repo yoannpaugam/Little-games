@@ -225,3 +225,8 @@ button.mp-year:hover, button.mp-year:focus-visible { background: #e8b04a1a; outl
   .mp-skip { grid-column: 2; grid-row: 4; }
   .mp-poster-box .mp-poster { width: min(100cqw, 100cqh * 2 / 3, 300px); }
 }
+
+/* Vérification des affiches (réglages) */
+.mp-check { display: grid; gap: .5rem; }
+.mp-missing { margin: 0; padding-left: 1.2rem; max-height: 14rem; overflow: auto; color: var(--muted); font-size: .9rem; }
+.mp-missing li { padding: .15rem 0; }

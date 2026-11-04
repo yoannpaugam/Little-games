@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { buildAnswers, ownersOf, judge } from '../games/movie-posters/index.js';
-import { pickWikipediaPage } from '../games/movie-posters/posters.js';
+import { pickWikipediaPage, pickExactPage, articleCandidates } from '../games/movie-posters/posters.js';
 
 const films = JSON.parse(await readFile(new URL('../games/movie-posters/data/films.json', import.meta.url), 'utf8'));
 const answers = buildAnswers(films);
@@ -53,4 +53,16 @@ test('Wikipédia : choix de l’article', () => {
   assert.equal(pickWikipediaPage([page('The Big Blue', { description: '1988 film by Luc Besson' })], ['Le Grand Bleu'], 1995), null);
   assert.equal(pickWikipediaPage([page('Blue', { description: 'Colour' })], ['Le Grand Bleu'], 1988), null);
   assert.equal(pickWikipediaPage([], ['Titanic'], 1997), null);
+});
+
+test('Wikipédia : articles demandés par leur titre exact', () => {
+  const page = (title, description, extra = {}) => ({ title, description, thumbnail: { source: `https://upload.wikimedia.org/${title}.jpg` }, ...extra });
+  assert.equal(pickExactPage([page('Titanic', 'Ship'), page('Titanic (1997 film)', '1997 film by James Cameron')], 1997).title, 'Titanic (1997 film)');
+  // redirection d'un titre français vers l'article anglais
+  assert.equal(pickExactPage([page('The Big Blue', '1988 film by Luc Besson')], 1988).title, 'The Big Blue');
+  assert.equal(pickExactPage([page('Elle (film)', '2016 film by Paul Verhoeven')], 1999), null);
+  assert.equal(pickExactPage([{ title: 'X (2001 film)', missing: true }], 2001), null);
+  const c = articleCandidates({ title: 'Le Grand Bleu', year: 1988, wiki: 'The Big Blue' });
+  assert.equal(c[0], 'The Big Blue');
+  assert.ok(c.includes('Le Grand Bleu (1988 film)'));
 });

@@ -1,0 +1,68 @@
+# Récupère les affiches de tous les films sur TMDB et les enregistre dans
+# games/movie-posters/data/posters.json, pour que tous les appareils les voient sans clé ni recherche.
+#
+# À faire une fois : Settings → Secrets and variables → Actions → New repository secret,
+# nom TMDB_API_KEY, valeur = ta clé API TMDB (v3) ou ton jeton de lecture (v4).
+# Ensuite : onglet Actions → « Affiches (TMDB) » → Run workflow.
+# Le résultat arrive sur la branche donnees/affiches-tmdb, à fusionner par une pull request.
+
+name: Affiches (TMDB)
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Tout refaire (sinon seuls les films sans affiche sont cherchés)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  posters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Vérifier la clé
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          if [ -z "$TMDB_API_KEY" ]; then
+            echo "::error::Le secret TMDB_API_KEY n'est pas défini (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+
+      - name: Récupérer les affiches
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/fetch-posters.mjs ${{ inputs.force && '--force' || '' }} 2>&1 | tee fetch.log
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Affiches TMDB'
+            echo '```'
+            cat fetch.log 2>/dev/null || echo 'Aucun journal.'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enregistrer sur la branche donnees/affiches-tmdb
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add games/movie-posters/data/posters.json
+          if git diff --cached --quiet; then
+            echo "Aucune nouvelle affiche."
+            exit 0
+          fi
+          git checkout -b donnees/affiches-tmdb
+          git commit -m "Affiches : chemins TMDB dans posters.json"
+          git push --force origin donnees/affiches-tmdb
+          echo "➡️ Branche donnees/affiches-tmdb poussée : ouvre (ou fais ouvrir) une pull request vers main." >> "$GITHUB_STEP_SUMMARY"

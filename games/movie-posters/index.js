@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.8.0';
-import { createStore } from '../../js/core/storage.js?v=1.8.0';
-import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.8.0';
-import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster } from './posters.js?v=1.8.0';
+import { h, icon } from '../../js/core/dom.js?v=1.9.0';
+import { createStore } from '../../js/core/storage.js?v=1.9.0';
+import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.9.0';
+import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster, checkAllPosters } from './posters.js?v=1.9.0';
 
 const store = createStore('affiches');
 const DEFAULT_SETTINGS = { order: 'random', blur: 'medium', tmdbKey: '', posterLang: 'fr-FR' };
@@ -333,6 +333,34 @@ export async function mount(container, ctx) {
       }
     };
 
+    // Vérification de toutes les affiches, sur l'appareil du joueur : liste des introuvables à copier et envoyer
+    function checkBlock() {
+      const out = h('p.mp-hint', { role: 'status', 'aria-live': 'polite' });
+      const list = h('ul.mp-missing');
+      const copy = h('button.mp-btn', { type: 'button', hidden: true }, 'Copier la liste');
+      let missing = [];
+      copy.addEventListener('click', async () => {
+        const text = missing.map((f) => `${f.title} (${f.year}) — ${f.id}`).join('\n');
+        try { await navigator.clipboard.writeText(text); copy.textContent = '✓ Liste copiée'; }
+        catch { out.textContent = text; }
+      });
+      const run = h('button.mp-btn', { type: 'button', onclick: async () => {
+        run.disabled = true;
+        clearMisses(); // les films marqués introuvables sont recherchés à nouveau
+        missing = await checkAllPosters(films, settings, (done, total, miss) => {
+          out.textContent = `Recherche… ${done} / ${total} · ${miss} introuvable${miss > 1 ? 's' : ''}`;
+        });
+        run.disabled = false;
+        run.textContent = 'Vérifier à nouveau';
+        out.textContent = missing.length
+          ? `${missing.length} affiche${missing.length > 1 ? 's' : ''} introuvable${missing.length > 1 ? 's' : ''} sur ${films.length}. Copie la liste et envoie-la pour qu'elles soient corrigées.`
+          : `✓ Les ${films.length} affiches ont été trouvées.`;
+        list.replaceChildren(...missing.map((f) => h('li', h('button.mp-link', { type: 'button', onclick: () => ctx.navigate('film', f.id) }, f.title), ` (${f.year})`)));
+        copy.hidden = !missing.length;
+      } }, 'Vérifier toutes les affiches');
+      return h('div.mp-check', h('p.mp-hint', 'Cherche les 460 affiches et liste celles qui restent introuvables (quelques minutes).'), h('div.mp-input-row', run, copy), out, list);
+    }
+
     let resetArmed = false;
     const resetBtn = h('button.mp-btn.mp-btn-danger', { type: 'button', onclick: () => {
       if (!resetArmed) { resetArmed = true; resetBtn.textContent = 'Confirmer la remise à zéro'; return; }
@@ -365,7 +393,8 @@ export async function mount(container, ctx) {
           keyStatus,
           radio('posterLang', 'fr-FR', 'Affiches françaises'),
           radio('posterLang', 'en-US', 'Affiches originales (anglais)'),
-          h('button.mp-btn.mp-btn-ghost', { type: 'button', onclick: (e) => { clearLiveCache(); e.currentTarget.textContent = '✓ Cache vidé'; } }, 'Vider le cache des affiches')
+          h('button.mp-btn.mp-btn-ghost', { type: 'button', onclick: (e) => { clearLiveCache(); e.currentTarget.textContent = '✓ Cache vidé'; } }, 'Vider le cache des affiches'),
+          checkBlock()
         ),
         h('fieldset', h('legend', 'Progression'),
           h('p.mp-hint', `${plural(Object.keys(found).length, 'film trouvé', 'films trouvés')} sur ${films.length}.`),
