@@ -4,12 +4,12 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 520 nodes · 1001 edges · 24 communities
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.88)
+- 572 nodes · 1125 edges · 26 communities
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `591656d8`
+- Built from commit: `3573bb71`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,18 +38,20 @@
 - Agent coordinateur-release
 - Agent multijoueur
 - Visages : écran Morceaux et jeunesse
+- Livres : écran de jeu, bibliothèque et réponses
+- Spécification Livres
 
 ## God Nodes (most connected - your core abstractions)
-1. `h()` - 48 edges
+1. `h()` - 56 edges
 2. `mount()` - 30 edges
 3. `mount()` - 25 edges
 4. `mount()` - 25 edges
 5. `main()` - 23 edges
-6. `renderPhotos()` - 14 edges
-7. `renderPlay()` - 14 edges
-8. `icon()` - 14 edges
-9. `isMatch()` - 14 edges
-10. `normalize()` - 14 edges
+6. `normalize()` - 18 edges
+7. `mount()` - 18 edges
+8. `icon()` - 18 edges
+9. `isMatch()` - 16 edges
+10. `renderPhotos()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Sécurité et données (détails dans `SECURITY.md`)` --references--> `h()`  [INFERRED]
@@ -66,19 +68,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (24 total, 0 thin omitted)
+## Communities (26 total, 0 thin omitted)
 
 ### Community 0 - "Affiches : écran de jeu et grille"
 Cohesion: 0.07
-Nodes (61): BLUR, BLUR_STEPS, buildAnswers(), compact(), DEFAULT_SETTINGS, ensureStyles(), judge(), mount() (+53 more)
+Nodes (58): BLUR, BLUR_STEPS, buildAnswers(), DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder(), onKey() (+50 more)
 
 ### Community 1 - "Visages : écrans (photos, remplir, aperçu)"
 Cohesion: 0.07
-Nodes (65): creditText(), DEFAULT_SETTINGS, ensureStyles(), isPartCrop(), KIND_LABEL, MODES, mount(), closeSub() (+57 more)
+Nodes (64): creditText(), DEFAULT_SETTINGS, ensureStyles(), isPartCrop(), KIND_LABEL, MODES, mount(), closeSub() (+56 more)
 
 ### Community 2 - "Réponses acceptées et tolérance aux fautes"
-Cohesion: 0.13
-Nodes (21): buildAnswers(), buildOwners(), checkAnswer(), compact(), findByName(), matchFileName(), PARTICLES, ARTICLES (+13 more)
+Cohesion: 0.08
+Nodes (42): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+34 more)
 
 ### Community 3 - "Visages : photos, détection et cadrage"
 Cohesion: 0.10
@@ -105,16 +107,16 @@ Cohesion: 0.15
 Nodes (12): Cadre photo, Catalogue, Détection du visage, Import des photos, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe (+4 more)
 
 ### Community 9 - "Coquille : routeur et liste des jeux"
-Cohesion: 0.25
-Nodes (9): ./faces/index.js?v=1.16.0, ./movie-posters/index.js?v=1.16.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome(), root (+1 more)
+Cohesion: 0.21
+Nodes (10): ./books/index.js?v=1.17.0, ./faces/index.js?v=1.17.0, ./movie-posters/index.js?v=1.17.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
 Nodes (10): 🎬 Affiches de cinéma : spécification, Catalogue, Grille de toutes les affiches, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ### Community 11 - "README"
-Cohesion: 0.17
-Nodes (11): Ajouter un jeu, 🧱 Architecture (pensée pour migrer facilement), 🖼️ Les affiches, 👤 Les photos de Visages, 🎲 Little Games, 🚀 Mise en ligne sur GitHub Pages, Modifier la liste des célébrités, Modifier la liste des films (+3 more)
+Cohesion: 0.15
+Nodes (12): Ajouter un jeu, 🧱 Architecture (pensée pour migrer facilement), 🖼️ Les affiches, 👤 Les photos de Visages, 🎲 Little Games, 📚 Livres, 🚀 Mise en ligne sur GitHub Pages, Modifier la liste des célébrités (+4 more)
 
 ### Community 12 - "Visages : script des catalogues Morceaux et jeunesse"
 Cohesion: 0.06
@@ -161,27 +163,35 @@ Cohesion: 0.50
 Nodes (3): Ce que tu produis, Contraintes, Format du rapport
 
 ### Community 23 - "Visages : écran Morceaux et jeunesse"
-Cohesion: 0.10
-Nodes (42): buildAnswers(), buildOwners(), checkAnswer(), compact(), PARTICLES, clamp(), isUpright(), MAX_TILT (+34 more)
+Cohesion: 0.11
+Nodes (38): buildOwners(), clamp(), isUpright(), MAX_TILT, portraitRect(), tiltOf(), creditLine(), ensureStyles() (+30 more)
+
+### Community 24 - "Livres : écran de jeu, bibliothèque et réponses"
+Cohesion: 0.17
+Nodes (22): byYear(), COVERS, DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder(), cover(), onKey() (+14 more)
+
+### Community 25 - "Spécification Livres"
+Cohesion: 0.18
+Nodes (10): Bibliothèque, Catalogue, 📚 Livres : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ## Knowledge Gaps
-- **3 isolated node(s):** `./morceaux/index.js?v=1.16.0`, `./faces/index.js?v=1.16.0`, `./movie-posters/index.js?v=1.16.0`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 218 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **4 isolated node(s):** `./morceaux/index.js?v=1.17.0`, `./books/index.js?v=1.17.0`, `./faces/index.js?v=1.17.0`, `./movie-posters/index.js?v=1.17.0`
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 238 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `h()` connect `Visages : écrans (photos, remplir, aperçu)` to `Affiches : écran de jeu et grille`, `Sécurité et données (SECURITY.md)`, `Coquille : routeur et liste des jeux`, `Visages : script des catalogues Morceaux et jeunesse`, `Visages : écran Morceaux et jeunesse`?**
-  _High betweenness centrality (0.295) - this node is a cross-community bridge._
+- **Why does `h()` connect `Visages : écrans (photos, remplir, aperçu)` to `Affiches : écran de jeu et grille`, `Sécurité et données (SECURITY.md)`, `Coquille : routeur et liste des jeux`, `Visages : script des catalogues Morceaux et jeunesse`, `Visages : écran Morceaux et jeunesse`, `Livres : écran de jeu, bibliothèque et réponses`?**
+  _High betweenness centrality (0.299) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.16.0`, `./faces/index.js?v=1.16.0`, `./movie-posters/index.js?v=1.16.0` to the rest of the system?**
-  _3 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `./morceaux/index.js?v=1.17.0`, `./books/index.js?v=1.17.0`, `./faces/index.js?v=1.17.0` to the rest of the system?**
+  _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
-  _Cohesion score 0.068997668997669 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07191961924907457 - nodes in this community are weakly interconnected._
 - **Why does `Sécurité et données (détails dans `SECURITY.md`)` connect `Visages : script des catalogues Morceaux et jeunesse` to `Visages : écrans (photos, remplir, aperçu)`?**
-  _High betweenness centrality (0.190) - this node is a cross-community bridge._
+  _High betweenness centrality (0.180) - this node is a cross-community bridge._
 - **Are the 5 inferred relationships involving `main()` (e.g. with `Agents` and `Little Games : consignes pour Claude`) actually correct?**
   _`main()` has 5 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Visages : écrans (photos, remplir, aperçu)` be split into smaller, more focused modules?**
-  _Cohesion score 0.07199297629499561 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07272727272727272 - nodes in this community are weakly interconnected._
