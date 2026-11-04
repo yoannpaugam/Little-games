@@ -53,3 +53,22 @@ export function portraitRect(box, nw, nh, ratio = 2 / 3) {
 function clamp(v, min, max) {
   return Math.min(max, Math.max(min, v));
 }
+
+/**
+ * Qualité d’une photo : hauteur, en pixels de la photo d’origine, du cadre 2:3
+ * affiché (plan rapproché sur la boîte `complet`). Sur un téléphone, ce cadre fait
+ * environ 580 px CSS de haut, soit 1 200 à 1 700 pixels réels : en dessous de
+ * LOW_RES, la photo est très agrandie et paraît floue ou pixelisée.
+ */
+export const LOW_RES = 500;
+export const MID_RES = 800;
+
+export function faceResolution(box, nw, nh) {
+  const r = portraitRect(box, nw, nh);
+  return Math.round((nh * 100) / r.height);
+}
+
+export function qualityOf(px) {
+  if (!px) return 'inconnue';
+  return px < LOW_RES ? 'basse' : px < MID_RES ? 'moyenne' : 'bonne';
+}

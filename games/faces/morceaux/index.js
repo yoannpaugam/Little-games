@@ -4,10 +4,10 @@
 // Monté par games/faces/index.js : mount(container, ctx) → { update(path), destroy() },
 // avec ctx.mode = 'morceaux' | 'jeunesse'.
 
-import { h, icon } from '../../../js/core/dom.js?v=1.19.0';
-import { createStore } from '../../../js/core/storage.js?v=1.19.0';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.19.0';
-import { isUpright, portraitRect, tiltOf, MAX_TILT } from './framing.js?v=1.19.0';
+import { h, icon } from '../../../js/core/dom.js?v=1.20.0';
+import { createStore } from '../../../js/core/storage.js?v=1.20.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.20.0';
+import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES } from './framing.js?v=1.20.0';
 
 const MAX_TRIES = 9;
 const TRY_STEP = 3;
@@ -78,10 +78,12 @@ export async function mount(container, ctx) {
   let given = store.get('given', {});
   let stage = store.get('stage', {}); // id → { seq: string[], i: number }
   let settings = { view: 'bandes', ...store.get('settings', {}) }; // view : 'bandes' | 'entiere'
+  // Photos mesurées trop petites sur cet appareil (id → hauteur utile en px) : écartées du jeu
+  let lowres = store.get('lowres', {});
   let seed = store.get('seed', null) ?? reseed();
   let order = computeOrder();
   let currentId = store.get('current', null);
-  if (!byId.has(currentId)) currentId = order[0] ?? null;
+  if (!byId.has(currentId) || lowres[currentId]) currentId = order[0] ?? null;
   let cleanup = [];
 
   function reseed() {
@@ -90,7 +92,18 @@ export async function mount(container, ctx) {
     return s;
   }
   function computeOrder() {
-    return seededShuffle(people.map((p) => p.id), seed);
+    const ids = people.map((p) => p.id).filter((id) => !lowres[id]);
+    return seededShuffle(ids.length ? ids : people.map((p) => p.id), seed);
+  }
+  /** Mesure une photo chargée ; si elle est trop petite, la note comme écartée. Renvoie la hauteur utile. */
+  function measure(person, im) {
+    if (!im.naturalWidth) return 0;
+    const px = faceResolution(person.box.complet, im.naturalWidth, im.naturalHeight);
+    if (px < LOW_RES && !lowres[person.id]) {
+      lowres[person.id] = px;
+      store.set('lowres', lowres);
+    }
+    return px;
   }
   const backToGame = () => (currentId ? ctx.navigate('personne', currentId) : ctx.navigate());
   function onKey(fn) {
@@ -154,7 +167,7 @@ export async function mount(container, ctx) {
    *   seule la zone visible est nette.
    * Premier affichage sans transition (évite le spoil) ; élargissements animés.
    */
-  function faceFrame(person, boxKey, { revealName = false, whole = false } = {}) {
+  function faceFrame(person, boxKey, { revealName = false, whole = false, onMeasure = null } = {}) {
     let currentKey = boxKey;
     const wrap = h('div.mx-frame', {
       'aria-label': revealName ? person.name : 'Visage mystère',
@@ -203,6 +216,7 @@ export async function mount(container, ctx) {
 
     const onReady = () => {
       if (!img.naturalWidth) return;
+      if (onMeasure && onMeasure(measure(person, img)) === false) return; // photo écartée : pas d’affichage
       // Coupure immédiate, sans glisser depuis l’image entière
       applyBox(currentKey, { animate: false });
       wrap.classList.add('is-loaded');
@@ -251,17 +265,37 @@ export async function mount(container, ctx) {
     const solved = isFound || Boolean(given[person.id]);
     const st = ensureStage(person.id);
     let level = solved ? st.seq.length - 1 : Math.min(st.i, st.seq.length - 1);
-    const go = (delta) => ctx.navigate('personne', order[(idx + delta + order.length) % order.length]);
+    // Navigation : on saute les photos mesurées trop petites
+    const go = (delta) => {
+      const n = order.length;
+      let i = idx < 0 ? 0 : idx;
+      for (let k = 0; k < n; k++) {
+        i = (i + delta + n) % n;
+        if (!lowres[order[i]] || k === n - 1) break;
+      }
+      ctx.navigate('personne', order[i]);
+    };
 
-    // Préchargement voisins
+    // Préchargement des voisins (et mesure de leur qualité)
     [1, -1].forEach((d) => {
       const p = byId.get(order[(idx + d + order.length) % order.length]);
-      if (p) { const im = new Image(); im.src = p.img; }
+      if (p) { const im = new Image(); im.onload = () => measure(p, im); im.src = p.img; }
     });
 
     const whole = CFG.strips && settings.view === 'entiere';
     const stepLabel = (keys) => (CFG.strips ? partLabelText(keys) : person.year ? `photo de ${person.year}` : 'photo de jeunesse');
-    const frame = faceFrame(person, solved ? 'complet' : st.seq[level], { revealName: solved, whole });
+    let skipped = false;
+    const frame = faceFrame(person, solved ? 'complet' : st.seq[level], {
+      revealName: solved,
+      whole,
+      // Photo trop petite (floue une fois agrandie) : on passe à la suivante, sauf si déjà résolue
+      onMeasure: (px) => {
+        if (px >= LOW_RES || solved || skipped || order.length < 2) return true;
+        skipped = true;
+        go(1);
+        return false;
+      },
+    });
     const feedback = h('p.mx-feedback', { role: 'status', 'aria-live': 'polite' });
     const announce = h('p.mx-sr', { role: 'status', 'aria-live': 'polite' });
     const partLabel = h('span.mx-part', solved && CFG.strips ? PART_LABEL.complet : stepLabel(st.seq[level]));
@@ -448,8 +482,12 @@ export async function mount(container, ctx) {
         referrerPolicy: 'no-referrer-when-downgrade',
       });
       const overlays = h('div.mx-debug-overlays');
+      const q = h('small.mx-q', 'Qualité : …');
       const draw = () => {
         if (!img.naturalWidth) return;
+        const px = faceResolution(p.box.complet, img.naturalWidth, img.naturalHeight);
+        q.textContent = `Qualité : ${qualityOf(px)} (${img.naturalWidth}×${img.naturalHeight}, visage ${px} px)`;
+        q.className = `mx-q is-${qualityOf(px)}`;
         // Le stage prend le ratio réel de la photo pour que les % des boîtes collent
         stage.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
         overlays.replaceChildren(...DEBUG_LAYERS.map((l) => {
@@ -481,6 +519,7 @@ export async function mount(container, ctx) {
         h('header.mx-debug-head',
           h('strong', p.name),
           h('small', `Inclinaison ≈ ${Math.round(tiltOf(p))}°${isUpright(p) ? '' : ` · écartée (≥ ${MAX_TILT}°)`}`),
+          q,
           h('small', creditLine(p))
         ),
         stage
@@ -495,6 +534,74 @@ export async function mount(container, ctx) {
         ),
         legend,
         h('div.mx-debug-grid', cards)
+      )
+    );
+  }
+
+  // ---------------------------------------------------------------- analyse de la qualité
+  function renderQuality() {
+    resetView();
+    container.classList.remove('is-play');
+    container.classList.add('is-scroll');
+    let alive = true;
+    cleanup.push(() => { alive = false; });
+    const results = new Map(); // id → px (0 = image indisponible)
+    const progress = h('p.mx-hint', `Analyse de ${people.length} photos…`);
+    const bar = h('progress.mx-progress', { max: people.length, value: 0 });
+    const list = h('ul.mx-credit-list');
+    const copyBtn = h('button.mx-btn.mx-btn-ghost', { type: 'button', disabled: true, onclick: async () => {
+      const low = sortedLow();
+      const text = low.map(([p, px]) => `${p.name} (${p.id}) : ${px ? `visage ${px} px` : 'image indisponible'} · ${p.img}`).join('\n');
+      try { await navigator.clipboard.writeText(text); copyBtn.textContent = `✓ ${low.length} lignes copiées`; } catch { copyBtn.textContent = 'Copie refusée par le navigateur'; }
+    } }, 'Copier la liste à remplacer');
+    const sortedLow = () => [...results].filter(([, px]) => px < LOW_RES)
+      .map(([id, px]) => [byId.get(id), px]).sort((a, b) => a[1] - b[1]);
+    const showList = () => {
+      const low = sortedLow();
+      list.replaceChildren(...low.map(([p, px]) => h('li',
+        h('strong', p.name),
+        h('small', px ? `Visage ${px} px (minimum ${LOW_RES}) · ${creditLine(p)}` : 'Image indisponible')
+      )));
+      copyBtn.disabled = !low.length;
+    };
+
+    let next = 0;
+    let done = 0;
+    const worker = () => new Promise((resolve) => {
+      const step = () => {
+        if (!alive || next >= people.length) { resolve(); return; }
+        const p = people[next++];
+        const im = new Image();
+        im.referrerPolicy = 'no-referrer-when-downgrade';
+        const end = (px) => {
+          results.set(p.id, px);
+          done++;
+          bar.value = done;
+          progress.textContent = `${done} / ${people.length} photos analysées`;
+          step();
+        };
+        im.onload = () => end(measure(p, im));
+        im.onerror = () => end(0);
+        im.src = p.img;
+      };
+      step();
+    });
+    Promise.all(Array.from({ length: 4 }, worker)).then(() => {
+      if (!alive) return;
+      const low = sortedLow();
+      const q = { bonne: 0, moyenne: 0 };
+      for (const px of results.values()) if (px >= LOW_RES) q[qualityOf(px)]++;
+      progress.textContent = `${people.length} photos analysées : ${q.bonne} bonnes, ${q.moyenne} moyennes, ${low.length} de basse qualité ou indisponibles. Les photos de basse qualité sont retirées du jeu sur cet appareil.`;
+      order = computeOrder();
+      showList();
+    });
+
+    container.replaceChildren(
+      topBar('Qualité des photos', { back: () => ctx.navigate('reglages') }),
+      h('section.mx-credits',
+        h('h2', 'Analyse de la qualité'),
+        h('p.mx-hint', `Chaque photo est chargée et mesurée : on regarde combien de pixels de la photo d’origine remplissent le cadre du visage. En dessous de ${LOW_RES} px, elle paraît floue ou pixelisée une fois agrandie.`),
+        bar, progress, copyBtn, list
       )
     );
   }
@@ -559,6 +666,16 @@ export async function mount(container, ctx) {
           h('p.mx-hint', `${plural(Object.keys(found).filter((id) => byId.has(id)).length, 'personne trouvée', 'personnes trouvées')} sur ${people.length}.`),
           resetBtn
         ),
+        h('fieldset', h('legend', 'Qualité des photos'),
+          h('p.mx-hint', Object.keys(lowres).length
+            ? `${plural(Object.keys(lowres).length, 'photo de basse qualité est écartée', 'photos de basse qualité sont écartées')} du jeu sur cet appareil.`
+            : 'Les photos trop petites (floues une fois agrandies) sont écartées automatiquement quand elles sont chargées.'),
+          h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: () => ctx.navigate('qualite') }, 'Analyser toutes les photos'),
+          Object.keys(lowres).length ? h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: (e) => {
+            lowres = {}; store.set('lowres', lowres); order = computeOrder();
+            e.currentTarget.textContent = '✓ Photos remises dans le jeu';
+          } }, 'Remettre ces photos dans le jeu') : null
+        ),
         h('fieldset', h('legend', 'Crédits'),
           h('p.mx-hint', 'Auteur et licence de chaque photo Commons.'),
           h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: () => ctx.navigate('credits') }, 'Voir les crédits photo')
@@ -578,8 +695,9 @@ export async function mount(container, ctx) {
     if (view === 'credits') renderCredits();
     else if (view === 'reglages') renderSettings();
     else if (view === 'debug') renderDebug();
+    else if (view === 'qualite') renderQuality();
     else renderPlay(view === 'personne' ? arg : null);
-    if (view !== 'credits' && view !== 'debug') window.scrollTo(0, 0);
+    if (view !== 'credits' && view !== 'debug' && view !== 'qualite') window.scrollTo(0, 0);
   }
   update(ctx.path);
 

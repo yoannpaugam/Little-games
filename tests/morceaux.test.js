@@ -65,3 +65,14 @@ test('morceaux : les têtes trop penchées sont écartées, mais le jeu garde as
   const level = { box: { yeux: [0.3, 0.3, 0.4, 0.1], bouche: [0.4, 0.55, 0.2, 0.08], complet: [0.1, 0.05, 0.8, 0.8] } };
   assert.ok(Math.abs(tiltOf(level)) < 1);
 });
+
+import { faceResolution, qualityOf, LOW_RES } from '../games/faces/morceaux/framing.js';
+test('morceaux : qualité mesurée sur la hauteur utile du cadre', () => {
+  const box = [0.25, 0.1, 0.5, 0.45];
+  // Photo 2000×3000 : le cadre couvre 45 % de 3000 px → 1350 px, bonne qualité
+  assert.equal(qualityOf(faceResolution(box, 2000, 3000)), 'bonne');
+  // Même cadrage sur une photo 400×600 : 270 px, basse qualité
+  const low = faceResolution(box, 400, 600);
+  assert.ok(low < LOW_RES);
+  assert.equal(qualityOf(low), 'basse');
+});
