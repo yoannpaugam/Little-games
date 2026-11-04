@@ -70,3 +70,25 @@ test('catalogue des célébrités (visages)', async () => {
   // Équilibre voulu par la spécification : autant de femmes que d'hommes
   assert.equal(celebs.filter((c) => c.g === 'f').length, celebs.filter((c) => c.g === 'm').length);
 });
+
+const BOX_KEYS = ['yeux', 'nez', 'bouche', 'haut', 'bas', 'complet'];
+const isBox = (v) => Array.isArray(v) && v.length === 4 && v.every((n) => typeof n === 'number' && n >= 0 && n <= 1)
+  && v[0] + v[2] <= 1.001 && v[1] + v[3] <= 1.001 && v[2] > 0 && v[3] > 0;
+
+test('catalogue Morceaux (people.json)', async () => {
+  const people = await load('games/face-parts/data/people.json');
+  assert.ok(Array.isArray(people) && people.length > 0);
+  const errors = checkEntries(people, {
+    id: [true, (v) => SLUG.test(v)],
+    name: [true, text],
+    img: [true, (v) => typeof v === 'string' && /^https:\/\/(upload|thumb)\.wikimedia\.org\//.test(v)],
+    by: [true, text],
+    lic: [true, text],
+    box: [true, (v) => v && typeof v === 'object' && BOX_KEYS.every((k) => isBox(v[k])) && Object.keys(v).every((k) => BOX_KEYS.includes(k))],
+    alt: [false, textList],
+  }, 'people');
+  const names = new Set();
+  people.forEach((p) => { if (names.has(p.name)) errors.push(`people ${p.id} : nom en double`); names.add(p.name); });
+  assert.deepEqual(errors, []);
+});
+

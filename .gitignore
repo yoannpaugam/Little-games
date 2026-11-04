@@ -2,3 +2,4 @@ graphify-out/cache/
 # Graphify : sauvegardes datées et fichier d'analyse, régénérés à chaque passage
 graphify-out/20*/
 graphify-out/.graphify_analysis.json
+scripts/.celeb-cache/
