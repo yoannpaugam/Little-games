@@ -1,11 +1,11 @@
 // Coquille de l'application : accueil + routeur par hash (#/jeu/sous-page).
 // Chaque jeu est un module autonome déclaré dans games/registry.js.
 
-import { GAMES } from '../games/registry.js?v=1.15.0';
-import { h } from './core/dom.js?v=1.15.0';
+import { GAMES } from '../games/registry.js?v=1.16.0';
+import { h } from './core/dom.js?v=1.16.0';
 
 // Version affichée dans les réglages des jeux. À incrémenter à chaque mise en ligne.
-export const APP_VERSION = '1.15.0';
+export const APP_VERSION = '1.16.0';
 
 const root = document.getElementById('app');
 let current = null; // { id, instance }
@@ -50,6 +50,8 @@ let navSeq = 0;
 async function route() {
   const token = ++navSeq;
   const { gameId, path } = parseHash();
+  // Anciens liens : Morceaux est devenu un mode de Visages (1.16.0)
+  if (gameId === 'morceaux') { location.replace(`#/visages/morceaux${path.length ? '/' + path.map(encodeURIComponent).join('/') : ''}`); return; }
   const game = GAMES.find((g) => g.id === gameId);
 
   if (!game) {

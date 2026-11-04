@@ -75,9 +75,12 @@ const BOX_KEYS = ['yeux', 'nez', 'bouche', 'haut', 'bas', 'complet'];
 const isBox = (v) => Array.isArray(v) && v.length === 4 && v.every((n) => typeof n === 'number' && n >= 0 && n <= 1)
   && v[0] + v[2] <= 1.001 && v[1] + v[3] <= 1.001 && v[2] > 0 && v[3] > 0;
 
-test('catalogue Morceaux (people.json)', async () => {
-  const people = await load('games/face-parts/data/people.json');
-  assert.ok(Array.isArray(people) && people.length > 0);
+for (const [label, file, required] of [
+  ['Morceaux (people.json)', 'games/faces/morceaux/data/people.json', true],
+  ['Portraits de jeunesse (jeunesse.json)', 'games/faces/morceaux/data/jeunesse.json', false],
+]) test(`catalogue ${label}`, async () => {
+  const people = await load(file);
+  assert.ok(Array.isArray(people) && (people.length > 0 || !required));
   const errors = checkEntries(people, {
     id: [true, (v) => SLUG.test(v)],
     name: [true, text],
@@ -86,6 +89,7 @@ test('catalogue Morceaux (people.json)', async () => {
     lic: [true, text],
     box: [true, (v) => v && typeof v === 'object' && BOX_KEYS.every((k) => isBox(v[k])) && Object.keys(v).every((k) => BOX_KEYS.includes(k))],
     alt: [false, textList],
+    year: [false, (v) => Number.isInteger(v) && v >= 1880 && v <= 2030],
   }, 'people');
   const names = new Set();
   people.forEach((p) => { if (names.has(p.name)) errors.push(`people ${p.id} : nom en double`); names.add(p.name); });

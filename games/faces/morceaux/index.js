@@ -1,12 +1,14 @@
-// Jeu « Morceaux » : retrouver la célébrité à partir d’une bande du visage.
-// Contrat : export mount(container, ctx) → { update(path), destroy() }
+// Modes « Morceaux » et « Portraits de jeunesse » du jeu Visages.
+// - morceaux : retrouver la célébrité à partir d’une bande du visage (catalogue people.json)
+// - jeunesse : retrouver la célébrité sur une photo de jeunesse (catalogue jeunesse.json)
+// Monté par games/faces/index.js : mount(container, ctx) → { update(path), destroy() },
+// avec ctx.mode = 'morceaux' | 'jeunesse'.
 
-import { h, icon } from '../../js/core/dom.js?v=1.15.0';
-import { createStore } from '../../js/core/storage.js?v=1.15.0';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.15.0';
-import { isUpright, portraitRect, tiltOf, MAX_TILT } from './framing.js?v=1.15.0';
+import { h, icon } from '../../../js/core/dom.js?v=1.16.0';
+import { createStore } from '../../../js/core/storage.js?v=1.16.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.16.0';
+import { isUpright, portraitRect, tiltOf, MAX_TILT } from './framing.js?v=1.16.0';
 
-const store = createStore('morceaux');
 const MAX_TRIES = 9;
 const TRY_STEP = 3;
 const PART_LABEL = { yeux: 'les yeux', nez: 'le nez', bouche: 'la bouche', complet: 'le visage' };
@@ -45,16 +47,23 @@ function partLabelText(keys) {
   return `${list.slice(0, -1).join(', ')} et ${list[list.length - 1]}`;
 }
 
+const MODES = {
+  morceaux: { file: 'people.json', store: 'morceaux', title: 'Morceaux', strips: true },
+  jeunesse: { file: 'jeunesse.json', store: 'jeunesse', title: 'Jeunesse', strips: false },
+};
+
 export async function mount(container, ctx) {
+  const CFG = MODES[ctx.mode] || MODES.morceaux;
+  const store = createStore(CFG.store);
   ensureStyles();
   container.classList.add('mx');
   container.replaceChildren(h('div.loading', 'Chargement…'));
 
   const catalog = await fetch(
-    new URL('./data/people.json' + new URL(import.meta.url).search, import.meta.url),
+    new URL(`./data/${CFG.file}` + new URL(import.meta.url).search, import.meta.url),
     { cache: 'no-cache' },
   ).then((r) => {
-    if (!r.ok) throw new Error(`people.json : ${r.status}`);
+    if (!r.ok) throw new Error(`${CFG.file} : ${r.status}`);
     return r.json();
   });
   // Têtes trop penchées écartées du jeu (visibles dans la page debug)
@@ -72,7 +81,7 @@ export async function mount(container, ctx) {
   let seed = store.get('seed', null) ?? reseed();
   let order = computeOrder();
   let currentId = store.get('current', null);
-  if (!byId.has(currentId)) currentId = order[0];
+  if (!byId.has(currentId)) currentId = order[0] ?? null;
   let cleanup = [];
 
   function reseed() {
@@ -83,6 +92,7 @@ export async function mount(container, ctx) {
   function computeOrder() {
     return seededShuffle(people.map((p) => p.id), seed);
   }
+  const backToGame = () => (currentId ? ctx.navigate('personne', currentId) : ctx.navigate());
   function onKey(fn) {
     document.addEventListener('keydown', fn);
     cleanup.push(() => document.removeEventListener('keydown', fn));
@@ -93,6 +103,8 @@ export async function mount(container, ctx) {
   }
 
   function ensureStage(id) {
+    // Jeunesse : la photo est visible en entier dès le début (un seul palier)
+    if (!CFG.strips) return { seq: [['complet']], i: 0 };
     if (!stage[id] || !isValidSeq(stage[id].seq)) {
       const personSeed = (seed ^ hashId(id)) >>> 0;
       const prev = stage[id]?.i || 0;
@@ -211,7 +223,23 @@ export async function mount(container, ctx) {
   }
 
   // ---------------------------------------------------------------- vue : jeu
+  function renderEmpty() {
+    resetView();
+    container.classList.remove('is-play');
+    container.classList.add('is-scroll');
+    container.replaceChildren(
+      topBar(CFG.title),
+      h('section.mx-settings',
+        h('fieldset', h('legend', 'Aucune photo pour l’instant'),
+          h('p.mx-hint', 'Le catalogue des photos de jeunesse est vide. Il se remplit avec le script scripts/celeb-quiz-builder.py --jeunesse, à partir d’une liste de photos Wikimedia Commons (scripts/jeunesse-seed.json).'),
+          h('button.mx-btn.mx-btn-primary', { type: 'button', onclick: ctx.home }, 'Retour à Visages')
+        )
+      )
+    );
+  }
+
   function renderPlay(id) {
+    if (!people.length) { renderEmpty(); return; }
     resetView();
     container.classList.add('is-play');
     container.classList.remove('is-scroll');
@@ -231,11 +259,12 @@ export async function mount(container, ctx) {
       if (p) { const im = new Image(); im.src = p.img; }
     });
 
-    const whole = settings.view === 'entiere';
+    const whole = CFG.strips && settings.view === 'entiere';
+    const stepLabel = (keys) => (CFG.strips ? partLabelText(keys) : person.year ? `photo de ${person.year}` : 'photo de jeunesse');
     const frame = faceFrame(person, solved ? 'complet' : st.seq[level], { revealName: solved, whole });
     const feedback = h('p.mx-feedback', { role: 'status', 'aria-live': 'polite' });
     const announce = h('p.mx-sr', { role: 'status', 'aria-live': 'polite' });
-    const partLabel = h('span.mx-part', solved ? PART_LABEL.complet : partLabelText(st.seq[level]));
+    const partLabel = h('span.mx-part', solved && CFG.strips ? PART_LABEL.complet : stepLabel(st.seq[level]));
     const input = h('input.mx-input', {
       type: 'text', placeholder: 'Qui est-ce ?', autocomplete: 'off', autocapitalize: 'off', spellcheck: false,
       'aria-label': 'Nom de la personne', enterKeyHint: 'done',
@@ -256,7 +285,7 @@ export async function mount(container, ctx) {
     const syncFrame = ({ animate = true } = {}) => {
       const key = st.seq[level];
       frame._setBox(key, { animate });
-      partLabel.textContent = partLabelText(key);
+      partLabel.textContent = stepLabel(key);
       if (hintBtn) {
         const last = level >= st.seq.length - 1;
         hintBtn.textContent = last ? 'Solution' : 'Voir plus';
@@ -277,7 +306,7 @@ export async function mount(container, ctx) {
     const infoBlock = (gaveUp) => h('div.mx-reveal',
       gaveUp ? h('p.mx-bravo.is-given', 'C’était…') : h('p.mx-bravo', icon('check'), ' Bravo !'),
       h('h2.mx-who', person.name),
-      h('p.mx-credit', creditLine(person))
+      h('p.mx-credit', [person.year && !CFG.strips ? `Photo de ${person.year}` : null, creditLine(person)].filter(Boolean).join(' · '))
     );
 
     let hintBtn = null;
@@ -339,12 +368,12 @@ export async function mount(container, ctx) {
       store.set('stage', stage);
       frame._setBox('complet', { animate: true });
       frame.querySelector('img')?.setAttribute('alt', person.name);
-      partLabel.textContent = PART_LABEL.complet;
+      if (CFG.strips) partLabel.textContent = PART_LABEL.complet;
       stageEl.classList.add(gaveUp ? 'is-given' : 'is-solved');
       form.replaceWith(solvedPanel(gaveUp));
       hintBtn.hidden = true;
       announce.textContent = `${gaveUp ? '' : 'Bravo ! '}C’était ${person.name}.`;
-      bar.replaceWith((bar = topBar('Morceaux')));
+      bar.replaceWith((bar = topBar(CFG.title)));
     }
 
     hintBtn = h('button.mx-btn.mx-btn-ghost', {
@@ -377,7 +406,7 @@ export async function mount(container, ctx) {
       announce
     );
 
-    let bar = topBar('Morceaux');
+    let bar = topBar(CFG.title);
     updTries();
     container.replaceChildren(bar, stageEl);
     if (!solved && matchMedia('(hover: hover)').matches) input.focus();
@@ -459,7 +488,7 @@ export async function mount(container, ctx) {
     });
 
     container.replaceChildren(
-      topBar('Debug détection', { back: () => ctx.navigate('personne', currentId) }),
+      topBar('Debug détection', { back: backToGame }),
       h('section.mx-debug',
         h('p.mx-hint',
           `Rectangles = boîtes du catalogue (MediaPipe). Yeux / nez / bouche, et le cadre complet (pointillé). ${catalog.length - people.length} photos où la tête est trop penchée sont écartées du jeu.`
@@ -476,7 +505,7 @@ export async function mount(container, ctx) {
     container.classList.remove('is-play');
     container.classList.add('is-scroll');
     container.replaceChildren(
-      topBar('Crédits photo', { back: () => ctx.navigate('personne', currentId) }),
+      topBar('Crédits photo', { back: backToGame }),
       h('section.mx-credits',
         h('h2', 'Photos'),
         h('p.mx-hint', 'Photos issues de Wikimedia Commons. Attribution affichée selon la licence.'),
@@ -505,9 +534,9 @@ export async function mount(container, ctx) {
     } }, 'Effacer ma progression');
 
     container.replaceChildren(
-      topBar('Réglages', { back: () => ctx.navigate('personne', currentId) }),
+      topBar('Réglages', { back: backToGame }),
       h('section.mx-settings',
-        h('fieldset', h('legend', 'Affichage'),
+        !CFG.strips ? null : h('fieldset', h('legend', 'Affichage'),
           h('p.mx-hint', 'Comment montrer la partie visible du visage.'),
           h('div.mx-choices', { role: 'radiogroup', 'aria-label': 'Affichage' },
             [['bandes', 'Bandes seules', 'Seule la bande du visage est visible.'],
@@ -538,7 +567,7 @@ export async function mount(container, ctx) {
           h('p.mx-hint', 'Vérifie les boîtes yeux / nez / bouche détectées sur chaque photo.'),
           h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: () => ctx.navigate('debug') }, 'Page debug détection')
         ),
-        h('button.mx-btn.mx-btn-primary.mx-wide', { type: 'button', onclick: () => ctx.navigate('personne', currentId) }, 'Retour au jeu'),
+        h('button.mx-btn.mx-btn-primary.mx-wide', { type: 'button', onclick: backToGame }, 'Retour au jeu'),
         h('p.mx-version', `Little Games · version ${ctx.version || '?'}`)
       )
     );

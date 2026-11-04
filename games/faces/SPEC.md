@@ -3,7 +3,11 @@
 Ce document décrit le jeu indépendamment de la technologie, pour pouvoir le refaire dans une autre application.
 
 ## Principe
-Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux modes :
+Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des quatre modes. Les deux premiers utilisent les photos du catalogue (voir `morceaux/SPEC.md`) :
+- **Morceaux** : une bande du visage (yeux, nez ou bouche), qui s'élargit au fil des essais.
+- **Portraits de jeunesse** : une photo de la célébrité jeune, visible dès le début.
+
+Les deux suivants utilisent les photos importées par le joueur :
 - **Portraits** : le visage est masqué, seule une partie est visible au départ (les yeux par défaut). On dévoile les autres parties une par une.
 - **Photos d'enfance** : la photo d'enfance (la plus jeune possible) est visible dès le début.
 
@@ -86,7 +90,7 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - IndexedDB `little-games-visages` : photo, miniature, zones, cadrage, et si la détection a été automatique ou faite à la main.
 
 ## Navigation (URL)
-`#/visages` (choix du mode) · `#/visages/portraits/<id>` · `#/visages/enfance/<id>` · `#/visages/photos` · `#/visages/remplir` (ou `/remplir/enfance`) · `#/visages/credits` · `#/visages/reglages`
+`#/visages` (choix du mode) · `#/visages/morceaux/…` · `#/visages/jeunesse/…` · `#/visages/portraits/<id>` · `#/visages/enfance/<id>` · `#/visages/photos` · `#/visages/remplir` (ou `/remplir/enfance`) · `#/visages/credits` · `#/visages/reglages`
 
 ## Pistes pour la suite
 - Partager un pack de photos entre appareils
