@@ -32,7 +32,6 @@ Une conversation s'occupe d'un seul jeu, et plusieurs pull requests peuvent êtr
 - `games/registry.js` et `README.md` : on ne modifie que l'entrée ou la section de son propre jeu.
 - `js/core/*` : on n'y fait que des ajouts compatibles. Les tests existants doivent continuer à passer. Si on change un comportement existant, on le signale dans la pull request.
 - `css/base.css`, `index.html`, `js/app.js` : on n'y touche que si c'est nécessaire, et on le signale.
-- On ne livre aucune image protégée dans le dépôt (affiches, photos de célébrités).
 
 ## Sécurité et données (détails dans `SECURITY.md`)
 - **Catalogues** : en JSON dans le dépôt, vérifiés par `tests/catalogs.test.js`. Un nouveau catalogue ajoute ses règles dans ce test.
