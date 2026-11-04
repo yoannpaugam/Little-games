@@ -4,12 +4,12 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 508 nodes · 954 edges · 23 communities
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.88)
+- 513 nodes · 976 edges · 24 communities
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a962e284`
+- Built from commit: `1f3583f2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,6 +20,7 @@
 - Visages : photos, détection et cadrage
 - Scripts : affiches TMDB et version
 - Workflow GitHub « Affiches (TMDB) »
+- Sécurité et données (SECURITY.md)
 - package.json (scripts npm, dépendances)
 - Spécification Visages
 - Coquille : routeur et liste des jeux
@@ -43,53 +44,57 @@
 2. `mount()` - 25 edges
 3. `mount()` - 25 edges
 4. `main()` - 23 edges
-5. `mount()` - 20 edges
+5. `mount()` - 23 edges
 6. `renderPhotos()` - 14 edges
 7. `renderPlay()` - 14 edges
-8. `isMatch()` - 14 edges
-9. `normalize()` - 14 edges
-10. `icon()` - 14 edges
+8. `icon()` - 14 edges
+9. `isMatch()` - 14 edges
+10. `normalize()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Sécurité et données (détails dans `SECURITY.md`)` --references--> `h()`  [INFERRED]
   CLAUDE.md → js/core/dom.js
+- `Protections en place` --references--> `h()`  [INFERRED]
+  SECURITY.md → js/core/dom.js
 - `🚀 Mise en ligne sur GitHub Pages` --references--> `main()`  [INFERRED]
   README.md → scripts/celeb-quiz-builder.py
 - `Réglages du dépôt GitHub (à faire par le propriétaire)` --references--> `main()`  [INFERRED]
   SECURITY.md → scripts/celeb-quiz-builder.py
-- `Protections en place` --references--> `h()`  [INFERRED]
-  SECURITY.md → js/core/dom.js
 - `Agents` --references--> `main()`  [INFERRED]
   CLAUDE.md → scripts/celeb-quiz-builder.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (23 total, 0 thin omitted)
+## Communities (24 total, 0 thin omitted)
 
 ### Community 0 - "Affiches : écran de jeu et grille"
-Cohesion: 0.07
-Nodes (60): BLUR, BLUR_STEPS, buildAnswers(), compact(), DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder() (+52 more)
+Cohesion: 0.09
+Nodes (46): ensureStyles(), mount(), computeOrder(), onKey(), posterImg(), renderGrid(), renderPlay(), reveal() (+38 more)
 
 ### Community 1 - "Visages : écrans (photos, remplir, aperçu)"
 Cohesion: 0.07
-Nodes (65): creditText(), DEFAULT_SETTINGS, ensureStyles(), isPartCrop(), KIND_LABEL, MODES, mount(), deck() (+57 more)
+Nodes (61): creditText(), DEFAULT_SETTINGS, ensureStyles(), isPartCrop(), KIND_LABEL, MODES, mount(), deck() (+53 more)
 
 ### Community 2 - "Réponses acceptées et tolérance aux fautes"
-Cohesion: 0.10
-Nodes (31): buildAnswers(), buildOwners(), checkAnswer(), compact(), PARTICLES, buildAnswers(), buildOwners(), checkAnswer() (+23 more)
+Cohesion: 0.07
+Nodes (39): buildAnswers(), buildOwners(), checkAnswer(), compact(), findByName(), matchFileName(), PARTICLES, BLUR (+31 more)
 
 ### Community 3 - "Visages : photos, détection et cadrage"
 Cohesion: 0.10
 Nodes (34): bitmap(), BITMAPS, clamp(), clearAll(), coverCrop(), cropOf(), decode(), defaultPoints() (+26 more)
 
 ### Community 4 - "Scripts : affiches TMDB et version"
-Cohesion: 0.06
-Nodes (27): args, DOWNLOAD, downloadCropped(), fetchRetry(), FILMS, findMovie(), FORCE, GAME (+19 more)
+Cohesion: 0.09
+Nodes (23): args, DOWNLOAD, downloadCropped(), fetchRetry(), FILMS, findMovie(), FORCE, GAME (+15 more)
 
 ### Community 5 - "Workflow GitHub « Affiches (TMDB) »"
 Cohesion: 0.09
 Nodes (22): TMDB_API_KEY, default, description, type, force, jobs, posters, name (+14 more)
+
+### Community 6 - "Sécurité et données (SECURITY.md)"
+Cohesion: 0.29
+Nodes (6): Le jour où l'application aura un service en ligne (multijoueur, Supabase…), Où sont les données, Protections en place, Réglages du dépôt GitHub (à faire par le propriétaire), Signaler un problème, 🔒 Sécurité et données
 
 ### Community 7 - "package.json (scripts npm, dépendances)"
 Cohesion: 0.10
@@ -100,8 +105,8 @@ Cohesion: 0.15
 Nodes (12): Cadre photo, Catalogue, Détection du visage, Import des photos, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe (+4 more)
 
 ### Community 9 - "Coquille : routeur et liste des jeux"
-Cohesion: 0.21
-Nodes (10): ./face-parts/index.js?v=1.14.0, ./faces/index.js?v=1.14.0, ./movie-posters/index.js?v=1.14.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
+Cohesion: 0.23
+Nodes (10): ./face-parts/index.js?v=1.15.0, ./faces/index.js?v=1.15.0, ./movie-posters/index.js?v=1.15.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
@@ -152,31 +157,31 @@ Cohesion: 0.50
 Nodes (3): Ce que tu produis, Contraintes, Format du rapport
 
 ### Community 23 - "Morceaux : écran de jeu"
-Cohesion: 0.14
-Nodes (29): clamp(), creditLine(), ensureStyles(), hashId(), isValidSeq(), mount(), computeOrder(), displayBox() (+21 more)
+Cohesion: 0.11
+Nodes (41): buildAnswers(), buildOwners(), checkAnswer(), compact(), PARTICLES, clamp(), isUpright(), MAX_TILT (+33 more)
 
 ### Community 24 - "Morceaux : spécification"
 Cohesion: 0.17
 Nodes (11): Catalogue, Crédits photo, Morceaux : spécification, Navigation (URL), Persistance (sur l’appareil), Pistes pour la suite, Principe, Réglages (+3 more)
 
 ## Knowledge Gaps
-- **3 isolated node(s):** `./face-parts/index.js?v=1.14.0`, `./faces/index.js?v=1.14.0`, `./movie-posters/index.js?v=1.14.0`
+- **3 isolated node(s):** `./face-parts/index.js?v=1.15.0`, `./faces/index.js?v=1.15.0`, `./movie-posters/index.js?v=1.15.0`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 216 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `h()` connect `Visages : écrans (photos, remplir, aperçu)` to `Affiches : écran de jeu et grille`, `Coquille : routeur et liste des jeux`, `Morceaux : script de construction du catalogue`, `Morceaux : écran de jeu`?**
+- **Why does `h()` connect `Visages : écrans (photos, remplir, aperçu)` to `Affiches : écran de jeu et grille`, `Réponses acceptées et tolérance aux fautes`, `Sécurité et données (SECURITY.md)`, `Coquille : routeur et liste des jeux`, `Morceaux : script de construction du catalogue`, `Morceaux : écran de jeu`?**
   _High betweenness centrality (0.302) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./face-parts/index.js?v=1.14.0`, `./faces/index.js?v=1.14.0`, `./movie-posters/index.js?v=1.14.0` to the rest of the system?**
+- **What connects `./face-parts/index.js?v=1.15.0`, `./faces/index.js?v=1.15.0`, `./movie-posters/index.js?v=1.15.0` to the rest of the system?**
   _3 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
-  _Cohesion score 0.06875 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Why does `Sécurité et données (détails dans `SECURITY.md`)` connect `Morceaux : script de construction du catalogue` to `Visages : écrans (photos, remplir, aperçu)`?**
-  _High betweenness centrality (0.193) - this node is a cross-community bridge._
+  _High betweenness centrality (0.192) - this node is a cross-community bridge._
 - **Are the 5 inferred relationships involving `main()` (e.g. with `Agents` and `Little Games : consignes pour Claude`) actually correct?**
   _`main()` has 5 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Visages : écrans (photos, remplir, aperçu)` be split into smaller, more focused modules?**
-  _Cohesion score 0.06584723441615452 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07403846153846154 - nodes in this community are weakly interconnected._

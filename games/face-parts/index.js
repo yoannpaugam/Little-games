@@ -1,9 +1,10 @@
 // Jeu « Morceaux » : retrouver la célébrité à partir d’une bande du visage.
 // Contrat : export mount(container, ctx) → { update(path), destroy() }
 
-import { h, icon } from '../../js/core/dom.js?v=1.14.0';
-import { createStore } from '../../js/core/storage.js?v=1.14.0';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.14.0';
+import { h, icon } from '../../js/core/dom.js?v=1.15.0';
+import { createStore } from '../../js/core/storage.js?v=1.15.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.15.0';
+import { isUpright, portraitRect, tiltOf, MAX_TILT } from './framing.js?v=1.15.0';
 
 const store = createStore('morceaux');
 const MAX_TRIES = 9;
@@ -49,13 +50,15 @@ export async function mount(container, ctx) {
   container.classList.add('mx');
   container.replaceChildren(h('div.loading', 'Chargement…'));
 
-  const people = await fetch(
+  const catalog = await fetch(
     new URL('./data/people.json' + new URL(import.meta.url).search, import.meta.url),
     { cache: 'no-cache' },
   ).then((r) => {
     if (!r.ok) throw new Error(`people.json : ${r.status}`);
     return r.json();
   });
+  // Têtes trop penchées écartées du jeu (visibles dans la page debug)
+  const people = catalog.filter((p) => isUpright(p));
 
   const byId = new Map(people.map((p) => [p.id, p]));
   const answers = buildAnswers(people);
@@ -170,14 +173,9 @@ export async function mount(container, ctx) {
       if (portrait) {
         // Cadre 2:3 identique pour tous, photo en « cover » centrée sur le visage
         wrap.style.setProperty('--mx-ar', String(2 / 3));
-        const [cx, cy] = [person.box.complet[0] + person.box.complet[2] / 2, person.box.complet[1] + person.box.complet[3] / 2];
-        const A = 2 / 3;
-        const R = nw / nh;
-        const W = R > A ? (R / A) * 100 : 100;
-        const H = R > A ? 100 : (A / R) * 100;
-        const L = clamp(50 - cx * W, 100 - W, 0);
-        const T = clamp(50 - cy * H, 100 - H, 0);
-        imgs.forEach((el) => place(el, L, T, W, H));
+        // Plan rapproché : la boîte « complet » remplit le cadre 2:3
+        const r = portraitRect(person.box.complet, nw, nh);
+        imgs.forEach((el) => place(el, r.left, r.top, r.width, r.height));
         if (whole) {
           const [bx, by, bw, bh] = full ? [0, 0, 1, 1] : displayBox(person, key);
           const pct = (v) => `${(Math.max(0, v) * 100).toFixed(3)}%`;
@@ -411,7 +409,7 @@ export async function mount(container, ctx) {
       }, l.label))
     );
 
-    const cards = people.map((p) => {
+    const cards = catalog.map((p) => {
       const stage = h('div.mx-debug-stage');
       const img = h('img.mx-debug-img', {
         src: p.img,
@@ -453,6 +451,7 @@ export async function mount(container, ctx) {
       return h('article.mx-debug-card',
         h('header.mx-debug-head',
           h('strong', p.name),
+          h('small', `Inclinaison ≈ ${Math.round(tiltOf(p))}°${isUpright(p) ? '' : ` · écartée (≥ ${MAX_TILT}°)`}`),
           h('small', creditLine(p))
         ),
         stage
@@ -463,7 +462,7 @@ export async function mount(container, ctx) {
       topBar('Debug détection', { back: () => ctx.navigate('personne', currentId) }),
       h('section.mx-debug',
         h('p.mx-hint',
-          'Rectangles = boîtes du catalogue (MediaPipe). Yeux / nez / bouche, et le cadre complet (pointillé).'
+          `Rectangles = boîtes du catalogue (MediaPipe). Yeux / nez / bouche, et le cadre complet (pointillé). ${catalog.length - people.length} photos où la tête est trop penchée sont écartées du jeu.`
         ),
         legend,
         h('div.mx-debug-grid', cards)
@@ -566,10 +565,6 @@ export async function mount(container, ctx) {
 
 function creditLine(p) {
   return [p.by, p.lic].filter(Boolean).join(' · ');
-}
-
-function clamp(v, min, max) {
-  return Math.min(max, Math.max(min, v));
 }
 
 function plural(n, one, many) {
