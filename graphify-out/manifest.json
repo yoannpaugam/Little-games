@@ -5,12 +5,6 @@
     "ast_hash": "96ffba05590cbf1eefeb68a10cb6df2e",
     "semantic_hash": ""
   },
-  "games/faces/answers.js": {
-    "mtime": 1793814155.9688382,
-    "seen": 1793814192.0171015,
-    "ast_hash": "db5d54529cb4d141bd4b07ac88d68523",
-    "semantic_hash": ""
-  },
   "games/faces/data/celebs.json": {
     "mtime": 1793811875.7844322,
     "seen": 1793812557.8643198,
@@ -18,15 +12,9 @@
     "semantic_hash": ""
   },
   "games/faces/index.js": {
-    "mtime": 1793814155.9728384,
-    "seen": 1793814192.0171046,
-    "ast_hash": "6a7139cb69a83d2b1b6f9e70f19838bb",
-    "semantic_hash": ""
-  },
-  "games/faces/photos.js": {
-    "mtime": 1793811875.843405,
-    "seen": 1793812557.8643286,
-    "ast_hash": "494df68734e467f88f44eea19bf1d8c0",
+    "mtime": 1793814285.100846,
+    "seen": 1793814321.0918827,
+    "ast_hash": "8edc30aedbcdc5a0d287be5c774e0968",
     "semantic_hash": ""
   },
   "games/movie-posters/data/films.json": {
@@ -42,27 +30,27 @@
     "semantic_hash": ""
   },
   "games/movie-posters/index.js": {
-    "mtime": 1793814156.1608384,
-    "seen": 1793814192.017117,
-    "ast_hash": "54e09cc22ba9bb4514663678293f5d9c",
+    "mtime": 1793814285.104846,
+    "seen": 1793814321.0918944,
+    "ast_hash": "caced127f4f1bfb91a4b8a3b7ae9021b",
     "semantic_hash": ""
   },
   "games/movie-posters/posters.js": {
-    "mtime": 1793814156.1648383,
-    "seen": 1793814192.017118,
-    "ast_hash": "0bdc152bdacdc6fff6170087d738865f",
+    "mtime": 1793814285.108846,
+    "seen": 1793814321.0918956,
+    "ast_hash": "2b0fdd05787a933971ac334278576d92",
     "semantic_hash": ""
   },
   "games/registry.js": {
-    "mtime": 1793814156.1648383,
-    "seen": 1793814192.017119,
-    "ast_hash": "a971c4e9de0831342d54c760aa993ac4",
+    "mtime": 1793814319.7130032,
+    "seen": 1793814321.0918965,
+    "ast_hash": "73e532d1bbda1b3b5d1dcfbe0d9079a5",
     "semantic_hash": ""
   },
   "js/app.js": {
-    "mtime": 1793814156.1928384,
-    "seen": 1793814192.01712,
-    "ast_hash": "d0f16c2cfc603d7aeda72230192fcb32",
+    "mtime": 1793814285.120846,
+    "seen": 1793814321.0918975,
+    "ast_hash": "82f5323f2adf9c73292fabaf18868642",
     "semantic_hash": ""
   },
   "js/core/dom.js": {
@@ -84,9 +72,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1793814156.1928384,
-    "seen": 1793814192.0171247,
-    "ast_hash": "b38498d5abb97a4c67100ecc4efb32b6",
+    "mtime": 1793814285.120846,
+    "seen": 1793814321.091902,
+    "ast_hash": "0465902922bf6bfcd8fdc655387fda5f",
     "semantic_hash": ""
   },
   "scripts/fetch-posters.mjs": {
@@ -105,12 +93,6 @@
     "mtime": 1793812411.030144,
     "seen": 1793812557.8643467,
     "ast_hash": "57281acd693c503fbd5ebed2a5cd9fb0",
-    "semantic_hash": ""
-  },
-  "tests/faces.test.js": {
-    "mtime": 1793811875.86179,
-    "seen": 1793812557.864348,
-    "ast_hash": "4544f3f943d9059cd2649805bcb3cef7",
     "semantic_hash": ""
   },
   "tests/fuzzy.test.js": {
@@ -186,27 +168,27 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1793812516.209018,
-    "seen": 1793812557.864362,
-    "ast_hash": "4a09ceb13c24ea9f7cde5505eac21b37",
+    "mtime": 1793814272.649097,
+    "seen": 1793814321.0919282,
+    "ast_hash": "9185c713d59b00726bada7206cf628f2",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1793812516.2085838,
-    "seen": 1793812557.864363,
-    "ast_hash": "5ad50dd0e8344b7c91c06d3273bd2db4",
+    "mtime": 1793814272.648484,
+    "seen": 1793814321.0919294,
+    "ast_hash": "723965eb297c07fd32090524cafc2de5",
     "semantic_hash": ""
   },
   "SECURITY.md": {
-    "mtime": 1793811875.783899,
-    "seen": 1793812557.8643637,
-    "ast_hash": "559529cf2a6bfb015eba878f057a6959",
+    "mtime": 1793814272.6488676,
+    "seen": 1793814321.0919304,
+    "ast_hash": "e67d94824ab1b26faf4c5e3a4cc57786",
     "semantic_hash": ""
   },
   "games/faces/SPEC.md": {
-    "mtime": 1793811875.7843385,
-    "seen": 1793812557.8643658,
-    "ast_hash": "5f327dad2827736b95cea61289c1b7c2",
+    "mtime": 1793814280.1928458,
+    "seen": 1793814321.091932,
+    "ast_hash": "7782d4aaf7493515b748f1198e550392",
     "semantic_hash": ""
   },
   "games/movie-posters/SPEC.md": {
@@ -216,9 +198,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793814156.1888382,
-    "seen": 1793814192.0171587,
-    "ast_hash": "cf4832333b29b6d099dd08816b5d3eca",
+    "mtime": 1793814285.116846,
+    "seen": 1793814321.0919352,
+    "ast_hash": "4d3700bec6292fcc7bc2867c74b06a60",
     "semantic_hash": ""
   },
   "scripts/celeb-quiz-builder.py": {
@@ -240,9 +222,9 @@
     "semantic_hash": ""
   },
   "games/faces/morceaux/answers.js": {
-    "mtime": 1793814155.9728384,
-    "seen": 1793814192.0171058,
-    "ast_hash": "bc75ee466a0ae3e2fb5b0bae7565157d",
+    "mtime": 1793814285.100846,
+    "seen": 1793814321.0918844,
+    "ast_hash": "4a3fce8c4a801e0c2ff91a7ede2d637a",
     "semantic_hash": ""
   },
   "games/faces/morceaux/data/jeunesse.json": {
@@ -264,9 +246,9 @@
     "semantic_hash": ""
   },
   "games/faces/morceaux/index.js": {
-    "mtime": 1793814155.9808383,
-    "seen": 1793814192.0171118,
-    "ast_hash": "f284cfe2fadc9e1b9cd59ead6822659a",
+    "mtime": 1793814285.104846,
+    "seen": 1793814321.0918903,
+    "ast_hash": "b352468103bc37739165cc6261552ec4",
     "semantic_hash": ""
   },
   "scripts/jeunesse-seed.json": {
@@ -282,9 +264,9 @@
     "semantic_hash": ""
   },
   "games/books/answers.js": {
-    "mtime": 1793814155.9648383,
-    "seen": 1793814192.0170944,
-    "ast_hash": "02dc32e05b4660206f02c1e01a5a993d",
+    "mtime": 1793814285.100846,
+    "seen": 1793814321.0918736,
+    "ast_hash": "19cd898d6888a54b208acde6fdeb9ad9",
     "semantic_hash": ""
   },
   "games/books/data/livres.json": {
@@ -294,9 +276,9 @@
     "semantic_hash": ""
   },
   "games/books/index.js": {
-    "mtime": 1793814155.9648383,
-    "seen": 1793814192.0171,
-    "ast_hash": "69650de295129a5be606e4e5a377dfcb",
+    "mtime": 1793814285.100846,
+    "seen": 1793814321.0918794,
+    "ast_hash": "919fa20fbc2d638a1f9950725babed43",
     "semantic_hash": ""
   },
   "tests/books.test.js": {

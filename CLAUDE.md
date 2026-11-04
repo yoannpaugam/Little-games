@@ -17,7 +17,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | Jeu | id (URL) | Dossier | Préfixe CSS | Store localStorage | IndexedDB |
 | --- | --- | --- | --- | --- | --- |
 | 🎬 Affiches de cinéma | `affiches` | `games/movie-posters/` | `.mp-` | `affiches`, `affiches-posters` | — |
-| 👤 Visages | `visages` | `games/faces/` (modes Morceaux et jeunesse dans `games/faces/morceaux/`) | `.vz-`, `.mx-` | `visages`, `morceaux`, `jeunesse` | `little-games-visages` |
+| 👤 Visages | `visages` | `games/faces/` (modes Morceaux et jeunesse dans `games/faces/morceaux/`) | `.vz-`, `.mx-` | `morceaux`, `jeunesse` (anciens : `visages`) | — (ancien : `little-games-visages`) |
 | 📚 Livres | `livres` | `games/books/` | `.lv-` | `livres` | — |
 
 ## Carte du code (Graphify)
@@ -31,7 +31,6 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
   - `graphify path "A" "B"` : le chemin d'appel entre deux fonctions ;
   - `graphify query "buildAnswers judge" --budget 2000` : la recherche se fait par mots-clés, donc avec des **noms de fonctions ou de fichiers**, pas avec une phrase en français.
 - Limites connues : les imports dynamiques (`import('…?v=…')` dans `games/registry.js`, `await import()` dans les tests) ne créent pas de lien, et les fichiers CSS, HTML et JSON ne sont pas dans le graphe. Pour eux, on cherche avec `grep`.
-- `.graphifyignore` exclut la bibliothèque tierce `games/faces/vendor/` et les modèles.
 - Le graphe indique le commit dont il vient (section *Graph Freshness*). **Chaque pull request qui modifie du code le régénère avec `npm run graph`** (`graphify update .` puis l'arborescence, en local, sans appel à une IA).
 - `graphify-out/` n'est jamais modifié à la main, **sauf `.graphify_labels.json`**, qui contient les noms des groupes. Si un nouveau groupe apparaît sous un nom automatique (un nom de fonction ou de fichier), on lui donne un nom en français dans ce fichier, puis on lance `graphify cluster-only .`.
 
