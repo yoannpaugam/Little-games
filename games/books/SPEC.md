@@ -19,7 +19,7 @@ On montre au joueur la **couverture** d'un grand livre de la littérature (titre
   - après le 2e, elle affiche aussi les initiales (« L. T. ») : « Dernier essai ! Voici ses initiales. » ;
   - au 3e, la réponse est donnée (« C'était… »), sans compter comme trouvée.
 - **Presque juste** (« Tu chauffes ! », en orange) : ne coûte pas d'essai. Indices : « Il manque le nom de famille. » (prénom seul), « Précise le prénom. » (Brontë), « Vérifie l'orthographe. ».
-- Bonne réponse : **Bravo !**, le nom de l'auteur (qui s'écrit aussi sur la couverture), puis sur une ligne le titre, l'année et la littérature. Ce panneau a la même hauteur que le formulaire : la couverture ne change pas de taille. **Suivant** prend le focus.
+- Bonne réponse : **Bravo !**, le nom de l'auteur (qui s'écrit aussi sur la couverture), puis sur une ligne l'année (cliquable), le titre et la littérature. Ce panneau a la même hauteur que le formulaire : la couverture ne change pas de taille. **Suivant** prend le focus.
 - Les livres trouvés le restent ; les essais sont mémorisés par livre.
 - Tout tient dans l'écran sans défilement. Téléphone en paysage : couverture à gauche, commandes à droite.
 
@@ -33,6 +33,7 @@ On montre au joueur la **couverture** d'un grand livre de la littérature (titre
 - Icône grille de la barre du haut : les 300 couvertures, 5 par ligne, du plus ancien au plus récent.
 - Un livre trouvé ou donné montre son auteur sur la couverture et en dessous. Le livre en cours est mis en évidence.
 - Un clic ouvre le livre dans l'écran de jeu.
+- Comme la grille des affiches : un sélecteur « Aller à… » saute à un siècle (« XIXe siècle »). L'année de la ligne de réponse (« 1857 · *Les Fleurs du mal* · littérature française ») est cliquable et ouvre la bibliothèque sur cette année, dont les livres sont mis en évidence. Sans année, elle s'ouvre sur le livre en cours.
 
 ## Réglages
 - Rappel de la règle.
@@ -43,7 +44,7 @@ On montre au joueur la **couverture** d'un grand livre de la littérature (titre
 `localStorage`, préfixe `little-games:livres:` (format version 1) : `settings` (`order`), `seed`, `current`, `found` (date), `tries` (essais ratés par livre), `given` (réponse donnée après 3 essais).
 
 ## Navigation (URL)
-`#/livres` (jeu) · `#/livres/livre/<id>` · `#/livres/bibliotheque` · `#/livres/reglages`
+`#/livres` (jeu) · `#/livres/livre/<id>` · `#/livres/bibliotheque` · `#/livres/bibliotheque/<année>` · `#/livres/reglages`
 
 ## Pistes pour la suite
 Mode inverse (retrouver un titre à partir de l'auteur), première phrase du livre comme indice, filtres par littérature ou par siècle, mode multijoueur.

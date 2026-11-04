@@ -261,3 +261,26 @@
 .mx-q.is-basse { color: var(--err); }
 .mx-q.is-moyenne { color: #ffb36b; }
 .mx-q.is-bonne { color: var(--ok); }
+
+/* ---------- Grille de toutes les photos ---------- */
+.mx-grid-head { width: 100%; max-width: 860px; margin: .25rem auto 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--muted); }
+.mx-grid-head p { margin: 0; }
+.mx-grid-head strong { color: var(--mx-accent); }
+.mx-grid { width: 100%; max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.4rem, 1.5vw, 1.1rem); }
+.mx-card { position: relative; display: flex; flex-direction: column; gap: .3rem; padding: 0; background: none; border: 0; cursor: pointer; min-width: 0; text-align: left; color: inherit; scroll-margin: 120px; }
+.mx-card:focus-visible { outline: none; }
+.mx-thumb { position: relative; aspect-ratio: 2 / 3; overflow: hidden; border-radius: 6px; background: var(--bg-3); transition: transform .15s, box-shadow .15s; }
+.mx-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; transition: opacity .3s; }
+.mx-thumb.is-loaded img { opacity: 1; }
+.mx-thumb.is-error::after { content: '?'; position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 2rem; }
+/* Personne pas encore trouvée : photo très floutée et assombrie */
+.mx-card:not(.is-found):not(.is-given) .mx-thumb img { filter: blur(9px) brightness(.6); transform: scale(1.08); }
+.mx-card:hover .mx-thumb, .mx-card:focus-visible .mx-thumb { transform: translateY(-3px); box-shadow: 0 0 0 2px var(--mx-accent); }
+.mx-card.is-found .mx-thumb { box-shadow: 0 0 0 1px #5fd08a88; }
+.mx-card.is-given .mx-thumb { opacity: .8; }
+.mx-card.is-current .mx-thumb { box-shadow: 0 0 0 2px var(--mx-accent), 0 0 24px color-mix(in srgb, var(--mx-accent) 35%, transparent); }
+.mx-card-num { position: absolute; top: .3rem; left: .35rem; padding: .05rem .35rem; border-radius: 999px; background: #000a; color: #fff; font-size: .7rem; font-variant-numeric: tabular-nums; }
+.mx-card-name { font-size: clamp(.65rem, 1.6vw, .85rem); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mx-credits-box { width: 100%; max-width: 860px; margin: 1.5rem auto 2rem; display: grid; gap: .75rem; scroll-margin: 80px; }
+.mx-credits-box summary { cursor: pointer; font-weight: 700; color: var(--mx-accent); padding: .6rem 0; }
+.mx-credits-box[open] summary { margin-bottom: .25rem; }

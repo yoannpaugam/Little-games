@@ -4,10 +4,10 @@
 // Monté par games/faces/index.js : mount(container, ctx) → { update(path), destroy() },
 // avec ctx.mode = 'morceaux' | 'jeunesse'.
 
-import { h, icon } from '../../../js/core/dom.js?v=1.20.0';
-import { createStore } from '../../../js/core/storage.js?v=1.20.0';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.20.0';
-import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES } from './framing.js?v=1.20.0';
+import { h, icon } from '../../../js/core/dom.js?v=1.21.0';
+import { createStore } from '../../../js/core/storage.js?v=1.21.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.21.0';
+import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES, thumbUrl } from './framing.js?v=1.21.0';
 
 const MAX_TRIES = 9;
 const TRY_STEP = 3;
@@ -134,7 +134,7 @@ export async function mount(container, ctx) {
       h('button.mx-icon-btn', { title: 'Retour', 'aria-label': 'Retour', onclick: back || ctx.home }, icon('back')),
       h('h1.mx-title', titleText),
       h('span.mx-score', { title: 'Personnes trouvées' }, h('strong', nFound), ` / ${people.length}`),
-      h('button.mx-icon-btn', { title: 'Crédits photo', 'aria-label': 'Crédits photo', onclick: () => ctx.navigate('credits') }, icon('info')),
+      h('button.mx-icon-btn', { title: 'Toutes les photos', 'aria-label': 'Toutes les photos', onclick: () => ctx.navigate('grille') }, icon('grid')),
       h('button.mx-icon-btn', { title: 'Réglages', 'aria-label': 'Réglages', onclick: () => ctx.navigate('reglages') }, icon('settings'))
     );
   }
@@ -606,24 +606,76 @@ export async function mount(container, ctx) {
     );
   }
 
-  // ---------------------------------------------------------------- crédits
-  function renderCredits() {
+  // ---------------------------------------------------------------- grille de toutes les photos
+  /** Vignette 2:3 en plan rapproché (petite image Commons, puis l’originale si elle échoue). */
+  function thumb(person) {
+    const box = h('div.mx-thumb');
+    const img = h('img', {
+      src: thumbUrl(person.img), alt: '', loading: 'lazy', decoding: 'async', draggable: false,
+      referrerPolicy: 'no-referrer-when-downgrade',
+    });
+    img.addEventListener('load', () => {
+      if (!img.naturalWidth) return;
+      const r = portraitRect(person.box.complet, img.naturalWidth, img.naturalHeight);
+      Object.assign(img.style, { left: `${r.left}%`, top: `${r.top}%`, width: `${r.width}%`, height: `${r.height}%` });
+      box.classList.add('is-loaded');
+    });
+    img.addEventListener('error', () => {
+      if (img.src !== person.img) img.src = person.img;
+      else box.classList.add('is-error');
+    });
+    box.append(img);
+    return box;
+  }
+
+  function renderGrid(showCredits = false) {
+    if (!people.length) { renderEmpty(); return; }
     resetView();
     container.classList.remove('is-play');
     container.classList.add('is-scroll');
-    container.replaceChildren(
-      topBar('Crédits photo', { back: backToGame }),
-      h('section.mx-credits',
-        h('h2', 'Photos'),
-        h('p.mx-hint', 'Photos issues de Wikimedia Commons. Attribution affichée selon la licence.'),
-        h('ul.mx-credit-list',
-          people.map((p) => h('li',
-            h('strong', p.name),
-            h('small', creditLine(p))
-          ))
-        )
+    // Ordre du jeu (celui du compteur « n / total ») : la position ne révèle rien du nom
+    const list = order.map((id) => byId.get(id)).filter(Boolean);
+    const cards = list.map((p, i) => {
+      const isFound = Boolean(found[p.id]);
+      const isGiven = !isFound && Boolean(given[p.id]);
+      const known = isFound || isGiven;
+      return h('button.mx-card', {
+        class: `mx-card${isFound ? ' is-found' : isGiven ? ' is-given' : ''}${p.id === currentId ? ' is-current' : ''}`,
+        type: 'button',
+        title: known ? `${p.name} · photo ${creditLine(p)}` : `Personne mystère n° ${i + 1}`,
+        onclick: () => ctx.navigate('personne', p.id),
+      },
+        thumb(p),
+        h('span.mx-card-num', i + 1),
+        h('span.mx-card-name', known ? p.name : ' ')
+      );
+    });
+    const n = list.filter((p) => found[p.id]).length;
+    const credits = h('details.mx-credits-box', { id: 'mx-credits', open: showCredits },
+      h('summary', `Crédits photo (${people.length})`),
+      h('p.mx-hint', 'Photos issues de Wikimedia Commons. Attribution affichée selon la licence.'),
+      h('ul.mx-credit-list',
+        [...people].sort((a, b) => a.name.localeCompare(b.name, 'fr')).map((p) => h('li',
+          h('strong', p.name),
+          h('small', creditLine(p))
+        ))
       )
     );
+    container.replaceChildren(
+      topBar('Photos', { back: backToGame }),
+      h('div.mx-grid-head',
+        h('p', h('strong', n), ` trouvée${n > 1 ? 's' : ''} sur ${list.length} · dans l’ordre du jeu`),
+        h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: () => {
+          credits.open = true;
+          credits.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } }, 'Crédits photo')
+      ),
+      h('div.mx-grid', cards),
+      credits
+    );
+    const target = showCredits ? credits : container.querySelector('.mx-card.is-current');
+    if (target) requestAnimationFrame(() => target.scrollIntoView({ block: showCredits ? 'start' : 'center' }));
+    else window.scrollTo(0, 0);
   }
 
   // ---------------------------------------------------------------- réglages
@@ -692,12 +744,13 @@ export async function mount(container, ctx) {
 
   function update(path) {
     const [view, arg] = path || [];
-    if (view === 'credits') renderCredits();
+    if (view === 'grille') renderGrid(false);
+    else if (view === 'credits') renderGrid(true);
     else if (view === 'reglages') renderSettings();
     else if (view === 'debug') renderDebug();
     else if (view === 'qualite') renderQuality();
     else renderPlay(view === 'personne' ? arg : null);
-    if (view !== 'credits' && view !== 'debug' && view !== 'qualite') window.scrollTo(0, 0);
+    if (!['grille', 'credits', 'debug', 'qualite'].includes(view)) window.scrollTo(0, 0);
   }
   update(ctx.path);
 

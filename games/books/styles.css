@@ -226,3 +226,6 @@
 .lv-card.is-given .lv-cover { opacity: .8; }
 .lv-card.is-current .lv-cover { box-shadow: 0 0 0 2px var(--accent), 0 0 24px #e8b04a55; }
 .lv-card-name { font-size: clamp(.65rem, 1.6vw, .85rem); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lv-grid-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.lv-select { min-height: 40px; padding: 0 .8rem; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-radius: 999px; }
+.lv-card.is-target .lv-cover { box-shadow: 0 0 0 2px var(--accent), 0 0 24px #e8b04a55; }

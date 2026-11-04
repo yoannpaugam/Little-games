@@ -72,3 +72,17 @@ export function qualityOf(px) {
   if (!px) return 'inconnue';
   return px < LOW_RES ? 'basse' : px < MID_RES ? 'moyenne' : 'bonne';
 }
+
+/**
+ * Petite image Commons (330 px de large, une taille standard de Wikimedia) pour les vignettes.
+ * …/commons/thumb/a/ab/F.jpg/1280px-F.jpg → …/330px-F.jpg ; …/commons/a/ab/F.jpg → …/commons/thumb/a/ab/F.jpg/330px-F.jpg
+ */
+export function thumbUrl(url, width = 330) {
+  if (/\/thumb\/.+\/\d+px-[^/]+$/.test(url)) return url.replace(/\/\d+px-([^/]+)$/, `/${width}px-$1`);
+  const m = url.match(/^(https:\/\/[^/]+\/wikipedia\/commons)\/([0-9a-f]\/[0-9a-f]{2})\/([^/]+)$/);
+  if (!m) return url;
+  const file = m[3];
+  // Les thumbnails des SVG et TIFF ont une autre extension : on garde l’originale
+  if (/\.(svg|tiff?)$/i.test(file)) return url;
+  return `${m[1]}/thumb/${m[2]}/${file}/${width}px-${file}`;
+}
