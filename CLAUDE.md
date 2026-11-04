@@ -19,6 +19,12 @@ scripts/                   set-version.mjs, fetch-posters.mjs
 | 🎬 Affiches de cinéma | `affiches` | `games/movie-posters/` | `.mp-` | `affiches`, `affiches-posters` | — |
 | 👤 Visages | `visages` | `games/faces/` | `.vz-` | `visages` | `little-games-visages` |
 
+## Carte du code (Graphify)
+- **Avant d'explorer le code, lire `graphify-out/GRAPH_REPORT.md`** : modules, fonctions centrales, liens entre fichiers. `graphify-out/graph.html` montre le graphe interactif.
+- Pour une question précise : `pip install --break-system-packages graphifyy`, puis `graphify query "<question>"`, `graphify explain "<fonction>"` ou `graphify path "A" "B"`.
+- `.graphifyignore` exclut la bibliothèque tierce `games/faces/vendor/` et les modèles.
+- Le graphe indique le commit dont il vient (section *Graph Freshness*). **Chaque pull request qui modifie du code le régénère** avec `graphify update .` (local, sans appel à une IA).
+
 ## Contrat d'un jeu
 - `games/<dossier>/index.js` exporte `mount(container, ctx)`. Il renvoie `{ update(path), destroy() }`.
 - `ctx` contient `path`, `navigate(...path)`, `home()` et `version`.
@@ -46,7 +52,7 @@ Une conversation s'occupe d'un seul jeu, et plusieurs pull requests peuvent êtr
    - `npm test` passe ;
    - avec Playwright, l'accueil et chaque jeu s'ouvrent sans erreur JavaScript ;
    - l'écran de jeu est testé sur iPhone SE, sur un grand téléphone, en paysage et sur ordinateur.
-3. Une nouvelle version visible par les joueurs augmente la version mineure avec `set-version.mjs`.
+3. Une nouvelle version visible par les joueurs augmente la version mineure avec `set-version.mjs`. Si du code a changé, régénérer le graphe : `graphify update .`.
 4. Pousser la branche et ouvrir une pull request par l'API REST : `gh api repos/yoannpaugam/little-games/pulls …`. GraphQL n'est pas disponible.
 5. **Ne jamais merger sans l'accord explicite de Yoann.**
 
