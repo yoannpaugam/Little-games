@@ -64,7 +64,7 @@ Une conversation s'occupe d'un seul jeu, et plusieurs pull requests peuvent êtr
    - l'écran de jeu est testé sur iPhone SE, sur un grand téléphone, en paysage et sur ordinateur.
 3. Une nouvelle version visible par les joueurs augmente la version mineure avec `set-version.mjs`. Si du code a changé, régénérer le graphe : `graphify update .`.
 4. Pousser la branche et ouvrir une pull request par l'API REST : `gh api repos/yoannpaugam/little-games/pulls …`. GraphQL n'est pas disponible.
-5. **Ne jamais merger sans l'accord explicite de Yoann.**
+5. **Fusion automatique** (décision de Yoann du 4 novembre 2026) : une fois les vérifications passées, Claude fusionne lui-même la pull request (`PUT /pulls/<n>/merge`), sans attendre d'accord. Il ne fusionne pas si un test échoue, s'il y a un conflit, ou si Yoann demande dans son message d'attendre avant de fusionner.
 
 ## Agents
 Les agents de `.claude/agents/` analysent et améliorent l'application, chacun dans son domaine :
