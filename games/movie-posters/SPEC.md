@@ -13,7 +13,8 @@ On montre au joueur l'affiche **floutée** d'un film célèbre, et il doit retro
 ## Écran de jeu
 - Affiche floutée, avec en dessous un champ « Titre du film » et un bouton **Valider** (la touche Entrée valide aussi).
 - Flèches **précédent / suivant** et bouton **Passer** : on peut naviguer sans répondre. Les flèches du clavier ← → marchent aussi.
-- Mauvaise réponse : un message d'erreur s'affiche (en rouge ; en orange « Tu chauffes ! » si la réponse est proche) et le formulaire tremble. On peut réessayer autant de fois qu'on veut.
+- Mauvaise réponse : un message d'erreur s'affiche (en rouge ; en orange « Tu chauffes ! » si la réponse est proche) et le formulaire tremble.
+- **Essais** : sous l'affiche, 12 petits ronds se remplissent en rouge à chaque proposition fausse (groupés par 3). Tous les 3 essais, le flou diminue : 70 % du flou de départ après 3 essais, 45 % après 6, 25 % après 9 (« Raté ! L'affiche devient plus nette. »). Au 12e essai, la réponse est donnée (« C'était… »), sans compter comme trouvée. Les essais sont mémorisés par film.
 - Bonne réponse : l'affiche se défloute (animation) et on voit **Bravo !**, le titre, puis sur une ligne le titre original, l'**année** et le **réalisateur**. Ce panneau a la même hauteur que le formulaire : l'affiche ne change pas de taille. Un bouton **Suivant** prend le focus.
 - Sur un téléphone en paysage, l'affiche est à gauche et les commandes à droite (comme Visages).
 - Les films trouvés le restent : en revenant dessus, on voit l'affiche nette et les informations.
@@ -42,7 +43,7 @@ On montre au joueur l'affiche **floutée** d'un film célèbre, et il doit retro
 - Un clic sur une affiche ouvre ce film dans l'écran de jeu.
 
 ## Persistance (sur l'appareil)
-`found` (films trouvés, avec la date), `current` (film en cours), `seed` (mélange), `settings`, et le cache des affiches résolues.
+`found` (films trouvés, avec la date), `tries` (essais par film), `given` (réponse donnée après 12 essais), `current` (film en cours), `seed` (mélange), `settings`, et le cache des affiches résolues.
 
 ## Navigation (URL)
 `#/affiches` (jeu) · `#/affiches/film/<id>` · `#/affiches/grille/<année>` · `#/affiches/reglages`

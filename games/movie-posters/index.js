@@ -4,14 +4,18 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.7.0';
-import { createStore } from '../../js/core/storage.js?v=1.7.0';
-import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.7.0';
-import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster } from './posters.js?v=1.7.0';
+import { h, icon } from '../../js/core/dom.js?v=1.8.0';
+import { createStore } from '../../js/core/storage.js?v=1.8.0';
+import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.8.0';
+import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster } from './posters.js?v=1.8.0';
 
 const store = createStore('affiches');
 const DEFAULT_SETTINGS = { order: 'random', blur: 'medium', tmdbKey: '', posterLang: 'fr-FR' };
 const BLUR = { light: 10, medium: 18, strong: 28 };
+// Essais : un rond par proposition fausse. Tous les 3 essais, le flou diminue ; au 12e, la réponse est donnée.
+const MAX_TRIES = 12;
+const TRY_STEP = 3;
+const BLUR_STEPS = [1, 0.7, 0.45, 0.25]; // part du flou restant après 0, 3, 6 et 9 essais
 
 const WRONG = ['Ce n’est pas ça… Réessaie !', 'Raté ! Encore un essai ?', 'Non, ce n’est pas le bon film.', 'Toujours pas… courage !'];
 
@@ -30,6 +34,8 @@ export async function mount(container, ctx) {
 
   let settings = { ...DEFAULT_SETTINGS, ...store.get('settings', {}) };
   let found = store.get('found', {}); // id → timestamp
+  let tries = store.get('tries', {}); // id → nombre de propositions fausses
+  let given = store.get('given', {}); // id → timestamp (réponse donnée après 12 essais)
   let seed = store.get('seed', null) ?? reseed();
   let order = computeOrder();
   let currentId = store.get('current', null);
@@ -117,7 +123,8 @@ export async function mount(container, ctx) {
     store.set('current', currentId);
     const film = byId.get(currentId);
     const idx = order.indexOf(currentId);
-    const solved = Boolean(found[film.id]);
+    const isFound = Boolean(found[film.id]);
+    const solved = isFound || Boolean(given[film.id]);
     const go = (delta) => ctx.navigate('film', order[(idx + delta + order.length) % order.length]);
 
     // Préchargement des voisins
@@ -139,9 +146,21 @@ export async function mount(container, ctx) {
     });
     input.setAttribute('autocorrect', 'off'); // pas via h() : sur Safari, la propriété est booléenne
     let attempts = 0;
+    const triesNow = () => Math.min(tries[film.id] || 0, MAX_TRIES);
+    const blurNow = () => (BLUR[settings.blur] ?? BLUR.medium) * BLUR_STEPS[Math.min(Math.floor(triesNow() / TRY_STEP), BLUR_STEPS.length - 1)];
+    // Rangée de ronds sous l'affiche : un par essai, un petit espace tous les 3 essais (palier de flou)
+    const dots = h('div.mp-tries', { role: 'img' },
+      Array.from({ length: MAX_TRIES }, (_, i) => h('span', { class: `mp-try${i % TRY_STEP === 0 && i ? ' is-step' : ''}` })));
+    const updTries = () => {
+      const n = triesNow();
+      [...dots.children].forEach((d, i) => d.classList.toggle('is-used', i < n));
+      dots.setAttribute('aria-label', `${n} essai${n > 1 ? 's' : ''} sur ${MAX_TRIES}`);
+      dots.hidden = solved && !n;
+      if (!poster.classList.contains('is-revealed')) poster.style.setProperty('--mp-blur', `${blurNow()}px`);
+    };
 
-    const infoBlock = () => h('div.mp-reveal',
-      h('p.mp-bravo', icon('check'), ' Bravo !'),
+    const infoBlock = (gaveUp) => h('div.mp-reveal',
+      gaveUp ? h('p.mp-bravo.is-given', 'C’était…') : h('p.mp-bravo', icon('check'), ' Bravo !'),
       h('h2.mp-film-title', film.title),
       // Titre original, année et réalisateur sur une seule ligne : le panneau garde la hauteur du formulaire,
       // l'affiche ne change donc pas de taille quand on trouve la réponse.
@@ -162,16 +181,22 @@ export async function mount(container, ctx) {
         if (verdict.ok) {
           found[film.id] = Date.now();
           store.set('found', found);
-          poster.classList.add('is-revealed');
-          poster.querySelector('img')?.setAttribute('alt', `Affiche de ${film.title}`);
-          stage.classList.add('is-solved');
-          if (!yearBtn) stage.querySelector('.mp-meta').append(h('button.mp-year', { onclick: () => ctx.navigate('grille', film.year) }, film.year));
-          form.replaceWith(solvedPanel());
-          announce.textContent = `Bravo ! C’était ${film.title}.`;
-          bar.replaceWith((bar = topBar('Affiches de cinéma')));
+          reveal(false);
         } else {
+          const n = triesNow() + 1;
+          tries[film.id] = n;
+          store.set('tries', tries);
+          updTries();
+          if (n >= MAX_TRIES) {
+            given[film.id] = Date.now();
+            store.set('given', given);
+            reveal(true);
+            return;
+          }
           const near = verdict.near;
-          feedback.textContent = near ? 'Tu chauffes ! Vérifie l’orthographe.' : WRONG[(attempts - 1) % WRONG.length];
+          // Tous les 3 essais, un message court (sur une ligne) annonce que le flou diminue
+          feedback.textContent = near ? 'Tu chauffes ! Vérifie l’orthographe.'
+            : n % TRY_STEP === 0 ? 'Raté ! L’affiche devient plus nette.' : WRONG[(attempts - 1) % WRONG.length];
           feedback.className = `mp-feedback is-error${near ? ' is-near' : ''}`;
           form.classList.remove('shake');
           void form.offsetWidth;
@@ -184,17 +209,27 @@ export async function mount(container, ctx) {
       feedback
     );
 
-    const solvedPanel = () => {
+    const solvedPanel = (gaveUp = !isFound && Boolean(given[film.id])) => {
       const next = h('button.mp-btn.mp-btn-primary', { type: 'button', onclick: () => go(1) }, 'Suivant', icon('next'));
       setTimeout(() => next.focus(), 50);
-      return h('div.mp-solved', infoBlock(), next);
+      return h('div.mp-solved', infoBlock(gaveUp), next);
     };
+    function reveal(gaveUp) {
+      poster.classList.add('is-revealed');
+      poster.style.removeProperty('--mp-blur');
+      poster.querySelector('img')?.setAttribute('alt', `Affiche de ${film.title}`);
+      stage.classList.add(gaveUp ? 'is-given' : 'is-solved');
+      if (!yearBtn) stage.querySelector('.mp-meta').append(h('button.mp-year', { onclick: () => ctx.navigate('grille', film.year) }, film.year));
+      form.replaceWith(solvedPanel(gaveUp));
+      announce.textContent = `${gaveUp ? '' : 'Bravo ! '}C’était ${film.title}.`;
+      bar.replaceWith((bar = topBar('Affiches de cinéma')));
+    }
 
-    const stage = h('section.mp-stage', { class: `mp-stage${solved ? ' is-solved' : ''}` },
+    const stage = h('section.mp-stage', { class: `mp-stage${isFound ? ' is-solved' : solved ? ' is-given' : ''}` },
       h('div.mp-meta', h('span.mp-counter', `${idx + 1} / ${order.length}`), yearBtn),
       h('div.mp-poster-row',
         h('button.mp-nav', { 'aria-label': 'Précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
-        h('div.mp-poster-box', poster),
+        h('div.mp-poster-box', poster, dots),
         h('button.mp-nav', { 'aria-label': 'Suivant', title: 'Suivant (→)', onclick: () => go(1) }, icon('next'))
       ),
       solved ? solvedPanel() : form,
@@ -205,6 +240,7 @@ export async function mount(container, ctx) {
     );
 
     let bar = topBar('Affiches de cinéma');
+    updTries();
     container.replaceChildren(bar, stage, announce);
     if (!solved && matchMedia('(hover: hover)').matches) input.focus();
 
@@ -300,8 +336,8 @@ export async function mount(container, ctx) {
     let resetArmed = false;
     const resetBtn = h('button.mp-btn.mp-btn-danger', { type: 'button', onclick: () => {
       if (!resetArmed) { resetArmed = true; resetBtn.textContent = 'Confirmer la remise à zéro'; return; }
-      found = {};
-      store.set('found', found);
+      found = {}; tries = {}; given = {};
+      store.set('found', found); store.set('tries', tries); store.set('given', given);
       resetBtn.textContent = '✓ Progression effacée';
       resetBtn.disabled = true;
     } }, 'Effacer ma progression');
