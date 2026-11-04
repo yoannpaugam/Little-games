@@ -1,1 +1,1842 @@
-{}
+{
+ "12-monkeys-1995": {
+  "tmdbId": 63,
+  "tmdb": "/pJ0EtnTbJyHf9XCqeiuAy3HK9Ij.jpg"
+ },
+ "12-years-a-slave-2013": {
+  "tmdbId": 76203,
+  "tmdb": "/AeoXonCArZda8vgBb7IbXiUJsdi.jpg"
+ },
+ "120-battements-par-minute-2017": {
+  "tmdbId": 451945,
+  "tmdb": "/7mdxe4MfqBdKGeKZAZYELJmCKVT.jpg"
+ },
+ "1917-2019": {
+  "tmdbId": 530915,
+  "tmdb": "/zppHKKEkHg9ZGzOdzZwW8lZYYqy.jpg"
+ },
+ "28-days-later-2002": {
+  "tmdbId": 170,
+  "tmdb": "/y0u77LC6C0UvhiWe4LiI2KulHN9.jpg"
+ },
+ "372-le-matin-1986": {
+  "tmdbId": 11986,
+  "tmdb": "/oJV5kxgUUQW1p314Xk7fyJoYiXx.jpg"
+ },
+ "500-days-of-summer-2009": {
+  "tmdbId": 19913,
+  "tmdb": "/Au6ac2MEQuka3DtJMVxeyUaDNsh.jpg"
+ },
+ "a-star-is-born-2018": {
+  "tmdbId": 332562,
+  "tmdb": "/uoq8DobPxciPEJ5EuBeqDt8av76.jpg"
+ },
+ "adieu-les-cons-2020": {
+  "tmdbId": 651881,
+  "tmdb": "/e6m9bwuwj6zluvkZgzP5gFSnRyB.jpg"
+ },
+ "agassi-2016": {
+  "tmdbId": 290098,
+  "tmdb": "/z4cpSCLQLbe2TwDZhmf8uzsKUMj.jpg"
+ },
+ "akira-1988": {
+  "tmdbId": 149,
+  "tmdb": "/8fCn7TwTe0Z4fTugIiLssX6UcHe.jpg"
+ },
+ "aladdin-1992": {
+  "tmdbId": 812,
+  "tmdb": "/7Hf6Y7WRRRVDBHn5lJghcXXp4DT.jpg"
+ },
+ "aliens-1986": {
+  "tmdbId": 679,
+  "tmdb": "/uafMg29wVV4XvxPS59s8nBBbP4i.jpg"
+ },
+ "american-beauty-1999": {
+  "tmdbId": 14,
+  "tmdb": "/ri7gRI9e0pCtyCYAcc8qJSCPn6V.jpg"
+ },
+ "amour-2012": {
+  "tmdbId": 86837,
+  "tmdb": "/A0VPf9B3YhFlf7SHi3gBNBb3GFt.jpg"
+ },
+ "anatomie-d-une-chute-2023": {
+  "tmdbId": 915935,
+  "tmdb": "/nSwQKCsDdj2S56mG7Yz2YGfrLT6.jpg"
+ },
+ "anora-2024": {
+  "tmdbId": 1064213,
+  "tmdb": "/2dNtTwMvoMGtISS2cTrMB8woqUy.jpg"
+ },
+ "apollo-13-1995": {
+  "tmdbId": 568,
+  "tmdb": "/lyaxCnZM8MAfFiQAsE8WUJZ4pB3.jpg"
+ },
+ "arrival-2016": {
+  "tmdbId": 329865,
+  "tmdb": "/mSgYBWMybY9Ug4ZnCGsttPIjUx7.jpg"
+ },
+ "au-revoir-la-haut-2017": {
+  "tmdbId": 430424,
+  "tmdb": "/3xTImsBYSIqLZfWCHfqWj9IC365.jpg"
+ },
+ "au-revoir-les-enfants-1987": {
+  "tmdbId": 1786,
+  "tmdb": "/q5z9yZuOHqIFOSMPmxtlh2W5kwC.jpg"
+ },
+ "avatar-2009": {
+  "tmdbId": 19995,
+  "tmdb": "/7N8L80OaG8EBTDdRBjGqT8PBzCM.jpg"
+ },
+ "avatar-the-way-of-water-2022": {
+  "tmdbId": 76600,
+  "tmdb": "/6WXn6RE1NAqcP2TfPcbVRawHUfE.jpg"
+ },
+ "avengers-endgame-2019": {
+  "tmdbId": 299534,
+  "tmdb": "/qXekTarZKRrVfnBwhS6xevt6BGU.jpg"
+ },
+ "avengers-infinity-war-2018": {
+  "tmdbId": 299536,
+  "tmdb": "/hSfuKPtyEryeFzapZ8UgZd4aESu.jpg"
+ },
+ "babysitting-2014": {
+  "tmdbId": 262551,
+  "tmdb": "/lY5u3bvWXRk3KMrSoP0Sd3Ro5gW.jpg"
+ },
+ "bac-nord-2021": {
+  "tmdbId": 637534,
+  "tmdb": "/r2NnRp4mi4G3e0x9zINQIcnGNd8.jpg"
+ },
+ "back-to-the-future-part-ii-1989": {
+  "tmdbId": 165,
+  "tmdb": "/pvSf95zo0GZNp83QCtmK1GFLHtT.jpg"
+ },
+ "barbie-2023": {
+  "tmdbId": 346698,
+  "tmdb": "/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"
+ },
+ "basic-instinct-1992": {
+  "tmdbId": 402,
+  "tmdb": "/uAYVMTscCciqLFhbAbzqFJx6g33.jpg"
+ },
+ "batman-1989": {
+  "tmdbId": 268,
+  "tmdb": "/1xXiKuQapT5g5xf1g0TaWlVDzfx.jpg"
+ },
+ "batman-begins-2005": {
+  "tmdbId": 272,
+  "tmdb": "/taKcn26BMWnsUcMFSlr5RfGDtFB.jpg"
+ },
+ "batoru-rowaiaru-2000": {
+  "tmdbId": 3176,
+  "tmdb": "/eQzo2o45xaZRS5wzACFmGMYs9dC.jpg"
+ },
+ "beauty-and-the-beast-1991": {
+  "tmdbId": 10020,
+  "tmdb": "/sIhRrRapijHVKOTfTp93YsP89e4.jpg"
+ },
+ "beetlejuice-1988": {
+  "tmdbId": 4011,
+  "tmdb": "/AtBDU4kFKkW0nWDtzROUHGdx4Br.jpg"
+ },
+ "before-sunrise-1995": {
+  "tmdbId": 76,
+  "tmdb": "/vLY17UVvhwXpEjnTqTYqlmuO2py.jpg"
+ },
+ "before-sunset-2004": {
+  "tmdbId": 80,
+  "tmdb": "/gqPkhjDOSaYcpRwedOtrc5JmZbp.jpg"
+ },
+ "being-john-malkovich-1999": {
+  "tmdbId": 492,
+  "tmdb": "/gaXB1huOHeRCR6z7S15K9yODcbl.jpg"
+ },
+ "bienvenue-chez-les-ch-tis-2008": {
+  "tmdbId": 8265,
+  "tmdb": "/dfht1lGq2ALbrRkMj35dUrj5kHG.jpg"
+ },
+ "big-1988": {
+  "tmdbId": 2280,
+  "tmdb": "/3Qv6APzOPApTdI6EOVjaUEQcYEt.jpg"
+ },
+ "big-fish-2003": {
+  "tmdbId": 587,
+  "tmdb": "/SF6pWtcdu1GEQxzeeYBEP1yEcK.jpg"
+ },
+ "big-hero-6-2014": {
+  "tmdbId": 177572,
+  "tmdb": "/wu361kPckigxzW19qtUbpCDzg0f.jpg"
+ },
+ "birdman-2014": {
+  "tmdbId": 194662,
+  "tmdb": "/aQiFgaz5e3f0d6t0vjNWsHj53Jy.jpg"
+ },
+ "black-panther-2018": {
+  "tmdbId": 284054,
+  "tmdb": "/g94IcdzPswTYl1ISdgn2EwvaZtt.jpg"
+ },
+ "black-swan-2010": {
+  "tmdbId": 44214,
+  "tmdb": "/PgK9d0vegvPCx92b7c15sk4x8h.jpg"
+ },
+ "blade-runner-2049-2017": {
+  "tmdbId": 335984,
+  "tmdb": "/qWD9E0Wgn8w6nMMutCNFAUiSHrX.jpg"
+ },
+ "blue-velvet-1986": {
+  "tmdbId": 793,
+  "tmdb": "/zw0JOpVE5IFE8IfAm8zRX0AkB3O.jpg"
+ },
+ "bohemian-rhapsody-2018": {
+  "tmdbId": 424694,
+  "tmdb": "/zpf6mrGZ0BbdsfzwUP0Nzp3hJEb.jpg"
+ },
+ "boyhood-2014": {
+  "tmdbId": 85350,
+  "tmdb": "/mptsEv59gjAtAAuRUrERSMCFkAj.jpg"
+ },
+ "bram-stoker-s-dracula-1992": {
+  "tmdbId": 6114,
+  "tmdb": "/scFDS0U5uYAjcVTyjNc7GmcZw1q.jpg"
+ },
+ "braveheart-1995": {
+  "tmdbId": 197,
+  "tmdb": "/jMDUKicyulag7KeTWVrblElCMZq.jpg"
+ },
+ "brice-de-nice-2005": {
+  "tmdbId": 17350,
+  "tmdb": "/eak0GxOsRmvEbr53yf7jbM8SD8u.jpg"
+ },
+ "bridget-jones-s-diary-2001": {
+  "tmdbId": 634,
+  "tmdb": "/XWi965HRtHgwzYdRebXWMXLntx.jpg"
+ },
+ "brokeback-mountain-2005": {
+  "tmdbId": 142,
+  "tmdb": "/1DesxE73jrYnnCJI2fAfOeO8kCF.jpg"
+ },
+ "busanhaeng-2016": {
+  "tmdbId": 396535,
+  "tmdb": "/9FiRluXOwGJZhb1BPSvJYO7SB7y.jpg"
+ },
+ "cache-2005": {
+  "tmdbId": 445,
+  "tmdb": "/vSIGVNCLDnw1NYH8mgSrxC5jYQn.jpg"
+ },
+ "call-me-by-your-name-2017": {
+  "tmdbId": 398818,
+  "tmdb": "/mLXvHMUiob0fgT4G6RazE6X7SY0.jpg"
+ },
+ "camping-2006": {
+  "tmdbId": 9530,
+  "tmdb": "/k2CGN1uyk8kMwac4ofiJhx9uBXQ.jpg"
+ },
+ "cars-2006": {
+  "tmdbId": 920,
+  "tmdb": "/hvHw7ASXEK8x3EawlOtwYXrovdo.jpg"
+ },
+ "casino-1995": {
+  "tmdbId": 524,
+  "tmdb": "/4a0I37pYcdFY6HeutalHQTGs0sl.jpg"
+ },
+ "casino-royale-2006": {
+  "tmdbId": 36557,
+  "tmdb": "/1ST7phuvQsaAIIkRyAtESZFLMx9.jpg"
+ },
+ "cast-away-2000": {
+  "tmdbId": 8358,
+  "tmdb": "/w1bnhSkcT4pa2KQZzRoq0BHBn8T.jpg"
+ },
+ "catch-me-if-you-can-2002": {
+  "tmdbId": 640,
+  "tmdb": "/nafyoqVGi87AwaV51GSJ0pk97gs.jpg"
+ },
+ "charlie-and-the-chocolate-factory-2005": {
+  "tmdbId": 118,
+  "tmdb": "/tR4PU2wRPzGKmF665lE5wULGb3X.jpg"
+ },
+ "chicken-run-2000": {
+  "tmdbId": 7443,
+  "tmdb": "/5TJGBYOCX43UIJGuCpg3qJLklUq.jpg"
+ },
+ "children-of-men-2006": {
+  "tmdbId": 9693,
+  "tmdb": "/zvABa9EuAK9XeqBojYyb3Yaahcf.jpg"
+ },
+ "cidade-de-deus-2002": {
+  "tmdbId": 598,
+  "tmdb": "/spDjXAphJ4RwOmU4HLioPRYCzvU.jpg"
+ },
+ "civil-war-2024": {
+  "tmdbId": 929590,
+  "tmdb": "/4V06xpCUesnzXvkQav1q3RRlwxh.jpg"
+ },
+ "clueless-1995": {
+  "tmdbId": 9603,
+  "tmdb": "/zTnyP1ExHx1FEUh5uvkcdy7oSCr.jpg"
+ },
+ "coco-2017": {
+  "tmdbId": 354912,
+  "tmdb": "/sZqcEV3KhDITHlUBmyj1a3RRvT9.jpg"
+ },
+ "collateral-2004": {
+  "tmdbId": 1538,
+  "tmdb": "/x6OIJWkwe6Kj4pQXTkhhBb7gluA.jpg"
+ },
+ "conclave-2024": {
+  "tmdbId": 974576,
+  "tmdb": "/8BPRVN1oajfhnDFJiaN3cc4nhso.jpg"
+ },
+ "coraline-2009": {
+  "tmdbId": 14836,
+  "tmdb": "/xuUfl07Wdc150rDwKLKCCbLfLGQ.jpg"
+ },
+ "dancer-in-the-dark-2000": {
+  "tmdbId": 16,
+  "tmdb": "/8yAT9AU0Gy96ikeiVARHiYS59fV.jpg"
+ },
+ "dances-with-wolves-1990": {
+  "tmdbId": 581,
+  "tmdb": "/6am5IYq5B1ZUHWDeZlkKPF7mzDi.jpg"
+ },
+ "das-leben-der-anderen-2006": {
+  "tmdbId": 582,
+  "tmdb": "/tuITw3t3WMOEKtL1sUYts1ZAnoa.jpg"
+ },
+ "de-rouille-et-d-os-2012": {
+  "tmdbId": 97365,
+  "tmdb": "/oLNJXJiuowxQ8C2TzbTB5bWXz0d.jpg"
+ },
+ "dead-poets-society-1989": {
+  "tmdbId": 207,
+  "tmdb": "/oHBdsvdlPhzkJZOfax7Oy3X5mm7.jpg"
+ },
+ "deadpool-2016": {
+  "tmdbId": 293660,
+  "tmdb": "/z5VjcCEioj2c2dvxmoqBW0Rj8Xj.jpg"
+ },
+ "delicatessen-1991": {
+  "tmdbId": 892,
+  "tmdb": "/oPlGvJFhDRYC5XrX2oqiwxTOoE8.jpg"
+ },
+ "der-himmel-uber-berlin-1987": {
+  "tmdbId": 144,
+  "tmdb": "/8KTySufrJYqfQk6D7KCWrLLBfGo.jpg"
+ },
+ "der-untergang-2004": {
+  "tmdbId": 613,
+  "tmdb": "/vgSo0TXdu8C3GFf66UjghYVfZ9F.jpg"
+ },
+ "des-hommes-et-des-dieux-2010": {
+  "tmdbId": 46332,
+  "tmdb": "/g2MwFq3htJm55jkAOnm2VGaD8qK.jpg"
+ },
+ "despicable-me-2010": {
+  "tmdbId": 20352,
+  "tmdb": "/wuhJx9bTbxHfJHeeR3L8uRjAZ7C.jpg"
+ },
+ "die-hard-1988": {
+  "tmdbId": 562,
+  "tmdb": "/1nOVVjbf8ucbeLmIlK5D2kCQQST.jpg"
+ },
+ "dirty-dancing-1987": {
+  "tmdbId": 88,
+  "tmdb": "/osfBQ18P0y3pwT5qVuhdPk8btbj.jpg"
+ },
+ "district-9-2009": {
+  "tmdbId": 17654,
+  "tmdb": "/gW7H7GPIWSEG7Ma7KKRCx9BfJQm.jpg"
+ },
+ "django-unchained-2012": {
+  "tmdbId": 68718,
+  "tmdb": "/vRXUnWrXUgXRoX0BaEcuNMfyeQt.jpg"
+ },
+ "do-the-right-thing-1989": {
+  "tmdbId": 925,
+  "tmdb": "/tlu7AwizbRv62kwIfe4E6oi7Z1T.jpg"
+ },
+ "dolor-y-gloria-2019": {
+  "tmdbId": 519010,
+  "tmdb": "/68x5o6b8H8oT9I1YL9NNP9Idby.jpg"
+ },
+ "donnie-darko-2001": {
+  "tmdbId": 141,
+  "tmdb": "/z3gIuT4e4tjCKYEYJChcBI44U21.jpg"
+ },
+ "doraibu-mai-ka-2021": {
+  "tmdbId": 758866,
+  "tmdb": "/vLi9m4gz2r0bWlPWzHLAyQ6A8k1.jpg"
+ },
+ "drive-2011": {
+  "tmdbId": 64690,
+  "tmdb": "/mUKm5eaYm30KYyaudRn5tA204ua.jpg"
+ },
+ "druk-2020": {
+  "tmdbId": 580175,
+  "tmdb": "/l7PXvcip4OpVsQ5mTRgd4BQ1Nel.jpg"
+ },
+ "dune-2021": {
+  "tmdbId": 438631,
+  "tmdb": "/qpyaW4xUPeIiYA5ckg5zAZFHvsb.jpg"
+ },
+ "dune-part-two-2024": {
+  "tmdbId": 693134,
+  "tmdb": "/iRNbRAIGQQr5diGnjpwJFm0dgt4.jpg"
+ },
+ "dunkirk-2017": {
+  "tmdbId": 374720,
+  "tmdb": "/1VOKlC35yrwVKlfBSN52NY4zoF2.jpg"
+ },
+ "edward-scissorhands-1990": {
+  "tmdbId": 162,
+  "tmdb": "/tMCj9KY70NasF2KsiXWpg0m7smK.jpg"
+ },
+ "el-laberinto-del-fauno-2006": {
+  "tmdbId": 1417,
+  "tmdb": "/hV2WDaJ4l6VPipM08AkmhLFDWqE.jpg"
+ },
+ "elle-2016": {
+  "tmdbId": 337674,
+  "tmdb": "/lpKIazNJncpV3sJ5MyTFS5tfTZk.jpg"
+ },
+ "emilia-perez-2024": {
+  "tmdbId": 974950,
+  "tmdb": "/fko8fTfL6BcAqOUh6BZYUjt4SQP.jpg"
+ },
+ "encanto-2021": {
+  "tmdbId": 568124,
+  "tmdb": "/vkrAGbjK6TRMrAW5Gq0SmNPOAoc.jpg"
+ },
+ "entre-les-murs-2008": {
+  "tmdbId": 8841,
+  "tmdb": "/douDslyUiFSfs9e3ep2ngUo2tsH.jpg"
+ },
+ "eternal-sunshine-of-the-spotless-mind-2004": {
+  "tmdbId": 38,
+  "tmdb": "/qCjJlDn3Pn6V4hwdsayM1plPcy1.jpg"
+ },
+ "everything-everywhere-all-at-once-2022": {
+  "tmdbId": 545611,
+  "tmdb": "/qHy7BlA1I3iUEIGp7atsMjSNJSK.jpg"
+ },
+ "ex-machina-2015": {
+  "tmdbId": 264660,
+  "tmdb": "/gXUnFIZdLsGnZp2AxKjQIVm5jEM.jpg"
+ },
+ "eyes-wide-shut-1999": {
+  "tmdbId": 345,
+  "tmdb": "/zrkNeLqUBm6bE2cqY5SBiM6LIf8.jpg"
+ },
+ "f1-2025": {
+  "tmdbId": 911430,
+  "tmdb": "/up0kyZZlLX24dE9SzDuTjXe6HFl.jpg"
+ },
+ "fa-yeung-nin-wa-2000": {
+  "tmdbId": 843,
+  "tmdb": "/9iciwUJTFBbjnmwfgkg6jmt8zHa.jpg"
+ },
+ "face-off-1997": {
+  "tmdbId": 754,
+  "tmdb": "/kEluKUjEKFwCJWrxv2XPC1VTJT4.jpg"
+ },
+ "fantastic-mr-fox-2009": {
+  "tmdbId": 10315,
+  "tmdb": "/2l6PJ6ux9b7RqQuQOUg7eL29PLW.jpg"
+ },
+ "fargo-1996": {
+  "tmdbId": 275,
+  "tmdb": "/pvpLgOyk9SllaHv5N2Lokhdz2Me.jpg"
+ },
+ "ferris-bueller-s-day-off-1986": {
+  "tmdbId": 9377,
+  "tmdb": "/uK8fRkPfQH3nLLOX5WVEA5E2HK.jpg"
+ },
+ "festen-1998": {
+  "tmdbId": 309,
+  "tmdb": "/17gIZVhxMThWWkbMoqpCOBlnrzq.jpg"
+ },
+ "fight-club-1999": {
+  "tmdbId": 550,
+  "tmdb": "/t1i10ptOivG4hV7erkX3tmKpiqm.jpg"
+ },
+ "finding-nemo-2003": {
+  "tmdbId": 12,
+  "tmdb": "/8zR2vXoXfdlknEYjfHvCbb1rJbI.jpg"
+ },
+ "forrest-gump-1994": {
+  "tmdbId": 13,
+  "tmdb": "/zi6RNYK1vXjIvpSBgjatXRcFYh2.jpg"
+ },
+ "four-weddings-and-a-funeral-1994": {
+  "tmdbId": 712,
+  "tmdb": "/gTZzgwQtfW8io29C2kXA2fAUhPO.jpg"
+ },
+ "frozen-2013": {
+  "tmdbId": 109445,
+  "tmdb": "/nnQLuzh2H6tSk1U0Zyu0ju16FXU.jpg"
+ },
+ "frozen-ii-2019": {
+  "tmdbId": 330457,
+  "tmdb": "/6zbuHXiuCdHZ57fZOlfUknpzCjU.jpg"
+ },
+ "full-metal-jacket-1987": {
+  "tmdbId": 600,
+  "tmdb": "/cShwwkz4gBBIRj8yFy8TP2tEWZ4.jpg"
+ },
+ "furiosa-a-mad-max-saga-2024": {
+  "tmdbId": 786892,
+  "tmdb": "/hbxqFdWXHeLIJfagMMhVG5SV5tb.jpg"
+ },
+ "gake-no-ue-no-ponyo-2008": {
+  "tmdbId": 12429,
+  "tmdb": "/ud7spJ4CH0UlsBz5n3KcXTaCNH2.jpg"
+ },
+ "gangs-of-new-york-2002": {
+  "tmdbId": 3131,
+  "tmdb": "/UYbOQyJkfHWejmIq0k10hPb7w8.jpg"
+ },
+ "gattaca-1997": {
+  "tmdbId": 782,
+  "tmdb": "/a9KIIpkR6sXGHLJiXse9A7p7l9k.jpg"
+ },
+ "get-out-2017": {
+  "tmdbId": 419430,
+  "tmdb": "/8WzjAhgc4HvpN3Y6LLCc6AbpIhF.jpg"
+ },
+ "ghost-1990": {
+  "tmdbId": 251,
+  "tmdb": "/8y9mxFKeTMYWIiXQHJKlIszDdAf.jpg"
+ },
+ "gisaengchung-2019": {
+  "tmdbId": 496243,
+  "tmdb": "/7hLSzZX2jROmEXz2aEoh6JKUFy2.jpg"
+ },
+ "gladiator-2000": {
+  "tmdbId": 98,
+  "tmdb": "/56Yb1T9GgYqMBM9nI8JxfmPSN8v.jpg"
+ },
+ "gojira-1-0-2023": {
+  "tmdbId": 940721,
+  "tmdb": "/tBzOqSc51CiUeOlxW2unvYVBU8v.jpg"
+ },
+ "gone-girl-2014": {
+  "tmdbId": 210577,
+  "tmdb": "/7xkJ1ACu40BjzLHVPRILWjFvW7.jpg"
+ },
+ "good-bye-lenin-2003": {
+  "tmdbId": 338,
+  "tmdb": "/jqb0ycoJqRildYpL05gm9fzMGvR.jpg"
+ },
+ "good-will-hunting-1997": {
+  "tmdbId": 489,
+  "tmdb": "/dMxqv6b08mQCikVPZL4UBl2MuHR.jpg"
+ },
+ "goodfellas-1990": {
+  "tmdbId": 769,
+  "tmdb": "/v4c6WMVqUlSJHMyjHNj72iTFGhm.jpg"
+ },
+ "gran-torino-2008": {
+  "tmdbId": 13223,
+  "tmdb": "/sVmDIIFPzbyEz87dZYpLfetn4Lm.jpg"
+ },
+ "gravity-2013": {
+  "tmdbId": 49047,
+  "tmdb": "/pCHaOeznx8xI0PEJsRtIAZqp4wM.jpg"
+ },
+ "green-book-2018": {
+  "tmdbId": 490132,
+  "tmdb": "/orN43xQQkoAmbUx1tYZl6HY7WKU.jpg"
+ },
+ "groundhog-day-1993": {
+  "tmdbId": 137,
+  "tmdb": "/49ThJPqijvMmBCPuwVK2FDayi0N.jpg"
+ },
+ "guardians-of-the-galaxy-2014": {
+  "tmdbId": 118340,
+  "tmdb": "/9a6fGeSV5kffyNPPMWCPhLOhLdJ.jpg"
+ },
+ "guillermo-del-toro-s-pinocchio-2022": {
+  "tmdbId": 555604,
+  "tmdb": "/ftnEmnoHI5Znlzg0TwGcSMoXJt1.jpg"
+ },
+ "gwoemul-2006": {
+  "tmdbId": 1255,
+  "tmdb": "/wnxiMrfqfiTwuWrFfAzNNkuHN1L.jpg"
+ },
+ "hable-con-ella-2002": {
+  "tmdbId": 64,
+  "tmdb": "/fmCJvc6ZpPaeSGS4bgfc3n5rt00.jpg"
+ },
+ "harry-potter-and-the-deathly-hallows-par-2011": {
+  "tmdbId": 12445,
+  "tmdb": "/alQOPmKEPHkH4BLMEla1vTNYrUr.jpg"
+ },
+ "harry-potter-and-the-philosopher-s-stone-2001": {
+  "tmdbId": 671,
+  "tmdb": "/fbxQ44VRdM2PVzHSNajUseUteem.jpg"
+ },
+ "harry-potter-and-the-prisoner-of-azkaban-2004": {
+  "tmdbId": 673,
+  "tmdb": "/t4P2079IyK19njHDP2GwQrKdvzd.jpg"
+ },
+ "hauru-no-ugoku-shiro-2004": {
+  "tmdbId": 4935,
+  "tmdb": "/45PVXJUYfH6yIINcQKelQ0SJPvh.jpg"
+ },
+ "heat-1995": {
+  "tmdbId": 949,
+  "tmdb": "/e0xv5Y7UVrhKEVy1g3URMLLVDYB.jpg"
+ },
+ "her-2013": {
+  "tmdbId": 152601,
+  "tmdb": "/nkWXW5blXGmOEoDejRgy83sSb6T.jpg"
+ },
+ "hereditary-2018": {
+  "tmdbId": 493922,
+  "tmdb": "/5Bz0u7xEyOUnGi4ov3rZKqKYCuH.jpg"
+ },
+ "home-alone-1990": {
+  "tmdbId": 771,
+  "tmdb": "/7hvfmQ5zgwoxZZOHQ9uGMdIk43t.jpg"
+ },
+ "hotaru-no-haka-1988": {
+  "tmdbId": 12477,
+  "tmdb": "/o9yJxxHEkeJQRIbBex4q7zy3LzZ.jpg"
+ },
+ "how-to-train-your-dragon-2010": {
+  "tmdbId": 10191,
+  "tmdb": "/a2xXAG8QuFZYt4ElbDrUd0IC3Ge.jpg"
+ },
+ "hugo-2011": {
+  "tmdbId": 44826,
+  "tmdb": "/AjEu4sp3iHtNOe0bTMHEk6kML5i.jpg"
+ },
+ "i-daniel-blake-2016": {
+  "tmdbId": 374473,
+  "tmdb": "/jzxUfWrfpzurb1KYKYbVs6T39rL.jpg"
+ },
+ "ice-age-2002": {
+  "tmdbId": 425,
+  "tmdb": "/ecgLEPhlpEloh58OireixHvEhur.jpg"
+ },
+ "illusions-perdues-2021": {
+  "tmdbId": 660000,
+  "tmdb": "/wpnN9iRsVmkMe939G62oU3hlnip.jpg"
+ },
+ "im-westen-nichts-neues-2022": {
+  "tmdbId": 49046,
+  "tmdb": "/qS6lVMc53jiEtlOAFSRxFGSa5pN.jpg"
+ },
+ "incendies-2010": {
+  "tmdbId": 46738,
+  "tmdb": "/i5GsLIII66LubmOai65cWiB4kZq.jpg"
+ },
+ "inception-2010": {
+  "tmdbId": 27205,
+  "tmdb": "/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg"
+ },
+ "independence-day-1996": {
+  "tmdbId": 602,
+  "tmdb": "/bkCauryW2TOWaEkGqyJMuJ0pRUV.jpg"
+ },
+ "indiana-jones-and-the-last-crusade-1989": {
+  "tmdbId": 89,
+  "tmdb": "/73gYk4vShggfajlthEcOsY5ZhQI.jpg"
+ },
+ "inglourious-basterds-2009": {
+  "tmdbId": 16869,
+  "tmdb": "/lPKwFzX4TiWLA4Mo5Bnf8aIIrJm.jpg"
+ },
+ "inside-out-2-2024": {
+  "tmdbId": 1022789,
+  "tmdb": "/9Jic8z9NEeCEmSJFgFHZF1lWMFo.jpg"
+ },
+ "inside-out-2015": {
+  "tmdbId": 150540,
+  "tmdb": "/KUhrtJN02RNt3Sxc4IMTa1d9Lt.jpg"
+ },
+ "interstellar-2014": {
+  "tmdbId": 157336,
+  "tmdb": "/1pnigkWWy8W032o9TKDneBa3eVK.jpg"
+ },
+ "into-the-wild-2007": {
+  "tmdbId": 5915,
+  "tmdb": "/1rhgbRN1ecG7Y96yNrWA9D5Xu2v.jpg"
+ },
+ "intouchables-2011": {
+  "tmdbId": 77338,
+  "tmdb": "/usYMMeRiLZ2I5363w1XG25nXqvU.jpg"
+ },
+ "iron-man-2008": {
+  "tmdbId": 1726,
+  "tmdb": "/uZrsDJkn0PPnGc51fQhtCqwPPVM.jpg"
+ },
+ "it-2017": {
+  "tmdbId": 346364,
+  "tmdb": "/3SUz0F0I2Bodcj9Ev2pYSWnE9zp.jpg"
+ },
+ "j-ai-perdu-mon-corps-2019": {
+  "tmdbId": 586940,
+  "tmdb": "/P3d0gN4N4rCuW5FdIKzzLfl96u.jpg"
+ },
+ "jackie-brown-1997": {
+  "tmdbId": 184,
+  "tmdb": "/mc8lNVgDYMG2IQus5RmdcgvwOKx.jpg"
+ },
+ "jfk-1991": {
+  "tmdbId": 820,
+  "tmdb": "/aXBz7t4TO5Ln3u5CQLIS96Kzuvl.jpg"
+ },
+ "jodaeiye-nader-az-simin-2011": {
+  "tmdbId": 60243,
+  "tmdb": "/lwv5ZaZhe4YNEswGnSPXduFJOxw.jpg"
+ },
+ "jojo-rabbit-2019": {
+  "tmdbId": 515001,
+  "tmdb": "/t4JPW6GxKOiwqtsursgGynmPffu.jpg"
+ },
+ "joker-2019": {
+  "tmdbId": 475557,
+  "tmdb": "/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg"
+ },
+ "jumanji-1995": {
+  "tmdbId": 8844,
+  "tmdb": "/nLXYV4WmYUF4i8pX0iE0H1rltmf.jpg"
+ },
+ "juno-2007": {
+  "tmdbId": 7326,
+  "tmdb": "/9YoQNtd0e6WAaF6uvw2EcIXy8px.jpg"
+ },
+ "jurassic-park-1993": {
+  "tmdbId": 329,
+  "tmdb": "/2E2dKGPTWoyiaSzgNaer9zpP49n.jpg"
+ },
+ "jurassic-world-2015": {
+  "tmdbId": 135397,
+  "tmdb": "/gUY5B8OaRqPnLUwjNxITUTrPbIN.jpg"
+ },
+ "kaguya-hime-no-monogatari-2013": {
+  "tmdbId": 149871,
+  "tmdb": "/yBbJpLFmwdEHzeyeEstoi9mM5lX.jpg"
+ },
+ "kaze-tachinu-2013": {
+  "tmdbId": 149870,
+  "tmdb": "/bQcNJ8inwZuxAZ965jRCjjCti0D.jpg"
+ },
+ "kill-bill-vol-1-2003": {
+  "tmdbId": 24,
+  "tmdb": "/mt4e0L5prfCzHhpxmxt5pvfHI0p.jpg"
+ },
+ "killers-of-the-flower-moon-2023": {
+  "tmdbId": 466420,
+  "tmdb": "/t51ReMWxWcAOqKrGKw29OK2WhNz.jpg"
+ },
+ "kimi-no-na-wa-2016": {
+  "tmdbId": 372058,
+  "tmdb": "/zyHjvVRgKOt9wgVx4ikp2kGArGF.jpg"
+ },
+ "kimitachi-wa-do-ikiru-ka-2023": {
+  "tmdbId": 508883,
+  "tmdb": "/f9EoS3lVr644WXO8YPRvBiTS1K.jpg"
+ },
+ "king-kong-2005": {
+  "tmdbId": 254,
+  "tmdb": "/pSmIr47IDD72IboEi8SZztN0cR7.jpg"
+ },
+ "kirikou-et-la-sorciere-1998": {
+  "tmdbId": 21348,
+  "tmdb": "/3fawMZ623Gxju8iJf5vsMJWazut.jpg"
+ },
+ "klaus-2019": {
+  "tmdbId": 508965,
+  "tmdb": "/qb0eCUtvi2Rn5etdqFbaYzvIPYn.jpg"
+ },
+ "kokaku-kidotai-1995": {
+  "tmdbId": 9323,
+  "tmdb": "/692vdwjxZpk3ibwDqOGxZLRYgvy.jpg"
+ },
+ "kpop-demon-hunters-2025": {
+  "tmdbId": 803796,
+  "tmdb": "/6IhKiHwbfUnPqYPuibn5QpKmgHz.jpg"
+ },
+ "kung-fu-panda-2008": {
+  "tmdbId": 9502,
+  "tmdb": "/pxZNY88UWH0uic83QHBSh2yFEYL.jpg"
+ },
+ "kurenai-no-buta-1992": {
+  "tmdbId": 11621,
+  "tmdb": "/o5QGUhhOICBR4C9ZZqBAeocrVde.jpg"
+ },
+ "l-amour-ouf-2024": {
+  "tmdbId": 959604,
+  "tmdb": "/6akNNv4KyrguZUiG4uemfV6toVq.jpg"
+ },
+ "l-auberge-espagnole-2002": {
+  "tmdbId": 1555,
+  "tmdb": "/qKq4uLZDAJhBfpRsfPRYouQ5jW5.jpg"
+ },
+ "la-cite-de-la-peur-1994": {
+  "tmdbId": 15097,
+  "tmdb": "/jBzDbxsEiCUCiYcpDLpvbQ6kN2U.jpg"
+ },
+ "la-cite-des-enfants-perdus-1995": {
+  "tmdbId": 902,
+  "tmdb": "/9hXbsM3Of273RwXkQp74mVD0Gcm.jpg"
+ },
+ "la-famille-belier-2014": {
+  "tmdbId": 304410,
+  "tmdb": "/kAQeZUZ1pMTSjSF3d6eBZClFGgN.jpg"
+ },
+ "la-grande-bellezza-2013": {
+  "tmdbId": 179144,
+  "tmdb": "/1jleIZt1pr3lQiKXfHigfRWvRkK.jpg"
+ },
+ "la-haine-1995": {
+  "tmdbId": 406,
+  "tmdb": "/gfdhSzPyAWtAizqs4ytc0MwOlQg.jpg"
+ },
+ "la-la-land-2016": {
+  "tmdbId": 313369,
+  "tmdb": "/5KIj6aioW1UtUT1IV0qqW5iZbNH.jpg"
+ },
+ "la-mome-2007": {
+  "tmdbId": 1407,
+  "tmdb": "/thD71NvrSQwo45iFjnfPziJPVnj.jpg"
+ },
+ "la-verite-si-je-mens-1997": {
+  "tmdbId": 39385,
+  "tmdb": "/z1JRKYnac2SvvQsCbHaVM2E5x0v.jpg"
+ },
+ "la-vie-d-adele-chapitres-1-et-2-2013": {
+  "tmdbId": 152584,
+  "tmdb": "/2rcR4ep2XEreDyEG3TTJW6saNi5.jpg"
+ },
+ "la-vita-e-bella-1997": {
+  "tmdbId": 637,
+  "tmdb": "/c6NveyskoKlwAvouqEmKBRU0Pkp.jpg"
+ },
+ "lady-bird-2017": {
+  "tmdbId": 391713,
+  "tmdb": "/gp3TcnurRFTOnWUZZj5QtG16m5d.jpg"
+ },
+ "lat-den-ratte-komma-in-2008": {
+  "tmdbId": 13310,
+  "tmdb": "/riaynrmURRDKwR1a7Bkugtprd4r.jpg"
+ },
+ "le-comte-de-monte-cristo-2024": {
+  "tmdbId": 1084736,
+  "tmdb": "/g7kiprYdXxaYCZABWQwTWAgRYjl.jpg"
+ },
+ "le-diner-de-cons-1998": {
+  "tmdbId": 9421,
+  "tmdb": "/7ukFDHExWul2Zz3L0OH8CaZCp2Z.jpg"
+ },
+ "le-fabuleux-destin-d-amelie-poulain-2001": {
+  "tmdbId": 194,
+  "tmdb": "/tdXtLG6L1QMwrv0MNdW6B9IwC8B.jpg"
+ },
+ "le-gout-des-autres-2000": {
+  "tmdbId": 10697,
+  "tmdb": "/wXrYHBuIO9DN1x9hC0HsT6D0jpL.jpg"
+ },
+ "le-grand-bain-2018": {
+  "tmdbId": 484482,
+  "tmdb": "/tk781pgEMqRZpu0QNhxO7NGMJ6s.jpg"
+ },
+ "le-grand-bleu-1988": {
+  "tmdbId": 175,
+  "tmdb": "/eoO9OkhstHjgODeUAlW2xr6BxRD.jpg"
+ },
+ "le-pacte-des-loups-2001": {
+  "tmdbId": 6312,
+  "tmdb": "/d7TXucKJ9MkLSNmVMDONv1Eu0V8.jpg"
+ },
+ "le-petit-nicolas-2009": {
+  "tmdbId": 31203,
+  "tmdb": "/hANHPZ4CdCdGSWlE1QPWHJyiSsd.jpg"
+ },
+ "le-prenom-2012": {
+  "tmdbId": 112198,
+  "tmdb": "/w5JWQo7ArqmoegKYiQbv8TeAJmg.jpg"
+ },
+ "le-regne-animal-2023": {
+  "tmdbId": 943134,
+  "tmdb": "/1gO4SWCdMW0ptIRLQ455Ia5emC.jpg"
+ },
+ "le-scaphandre-et-le-papillon-2007": {
+  "tmdbId": 2013,
+  "tmdb": "/res4M4iWhMl15fD4lxaeUh7obh9.jpg"
+ },
+ "le-sens-de-la-fete-2017": {
+  "tmdbId": 432068,
+  "tmdb": "/6XVnhuZIZHWytsiu0GBK9nfzX9F.jpg"
+ },
+ "leon-1994": {
+  "tmdbId": 101,
+  "tmdb": "/efqJtlo5J1hBNFmbwyjyAR9Mpr2.jpg"
+ },
+ "les-choristes-2004": {
+  "tmdbId": 5528,
+  "tmdb": "/kfWIeoVIBBxLQKhJ22LWYvcEgaP.jpg"
+ },
+ "les-garcons-et-guillaume-a-table-2013": {
+  "tmdbId": 190880,
+  "tmdb": "/x22pq4jruMHjOV2Z8sSN7jigWlE.jpg"
+ },
+ "les-miserables-2019": {
+  "tmdbId": 586863,
+  "tmdb": "/sOy9Sa9Noro1VjZjdTTh7U3XmcU.jpg"
+ },
+ "les-petits-mouchoirs-2010": {
+  "tmdbId": 48034,
+  "tmdb": "/qoHIdk4jZTwNjRz23ql3TO8yH9b.jpg"
+ },
+ "les-rivieres-pourpres-2000": {
+  "tmdbId": 60670,
+  "tmdb": "/l9SQFzGWvTuP3WszpY8HeDYoNqd.jpg"
+ },
+ "les-triplettes-de-belleville-2003": {
+  "tmdbId": 9662,
+  "tmdb": "/6T7PuALPdTI8ZVYF1p4LFc4ruqZ.jpg"
+ },
+ "les-trois-freres-1995": {
+  "tmdbId": 37653,
+  "tmdb": "/nPrUw2hLIt9uWrGwfKjr0AbGWgd.jpg"
+ },
+ "les-trois-mousquetaires-d-artagnan-2023": {
+  "tmdbId": 796185,
+  "tmdb": "/lm0pfF0HSLsSpFlhGCmR6Bhl8EE.jpg"
+ },
+ "les-tuche-2011": {
+  "tmdbId": 66129,
+  "tmdb": "/ed1cbXew2Ez8FqDFN39xL1DKVH1.jpg"
+ },
+ "les-visiteurs-1993": {
+  "tmdbId": 11687,
+  "tmdb": "/24Z4Mkj2AVP9x72ydMLWUUEGWkU.jpg"
+ },
+ "lethal-weapon-1987": {
+  "tmdbId": 941,
+  "tmdb": "/uh1ImPGPySZ0bKEVgPDIXHLt22.jpg"
+ },
+ "licorice-pizza-2021": {
+  "tmdbId": 718032,
+  "tmdb": "/pGrVtvGNFmDqyNTMOru7VYQW3al.jpg"
+ },
+ "life-of-pi-2012": {
+  "tmdbId": 87827,
+  "tmdb": "/bDfZiMQxm6YQxShym38sPWVm2yL.jpg"
+ },
+ "lilo-stitch-2002": {
+  "tmdbId": 11544,
+  "tmdb": "/mKyf9MXuRBe5n8aDYh3eFBatv6r.jpg"
+ },
+ "little-miss-sunshine-2006": {
+  "tmdbId": 773,
+  "tmdb": "/pUPR2pgiVfWMkHcE0SqaE4skDl9.jpg"
+ },
+ "lock-stock-and-two-smoking-barrels-1998": {
+  "tmdbId": 100,
+  "tmdb": "/yCWGMcU0rI0dGq0snlKlCf9RZXR.jpg"
+ },
+ "lola-rennt-1998": {
+  "tmdbId": 104,
+  "tmdb": "/fb8HzJ12yAm19JzJYbJJ3oJBZbk.jpg"
+ },
+ "lost-in-translation-2003": {
+  "tmdbId": 153,
+  "tmdb": "/bUDD5bfF5EHzBwPhL9iJeZuHjVE.jpg"
+ },
+ "love-actually-2003": {
+  "tmdbId": 508,
+  "tmdb": "/rJAML5icaPEkj8CU4wLHjpL4RWd.jpg"
+ },
+ "luca-2021": {
+  "tmdbId": 508943,
+  "tmdb": "/bADnZZZdzQtajVwJ8MVWYlQ6Iq2.jpg"
+ },
+ "ma-vie-de-courgette-2016": {
+  "tmdbId": 393559,
+  "tmdb": "/sDre2NQ5PYNagHww6bQTLO07MaS.jpg"
+ },
+ "mad-max-fury-road-2015": {
+  "tmdbId": 76341,
+  "tmdb": "/oLy2V6AWSEfdPgKOtrSGnwB3Q2R.jpg"
+ },
+ "madagascar-2005": {
+  "tmdbId": 953,
+  "tmdb": "/aA1eZtISZ2rqUk2QIUgu1pXcHrm.jpg"
+ },
+ "magnolia-1999": {
+  "tmdbId": 334,
+  "tmdb": "/klhJK5KvHbWkGkO1x5bXzOfQAWp.jpg"
+ },
+ "majo-no-takkyubin-1989": {
+  "tmdbId": 16859,
+  "tmdb": "/tdOJxx6PCzjPYViSnk0OPQ80X2d.jpg"
+ },
+ "mamma-mia-2008": {
+  "tmdbId": 11631,
+  "tmdb": "/2GOindRP8oWsPEpcJUbEW2dbDH9.jpg"
+ },
+ "manbiki-kazoku-2018": {
+  "tmdbId": 505192,
+  "tmdb": "/6dIDuy8SyY3uZvESWsNbBu1I8nC.jpg"
+ },
+ "manchester-by-the-sea-2016": {
+  "tmdbId": 334541,
+  "tmdb": "/aiQRRGDU6FcQ3yMYMerqS5GyOnC.jpg"
+ },
+ "marriage-story-2019": {
+  "tmdbId": 492188,
+  "tmdb": "/kYGvkQpq6yibGTMp7LcauV0fnc8.jpg"
+ },
+ "melancholia-2011": {
+  "tmdbId": 62215,
+  "tmdb": "/tcsN4X7uxhvKgeaeNbIiAIWmxxE.jpg"
+ },
+ "memento-2000": {
+  "tmdbId": 77,
+  "tmdb": "/nK3cJaUWx1iaQ9Cs08JPtZqVzQ6.jpg"
+ },
+ "men-in-black-1997": {
+  "tmdbId": 607,
+  "tmdb": "/rd0VCTHFFIE7BbZfy0aEIkOYxGA.jpg"
+ },
+ "midnight-in-paris-2011": {
+  "tmdbId": 59436,
+  "tmdb": "/d8OE6ZHyisBXLs2cGzP1gqG52Cf.jpg"
+ },
+ "midsommar-2019": {
+  "tmdbId": 530385,
+  "tmdb": "/17pvY55Zr60niVovNvgt72mwvES.jpg"
+ },
+ "million-dollar-baby-2004": {
+  "tmdbId": 70,
+  "tmdb": "/7yWwlgq12qZ4nMLQHhEf8ITaggn.jpg"
+ },
+ "minority-report-2002": {
+  "tmdbId": 180,
+  "tmdb": "/91dfWOkpjlqPkbZDjAjrReFqXQP.jpg"
+ },
+ "mission-impossible-1996": {
+  "tmdbId": 954,
+  "tmdb": "/tf9NnE1P26vtfncWtVQ5P2VE4gl.jpg"
+ },
+ "mission-impossible-the-final-reckoning-2025": {
+  "tmdbId": 575265,
+  "tmdb": "/AozMgdALZuR1hDPZt2a1aXiWmL4.jpg"
+ },
+ "moana-2016": {
+  "tmdbId": 277834,
+  "tmdb": "/u9rrmuYW9jCmFn3zN0RX9vhzRKp.jpg"
+ },
+ "mommy-2014": {
+  "tmdbId": 265177,
+  "tmdb": "/zR1oHk9seg14nBF7JqaYeOeeTeY.jpg"
+ },
+ "mononoke-hime-1997": {
+  "tmdbId": 128,
+  "tmdb": "/1AfSDxBTYYtQRVY2V1ISgxXNPVx.jpg"
+ },
+ "monsters-inc-2001": {
+  "tmdbId": 585,
+  "tmdb": "/rIjzsrY8xQ4M4ZthmVqHtiqsioQ.jpg"
+ },
+ "moon-2009": {
+  "tmdbId": 17431,
+  "tmdb": "/6S34vVOl2MzdIDpb1tpLACLLdBJ.jpg"
+ },
+ "moonlight-2016": {
+  "tmdbId": 376867,
+  "tmdb": "/6Eg6OfwghmSLVtt2sfGD5YOEFjI.jpg"
+ },
+ "moonrise-kingdom-2012": {
+  "tmdbId": 83666,
+  "tmdb": "/iDfjUWJ0w8XmEgaL4n1m7GI86BE.jpg"
+ },
+ "moulin-rouge-2001": {
+  "tmdbId": 824,
+  "tmdb": "/3xXftdp7OTQpebMheHGIrg6Nxj.jpg"
+ },
+ "mrs-doubtfire-1993": {
+  "tmdbId": 788,
+  "tmdb": "/60qcTr0iIZvcYfWrLDUbWxO7nPS.jpg"
+ },
+ "mulan-1998": {
+  "tmdbId": 10674,
+  "tmdb": "/nWYuhyM8oQ4Gkktq0c2GCcKdJLv.jpg"
+ },
+ "mulholland-drive-2001": {
+  "tmdbId": 1018,
+  "tmdb": "/d5gefer4mHnL5kOmlOP5rGumdM7.jpg"
+ },
+ "mustang-2015": {
+  "tmdbId": 336804,
+  "tmdb": "/vmjjJCsGSuLoF4G6UGDirjOipsN.jpg"
+ },
+ "mystic-river-2003": {
+  "tmdbId": 322,
+  "tmdb": "/1z7IwJBQSKVY7BPLYOOS3ZNWM53.jpg"
+ },
+ "ne-le-dis-a-personne-2006": {
+  "tmdbId": 10795,
+  "tmdb": "/dNb8PDR4DyhUJqzCBjt7RmQHov9.jpg"
+ },
+ "nightcrawler-2014": {
+  "tmdbId": 242582,
+  "tmdb": "/pATJSq0OobFU9DmcKQUqQPpzDET.jpg"
+ },
+ "nikita-1990": {
+  "tmdbId": 9322,
+  "tmdb": "/jLqvVdR1gucaMF5wtCAOS9nsolY.jpg"
+ },
+ "no-country-for-old-men-2007": {
+  "tmdbId": 6977,
+  "tmdb": "/TIIk6p8BziUM5dh8DD048PmcHX.jpg"
+ },
+ "no-time-to-die-2021": {
+  "tmdbId": 370172,
+  "tmdb": "/qseURFLjRBCqFCNCKmS2uwM9IOj.jpg"
+ },
+ "nomadland-2020": {
+  "tmdbId": 581734,
+  "tmdb": "/oT7S2WbwJDtrvNsEos8xuUgbBRm.jpg"
+ },
+ "nope-2022": {
+  "tmdbId": 762504,
+  "tmdb": "/b1z84OMbtzmFWsiQWyonoPqWY2Z.jpg"
+ },
+ "notting-hill-1999": {
+  "tmdbId": 509,
+  "tmdb": "/8KHWL693DvfiDzrSp1n5Ox5GOup.jpg"
+ },
+ "nuovo-cinema-paradiso-1988": {
+  "tmdbId": 11216,
+  "tmdb": "/ywJsnH7BmM6GmugCvN6ZjIfgSHv.jpg"
+ },
+ "o-brother-where-art-thou-2000": {
+  "tmdbId": 134,
+  "tmdb": "/aKa7tck9DEiZsoPDvqa9gK0vqcq.jpg"
+ },
+ "ocean-s-eleven-2001": {
+  "tmdbId": 161,
+  "tmdb": "/sLiFrrQn2iqfn3gYciJF1yqJCOU.jpg"
+ },
+ "okami-kodomo-no-ame-to-yuki-2012": {
+  "tmdbId": 110420,
+  "tmdb": "/352bJ6vCTnMJQKAsLmHpU5VLWcY.jpg"
+ },
+ "oldeuboi-2003": {
+  "tmdbId": 670,
+  "tmdb": "/u0Ct3708zXaoJCkF65bLfenQmhM.jpg"
+ },
+ "once-upon-a-time-in-hollywood-2019": {
+  "tmdbId": 466272,
+  "tmdb": "/gG5J1KW2Gzj0Sz7al1mGkhXLSoB.jpg"
+ },
+ "one-battle-after-another-2025": {
+  "tmdbId": 1054867,
+  "tmdb": "/vfoxYHHpSOadhOFCmNbtLG2WcUy.jpg"
+ },
+ "oppenheimer-2023": {
+  "tmdbId": 872585,
+  "tmdb": "/boAUuJBeID7VNp4L7LNMQs8mfQS.jpg"
+ },
+ "oss-117-le-caire-nid-d-espions-2006": {
+  "tmdbId": 15152,
+  "tmdb": "/vxcqpokAB2bn2PzG3g4kFsL5h7V.jpg"
+ },
+ "past-lives-2023": {
+  "tmdbId": 666277,
+  "tmdb": "/aFAANQwb3dYudPHXaQZX5NwVuTO.jpg"
+ },
+ "persepolis-2007": {
+  "tmdbId": 2011,
+  "tmdb": "/uyzRK1XFyxVL2nQkQxA59WJKFXM.jpg"
+ },
+ "philadelphia-1993": {
+  "tmdbId": 9800,
+  "tmdb": "/nOw0nfcTQ7L1YkvUUrjgNyu7KPK.jpg"
+ },
+ "pirates-of-the-caribbean-the-curse-of-th-2003": {
+  "tmdbId": 22,
+  "tmdb": "/jFmc6zbnx6mSoxejECYvdi3IHIs.jpg"
+ },
+ "platoon-1986": {
+  "tmdbId": 792,
+  "tmdb": "/rehBWOx9AIkZRKVuiemWvAMH40.jpg"
+ },
+ "point-break-1991": {
+  "tmdbId": 1089,
+  "tmdb": "/yRjcd5vmqoXTDlLyiQNpIHOYlj7.jpg"
+ },
+ "polisse-2011": {
+  "tmdbId": 71157,
+  "tmdb": "/jt5iH1ffawf3NXX0YVgfSexQH8H.jpg"
+ },
+ "poor-things-2023": {
+  "tmdbId": 792307,
+  "tmdb": "/roRjNH7cRVrZQYv1Ex8ownMu2ey.jpg"
+ },
+ "portrait-de-la-jeune-fille-en-feu-2019": {
+  "tmdbId": 531428,
+  "tmdb": "/lH2hSK6F1FZmS3ao384kZCMsbCl.jpg"
+ },
+ "predator-1987": {
+  "tmdbId": 106,
+  "tmdb": "/lXoATMtTK3ZsICCvTtXygASHZd9.jpg"
+ },
+ "pretty-woman-1990": {
+  "tmdbId": 114,
+  "tmdb": "/apTFre4duDr92xJgsAts55OeHs1.jpg"
+ },
+ "pride-prejudice-2005": {
+  "tmdbId": 4348,
+  "tmdb": "/dn2tyLAx5syITEQ9989iQ79eMNW.jpg"
+ },
+ "prisoners-2013": {
+  "tmdbId": 146233,
+  "tmdb": "/fUk1f0iOAezl5PZ7gQW6nrguOXk.jpg"
+ },
+ "promising-young-woman-2020": {
+  "tmdbId": 582014,
+  "tmdb": "/sJvb0kuGAMF0jF8GYglfJsTTMvf.jpg"
+ },
+ "pulp-fiction-1994": {
+  "tmdbId": 680,
+  "tmdb": "/4TBdF7nFw2aKNM0gPOlDNq3v3se.jpg"
+ },
+ "puss-in-boots-the-last-wish-2022": {
+  "tmdbId": 315162,
+  "tmdb": "/kO35BwoKHyP1VRulxZJVeEl5dvS.jpg"
+ },
+ "qu-est-ce-qu-on-a-fait-au-bon-dieu-2014": {
+  "tmdbId": 262391,
+  "tmdb": "/8OXNnKIHm3eJctx0y9KHMoKXOFw.jpg"
+ },
+ "rain-man-1988": {
+  "tmdbId": 380,
+  "tmdb": "/kdYcB7ydyJdNfPbvsFponC0qb57.jpg"
+ },
+ "ratatouille-2007": {
+  "tmdbId": 2062,
+  "tmdb": "/iFcWBdTPeHQDS3OQxBcH3QaYXYv.jpg"
+ },
+ "raw-2016": {
+  "tmdbId": 511309,
+  "tmdb": "/eQ5lpyMyhCsrPeeJgraBBssS3ON.jpg"
+ },
+ "requiem-for-a-dream-2000": {
+  "tmdbId": 641,
+  "tmdb": "/e5X9gv7uzULhVT43qRjx7iGiFFq.jpg"
+ },
+ "reservoir-dogs-1992": {
+  "tmdbId": 500,
+  "tmdb": "/b62t5xsAMGZ2LOLbD0l85xQE3tr.jpg"
+ },
+ "ridicule-1996": {
+  "tmdbId": 12709,
+  "tmdb": "/hdReIesReikZe5dMLwf8JLBcXAG.jpg"
+ },
+ "robocop-1987": {
+  "tmdbId": 5548,
+  "tmdb": "/8LMpX3an8eHTfU1bNwXeGVkBVrZ.jpg"
+ },
+ "roma-2018": {
+  "tmdbId": 426426,
+  "tmdb": "/veWGVw33lnifG10fpkz3QmimVaI.jpg"
+ },
+ "rrr-2022": {
+  "tmdbId": 579974,
+  "tmdb": "/ix5RuGFb69TC8czZOpcip3891FP.jpg"
+ },
+ "ryu-to-sobakasu-no-hime-2021": {
+  "tmdbId": 776305,
+  "tmdb": "/mIZ8HyfgEPIyMKuntaLZlOfpAlN.jpg"
+ },
+ "salinui-chueok-2003": {
+  "tmdbId": 11423,
+  "tmdb": "/fz5NYI8PUmPplu3UA70AOqEDJL7.jpg"
+ },
+ "saving-private-ryan-1998": {
+  "tmdbId": 857,
+  "tmdb": "/mlSsQWIQV0NKIqqRQRI0yi9gqk8.jpg"
+ },
+ "saw-2004": {
+  "tmdbId": 176,
+  "tmdb": "/3fhUaMnlY72GGuBlzEeKA4brZAb.jpg"
+ },
+ "schindler-s-list-1993": {
+  "tmdbId": 424,
+  "tmdb": "/fLRbv1fGQD0OCPWkFy7PI2sESLj.jpg"
+ },
+ "scott-pilgrim-vs-the-world-2010": {
+  "tmdbId": 22538,
+  "tmdb": "/vl468tJnNgWOmgvsmips784iPKb.jpg"
+ },
+ "scream-1996": {
+  "tmdbId": 4232,
+  "tmdb": "/9LfX3IBeByGdFkmkmNztKBr4nYv.jpg"
+ },
+ "se7en-1995": {
+  "tmdbId": 807,
+  "tmdb": "/to6jUaLJonMuKW2YovtWfQKtLYP.jpg"
+ },
+ "sen-to-chihiro-no-kamikakushi-2001": {
+  "tmdbId": 129,
+  "tmdb": "/12TAqK0AUgdcYE9ZYZ9r7ASbH5Q.jpg"
+ },
+ "shaun-of-the-dead-2004": {
+  "tmdbId": 747,
+  "tmdb": "/vAEV1zwDC2WoNmNloCXTk8jPqD.jpg"
+ },
+ "shrek-2-2004": {
+  "tmdbId": 809,
+  "tmdb": "/2e8hcPLaWjLXdQLgdi5otr4Jj9L.jpg"
+ },
+ "shrek-2001": {
+  "tmdbId": 808,
+  "tmdb": "/rJIju4i2sENrfTbAXwL9OKv2e1i.jpg"
+ },
+ "shutter-island-2010": {
+  "tmdbId": 11324,
+  "tmdb": "/fQ0vGVTtxjCdAJnxwPZ88O3Wzrh.jpg"
+ },
+ "sicario-2015": {
+  "tmdbId": 273481,
+  "tmdb": "/uYMvoFiatbs1G3ybN8Wd8VpJWxn.jpg"
+ },
+ "sin-city-2005": {
+  "tmdbId": 187,
+  "tmdb": "/rrS6R9Reqiev2BbyYWpGiZUpslk.jpg"
+ },
+ "sinners-2025": {
+  "tmdbId": 1233413,
+  "tmdb": "/9ZmdDOIbiFCZOvRXBQ7muWUu32l.jpg"
+ },
+ "skyfall-2012": {
+  "tmdbId": 37724,
+  "tmdb": "/nNFECkwmrYoUQ17EnPTcSlRictV.jpg"
+ },
+ "slumdog-millionaire-2008": {
+  "tmdbId": 12405,
+  "tmdb": "/r9zN2ZwT2nuUew4r9oApWRkiyIm.jpg"
+ },
+ "snatch-2000": {
+  "tmdbId": 107,
+  "tmdb": "/oCJSanfnNimhbrI6KMZqEXbE9IA.jpg"
+ },
+ "soul-2020": {
+  "tmdbId": 508442,
+  "tmdb": "/c6Q7te0PPyL4rzlGkDByVeTKFYg.jpg"
+ },
+ "speed-1994": {
+  "tmdbId": 1637,
+  "tmdb": "/7VbesUPeCqAfswvtabESbhk9uyD.jpg"
+ },
+ "spider-man-2002": {
+  "tmdbId": 557,
+  "tmdb": "/pNz1NREgddPdlzytlR8mW4B26fW.jpg"
+ },
+ "spider-man-across-the-spider-verse-2023": {
+  "tmdbId": 569094,
+  "tmdb": "/hvfwCeSTgsExmz9l31dKkfR83DH.jpg"
+ },
+ "spider-man-into-the-spider-verse-2018": {
+  "tmdbId": 324857,
+  "tmdb": "/3bSWpsB2PqoTrJhW9cM6tJMDxIm.jpg"
+ },
+ "spider-man-no-way-home-2021": {
+  "tmdbId": 634649,
+  "tmdb": "/jwfDFqzxBkXC5bERBZrCEfK9iii.jpg"
+ },
+ "spotlight-2015": {
+  "tmdbId": 314365,
+  "tmdb": "/bY4K4gkDjJCNsNLHhdDPApTZiE.jpg"
+ },
+ "stand-by-me-1986": {
+  "tmdbId": 235,
+  "tmdb": "/paxBmWVvdw1yiAnSxBxuYUyZKBA.jpg"
+ },
+ "star-wars-episode-i-the-phantom-menace-1999": {
+  "tmdbId": 1893,
+  "tmdb": "/fpEC910v5DrMvZteRNlKzXeHiHY.jpg"
+ },
+ "star-wars-episode-iii-revenge-of-the-sit-2005": {
+  "tmdbId": 1895,
+  "tmdb": "/2RcBuU8cdxFxCJibbiYCGNLApfz.jpg"
+ },
+ "star-wars-the-force-awakens-2015": {
+  "tmdbId": 140607,
+  "tmdb": "/zKZ1iF1ABqL7a16u6Im8JTQKp7H.jpg"
+ },
+ "starship-troopers-1997": {
+  "tmdbId": 563,
+  "tmdb": "/kNpQWAHKrCjrjT0pXz15BWXW1eB.jpg"
+ },
+ "straume-2024": {
+  "tmdbId": 823219,
+  "tmdb": "/zeinX0xt78GgtpCQjx7d2S6Gh7g.jpg"
+ },
+ "superman-2025": {
+  "tmdbId": 1061474,
+  "tmdb": "/bL1U8TDb2ZiThIBFAdKHOfpv8lk.jpg"
+ },
+ "suzume-no-tojimari-2022": {
+  "tmdbId": 916224,
+  "tmdb": "/hOJYwkVSgXtE3BJFN0bRPKdLJLj.jpg"
+ },
+ "taken-2008": {
+  "tmdbId": 8681,
+  "tmdb": "/4h9b8E2C9FdIVKbQRDMwZzpSIjL.jpg"
+ },
+ "tangled-2010": {
+  "tmdbId": 38757,
+  "tmdb": "/xZhAFR0N2r5q7tJNWaBGzHUaeb5.jpg"
+ },
+ "tarzan-1999": {
+  "tmdbId": 37135,
+  "tmdb": "/dJANGEa49li7rhCXc5gtZogFVB0.jpg"
+ },
+ "taxi-1998": {
+  "tmdbId": 2330,
+  "tmdb": "/5d16tJ2DLImAwCY2w0LYZjgWZA1.jpg"
+ },
+ "tenet-2020": {
+  "tmdbId": 577922,
+  "tmdb": "/72SOtZnFhCumLRZhoXlX8g2IkgF.jpg"
+ },
+ "tenku-no-shiro-rapyuta-1986": {
+  "tmdbId": 10515,
+  "tmdb": "/7tTUs77uOWee6GIOMB6OhtLgslI.jpg"
+ },
+ "terminator-2-judgment-day-1991": {
+  "tmdbId": 280,
+  "tmdb": "/mRtFOHF93zW4kTp4JOYrH71vxBh.jpg"
+ },
+ "the-abyss-1989": {
+  "tmdbId": 2756,
+  "tmdb": "/3eUR7AsRy6u925EgXS1CpRe7L9I.jpg"
+ },
+ "the-artist-2011": {
+  "tmdbId": 74643,
+  "tmdb": "/khtVL4abxYczXAWbo1wAz13CLx3.jpg"
+ },
+ "the-avengers-2012": {
+  "tmdbId": 24428,
+  "tmdb": "/ylsAO88v2tF0iXRFojPa0UaAJf1.jpg"
+ },
+ "the-banshees-of-inisherin-2022": {
+  "tmdbId": 674324,
+  "tmdb": "/5Y0AINkH7xDqmuxJXUQdPbtyrub.jpg"
+ },
+ "the-batman-2022": {
+  "tmdbId": 414906,
+  "tmdb": "/t9JGg10CW1DzXEdWL54ewkUko6N.jpg"
+ },
+ "the-big-lebowski-1998": {
+  "tmdbId": 115,
+  "tmdb": "/4fdLDGSggKaTkwWWaiX11I4Aoss.jpg"
+ },
+ "the-blair-witch-project-1999": {
+  "tmdbId": 2667,
+  "tmdb": "/uSx9GZIdrYv8MQtDq6eaT0kYfTY.jpg"
+ },
+ "the-brutalist-2024": {
+  "tmdbId": 549509,
+  "tmdb": "/qta0JRXb7JkJD8nSlUSUpLtSvZQ.jpg"
+ },
+ "the-curious-case-of-benjamin-button-2008": {
+  "tmdbId": 4922,
+  "tmdb": "/17hzD5UG3RLq0BTszufC9mzXynd.jpg"
+ },
+ "the-dark-knight-2008": {
+  "tmdbId": 155,
+  "tmdb": "/pyNXnq8QBWoK3b37RS6C3axwUOy.jpg"
+ },
+ "the-dark-knight-rises-2012": {
+  "tmdbId": 49026,
+  "tmdb": "/ApcGBERN0p9I0nDOIwJeEmpnLU5.jpg"
+ },
+ "the-departed-2006": {
+  "tmdbId": 1422,
+  "tmdb": "/xHeuF5zzlx1YxkULiz0mx1TMBJ7.jpg"
+ },
+ "the-devil-wears-prada-2006": {
+  "tmdbId": 350,
+  "tmdb": "/vTIBjWMWx1p5Wv2J3IRhEW13lrj.jpg"
+ },
+ "the-english-patient-1996": {
+  "tmdbId": 409,
+  "tmdb": "/r6xJpyD0KuIBW891S1SxNn1XuAQ.jpg"
+ },
+ "the-fabelmans-2022": {
+  "tmdbId": 804095,
+  "tmdb": "/4HNGWeWe1w0KT8A829cU5uVVeWK.jpg"
+ },
+ "the-father-2020": {
+  "tmdbId": 600354,
+  "tmdb": "/aPbZJy9LMY1imupfjlrAO1ikg8c.jpg"
+ },
+ "the-favourite-2018": {
+  "tmdbId": 375262,
+  "tmdb": "/bZC5VeHX39PfhsZEcdjD7RHKFSH.jpg"
+ },
+ "the-fifth-element-1997": {
+  "tmdbId": 18,
+  "tmdb": "/8nx8sttha1Zidt73SbNncVfSwqk.jpg"
+ },
+ "the-fly-1986": {
+  "tmdbId": 9426,
+  "tmdb": "/xRmSKEQ6sw9yHoe4W3ftvdEG91X.jpg"
+ },
+ "the-fugitive-1993": {
+  "tmdbId": 5503,
+  "tmdb": "/uVGTJKNIHi08Eclu96OvpiOGuQf.jpg"
+ },
+ "the-grand-budapest-hotel-2014": {
+  "tmdbId": 120467,
+  "tmdb": "/qcWTuWPu6x6t2MKt0MTfbResJiV.jpg"
+ },
+ "the-green-mile-1999": {
+  "tmdbId": 497,
+  "tmdb": "/cRBUYC02CPsVa1GqBq6rfHn5a8g.jpg"
+ },
+ "the-hangover-2009": {
+  "tmdbId": 18785,
+  "tmdb": "/dGOwVbGN5eJlgAnFwGRaANnyZMF.jpg"
+ },
+ "the-hateful-eight-2015": {
+  "tmdbId": 273248,
+  "tmdb": "/kV6ogsiIYzV2qZ43bLuDKuEAIR.jpg"
+ },
+ "the-hobbit-an-unexpected-journey-2012": {
+  "tmdbId": 49051,
+  "tmdb": "/mdy9mG31U7jSB8edfRELv53Yfjp.jpg"
+ },
+ "the-hunger-games-2012": {
+  "tmdbId": 70160,
+  "tmdb": "/fWG9Jqqintc8jQj4XzWNMPjIxzf.jpg"
+ },
+ "the-incredibles-2004": {
+  "tmdbId": 9806,
+  "tmdb": "/1FLKNiL41KPRgByj4uwlIqrpD6f.jpg"
+ },
+ "the-irishman-2019": {
+  "tmdbId": 398978,
+  "tmdb": "/W9xPACmHuhFC0xHwpyFvGbapUT.jpg"
+ },
+ "the-iron-giant-1999": {
+  "tmdbId": 10386,
+  "tmdb": "/yNN7ViuLLEtobKpbVKhiKmu8FNg.jpg"
+ },
+ "the-king-s-speech-2010": {
+  "tmdbId": 45269,
+  "tmdb": "/vKi1anRrhFv4wnFfETWUk7RjIUJ.jpg"
+ },
+ "the-last-of-the-mohicans-1992": {
+  "tmdbId": 9361,
+  "tmdb": "/tWaGxm8LkneIICsM8FvcTSUKvMB.jpg"
+ },
+ "the-lego-movie-2014": {
+  "tmdbId": 137106,
+  "tmdb": "/8SPuFYQ6jm7DSmof0haYZr1lQFN.jpg"
+ },
+ "the-lion-king-1994": {
+  "tmdbId": 8587,
+  "tmdb": "/n6UChiAOSTHGih2FBactLjA4Cdt.jpg"
+ },
+ "the-little-mermaid-1989": {
+  "tmdbId": 10144,
+  "tmdb": "/fi7jHcwZje12iEslbBUo00EQDuB.jpg"
+ },
+ "the-lord-of-the-rings-the-fellowship-of-2001": {
+  "tmdbId": 120,
+  "tmdb": "/5OPg6M0yHr21Ovs1fni2H1xpKuF.jpg"
+ },
+ "the-lord-of-the-rings-the-return-of-the-2003": {
+  "tmdbId": 122,
+  "tmdb": "/ypUCFOvOf07bcHy81jng9LyMUfi.jpg"
+ },
+ "the-lord-of-the-rings-the-two-towers-2002": {
+  "tmdbId": 121,
+  "tmdb": "/qVHBqQYLDRs7ESjP9q6o9iPHLWj.jpg"
+ },
+ "the-martian-2015": {
+  "tmdbId": 286217,
+  "tmdb": "/51CqiKVStZ2YPx64iPs3LDDiQnt.jpg"
+ },
+ "the-mask-1994": {
+  "tmdbId": 854,
+  "tmdb": "/5OBK9sksRSyrwrcMtxpdxql75Sw.jpg"
+ },
+ "the-matrix-1999": {
+  "tmdbId": 603,
+  "tmdb": "/pEoqbqtLc4CcwDUDqxmEDSWpWTZ.jpg"
+ },
+ "the-mitchells-vs-the-machines-2021": {
+  "tmdbId": 501929,
+  "tmdb": "/pUT8Rn3wTBhTX5KWSHe6ozVx2LI.jpg"
+ },
+ "the-nightmare-before-christmas-1993": {
+  "tmdbId": 9479,
+  "tmdb": "/41hibKUdlEo6Qy8BZmc5GOenB8y.jpg"
+ },
+ "the-others-2001": {
+  "tmdbId": 1933,
+  "tmdb": "/avGVh36bjnw88tDFV41N6Hodybl.jpg"
+ },
+ "the-pianist-2002": {
+  "tmdbId": 423,
+  "tmdb": "/vI05JxU356MciaQeYHjXlqfjQe0.jpg"
+ },
+ "the-piano-1993": {
+  "tmdbId": 713,
+  "tmdb": "/yn8A0RmrrFc4oLCeXnyPSM9ysBb.jpg"
+ },
+ "the-power-of-the-dog-2021": {
+  "tmdbId": 600583,
+  "tmdb": "/uJauPbe1UWaAfJB7UBOM2jDBEAT.jpg"
+ },
+ "the-prestige-2006": {
+  "tmdbId": 1124,
+  "tmdb": "/37Fr7lY4QBHsuxlLJIfTNxW6nGW.jpg"
+ },
+ "the-revenant-2015": {
+  "tmdbId": 281957,
+  "tmdb": "/AsDto68FNWNXD15Ov0yMXASJiSB.jpg"
+ },
+ "the-shape-of-water-2017": {
+  "tmdbId": 399055,
+  "tmdb": "/c8lQpZWiRgv671BPu9bgzuFkveC.jpg"
+ },
+ "the-shawshank-redemption-1994": {
+  "tmdbId": 278,
+  "tmdb": "/t30GjttOdb5At1sYy8b3TOwFgWV.jpg"
+ },
+ "the-silence-of-the-lambs-1991": {
+  "tmdbId": 274,
+  "tmdb": "/sSQDxwm4r28YpJSQVyVOtpYVs0E.jpg"
+ },
+ "the-simpsons-movie-2007": {
+  "tmdbId": 35,
+  "tmdb": "/8RAHFsRCE4Jwa1jD00tWFCvrsIa.jpg"
+ },
+ "the-sixth-sense-1999": {
+  "tmdbId": 745,
+  "tmdb": "/7s3ekiDpic8NxDjwdLdOYDIX8Pe.jpg"
+ },
+ "the-social-network-2010": {
+  "tmdbId": 37799,
+  "tmdb": "/cvUfwhoAReL4e5eegFCHM73rIda.jpg"
+ },
+ "the-substance-2024": {
+  "tmdbId": 933260,
+  "tmdb": "/5Jfj6LqxOludXg454Vxef8dCJln.jpg"
+ },
+ "the-thin-red-line-1998": {
+  "tmdbId": 8741,
+  "tmdb": "/4WkpNiVw8CixT8BdCVOY5nTLDx1.jpg"
+ },
+ "the-tree-of-life-2011": {
+  "tmdbId": 8967,
+  "tmdb": "/y47kUz3IYdoxKyscG6Bc6EPo59k.jpg"
+ },
+ "the-truman-show-1998": {
+  "tmdbId": 37165,
+  "tmdb": "/cOkoQaOPZBxqxQYlGu2i0o00sLn.jpg"
+ },
+ "the-untouchables-1987": {
+  "tmdbId": 117,
+  "tmdb": "/xrdMy48NrJSJYRplKfuQT0sDfSI.jpg"
+ },
+ "the-usual-suspects-1995": {
+  "tmdbId": 629,
+  "tmdb": "/h06jDZB4Y9YQJiSGTcUwbhuiUrB.jpg"
+ },
+ "the-virgin-suicides-1999": {
+  "tmdbId": 1443,
+  "tmdb": "/yHIAt0xdPis7UwoJuM2AwORsLAM.jpg"
+ },
+ "the-wild-robot-2024": {
+  "tmdbId": 1184918,
+  "tmdb": "/2IUCa73cvvIgZSiJcNtPBf4L5iF.jpg"
+ },
+ "the-wolf-of-wall-street-2013": {
+  "tmdbId": 106646,
+  "tmdb": "/dQIQZbJXn1pflQw3nwvXLJX0dHa.jpg"
+ },
+ "the-zone-of-interest-2023": {
+  "tmdbId": 467244,
+  "tmdb": "/wD2eFNkSLV0ACM9C82qIYfTMFv9.jpg"
+ },
+ "thelma-louise-1991": {
+  "tmdbId": 1541,
+  "tmdb": "/3iBFj4jc0ik32eIG9QG1OKY6T1J.jpg"
+ },
+ "there-will-be-blood-2007": {
+  "tmdbId": 7345,
+  "tmdb": "/fa0RDkAlCec0STeMNAhPaF89q6U.jpg"
+ },
+ "three-billboards-outside-ebbing-missouri-2017": {
+  "tmdbId": 359940,
+  "tmdb": "/dI6EruCntFCEhnSQSrFdCs9UWVY.jpg"
+ },
+ "timbuktu-2014": {
+  "tmdbId": 265228,
+  "tmdb": "/pG5SYVCdN22Cc10nKhW4XFugtpj.jpg"
+ },
+ "titane-2021": {
+  "tmdbId": 630240,
+  "tmdb": "/y93w5MGC9fbXjy1qfN6rUpSbBti.jpg"
+ },
+ "titanic-1997": {
+  "tmdbId": 597,
+  "tmdb": "/vpsvHLkoeKUjceIMeNSqCp3xEyY.jpg"
+ },
+ "todo-sobre-mi-madre-1999": {
+  "tmdbId": 99,
+  "tmdb": "/lgiKLKvrceUfaZUB68z3f86N1gN.jpg"
+ },
+ "tonari-no-totoro-1988": {
+  "tmdbId": 8392,
+  "tmdb": "/eEpy8IiR8N0S6mgkdAjDCMlMYQO.jpg"
+ },
+ "top-gun-1986": {
+  "tmdbId": 744,
+  "tmdb": "/85kNHM0BWHE9All9GYeofwnbnu5.jpg"
+ },
+ "top-gun-maverick-2022": {
+  "tmdbId": 361743,
+  "tmdb": "/uuwi4wwG6HAHVqaEvJDx6gI773N.jpg"
+ },
+ "total-recall-1990": {
+  "tmdbId": 861,
+  "tmdb": "/5hHXAjyM2vSBL5n92eJXdG9j8WR.jpg"
+ },
+ "tout-ce-qui-brille-2010": {
+  "tmdbId": 44269,
+  "tmdb": "/fzhdn6roB62p7AwkbisWxtysZSH.jpg"
+ },
+ "toy-story-1995": {
+  "tmdbId": 862,
+  "tmdb": "/4cWLRhub0yY9VJpdw0nqoTPYyiN.jpg"
+ },
+ "toy-story-2-1999": {
+  "tmdbId": 863,
+  "tmdb": "/144DDQdfZxAK5xyPTETmygzGGuH.jpg"
+ },
+ "toy-story-3-2010": {
+  "tmdbId": 10193,
+  "tmdb": "/zycAhl8iwRxu1NQ0tITqA6KXHIM.jpg"
+ },
+ "trainspotting-1996": {
+  "tmdbId": 627,
+  "tmdb": "/wSjSdfnVjD6r8Fnn0K8FXz3JciM.jpg"
+ },
+ "triangle-of-sadness-2022": {
+  "tmdbId": 497828,
+  "tmdb": "/xDwMX7mI7m4t4rLNenuaAeGPmgt.jpg"
+ },
+ "trzy-kolory-czerwony-1994": {
+  "tmdbId": 110,
+  "tmdb": "/eP2uU63jgqrpVLOR9xahKVgAkV0.jpg"
+ },
+ "trzy-kolory-niebieski-1993": {
+  "tmdbId": 108,
+  "tmdb": "/70O1cudvYiEWpKW2Sb1FPAdaqjf.jpg"
+ },
+ "twilight-2008": {
+  "tmdbId": 8966,
+  "tmdb": "/8phJ4i9m1tBDJbOwwQPvdeWhN2h.jpg"
+ },
+ "un-p-tit-truc-en-plus-2024": {
+  "tmdbId": 1152014,
+  "tmdb": "/uIlJ1wOlEt5K3NowJQDG4qscQAC.jpg"
+ },
+ "un-prophete-2009": {
+  "tmdbId": 21575,
+  "tmdb": "/bdLXfqAK17eRszckhph8IcFzxLZ.jpg"
+ },
+ "unforgiven-1992": {
+  "tmdbId": 33,
+  "tmdb": "/v7snHlRPE6cI8IhHH17PkfY0lCi.jpg"
+ },
+ "up-2009": {
+  "tmdbId": 14160,
+  "tmdb": "/k55kMEPkxGej70udPcVNqhTiwBz.jpg"
+ },
+ "v-for-vendetta-2006": {
+  "tmdbId": 752,
+  "tmdb": "/qPiXmLpvgW576Hv8BI41yFIUwsQ.jpg"
+ },
+ "vals-im-bashir-2008": {
+  "tmdbId": 8885,
+  "tmdb": "/zhbhGwkP8IX1iKoPkQVwThMyZ56.jpg"
+ },
+ "verdens-verste-menneske-2021": {
+  "tmdbId": 660120,
+  "tmdb": "/sjI0g47bpsQl8f9qbQe63KFUtpp.jpg"
+ },
+ "wall-e-2008": {
+  "tmdbId": 10681,
+  "tmdb": "/4ImYwxnu4bOitzS9TDLnantF8mn.jpg"
+ },
+ "wallace-gromit-the-curse-of-the-were-rab-2005": {
+  "tmdbId": 533,
+  "tmdb": "/x12w9DwDO1qNLvpx0llASLWj5dS.jpg"
+ },
+ "weapons-2025": {
+  "tmdbId": 1078605,
+  "tmdb": "/3eRJV97oZDY6LORwPNdWlfdPLnd.jpg"
+ },
+ "when-harry-met-sally-1989": {
+  "tmdbId": 639,
+  "tmdb": "/ghvbClWDXje0ksaL6ad2k7IZHCc.jpg"
+ },
+ "whiplash-2014": {
+  "tmdbId": 244786,
+  "tmdb": "/3XriEpTdnplQRzyphAC0cu3emns.jpg"
+ },
+ "who-framed-roger-rabbit-1988": {
+  "tmdbId": 856,
+  "tmdb": "/fJ1wJ9avrGj9VViC94CcRKL8N7w.jpg"
+ },
+ "wicked-2024": {
+  "tmdbId": 402431,
+  "tmdb": "/kQkgPhj6sCuoMWzPKWQVOWUXzib.jpg"
+ },
+ "wild-at-heart-1990": {
+  "tmdbId": 483,
+  "tmdb": "/uvfZtoos9bbSKaLDUnCE2O73kkZ.jpg"
+ },
+ "wo-hu-cang-long-2000": {
+  "tmdbId": 146,
+  "tmdb": "/ldUsOVdypZ5X4CbucXjMgtrTXp.jpg"
+ },
+ "wolfwalkers-2020": {
+  "tmdbId": 441130,
+  "tmdb": "/99nGeJE30eYsg6SwMGkyYK938r2.jpg"
+ },
+ "wonder-woman-2017": {
+  "tmdbId": 297762,
+  "tmdb": "/oomdTdke7dqffdDoDV1fFBV4fJY.jpg"
+ },
+ "wreck-it-ralph-2012": {
+  "tmdbId": 82690,
+  "tmdb": "/37PjzcUat46nItGQ0cHc5rAXzcR.jpg"
+ },
+ "zodiac-2007": {
+  "tmdbId": 1949,
+  "tmdb": "/7srXLwv88f1GGLE9quJBw7ZgxJD.jpg"
+ },
+ "zootopia-2-2025": {
+  "tmdbId": 1084242,
+  "tmdb": "/hBI7Wrps6tDjhEzBxJgoPLhbmT1.jpg"
+ },
+ "zootopia-2016": {
+  "tmdbId": 269149,
+  "tmdb": "/5Fy3e9nRhPYweqnrzFUCHmJ4Grc.jpg"
+ }
+}
