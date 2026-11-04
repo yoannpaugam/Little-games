@@ -96,3 +96,32 @@ for (const [label, file, required] of [
   assert.deepEqual(errors, []);
 });
 
+
+test('catalogue des livres (300 livres, auteurs reliés)', async () => {
+  const { authors, books } = await load('games/books/data/livres.json');
+  assert.ok(Array.isArray(authors) && Array.isArray(books));
+  assert.equal(books.length, 300);
+  const errors = [
+    ...checkEntries(authors, {
+      id: [true, (v) => SLUG.test(v)],
+      name: [true, text],
+      alt: [false, textList],
+      from: [true, (v) => text(v) && v === v.toLowerCase()], // accordé avec « littérature » : française, russe…
+    }, 'authors'),
+    ...checkEntries(books, {
+      id: [true, (v) => SLUG.test(v)],
+      title: [true, text],
+      author: [true, text],
+      year: [true, (v) => Number.isInteger(v) && v >= 1200 && v <= THIS_YEAR],
+    }, 'books'),
+  ];
+  const ids = new Set(authors.map((a) => a.id));
+  const used = new Set(books.map((b) => b.author));
+  books.forEach((b) => { if (!ids.has(b.author)) errors.push(`books ${b.id} : auteur inconnu ${b.author}`); });
+  authors.forEach((a) => { if (!used.has(a.id)) errors.push(`authors ${a.id} : aucun livre`); });
+  const names = new Set();
+  authors.forEach((a) => { if (names.has(a.name)) errors.push(`authors ${a.id} : nom en double`); names.add(a.name); });
+  const titles = new Set();
+  books.forEach((b) => { if (titles.has(b.title)) errors.push(`books ${b.id} : titre en double`); titles.add(b.title); });
+  assert.deepEqual(errors, []);
+});

@@ -7,6 +7,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | --- | --- | --- |
 | 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
 | 👤 Visages (portraits, enfance, Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
+| 📚 Livres | `games/books/` | ✅ jouable |
 
 ---
 
@@ -59,6 +60,10 @@ Les images sont alors stockées dans le dépôt.
 Autres options : `--lang en-US` (affiches originales), `--force` (tout refaire), `--only id1,id2`, `--size 400x600`.
 
 Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, recadrage léger via CSS).
+
+## 📚 Livres
+
+Une couverture s'affiche (titre français et année), il faut retrouver l'auteur en 3 essais. Après le premier raté, la couverture donne la littérature de l'auteur, après le deuxième ses initiales. Le nom de famille seul suffit. Les couvertures sont dessinées en CSS : aucune image n'est chargée. Le catalogue (`games/books/data/livres.json`) est vérifié par `tests/catalogs.test.js`.
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -124,6 +129,12 @@ games/faces/             Le jeu « Visages », autonome
        ├─ styles.css     Styles (préfixe .mx-)
        ├─ data/          people.json (Morceaux), jeunesse.json (jeunesse)
        └─ SPEC.md        Spécification des deux modes
+games/books/             Le jeu « Livres » (retrouver l'auteur), autonome
+  ├─ index.js            Logique et vues (jeu, bibliothèque, réglages)
+  ├─ answers.js          Réponses acceptées : nom de famille seul, particules, fautes (testé)
+  ├─ styles.css          Styles du jeu (préfixe .lv-), couvertures dessinées en CSS
+  ├─ data/livres.json    Les 300 livres (titre français, année) et leurs 246 auteurs
+  └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)
 scripts/celeb-seed.json         Liste seed Commons pour le builder

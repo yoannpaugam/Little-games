@@ -1,0 +1,228 @@
+/* Jeu « Livres ». Toutes les classes sont préfixées .lv- */
+
+.lv { max-width: 1100px; margin: 0 auto; padding: 0 1rem 1rem; }
+.lv .icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Barre du haut ---------- */
+.lv-bar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: .5rem;
+  padding: .6rem 0;
+  background: linear-gradient(var(--bg) 70%, transparent);
+}
+.lv-title { flex: 1; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lv-score { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: .25rem; white-space: nowrap; }
+.lv-score strong { color: var(--accent); }
+.lv-icon-btn {
+  display: grid; place-items: center; width: 42px; height: 42px; flex: none;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.lv-icon-btn:hover, .lv-icon-btn:focus-visible { border-color: var(--accent); background: var(--bg-3); outline: none; }
+
+/* ---------- Boutons ---------- */
+.lv-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-height: 46px; padding: 0 1.1rem;
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-weight: 600; white-space: nowrap;
+  transition: background .15s, border-color .15s, transform .1s;
+}
+.lv-btn:hover, .lv-btn:focus-visible { border-color: var(--accent); outline: none; }
+.lv-btn:active { transform: scale(.97); }
+.lv-btn:disabled { opacity: .6; cursor: default; }
+.lv-btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.lv-btn-primary:hover, .lv-btn-primary:focus-visible { background: #f3c467; box-shadow: 0 0 0 3px #e8b04a44; }
+.lv-btn-ghost { background: transparent; color: var(--muted); }
+.lv-btn-ghost:hover { color: var(--text); }
+.lv-btn-danger { border-color: #ff6b6b66; color: var(--err); background: transparent; }
+.lv-btn-danger:hover { border-color: var(--err); }
+.lv-wide { width: 100%; }
+.lv-link { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Vue jeu ---------- */
+.lv-stage { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+.lv-meta { display: flex; align-items: center; justify-content: center; gap: .8rem; min-height: 2.2rem; }
+.lv-counter { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+
+/* Écran de jeu : occupe exactement la hauteur visible, l'affiche prend tout l'espace restant */
+.lv.is-play {
+  display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh;
+  padding-bottom: max(.75rem, env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+.lv.is-play .lv-bar { position: static; flex: none; }
+.lv.is-play .lv-stage { flex: 1; min-height: 0; }
+.lv-stage > * { flex: none; }
+.lv-cover-row { position: relative; flex: 1 1 auto !important; min-height: 0; display: flex; align-items: center; gap: .75rem; width: 100%; justify-content: center; }
+.lv-cover-box { flex: 1; min-width: 0; height: 100%; container-type: size; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+/* Ronds des essais : ils tiennent dans la marge laissée sous l'affiche, qui ne change donc pas de taille */
+.lv-tries { display: flex; align-items: center; gap: 5px; height: 8px; flex: none; }
+.lv-tries[hidden] { display: none; }
+.lv-try { width: 8px; height: 8px; border-radius: 50%; background: #ffffff1f; transition: background .25s, transform .25s; }
+.lv-try.is-step { margin-left: 5px; }
+.lv-try.is-used { background: var(--err); transform: scale(1.1); }
+.lv-stage.is-given .lv-cover { box-shadow: 0 20px 60px -20px #000, 0 0 0 2px var(--muted); }
+.lv-bravo.is-given { color: var(--muted); }
+/* Affiche volontairement plus petite que l'espace disponible, pour laisser respirer l'écran */
+.lv-cover-box .lv-cover { flex: none; width: min(72cqw, 100cqh * 0.86 * 2 / 3, 300px); }
+.lv-nav {
+  display: grid; place-items: center; width: 48px; height: 48px; flex: none;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; color: var(--muted);
+  transition: color .15s, border-color .15s;
+}
+.lv-nav:hover, .lv-nav:focus-visible { color: var(--text); border-color: var(--accent); outline: none; }
+
+.lv-form, .lv-solved { width: min(460px, 100%); }
+.lv-input-row { display: flex; gap: .5rem; }
+.lv-input {
+  flex: 1; min-width: 0; min-height: 50px; padding: 0 1.1rem;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px;
+  font-size: 1.05rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+.lv-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px #e8b04a33; }
+.lv-form .lv-btn { min-height: 50px; }
+.lv-feedback { min-height: 1.3em; margin: .4rem 0 0; text-align: center; font-weight: 600; }
+.lv-feedback.is-error { color: var(--err); }
+.lv-feedback.is-near { color: #ffb36b; }
+.shake { animation: lv-shake .4s; }
+@keyframes lv-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.lv-solved { display: flex; align-items: center; gap: .8rem; min-height: calc(50px + 1.7em); animation: lv-pop .5s ease; }
+.lv-reveal { flex: 1; min-width: 0; text-align: left; }
+.lv-bravo { display: inline-flex; align-items: center; gap: .3rem; margin: 0; color: var(--ok); font-weight: 700; }
+.lv-author-name { margin: .1rem 0 0; font-size: 1.3rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lv-details { margin: .15rem 0 0; color: var(--muted); font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lv-details .lv-link { padding: .6rem 0; }
+.lv-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
+.lv :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lv-input::placeholder { color: var(--muted); }
+.lv-stage.is-solved .lv-cover { box-shadow: 0 20px 60px -20px #000, 0 0 0 2px var(--ok); }
+@keyframes lv-pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.lv-skip { display: flex; gap: .5rem; }
+
+/* ---------- Réglages ---------- */
+.lv-settings { max-width: 560px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.lv-settings .lv-input-row { flex-wrap: wrap; }
+.lv-settings .lv-input-row .lv-input { min-width: 12rem; }
+.lv-settings fieldset { min-width: 0; margin: 0; padding: 1.1rem 1.2rem 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); display: grid; grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+.lv-settings legend { padding: 0 .4rem; font-weight: 700; color: var(--accent); }
+.lv-option { display: flex; gap: .7rem; align-items: flex-start; padding: .5rem .6rem; border-radius: 10px; cursor: pointer; }
+.lv-option:hover { background: var(--bg-3); }
+.lv-option input { accent-color: var(--accent); margin-top: .25rem; width: 1.1rem; height: 1.1rem; }
+.lv-option span { display: grid; gap: .1rem; }
+.lv-option small, .lv-hint { color: var(--muted); font-size: .88rem; line-height: 1.45; margin: 0; }
+.lv-settings .lv-btn-ghost, .lv-settings .lv-btn-danger { justify-self: start; }
+
+
+@media (max-width: 560px) {
+  .lv-bar { padding: .45rem 0; }
+  .lv-icon-btn { width: 38px; height: 38px; }
+  /* Flèches posées sur les bords de l'affiche ; la rangée Précédent/Passer devient inutile */
+  .lv-nav { position: absolute; top: 50%; z-index: 2; width: 40px; height: 40px; transform: translateY(-50%);
+    background: #0d0c0fb3; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text); }
+  .lv-nav:first-child { left: .25rem; }
+  .lv-nav:last-child { right: .25rem; }
+  .lv-skip { display: none; }
+  .lv-input, .lv-form .lv-btn { min-height: 46px; }
+  .lv-score { display: none; }
+  .lv-title { font-size: 1.3rem; }
+  .lv { padding-left: .75rem; padding-right: .75rem; }
+  .lv-stage { gap: .5rem; }
+  .lv-author-name { font-size: 1.2rem; }
+  .lv-solved .lv-btn { min-height: 42px; }
+  .lv-card-name { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lv *, .lv *::before { transition: none !important; animation: none !important; }
+}
+
+/* Écrans très bas (téléphone en paysage) */
+@media (max-height: 520px) {
+  .lv-meta { min-height: 1.6rem; }
+    .lv-skip { display: none; }
+  .lv-bravo { display: none; }
+}
+
+.lv-version { margin: .5rem 0 0; text-align: center; font-size: .8rem; color: var(--muted); }
+
+/* Clavier ouvert sur un écran bas : on masque le compteur pour garder la couverture visible */
+@media (max-height: 460px) and (max-width: 600px) {
+  .lv-stage:has(.lv-input:focus) .lv-meta { display: none; }
+}
+/* Téléphone en paysage : couverture à gauche, commandes à droite (comme Visages) */
+@media (max-height: 520px) and (orientation: landscape) and (min-width: 600px) {
+  .lv.is-play .lv-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); grid-template-rows: 1fr auto auto auto 1fr; column-gap: 1.25rem; align-items: center; }
+  .lv-cover-row { grid-column: 1; grid-row: 1 / -1; height: 100%; }
+  .lv-meta { grid-column: 2; grid-row: 2; }
+  .lv-form, .lv-solved { grid-column: 2; grid-row: 3; }
+  .lv-skip { grid-column: 2; grid-row: 4; }
+  .lv-cover-box .lv-cover { width: min(100cqw, 100cqh * 2 / 3, 300px); }
+}
+
+
+/* ---------- Couverture dessinée (format 2:3, même taille que les affiches) ---------- */
+.lv-cover {
+  position: relative; aspect-ratio: 2 / 3; width: 100%;
+  container-type: inline-size;
+  border-radius: 4px 10px 10px 4px;
+  background:
+    linear-gradient(90deg, #0000004d 0, #00000000 4%, #ffffff14 5%, #00000000 7%),
+    radial-gradient(120% 90% at 30% 20%, #ffffff1a, #0000 60%),
+    var(--lv-bg);
+  color: var(--lv-ink);
+  box-shadow: 0 20px 50px -20px #000, 0 0 0 1px #ffffff10;
+  overflow: hidden;
+}
+.lv-cover-frame {
+  position: absolute; inset: 6cqw 6cqw 6cqw 9cqw;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4cqw;
+  border: .6cqw solid var(--lv-ink); outline: .3cqw solid var(--lv-ink); outline-offset: -2.2cqw;
+  padding: 6cqw 5cqw; text-align: center;
+}
+.lv-cover-title {
+  margin: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 700;
+  font-size: var(--lv-fs, 12cqw); line-height: 1.12; letter-spacing: .01em;
+  overflow-wrap: break-word; text-wrap: balance;
+}
+.lv-cover-orn { font-family: Georgia, serif; font-size: 9cqw; line-height: 1; opacity: .85; }
+.lv-cover-year { margin: 0; font-family: var(--font-display); font-size: 8cqw; letter-spacing: .12em; line-height: 1; }
+.lv-cover-author {
+  margin: 0; min-height: 2.4em; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1cqw;
+  font-family: Georgia, serif; font-size: 6.2cqw; line-height: 1.2; text-transform: uppercase; letter-spacing: .1em;
+}
+.lv-cover-author.is-unknown { opacity: .55; }
+.lv-cover-author.is-hint span { font-size: 5cqw; text-transform: none; letter-spacing: .02em; font-style: italic; }
+.lv-cover-author.is-hint strong { font-size: 7cqw; letter-spacing: .15em; }
+.lv-cover-author.is-name { animation: lv-pop .5s ease; }
+.lv-stage.is-solved .lv-cover { box-shadow: 0 20px 60px -20px #000, 0 0 0 2px var(--ok); }
+.lv-stage.is-given .lv-cover { box-shadow: 0 20px 60px -20px #000, 0 0 0 2px var(--muted); }
+.lv-question { color: var(--accent); font-weight: 600; font-size: .95rem; }
+
+/* ---------- Ronds des essais ---------- */
+.lv-tries { display: flex; align-items: center; gap: 8px; height: 10px; flex: none; }
+.lv-tries[hidden] { display: none; }
+.lv-try { width: 10px; height: 10px; border-radius: 50%; background: #ffffff1f; transition: background .25s, transform .25s; }
+.lv-try.is-used { background: var(--err); transform: scale(1.1); }
+.lv-bravo.is-given { color: var(--muted); }
+
+/* ---------- Bibliothèque ---------- */
+.lv-grid-head { margin: .25rem 0 1rem; color: var(--muted); }
+.lv-grid-head p { margin: 0; }
+.lv-grid-head strong { color: var(--accent); }
+.lv-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.4rem, 1.5vw, 1.1rem); }
+.lv-card { display: flex; flex-direction: column; gap: .3rem; padding: 0; background: none; border: 0; cursor: pointer; min-width: 0; text-align: left; scroll-margin: 120px; }
+.lv-card .lv-cover { border-radius: 2px 6px 6px 2px; transition: transform .15s, box-shadow .15s; }
+.lv-card:hover .lv-cover, .lv-card:focus-visible .lv-cover { transform: translateY(-3px); box-shadow: 0 0 0 2px var(--accent); }
+.lv-card:focus-visible { outline: none; }
+.lv-card.is-found .lv-cover { box-shadow: 0 0 0 1px #5fd08a88; }
+.lv-card.is-given .lv-cover { opacity: .8; }
+.lv-card.is-current .lv-cover { box-shadow: 0 0 0 2px var(--accent), 0 0 24px #e8b04a55; }
+.lv-card-name { font-size: clamp(.65rem, 1.6vw, .85rem); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
