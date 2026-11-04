@@ -9,12 +9,13 @@ On montre au joueur une **bande** du visage d’une célébrité (yeux, nez ou b
 - `data/people.json` : liste de célébrités avec photo Commons et régions de découpe.
 - Champs obligatoires : `id` (slug), `name`, `img` (URL `upload.wikimedia.org` à largeur 1200), `by` (auteur), `lic` (licence courte), `box` (régions `yeux`, `nez`, `bouche`, `complet` en `[x, y, w, h]` normalisés 0–1 ; `haut` / `bas` éventuels sont ignorés par le jeu).
 - Champ optionnel : `alt` (autres réponses acceptées).
-- Les photos ne sont **pas** dans le dépôt. Le script `scripts/celeb-quiz-builder.py` (MediaPipe) calcule les boîtes une fois et écrit le JSON.
+- Les photos ne sont **pas** dans le dépôt. Le script `scripts/celeb-quiz-builder.py` (MediaPipe) calcule les boîtes une fois et écrit le JSON. Il écarte les visages trop petits, trop tournés et, depuis la 1.15.0, les **têtes trop penchées** (plus de 15° entre les coins des yeux, option `--max-roll`).
+- **Têtes penchées** : le jeu estime aussi l'inclinaison de chaque photo du catalogue à partir des boîtes (décalage horizontal entre le centre des yeux et celui de la bouche). Au-delà de 15°, la personne n'est pas proposée (15 sur 300 aujourd'hui). La page debug affiche l'angle estimé et les personnes écartées.
 
 ## Écran de jeu
 - De haut en bas : compteur et partie visible, cadre, ronds d'essais, ligne **‹ · Voir plus · ›**, champ « Qui est-ce ? » avec **Valider** (Entrée valide aussi).
 - **Bande** (yeux, nez ou bouche) : sur **toute la largeur de l'écran** (520 px au plus), sans dépasser la hauteur disponible. Elle montre toute la largeur du visage, et la hauteur de la zone détectée.
-- **Complet** : cadre **2:3** toujours de la même taille pour toutes les personnes (comme les affiches), visage recadré en *cover*.
+- **Complet** : cadre **2:3** toujours de la même taille pour toutes les personnes (comme les affiches). C'est un **plan rapproché** : la boîte `complet` (le visage et ses marges) remplit le cadre dans un sens, en général la hauteur, et le reste est rogné. Le cadre ne sort jamais de la photo.
 - Les flèches sont sous la photo : ‹ revient à la personne précédente, › passe à la suivante (il n'y a plus de bouton « Passer » ni « Précédent » séparé).
 - **Essais** : 9 ronds sous le cadre. Tous les 3 essais ratés, on ajoute une bande. Au 9e, la réponse est donnée (« C’était… »), sans compter comme trouvée.
 - Bouton **Voir plus**, entre les flèches : ajoute volontairement une bande. Au dernier palier (trois bandes), devient **Solution**. Il disparaît une fois la personne trouvée.
@@ -37,7 +38,7 @@ Comme Visages : `fuzzy.js`, nom complet, alternatives, nom de famille seul s’i
 ## Réglages
 - **Affichage** :
   - *Bandes seules* (par défaut) : seule la bande est visible, comme décrit plus haut.
-  - *Photo entière floutée* : le cadre 2:3 montre toute la photo dès le début, très floutée et assombrie. Seule la zone visible (les bandes) est nette, à sa place sur le visage. Les bandes ajoutées s'élargissent avec une transition, et la photo devient nette à la résolution.
+  - *Photo entière floutée* : le cadre 2:3 montre dès le début le même plan rapproché que le visage dévoilé, très floutée et assombrie. Seule la zone visible (les bandes) est nette, à sa place sur le visage. Les bandes ajoutées s'élargissent avec une transition, et la photo devient nette à la résolution.
 - Mélanger à nouveau.
 - Effacer la progression (confirmation en deux clics).
 - Lien vers la page **Crédits photo**.

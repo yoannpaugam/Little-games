@@ -272,13 +272,19 @@ def landmarks(img_bgr, landmarker):
     return best, None
 
 
-def check_quality(pts, min_face, max_yaw):
+def check_quality(pts, min_face, max_yaw, max_roll=15.0):
     fw = pts[454, 0] - pts[234, 0]
     if fw < min_face:
         return f"visage trop petit ({int(fw)} px)"
     ratio = (pts[1, 0] - pts[234, 0]) / fw
     if abs(ratio - 0.5) > max_yaw:
         return "visage trop tourné"
+    # Tête penchée (roulis) : angle de la ligne qui joint les coins externes des yeux
+    dx, dy = pts[263, 0] - pts[33, 0], pts[263, 1] - pts[33, 1]
+    roll = abs(np.degrees(np.arctan2(dy, dx)))
+    roll = min(roll, 180 - roll)
+    if roll > max_roll:
+        return f"tête trop penchée ({roll:.0f}°)"
     return None
 
 
@@ -348,7 +354,7 @@ def process_photo(path, landmarker, a):
     pts, err = landmarks(img, landmarker)
     if err:
         return None, err
-    err = check_quality(pts, a.min_face, a.max_yaw)
+    err = check_quality(pts, a.min_face, a.max_yaw, a.max_roll)
     if err:
         return None, err
     h, w = img.shape[:2]
@@ -638,6 +644,8 @@ def main():
     ap.add_argument("--width", type=int, default=IMG_WIDTH)
     ap.add_argument("--min-face", type=int, default=120)
     ap.add_argument("--max-yaw", type=float, default=0.18)
+    ap.add_argument("--max-roll", type=float, default=15.0,
+                    help="inclinaison maximale de la tête, en degrés (défaut : 15)")
     ap.add_argument("--seed", type=Path, default=Path(__file__).resolve().parent / "celeb-seed.json",
                     help="liste name+fichier Commons (défaut : scripts/celeb-seed.json)")
     ap.add_argument("--from-faces", action="store_true",
