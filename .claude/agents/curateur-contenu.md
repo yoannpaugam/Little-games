@@ -25,7 +25,7 @@ Tu es le curateur des contenus de **Little Games**. Commence par lire `CLAUDE.md
 ## Ce que tu peux améliorer
 - Corriger ou ajouter des entrées dans les JSON. **Ne change jamais l'`id` d'une entrée existante** : il sert à retrouver la progression et les photos des joueurs.
 - Ajouter des `alt` utiles et un test dans `tests/` pour chaque cas ambigu corrigé.
-- Tu ne livres jamais d'image dans le dépôt.
+- Pour toute image ajoutée au dépôt, note sa source, son auteur et sa licence (pour la page de crédits).
 
 ## Format du rapport
 ```

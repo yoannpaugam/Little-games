@@ -22,7 +22,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 
 ## 🖼️ Les affiches
 
-Aucune affiche n'est livrée avec le code : elles appartiennent à leurs ayants droit.
+Les affiches viennent de TMDB : `data/posters.json` contient le chemin de chacune, et l'image est chargée depuis TMDB au moment du jeu.
 
 **Par défaut (sans rien configurer)**, le jeu cherche chaque affiche sur Wikipédia, directement depuis le navigateur, puis la garde en mémoire sur l'appareil. Il n'affiche une image que si le titre de l'article Wikipédia correspond au film. Les options ci-dessous (TMDB) donnent des affiches en meilleure qualité et évitent toute recherche.
  Elles proviennent de **[TMDB](https://www.themoviedb.org/)** (The Movie Database), qui les sert gratuitement. Il te faut une **clé API TMDB** gratuite : crée un compte, puis va dans *Paramètres → API*.
@@ -55,7 +55,7 @@ npm install                                         # installe sharp (traitement
 TMDB_API_KEY=ta_cle node scripts/fetch-posters.mjs --download
 ```
 Chaque affiche est téléchargée, puis recadrée au format 2:3 en 600×900 px (on garde le haut de l'affiche) dans `games/movie-posters/posters/`.
-⚠️ Les images sont alors stockées dans ton dépôt : si le dépôt est public, tu redistribues des œuvres protégées. Garde plutôt l'option B pour un dépôt public.
+Les images sont alors stockées dans le dépôt.
 
 Autres options : `--lang en-US` (affiches originales), `--force` (tout refaire), `--only id1,id2`, `--size 400x600`.
 
@@ -63,7 +63,7 @@ Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, reca
 
 ## 👤 Les photos de Visages
 
-Aucune photo n'est livrée avec le code. Chaque joueur importe ses photos dans le jeu, depuis l'icône 🖼️ **Photos**. Elles restent enregistrées dans le navigateur de son appareil (IndexedDB).
+Chaque joueur importe ses photos dans le jeu, depuis l'icône 🖼️ **Photos**. Elles sont enregistrées dans le navigateur de son appareil (IndexedDB).
 
 - Le plus rapide : **Photos → Remplir à la suite**. Le jeu affiche une personne à la fois : on cherche une image, on la copie (appui long → « Copier l'image »), on revient et on la colle. Le jeu passe tout seul à la personne suivante.
 - Pour importer des fichiers déjà prêts : nomme chaque fichier avec le nom de la personne : `omar-sy.jpg`, `Céline Dion.png`. Ajoute « enfant » pour une photo d'enfance : `omar-sy-enfant.jpg`. Ensuite, importe-les tous d'un coup : ils sont rangés automatiquement. Le jeu te demande à qui correspondent les fichiers qu'il ne reconnaît pas.
