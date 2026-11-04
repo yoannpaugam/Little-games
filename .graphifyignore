@@ -1,0 +1,5 @@
+# Fichiers exclus du graphe Graphify
+# Bibliothèque tierce minifiée (face-api) : elle noierait le graphe du projet.
+games/faces/vendor/
+games/faces/models/
+graphify-out/
