@@ -1,15 +1,17 @@
 # Graph Report - little-games  (2026-11-04)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 48 files · ~66,372 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 7 file(s) not represented in the graph (top: .css 5, (none) 2)
 
 ## Summary
-- 459 nodes · 848 edges · 24 communities
+- 465 nodes · 876 edges · 24 communities
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.9)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e33bbf11`
+- Built from commit: `4f807fe2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -40,16 +42,16 @@
 - Spécification Livres
 
 ## God Nodes (most connected - your core abstractions)
-1. `h()` - 40 edges
-2. `mount()` - 25 edges
+1. `h()` - 41 edges
+2. `mount()` - 29 edges
 3. `mount()` - 25 edges
 4. `main()` - 23 edges
 5. `mount()` - 18 edges
 6. `icon()` - 16 edges
-7. `isMatch()` - 14 edges
-8. `normalize()` - 14 edges
-9. `renderPlay()` - 14 edges
-10. `renderSettings()` - 13 edges
+7. `renderPlay()` - 15 edges
+8. `isMatch()` - 14 edges
+9. `normalize()` - 14 edges
+10. `checkAuthor()` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `🚀 Mise en ligne sur GitHub Pages` --references--> `main()`  [INFERRED]
@@ -74,7 +76,7 @@ Nodes (61): BLUR, BLUR_STEPS, buildAnswers(), compact(), DEFAULT_SETTINGS, ensur
 
 ### Community 2 - "Livres : réponses acceptées et tolérance aux fautes"
 Cohesion: 0.12
-Nodes (22): buildAuthors(), checkAuthor(), compact(), isParticle(), key(), lastTolerance(), nameParts(), nearestIsOther() (+14 more)
+Nodes (23): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+15 more)
 
 ### Community 4 - "Scripts : affiches TMDB et version"
 Cohesion: 0.06
@@ -98,7 +100,7 @@ Nodes (5): Modes retirés (1.19.0), Navigation (URL), Pistes pour la suite, Prin
 
 ### Community 9 - "Coquille : routeur et liste des jeux"
 Cohesion: 0.23
-Nodes (10): ./books/index.js?v=1.19.0, ./faces/index.js?v=1.19.0, ./movie-posters/index.js?v=1.19.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
+Nodes (10): ./books/index.js?v=1.20.0, ./faces/index.js?v=1.20.0, ./movie-posters/index.js?v=1.20.0, GAMES, APP_VERSION, navigate(), parseHash(), renderHome() (+2 more)
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
@@ -154,34 +156,34 @@ Nodes (3): Ce que tu produis, Contraintes, Format du rapport
 
 ### Community 23 - "Visages : écran Morceaux et jeunesse"
 Cohesion: 0.08
-Nodes (54): ensureStyles(), mount(), closeSub(), openSub(), renderHome(), subCard(), subCountText(), update() (+46 more)
+Nodes (60): ensureStyles(), mount(), closeSub(), openSub(), renderHome(), subCard(), subCountText(), update() (+52 more)
 
 ### Community 24 - "Livres : écran de jeu, bibliothèque et réponses"
 Cohesion: 0.17
-Nodes (23): initialsOf(), byYear(), COVERS, DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder(), cover() (+15 more)
+Nodes (22): byYear(), COVERS, DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder(), cover(), onKey() (+14 more)
 
 ### Community 25 - "Spécification Livres"
 Cohesion: 0.18
 Nodes (10): Bibliothèque, Catalogue, 📚 Livres : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ## Knowledge Gaps
-- **4 isolated node(s):** `./morceaux/index.js?v=1.19.0`, `./books/index.js?v=1.19.0`, `./faces/index.js?v=1.19.0`, `./movie-posters/index.js?v=1.19.0`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 208 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **4 isolated node(s):** `./morceaux/index.js?v=1.20.0`, `./movie-posters/index.js?v=1.20.0`, `./faces/index.js?v=1.20.0`, `./books/index.js?v=1.20.0`
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 209 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `h()` connect `Visages : écran Morceaux et jeunesse` to `Affiches : écran de jeu et grille`, `Sécurité et données (SECURITY.md)`, `Coquille : routeur et liste des jeux`, `Consignes pour Claude (CLAUDE.md)`, `Livres : écran de jeu, bibliothèque et réponses`?**
-  _High betweenness centrality (0.271) - this node is a cross-community bridge._
+  _High betweenness centrality (0.273) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.19.0`, `./books/index.js?v=1.19.0`, `./faces/index.js?v=1.19.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.20.0`, `./movie-posters/index.js?v=1.20.0`, `./faces/index.js?v=1.20.0` to the rest of the system?**
   _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.068997668997669 - nodes in this community are weakly interconnected._
-- **Why does `main()` connect `Consignes pour Claude (CLAUDE.md)` to `README`, `Sécurité et données (SECURITY.md)`?**
+- **Why does `Sécurité et données (détails dans `SECURITY.md`)` connect `Consignes pour Claude (CLAUDE.md)` to `Visages : écran Morceaux et jeunesse`?**
   _High betweenness centrality (0.192) - this node is a cross-community bridge._
 - **Are the 5 inferred relationships involving `main()` (e.g. with `Agents` and `Little Games : consignes pour Claude`) actually correct?**
   _`main()` has 5 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Livres : réponses acceptées et tolérance aux fautes` be split into smaller, more focused modules?**
-  _Cohesion score 0.12299465240641712 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12100840336134454 - nodes in this community are weakly interconnected._

@@ -13,6 +13,9 @@ On montre au joueur une **bande** du visage d’une célébrité (yeux, nez ou b
 - Champ optionnel : `alt` (autres réponses acceptées).
 - Les photos ne sont **pas** dans le dépôt. Le script `scripts/celeb-quiz-builder.py` (MediaPipe) calcule les boîtes une fois et écrit le JSON. Il écarte les visages trop petits, trop tournés et, depuis la 1.15.0, les **têtes trop penchées** (plus de 15° entre les coins des yeux, option `--max-roll`).
 - **Têtes penchées** : le jeu estime aussi l'inclinaison de chaque photo du catalogue à partir des boîtes (décalage horizontal entre le centre des yeux et celui de la bouche). Au-delà de 15°, la personne n'est pas proposée (15 sur 300 aujourd'hui). La page debug affiche l'angle estimé et les personnes écartées.
+- **Qualité des photos** : quand une photo est chargée, le jeu mesure sa hauteur utile, c'est-à-dire le nombre de pixels de la photo d'origine qui remplissent le cadre 2:3 du visage. En dessous de **500 px**, la photo paraît floue ou pixelisée une fois agrandie sur un téléphone : elle est écartée du jeu sur cet appareil (stockage `lowres`). Si c'est la photo à l'écran, le jeu passe aussitôt à la suivante, sans l'afficher, sauf si la personne était déjà trouvée. Entre 500 et 800 px, la qualité est « moyenne » ; au-delà, elle est « bonne ».
+- **Réglages → Analyser toutes les photos** (`…/qualite`) : charge et mesure toutes les photos, affiche le bilan (bonnes, moyennes, basse qualité ou indisponibles) et la liste des photos à remplacer, avec un bouton pour la copier (nom, identifiant, taille, URL). « Remettre ces photos dans le jeu » vide la liste. La page debug affiche aussi la qualité de chaque photo.
+- **Remplacer une photo** : on change son fichier Commons dans la liste du script (`scripts/celeb-seed.json`, ou `jeunesse-seed.json`), puis on relance le script.
 
 ## Écran de jeu
 - De haut en bas : compteur et partie visible, cadre, ronds d'essais, ligne **‹ · Voir plus · ›**, champ « Qui est-ce ? » avec **Valider** (Entrée valide aussi).
@@ -49,7 +52,7 @@ Comme Visages : `fuzzy.js`, nom complet, alternatives, nom de famille seul s’i
 Liste des photos du catalogue avec auteur et licence (obligation Commons / CC).
 
 ## Persistance (sur l’appareil)
-`found`, `tries`, `given`, `stage` (palier atteint et séquence par personne), `current`, `seed`, `settings` (`view` : `bandes` ou `entiere`).
+`found`, `tries`, `given`, `stage` (palier atteint et séquence par personne), `current`, `seed`, `settings` (`view` : `bandes` ou `entiere`), `lowres` (photos de basse qualité : id → hauteur utile en px).
 
 ## Portraits de jeunesse
 - Catalogue `data/jeunesse.json`, même format que `people.json`, avec un champ facultatif `year` (année de la photo). Il est vide tant que la liste n'a pas été fournie.
@@ -61,7 +64,7 @@ Liste des photos du catalogue avec auteur et licence (obligation Commons / CC).
 - Stockage séparé : `jeunesse` (mêmes clés que `morceaux`).
 
 ## Navigation (URL)
-`#/visages/morceaux` · `#/visages/morceaux/personne/<id>` · `…/credits` · `…/reglages` · `…/debug` (boîtes de détection), et la même chose sous `#/visages/jeunesse`. Les anciens liens `#/morceaux/…` redirigent vers `#/visages/morceaux/…`.
+`#/visages/morceaux` · `#/visages/morceaux/personne/<id>` · `…/credits` · `…/reglages` · `…/debug` (boîtes de détection) · `…/qualite` (analyse de la qualité), et la même chose sous `#/visages/jeunesse`. Les anciens liens `#/morceaux/…` redirigent vers `#/visages/morceaux/…`.
 
 ## Pistes pour la suite
 Filtres (genre, métier), plus de personnes, mode multijoueur (moins d’indices = plus de points).
