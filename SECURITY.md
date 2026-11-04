@@ -6,7 +6,7 @@ Little Games est un site statique : il n'y a pas de serveur, de compte ni de bas
 
 | Données | Où | Qui y a accès |
 | --- | --- | --- |
-| Catalogues (`games/*/data/*.json`) | Dépôt GitHub, servi par GitHub Pages | Public. Chaque modification passe par une pull request et `tests/catalogs.test.js` |
+| Catalogues (`games/*/data/*.json`) | Dépôt GitHub, servi par GitHub Pages | Public. Chaque modification passe par une pull request et `tests/catalogs.test.js`. Morceaux y ajoute des URL Commons + régions de découpe (pas d’images) |
 | Progression et réglages | `localStorage` de l'appareil (préfixe `little-games:<jeu>:`) | Le joueur, sur cet appareil seulement |
 | Photos de Visages | IndexedDB de l'appareil (`little-games-visages`) | Le joueur, sur cet appareil |
 | Clé TMDB (facultative) | `localStorage` de l'appareil | Le joueur qui l'a saisie |
