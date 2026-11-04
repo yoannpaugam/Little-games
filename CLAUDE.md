@@ -10,7 +10,7 @@ js/core/                   Briques partagées, sans dépendance : fuzzy.js, stor
 games/registry.js          Jeux affichés dans l'accueil (chargés à l'ouverture)
 games/<dossier>/           Un dossier autonome par jeu : index.js, styles.css, data/, SPEC.md
 tests/                     node --test (npm test)
-scripts/                   set-version.mjs, fetch-posters.mjs
+scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builder.py
 .claude/agents/            Agents spécialisés (voir plus bas)
 ```
 
@@ -18,6 +18,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs
 | --- | --- | --- | --- | --- | --- |
 | 🎬 Affiches de cinéma | `affiches` | `games/movie-posters/` | `.mp-` | `affiches`, `affiches-posters` | — |
 | 👤 Visages | `visages` | `games/faces/` | `.vz-` | `visages` | `little-games-visages` |
+| 🧩 Morceaux | `morceaux` | `games/face-parts/` | `.mx-` | `morceaux` | — |
 
 ## Carte du code (Graphify)
 - **Avant d'explorer le code, lire `graphify-out/GRAPH_REPORT.md`** : modules, fonctions centrales, liens entre fichiers. `graphify-out/graph.html` montre le graphe interactif.

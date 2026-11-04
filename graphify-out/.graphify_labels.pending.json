@@ -8,10 +8,10 @@
   "6": "faces/index.js",
   "7": "package.json",
   "8": "👤 Visages : spécification",
-  "9": "app.js",
+  "9": "h",
   "10": "🎬 Affiches de cinéma : spécification",
   "11": "🎲 Little Games",
-  "12": "Little Games : consignes pour Claude",
+  "12": "celeb-quiz-builder.py",
   "13": "🔒 Sécurité et données",
   "14": "ux-ui-mobile.md",
   "15": "architecte-front.md",
@@ -22,5 +22,5 @@
   "20": "qa-testeur.md",
   "21": "coordinateur-release.md",
   "22": "multijoueur.md",
-  "23": "movie-answers.test.js"
+  "23": "Morceaux : spécification"
 }

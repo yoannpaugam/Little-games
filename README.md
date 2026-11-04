@@ -7,7 +7,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | --- | --- | --- |
 | 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
 | 👤 Visages (portraits et photos d'enfance) | `games/faces/` | ✅ jouable |
-| Devinettes, quiz… | — | à venir |
+| 🧩 Morceaux | `games/face-parts/` | ✅ jouable |
 
 ---
 
@@ -61,6 +61,20 @@ Autres options : `--lang en-US` (affiches originales), `--force` (tout refaire),
 
 Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, recadrage léger via CSS).
 
+## 🧩 Morceaux
+
+Deviner une célébrité à partir d’une bande du visage (yeux, nez ou bouche), qui s’élargit au fil des essais.
+
+Les photos viennent de **Wikimedia Commons** : `games/face-parts/data/people.json` contient l’URL et les régions de découpe `[x,y,w,h]` (aucune image dans le dépôt). Pour régénérer le catalogue :
+
+```bash
+pip install requests mediapipe opencv-python-headless numpy
+npm run morceaux:build          # liste seed scripts/celeb-seed.json
+npm run morceaux:wikidata       # alternative : SPARQL Wikidata (peut timeout)
+```
+
+Le script écrit seulement le JSON ; le cache images reste dans `scripts/.celeb-cache/` (gitignoré).
+
 ## 👤 Les photos de Visages
 
 Chaque joueur importe ses photos dans le jeu, depuis l'icône 🖼️ **Photos**. Elles sont enregistrées dans le navigateur de son appareil (IndexedDB).
@@ -96,7 +110,15 @@ games/faces/             Le jeu « Visages », autonome
   ├─ data/celebs.json    Les 300 célébrités (nom, profession, sexe, année de naissance, alternatives)
   ├─ vendor/, models/    face-api et ses modèles
   └─ SPEC.md             Spécification fonctionnelle du jeu
-scripts/fetch-posters.mjs   Récupération des affiches (Node 18+)
+games/face-parts/        Le jeu « Morceaux », autonome
+  ├─ index.js            Logique et vues (jeu, crédits, réglages)
+  ├─ answers.js          Réponses acceptées (testé)
+  ├─ styles.css          Styles du jeu (préfixe .mx-)
+  ├─ data/people.json    Célébrités : URL Commons + boîtes de découpe
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
+scripts/celeb-quiz-builder.py   Régions de visage pour Morceaux (MediaPipe)
+scripts/celeb-seed.json         Liste seed Commons pour le builder
 tests/                   Tests : tolérance aux fautes, catalogues, stockage (npm test)
 CLAUDE.md                Consignes pour Claude (architecture, coordination, livraison)
 SECURITY.md              Données, protections en place et règles de sécurité
@@ -107,7 +129,7 @@ SECURITY.md              Données, protections en place et règles de sécurité
 **Contrat d'un jeu** : `games/<id>/index.js` exporte `mount(container, ctx)` et renvoie `{ update(path), destroy() }`.
 `ctx` fournit `path` (le sous-chemin de l'URL), `navigate(...path)` et `home()`.
 Un jeu n'utilise que `js/core/`. Pour le transposer dans une autre application, copie son dossier et `js/core/` :
-- `data/films.json`, `data/celebs.json` et les `SPEC.md` peuvent être repris tels quels dans n'importe quelle technologie (React Native, Flutter, Swift…) ;
+- `data/films.json`, `data/celebs.json`, `data/people.json` et les `SPEC.md` peuvent être repris tels quels dans n'importe quelle technologie (React Native, Flutter, Swift…) ;
 - `fuzzy.js` est du JavaScript pur, testé, que l'on peut porter facilement.
 
 ### Ajouter un jeu
