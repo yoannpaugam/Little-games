@@ -8,7 +8,7 @@ Little Games est un site statique : il n'y a pas de serveur, de compte ni de bas
 | --- | --- | --- |
 | Catalogues (`games/*/data/*.json`) | Dépôt GitHub, servi par GitHub Pages | Public. Chaque modification passe par une pull request et `tests/catalogs.test.js` |
 | Progression et réglages | `localStorage` de l'appareil (préfixe `little-games:<jeu>:`) | Le joueur, sur cet appareil seulement |
-| Photos de Visages | IndexedDB de l'appareil (`little-games-visages`) | Le joueur, sur cet appareil seulement. Elles ne sont jamais envoyées ailleurs |
+| Photos de Visages | IndexedDB de l'appareil (`little-games-visages`) | Le joueur, sur cet appareil |
 | Clé TMDB (facultative) | `localStorage` de l'appareil | Le joueur qui l'a saisie |
 
 Requêtes vers des tiers : polices (Google Fonts), affiches (TMDB, Wikipédia, Wikimedia). Aucune donnée personnelle n'y est envoyée.
@@ -31,7 +31,6 @@ Requêtes vers des tiers : polices (Google Fonts), affiches (TMDB, Wikipédia, W
 - **Clé publique et règles d'accès** : seule la clé publique (*anon*) peut aller dans le code. Chaque table a la *Row Level Security* activée, avec des règles qui n'autorisent que le strict nécessaire, par exemple un joueur n'écrit que ses propres réponses dans sa partie.
 - **Clé secrète** : la clé `service_role` n'apparaît jamais dans le dépôt, dans le navigateur ni dans une conversation. Elle ne sert que dans une fonction côté serveur, si besoin.
 - **Données minimales** : un pseudo choisi, un code de partie, les réponses et les scores. Pas d'adresse e-mail obligatoire (on utilise la connexion anonyme), et les parties sont effacées automatiquement après 24 h.
-- **Photos** : les photos de Visages ne sont jamais envoyées sur un service partagé (droit à l'image et droits d'auteur).
 - **Hébergement en Europe** (RGPD) et ajout du domaine du service à la CSP (`connect-src`).
 - **Mode de secours** : l'application reste jouable seule si le service est indisponible ou en pause.
 
