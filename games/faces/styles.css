@@ -315,3 +315,11 @@
 .vz-row-trash:hover { color: var(--err); background: #ff6b6b14; }
 .vz-row-trash .icon { width: 1.2em; height: 1.2em; }
 .vz-link { background: none; border: 0; padding: .4rem 0; color: var(--accent); font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
+
+/* Crédits photo */
+.vz-credits { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.vz-credits li { padding: .6rem .8rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; }
+.vz-credits small { color: var(--muted); }
+.vz-help .vz-btn-sm { margin-top: .5rem; }
+.vz-option span { display: grid; gap: .1rem; }
+.vz-option small { color: var(--muted); font-size: .85rem; }

@@ -19,6 +19,7 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - **Toucher la carte** d'une personne sans photo colle directement l'image copiée (appui long sur une photo → « Copier l'image »). Le navigateur ne doit pas refuser l'accès au presse-papiers ; s'il le refuse, une petite fenêtre propose de coller par appui long, ou de choisir un fichier. Sur ordinateur, Ctrl+V colle pour la dernière carte touchée. Toucher la carte d'une personne qui a déjà une photo ouvre l'aperçu.
 - Chaque ligne a un lien **Images** (recherche d'images, avec « enfant » dans l'onglet Enfance) et une **poubelle** qui retire la célébrité du jeu, sans confirmation mais avec « Annuler ». Les célébrités retirées ne sont plus proposées. On les retrouve avec le filtre « Retirées », où l'icône les remet dans le jeu. La liste se copie depuis les Réglages, pour les retirer ensuite du catalogue.
 - Les images sont réduites à 1100 px au plus. Une miniature est générée.
+- **Crédits** : si l'on importe, avec les photos, le `manifest.json` ou l'`index.csv` qui les accompagne (export d'un outil tiers, photos sous licence libre), l'auteur et la licence de chaque photo sont enregistrés. Ils s'affichent dans l'aperçu et sur la page **Crédits photo** (`#/visages/credits`). Sur ordinateur, « Importer un dossier… » prend tout un dossier d'export : la photo d'origine est préférée à `complet.jpg`, et les découpes partielles sont ignorées.
 - **Remplir à la suite** (le plus rapide) : une seule personne à la fois, la première sans photo par ordre alphabétique.
   - « Chercher une image » ouvre une recherche d'images dans un autre onglet.
   - On copie la photo (appui long → « Copier l'image »), puis on revient et on touche « Coller l'image copiée ». Si le navigateur refuse, on fait un appui long dans le cadre en pointillés → « Coller ». Sur ordinateur, Ctrl+V marche partout.
@@ -38,8 +39,9 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 
 ## Cadre photo
 - Format 2:3 et même taille que les affiches de cinéma, dans les deux modes. La photo est recadrée automatiquement autour du visage :
-  - Portraits : le visage occupe environ 55 % de la largeur, les yeux sont à 42 % de la hauteur.
-  - Enfance : 40 % de la largeur, les yeux à 40 % de la hauteur.
+  - Portraits : découpe serrée en largeur, le visage occupe environ 70 % de la largeur, les yeux sont à 42 % de la hauteur.
+  - Enfance : 50 % de la largeur, les yeux à 40 % de la hauteur.
+  - Le cadrage est recalculé à l'affichage depuis le visage repéré : il s'applique aussi aux photos importées avant.
 
 ## Écran de jeu
 - Tout tient dans l'écran, sans défilement. Sur un téléphone en paysage, la photo est à gauche et les commandes à droite.
@@ -65,6 +67,7 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 
 ## Réglages
 - **Ordre de dévoilement** des 5 parties (↑ ↓). Chaque partie peut être désactivée, mais au moins une doit rester active. Par défaut : yeux, bouche, nez, oreilles, front + cheveux.
+- **Reste du visage** : *fortement flouté* (par défaut : on devine les couleurs et la silhouette, pas les traits) ou *masqué* (seules les parties dévoilées sont visibles).
 - Célébrités : tout le monde, femmes ou hommes.
 - Mélanger à nouveau.
 - Célébrités retirées : leur nombre, « Copier la liste » (noms et identifiants) et « Tout remettre ».
@@ -83,7 +86,7 @@ Deviner une célébrité à partir d'une photo. On choisit d'abord l'un des deux
 - IndexedDB `little-games-visages` : photo, miniature, zones, cadrage, et si la détection a été automatique ou faite à la main.
 
 ## Navigation (URL)
-`#/visages` (choix du mode) · `#/visages/portraits/<id>` · `#/visages/enfance/<id>` · `#/visages/photos` · `#/visages/remplir` (ou `/remplir/enfance`) · `#/visages/reglages`
+`#/visages` (choix du mode) · `#/visages/portraits/<id>` · `#/visages/enfance/<id>` · `#/visages/photos` · `#/visages/remplir` (ou `/remplir/enfance`) · `#/visages/credits` · `#/visages/reglages`
 
 ## Pistes pour la suite
 - Partager un pack de photos entre appareils
