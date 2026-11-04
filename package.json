@@ -8,7 +8,8 @@
     "start": "npx --yes serve -l 8080 .",
     "posters": "node scripts/fetch-posters.mjs",
     "posters:download": "node scripts/fetch-posters.mjs --download",
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/*.test.js",
+    "graph": "graphify update . && graphify tree --label \"Little Games\""
   },
   "engines": {
     "node": ">=18"

@@ -20,10 +20,19 @@ scripts/                   set-version.mjs, fetch-posters.mjs
 | 👤 Visages | `visages` | `games/faces/` | `.vz-` | `visages` | `little-games-visages` |
 
 ## Carte du code (Graphify)
-- **Avant d'explorer le code, lire `graphify-out/GRAPH_REPORT.md`** : modules, fonctions centrales, liens entre fichiers. `graphify-out/graph.html` montre le graphe interactif.
-- Pour une question précise : `pip install --break-system-packages graphifyy`, puis `graphify query "<question>"`, `graphify explain "<fonction>"` ou `graphify path "A" "B"`.
+- **Avant d'explorer le code, lire `graphify-out/GRAPH_REPORT.md`** : les 24 groupes (« communautés ») portent un nom en français (« Affiches : écran de jeu et grille », « Réponses acceptées et tolérance aux fautes », « Agent qa-testeur »…), avec les fonctions centrales et les liens entre fichiers.
+- Deux vues à ouvrir dans un navigateur, aussi en ligne sur le site :
+  - `graphify-out/graph.html` : le graphe interactif, avec recherche et filtre par groupe ;
+  - `graphify-out/GRAPH_TREE.html` : l'arborescence dossier → fichier → fonction, repliable.
+- Outil : `pip install --break-system-packages graphifyy`. Recettes qui marchent :
+  - `graphify explain "games/movie-posters/index.js::judge()"` : qui appelle une fonction et ce qu'elle appelle. Plusieurs fonctions portent le même nom dans les deux jeux (`mount`, `renderPlay`, `buildAnswers`, `ensureStyles`) : il faut alors préfixer par le fichier ;
+  - `graphify affected "isMatch"` : ce qui est touché si on modifie une fonction de `js/core/` (à faire avant tout changement de comportement) ;
+  - `graphify path "A" "B"` : le chemin d'appel entre deux fonctions ;
+  - `graphify query "buildAnswers judge" --budget 2000` : la recherche se fait par mots-clés, donc avec des **noms de fonctions ou de fichiers**, pas avec une phrase en français.
+- Limites connues : les imports dynamiques (`import('…?v=…')` dans `games/registry.js`, `await import()` dans les tests) ne créent pas de lien, et les fichiers CSS, HTML et JSON ne sont pas dans le graphe. Pour eux, on cherche avec `grep`.
 - `.graphifyignore` exclut la bibliothèque tierce `games/faces/vendor/` et les modèles.
-- Le graphe indique le commit dont il vient (section *Graph Freshness*). **Chaque pull request qui modifie du code le régénère** avec `graphify update .` (local, sans appel à une IA).
+- Le graphe indique le commit dont il vient (section *Graph Freshness*). **Chaque pull request qui modifie du code le régénère avec `npm run graph`** (`graphify update .` puis l'arborescence, en local, sans appel à une IA).
+- `graphify-out/` n'est jamais modifié à la main, **sauf `.graphify_labels.json`**, qui contient les noms des groupes. Si un nouveau groupe apparaît sous un nom automatique (un nom de fonction ou de fichier), on lui donne un nom en français dans ce fichier, puis on lance `graphify cluster-only .`.
 
 ## Contrat d'un jeu
 - `games/<dossier>/index.js` exporte `mount(container, ctx)`. Il renvoie `{ update(path), destroy() }`.
