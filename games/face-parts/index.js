@@ -1,9 +1,9 @@
 // Jeu « Morceaux » : retrouver la célébrité à partir d’une bande du visage.
 // Contrat : export mount(container, ctx) → { update(path), destroy() }
 
-import { h, icon } from '../../js/core/dom.js?v=1.13.1';
-import { createStore } from '../../js/core/storage.js?v=1.13.1';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.13.1';
+import { h, icon } from '../../js/core/dom.js?v=1.14.0';
+import { createStore } from '../../js/core/storage.js?v=1.14.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.14.0';
 
 const store = createStore('morceaux');
 const MAX_TRIES = 9;
@@ -65,6 +65,7 @@ export async function mount(container, ctx) {
   let tries = store.get('tries', {});
   let given = store.get('given', {});
   let stage = store.get('stage', {}); // id → { seq: string[], i: number }
+  let settings = { view: 'bandes', ...store.get('settings', {}) }; // view : 'bandes' | 'entiere'
   let seed = store.get('seed', null) ?? reseed();
   let order = computeOrder();
   let currentId = store.get('current', null);
@@ -131,53 +132,62 @@ export async function mount(container, ctx) {
   }
 
   /**
-   * Cadre de jeu : largeur fixe (comme les affiches).
-   * - bande(s) : même largeur, hauteur = union des zones
-   * - complet : toujours 2:3, même taille pour tout le monde
+   * Cadre de jeu.
+   * - mode « bandes » : bande(s) sur toute la largeur disponible, hauteur = union des zones ;
+   *   à la résolution, cadre 2:3 (même taille pour tout le monde).
+   * - mode « photo entière » (réglage) : cadre 2:3 dès le début, photo très floutée,
+   *   seule la zone visible est nette.
    * Premier affichage sans transition (évite le spoil) ; élargissements animés.
    */
-  function faceFrame(person, boxKey, { revealName = false } = {}) {
+  function faceFrame(person, boxKey, { revealName = false, whole = false } = {}) {
     let currentKey = boxKey;
     const wrap = h('div.mx-frame', {
       'aria-label': revealName ? person.name : 'Visage mystère',
     });
+    wrap.classList.toggle('is-whole', whole);
     const empty = h('div.mx-frame-empty', 'Chargement…');
-    const img = h('img', {
-      src: person.img,
-      alt: revealName ? person.name : 'Visage mystère',
-      decoding: 'async',
-      draggable: false,
-      referrerPolicy: 'no-referrer-when-downgrade',
-    });
+    const imgProps = { src: person.img, decoding: 'async', draggable: false, referrerPolicy: 'no-referrer-when-downgrade' };
+    const img = h('img.mx-sharp', { ...imgProps, alt: revealName ? person.name : 'Visage mystère' });
+    const blur = whole ? h('img.mx-blur', { ...imgProps, alt: '', 'aria-hidden': 'true' }) : null;
+    const imgs = blur ? [blur, img] : [img];
+
+    const place = (el, l, t, w, hh) => {
+      el.style.left = `${l}%`;
+      el.style.top = `${t}%`;
+      el.style.width = `${w}%`;
+      el.style.height = `${hh}%`;
+    };
 
     const applyBox = (key = currentKey, { animate = false } = {}) => {
       currentKey = key;
       wrap.classList.toggle('is-anim', Boolean(animate));
       const full = key === 'complet' || (Array.isArray(key) && key.includes('complet'));
-      const [bx, by, bw, bh] = full ? person.box.complet : displayBox(person, key);
       const nw = img.naturalWidth || 1;
       const nh = img.naturalHeight || 1;
-      wrap.classList.toggle('is-full', full);
-      img.classList.toggle('is-cover', full);
+      const portrait = whole || full;
+      wrap.classList.toggle('is-full', portrait);
 
-      if (full) {
-        // Cadre 2:3 identique pour tous ; cover centré sur le visage
-        wrap.style.removeProperty('--mx-ar');
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.left = '0';
-        img.style.top = '0';
-        img.style.transform = '';
-        img.style.objectPosition = `${(bx + bw / 2) * 100}% ${(by + bh / 2) * 100}%`;
+      if (portrait) {
+        // Cadre 2:3 identique pour tous, photo en « cover » centrée sur le visage
+        wrap.style.setProperty('--mx-ar', String(2 / 3));
+        const [cx, cy] = [person.box.complet[0] + person.box.complet[2] / 2, person.box.complet[1] + person.box.complet[3] / 2];
+        const A = 2 / 3;
+        const R = nw / nh;
+        const W = R > A ? (R / A) * 100 : 100;
+        const H = R > A ? 100 : (A / R) * 100;
+        const L = clamp(50 - cx * W, 100 - W, 0);
+        const T = clamp(50 - cy * H, 100 - H, 0);
+        imgs.forEach((el) => place(el, L, T, W, H));
+        if (whole) {
+          const [bx, by, bw, bh] = full ? [0, 0, 1, 1] : displayBox(person, key);
+          const pct = (v) => `${(Math.max(0, v) * 100).toFixed(3)}%`;
+          img.style.clipPath = `inset(${pct(by)} ${pct(1 - bx - bw)} ${pct(1 - by - bh)} ${pct(bx)} round ${full ? 0 : 6}px)`;
+        }
       } else {
         // Bande pleine largeur du visage, hauteur = union des zones
+        const [bx, by, bw, bh] = displayBox(person, key);
         wrap.style.setProperty('--mx-ar', String((bw * nw) / (bh * nh)));
-        img.style.width = `${100 / bw}%`;
-        img.style.height = 'auto';
-        img.style.left = `${(-bx / bw) * 100}%`;
-        img.style.top = `${(-by / bh) * 100}%`;
-        img.style.transform = '';
-        img.style.objectPosition = '';
+        place(img, (-bx / bw) * 100, (-by / bh) * 100, 100 / bw, 100 / bh);
       }
     };
 
@@ -193,7 +203,7 @@ export async function mount(container, ctx) {
       empty.textContent = 'Image indisponible';
       wrap.classList.add('is-error');
     });
-    wrap.append(empty, img);
+    wrap.append(empty, ...imgs);
     wrap._setBox = (key, opts) => {
       if (img.naturalWidth) applyBox(key, opts);
       else currentKey = key;
@@ -223,7 +233,8 @@ export async function mount(container, ctx) {
       if (p) { const im = new Image(); im.src = p.img; }
     });
 
-    const frame = faceFrame(person, solved ? 'complet' : st.seq[level], { revealName: solved });
+    const whole = settings.view === 'entiere';
+    const frame = faceFrame(person, solved ? 'complet' : st.seq[level], { revealName: solved, whole });
     const feedback = h('p.mx-feedback', { role: 'status', 'aria-live': 'polite' });
     const announce = h('p.mx-sr', { role: 'status', 'aria-live': 'polite' });
     const partLabel = h('span.mx-part', solved ? PART_LABEL.complet : partLabelText(st.seq[level]));
@@ -333,10 +344,7 @@ export async function mount(container, ctx) {
       partLabel.textContent = PART_LABEL.complet;
       stageEl.classList.add(gaveUp ? 'is-given' : 'is-solved');
       form.replaceWith(solvedPanel(gaveUp));
-      actions.replaceChildren(
-        h('button.mx-btn.mx-btn-ghost', { onclick: () => go(-1) }, icon('prev'), 'Précédent'),
-        h('button.mx-btn.mx-btn-ghost', { onclick: () => go(1) }, 'Passer', icon('next'))
-      );
+      hintBtn.hidden = true;
       announce.textContent = `${gaveUp ? '' : 'Bravo ! '}C’était ${person.name}.`;
       bar.replaceWith((bar = topBar('Morceaux')));
     }
@@ -356,25 +364,18 @@ export async function mount(container, ctx) {
       },
     }, level >= st.seq.length - 1 ? 'Solution' : 'Voir plus');
 
-    const actions = h('div.mx-actions',
-      h('button.mx-btn.mx-btn-ghost', { onclick: () => go(-1) }, icon('prev'), 'Précédent'),
+    hintBtn.hidden = solved;
+    const navRow = h('div.mx-navrow',
+      h('button.mx-nav', { type: 'button', 'aria-label': 'Précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
       hintBtn,
-      h('button.mx-btn.mx-btn-ghost', { onclick: () => go(1) }, 'Passer', icon('next'))
+      h('button.mx-nav', { type: 'button', 'aria-label': solved ? 'Suivant' : 'Passer', title: `${solved ? 'Suivant' : 'Passer'} (→)`, onclick: () => go(1) }, icon('next'))
     );
 
     const stageEl = h('section.mx-stage', { class: `mx-stage${isFound ? ' is-solved' : solved ? ' is-given' : ''}` },
       h('div.mx-meta', h('span.mx-counter', `${idx + 1} / ${order.length}`), partLabel),
-      h('div.mx-frame-row',
-        h('button.mx-nav', { 'aria-label': 'Précédent', title: 'Précédent (←)', onclick: () => go(-1) }, icon('prev')),
-        h('div.mx-frame-box', frame, dots),
-        h('button.mx-nav', { 'aria-label': 'Suivant', title: 'Suivant (→)', onclick: () => go(1) }, icon('next'))
-      ),
+      h('div.mx-frame-row', h('div.mx-frame-box', frame, dots)),
+      navRow,
       solved ? solvedPanel() : form,
-      solved
-        ? h('div.mx-actions',
-          h('button.mx-btn.mx-btn-ghost', { onclick: () => go(-1) }, icon('prev'), 'Précédent'),
-          h('button.mx-btn.mx-btn-ghost', { onclick: () => go(1) }, 'Passer', icon('next')))
-        : actions,
       announce
     );
 
@@ -507,6 +508,17 @@ export async function mount(container, ctx) {
     container.replaceChildren(
       topBar('Réglages', { back: () => ctx.navigate('personne', currentId) }),
       h('section.mx-settings',
+        h('fieldset', h('legend', 'Affichage'),
+          h('p.mx-hint', 'Comment montrer la partie visible du visage.'),
+          h('div.mx-choices', { role: 'radiogroup', 'aria-label': 'Affichage' },
+            [['bandes', 'Bandes seules', 'Seule la bande du visage est visible.'],
+              ['entiere', 'Photo entière floutée', 'Toute la photo est très floutée, sauf la zone visible.']]
+              .map(([val, label, desc]) => h('label.mx-choice',
+                h('input', { type: 'radio', name: 'mx-view', value: val, checked: settings.view === val,
+                  onchange: () => { settings = { ...settings, view: val }; store.set('settings', settings); } }),
+                h('span', h('strong', label), h('small', desc))
+              )))
+        ),
         h('fieldset', h('legend', 'Ordre'),
           h('p.mx-hint', 'Les personnes sont proposées dans un ordre aléatoire mémorisé.'),
           h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: (e) => {
@@ -554,6 +566,10 @@ export async function mount(container, ctx) {
 
 function creditLine(p) {
   return [p.by, p.lic].filter(Boolean).join(' · ');
+}
+
+function clamp(v, min, max) {
+  return Math.min(max, Math.max(min, v));
 }
 
 function plural(n, one, many) {
