@@ -1,9 +1,7 @@
 # Graph Report - little-games  (2026-11-05)
 
 ## Corpus Check
-- 50 files · ~77,037 words
-- Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 7 file(s) not represented in the graph (top: .css 5, (none) 2)
+- cluster-only mode — file stats not available
 
 ## Summary
 - 499 nodes · 927 edges · 26 communities
@@ -17,9 +15,9 @@
 
 ## Community Hubs (Navigation)
 - Affiches : écran de jeu et grille
-- steps
+- Workflows GitHub (affiches TMDB, Morceaux historiques)
 - Livres : réponses acceptées et tolérance aux fautes
-- catalogs.test.js
+- Tests des catalogues
 - Scripts : affiches TMDB et version
 - Workflow GitHub « Affiches (TMDB) »
 - Sécurité et données (SECURITY.md)
@@ -53,7 +51,7 @@
 7. `renderPlay()` - 15 edges
 8. `isMatch()` - 14 edges
 9. `normalize()` - 14 edges
-10. `checkAuthor()` - 13 edges
+10. `renderSettings()` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `🚀 Mise en ligne sur GitHub Pages` --references--> `main()`  [INFERRED]
@@ -76,7 +74,7 @@
 Cohesion: 0.07
 Nodes (58): BLUR, BLUR_STEPS, buildAnswers(), DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder(), onKey() (+50 more)
 
-### Community 1 - "steps"
+### Community 1 - "Workflows GitHub (affiches TMDB, Morceaux historiques)"
 Cohesion: 0.08
 Nodes (23): runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, group, jobs, build (+15 more)
 
@@ -84,7 +82,7 @@ Nodes (23): runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, gr
 Cohesion: 0.13
 Nodes (30): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+22 more)
 
-### Community 3 - "catalogs.test.js"
+### Community 3 - "Tests des catalogues"
 Cohesion: 0.14
 Nodes (4): BOX_KEYS, text(), textList(), THIS_YEAR
 
@@ -177,7 +175,7 @@ Cohesion: 0.18
 Nodes (10): Bibliothèque, Catalogue, 📚 Livres : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ## Knowledge Gaps
-- **4 isolated node(s):** `./morceaux/index.js?v=1.22.0`, `./movie-posters/index.js?v=1.22.0`, `./faces/index.js?v=1.22.0`, `./books/index.js?v=1.22.0`
+- **4 isolated node(s):** `./morceaux/index.js?v=1.22.0`, `./books/index.js?v=1.22.0`, `./faces/index.js?v=1.22.0`, `./movie-posters/index.js?v=1.22.0`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 228 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
@@ -187,7 +185,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.252) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.22.0`, `./movie-posters/index.js?v=1.22.0`, `./faces/index.js?v=1.22.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.22.0`, `./books/index.js?v=1.22.0`, `./faces/index.js?v=1.22.0` to the rest of the system?**
   _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.07191961924907457 - nodes in this community are weakly interconnected._
@@ -195,5 +193,5 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.178) - this node is a cross-community bridge._
 - **Are the 5 inferred relationships involving `main()` (e.g. with `Agents` and `Little Games : consignes pour Claude`) actually correct?**
   _`main()` has 5 INFERRED edges - model-reasoned connections that need verification._
-- **Should `steps` be split into smaller, more focused modules?**
+- **Should `Workflows GitHub (affiches TMDB, Morceaux historiques)` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
