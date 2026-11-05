@@ -97,6 +97,26 @@ for (const [label, file, required] of [
 });
 
 
+test('liste des personnages historiques de Morceaux (scripts/historiques-seed.json)', async () => {
+  const seed = await load('scripts/historiques-seed.json');
+  assert.ok(Array.isArray(seed) && seed.length > 0);
+  const errors = checkEntries(seed, {
+    id: [true, (v) => SLUG.test(v)],
+    name: [true, text],
+    job: [true, text],
+    g: [true, (v) => v === 'f' || v === 'm'],
+    alt: [false, textList],
+    search: [false, text],
+    qid: [false, (v) => /^Q\d+$/.test(v)],
+  }, 'historiques');
+  const names = new Set();
+  seed.forEach((p) => { if (names.has(p.name)) errors.push(`historiques ${p.id} : nom en double`); names.add(p.name); });
+  assert.deepEqual(errors, []);
+  // Autant de femmes que d'hommes (à une personne près).
+  const women = seed.filter((p) => p.g === 'f').length;
+  assert.ok(Math.abs(2 * women - seed.length) <= 1, `${women} femmes sur ${seed.length}`);
+});
+
 test('catalogue des livres (300 livres, auteurs reliés)', async () => {
   const { authors, books } = await load('games/books/data/livres.json');
   assert.ok(Array.isArray(authors) && Array.isArray(books));

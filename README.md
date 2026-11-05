@@ -85,6 +85,12 @@ Pour les portraits de jeunesse, la liste des photos est fournie à la main dans 
 python scripts/celeb-quiz-builder.py --jeunesse --top 300
 ```
 
+Pour ajouter les **personnages historiques** (108 personnes décédées, 54 femmes et 54 hommes, listées dans `scripts/historiques-seed.json`) à la suite des célébrités de Morceaux :
+
+```bash
+npm run morceaux:historiques    # ajoute à people.json, sans toucher aux personnes déjà présentes
+```
+
 Le script écrit seulement le JSON ; le cache images reste dans `scripts/.celeb-cache/` (gitignoré).
 
 ## 🧱 Architecture (pensée pour migrer facilement)

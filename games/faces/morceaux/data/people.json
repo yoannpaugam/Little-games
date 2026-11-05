@@ -13585,5 +13585,4901 @@
         0.504
       ]
     }
+  },
+  {
+    "id": "platon",
+    "name": "Platon",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Plato_Silanion_Musei_Capitolini_MC1377.jpg/1280px-Plato_Silanion_Musei_Capitolini_MC1377.jpg",
+    "by": "Marie-Lan Nguyen",
+    "lic": "CC BY 2.5",
+    "box": {
+      "yeux": [
+        0.211,
+        0.301,
+        0.597,
+        0.11
+      ],
+      "nez": [
+        0.4,
+        0.418,
+        0.227,
+        0.117
+      ],
+      "bouche": [
+        0.359,
+        0.551,
+        0.302,
+        0.09
+      ],
+      "haut": [
+        0.027,
+        0.088,
+        0.956,
+        0.469
+      ],
+      "bas": [
+        0.027,
+        0.479,
+        0.956,
+        0.277
+      ],
+      "complet": [
+        0.0,
+        0.02,
+        1.0,
+        0.818
+      ]
+    },
+    "alt": [
+      "Plato"
+    ]
+  },
+  {
+    "id": "aristote",
+    "name": "Aristote",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/1280px-Aristotle_Altemps_Inv8575.jpg",
+    "by": "After Lysippos",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.324,
+        0.274,
+        0.401,
+        0.088
+      ],
+      "nez": [
+        0.444,
+        0.367,
+        0.171,
+        0.086
+      ],
+      "bouche": [
+        0.426,
+        0.458,
+        0.196,
+        0.063
+      ],
+      "haut": [
+        0.174,
+        0.097,
+        0.68,
+        0.38
+      ],
+      "bas": [
+        0.174,
+        0.417,
+        0.68,
+        0.219
+      ],
+      "complet": [
+        0.106,
+        0.042,
+        0.816,
+        0.66
+      ]
+    }
+  },
+  {
+    "id": "rene-descartes",
+    "name": "René Descartes",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
+    "by": "After Frans Hals",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.425,
+        0.217,
+        0.213,
+        0.067
+      ],
+      "nez": [
+        0.502,
+        0.287,
+        0.09,
+        0.049
+      ],
+      "bouche": [
+        0.481,
+        0.339,
+        0.109,
+        0.031
+      ],
+      "haut": [
+        0.336,
+        0.132,
+        0.327,
+        0.217
+      ],
+      "bas": [
+        0.336,
+        0.315,
+        0.327,
+        0.121
+      ],
+      "complet": [
+        0.303,
+        0.101,
+        0.392,
+        0.372
+      ]
+    },
+    "alt": [
+      "Descartes"
+    ]
+  },
+  {
+    "id": "voltaire",
+    "name": "Voltaire",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg/1280px-Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg",
+    "by": "Nicolas de Largillière",
+    "lic": "CC0",
+    "box": {
+      "yeux": [
+        0.415,
+        0.186,
+        0.249,
+        0.072
+      ],
+      "nez": [
+        0.509,
+        0.262,
+        0.107,
+        0.056
+      ],
+      "bouche": [
+        0.5,
+        0.322,
+        0.131,
+        0.044
+      ],
+      "haut": [
+        0.342,
+        0.065,
+        0.386,
+        0.267
+      ],
+      "bas": [
+        0.342,
+        0.289,
+        0.386,
+        0.151
+      ],
+      "complet": [
+        0.304,
+        0.027,
+        0.464,
+        0.46
+      ]
+    }
+  },
+  {
+    "id": "jean-jacques-rousseau",
+    "name": "Jean-Jacques Rousseau",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Jean-Jacques_Rousseau_%28painted_portrait%29.jpg/1280px-Jean-Jacques_Rousseau_%28painted_portrait%29.jpg",
+    "by": "Maurice Quentin de La Tour",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.32,
+        0.249,
+        0.379,
+        0.096
+      ],
+      "nez": [
+        0.457,
+        0.35,
+        0.167,
+        0.078
+      ],
+      "bouche": [
+        0.43,
+        0.434,
+        0.201,
+        0.063
+      ],
+      "haut": [
+        0.176,
+        0.073,
+        0.615,
+        0.374
+      ],
+      "bas": [
+        0.176,
+        0.388,
+        0.615,
+        0.22
+      ],
+      "complet": [
+        0.115,
+        0.019,
+        0.738,
+        0.654
+      ]
+    },
+    "alt": [
+      "Rousseau"
+    ]
+  },
+  {
+    "id": "emmanuel-kant",
+    "name": "Emmanuel Kant",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/2/22/Immanuel_Kant_-_Gemaelde_2.jpg",
+    "by": "Becker",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.268,
+        0.173,
+        0.345,
+        0.072
+      ],
+      "nez": [
+        0.406,
+        0.249,
+        0.136,
+        0.06
+      ],
+      "bouche": [
+        0.39,
+        0.313,
+        0.159,
+        0.049
+      ],
+      "haut": [
+        0.135,
+        0.046,
+        0.543,
+        0.277
+      ],
+      "bas": [
+        0.135,
+        0.282,
+        0.543,
+        0.149
+      ],
+      "complet": [
+        0.081,
+        0.006,
+        0.652,
+        0.472
+      ]
+    },
+    "alt": [
+      "Kant"
+    ]
+  },
+  {
+    "id": "friedrich-nietzsche",
+    "name": "Friedrich Nietzsche",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche187a.jpg/1280px-Nietzsche187a.jpg",
+    "by": "Friedrich Hermann Hartmann",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.353,
+        0.3,
+        0.438,
+        0.1
+      ],
+      "nez": [
+        0.504,
+        0.406,
+        0.193,
+        0.087
+      ],
+      "bouche": [
+        0.482,
+        0.503,
+        0.215,
+        0.074
+      ],
+      "haut": [
+        0.15,
+        0.099,
+        0.716,
+        0.415
+      ],
+      "bas": [
+        0.15,
+        0.442,
+        0.716,
+        0.253
+      ],
+      "complet": [
+        0.078,
+        0.038,
+        0.859,
+        0.731
+      ]
+    },
+    "alt": [
+      "Nietzsche"
+    ]
+  },
+  {
+    "id": "karl-marx",
+    "name": "Karl Marx",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Portrait_of_Karl_Marx_%28Russian_School%2C_19th_cent.%29.jpg/1280px-Portrait_of_Karl_Marx_%28Russian_School%2C_19th_cent.%29.jpg",
+    "by": "Russian School",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.423,
+        0.12,
+        0.177,
+        0.044
+      ],
+      "nez": [
+        0.486,
+        0.166,
+        0.076,
+        0.034
+      ],
+      "bouche": [
+        0.478,
+        0.202,
+        0.083,
+        0.027
+      ],
+      "haut": [
+        0.354,
+        0.048,
+        0.284,
+        0.159
+      ],
+      "bas": [
+        0.354,
+        0.181,
+        0.284,
+        0.096
+      ],
+      "complet": [
+        0.326,
+        0.025,
+        0.341,
+        0.28
+      ]
+    },
+    "alt": [
+      "Marx"
+    ]
+  },
+  {
+    "id": "sigmund-freud",
+    "name": "Sigmund Freud",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Sigmund_Freud%2C_by_Max_Halberstadt_%28cropped%29.jpg/1280px-Sigmund_Freud%2C_by_Max_Halberstadt_%28cropped%29.jpg",
+    "by": "Max Halberstadt",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.364,
+        0.173,
+        0.209,
+        0.052
+      ],
+      "nez": [
+        0.424,
+        0.228,
+        0.086,
+        0.055
+      ],
+      "bouche": [
+        0.422,
+        0.288,
+        0.109,
+        0.031
+      ],
+      "haut": [
+        0.336,
+        0.074,
+        0.335,
+        0.22
+      ],
+      "bas": [
+        0.336,
+        0.261,
+        0.335,
+        0.115
+      ],
+      "complet": [
+        0.303,
+        0.043,
+        0.401,
+        0.37
+      ]
+    },
+    "alt": [
+      "Freud"
+    ]
+  },
+  {
+    "id": "simone-de-beauvoir",
+    "name": "Simone de Beauvoir",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Simone_de_Beauvoir2.png",
+    "by": "Moshe Milner",
+    "lic": "CC BY-SA 3.0",
+    "box": {
+      "yeux": [
+        0.259,
+        0.323,
+        0.486,
+        0.125
+      ],
+      "nez": [
+        0.456,
+        0.455,
+        0.212,
+        0.101
+      ],
+      "bouche": [
+        0.403,
+        0.562,
+        0.272,
+        0.1
+      ],
+      "haut": [
+        0.052,
+        0.116,
+        0.79,
+        0.465
+      ],
+      "bas": [
+        0.052,
+        0.506,
+        0.79,
+        0.28
+      ],
+      "complet": [
+        0.0,
+        0.048,
+        0.922,
+        0.82
+      ]
+    },
+    "alt": [
+      "Beauvoir"
+    ]
+  },
+  {
+    "id": "albert-camus",
+    "name": "Albert Camus",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/0/08/Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_pos%C3%A9_au_bureau%2C_faisant_face_%C3%A0_gauche%2C_cigarette_de_tabagisme.jpg",
+    "by": "Photograph by United Press International",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.365,
+        0.226,
+        0.26,
+        0.075
+      ],
+      "nez": [
+        0.433,
+        0.306,
+        0.101,
+        0.076
+      ],
+      "bouche": [
+        0.441,
+        0.386,
+        0.127,
+        0.057
+      ],
+      "haut": [
+        0.336,
+        0.091,
+        0.391,
+        0.305
+      ],
+      "bas": [
+        0.336,
+        0.354,
+        0.391,
+        0.147
+      ],
+      "complet": [
+        0.297,
+        0.049,
+        0.47,
+        0.502
+      ]
+    },
+    "alt": [
+      "Camus"
+    ]
+  },
+  {
+    "id": "galilee",
+    "name": "Galilée",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Galileo.arp.300pix.jpg",
+    "by": "Justus Sustermans",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.216,
+        0.302,
+        0.401,
+        0.109
+      ],
+      "nez": [
+        0.294,
+        0.417,
+        0.163,
+        0.097
+      ],
+      "bouche": [
+        0.288,
+        0.525,
+        0.187,
+        0.072
+      ],
+      "haut": [
+        0.146,
+        0.107,
+        0.634,
+        0.429
+      ],
+      "bas": [
+        0.146,
+        0.464,
+        0.634,
+        0.253
+      ],
+      "complet": [
+        0.082,
+        0.044,
+        0.761,
+        0.748
+      ]
+    },
+    "alt": [
+      "Galileo Galilei",
+      "Galilei"
+    ]
+  },
+  {
+    "id": "isaac-newton",
+    "name": "Isaac Newton",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/GodfreyKneller-IsaacNewton-1689.jpg/1280px-GodfreyKneller-IsaacNewton-1689.jpg",
+    "by": "Godfrey Kneller",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.405,
+        0.224,
+        0.321,
+        0.079
+      ],
+      "nez": [
+        0.501,
+        0.307,
+        0.139,
+        0.067
+      ],
+      "bouche": [
+        0.482,
+        0.378,
+        0.157,
+        0.05
+      ],
+      "haut": [
+        0.288,
+        0.08,
+        0.494,
+        0.312
+      ],
+      "bas": [
+        0.288,
+        0.345,
+        0.494,
+        0.175
+      ],
+      "complet": [
+        0.239,
+        0.035,
+        0.593,
+        0.539
+      ]
+    },
+    "alt": [
+      "Newton"
+    ]
+  },
+  {
+    "id": "charles-darwin",
+    "name": "Charles Darwin",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Charles_Darwin_portrait.jpg",
+    "by": "Herbert Rose Barraud",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.347,
+        0.255,
+        0.392,
+        0.089
+      ],
+      "nez": [
+        0.494,
+        0.349,
+        0.16,
+        0.078
+      ],
+      "bouche": [
+        0.464,
+        0.438,
+        0.209,
+        0.069
+      ],
+      "haut": [
+        0.189,
+        0.094,
+        0.632,
+        0.351
+      ],
+      "bas": [
+        0.189,
+        0.386,
+        0.632,
+        0.216
+      ],
+      "complet": [
+        0.126,
+        0.042,
+        0.759,
+        0.622
+      ]
+    },
+    "alt": [
+      "Darwin"
+    ]
+  },
+  {
+    "id": "louis-pasteur",
+    "name": "Louis Pasteur",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Louis_Pasteur_%281822_-_1895%29%2C_microbiologist_and_chemist_Wellcome_V0026980.jpg/1280px-Louis_Pasteur_%281822_-_1895%29%2C_microbiologist_and_chemist_Wellcome_V0026980.jpg",
+    "by": "Paul Nadar",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.289,
+        0.279,
+        0.306,
+        0.071
+      ],
+      "nez": [
+        0.367,
+        0.354,
+        0.125,
+        0.06
+      ],
+      "bouche": [
+        0.358,
+        0.417,
+        0.15,
+        0.051
+      ],
+      "haut": [
+        0.232,
+        0.171,
+        0.473,
+        0.255
+      ],
+      "bas": [
+        0.232,
+        0.384,
+        0.473,
+        0.159
+      ],
+      "complet": [
+        0.185,
+        0.133,
+        0.567,
+        0.455
+      ]
+    },
+    "alt": [
+      "Pasteur"
+    ]
+  },
+  {
+    "id": "marie-curie",
+    "name": "Marie Curie",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/7/77/Marie_Curie_%281900%29_%28cropped%29.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.222,
+        0.383,
+        0.543,
+        0.109
+      ],
+      "nez": [
+        0.378,
+        0.498,
+        0.223,
+        0.107
+      ],
+      "bouche": [
+        0.358,
+        0.611,
+        0.268,
+        0.077
+      ],
+      "haut": [
+        0.084,
+        0.144,
+        0.873,
+        0.485
+      ],
+      "bas": [
+        0.084,
+        0.556,
+        0.873,
+        0.253
+      ],
+      "complet": [
+        0.0,
+        0.077,
+        1.0,
+        0.814
+      ]
+    },
+    "alt": [
+      "Curie"
+    ]
+  },
+  {
+    "id": "albert-einstein",
+    "name": "Albert Einstein",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1280px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+    "by": "Ferdinand Schmutzer / Adam Cuerden",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.471,
+        0.221,
+        0.156,
+        0.043
+      ],
+      "nez": [
+        0.5,
+        0.267,
+        0.072,
+        0.04
+      ],
+      "bouche": [
+        0.509,
+        0.309,
+        0.079,
+        0.029
+      ],
+      "haut": [
+        0.45,
+        0.146,
+        0.245,
+        0.169
+      ],
+      "bas": [
+        0.45,
+        0.289,
+        0.245,
+        0.093
+      ],
+      "complet": [
+        0.426,
+        0.121,
+        0.294,
+        0.29
+      ]
+    },
+    "alt": [
+      "Einstein"
+    ]
+  },
+  {
+    "id": "nikola-tesla",
+    "name": "Nikola Tesla",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/7/79/Tesla_circa_1890.jpeg",
+    "by": "Napoleon Sarony",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.24,
+        0.243,
+        0.33,
+        0.099
+      ],
+      "nez": [
+        0.317,
+        0.347,
+        0.145,
+        0.077
+      ],
+      "bouche": [
+        0.341,
+        0.429,
+        0.169,
+        0.069
+      ],
+      "haut": [
+        0.219,
+        0.094,
+        0.531,
+        0.348
+      ],
+      "bas": [
+        0.219,
+        0.387,
+        0.531,
+        0.206
+      ],
+      "complet": [
+        0.166,
+        0.043,
+        0.637,
+        0.611
+      ]
+    },
+    "alt": [
+      "Tesla"
+    ]
+  },
+  {
+    "id": "ada-lovelace",
+    "name": "Ada Lovelace",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Carpenter_portrait_of_Ada_Lovelace_-_detail.png",
+    "by": "Margaret Sarah Carpenter",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.505,
+        0.35,
+        0.319,
+        0.112
+      ],
+      "nez": [
+        0.692,
+        0.468,
+        0.141,
+        0.089
+      ],
+      "bouche": [
+        0.656,
+        0.563,
+        0.147,
+        0.068
+      ],
+      "haut": [
+        0.283,
+        0.168,
+        0.492,
+        0.409
+      ],
+      "bas": [
+        0.283,
+        0.506,
+        0.492,
+        0.248
+      ],
+      "complet": [
+        0.234,
+        0.108,
+        0.591,
+        0.718
+      ]
+    },
+    "alt": [
+      "Lovelace"
+    ]
+  },
+  {
+    "id": "stephen-hawking",
+    "name": "Stephen Hawking",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/8/85/Starmus2017_Stephen_Hawking_Science_Medal_Ceremony_MA%2C_03_%28cropped%29.jpg",
+    "by": "Trondheim | Gjøvik | Ålesund",
+    "lic": "CC BY-SA 2.0",
+    "box": {
+      "yeux": [
+        0.257,
+        0.314,
+        0.493,
+        0.116
+      ],
+      "nez": [
+        0.399,
+        0.437,
+        0.218,
+        0.095
+      ],
+      "bouche": [
+        0.338,
+        0.539,
+        0.329,
+        0.1
+      ],
+      "haut": [
+        0.116,
+        0.08,
+        0.77,
+        0.491
+      ],
+      "bas": [
+        0.116,
+        0.494,
+        0.77,
+        0.287
+      ],
+      "complet": [
+        0.039,
+        0.008,
+        0.923,
+        0.859
+      ]
+    },
+    "alt": [
+      "Hawking"
+    ]
+  },
+  {
+    "id": "wolfgang-amadeus-mozart",
+    "name": "Wolfgang Amadeus Mozart",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Wolfgang-amadeus-mozart_1.jpg/1280px-Wolfgang-amadeus-mozart_1.jpg",
+    "by": "Barbara Krafft",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.428,
+        0.286,
+        0.263,
+        0.074
+      ],
+      "nez": [
+        0.543,
+        0.364,
+        0.107,
+        0.068
+      ],
+      "bouche": [
+        0.518,
+        0.436,
+        0.122,
+        0.049
+      ],
+      "haut": [
+        0.301,
+        0.153,
+        0.415,
+        0.293
+      ],
+      "bas": [
+        0.301,
+        0.401,
+        0.415,
+        0.157
+      ],
+      "complet": [
+        0.259,
+        0.111,
+        0.499,
+        0.497
+      ]
+    },
+    "alt": [
+      "Mozart"
+    ]
+  },
+  {
+    "id": "ludwig-van-beethoven",
+    "name": "Ludwig van Beethoven",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Beethoven.jpg",
+    "by": "Joseph Karl Stieler",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.391,
+        0.241,
+        0.236,
+        0.074
+      ],
+      "nez": [
+        0.462,
+        0.319,
+        0.096,
+        0.058
+      ],
+      "bouche": [
+        0.468,
+        0.38,
+        0.118,
+        0.04
+      ],
+      "haut": [
+        0.367,
+        0.135,
+        0.355,
+        0.257
+      ],
+      "bas": [
+        0.367,
+        0.355,
+        0.355,
+        0.131
+      ],
+      "complet": [
+        0.331,
+        0.099,
+        0.425,
+        0.43
+      ]
+    },
+    "alt": [
+      "Beethoven"
+    ]
+  },
+  {
+    "id": "jean-sebastien-bach",
+    "name": "Jean-Sébastien Bach",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Johann_Sebastian_Bach.png/1280px-Johann_Sebastian_Bach.png",
+    "by": "Elias Gottlob Haussmann",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.411,
+        0.172,
+        0.22,
+        0.055
+      ],
+      "nez": [
+        0.494,
+        0.231,
+        0.095,
+        0.054
+      ],
+      "bouche": [
+        0.481,
+        0.288,
+        0.114,
+        0.045
+      ],
+      "haut": [
+        0.328,
+        0.061,
+        0.347,
+        0.235
+      ],
+      "bas": [
+        0.328,
+        0.257,
+        0.347,
+        0.141
+      ],
+      "complet": [
+        0.293,
+        0.026,
+        0.416,
+        0.413
+      ]
+    },
+    "alt": [
+      "Bach",
+      "Johann Sebastian Bach"
+    ]
+  },
+  {
+    "id": "frederic-chopin",
+    "name": "Frédéric Chopin",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Chopin%2C_by_Wodzinska.JPG/1280px-Chopin%2C_by_Wodzinska.JPG",
+    "by": "Maria Wodzińska",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.373,
+        0.222,
+        0.202,
+        0.059
+      ],
+      "nez": [
+        0.431,
+        0.283,
+        0.08,
+        0.046
+      ],
+      "bouche": [
+        0.44,
+        0.334,
+        0.084,
+        0.036
+      ],
+      "haut": [
+        0.351,
+        0.138,
+        0.312,
+        0.2
+      ],
+      "bas": [
+        0.351,
+        0.308,
+        0.312,
+        0.107
+      ],
+      "complet": [
+        0.32,
+        0.11,
+        0.375,
+        0.34
+      ]
+    },
+    "alt": [
+      "Chopin"
+    ]
+  },
+  {
+    "id": "piotr-ilitch-tchaikovski",
+    "name": "Piotr Ilitch Tchaïkovski",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Portr%C3%A4t_des_Komponisten_Pjotr_I._Tschaikowski_%281840-1893%29.jpg/1280px-Portr%C3%A4t_des_Komponisten_Pjotr_I._Tschaikowski_%281840-1893%29.jpg",
+    "by": "Nikolai Kuznetsov",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.475,
+        0.201,
+        0.196,
+        0.041
+      ],
+      "nez": [
+        0.542,
+        0.245,
+        0.082,
+        0.048
+      ],
+      "bouche": [
+        0.531,
+        0.296,
+        0.092,
+        0.034
+      ],
+      "haut": [
+        0.395,
+        0.098,
+        0.306,
+        0.207
+      ],
+      "bas": [
+        0.395,
+        0.276,
+        0.306,
+        0.113
+      ],
+      "complet": [
+        0.365,
+        0.068,
+        0.367,
+        0.355
+      ]
+    },
+    "alt": [
+      "Tchaïkovski",
+      "Tchaikovsky"
+    ]
+  },
+  {
+    "id": "claude-debussy",
+    "name": "Claude Debussy",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Claude_Debussy_by_Atelier_Nadar.jpg/1280px-Claude_Debussy_by_Atelier_Nadar.jpg",
+    "by": "Adam Cuerden",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.404,
+        0.241,
+        0.292,
+        0.075
+      ],
+      "nez": [
+        0.53,
+        0.32,
+        0.116,
+        0.053
+      ],
+      "bouche": [
+        0.515,
+        0.381,
+        0.129,
+        0.048
+      ],
+      "haut": [
+        0.279,
+        0.12,
+        0.456,
+        0.265
+      ],
+      "bas": [
+        0.279,
+        0.337,
+        0.456,
+        0.172
+      ],
+      "complet": [
+        0.233,
+        0.081,
+        0.548,
+        0.476
+      ]
+    },
+    "alt": [
+      "Debussy"
+    ]
+  },
+  {
+    "id": "maria-callas",
+    "name": "Maria Callas",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Maria_Callas_1958.jpg/1280px-Maria_Callas_1958.jpg",
+    "by": "CBS Television",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.409,
+        0.272,
+        0.124,
+        0.05
+      ],
+      "nez": [
+        0.467,
+        0.324,
+        0.054,
+        0.037
+      ],
+      "bouche": [
+        0.445,
+        0.364,
+        0.071,
+        0.033
+      ],
+      "haut": [
+        0.345,
+        0.192,
+        0.197,
+        0.18
+      ],
+      "bas": [
+        0.345,
+        0.342,
+        0.197,
+        0.106
+      ],
+      "complet": [
+        0.325,
+        0.165,
+        0.236,
+        0.314
+      ]
+    },
+    "alt": [
+      "La Callas"
+    ]
+  },
+  {
+    "id": "billie-holiday",
+    "name": "Billie Holiday",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Billie_Holiday_Billboard.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.288,
+        0.208,
+        0.291,
+        0.078
+      ],
+      "nez": [
+        0.395,
+        0.29,
+        0.123,
+        0.037
+      ],
+      "bouche": [
+        0.378,
+        0.33,
+        0.171,
+        0.06
+      ],
+      "haut": [
+        0.219,
+        0.118,
+        0.449,
+        0.226
+      ],
+      "bas": [
+        0.219,
+        0.306,
+        0.449,
+        0.145
+      ],
+      "complet": [
+        0.174,
+        0.084,
+        0.538,
+        0.408
+      ]
+    }
+  },
+  {
+    "id": "ella-fitzgerald",
+    "name": "Ella Fitzgerald",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/6/65/Ella_Fitzgerald_1962.JPG",
+    "by": "Lewin/Kaufman/Schwartz, Public Relations, Beverly Hills",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.353,
+        0.283,
+        0.362,
+        0.121
+      ],
+      "nez": [
+        0.509,
+        0.411,
+        0.162,
+        0.096
+      ],
+      "bouche": [
+        0.447,
+        0.513,
+        0.225,
+        0.087
+      ],
+      "haut": [
+        0.153,
+        0.104,
+        0.612,
+        0.428
+      ],
+      "bas": [
+        0.153,
+        0.462,
+        0.612,
+        0.254
+      ],
+      "complet": [
+        0.092,
+        0.042,
+        0.734,
+        0.749
+      ]
+    }
+  },
+  {
+    "id": "michel-ange",
+    "name": "Michel-Ange",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/1280px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg",
+    "by": "Attributed to Daniele da Volterra",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.394,
+        0.37,
+        0.402,
+        0.128
+      ],
+      "nez": [
+        0.56,
+        0.504,
+        0.178,
+        0.113
+      ],
+      "bouche": [
+        0.549,
+        0.623,
+        0.19,
+        0.076
+      ],
+      "haut": [
+        0.234,
+        0.165,
+        0.604,
+        0.473
+      ],
+      "bas": [
+        0.234,
+        0.567,
+        0.604,
+        0.244
+      ],
+      "complet": [
+        0.174,
+        0.099,
+        0.724,
+        0.79
+      ]
+    },
+    "alt": [
+      "Michelangelo"
+    ]
+  },
+  {
+    "id": "rembrandt",
+    "name": "Rembrandt",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg/1280px-Rembrandt_van_Rijn_-_Self-Portrait_-_Google_Art_Project.jpg",
+    "by": "Rembrandt",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.426,
+        0.245,
+        0.215,
+        0.054
+      ],
+      "nez": [
+        0.481,
+        0.302,
+        0.091,
+        0.056
+      ],
+      "bouche": [
+        0.484,
+        0.361,
+        0.1,
+        0.039
+      ],
+      "haut": [
+        0.396,
+        0.15,
+        0.34,
+        0.218
+      ],
+      "bas": [
+        0.396,
+        0.336,
+        0.34,
+        0.118
+      ],
+      "complet": [
+        0.362,
+        0.119,
+        0.407,
+        0.373
+      ]
+    },
+    "alt": [
+      "Rembrandt van Rijn"
+    ]
+  },
+  {
+    "id": "vincent-van-gogh",
+    "name": "Vincent van Gogh",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Self-portrait_-_Vincent_van_Gogh.jpg/1280px-Self-portrait_-_Vincent_van_Gogh.jpg",
+    "by": "Vincent van Gogh",
+    "lic": "CC BY-SA 4.0",
+    "box": {
+      "yeux": [
+        0.213,
+        0.265,
+        0.445,
+        0.114
+      ],
+      "nez": [
+        0.285,
+        0.385,
+        0.204,
+        0.1
+      ],
+      "bouche": [
+        0.31,
+        0.501,
+        0.216,
+        0.074
+      ],
+      "haut": [
+        0.201,
+        0.105,
+        0.668,
+        0.4
+      ],
+      "bas": [
+        0.201,
+        0.443,
+        0.668,
+        0.22
+      ],
+      "complet": [
+        0.134,
+        0.048,
+        0.801,
+        0.684
+      ]
+    },
+    "alt": [
+      "Van Gogh"
+    ]
+  },
+  {
+    "id": "claude-monet",
+    "name": "Claude Monet",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Claude_Monet_1899_Nadar_crop.jpg/1280px-Claude_Monet_1899_Nadar_crop.jpg",
+    "by": "Nadar",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.376,
+        0.241,
+        0.316,
+        0.082
+      ],
+      "nez": [
+        0.472,
+        0.327,
+        0.122,
+        0.068
+      ],
+      "bouche": [
+        0.458,
+        0.401,
+        0.136,
+        0.056
+      ],
+      "haut": [
+        0.26,
+        0.106,
+        0.513,
+        0.304
+      ],
+      "bas": [
+        0.26,
+        0.36,
+        0.513,
+        0.178
+      ],
+      "complet": [
+        0.209,
+        0.062,
+        0.616,
+        0.529
+      ]
+    },
+    "alt": [
+      "Monet"
+    ]
+  },
+  {
+    "id": "henri-matisse",
+    "name": "Henri Matisse",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Portrait_of_Henri_Matisse_1933_May_20.jpg",
+    "by": "Carl Van Vechten",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.4,
+        0.15,
+        0.325,
+        0.111
+      ],
+      "nez": [
+        0.536,
+        0.266,
+        0.137,
+        0.07
+      ],
+      "bouche": [
+        0.504,
+        0.342,
+        0.163,
+        0.066
+      ],
+      "haut": [
+        0.233,
+        0.0,
+        0.518,
+        0.356
+      ],
+      "bas": [
+        0.233,
+        0.293,
+        0.518,
+        0.232
+      ],
+      "complet": [
+        0.181,
+        0.0,
+        0.622,
+        0.59
+      ]
+    },
+    "alt": [
+      "Matisse"
+    ]
+  },
+  {
+    "id": "auguste-rodin",
+    "name": "Auguste Rodin",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/9/95/Auguste_Rodin_fotografato_da_Nadar_nel_1891.jpg",
+    "by": "Nadar",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.326,
+        0.241,
+        0.412,
+        0.087
+      ],
+      "nez": [
+        0.459,
+        0.333,
+        0.165,
+        0.082
+      ],
+      "bouche": [
+        0.445,
+        0.425,
+        0.191,
+        0.066
+      ],
+      "haut": [
+        0.185,
+        0.071,
+        0.674,
+        0.361
+      ],
+      "bas": [
+        0.185,
+        0.372,
+        0.674,
+        0.211
+      ],
+      "complet": [
+        0.118,
+        0.019,
+        0.809,
+        0.628
+      ]
+    },
+    "alt": [
+      "Rodin"
+    ]
+  },
+  {
+    "id": "camille-claudel",
+    "name": "Camille Claudel",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Camille_nette.jpg/1280px-Camille_nette.jpg",
+    "by": "Plombelec",
+    "lic": "CC BY-SA 4.0",
+    "box": {
+      "yeux": [
+        0.297,
+        0.215,
+        0.407,
+        0.107
+      ],
+      "nez": [
+        0.418,
+        0.328,
+        0.157,
+        0.085
+      ],
+      "bouche": [
+        0.399,
+        0.418,
+        0.2,
+        0.077
+      ],
+      "haut": [
+        0.192,
+        0.037,
+        0.634,
+        0.399
+      ],
+      "bas": [
+        0.192,
+        0.366,
+        0.634,
+        0.244
+      ],
+      "complet": [
+        0.129,
+        0.0,
+        0.761,
+        0.68
+      ]
+    }
+  },
+  {
+    "id": "elisabeth-vigee-le-brun",
+    "name": "Élisabeth Vigée Le Brun",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Self-portrait_in_a_Straw_Hat_by_Elisabeth-Louise_Vig%C3%A9e-Lebrun.jpg/1280px-Self-portrait_in_a_Straw_Hat_by_Elisabeth-Louise_Vig%C3%A9e-Lebrun.jpg",
+    "by": "Élisabeth Louise Vigée Le Brun",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.409,
+        0.262,
+        0.16,
+        0.053
+      ],
+      "nez": [
+        0.466,
+        0.317,
+        0.066,
+        0.029
+      ],
+      "bouche": [
+        0.464,
+        0.348,
+        0.072,
+        0.029
+      ],
+      "haut": [
+        0.369,
+        0.203,
+        0.248,
+        0.15
+      ],
+      "bas": [
+        0.369,
+        0.329,
+        0.248,
+        0.088
+      ],
+      "complet": [
+        0.344,
+        0.181,
+        0.298,
+        0.262
+      ]
+    },
+    "alt": [
+      "Vigée Le Brun",
+      "Vigée-Lebrun"
+    ]
+  },
+  {
+    "id": "coco-chanel",
+    "name": "Coco Chanel",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/2/22/Coco_Chanel_in_Los_Angeles%2C_1931_%28cropped%29.jpg",
+    "by": "Los Angeles Times",
+    "lic": "CC BY 4.0",
+    "box": {
+      "yeux": [
+        0.391,
+        0.263,
+        0.239,
+        0.054
+      ],
+      "nez": [
+        0.465,
+        0.321,
+        0.101,
+        0.044
+      ],
+      "bouche": [
+        0.438,
+        0.368,
+        0.148,
+        0.041
+      ],
+      "haut": [
+        0.314,
+        0.167,
+        0.384,
+        0.212
+      ],
+      "bas": [
+        0.314,
+        0.347,
+        0.384,
+        0.122
+      ],
+      "complet": [
+        0.275,
+        0.137,
+        0.461,
+        0.37
+      ]
+    },
+    "alt": [
+      "Gabrielle Chanel",
+      "Chanel"
+    ]
+  },
+  {
+    "id": "william-shakespeare",
+    "name": "William Shakespeare",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Shakespeare.jpg/1280px-Shakespeare.jpg",
+    "by": "Attributed to John Taylor",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.322,
+        0.26,
+        0.263,
+        0.067
+      ],
+      "nez": [
+        0.374,
+        0.331,
+        0.108,
+        0.072
+      ],
+      "bouche": [
+        0.374,
+        0.41,
+        0.136,
+        0.05
+      ],
+      "haut": [
+        0.286,
+        0.125,
+        0.423,
+        0.292
+      ],
+      "bas": [
+        0.286,
+        0.371,
+        0.423,
+        0.164
+      ],
+      "complet": [
+        0.243,
+        0.083,
+        0.508,
+        0.502
+      ]
+    },
+    "alt": [
+      "Shakespeare"
+    ]
+  },
+  {
+    "id": "moliere",
+    "name": "Molière",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Pierre_Mignard_-_Portrait_de_Jean-Baptiste_Poquelin_dit_Moli%C3%A8re_%281622-1673%29_-_Google_Art_Project_%28cropped%29.jpg/1280px-Pierre_Mignard_-_Portrait_de_Jean-Baptiste_Poquelin_dit_Moli%C3%A8re_%281622-1673%29_-_Google_Art_Project_%28cropped%29.jpg",
+    "by": "Pierre Mignard I",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.398,
+        0.287,
+        0.253,
+        0.104
+      ],
+      "nez": [
+        0.508,
+        0.395,
+        0.109,
+        0.058
+      ],
+      "bouche": [
+        0.501,
+        0.458,
+        0.129,
+        0.06
+      ],
+      "haut": [
+        0.318,
+        0.163,
+        0.395,
+        0.307
+      ],
+      "bas": [
+        0.318,
+        0.42,
+        0.395,
+        0.178
+      ],
+      "complet": [
+        0.279,
+        0.119,
+        0.474,
+        0.533
+      ]
+    }
+  },
+  {
+    "id": "jean-de-la-fontaine",
+    "name": "Jean de La Fontaine",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Henri_Millot_-_Jean_de_La_Fontaine_-_A_II_792_-_Finnish_National_Gallery.jpg/1280px-Henri_Millot_-_Jean_de_La_Fontaine_-_A_II_792_-_Finnish_National_Gallery.jpg",
+    "by": "Henri Millot",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.436,
+        0.183,
+        0.184,
+        0.063
+      ],
+      "nez": [
+        0.494,
+        0.248,
+        0.079,
+        0.049
+      ],
+      "bouche": [
+        0.482,
+        0.3,
+        0.094,
+        0.035
+      ],
+      "haut": [
+        0.37,
+        0.098,
+        0.286,
+        0.21
+      ],
+      "bas": [
+        0.37,
+        0.275,
+        0.286,
+        0.115
+      ],
+      "complet": [
+        0.342,
+        0.068,
+        0.343,
+        0.358
+      ]
+    },
+    "alt": [
+      "La Fontaine"
+    ]
+  },
+  {
+    "id": "victor-hugo",
+    "name": "Victor Hugo",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Victor_Hugo_by_%C3%89tienne_Carjat_1876_-_full.jpg/1280px-Victor_Hugo_by_%C3%89tienne_Carjat_1876_-_full.jpg",
+    "by": "Étienne Carjat",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.399,
+        0.227,
+        0.181,
+        0.049
+      ],
+      "nez": [
+        0.453,
+        0.279,
+        0.079,
+        0.042
+      ],
+      "bouche": [
+        0.454,
+        0.323,
+        0.092,
+        0.028
+      ],
+      "haut": [
+        0.361,
+        0.139,
+        0.291,
+        0.193
+      ],
+      "bas": [
+        0.361,
+        0.302,
+        0.291,
+        0.108
+      ],
+      "complet": [
+        0.332,
+        0.111,
+        0.349,
+        0.333
+      ]
+    },
+    "alt": [
+      "Hugo"
+    ]
+  },
+  {
+    "id": "jules-verne",
+    "name": "Jules Verne",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/F%C3%A9lix_Nadar_1820-1910_portraits_Jules_Verne.jpg/1280px-F%C3%A9lix_Nadar_1820-1910_portraits_Jules_Verne.jpg",
+    "by": "Nadar",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.334,
+        0.233,
+        0.306,
+        0.08
+      ],
+      "nez": [
+        0.443,
+        0.317,
+        0.12,
+        0.053
+      ],
+      "bouche": [
+        0.437,
+        0.375,
+        0.146,
+        0.052
+      ],
+      "haut": [
+        0.239,
+        0.113,
+        0.498,
+        0.269
+      ],
+      "bas": [
+        0.239,
+        0.335,
+        0.498,
+        0.168
+      ],
+      "complet": [
+        0.189,
+        0.073,
+        0.597,
+        0.478
+      ]
+    }
+  },
+  {
+    "id": "emile-zola",
+    "name": "Émile Zola",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Emile_Zola_1902.jpg/1280px-Emile_Zola_1902.jpg",
+    "by": "Émile Zola",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.34,
+        0.227,
+        0.455,
+        0.124
+      ],
+      "nez": [
+        0.482,
+        0.357,
+        0.184,
+        0.087
+      ],
+      "bouche": [
+        0.473,
+        0.453,
+        0.215,
+        0.076
+      ],
+      "haut": [
+        0.205,
+        0.059,
+        0.734,
+        0.403
+      ],
+      "bas": [
+        0.205,
+        0.39,
+        0.734,
+        0.265
+      ],
+      "complet": [
+        0.131,
+        0.0,
+        0.869,
+        0.727
+      ]
+    },
+    "alt": [
+      "Zola"
+    ]
+  },
+  {
+    "id": "marcel-proust",
+    "name": "Marcel Proust",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Marcel_Proust_1895.jpg",
+    "by": "Otto Wegener",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.229,
+        0.244,
+        0.446,
+        0.117
+      ],
+      "nez": [
+        0.365,
+        0.367,
+        0.177,
+        0.094
+      ],
+      "bouche": [
+        0.358,
+        0.471,
+        0.214,
+        0.084
+      ],
+      "haut": [
+        0.105,
+        0.069,
+        0.74,
+        0.411
+      ],
+      "bas": [
+        0.105,
+        0.411,
+        0.74,
+        0.249
+      ],
+      "complet": [
+        0.032,
+        0.009,
+        0.888,
+        0.724
+      ]
+    },
+    "alt": [
+      "Proust"
+    ]
+  },
+  {
+    "id": "ernest-hemingway",
+    "name": "Ernest Hemingway",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Ernest_Hemingway_in_Milan_1918_retouched_3.jpg",
+    "by": "EH2723PMilan1918.jpg: Portrait by Ermeni Studios\nderivative work: Beao and Fallschirmjäger (talk)",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.338,
+        0.185,
+        0.264,
+        0.049
+      ],
+      "nez": [
+        0.405,
+        0.238,
+        0.105,
+        0.04
+      ],
+      "bouche": [
+        0.4,
+        0.281,
+        0.137,
+        0.036
+      ],
+      "haut": [
+        0.29,
+        0.099,
+        0.418,
+        0.188
+      ],
+      "bas": [
+        0.29,
+        0.252,
+        0.418,
+        0.123
+      ],
+      "complet": [
+        0.249,
+        0.07,
+        0.502,
+        0.338
+      ]
+    },
+    "alt": [
+      "Hemingway"
+    ]
+  },
+  {
+    "id": "antoine-de-saint-exupery",
+    "name": "Antoine de Saint-Exupéry",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/7/72/Antoine_de_Saint-Euxpery_%281920%29.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.302,
+        0.308,
+        0.403,
+        0.095
+      ],
+      "nez": [
+        0.423,
+        0.409,
+        0.159,
+        0.073
+      ],
+      "bouche": [
+        0.407,
+        0.494,
+        0.192,
+        0.064
+      ],
+      "haut": [
+        0.205,
+        0.139,
+        0.614,
+        0.36
+      ],
+      "bas": [
+        0.205,
+        0.439,
+        0.614,
+        0.217
+      ],
+      "complet": [
+        0.143,
+        0.087,
+        0.737,
+        0.632
+      ]
+    },
+    "alt": [
+      "Saint-Exupéry",
+      "Saint-Ex"
+    ]
+  },
+  {
+    "id": "george-sand",
+    "name": "George Sand",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/ee/George_Sand.PNG",
+    "by": "Auguste Charpentier",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.4,
+        0.236,
+        0.203,
+        0.055
+      ],
+      "nez": [
+        0.464,
+        0.294,
+        0.079,
+        0.054
+      ],
+      "bouche": [
+        0.454,
+        0.351,
+        0.094,
+        0.037
+      ],
+      "haut": [
+        0.34,
+        0.145,
+        0.314,
+        0.213
+      ],
+      "bas": [
+        0.34,
+        0.327,
+        0.314,
+        0.111
+      ],
+      "complet": [
+        0.308,
+        0.115,
+        0.377,
+        0.359
+      ]
+    }
+  },
+  {
+    "id": "jane-austen",
+    "name": "Jane Austen",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/CassandraAusten-JaneAusten%28c.1810%29_hires.jpg/1280px-CassandraAusten-JaneAusten%28c.1810%29_hires.jpg",
+    "by": "Cassandra Austen",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.342,
+        0.274,
+        0.186,
+        0.06
+      ],
+      "nez": [
+        0.383,
+        0.337,
+        0.072,
+        0.038
+      ],
+      "bouche": [
+        0.387,
+        0.378,
+        0.076,
+        0.032
+      ],
+      "haut": [
+        0.314,
+        0.198,
+        0.29,
+        0.187
+      ],
+      "bas": [
+        0.314,
+        0.356,
+        0.29,
+        0.103
+      ],
+      "complet": [
+        0.285,
+        0.171,
+        0.348,
+        0.32
+      ]
+    }
+  },
+  {
+    "id": "mary-shelley",
+    "name": "Mary Shelley",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Richard_Rothwell_%281800-1868%29_-_Mary_Wollstonecraft_Shelley_-_NPG_1235_-_National_Portrait_Gallery.jpg",
+    "by": "Richard Rothwell",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.432,
+        0.229,
+        0.175,
+        0.047
+      ],
+      "nez": [
+        0.494,
+        0.279,
+        0.069,
+        0.047
+      ],
+      "bouche": [
+        0.484,
+        0.329,
+        0.086,
+        0.028
+      ],
+      "haut": [
+        0.371,
+        0.137,
+        0.281,
+        0.2
+      ],
+      "bas": [
+        0.371,
+        0.307,
+        0.281,
+        0.103
+      ],
+      "complet": [
+        0.343,
+        0.109,
+        0.337,
+        0.336
+      ]
+    }
+  },
+  {
+    "id": "virginia-woolf",
+    "name": "Virginia Woolf",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Virginia_Woolf_1927.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.359,
+        0.259,
+        0.388,
+        0.119
+      ],
+      "nez": [
+        0.464,
+        0.384,
+        0.163,
+        0.082
+      ],
+      "bouche": [
+        0.419,
+        0.471,
+        0.203,
+        0.074
+      ],
+      "haut": [
+        0.186,
+        0.104,
+        0.625,
+        0.386
+      ],
+      "bas": [
+        0.186,
+        0.431,
+        0.625,
+        0.213
+      ],
+      "complet": [
+        0.123,
+        0.049,
+        0.75,
+        0.66
+      ]
+    }
+  },
+  {
+    "id": "agatha-christie",
+    "name": "Agatha Christie",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Agatha_Christie_in_Nederland_%28detectiveschrijfster%29%2C_bij_aankomst_op_Schiphol_me%2C_Bestanddeelnr_916-8898_%28cropped%29.jpg/1280px-Agatha_Christie_in_Nederland_%28detectiveschrijfster%29%2C_bij_aankomst_op_Schiphol_me%2C_Bestanddeelnr_916-8898_%28cropped%29.jpg",
+    "by": "Joop van Bilsen for Anefo",
+    "lic": "CC0",
+    "box": {
+      "yeux": [
+        0.441,
+        0.299,
+        0.341,
+        0.09
+      ],
+      "nez": [
+        0.593,
+        0.394,
+        0.138,
+        0.079
+      ],
+      "bouche": [
+        0.568,
+        0.482,
+        0.156,
+        0.059
+      ],
+      "haut": [
+        0.283,
+        0.158,
+        0.536,
+        0.33
+      ],
+      "bas": [
+        0.283,
+        0.434,
+        0.536,
+        0.199
+      ],
+      "complet": [
+        0.229,
+        0.11,
+        0.643,
+        0.582
+      ]
+    }
+  },
+  {
+    "id": "marguerite-duras",
+    "name": "Marguerite Duras",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/12/Identite-Duras-1960-Sacem.png",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.275,
+        0.333,
+        0.36,
+        0.128
+      ],
+      "nez": [
+        0.383,
+        0.467,
+        0.146,
+        0.09
+      ],
+      "bouche": [
+        0.381,
+        0.566,
+        0.168,
+        0.083
+      ],
+      "haut": [
+        0.188,
+        0.145,
+        0.562,
+        0.432
+      ],
+      "bas": [
+        0.188,
+        0.503,
+        0.562,
+        0.255
+      ],
+      "complet": [
+        0.132,
+        0.082,
+        0.675,
+        0.751
+      ]
+    },
+    "alt": [
+      "Duras"
+    ]
+  },
+  {
+    "id": "jules-cesar",
+    "name": "Jules César",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg/1280px-Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg",
+    "by": "Ángel M. Felicísimo from Mérida, España",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.213,
+        0.217,
+        0.55,
+        0.116
+      ],
+      "nez": [
+        0.363,
+        0.34,
+        0.225,
+        0.119
+      ],
+      "bouche": [
+        0.34,
+        0.47,
+        0.267,
+        0.094
+      ],
+      "haut": [
+        0.042,
+        0.0,
+        0.917,
+        0.483
+      ],
+      "bas": [
+        0.042,
+        0.4,
+        0.917,
+        0.301
+      ],
+      "complet": [
+        0.0,
+        0.0,
+        1.0,
+        0.789
+      ]
+    },
+    "alt": [
+      "César",
+      "Julius Caesar"
+    ]
+  },
+  {
+    "id": "marie-antoinette",
+    "name": "Marie-Antoinette",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Marie-Antoinette%2C_1775_-_Mus%C3%A9e_Antoine_L%C3%A9cuyer.jpg/1280px-Marie-Antoinette%2C_1775_-_Mus%C3%A9e_Antoine_L%C3%A9cuyer.jpg",
+    "by": "After Jean-Baptiste André Gautier-Dagoty",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.297,
+        0.403,
+        0.231,
+        0.073
+      ],
+      "nez": [
+        0.352,
+        0.48,
+        0.083,
+        0.044
+      ],
+      "bouche": [
+        0.348,
+        0.527,
+        0.104,
+        0.046
+      ],
+      "haut": [
+        0.252,
+        0.288,
+        0.37,
+        0.255
+      ],
+      "bas": [
+        0.252,
+        0.505,
+        0.37,
+        0.128
+      ],
+      "complet": [
+        0.215,
+        0.253,
+        0.444,
+        0.422
+      ]
+    },
+    "alt": [
+      "Marie Antoinette"
+    ]
+  },
+  {
+    "id": "maximilien-de-robespierre",
+    "name": "Maximilien de Robespierre",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Robespierre.jpg/1280px-Robespierre.jpg",
+    "by": "Unidentified painter",
+    "lic": "CC0",
+    "box": {
+      "yeux": [
+        0.301,
+        0.332,
+        0.227,
+        0.064
+      ],
+      "nez": [
+        0.339,
+        0.4,
+        0.093,
+        0.043
+      ],
+      "bouche": [
+        0.34,
+        0.446,
+        0.113,
+        0.043
+      ],
+      "haut": [
+        0.274,
+        0.227,
+        0.363,
+        0.23
+      ],
+      "bas": [
+        0.274,
+        0.42,
+        0.363,
+        0.136
+      ],
+      "complet": [
+        0.238,
+        0.194,
+        0.436,
+        0.402
+      ]
+    },
+    "alt": [
+      "Robespierre"
+    ]
+  },
+  {
+    "id": "napoleon-bonaparte",
+    "name": "Napoléon Bonaparte",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Napoleon_I_of_France_by_Andrea_Appiani.jpg/1280px-Napoleon_I_of_France_by_Andrea_Appiani.jpg",
+    "by": "Andrea Appiani",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.438,
+        0.198,
+        0.155,
+        0.042
+      ],
+      "nez": [
+        0.509,
+        0.242,
+        0.067,
+        0.036
+      ],
+      "bouche": [
+        0.498,
+        0.281,
+        0.077,
+        0.029
+      ],
+      "haut": [
+        0.358,
+        0.12,
+        0.251,
+        0.166
+      ],
+      "bas": [
+        0.358,
+        0.259,
+        0.251,
+        0.099
+      ],
+      "complet": [
+        0.333,
+        0.096,
+        0.301,
+        0.291
+      ]
+    },
+    "alt": [
+      "Napoléon",
+      "Napoléon Ier",
+      "Bonaparte"
+    ]
+  },
+  {
+    "id": "josephine-de-beauharnais",
+    "name": "Joséphine de Beauharnais",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Jos%C3%A9phine_de_Beauharnais_by_Andrea_Appiani.png/1280px-Jos%C3%A9phine_de_Beauharnais_by_Andrea_Appiani.png",
+    "by": "Andrea Appiani",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.325,
+        0.247,
+        0.161,
+        0.048
+      ],
+      "nez": [
+        0.345,
+        0.298,
+        0.063,
+        0.046
+      ],
+      "bouche": [
+        0.358,
+        0.351,
+        0.072,
+        0.033
+      ],
+      "haut": [
+        0.32,
+        0.157,
+        0.268,
+        0.196
+      ],
+      "bas": [
+        0.32,
+        0.318,
+        0.268,
+        0.12
+      ],
+      "complet": [
+        0.293,
+        0.129,
+        0.322,
+        0.344
+      ]
+    },
+    "alt": [
+      "Joséphine"
+    ]
+  },
+  {
+    "id": "elisabeth-ire",
+    "name": "Élisabeth Ire",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Darnley_stage_3.jpg/1280px-Darnley_stage_3.jpg",
+    "by": "Unidentified painter",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.405,
+        0.132,
+        0.142,
+        0.036
+      ],
+      "nez": [
+        0.465,
+        0.171,
+        0.057,
+        0.035
+      ],
+      "bouche": [
+        0.452,
+        0.208,
+        0.067,
+        0.027
+      ],
+      "haut": [
+        0.331,
+        0.06,
+        0.226,
+        0.153
+      ],
+      "bas": [
+        0.331,
+        0.19,
+        0.226,
+        0.085
+      ],
+      "complet": [
+        0.309,
+        0.038,
+        0.272,
+        0.263
+      ]
+    },
+    "alt": [
+      "Elizabeth I",
+      "Elisabeth 1ère"
+    ]
+  },
+  {
+    "id": "catherine-ii-de-russie",
+    "name": "Catherine II de Russie",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/7/72/Catherine_II_after_Roslin%2C_Rokotov_%281780s%2C_Kunsthistorisches_Museum%29.jpg",
+    "by": "After Alexander Roslin",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.397,
+        0.248,
+        0.181,
+        0.06
+      ],
+      "nez": [
+        0.433,
+        0.311,
+        0.071,
+        0.04
+      ],
+      "bouche": [
+        0.427,
+        0.354,
+        0.093,
+        0.039
+      ],
+      "haut": [
+        0.359,
+        0.147,
+        0.295,
+        0.22
+      ],
+      "bas": [
+        0.359,
+        0.331,
+        0.295,
+        0.128
+      ],
+      "complet": [
+        0.33,
+        0.115,
+        0.354,
+        0.382
+      ]
+    },
+    "alt": [
+      "Catherine II",
+      "Catherine la Grande"
+    ]
+  },
+  {
+    "id": "reine-victoria",
+    "name": "Reine Victoria",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Queen_Victoria_by_Bassano.jpg/1280px-Queen_Victoria_by_Bassano.jpg",
+    "by": "Alexander Bassano",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.229,
+        0.314,
+        0.335,
+        0.097
+      ],
+      "nez": [
+        0.312,
+        0.416,
+        0.127,
+        0.069
+      ],
+      "bouche": [
+        0.313,
+        0.493,
+        0.158,
+        0.049
+      ],
+      "haut": [
+        0.184,
+        0.174,
+        0.542,
+        0.326
+      ],
+      "bas": [
+        0.184,
+        0.443,
+        0.542,
+        0.195
+      ],
+      "complet": [
+        0.13,
+        0.127,
+        0.65,
+        0.567
+      ]
+    },
+    "alt": [
+      "Victoria"
+    ]
+  },
+  {
+    "id": "elisabeth-ii",
+    "name": "Élisabeth II",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Queen_Elizabeth_II_in_March_2015.jpg/1280px-Queen_Elizabeth_II_in_March_2015.jpg",
+    "by": "Original: Joel Rouse/ Ministry of DefenceDerivative: nagualdesign",
+    "lic": "OGL 3",
+    "box": {
+      "yeux": [
+        0.356,
+        0.324,
+        0.38,
+        0.103
+      ],
+      "nez": [
+        0.508,
+        0.432,
+        0.168,
+        0.074
+      ],
+      "bouche": [
+        0.451,
+        0.512,
+        0.249,
+        0.086
+      ],
+      "haut": [
+        0.2,
+        0.178,
+        0.623,
+        0.356
+      ],
+      "bas": [
+        0.2,
+        0.476,
+        0.623,
+        0.223
+      ],
+      "complet": [
+        0.138,
+        0.125,
+        0.748,
+        0.638
+      ]
+    },
+    "alt": [
+      "Elizabeth II",
+      "La reine d'Angleterre"
+    ]
+  },
+  {
+    "id": "lady-diana",
+    "name": "Lady Diana",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Diana%2C_Princess_of_Wales_1997_%282%29_%28cropped%29.jpg",
+    "by": "John Mathew Smith &amp; www.celebrity-photos.com from Laurel  Maryland, USA (Archived link)",
+    "lic": "CC BY-SA 2.0",
+    "box": {
+      "yeux": [
+        0.319,
+        0.362,
+        0.418,
+        0.114
+      ],
+      "nez": [
+        0.474,
+        0.482,
+        0.168,
+        0.078
+      ],
+      "bouche": [
+        0.448,
+        0.566,
+        0.234,
+        0.082
+      ],
+      "haut": [
+        0.191,
+        0.171,
+        0.667,
+        0.427
+      ],
+      "bas": [
+        0.191,
+        0.537,
+        0.667,
+        0.225
+      ],
+      "complet": [
+        0.124,
+        0.111,
+        0.801,
+        0.724
+      ]
+    },
+    "alt": [
+      "Diana",
+      "Princesse Diana",
+      "Diana Spencer"
+    ]
+  },
+  {
+    "id": "abraham-lincoln",
+    "name": "Abraham Lincoln",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/1280px-Abraham_Lincoln_O-77_matte_collodion_print.jpg",
+    "by": "Alexander Gardner",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.268,
+        0.285,
+        0.384,
+        0.096
+      ],
+      "nez": [
+        0.389,
+        0.387,
+        0.166,
+        0.088
+      ],
+      "bouche": [
+        0.368,
+        0.483,
+        0.207,
+        0.067
+      ],
+      "haut": [
+        0.161,
+        0.107,
+        0.609,
+        0.387
+      ],
+      "bas": [
+        0.161,
+        0.434,
+        0.609,
+        0.218
+      ],
+      "complet": [
+        0.1,
+        0.051,
+        0.731,
+        0.668
+      ]
+    },
+    "alt": [
+      "Lincoln"
+    ]
+  },
+  {
+    "id": "louise-michel",
+    "name": "Louise Michel",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/13/Louise_Michel%2C_grayscale.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.349,
+        0.288,
+        0.408,
+        0.1
+      ],
+      "nez": [
+        0.507,
+        0.393,
+        0.179,
+        0.095
+      ],
+      "bouche": [
+        0.465,
+        0.496,
+        0.231,
+        0.069
+      ],
+      "haut": [
+        0.177,
+        0.11,
+        0.656,
+        0.397
+      ],
+      "bas": [
+        0.177,
+        0.446,
+        0.656,
+        0.204
+      ],
+      "complet": [
+        0.112,
+        0.055,
+        0.788,
+        0.661
+      ]
+    }
+  },
+  {
+    "id": "sarah-bernhardt",
+    "name": "Sarah Bernhardt",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/SarahBernhardt1880.jpg",
+    "by": "Napoleon Sarony",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.292,
+        0.335,
+        0.307,
+        0.101
+      ],
+      "nez": [
+        0.392,
+        0.441,
+        0.121,
+        0.067
+      ],
+      "bouche": [
+        0.391,
+        0.512,
+        0.159,
+        0.062
+      ],
+      "haut": [
+        0.245,
+        0.215,
+        0.469,
+        0.309
+      ],
+      "bas": [
+        0.245,
+        0.476,
+        0.469,
+        0.175
+      ],
+      "complet": [
+        0.198,
+        0.171,
+        0.562,
+        0.534
+      ]
+    }
+  },
+  {
+    "id": "winston-churchill",
+    "name": "Winston Churchill",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Sir_Winston_Churchill_-_19086236948_%28restored%29.jpg/1280px-Sir_Winston_Churchill_-_19086236948_%28restored%29.jpg",
+    "by": "Auteur inconnu",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.398,
+        0.207,
+        0.168,
+        0.044
+      ],
+      "nez": [
+        0.447,
+        0.254,
+        0.069,
+        0.042
+      ],
+      "bouche": [
+        0.447,
+        0.298,
+        0.087,
+        0.026
+      ],
+      "haut": [
+        0.375,
+        0.129,
+        0.265,
+        0.174
+      ],
+      "bas": [
+        0.375,
+        0.279,
+        0.265,
+        0.084
+      ],
+      "complet": [
+        0.349,
+        0.105,
+        0.318,
+        0.286
+      ]
+    },
+    "alt": [
+      "Churchill"
+    ]
+  },
+  {
+    "id": "charles-de-gaulle",
+    "name": "Charles de Gaulle",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/ea/General_Charles_de_Gaulle_in_1945.jpg",
+    "by": "The National Archives UK",
+    "lic": "No restrictions",
+    "box": {
+      "yeux": [
+        0.381,
+        0.175,
+        0.2,
+        0.049
+      ],
+      "nez": [
+        0.424,
+        0.227,
+        0.087,
+        0.048
+      ],
+      "bouche": [
+        0.43,
+        0.282,
+        0.098,
+        0.044
+      ],
+      "haut": [
+        0.348,
+        0.09,
+        0.323,
+        0.195
+      ],
+      "bas": [
+        0.348,
+        0.25,
+        0.323,
+        0.136
+      ],
+      "complet": [
+        0.315,
+        0.06,
+        0.388,
+        0.363
+      ]
+    },
+    "alt": [
+      "De Gaulle",
+      "Le général de Gaulle"
+    ]
+  },
+  {
+    "id": "jean-moulin",
+    "name": "Jean Moulin",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/15/Moulin_Harcourt_1937.jpg",
+    "by": "Studio Harcourt",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.374,
+        0.308,
+        0.437,
+        0.107
+      ],
+      "nez": [
+        0.56,
+        0.421,
+        0.188,
+        0.095
+      ],
+      "bouche": [
+        0.507,
+        0.527,
+        0.233,
+        0.083
+      ],
+      "haut": [
+        0.144,
+        0.101,
+        0.712,
+        0.436
+      ],
+      "bas": [
+        0.144,
+        0.464,
+        0.712,
+        0.262
+      ],
+      "complet": [
+        0.073,
+        0.037,
+        0.855,
+        0.765
+      ]
+    }
+  },
+  {
+    "id": "josephine-baker",
+    "name": "Joséphine Baker",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Baker_Harcourt_1940_2.jpg",
+    "by": "Studio Harcourt",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.345,
+        0.299,
+        0.318,
+        0.076
+      ],
+      "nez": [
+        0.435,
+        0.379,
+        0.134,
+        0.063
+      ],
+      "bouche": [
+        0.411,
+        0.447,
+        0.181,
+        0.07
+      ],
+      "haut": [
+        0.261,
+        0.163,
+        0.492,
+        0.302
+      ],
+      "bas": [
+        0.261,
+        0.421,
+        0.492,
+        0.162
+      ],
+      "complet": [
+        0.212,
+        0.12,
+        0.59,
+        0.514
+      ]
+    }
+  },
+  {
+    "id": "gandhi",
+    "name": "Gandhi",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/1280px-Mahatma-Gandhi%2C_studio%2C_1931.jpg",
+    "by": "Elliott &amp; Fry",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.439,
+        0.12,
+        0.226,
+        0.059
+      ],
+      "nez": [
+        0.495,
+        0.182,
+        0.105,
+        0.046
+      ],
+      "bouche": [
+        0.482,
+        0.231,
+        0.123,
+        0.037
+      ],
+      "haut": [
+        0.374,
+        0.024,
+        0.351,
+        0.225
+      ],
+      "bas": [
+        0.374,
+        0.221,
+        0.351,
+        0.101
+      ],
+      "complet": [
+        0.339,
+        0.0,
+        0.421,
+        0.358
+      ]
+    },
+    "alt": [
+      "Mahatma Gandhi",
+      "Ghandi",
+      "Mohandas Gandhi"
+    ]
+  },
+  {
+    "id": "john-f-kennedy",
+    "name": "John F. Kennedy",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/1280px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg",
+    "by": "Cecil W. Stoughton",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.232,
+        0.298,
+        0.296,
+        0.09
+      ],
+      "nez": [
+        0.295,
+        0.393,
+        0.141,
+        0.055
+      ],
+      "bouche": [
+        0.311,
+        0.453,
+        0.192,
+        0.08
+      ],
+      "haut": [
+        0.198,
+        0.151,
+        0.515,
+        0.322
+      ],
+      "bas": [
+        0.198,
+        0.419,
+        0.515,
+        0.216
+      ],
+      "complet": [
+        0.147,
+        0.101,
+        0.618,
+        0.592
+      ]
+    },
+    "alt": [
+      "JFK",
+      "Kennedy",
+      "John Kennedy"
+    ]
+  },
+  {
+    "id": "martin-luther-king",
+    "name": "Martin Luther King",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/1c/The_Rev._Dr._Martin_Luther_King_Jr._Color_Portrait_%28high_quality%29.jpg",
+    "by": "Associated Press",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.206,
+        0.249,
+        0.569,
+        0.171
+      ],
+      "nez": [
+        0.268,
+        0.428,
+        0.256,
+        0.083
+      ],
+      "bouche": [
+        0.239,
+        0.519,
+        0.296,
+        0.125
+      ],
+      "haut": [
+        0.084,
+        0.033,
+        0.877,
+        0.511
+      ],
+      "bas": [
+        0.084,
+        0.456,
+        0.877,
+        0.33
+      ],
+      "complet": [
+        0.0,
+        0.0,
+        1.0,
+        0.878
+      ]
+    },
+    "alt": [
+      "MLK",
+      "Martin Luther King Jr."
+    ]
+  },
+  {
+    "id": "rosa-parks",
+    "name": "Rosa Parks",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Rosa_Parks_being_fingerprinted_by_Deputy_Sheriff_D.H._Lackey_after_being_arrested_on_February_22%2C_1956%2C_during_the_Montgomery_bus_boycott.jpg/1280px-Rosa_Parks_being_fingerprinted_by_Deputy_Sheriff_D.H._Lackey_after_being_arrested_on_February_22%2C_1956%2C_during_the_Montgomery_bus_boycott.jpg",
+    "by": "Gene Herrick for the Associated Press; restored by Adam Cuerden",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.719,
+        0.228,
+        0.1,
+        0.061
+      ],
+      "nez": [
+        0.726,
+        0.292,
+        0.043,
+        0.032
+      ],
+      "bouche": [
+        0.725,
+        0.327,
+        0.052,
+        0.042
+      ],
+      "haut": [
+        0.71,
+        0.138,
+        0.159,
+        0.205
+      ],
+      "bas": [
+        0.71,
+        0.314,
+        0.159,
+        0.105
+      ],
+      "complet": [
+        0.694,
+        0.11,
+        0.191,
+        0.344
+      ]
+    }
+  },
+  {
+    "id": "mere-teresa",
+    "name": "Mère Teresa",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8e/MotherTeresa_090.jpg",
+    "by": "Túrelio",
+    "lic": "CC BY-SA 2.0 de",
+    "box": {
+      "yeux": [
+        0.552,
+        0.173,
+        0.36,
+        0.094
+      ],
+      "nez": [
+        0.738,
+        0.274,
+        0.183,
+        0.113
+      ],
+      "bouche": [
+        0.676,
+        0.394,
+        0.207,
+        0.088
+      ],
+      "haut": [
+        0.279,
+        0.0,
+        0.634,
+        0.415
+      ],
+      "bas": [
+        0.279,
+        0.336,
+        0.634,
+        0.286
+      ],
+      "complet": [
+        0.216,
+        0.0,
+        0.761,
+        0.702
+      ]
+    },
+    "alt": [
+      "Mother Teresa",
+      "Teresa"
+    ]
+  },
+  {
+    "id": "eva-peron",
+    "name": "Eva Perón",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/12/Evita_%28cropped2%29.JPG",
+    "by": "Pinélides Fusco",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.463,
+        0.276,
+        0.453,
+        0.127
+      ],
+      "nez": [
+        0.621,
+        0.41,
+        0.204,
+        0.089
+      ],
+      "bouche": [
+        0.531,
+        0.505,
+        0.302,
+        0.114
+      ],
+      "haut": [
+        0.245,
+        0.06,
+        0.746,
+        0.47
+      ],
+      "bas": [
+        0.245,
+        0.45,
+        0.746,
+        0.305
+      ],
+      "complet": [
+        0.17,
+        0.0,
+        0.83,
+        0.84
+      ]
+    },
+    "alt": [
+      "Evita",
+      "Evita Perón"
+    ]
+  },
+  {
+    "id": "nelson-mandela",
+    "name": "Nelson Mandela",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/1280px-Nelson_Mandela_1994.jpg",
+    "by": "Kingkongphoto &amp; www.celebrity-photos.com from Laurel",
+    "lic": "CC BY-SA 2.0",
+    "box": {
+      "yeux": [
+        0.3,
+        0.391,
+        0.434,
+        0.121
+      ],
+      "nez": [
+        0.384,
+        0.517,
+        0.19,
+        0.081
+      ],
+      "bouche": [
+        0.352,
+        0.605,
+        0.229,
+        0.09
+      ],
+      "haut": [
+        0.172,
+        0.226,
+        0.674,
+        0.405
+      ],
+      "bas": [
+        0.172,
+        0.574,
+        0.674,
+        0.211
+      ],
+      "complet": [
+        0.105,
+        0.169,
+        0.809,
+        0.684
+      ]
+    },
+    "alt": [
+      "Mandela"
+    ]
+  },
+  {
+    "id": "simone-veil",
+    "name": "Simone Veil",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Simone_Veil%2C_gymnase_Japy_2008_02_27_n3_ret.jpg/1280px-Simone_Veil%2C_gymnase_Japy_2008_02_27_n3_ret.jpg",
+    "by": "Marie-Lan Nguyen (User:Jastrow)",
+    "lic": "CC BY 3.0",
+    "box": {
+      "yeux": [
+        0.333,
+        0.28,
+        0.364,
+        0.115
+      ],
+      "nez": [
+        0.391,
+        0.401,
+        0.15,
+        0.096
+      ],
+      "bouche": [
+        0.387,
+        0.503,
+        0.19,
+        0.075
+      ],
+      "haut": [
+        0.278,
+        0.094,
+        0.592,
+        0.425
+      ],
+      "bas": [
+        0.278,
+        0.444,
+        0.592,
+        0.258
+      ],
+      "complet": [
+        0.219,
+        0.032,
+        0.711,
+        0.745
+      ]
+    }
+  },
+  {
+    "id": "florence-nightingale",
+    "name": "Florence Nightingale",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Florence_Nightingale_%28H_Hering_NPG_x82368%29.jpg",
+    "by": "Henry Hering (1814-1893)",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.325,
+        0.268,
+        0.334,
+        0.082
+      ],
+      "nez": [
+        0.422,
+        0.353,
+        0.128,
+        0.068
+      ],
+      "bouche": [
+        0.399,
+        0.425,
+        0.157,
+        0.052
+      ],
+      "haut": [
+        0.219,
+        0.133,
+        0.522,
+        0.302
+      ],
+      "bas": [
+        0.219,
+        0.388,
+        0.522,
+        0.168
+      ],
+      "complet": [
+        0.167,
+        0.09,
+        0.627,
+        0.518
+      ]
+    }
+  },
+  {
+    "id": "greta-garbo",
+    "name": "Greta Garbo",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/5/57/Garbo_in_Inspiration.jpg",
+    "by": "Metro-Goldwyn-Mayer (work for hire)",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.294,
+        0.312,
+        0.401,
+        0.108
+      ],
+      "nez": [
+        0.413,
+        0.425,
+        0.152,
+        0.091
+      ],
+      "bouche": [
+        0.391,
+        0.524,
+        0.2,
+        0.067
+      ],
+      "haut": [
+        0.199,
+        0.141,
+        0.607,
+        0.394
+      ],
+      "bas": [
+        0.199,
+        0.476,
+        0.607,
+        0.208
+      ],
+      "complet": [
+        0.138,
+        0.086,
+        0.729,
+        0.665
+      ]
+    },
+    "alt": [
+      "Garbo"
+    ]
+  },
+  {
+    "id": "marlene-dietrich",
+    "name": "Marlene Dietrich",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Marlene_Dietrich_Ross-Verlag_0875%28crop%29.jpg/1280px-Marlene_Dietrich_Ross-Verlag_0875%28crop%29.jpg",
+    "by": "für die Datei Arths-at",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.314,
+        0.32,
+        0.402,
+        0.099
+      ],
+      "nez": [
+        0.455,
+        0.425,
+        0.158,
+        0.093
+      ],
+      "bouche": [
+        0.436,
+        0.524,
+        0.185,
+        0.063
+      ],
+      "haut": [
+        0.197,
+        0.147,
+        0.61,
+        0.393
+      ],
+      "bas": [
+        0.197,
+        0.486,
+        0.61,
+        0.19
+      ],
+      "complet": [
+        0.136,
+        0.093,
+        0.731,
+        0.648
+      ]
+    }
+  },
+  {
+    "id": "ingrid-bergman",
+    "name": "Ingrid Bergman",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Ingrid_Bergman_The_Constant_Wife_1975_%28cropped%29.JPG",
+    "by": "Arthur Cantor",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.27,
+        0.319,
+        0.323,
+        0.093
+      ],
+      "nez": [
+        0.333,
+        0.417,
+        0.135,
+        0.074
+      ],
+      "bouche": [
+        0.322,
+        0.5,
+        0.188,
+        0.068
+      ],
+      "haut": [
+        0.211,
+        0.161,
+        0.521,
+        0.347
+      ],
+      "bas": [
+        0.211,
+        0.449,
+        0.521,
+        0.211
+      ],
+      "complet": [
+        0.159,
+        0.111,
+        0.625,
+        0.61
+      ]
+    }
+  },
+  {
+    "id": "nefertiti",
+    "name": "Néfertiti",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Nofretete_Neues_Museum.jpg/1280px-Nofretete_Neues_Museum.jpg",
+    "by": "Philip Pikart",
+    "lic": "CC BY-SA 3.0",
+    "box": {
+      "yeux": [
+        0.223,
+        0.41,
+        0.291,
+        0.081
+      ],
+      "nez": [
+        0.255,
+        0.495,
+        0.12,
+        0.06
+      ],
+      "bouche": [
+        0.262,
+        0.559,
+        0.143,
+        0.054
+      ],
+      "haut": [
+        0.199,
+        0.299,
+        0.46,
+        0.267
+      ],
+      "bas": [
+        0.199,
+        0.519,
+        0.46,
+        0.163
+      ],
+      "complet": [
+        0.153,
+        0.26,
+        0.552,
+        0.468
+      ]
+    },
+    "alt": [
+      "Nefertiti"
+    ]
+  },
+  {
+    "id": "catherine-de-medicis",
+    "name": "Catherine de Médicis",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Catherine-de-medici.jpg",
+    "by": "Attributed to François Clouet",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.298,
+        0.174,
+        0.231,
+        0.075
+      ],
+      "nez": [
+        0.347,
+        0.253,
+        0.094,
+        0.059
+      ],
+      "bouche": [
+        0.361,
+        0.318,
+        0.111,
+        0.043
+      ],
+      "haut": [
+        0.286,
+        0.065,
+        0.368,
+        0.259
+      ],
+      "bas": [
+        0.286,
+        0.283,
+        0.368,
+        0.137
+      ],
+      "complet": [
+        0.249,
+        0.029,
+        0.441,
+        0.435
+      ]
+    }
+  },
+  {
+    "id": "marie-stuart",
+    "name": "Marie Stuart",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Mary_Queen_of_Scots_Blairs_Museum.jpg/1280px-Mary_Queen_of_Scots_Blairs_Museum.jpg",
+    "by": "Unidentified painter",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.493,
+        0.178,
+        0.106,
+        0.036
+      ],
+      "nez": [
+        0.539,
+        0.215,
+        0.043,
+        0.022
+      ],
+      "bouche": [
+        0.527,
+        0.239,
+        0.052,
+        0.024
+      ],
+      "haut": [
+        0.445,
+        0.117,
+        0.166,
+        0.129
+      ],
+      "bas": [
+        0.445,
+        0.227,
+        0.166,
+        0.072
+      ],
+      "complet": [
+        0.428,
+        0.099,
+        0.199,
+        0.222
+      ]
+    },
+    "alt": [
+      "Marie Ire d'Écosse"
+    ]
+  },
+  {
+    "id": "madame-de-pompadour",
+    "name": "Madame de Pompadour",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Jeanne-Antoinette_Poisson%2C_Marquise_de_Pompadour_%281721-1764%29%2C_by_Fran%C3%A7ois-Hubert_Drouais.jpg/1280px-Jeanne-Antoinette_Poisson%2C_Marquise_de_Pompadour_%281721-1764%29%2C_by_Fran%C3%A7ois-Hubert_Drouais.jpg",
+    "by": "François-Hubert Drouais",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.354,
+        0.26,
+        0.196,
+        0.062
+      ],
+      "nez": [
+        0.41,
+        0.326,
+        0.074,
+        0.042
+      ],
+      "bouche": [
+        0.409,
+        0.37,
+        0.091,
+        0.037
+      ],
+      "haut": [
+        0.318,
+        0.163,
+        0.313,
+        0.217
+      ],
+      "bas": [
+        0.318,
+        0.346,
+        0.313,
+        0.118
+      ],
+      "complet": [
+        0.287,
+        0.132,
+        0.375,
+        0.368
+      ]
+    },
+    "alt": [
+      "La Pompadour",
+      "Pompadour"
+    ]
+  },
+  {
+    "id": "sissi",
+    "name": "Sissi",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Isabel_da_%C3%81ustria_1867.jpg/1280px-Isabel_da_%C3%81ustria_1867.jpg",
+    "by": "Emil Rabending",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.411,
+        0.213,
+        0.218,
+        0.065
+      ],
+      "nez": [
+        0.501,
+        0.281,
+        0.085,
+        0.043
+      ],
+      "bouche": [
+        0.495,
+        0.329,
+        0.1,
+        0.039
+      ],
+      "haut": [
+        0.335,
+        0.123,
+        0.342,
+        0.21
+      ],
+      "bas": [
+        0.335,
+        0.299,
+        0.342,
+        0.126
+      ],
+      "complet": [
+        0.301,
+        0.092,
+        0.41,
+        0.37
+      ]
+    },
+    "alt": [
+      "Élisabeth d'Autriche",
+      "Sissi impératrice"
+    ]
+  },
+  {
+    "id": "margaret-thatcher",
+    "name": "Margaret Thatcher",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Margaret_Thatcher_stock_portrait_%28cropped%29.jpg",
+    "by": "derivative work by Begoon",
+    "lic": "Copyrighted free use",
+    "box": {
+      "yeux": [
+        0.413,
+        0.192,
+        0.193,
+        0.038
+      ],
+      "nez": [
+        0.468,
+        0.233,
+        0.081,
+        0.046
+      ],
+      "bouche": [
+        0.455,
+        0.282,
+        0.107,
+        0.033
+      ],
+      "haut": [
+        0.352,
+        0.108,
+        0.318,
+        0.179
+      ],
+      "bas": [
+        0.352,
+        0.26,
+        0.318,
+        0.107
+      ],
+      "complet": [
+        0.32,
+        0.082,
+        0.382,
+        0.317
+      ]
+    },
+    "alt": [
+      "Thatcher",
+      "La Dame de fer"
+    ]
+  },
+  {
+    "id": "indira-gandhi",
+    "name": "Indira Gandhi",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Indira_Gandhi_official_portrait.png/1280px-Indira_Gandhi_official_portrait.png",
+    "by": "Prime Minister's Office",
+    "lic": "GODL-India",
+    "box": {
+      "yeux": [
+        0.298,
+        0.303,
+        0.377,
+        0.094
+      ],
+      "nez": [
+        0.388,
+        0.403,
+        0.176,
+        0.071
+      ],
+      "bouche": [
+        0.365,
+        0.479,
+        0.248,
+        0.079
+      ],
+      "haut": [
+        0.205,
+        0.13,
+        0.61,
+        0.376
+      ],
+      "bas": [
+        0.205,
+        0.451,
+        0.61,
+        0.206
+      ],
+      "complet": [
+        0.144,
+        0.076,
+        0.732,
+        0.645
+      ]
+    },
+    "alt": [
+      "Indira"
+    ]
+  },
+  {
+    "id": "jacqueline-kennedy",
+    "name": "Jacqueline Kennedy",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Jackie_Kennedy_Color_Portrait_%283x4_cropped%29.jpg/1280px-Jackie_Kennedy_Color_Portrait_%283x4_cropped%29.jpg",
+    "by": "Mark Shaw",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.36,
+        0.273,
+        0.286,
+        0.065
+      ],
+      "nez": [
+        0.446,
+        0.341,
+        0.116,
+        0.054
+      ],
+      "bouche": [
+        0.416,
+        0.399,
+        0.153,
+        0.046
+      ],
+      "haut": [
+        0.266,
+        0.158,
+        0.43,
+        0.254
+      ],
+      "bas": [
+        0.266,
+        0.376,
+        0.43,
+        0.134
+      ],
+      "complet": [
+        0.223,
+        0.122,
+        0.515,
+        0.43
+      ]
+    },
+    "alt": [
+      "Jackie Kennedy",
+      "Jackie Kennedy Onassis"
+    ]
+  },
+  {
+    "id": "berthe-morisot",
+    "name": "Berthe Morisot",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Edouard_Manet_-_Berthe_Morisot_With_a_Bouquet_of_Violets_-_Google_Art_Project.jpg/1280px-Edouard_Manet_-_Berthe_Morisot_With_a_Bouquet_of_Violets_-_Google_Art_Project.jpg",
+    "by": "Édouard Manet",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.297,
+        0.333,
+        0.254,
+        0.07
+      ],
+      "nez": [
+        0.365,
+        0.406,
+        0.102,
+        0.048
+      ],
+      "bouche": [
+        0.367,
+        0.457,
+        0.115,
+        0.052
+      ],
+      "haut": [
+        0.246,
+        0.23,
+        0.4,
+        0.239
+      ],
+      "bas": [
+        0.246,
+        0.432,
+        0.4,
+        0.137
+      ],
+      "complet": [
+        0.206,
+        0.196,
+        0.48,
+        0.415
+      ]
+    },
+    "alt": [
+      "Morisot"
+    ]
+  },
+  {
+    "id": "mata-hari",
+    "name": "Mata Hari",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Margaretha_Geertruida_MacLeod-Zelle_in_the_Dutch_East_Indies_-_1900.jpg",
+    "by": "Koene &amp; Com / Batavia-Amsterdam",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.389,
+        0.272,
+        0.29,
+        0.084
+      ],
+      "nez": [
+        0.507,
+        0.359,
+        0.117,
+        0.044
+      ],
+      "bouche": [
+        0.495,
+        0.407,
+        0.151,
+        0.06
+      ],
+      "haut": [
+        0.296,
+        0.158,
+        0.463,
+        0.26
+      ],
+      "bas": [
+        0.296,
+        0.371,
+        0.463,
+        0.174
+      ],
+      "complet": [
+        0.249,
+        0.119,
+        0.556,
+        0.474
+      ]
+    }
+  },
+  {
+    "id": "amelia-earhart",
+    "name": "Amelia Earhart",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/7/79/Amelia_Earhart_1928_%28cropped%29.jpg",
+    "by": "Wide World Photos",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.247,
+        0.299,
+        0.453,
+        0.11
+      ],
+      "nez": [
+        0.354,
+        0.415,
+        0.19,
+        0.106
+      ],
+      "bouche": [
+        0.358,
+        0.536,
+        0.219,
+        0.081
+      ],
+      "haut": [
+        0.176,
+        0.12,
+        0.669,
+        0.422
+      ],
+      "bas": [
+        0.176,
+        0.469,
+        0.669,
+        0.271
+      ],
+      "complet": [
+        0.109,
+        0.057,
+        0.803,
+        0.758
+      ]
+    },
+    "alt": [
+      "Earhart"
+    ]
+  },
+  {
+    "id": "helen-keller",
+    "name": "Helen Keller",
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Helen_Keller_circa_1920_-_restored.jpg/1280px-Helen_Keller_circa_1920_-_restored.jpg",
+    "by": "Los Angeles Times; restored by User:Rhododendrites",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.38,
+        0.178,
+        0.143,
+        0.043
+      ],
+      "nez": [
+        0.44,
+        0.223,
+        0.065,
+        0.038
+      ],
+      "bouche": [
+        0.411,
+        0.263,
+        0.08,
+        0.029
+      ],
+      "haut": [
+        0.288,
+        0.108,
+        0.234,
+        0.161
+      ],
+      "bas": [
+        0.288,
+        0.244,
+        0.234,
+        0.09
+      ],
+      "complet": [
+        0.264,
+        0.085,
+        0.28,
+        0.276
+      ]
+    }
+  },
+  {
+    "id": "harriet-tubman",
+    "name": "Harriet Tubman",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/6/61/Harriet_Tubman_%28circa_1885%29.jpg",
+    "by": "Horatio Seymour Squyer",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.274,
+        0.258,
+        0.348,
+        0.079
+      ],
+      "nez": [
+        0.349,
+        0.342,
+        0.156,
+        0.066
+      ],
+      "bouche": [
+        0.347,
+        0.417,
+        0.176,
+        0.067
+      ],
+      "haut": [
+        0.196,
+        0.117,
+        0.554,
+        0.305
+      ],
+      "bas": [
+        0.196,
+        0.369,
+        0.554,
+        0.198
+      ],
+      "complet": [
+        0.141,
+        0.072,
+        0.665,
+        0.55
+      ]
+    },
+    "alt": [
+      "Tubman"
+    ]
+  },
+  {
+    "id": "clara-schumann",
+    "name": "Clara Schumann",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Clara_Schumann_by_Luckhardt.jpg",
+    "by": "Fritz Luckhardt (1833–1894)",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.477,
+        0.317,
+        0.255,
+        0.061
+      ],
+      "nez": [
+        0.588,
+        0.381,
+        0.11,
+        0.048
+      ],
+      "bouche": [
+        0.556,
+        0.433,
+        0.138,
+        0.038
+      ],
+      "haut": [
+        0.34,
+        0.215,
+        0.422,
+        0.225
+      ],
+      "bas": [
+        0.34,
+        0.404,
+        0.422,
+        0.127
+      ],
+      "complet": [
+        0.298,
+        0.183,
+        0.506,
+        0.387
+      ]
+    }
+  },
+  {
+    "id": "charlotte-bronte",
+    "name": "Charlotte Brontë",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/CBRichmond.png",
+    "by": "George Richmond",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.341,
+        0.284,
+        0.477,
+        0.114
+      ],
+      "nez": [
+        0.463,
+        0.404,
+        0.203,
+        0.09
+      ],
+      "bouche": [
+        0.423,
+        0.5,
+        0.24,
+        0.073
+      ],
+      "haut": [
+        0.157,
+        0.092,
+        0.758,
+        0.432
+      ],
+      "bas": [
+        0.157,
+        0.463,
+        0.758,
+        0.227
+      ],
+      "complet": [
+        0.082,
+        0.031,
+        0.909,
+        0.732
+      ]
+    },
+    "alt": [
+      "Brontë"
+    ]
+  },
+  {
+    "id": "francoise-sagan",
+    "name": "Françoise Sagan",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Identite-Sagan-1958-Sacem.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.255,
+        0.417,
+        0.496,
+        0.121
+      ],
+      "nez": [
+        0.402,
+        0.545,
+        0.202,
+        0.102
+      ],
+      "bouche": [
+        0.359,
+        0.654,
+        0.275,
+        0.098
+      ],
+      "haut": [
+        0.099,
+        0.197,
+        0.777,
+        0.504
+      ],
+      "bas": [
+        0.099,
+        0.637,
+        0.777,
+        0.24
+      ],
+      "complet": [
+        0.022,
+        0.128,
+        0.933,
+        0.832
+      ]
+    },
+    "alt": [
+      "Sagan"
+    ]
+  },
+  {
+    "id": "emily-dickinson",
+    "name": "Emily Dickinson",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Emily_Dickinson_daguerreotype_%28Restored%2C_cropped%2C_blown_up%2C_sepia%29.jpg",
+    "by": "Unknown authorUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.255,
+        0.276,
+        0.436,
+        0.109
+      ],
+      "nez": [
+        0.383,
+        0.391,
+        0.173,
+        0.101
+      ],
+      "bouche": [
+        0.36,
+        0.503,
+        0.207,
+        0.087
+      ],
+      "haut": [
+        0.148,
+        0.08,
+        0.662,
+        0.433
+      ],
+      "bas": [
+        0.148,
+        0.445,
+        0.662,
+        0.248
+      ],
+      "complet": [
+        0.081,
+        0.018,
+        0.795,
+        0.75
+      ]
+    },
+    "alt": [
+      "Dickinson"
+    ]
+  },
+  {
+    "id": "rita-hayworth",
+    "name": "Rita Hayworth",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Rita_Hayworth_Down_to_Earth_1947.png",
+    "by": "Columbia Pictures; photographer not identified",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.306,
+        0.295,
+        0.39,
+        0.111
+      ],
+      "nez": [
+        0.423,
+        0.411,
+        0.16,
+        0.046
+      ],
+      "bouche": [
+        0.401,
+        0.463,
+        0.226,
+        0.106
+      ],
+      "haut": [
+        0.205,
+        0.136,
+        0.615,
+        0.348
+      ],
+      "bas": [
+        0.205,
+        0.416,
+        0.615,
+        0.261
+      ],
+      "complet": [
+        0.144,
+        0.08,
+        0.737,
+        0.662
+      ]
+    },
+    "alt": [
+      "Hayworth"
+    ]
+  },
+  {
+    "id": "jean-paul-sartre",
+    "name": "Jean-Paul Sartre",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Jean-Paul_Sartre_1967_%28cropped%29.jpg",
+    "by": "https://www.flickr.com/people/69061470@N05",
+    "lic": "CC BY-SA 3.0",
+    "box": {
+      "yeux": [
+        0.336,
+        0.302,
+        0.597,
+        0.168
+      ],
+      "nez": [
+        0.592,
+        0.477,
+        0.257,
+        0.099
+      ],
+      "bouche": [
+        0.539,
+        0.584,
+        0.325,
+        0.108
+      ],
+      "haut": [
+        0.095,
+        0.074,
+        0.905,
+        0.533
+      ],
+      "bas": [
+        0.095,
+        0.526,
+        0.905,
+        0.297
+      ],
+      "complet": [
+        0.002,
+        0.0,
+        0.998,
+        0.915
+      ]
+    },
+    "alt": [
+      "Sartre"
+    ]
+  },
+  {
+    "id": "jacques-yves-cousteau",
+    "name": "Jacques-Yves Cousteau",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/1/10/Cousteau1972_%28cropped%29.jpg",
+    "by": "Hans Peters for Anefo .",
+    "lic": "CC0",
+    "box": {
+      "yeux": [
+        0.293,
+        0.237,
+        0.267,
+        0.098
+      ],
+      "nez": [
+        0.3,
+        0.34,
+        0.111,
+        0.059
+      ],
+      "bouche": [
+        0.314,
+        0.403,
+        0.133,
+        0.052
+      ],
+      "haut": [
+        0.28,
+        0.121,
+        0.44,
+        0.294
+      ],
+      "bas": [
+        0.28,
+        0.369,
+        0.44,
+        0.154
+      ],
+      "complet": [
+        0.236,
+        0.08,
+        0.528,
+        0.492
+      ]
+    },
+    "alt": [
+      "Cousteau",
+      "Le commandant Cousteau"
+    ]
+  },
+  {
+    "id": "marcel-pagnol",
+    "name": "Marcel Pagnol",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/0/09/Marcel_Pagnol_1931.jpg",
+    "by": "AnonymousUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.26,
+        0.321,
+        0.36,
+        0.101
+      ],
+      "nez": [
+        0.378,
+        0.428,
+        0.154,
+        0.089
+      ],
+      "bouche": [
+        0.373,
+        0.523,
+        0.186,
+        0.072
+      ],
+      "haut": [
+        0.171,
+        0.135,
+        0.576,
+        0.407
+      ],
+      "bas": [
+        0.171,
+        0.485,
+        0.576,
+        0.217
+      ],
+      "complet": [
+        0.113,
+        0.077,
+        0.692,
+        0.693
+      ]
+    },
+    "alt": [
+      "Pagnol"
+    ]
   }
 ]

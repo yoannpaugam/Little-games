@@ -1,0 +1,954 @@
+[
+ {
+  "id": "platon",
+  "name": "Platon",
+  "job": "Philosophe grec",
+  "g": "m",
+  "alt": [
+   "Plato"
+  ]
+ },
+ {
+  "id": "aristote",
+  "name": "Aristote",
+  "job": "Philosophe grec",
+  "g": "m"
+ },
+ {
+  "id": "rene-descartes",
+  "name": "René Descartes",
+  "job": "Philosophe et mathématicien",
+  "g": "m",
+  "alt": [
+   "Descartes"
+  ]
+ },
+ {
+  "id": "voltaire",
+  "name": "Voltaire",
+  "job": "Écrivain et philosophe",
+  "g": "m"
+ },
+ {
+  "id": "jean-jacques-rousseau",
+  "name": "Jean-Jacques Rousseau",
+  "job": "Philosophe et écrivain",
+  "g": "m",
+  "alt": [
+   "Rousseau"
+  ]
+ },
+ {
+  "id": "emmanuel-kant",
+  "name": "Emmanuel Kant",
+  "job": "Philosophe",
+  "g": "m",
+  "alt": [
+   "Kant"
+  ],
+  "search": "Immanuel Kant"
+ },
+ {
+  "id": "friedrich-nietzsche",
+  "name": "Friedrich Nietzsche",
+  "job": "Philosophe",
+  "g": "m",
+  "alt": [
+   "Nietzsche"
+  ]
+ },
+ {
+  "id": "karl-marx",
+  "name": "Karl Marx",
+  "job": "Philosophe et économiste",
+  "g": "m",
+  "alt": [
+   "Marx"
+  ]
+ },
+ {
+  "id": "sigmund-freud",
+  "name": "Sigmund Freud",
+  "job": "Psychanalyste",
+  "g": "m",
+  "alt": [
+   "Freud"
+  ]
+ },
+ {
+  "id": "jean-paul-sartre",
+  "name": "Jean-Paul Sartre",
+  "job": "Philosophe et écrivain",
+  "g": "m",
+  "alt": [
+   "Sartre"
+  ]
+ },
+ {
+  "id": "simone-de-beauvoir",
+  "name": "Simone de Beauvoir",
+  "job": "Philosophe et écrivaine",
+  "g": "f",
+  "alt": [
+   "Beauvoir"
+  ]
+ },
+ {
+  "id": "albert-camus",
+  "name": "Albert Camus",
+  "job": "Écrivain",
+  "g": "m",
+  "alt": [
+   "Camus"
+  ]
+ },
+ {
+  "id": "leonard-de-vinci",
+  "name": "Léonard de Vinci",
+  "job": "Peintre et inventeur",
+  "g": "m",
+  "alt": [
+   "De Vinci",
+   "Leonard de Vinci",
+   "Leonardo da Vinci"
+  ],
+  "search": "Leonardo da Vinci"
+ },
+ {
+  "id": "galilee",
+  "name": "Galilée",
+  "job": "Astronome et physicien",
+  "g": "m",
+  "alt": [
+   "Galileo Galilei",
+   "Galilei"
+  ],
+  "search": "Galileo Galilei"
+ },
+ {
+  "id": "isaac-newton",
+  "name": "Isaac Newton",
+  "job": "Physicien et mathématicien",
+  "g": "m",
+  "alt": [
+   "Newton"
+  ]
+ },
+ {
+  "id": "charles-darwin",
+  "name": "Charles Darwin",
+  "job": "Naturaliste",
+  "g": "m",
+  "alt": [
+   "Darwin"
+  ]
+ },
+ {
+  "id": "louis-pasteur",
+  "name": "Louis Pasteur",
+  "job": "Scientifique",
+  "g": "m",
+  "alt": [
+   "Pasteur"
+  ]
+ },
+ {
+  "id": "marie-curie",
+  "name": "Marie Curie",
+  "job": "Physicienne et chimiste",
+  "g": "f",
+  "alt": [
+   "Curie"
+  ]
+ },
+ {
+  "id": "albert-einstein",
+  "name": "Albert Einstein",
+  "job": "Physicien",
+  "g": "m",
+  "alt": [
+   "Einstein"
+  ]
+ },
+ {
+  "id": "nikola-tesla",
+  "name": "Nikola Tesla",
+  "job": "Inventeur et ingénieur",
+  "g": "m",
+  "alt": [
+   "Tesla"
+  ]
+ },
+ {
+  "id": "ada-lovelace",
+  "name": "Ada Lovelace",
+  "job": "Mathématicienne",
+  "g": "f",
+  "alt": [
+   "Lovelace"
+  ]
+ },
+ {
+  "id": "stephen-hawking",
+  "name": "Stephen Hawking",
+  "job": "Physicien",
+  "g": "m",
+  "alt": [
+   "Hawking"
+  ]
+ },
+ {
+  "id": "rosalind-franklin",
+  "name": "Rosalind Franklin",
+  "job": "Biologiste et chimiste",
+  "g": "f"
+ },
+ {
+  "id": "wolfgang-amadeus-mozart",
+  "name": "Wolfgang Amadeus Mozart",
+  "job": "Compositeur",
+  "g": "m",
+  "alt": [
+   "Mozart"
+  ]
+ },
+ {
+  "id": "ludwig-van-beethoven",
+  "name": "Ludwig van Beethoven",
+  "job": "Compositeur",
+  "g": "m",
+  "alt": [
+   "Beethoven"
+  ]
+ },
+ {
+  "id": "jean-sebastien-bach",
+  "name": "Jean-Sébastien Bach",
+  "job": "Compositeur",
+  "g": "m",
+  "alt": [
+   "Bach",
+   "Johann Sebastian Bach"
+  ],
+  "search": "Johann Sebastian Bach"
+ },
+ {
+  "id": "frederic-chopin",
+  "name": "Frédéric Chopin",
+  "job": "Compositeur et pianiste",
+  "g": "m",
+  "alt": [
+   "Chopin"
+  ]
+ },
+ {
+  "id": "piotr-ilitch-tchaikovski",
+  "name": "Piotr Ilitch Tchaïkovski",
+  "job": "Compositeur",
+  "g": "m",
+  "alt": [
+   "Tchaïkovski",
+   "Tchaikovsky"
+  ],
+  "search": "Pyotr Ilyich Tchaikovsky"
+ },
+ {
+  "id": "claude-debussy",
+  "name": "Claude Debussy",
+  "job": "Compositeur",
+  "g": "m",
+  "alt": [
+   "Debussy"
+  ]
+ },
+ {
+  "id": "maria-callas",
+  "name": "Maria Callas",
+  "job": "Cantatrice",
+  "g": "f",
+  "alt": [
+   "La Callas"
+  ]
+ },
+ {
+  "id": "billie-holiday",
+  "name": "Billie Holiday",
+  "job": "Chanteuse de jazz",
+  "g": "f"
+ },
+ {
+  "id": "ella-fitzgerald",
+  "name": "Ella Fitzgerald",
+  "job": "Chanteuse de jazz",
+  "g": "f"
+ },
+ {
+  "id": "michel-ange",
+  "name": "Michel-Ange",
+  "job": "Sculpteur et peintre",
+  "g": "m",
+  "alt": [
+   "Michelangelo"
+  ],
+  "search": "Michelangelo"
+ },
+ {
+  "id": "rembrandt",
+  "name": "Rembrandt",
+  "job": "Peintre",
+  "g": "m",
+  "alt": [
+   "Rembrandt van Rijn"
+  ],
+  "search": "Rembrandt"
+ },
+ {
+  "id": "vincent-van-gogh",
+  "name": "Vincent van Gogh",
+  "job": "Peintre",
+  "g": "m",
+  "alt": [
+   "Van Gogh"
+  ]
+ },
+ {
+  "id": "claude-monet",
+  "name": "Claude Monet",
+  "job": "Peintre",
+  "g": "m",
+  "alt": [
+   "Monet"
+  ]
+ },
+ {
+  "id": "henri-matisse",
+  "name": "Henri Matisse",
+  "job": "Peintre",
+  "g": "m",
+  "alt": [
+   "Matisse"
+  ]
+ },
+ {
+  "id": "auguste-rodin",
+  "name": "Auguste Rodin",
+  "job": "Sculpteur",
+  "g": "m",
+  "alt": [
+   "Rodin"
+  ]
+ },
+ {
+  "id": "camille-claudel",
+  "name": "Camille Claudel",
+  "job": "Sculptrice",
+  "g": "f"
+ },
+ {
+  "id": "elisabeth-vigee-le-brun",
+  "name": "Élisabeth Vigée Le Brun",
+  "job": "Peintre",
+  "g": "f",
+  "alt": [
+   "Vigée Le Brun",
+   "Vigée-Lebrun"
+  ],
+  "search": "Élisabeth Vigée Le Brun"
+ },
+ {
+  "id": "coco-chanel",
+  "name": "Coco Chanel",
+  "job": "Créatrice de mode",
+  "g": "f",
+  "alt": [
+   "Gabrielle Chanel",
+   "Chanel"
+  ]
+ },
+ {
+  "id": "william-shakespeare",
+  "name": "William Shakespeare",
+  "job": "Dramaturge",
+  "g": "m",
+  "alt": [
+   "Shakespeare"
+  ]
+ },
+ {
+  "id": "moliere",
+  "name": "Molière",
+  "job": "Dramaturge et comédien",
+  "g": "m"
+ },
+ {
+  "id": "jean-de-la-fontaine",
+  "name": "Jean de La Fontaine",
+  "job": "Poète et fabuliste",
+  "g": "m",
+  "alt": [
+   "La Fontaine"
+  ]
+ },
+ {
+  "id": "victor-hugo",
+  "name": "Victor Hugo",
+  "job": "Écrivain",
+  "g": "m",
+  "alt": [
+   "Hugo"
+  ]
+ },
+ {
+  "id": "jules-verne",
+  "name": "Jules Verne",
+  "job": "Écrivain",
+  "g": "m"
+ },
+ {
+  "id": "emile-zola",
+  "name": "Émile Zola",
+  "job": "Écrivain",
+  "g": "m",
+  "alt": [
+   "Zola"
+  ]
+ },
+ {
+  "id": "marcel-proust",
+  "name": "Marcel Proust",
+  "job": "Écrivain",
+  "g": "m",
+  "alt": [
+   "Proust"
+  ]
+ },
+ {
+  "id": "ernest-hemingway",
+  "name": "Ernest Hemingway",
+  "job": "Écrivain",
+  "g": "m",
+  "alt": [
+   "Hemingway"
+  ]
+ },
+ {
+  "id": "antoine-de-saint-exupery",
+  "name": "Antoine de Saint-Exupéry",
+  "job": "Écrivain et aviateur",
+  "g": "m",
+  "alt": [
+   "Saint-Exupéry",
+   "Saint-Ex"
+  ]
+ },
+ {
+  "id": "george-sand",
+  "name": "George Sand",
+  "job": "Écrivaine",
+  "g": "f"
+ },
+ {
+  "id": "jane-austen",
+  "name": "Jane Austen",
+  "job": "Écrivaine",
+  "g": "f"
+ },
+ {
+  "id": "mary-shelley",
+  "name": "Mary Shelley",
+  "job": "Écrivaine",
+  "g": "f"
+ },
+ {
+  "id": "colette",
+  "name": "Colette",
+  "job": "Écrivaine",
+  "g": "f",
+  "search": "Colette (writer)"
+ },
+ {
+  "id": "virginia-woolf",
+  "name": "Virginia Woolf",
+  "job": "Écrivaine",
+  "g": "f"
+ },
+ {
+  "id": "agatha-christie",
+  "name": "Agatha Christie",
+  "job": "Écrivaine",
+  "g": "f"
+ },
+ {
+  "id": "marguerite-yourcenar",
+  "name": "Marguerite Yourcenar",
+  "job": "Écrivaine",
+  "g": "f",
+  "alt": [
+   "Yourcenar"
+  ]
+ },
+ {
+  "id": "marguerite-duras",
+  "name": "Marguerite Duras",
+  "job": "Écrivaine",
+  "g": "f",
+  "alt": [
+   "Duras"
+  ]
+ },
+ {
+  "id": "jules-cesar",
+  "name": "Jules César",
+  "job": "Général et homme d'État romain",
+  "g": "m",
+  "alt": [
+   "César",
+   "Julius Caesar"
+  ],
+  "search": "Julius Caesar"
+ },
+ {
+  "id": "louis-xiv",
+  "name": "Louis XIV",
+  "job": "Roi de France",
+  "g": "m",
+  "alt": [
+   "Le Roi-Soleil",
+   "Roi Soleil",
+   "Louis 14"
+  ],
+  "search": "Louis XIV"
+ },
+ {
+  "id": "marie-antoinette",
+  "name": "Marie-Antoinette",
+  "job": "Reine de France",
+  "g": "f",
+  "alt": [
+   "Marie Antoinette"
+  ],
+  "search": "Marie Antoinette"
+ },
+ {
+  "id": "maximilien-de-robespierre",
+  "name": "Maximilien de Robespierre",
+  "job": "Révolutionnaire",
+  "g": "m",
+  "alt": [
+   "Robespierre"
+  ],
+  "search": "Maximilien Robespierre"
+ },
+ {
+  "id": "napoleon-bonaparte",
+  "name": "Napoléon Bonaparte",
+  "job": "Empereur des Français",
+  "g": "m",
+  "alt": [
+   "Napoléon",
+   "Napoléon Ier",
+   "Bonaparte"
+  ],
+  "search": "Napoleon"
+ },
+ {
+  "id": "josephine-de-beauharnais",
+  "name": "Joséphine de Beauharnais",
+  "job": "Impératrice des Français",
+  "g": "f",
+  "alt": [
+   "Joséphine"
+  ],
+  "search": "Joséphine de Beauharnais"
+ },
+ {
+  "id": "elisabeth-ire",
+  "name": "Élisabeth Ire",
+  "job": "Reine d'Angleterre",
+  "g": "f",
+  "alt": [
+   "Elizabeth I",
+   "Elisabeth 1ère"
+  ],
+  "search": "Elizabeth I"
+ },
+ {
+  "id": "catherine-ii-de-russie",
+  "name": "Catherine II de Russie",
+  "job": "Impératrice de Russie",
+  "g": "f",
+  "alt": [
+   "Catherine II",
+   "Catherine la Grande"
+  ],
+  "search": "Catherine the Great"
+ },
+ {
+  "id": "reine-victoria",
+  "name": "Reine Victoria",
+  "job": "Reine du Royaume-Uni",
+  "g": "f",
+  "alt": [
+   "Victoria"
+  ],
+  "search": "Queen Victoria"
+ },
+ {
+  "id": "elisabeth-ii",
+  "name": "Élisabeth II",
+  "job": "Reine du Royaume-Uni",
+  "g": "f",
+  "alt": [
+   "Elizabeth II",
+   "La reine d'Angleterre"
+  ],
+  "search": "Elizabeth II"
+ },
+ {
+  "id": "lady-diana",
+  "name": "Lady Diana",
+  "job": "Princesse de Galles",
+  "g": "f",
+  "alt": [
+   "Diana",
+   "Princesse Diana",
+   "Diana Spencer"
+  ],
+  "search": "Diana, Princess of Wales"
+ },
+ {
+  "id": "abraham-lincoln",
+  "name": "Abraham Lincoln",
+  "job": "Président des États-Unis",
+  "g": "m",
+  "alt": [
+   "Lincoln"
+  ]
+ },
+ {
+  "id": "louise-michel",
+  "name": "Louise Michel",
+  "job": "Révolutionnaire",
+  "g": "f"
+ },
+ {
+  "id": "sarah-bernhardt",
+  "name": "Sarah Bernhardt",
+  "job": "Comédienne",
+  "g": "f"
+ },
+ {
+  "id": "winston-churchill",
+  "name": "Winston Churchill",
+  "job": "Premier ministre britannique",
+  "g": "m",
+  "alt": [
+   "Churchill"
+  ]
+ },
+ {
+  "id": "charles-de-gaulle",
+  "name": "Charles de Gaulle",
+  "job": "Général et président de la République",
+  "g": "m",
+  "alt": [
+   "De Gaulle",
+   "Le général de Gaulle"
+  ]
+ },
+ {
+  "id": "jean-moulin",
+  "name": "Jean Moulin",
+  "job": "Résistant",
+  "g": "m"
+ },
+ {
+  "id": "josephine-baker",
+  "name": "Joséphine Baker",
+  "job": "Artiste de music-hall et résistante",
+  "g": "f"
+ },
+ {
+  "id": "gandhi",
+  "name": "Gandhi",
+  "job": "Leader de l'indépendance de l'Inde",
+  "g": "m",
+  "alt": [
+   "Mahatma Gandhi",
+   "Ghandi",
+   "Mohandas Gandhi"
+  ],
+  "search": "Mahatma Gandhi"
+ },
+ {
+  "id": "john-f-kennedy",
+  "name": "John F. Kennedy",
+  "job": "Président des États-Unis",
+  "g": "m",
+  "alt": [
+   "JFK",
+   "Kennedy",
+   "John Kennedy"
+  ]
+ },
+ {
+  "id": "martin-luther-king",
+  "name": "Martin Luther King",
+  "job": "Pasteur et militant des droits civiques",
+  "g": "m",
+  "alt": [
+   "MLK",
+   "Martin Luther King Jr."
+  ],
+  "search": "Martin Luther King Jr."
+ },
+ {
+  "id": "rosa-parks",
+  "name": "Rosa Parks",
+  "job": "Militante des droits civiques",
+  "g": "f"
+ },
+ {
+  "id": "mere-teresa",
+  "name": "Mère Teresa",
+  "job": "Religieuse",
+  "g": "f",
+  "alt": [
+   "Mother Teresa",
+   "Teresa"
+  ],
+  "search": "Mother Teresa"
+ },
+ {
+  "id": "eva-peron",
+  "name": "Eva Perón",
+  "job": "Première dame d'Argentine",
+  "g": "f",
+  "alt": [
+   "Evita",
+   "Evita Perón"
+  ],
+  "search": "Eva Perón"
+ },
+ {
+  "id": "nelson-mandela",
+  "name": "Nelson Mandela",
+  "job": "Président de l'Afrique du Sud",
+  "g": "m",
+  "alt": [
+   "Mandela"
+  ]
+ },
+ {
+  "id": "simone-veil",
+  "name": "Simone Veil",
+  "job": "Femme politique",
+  "g": "f"
+ },
+ {
+  "id": "florence-nightingale",
+  "name": "Florence Nightingale",
+  "job": "Infirmière",
+  "g": "f"
+ },
+ {
+  "id": "greta-garbo",
+  "name": "Greta Garbo",
+  "job": "Actrice",
+  "g": "f",
+  "alt": [
+   "Garbo"
+  ]
+ },
+ {
+  "id": "marlene-dietrich",
+  "name": "Marlene Dietrich",
+  "job": "Actrice et chanteuse",
+  "g": "f"
+ },
+ {
+  "id": "ingrid-bergman",
+  "name": "Ingrid Bergman",
+  "job": "Actrice",
+  "g": "f"
+ },
+ {
+  "id": "nefertiti",
+  "name": "Néfertiti",
+  "job": "Reine d'Égypte",
+  "g": "f",
+  "alt": [
+   "Nefertiti"
+  ],
+  "search": "Nefertiti"
+ },
+ {
+  "id": "catherine-de-medicis",
+  "name": "Catherine de Médicis",
+  "job": "Reine de France",
+  "g": "f",
+  "search": "Catherine de' Medici"
+ },
+ {
+  "id": "marie-stuart",
+  "name": "Marie Stuart",
+  "job": "Reine d'Écosse",
+  "g": "f",
+  "alt": [
+   "Marie Ire d'Écosse"
+  ],
+  "search": "Mary, Queen of Scots"
+ },
+ {
+  "id": "madame-de-pompadour",
+  "name": "Madame de Pompadour",
+  "job": "Favorite de Louis XV",
+  "g": "f",
+  "alt": [
+   "La Pompadour",
+   "Pompadour"
+  ],
+  "search": "Madame de Pompadour"
+ },
+ {
+  "id": "sissi",
+  "name": "Sissi",
+  "job": "Impératrice d'Autriche",
+  "g": "f",
+  "alt": [
+   "Élisabeth d'Autriche",
+   "Sissi impératrice"
+  ],
+  "search": "Empress Elisabeth of Austria"
+ },
+ {
+  "id": "margaret-thatcher",
+  "name": "Margaret Thatcher",
+  "job": "Première ministre britannique",
+  "g": "f",
+  "alt": [
+   "Thatcher",
+   "La Dame de fer"
+  ]
+ },
+ {
+  "id": "indira-gandhi",
+  "name": "Indira Gandhi",
+  "job": "Première ministre de l'Inde",
+  "g": "f",
+  "alt": [
+   "Indira"
+  ]
+ },
+ {
+  "id": "jacqueline-kennedy",
+  "name": "Jacqueline Kennedy",
+  "job": "Première dame des États-Unis",
+  "g": "f",
+  "alt": [
+   "Jackie Kennedy",
+   "Jackie Kennedy Onassis"
+  ],
+  "search": "Jacqueline Kennedy Onassis"
+ },
+ {
+  "id": "berthe-morisot",
+  "name": "Berthe Morisot",
+  "job": "Peintre",
+  "g": "f",
+  "alt": [
+   "Morisot"
+  ]
+ },
+ {
+  "id": "mata-hari",
+  "name": "Mata Hari",
+  "job": "Danseuse et espionne",
+  "g": "f"
+ },
+ {
+  "id": "amelia-earhart",
+  "name": "Amelia Earhart",
+  "job": "Aviatrice",
+  "g": "f",
+  "alt": [
+   "Earhart"
+  ]
+ },
+ {
+  "id": "helen-keller",
+  "name": "Helen Keller",
+  "job": "Écrivaine et militante",
+  "g": "f"
+ },
+ {
+  "id": "harriet-tubman",
+  "name": "Harriet Tubman",
+  "job": "Militante abolitionniste",
+  "g": "f",
+  "alt": [
+   "Tubman"
+  ]
+ },
+ {
+  "id": "clara-schumann",
+  "name": "Clara Schumann",
+  "job": "Pianiste et compositrice",
+  "g": "f"
+ },
+ {
+  "id": "charlotte-bronte",
+  "name": "Charlotte Brontë",
+  "job": "Écrivaine",
+  "g": "f",
+  "alt": [
+   "Brontë"
+  ]
+ },
+ {
+  "id": "francoise-sagan",
+  "name": "Françoise Sagan",
+  "job": "Écrivaine",
+  "g": "f",
+  "alt": [
+   "Sagan"
+  ]
+ },
+ {
+  "id": "emily-dickinson",
+  "name": "Emily Dickinson",
+  "job": "Poétesse",
+  "g": "f",
+  "alt": [
+   "Dickinson"
+  ]
+ },
+ {
+  "id": "rita-hayworth",
+  "name": "Rita Hayworth",
+  "job": "Actrice",
+  "g": "f",
+  "alt": [
+   "Hayworth"
+  ]
+ },
+ {
+  "id": "jacques-yves-cousteau",
+  "name": "Jacques-Yves Cousteau",
+  "job": "Explorateur et océanographe",
+  "g": "m",
+  "alt": [
+   "Cousteau",
+   "Le commandant Cousteau"
+  ]
+ },
+ {
+  "id": "marcel-pagnol",
+  "name": "Marcel Pagnol",
+  "job": "Écrivain et cinéaste",
+  "g": "m",
+  "alt": [
+   "Pagnol"
+  ]
+ }
+]
