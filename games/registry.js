@@ -9,7 +9,7 @@ export const GAMES = [
     description: 'Retrouve le film derrière l’affiche floutée.',
     emoji: '🎬',
     accent: '#e8b04a',
-    load: () => import('./movie-posters/index.js?v=1.22.0'),
+    load: () => import('./movie-posters/index.js?v=1.23.0'),
   },
   {
     id: 'visages',
@@ -17,7 +17,7 @@ export const GAMES = [
     description: 'Reconnais la célébrité : en morceaux ou sur une photo de jeunesse.',
     emoji: '👤',
     accent: '#ff8a65',
-    load: () => import('./faces/index.js?v=1.22.0'),
+    load: () => import('./faces/index.js?v=1.23.0'),
   },
   {
     id: 'livres',
@@ -25,6 +25,14 @@ export const GAMES = [
     description: 'Retrouve l’auteur de 300 grands livres, en 3 essais.',
     emoji: '📚',
     accent: '#c9a0dc',
-    load: () => import('./books/index.js?v=1.22.0'),
+    load: () => import('./books/index.js?v=1.23.0'),
+  },
+  {
+    id: 'geoquizz',
+    title: 'Géoquizz',
+    description: 'Place 10 pays sur la carte du monde, au plus près.',
+    emoji: '🌍',
+    accent: '#4fb3d9',
+    load: () => import('./geo/index.js?v=1.23.0'),
   },
 ];
