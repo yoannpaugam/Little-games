@@ -18433,50 +18433,5 @@
       "Cousteau",
       "Le commandant Cousteau"
     ]
-  },
-  {
-    "id": "coluche",
-    "name": "Coluche",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Coluche_grafitti.jpg",
-    "by": "999, edited by SyntaxTerror",
-    "lic": "CC BY 3.0",
-    "box": {
-      "yeux": [
-        0.22,
-        0.353,
-        0.522,
-        0.162
-      ],
-      "nez": [
-        0.376,
-        0.524,
-        0.222,
-        0.135
-      ],
-      "bouche": [
-        0.362,
-        0.668,
-        0.271,
-        0.106
-      ],
-      "haut": [
-        0.084,
-        0.069,
-        0.829,
-        0.621
-      ],
-      "bas": [
-        0.084,
-        0.59,
-        0.829,
-        0.357
-      ],
-      "complet": [
-        0.001,
-        0.0,
-        0.994,
-        1.0
-      ]
-    }
   }
 ]

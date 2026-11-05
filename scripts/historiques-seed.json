@@ -943,9 +943,12 @@
   ]
  },
  {
-  "id": "coluche",
-  "name": "Coluche",
-  "job": "Humoriste et acteur",
-  "g": "m"
+  "id": "marcel-pagnol",
+  "name": "Marcel Pagnol",
+  "job": "Écrivain et cinéaste",
+  "g": "m",
+  "alt": [
+   "Pagnol"
+  ]
  }
 ]
