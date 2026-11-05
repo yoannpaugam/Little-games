@@ -4,12 +4,12 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.23.0';
-import { createStore } from '../../js/core/storage.js?v=1.23.0';
-import { QUESTIONS, KM_FOR_ZERO_POINTS, geometry, distanceToCountry, pointsFromKm, pickQuiz } from './geo.js?v=1.23.0';
+import { h, icon } from '../../js/core/dom.js?v=1.24.0';
+import { createStore } from '../../js/core/storage.js?v=1.24.0';
+import { QUESTIONS, KM_FOR_ZERO_POINTS, geometry, distanceToCountry, pointsFromKm, pickQuiz } from './geo.js?v=1.24.0';
 
 const store = createStore('geoquizz', { version: 1 });
-const MAX_ZOOM = 30;
+const MAX_ZOOM = 20;
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 export async function mount(container, ctx) {
@@ -161,9 +161,24 @@ export async function mount(container, ctx) {
       view.cx = w >= W ? W / 2 : Math.max(w / 2, Math.min(W - w / 2, view.cx));
       view.cy = hh >= H ? H / 2 : Math.max(hh / 2, Math.min(H - hh / 2, view.cy));
       vb = { x: view.cx - w / 2, y: view.cy - hh / 2, w, h: hh };
+      // Le dessin attend l'image suivante : plusieurs mouvements dans la même image ne redessinent qu'une fois
+      if (!frame) frame = requestAnimationFrame(render);
+    }
+    let frame = 0;
+    function render() {
+      frame = 0;
       svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
       drawOverlay();
     }
+    cleanup.push(() => cancelAnimationFrame(frame));
+    // Pendant un zoom ou un déplacement, rendu rapide (sans lissage) ; lissé dès que la carte s'arrête
+    let movingTimer = 0;
+    function moving() {
+      stage.classList.add('is-moving');
+      clearTimeout(movingTimer);
+      movingTimer = setTimeout(() => stage.classList.remove('is-moving'), 160);
+    }
+    cleanup.push(() => clearTimeout(movingTimer));
     function toWorld(cx, cy) { const r = rectOf(); return { x: vb.x + (cx - r.left) / r.width * vb.w, y: vb.y + (cy - r.top) / r.height * vb.h }; }
     function setZoom(z, cx, cy) { // garde fixe le point de la carte sous (cx, cy)
       const r = rectOf();
@@ -254,11 +269,13 @@ export async function mount(container, ctx) {
       ptrs.set(e.pointerId, [e.clientX, e.clientY]);
       if (pinch && ptrs.size === 2) {
         const [a, b] = [...ptrs.values()];
+        moving();
         setZoom(pinch.z * pdist() / pinch.d, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
       } else if (pan) {
         const dx = e.clientX - pan.x, dy = e.clientY - pan.y;
         if (!moved && Math.hypot(dx, dy) < 6) return;
         moved = true;
+        moving();
         const r = rectOf();
         view.cx = pan.cx - dx * vb.w / r.width; view.cy = pan.cy - dy * vb.h / r.height; apply();
       }
@@ -266,7 +283,7 @@ export async function mount(container, ctx) {
     const up = (e) => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch = null; if (ptrs.size === 0) pan = null; };
     listen(svg, 'pointerup', up);
     listen(svg, 'pointercancel', up);
-    listen(svg, 'wheel', (e) => { e.preventDefault(); setZoom(view.z * (e.deltaY < 0 ? 1.3 : 1 / 1.3), e.clientX, e.clientY); }, { passive: false });
+    listen(svg, 'wheel', (e) => { e.preventDefault(); moving(); setZoom(view.z * (e.deltaY < 0 ? 1.3 : 1 / 1.3), e.clientX, e.clientY); }, { passive: false });
     listen(svg, 'click', (e) => {
       if (moved) { moved = false; return; }
       const w = toWorld(e.clientX, e.clientY);

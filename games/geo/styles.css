@@ -64,8 +64,10 @@
 /* Carte */
 .gq-map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
 .gq-grid { fill: none; stroke: rgba(255, 255, 255, .06); stroke-width: 1; vector-effect: non-scaling-stroke; }
-.gq-land { fill: var(--gq-land); stroke: var(--gq-border); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.gq-borders { fill: none; stroke: var(--gq-border); stroke-width: .7; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+/* Les côtes sont tracées par les frontières des pays : les terres n'ont qu'un remplissage (moins de calcul au zoom) */
+.gq-land { fill: var(--gq-land); stroke: none; }
+.gq-stage.is-moving .gq-map { shape-rendering: optimizeSpeed; }
+.gq-borders { fill: none; stroke: var(--gq-border); stroke-width: .8; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; }
 .gq-reveal { fill: rgba(79, 179, 217, .45); stroke: #1d7fa6; stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; }
 .gq-link { stroke: #fff; stroke-width: 1.5; stroke-dasharray: 6 5; vector-effect: non-scaling-stroke; pointer-events: none; }
 .gq-guess { fill: var(--err); stroke: #fff; stroke-width: 2; vector-effect: non-scaling-stroke; pointer-events: none; }

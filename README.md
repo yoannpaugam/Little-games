@@ -68,7 +68,7 @@ Une couverture s'affiche (titre français et année), il faut retrouver l'auteur
 
 ## 🌍 Géoquizz
 
-Une partie compte 10 pays, répartis sur tous les continents. Pour chacun, on touche la carte du monde là où on pense qu'il se trouve (zoom et déplacement possibles). L'écart est la distance entre le point et la frontière la plus proche du pays, calculée sur la sphère ; les écarts s'additionnent et donnent un score sur 100. Les contours viennent de Natural Earth (domaine public, via world-atlas) : `games/geo/data/world.json`, vérifié par `tests/catalogs.test.js`. Aucune image ni service externe.
+Une partie compte 10 pays, répartis sur tous les continents. Pour chacun, on touche la carte du monde là où on pense qu'il se trouve (zoom et déplacement possibles). L'écart est la distance entre le point et la frontière la plus proche du pays, calculée sur la sphère ; les écarts s'additionnent et donnent un score sur 100. Les contours viennent de Natural Earth (domaine public, via world-atlas) : `games/geo/data/world.json`, vérifié par `tests/catalogs.test.js`. Ses contours sont simplifiés par `python3 scripts/simplify-geo.py` (frontières communes conservées entre voisins). Aucune image ni service externe.
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -143,6 +143,7 @@ games/geo/               Le jeu « Géoquizz » (placer des pays sur la carte), 
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)
 scripts/celeb-seed.json         Liste seed Commons pour le builder
+scripts/simplify-geo.py         Simplifie les contours de la carte du Géoquizz
 tests/                   Tests : tolérance aux fautes, catalogues, stockage (npm test)
 CLAUDE.md                Consignes pour Claude (architecture, coordination, livraison)
 SECURITY.md              Données, protections en place et règles de sécurité
