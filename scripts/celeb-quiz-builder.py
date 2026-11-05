@@ -587,6 +587,9 @@ def try_alternate_photo(r: dict, raw: Path, stem: str, landmarker, a) -> dict | 
         fn_slug = slugify(fn)
         if name_tokens and not any(t in fn_slug for t in name_tokens):
             continue
+        # Rejeter les photos de groupe (« X and Y », « X et Y », « with »…) : le visage pris risque d’être celui d’un autre
+        if re.search(r"(^|-)(and|et|with|avec|und|y|e)(-|$)", fn_slug):
+            continue
         # Rejeter les miniatures électorales / trop petites via le nom TSE brésilien etc.
         if re.search(r"\btse\b|candidato|eleitoral", fn_slug):
             continue

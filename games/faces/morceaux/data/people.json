@@ -14013,54 +14013,6 @@
     ]
   },
   {
-    "id": "jean-paul-sartre",
-    "name": "Jean-Paul Sartre",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/7/77/Flickr_-_Government_Press_Office_%28GPO%29_-_Jean_Paul_Sartre_and_Simone_De_Beauvoir_welcomed_by_Avraham_Shlonsky_and_Leah_Goldberg_%28cropped%29.jpg",
-    "by": "Moshe Milner",
-    "lic": "CC BY-SA 3.0",
-    "box": {
-      "yeux": [
-        0.377,
-        0.238,
-        0.358,
-        0.106
-      ],
-      "nez": [
-        0.524,
-        0.349,
-        0.153,
-        0.068
-      ],
-      "bouche": [
-        0.5,
-        0.422,
-        0.185,
-        0.068
-      ],
-      "haut": [
-        0.232,
-        0.088,
-        0.56,
-        0.351
-      ],
-      "bas": [
-        0.232,
-        0.386,
-        0.56,
-        0.194
-      ],
-      "complet": [
-        0.176,
-        0.038,
-        0.672,
-        0.603
-      ]
-    },
-    "alt": [
-      "Sartre"
-    ]
-  },
-  {
     "id": "simone-de-beauvoir",
     "name": "Simone de Beauvoir",
     "img": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Simone_de_Beauvoir2.png",
@@ -15731,54 +15683,6 @@
     ]
   },
   {
-    "id": "arthur-rimbaud",
-    "name": "Arthur Rimbaud",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Rimbaud.PNG",
-    "by": "Étienne Carjat",
-    "lic": "Public domain",
-    "box": {
-      "yeux": [
-        0.292,
-        0.314,
-        0.4,
-        0.09
-      ],
-      "nez": [
-        0.4,
-        0.41,
-        0.155,
-        0.092
-      ],
-      "bouche": [
-        0.386,
-        0.511,
-        0.191,
-        0.066
-      ],
-      "haut": [
-        0.199,
-        0.132,
-        0.637,
-        0.388
-      ],
-      "bas": [
-        0.199,
-        0.454,
-        0.637,
-        0.241
-      ],
-      "complet": [
-        0.136,
-        0.075,
-        0.765,
-        0.689
-      ]
-    },
-    "alt": [
-      "Rimbaud"
-    ]
-  },
-  {
     "id": "marcel-proust",
     "name": "Marcel Proust",
     "img": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Marcel_Proust_1895.jpg",
@@ -17202,55 +17106,6 @@
         0.344
       ]
     }
-  },
-  {
-    "id": "che-guevara",
-    "name": "Che Guevara",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Che_Guevara_-_ca._1945.jpg",
-    "by": "Unknown authorUnknown author",
-    "lic": "Public domain",
-    "box": {
-      "yeux": [
-        0.458,
-        0.367,
-        0.439,
-        0.103
-      ],
-      "nez": [
-        0.657,
-        0.477,
-        0.187,
-        0.114
-      ],
-      "bouche": [
-        0.621,
-        0.607,
-        0.186,
-        0.085
-      ],
-      "haut": [
-        0.217,
-        0.146,
-        0.684,
-        0.467
-      ],
-      "bas": [
-        0.217,
-        0.536,
-        0.684,
-        0.29
-      ],
-      "complet": [
-        0.148,
-        0.077,
-        0.821,
-        0.831
-      ]
-    },
-    "alt": [
-      "Che",
-      "Ernesto Guevara"
-    ]
   },
   {
     "id": "mere-teresa",

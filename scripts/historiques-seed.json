@@ -414,15 +414,6 @@
   ]
  },
  {
-  "id": "arthur-rimbaud",
-  "name": "Arthur Rimbaud",
-  "job": "Poète",
-  "g": "m",
-  "alt": [
-   "Rimbaud"
-  ]
- },
- {
   "id": "marcel-proust",
   "name": "Marcel Proust",
   "job": "Écrivain",
@@ -718,16 +709,6 @@
   "g": "f"
  },
  {
-  "id": "che-guevara",
-  "name": "Che Guevara",
-  "job": "Révolutionnaire",
-  "g": "m",
-  "alt": [
-   "Che",
-   "Ernesto Guevara"
-  ]
- },
- {
   "id": "mere-teresa",
   "name": "Mère Teresa",
   "job": "Religieuse",
@@ -950,5 +931,21 @@
   "alt": [
    "Hayworth"
   ]
+ },
+ {
+  "id": "jacques-yves-cousteau",
+  "name": "Jacques-Yves Cousteau",
+  "job": "Explorateur et océanographe",
+  "g": "m",
+  "alt": [
+   "Cousteau",
+   "Le commandant Cousteau"
+  ]
+ },
+ {
+  "id": "coluche",
+  "name": "Coluche",
+  "job": "Humoriste et acteur",
+  "g": "m"
  }
 ]
