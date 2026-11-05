@@ -35,10 +35,15 @@ jobs:
           python-version: '3.11'
 
       - name: Installer MediaPipe et OpenCV
-        run: pip install requests mediapipe opencv-python-headless numpy
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libegl1 libgles2 libgl1
+          pip install requests mediapipe opencv-python-headless numpy
 
       - name: Construire le catalogue
-        run: npm run -s morceaux:historiques 2>&1 | tee build.log
+        run: |
+          set -o pipefail
+          npm run -s morceaux:historiques 2>&1 | tee build.log
 
       - name: Vérifier les catalogues
         run: npm test
