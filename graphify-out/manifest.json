@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "games/faces/index.js": {
-    "mtime": 1793917079.7197664,
-    "seen": 1793917201.6209164,
-    "ast_hash": "560a11b02ba51e922e1b00adba535127",
+    "mtime": 1793917967.7364986,
+    "seen": 1793917999.9749882,
+    "ast_hash": "1c32fc9ee8bc2fbd25b31ab4e34fde60",
     "semantic_hash": ""
   },
   "games/movie-posters/data/films.json": {
@@ -30,27 +30,27 @@
     "semantic_hash": ""
   },
   "games/movie-posters/index.js": {
-    "mtime": 1793917079.7237663,
-    "seen": 1793917201.6209335,
-    "ast_hash": "29a6012f420cb4fe24a49f2fa626457b",
+    "mtime": 1793917967.7404988,
+    "seen": 1793917999.9749985,
+    "ast_hash": "93f57df428a9117add174b04f3edfb2b",
     "semantic_hash": ""
   },
   "games/movie-posters/posters.js": {
-    "mtime": 1793917079.7277663,
-    "seen": 1793917201.6209352,
-    "ast_hash": "4abbdd4d99a045959e566f45293b26bb",
+    "mtime": 1793917967.7404988,
+    "seen": 1793917999.9749997,
+    "ast_hash": "50dcf55c74bb88a4472ef24e379ae64a",
     "semantic_hash": ""
   },
   "games/registry.js": {
-    "mtime": 1793917079.7277663,
-    "seen": 1793917201.6209364,
-    "ast_hash": "c90f90e09d2a853f3979dd5500fc8d37",
+    "mtime": 1793917967.7404988,
+    "seen": 1793917999.9750004,
+    "ast_hash": "81798d573889ca7779f0470ee18e3342",
     "semantic_hash": ""
   },
   "js/app.js": {
-    "mtime": 1793917079.7357664,
-    "seen": 1793917201.6209378,
-    "ast_hash": "10e94bdb0bf75117b04b276f5b3f7aea",
+    "mtime": 1793917967.7484987,
+    "seen": 1793917999.975001,
+    "ast_hash": "6887208e1b980211b486ee99f8ece961",
     "semantic_hash": ""
   },
   "js/core/dom.js": {
@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1793917079.7357664,
-    "seen": 1793917201.6209424,
-    "ast_hash": "7c3feceecb735a9e3a85e65e358f7aab",
+    "mtime": 1793917967.7484987,
+    "seen": 1793917999.9750044,
+    "ast_hash": "efcb6d77be4081cbbb1e60ff14c8a4fd",
     "semantic_hash": ""
   },
   "scripts/fetch-posters.mjs": {
@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "tests/catalogs.test.js": {
-    "mtime": 1793917074.6797662,
-    "seen": 1793917201.620954,
+    "mtime": 1793917839.132494,
+    "seen": 1793917999.9750128,
     "ast_hash": "c518cfaa4b7ac46d0cb06d314e4d5c03",
     "semantic_hash": ""
   },
@@ -168,15 +168,15 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1793917060.0213146,
-    "seen": 1793917201.6209745,
+    "mtime": 1793917839.1299007,
+    "seen": 1793917999.975026,
     "ast_hash": "a5a70c0c7f911f1783d186b65d6f0435",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1793917060.021029,
-    "seen": 1793917201.6209757,
-    "ast_hash": "635d21a490510a736fcb5545d317489a",
+    "mtime": 1793917997.1012452,
+    "seen": 1793917999.9750266,
+    "ast_hash": "6fa96b8ee8c69211300d70bc475bbdd3",
     "semantic_hash": ""
   },
   "SECURITY.md": {
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793917079.7357664,
-    "seen": 1793917201.6209846,
-    "ast_hash": "37e4ddfc377d3d57c297f1f3a877f1e6",
+    "mtime": 1793917967.7484987,
+    "seen": 1793917999.975033,
+    "ast_hash": "3cc8db538343fa2491c8957e0a9a689e",
     "semantic_hash": ""
   },
   "scripts/celeb-quiz-builder.py": {
@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "games/faces/morceaux/answers.js": {
-    "mtime": 1793917079.7197664,
-    "seen": 1793917201.6209185,
-    "ast_hash": "a96ce5cec9f27e78d95ca1973af0ec58",
+    "mtime": 1793917967.7364986,
+    "seen": 1793917999.9749894,
+    "ast_hash": "8f72e0d671b2faf88d41265881a9df88",
     "semantic_hash": ""
   },
   "games/faces/morceaux/data/jeunesse.json": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "games/faces/morceaux/index.js": {
-    "mtime": 1793917079.7197664,
-    "seen": 1793917201.6209257,
-    "ast_hash": "a003547817f6009640294a4d20d2211f",
+    "mtime": 1793917967.7364986,
+    "seen": 1793917999.9749932,
+    "ast_hash": "ecf8bb7590668f3aa31e73a85e7eeff5",
     "semantic_hash": ""
   },
   "scripts/jeunesse-seed.json": {
@@ -264,9 +264,9 @@
     "semantic_hash": ""
   },
   "games/books/answers.js": {
-    "mtime": 1793917079.7157664,
-    "seen": 1793917201.6209087,
-    "ast_hash": "a55dda3863dd954a595eb1dae0e83ca2",
+    "mtime": 1793917967.7324986,
+    "seen": 1793917999.9749827,
+    "ast_hash": "e507168efd6578bcd60e3d0143976be6",
     "semantic_hash": ""
   },
   "games/books/data/livres.json": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "games/books/index.js": {
-    "mtime": 1793917079.7197664,
-    "seen": 1793917201.6209133,
-    "ast_hash": "f20f6a9afc55da27dc27e5886d2b3155",
+    "mtime": 1793917967.7324986,
+    "seen": 1793917999.974986,
+    "ast_hash": "d788f6ba69d7a4eb1a3e74b4d8ba6502",
     "semantic_hash": ""
   },
   "tests/books.test.js": {
@@ -306,33 +306,39 @@
     "semantic_hash": ""
   },
   "games/geo/data/world.json": {
-    "mtime": 1793916901.7906837,
-    "seen": 1793917201.6209273,
-    "ast_hash": "d54060ce1300ae15f3270d16db16be25",
+    "mtime": 1793917939.0971618,
+    "seen": 1793917999.974994,
+    "ast_hash": "3076415f138acdd324d7b48311d99af2",
     "semantic_hash": ""
   },
   "games/geo/geo.js": {
-    "mtime": 1793916931.9037611,
-    "seen": 1793917201.6209285,
+    "mtime": 1793917839.1316297,
+    "seen": 1793917999.9749947,
     "ast_hash": "a77583ae334924bdb29743693cd2df46",
     "semantic_hash": ""
   },
   "games/geo/index.js": {
-    "mtime": 1793917142.613554,
-    "seen": 1793917201.6209297,
-    "ast_hash": "5f5fc7f49878119f2ccdec326b0604ae",
+    "mtime": 1793917967.7364986,
+    "seen": 1793917999.9749956,
+    "ast_hash": "dd40287199bfd600f7e827d8427a61cf",
     "semantic_hash": ""
   },
   "tests/geo.test.js": {
-    "mtime": 1793917074.6884918,
-    "seen": 1793917201.6209567,
+    "mtime": 1793917839.132494,
+    "seen": 1793917999.9750147,
     "ast_hash": "baa47dba82f6a40c2397ae50cac61445",
     "semantic_hash": ""
   },
   "games/geo/SPEC.md": {
-    "mtime": 1793917192.6277704,
-    "seen": 1793917201.620982,
-    "ast_hash": "b8c4cd5303931bad2d73a3436615fca1",
+    "mtime": 1793917997.1009302,
+    "seen": 1793917999.9750314,
+    "ast_hash": "eacbaab338ec1f4df2ac5196411d0a59",
+    "semantic_hash": ""
+  },
+  "scripts/simplify-geo.py": {
+    "mtime": 1793917894.1239238,
+    "seen": 1793917999.9750109,
+    "ast_hash": "be15a3619c519cdf64adc8d09854a1aa",
     "semantic_hash": ""
   }
 }

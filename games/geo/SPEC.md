@@ -12,8 +12,10 @@ Le jeu reprend le concept et le gameplay de « Traque internationale » (fichier
   - `units` (unités par degré), `lonMin`, `latMax` (84), `latMin` (−58), `width`, `height` ;
   - `land` : tracé SVG de toutes les terres (`M x y l dx dy …`, en équirectangulaire) ;
   - `countries` : `{ c: code ISO à 2 lettres, n: nom, p: polygones }`. Chaque polygone est une liste d'anneaux (le premier est le contour, les suivants des trous), codés « x0 y0 dx dy dx dy… » en centièmes de degré (longitude, latitude).
+- **Contours simplifiés** (1.24.0) par `scripts/simplify-geo.py` (Douglas-Peucker, tolérance 0,1°, îles et trous de moins de 0,05 degré carré retirés sauf le plus grand morceau de chaque pays). Les frontières communes restent identiques entre voisins : chaque contour est coupé aux jonctions, et chaque tronçon est simplifié de la même façon dans les deux sens. Environ 25 000 points au lieu de 50 000, 155 Ko au lieu de 279 Ko.
 - Affichage en **projection de Mercator**, comme les planisphères habituels. La carte se répète à gauche et à droite. Une grille légère marque les méridiens tous les 30° et quelques parallèles.
-- Couleurs : océan bleu nuit, terres beige clair, frontières fines.
+- Couleurs : océan bleu nuit, terres beige clair, frontières fines. Les côtes sont tracées par les contours des pays ; les terres n'ont qu'un remplissage.
+- Fluidité : un seul dessin par image pendant le zoom et le déplacement, et un rendu sans lissage tant que la carte bouge (lissé 160 ms après l'arrêt). Zoom ×20 au plus.
 
 ## Tirage des pays
 - On ne propose que 89 pays assez connus ou assez grands (liste `EASY` de `geo.js`), répartis en 6 régions : Europe, Afrique, Asie, Amérique du Nord, Amérique du Sud, Océanie.

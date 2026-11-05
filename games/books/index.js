@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.23.0';
-import { createStore } from '../../js/core/storage.js?v=1.23.0';
-import { buildAuthors, checkAuthor, initialsOf } from './answers.js?v=1.23.0';
+import { h, icon } from '../../js/core/dom.js?v=1.24.0';
+import { createStore } from '../../js/core/storage.js?v=1.24.0';
+import { buildAuthors, checkAuthor, initialsOf } from './answers.js?v=1.24.0';
 
 const store = createStore('livres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };
