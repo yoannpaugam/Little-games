@@ -22,6 +22,16 @@ une entrée par photo, avec le nom tel qu'il est écrit dans games/faces/data/ce
 l'auteur et la licence sur Commons, calcule les boîtes et écarte les visages trop petits,
 trop tournés ou trop penchés. Il ne cherche pas d'autre photo à la place d'une photo écartée.
 
+Mode --historiques : personnages historiques décédés (philosophes, compositeurs, rois…) listés
+dans scripts/historiques-seed.json, une entrée par personne :
+  [ { "id": "platon", "name": "Platon", "job": "Philosophe grec", "g": "m",
+      "alt": ["Plato"], "search": "Plato", "qid": "Q859" } ]
+« search » (nom à chercher sur Wikidata) et « qid » sont facultatifs. Le script garde le premier
+résultat Wikidata qui est une personne (P31 = Q5) et qui a une image (P18) : portrait peint,
+buste ou photo. Avec --append, les personnes sont AJOUTÉES à people.json (celles qui y sont déjà
+sont gardées telles quelles) :
+  python scripts/celeb-quiz-builder.py --historiques --append --top 200 --max-yaw 0.9 --min-face 30
+
 Réseau via curl (User-Agent Wikimedia). Modèle FaceLandmarker dans scripts/.celeb-cache/models/.
 """
 from __future__ import annotations
@@ -47,6 +57,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "games" / "faces" / "morceaux" / "data" / "people.json"
 JEUNESSE_OUT = ROOT / "games" / "faces" / "morceaux" / "data" / "jeunesse.json"
 JEUNESSE_SEED = Path(__file__).resolve().parent / "jeunesse-seed.json"
+HISTORIQUES_SEED = Path(__file__).resolve().parent / "historiques-seed.json"
 CACHE = Path(__file__).resolve().parent / ".celeb-cache"
 MODEL_URL = (
     "https://storage.googleapis.com/mediapipe-models/"
@@ -464,10 +475,35 @@ def wikidata_p18_filename(qid: str) -> str | None:
     return files[0] if files else None
 
 
-def wikidata_resolve_person(name: str, delay: float = 0.2) -> tuple[str | None, str | None]:
-    """Premier candidat Wikidata qui a une image P18."""
+def wikidata_is_human(qid: str) -> bool:
+    """Vrai si l'élément Wikidata est un être humain (P31 = Q5)."""
+    try:
+        data = http_get_json(WIKIDATA_API, {
+            "action": "wbgetclaims", "format": "json",
+            "entity": qid, "property": "P31",
+        }, timeout=30)
+    except Exception as e:
+        print(f"  claims P31 {qid}: {e}", file=sys.stderr)
+        return False
+    for claim in data.get("claims", {}).get("P31") or []:
+        try:
+            if claim["mainsnak"]["datavalue"]["value"]["id"] == "Q5":
+                return True
+        except (KeyError, TypeError):
+            continue
+    return False
+
+
+def wikidata_resolve_person(name: str, delay: float = 0.2,
+                            human: bool = False) -> tuple[str | None, str | None]:
+    """Premier candidat Wikidata qui a une image P18 (et qui est une personne si human=True)."""
     import time
     for qid in wikidata_search_candidates(name):
+        if human:
+            ok = wikidata_is_human(qid)
+            time.sleep(delay)
+            if not ok:
+                continue
         fn = wikidata_p18_filename(qid)
         time.sleep(delay)
         if fn:
@@ -634,6 +670,55 @@ def rows_from_faces(celebs_path: Path, delay: float = 0.35):
     return rows
 
 
+def rows_from_historiques(seed_path: Path, delay: float = 0.35):
+    """Personnages historiques (historiques-seed.json) → photo ou portrait via Wikidata P18."""
+    import time
+    seed = json.loads(seed_path.read_text(encoding="utf-8"))
+    resolve_path = CACHE / "historiques" / "resolve.json"
+    resolve_path.parent.mkdir(parents=True, exist_ok=True)
+    cache: dict = {}
+    if resolve_path.exists():
+        try:
+            cache = json.loads(resolve_path.read_text(encoding="utf-8"))
+        except Exception:
+            cache = {}
+    rows = []
+    for i, c in enumerate(seed, 1):
+        cid = c.get("id") or slugify(c["name"])
+        name = c["name"]
+        cached = cache.get(cid)
+        if cached and cached.get("file"):
+            qid, file_name = cached.get("qid") or "", cached["file"]
+            print(f"  [{i}/{len(seed)}] {name} (cache)", flush=True)
+        else:
+            print(f"  [{i}/{len(seed)}] {name}…", flush=True)
+            qid, file_name = (c.get("qid") or None), None
+            if qid:
+                file_name = wikidata_p18_filename(qid)
+                time.sleep(delay)
+            else:
+                qid, file_name = wikidata_resolve_person(c.get("search") or name, delay=delay, human=True)
+            cache[cid] = {"qid": qid or "", "file": file_name or "", "name": name}
+            resolve_path.write_text(json.dumps(cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        if not file_name:
+            print(f"    pas d’image P18", file=sys.stderr)
+            continue
+        rows.append({
+            "rank": len(rows) + 1,
+            "qid": qid or "",
+            "name": name,
+            "gender": c.get("g", "?"),
+            "occupations": c.get("job", ""),
+            "sitelinks": 0,
+            "image_url": f"https://commons.wikimedia.org/wiki/Special:FilePath/{file_name.replace(' ', '_')}",
+            "author": "",
+            "license": "",
+            "alt": list(c.get("alt") or []),
+            "id_hint": cid,
+        })
+    return rows
+
+
 def write_index(index_path: Path, rows):
     with open(index_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -671,7 +756,13 @@ def main():
     ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--jeunesse", action="store_true",
                     help="catalogue « Portraits de jeunesse » à partir de scripts/jeunesse-seed.json")
+    ap.add_argument("--historiques", action="store_true",
+                    help="personnages historiques décédés de scripts/historiques-seed.json")
+    ap.add_argument("--append", action="store_true",
+                    help="ajoute les personnes au fichier de sortie au lieu de le remplacer")
     a = ap.parse_args()
+    if a.historiques and a.seed.name == "celeb-seed.json":
+        a.seed = HISTORIQUES_SEED
     if a.jeunesse:
         if a.seed.name == "celeb-seed.json":
             a.seed = JEUNESSE_SEED
@@ -680,7 +771,7 @@ def main():
     if a.out is None:
         a.out = JEUNESSE_OUT if a.jeunesse else DEFAULT_OUT
 
-    cache = CACHE / "jeunesse" if a.jeunesse else CACHE
+    cache = CACHE / "jeunesse" if a.jeunesse else CACHE / "historiques" if a.historiques else CACHE
     raw = cache / "raw"
     index_path = cache / "index.csv"
     skipped_path = cache / "skipped.csv"
@@ -732,6 +823,17 @@ def main():
         fetch_licences_and_urls(rows, a.width)
         write_index(index_path, rows)
         download_all(rows, raw, a.width, workers=1)
+    elif a.historiques:
+        print(f"1/3 Personnages historiques ({a.seed.name}) → Wikidata P18…")
+        if not a.seed.exists():
+            print(f"Introuvable : {a.seed}", file=sys.stderr)
+            sys.exit(1)
+        rows = rows_from_historiques(a.seed, delay=a.delay)
+        print(f"    {len(rows)} personnes avec une image")
+        print("2/3 Licences + URL Commons puis téléchargement…")
+        fetch_licences_and_urls(rows, a.width)
+        write_index(index_path, rows)
+        download_all(rows, raw, a.width, workers=1)
     elif a.from_faces:
         print(f"1/3 Catalogue Visages → Wikidata P18 ({FACES_CELEBS.name})…")
         if not FACES_CELEBS.exists():
@@ -766,6 +868,14 @@ def main():
     print("3/3 Détection des visages…")
     people, skipped = [], []
     used_ids: set[str] = set()
+    kept: list[dict] = []
+    if a.append and a.out.exists():
+        kept = json.loads(a.out.read_text(encoding="utf-8"))
+        used_ids = {p["id"] for p in kept}
+        kept_names = {slugify(p["name"]) for p in kept}
+        before = len(rows)
+        rows = [r for r in rows if slugify(r["name"]) not in kept_names and r.get("id_hint") not in used_ids]
+        print(f"    --append : {len(kept)} personnes gardées, {before - len(rows)} déjà présentes ignorées")
     landmarker = make_landmarker()
     try:
         for r in rows:
@@ -820,6 +930,8 @@ def main():
     finally:
         landmarker.close()
 
+    added = len(people)
+    people = kept + people
     a.out.parent.mkdir(parents=True, exist_ok=True)
     with open(a.out, "w", encoding="utf-8") as f:
         json.dump(people, f, ensure_ascii=False, indent=2)
@@ -829,12 +941,12 @@ def main():
         w.writerow(["file", "reason"])
         w.writerows(skipped)
 
-    print(f"Terminé : {len(people)} personnes → {a.out}")
+    print(f"Terminé : {len(people)} personnes → {a.out}" + (f" (dont {added} ajoutées)" if a.append else ""))
     print(f"Écartées : {len(skipped)} (détail {skipped_path})")
     if not people:
         print("Aucune personne valide.", file=sys.stderr)
         sys.exit(1)
-    if len(people) < a.top:
+    if not a.append and len(people) < a.top:
         print(f"Attention : {len(people)} / {a.top} valides (seed à compléter ou --max-yaw à élargir).",
               file=sys.stderr)
 

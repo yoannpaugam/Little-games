@@ -11,6 +11,7 @@
     "morceaux:build": "python3 scripts/celeb-quiz-builder.py --top 30",
     "morceaux:faces": "python3 scripts/celeb-quiz-builder.py --from-faces --top 300 --max-yaw 0.9 --min-face 30",
     "morceaux:faces:resume": "python3 scripts/celeb-quiz-builder.py --from-faces --skip-fetch --top 300 --max-yaw 0.9 --min-face 30",
+    "morceaux:historiques": "python3 scripts/celeb-quiz-builder.py --historiques --append --top 200 --max-yaw 0.9 --min-face 30",
     "morceaux:wikidata": "python3 scripts/celeb-quiz-builder.py --wikidata --top 300 --overfetch 2",
     "test": "node --test tests/*.test.js",
     "graph": "graphify update . && graphify tree --label \"Little Games\"",
