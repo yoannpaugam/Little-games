@@ -18433,5 +18433,53 @@
       "Cousteau",
       "Le commandant Cousteau"
     ]
+  },
+  {
+    "id": "marcel-pagnol",
+    "name": "Marcel Pagnol",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/0/09/Marcel_Pagnol_1931.jpg",
+    "by": "AnonymousUnknown author",
+    "lic": "Public domain",
+    "box": {
+      "yeux": [
+        0.26,
+        0.321,
+        0.36,
+        0.101
+      ],
+      "nez": [
+        0.378,
+        0.428,
+        0.154,
+        0.089
+      ],
+      "bouche": [
+        0.373,
+        0.523,
+        0.186,
+        0.072
+      ],
+      "haut": [
+        0.171,
+        0.135,
+        0.576,
+        0.407
+      ],
+      "bas": [
+        0.171,
+        0.485,
+        0.576,
+        0.217
+      ],
+      "complet": [
+        0.113,
+        0.077,
+        0.692,
+        0.693
+      ]
+    },
+    "alt": [
+      "Pagnol"
+    ]
   }
 ]
