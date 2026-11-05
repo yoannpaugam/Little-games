@@ -8,6 +8,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
 | 👤 Visages (Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
 | 📚 Livres | `games/books/` | ✅ jouable |
+| 🌍 Géoquizz | `games/geo/` | ✅ jouable |
 
 ---
 
@@ -64,6 +65,10 @@ Dans tous les cas, le jeu affiche toutes les affiches au même format (2:3, reca
 ## 📚 Livres
 
 Une couverture s'affiche (titre français et année), il faut retrouver l'auteur en 3 essais. Après le premier raté, la couverture donne la littérature de l'auteur, après le deuxième ses initiales. Le nom de famille seul suffit. Les couvertures sont dessinées en CSS : aucune image n'est chargée. Le catalogue (`games/books/data/livres.json`) est vérifié par `tests/catalogs.test.js`.
+
+## 🌍 Géoquizz
+
+Une partie compte 10 pays, répartis sur tous les continents. Pour chacun, on touche la carte du monde là où on pense qu'il se trouve (zoom et déplacement possibles). L'écart est la distance entre le point et la frontière la plus proche du pays, calculée sur la sphère ; les écarts s'additionnent et donnent un score sur 100. Les contours viennent de Natural Earth (domaine public, via world-atlas) : `games/geo/data/world.json`, vérifié par `tests/catalogs.test.js`. Aucune image ni service externe.
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -128,6 +133,12 @@ games/books/             Le jeu « Livres » (retrouver l'auteur), autonome
   ├─ answers.js          Réponses acceptées : nom de famille seul, particules, fautes (testé)
   ├─ styles.css          Styles du jeu (préfixe .lv-), couvertures dessinées en CSS
   ├─ data/livres.json    Les 300 livres (titre français, année) et leurs 246 auteurs
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/geo/               Le jeu « Géoquizz » (placer des pays sur la carte), autonome
+  ├─ index.js            Logique et vues (partie, score final, réglages), carte SVG en Mercator
+  ├─ geo.js              Distances sur la sphère, contours, tirage des pays (testé)
+  ├─ styles.css          Styles du jeu (préfixe .gq-)
+  ├─ data/world.json     Contours de 167 pays (Natural Earth, domaine public)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)

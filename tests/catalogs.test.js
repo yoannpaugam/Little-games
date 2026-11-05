@@ -145,3 +145,23 @@ test('catalogue des livres (300 livres, auteurs reliés)', async () => {
   books.forEach((b) => { if (titles.has(b.title)) errors.push(`books ${b.id} : titre en double`); titles.add(b.title); });
   assert.deepEqual(errors, []);
 });
+
+test('carte du Géoquizz (contours des pays)', async () => {
+  const { EASY, REGION_OF } = await import('../games/geo/geo.js');
+  const world = await load('games/geo/data/world.json');
+  for (const k of ['units', 'lonMin', 'latMax', 'latMin', 'width', 'height']) assert.equal(typeof world[k], 'number', k);
+  assert.ok(typeof world.land === 'string' && world.land.startsWith('M'));
+  const ring = (v) => typeof v === 'string' && /^-?\d+ -?\d+( -?\d+ -?\d+)+$/.test(v);
+  const errors = checkEntries(world.countries.map((x) => ({ id: x.c, ...x })), {
+    id: [true, () => true],
+    c: [true, (v) => /^[A-Z]{2}$/.test(v)],
+    n: [true, text],
+    p: [true, (v) => Array.isArray(v) && v.length > 0 && v.every((poly) => Array.isArray(poly) && poly.length > 0 && poly.every(ring))],
+  }, 'countries');
+  const codes = new Set(world.countries.map((x) => x.c));
+  for (const c of EASY) {
+    if (!codes.has(c)) errors.push(`pays proposé absent de la carte : ${c}`);
+    if (!REGION_OF[c]) errors.push(`pays proposé sans région : ${c}`);
+  }
+  assert.deepEqual(errors, []);
+});

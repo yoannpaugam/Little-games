@@ -1,0 +1,165 @@
+/* Jeu « Géoquizz ». Toutes les classes sont préfixées .gq- */
+
+.gq {
+  --accent: #4fb3d9;
+  --accent-ink: #04202c;
+  --gq-ocean: #10202e;
+  --gq-land: #c9c2b0;
+  --gq-border: #7d7666;
+  --gq-panel: rgba(13, 12, 15, .86);
+  max-width: 1100px; margin: 0 auto; padding: 0 1rem 1rem;
+}
+.gq .icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Barre du haut ---------- */
+.gq-bar { display: flex; align-items: center; gap: .5rem; padding: .6rem 0; flex: none; }
+.gq-title { flex: 1; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gq-best { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: .25rem; white-space: nowrap; font-size: .9rem; }
+.gq-best strong { color: var(--accent); }
+.gq-icon-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; flex: none;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.gq-icon-btn:hover, .gq-icon-btn:focus-visible { border-color: var(--accent); background: var(--bg-3); outline: none; }
+
+/* ---------- Boutons ---------- */
+.gq-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-height: 46px; padding: 0 1.2rem;
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-weight: 600; white-space: nowrap;
+  transition: background .15s, border-color .15s, transform .1s;
+}
+.gq-btn:hover, .gq-btn:focus-visible { border-color: var(--accent); outline: none; }
+.gq-btn:active { transform: scale(.97); }
+.gq-btn:disabled { opacity: .6; cursor: default; }
+.gq-btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.gq-btn-primary:hover, .gq-btn-primary:focus-visible { background: #7cc8e6; box-shadow: 0 0 0 3px #4fb3d944; }
+.gq-btn-danger { border-color: #ff6b6b66; color: var(--err); background: transparent; }
+.gq-btn-danger:hover { border-color: var(--err); }
+.gq-wide { width: 100%; }
+
+/* ---------- Écran de jeu : toute la hauteur visible, la carte prend l'espace restant ---------- */
+.gq.is-play {
+  display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh;
+  padding-bottom: max(.75rem, env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+.gq-stage {
+  position: relative; flex: 1 1 auto; min-height: 0; width: 100%;
+  overflow: hidden; background: var(--gq-ocean);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  outline: none; user-select: none; -webkit-user-select: none;
+}
+.gq-stage:focus-visible { box-shadow: 0 0 0 3px var(--accent); }
+/* Au clavier, une mire marque le centre de la carte (Entrée le valide) */
+.gq-stage:focus-visible::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px;
+  border: 2px solid #fff; border-radius: 50%; pointer-events: none;
+  background: linear-gradient(#fff, #fff) center / 2px 100% no-repeat, linear-gradient(#fff, #fff) center / 100% 2px no-repeat;
+}
+
+/* Carte */
+.gq-map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
+.gq-grid { fill: none; stroke: rgba(255, 255, 255, .06); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.gq-land { fill: var(--gq-land); stroke: var(--gq-border); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.gq-borders { fill: none; stroke: var(--gq-border); stroke-width: .7; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+.gq-reveal { fill: rgba(79, 179, 217, .45); stroke: #1d7fa6; stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+.gq-link { stroke: #fff; stroke-width: 1.5; stroke-dasharray: 6 5; vector-effect: non-scaling-stroke; pointer-events: none; }
+.gq-guess { fill: var(--err); stroke: #fff; stroke-width: 2; vector-effect: non-scaling-stroke; pointer-events: none; }
+.gq-near { fill: var(--ok); stroke: #0b1b12; stroke-width: 2; vector-effect: non-scaling-stroke; pointer-events: none; }
+
+/* Panneaux posés sur la carte */
+.gq-hud {
+  position: absolute; z-index: 2; display: flex; flex-direction: column; gap: 2px;
+  padding: .55rem .85rem; background: var(--gq-panel); border: 1px solid var(--line); border-radius: 12px;
+  pointer-events: none; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.gq-hud-q { top: 10px; left: 10px; max-width: min(62%, 420px); }
+.gq-hud-total { top: 10px; right: 10px; align-items: flex-end; }
+.gq-count, .gq-hud-total span { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; }
+.gq-ask { font-size: .8rem; color: var(--muted); }
+.gq-country { font-family: var(--font-display); font-weight: 400; letter-spacing: .03em; font-size: clamp(1.4rem, 3.6vw, 2.1rem); line-height: 1.05; color: var(--accent); }
+.gq-hud-total strong { font-size: clamp(1.05rem, 2.6vw, 1.4rem); font-variant-numeric: tabular-nums; }
+
+.gq-tools { position: absolute; z-index: 2; right: 10px; bottom: 10px; display: flex; flex-direction: column; gap: 6px; }
+.gq-tools button {
+  width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--gq-panel); font-size: 1.3rem; line-height: 1; cursor: pointer;
+}
+.gq-tools button:hover, .gq-tools button:focus-visible { border-color: var(--accent); outline: none; }
+
+/* Résultat après chaque pays */
+.gq-result {
+  position: absolute; z-index: 3; right: 10px; top: 76px; width: min(290px, 42%);
+  display: flex; flex-direction: column; align-items: center; gap: .3rem;
+  padding: .9rem 1.1rem 1rem; text-align: center;
+  background: var(--gq-panel); border: 1px solid var(--accent); border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.gq-result[hidden] { display: none; }
+.gq-place { font-weight: 600; color: var(--muted); }
+.gq-km { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; }
+.gq-km.is-perfect { color: var(--ok); }
+.gq-note { font-size: .85rem; color: var(--muted); }
+.gq-result .gq-btn { margin-top: .4rem; }
+
+/* ---------- Score final ---------- */
+.gq-final {
+  flex: 1; min-height: 0; overflow-y: auto; width: min(460px, 100%); margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center; padding: .5rem 0 1rem;
+}
+.gq-final > * { flex: none; }
+.gq-final-label { margin: .5rem 0 0; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; }
+.gq-final-score { margin: .1rem 0 0; font-size: 1.3rem; color: var(--muted); }
+.gq-final-score strong { font-family: var(--font-display); font-weight: 400; font-size: 4.2rem; line-height: 1; color: var(--accent); }
+.gq-final-total { margin: .1rem 0 0; }
+.gq-final-record { margin: .4rem 0 0; color: var(--ok); font-weight: 600; }
+.gq-final-best { margin: .4rem 0 0; color: var(--muted); }
+.gq-table { width: 100%; margin: .9rem 0 0; border-collapse: collapse; font-size: .92rem; }
+.gq-table th, .gq-table td { padding: .42rem .6rem; text-align: left; border-bottom: 1px solid var(--line); }
+.gq-table th { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.gq-table .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gq-final-actions { display: flex; gap: .6rem; justify-content: center; margin-top: .8rem; }
+
+/* ---------- Réglages ---------- */
+.gq-settings { display: grid; gap: 1rem; max-width: 560px; margin: .5rem auto 2rem; }
+.gq-settings fieldset { margin: 0; padding: 1rem 1.1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); display: grid; gap: .6rem; }
+.gq-settings legend { padding: 0 .4rem; font-weight: 700; }
+.gq-hint { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.gq-version { text-align: center; color: var(--muted); font-size: .8rem; margin: 0; }
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 640px) {
+  .gq { padding: 0 .6rem .6rem; }
+  .gq-bar { padding: .45rem 0; }
+  .gq-best { display: none; }
+  .gq-hud { padding: .45rem .65rem; }
+  .gq-hud-q { max-width: 64%; }
+  .gq-country { font-size: 1.45rem; }
+  .gq-result { right: auto; left: 50%; top: auto; bottom: 10px; transform: translateX(-50%); width: min(92%, 320px); padding: .7rem .9rem .8rem; }
+  .gq-tools { bottom: auto; top: 50%; transform: translateY(-50%); }
+}
+/* Petit écran (iPhone SE) : panneaux plus compacts */
+@media (max-height: 600px) {
+  .gq-result { gap: .15rem; }
+  .gq-km { font-size: 1.9rem; }
+  .gq-result .gq-btn { min-height: 44px; }
+  .gq-final-score strong { font-size: 3.2rem; }
+  .gq-table th, .gq-table td { padding: .3rem .5rem; }
+}
+/* Téléphone en paysage : la barre du haut se fait discrète, la carte prend la place */
+@media (max-height: 520px) and (orientation: landscape) and (min-width: 600px) {
+  .gq-bar { padding: .3rem 0; }
+  .gq-icon-btn { width: 40px; height: 40px; }
+  .gq-title { font-size: 1.3rem; }
+  .gq-result { top: 10px; right: 64px; width: min(250px, 36%); padding: .55rem .8rem .65rem; gap: .1rem; }
+  .gq-km { font-size: 1.8rem; }
+  .gq-note { font-size: .78rem; }
+  .gq-result .gq-btn { min-height: 44px; margin-top: .2rem; }
+  .gq-hud { padding: .4rem .65rem; }
+  .gq-country { font-size: 1.4rem; }
+  .gq-hud-total { top: auto; bottom: 10px; right: auto; left: 10px; align-items: flex-start; }
+}
