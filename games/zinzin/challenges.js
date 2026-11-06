@@ -6,14 +6,14 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.38.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.38.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.38.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.38.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.38.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.38.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.38.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.38.0';
+import { h, icon } from '../../js/core/dom.js?v=1.39.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.39.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.39.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.39.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.39.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.39.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.39.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.39.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -149,6 +149,19 @@ export async function mountChallenge(el, ch, ctx) {
 }
 
 // ---------------------------------------------------------------- éléments communs
+/** Tranches yeux / nez / bouche d'un visage, en hauteur normalisée de la photo : { yeux: [haut, bas], nez, bouche }. */
+export function faceZones(box) {
+  const mid = (b) => b[1] + b[3] / 2;
+  const c = box.complet, top = c[1], bottom = c[1] + c[3];
+  const ye = mid(box.yeux), yn = mid(box.nez), ym = mid(box.bouche);
+  const b1 = (ye + yn) / 2, b2 = (yn + ym) / 2;
+  return {
+    yeux: [Math.max(top, ye - (b1 - ye) * 1.3), b1],
+    nez: [b1, b2],
+    bouche: [b2, Math.min(bottom, ym + (ym - b2) * 1.3)],
+  };
+}
+
 function dots(n, max = TRIES) {
   return h('span.zz-dots', Array.from({ length: max }, (_, i) => h('i', { class: i < n ? 'is-on' : '' })));
 }
@@ -235,9 +248,13 @@ const KINDS = {
       const mk = (cls) => h('img', { class: cls, alt: '', draggable: false, src: p.img, referrerPolicy: 'no-referrer' });
       const blur = mk('zz-face zz-face--blur');
       const bands = ch.p.bands.map(() => mk('zz-face zz-face--band'));
-      // Hauteur de chaque bande (sur toute la largeur du visage), un peu plus haute que la zone détectée
+      // Zones du visage, en tranches horizontales qui se touchent sans se chevaucher (sur toute la largeur du visage) :
+      // la limite yeux / nez est à mi-chemin entre le centre des yeux et celui du nez, la limite nez / bouche
+      // à mi-chemin entre le nez et la bouche. Les yeux montent d'autant au-dessus de leur centre (sourcils compris),
+      // la bouche descend d'autant sous le sien (menton compris), sans sortir du cadre du visage.
       const ORDER = ['yeux', 'nez', 'bouche'];
-      const range = (name) => { const b = p.box[name]; return [Math.max(0, b[1] - b[3] * 0.3), Math.min(1, b[1] + b[3] * 1.3)]; };
+      const zones = faceZones(p.box);
+      const range = (name) => zones[name];
       // Bandes visibles : deux parties voisines sur le visage (yeux et nez, nez et bouche) sont reliées en une seule bande
       const showBands = (n) => {
         const open = ORDER.filter((name) => ch.p.bands.slice(0, n + 1).includes(name));

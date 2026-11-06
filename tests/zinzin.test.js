@@ -233,3 +233,20 @@ test('chemin du défi : sans raccourci, de la première à la dernière rangée'
     });
   }
 });
+
+test('visages : zones yeux / nez / bouche qui se touchent, sans chevauchement', async () => {
+  const { faceZones } = await import('../games/zinzin/challenges.js');
+  const { readFile } = await import('node:fs/promises');
+  const people = JSON.parse(await readFile(new URL('../games/faces/morceaux/data/people.json', import.meta.url), 'utf8'))
+    .filter((p) => p.box?.yeux && p.box.nez && p.box.bouche && p.box.complet);
+  assert.ok(people.length > 100);
+  for (const p of people) {
+    const z = faceZones(p.box);
+    assert.equal(z.yeux[1], z.nez[0], `${p.id} : yeux et nez se touchent`);
+    assert.equal(z.nez[1], z.bouche[0], `${p.id} : nez et bouche se touchent`);
+    for (const k of ['yeux', 'nez', 'bouche']) assert.ok(z[k][0] < z[k][1], `${p.id} : zone ${k} non vide`);
+    const ye = p.box.yeux[1] + p.box.yeux[3] / 2, ym = p.box.bouche[1] + p.box.bouche[3] / 2;
+    assert.ok(ye > z.yeux[0] && ye < z.yeux[1], `${p.id} : centre des yeux dans sa zone`);
+    assert.ok(ym > z.bouche[0] && ym < z.bouche[1], `${p.id} : centre de la bouche dans sa zone`);
+  }
+});
