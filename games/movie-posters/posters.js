@@ -6,8 +6,8 @@
 //   4. recherche en direct         : API TMDB si une clé est renseignée, sinon (ou à défaut) Wikipédia
 // Les affiches restent la propriété de leurs ayants droit ; aucune n'est livrée avec le code.
 
-import { createStore } from '../../js/core/storage.js?v=1.25.0';
-import { isMatch } from '../../js/core/fuzzy.js?v=1.25.0';
+import { createStore } from '../../js/core/storage.js?v=1.26.0';
+import { isMatch } from '../../js/core/fuzzy.js?v=1.26.0';
 
 const BASE = new URL('./', import.meta.url);
 const IMG = 'https://image.tmdb.org/t/p/';

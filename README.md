@@ -73,7 +73,7 @@ Une partie compte 10 pays, répartis sur tous les continents. Pour chacun, on to
 
 ## 👣 Le chemin
 
-Un jeu de mémoire : un chemin s'allume pendant 6 secondes sur une grille de 9 × 14 cases (14 × 9 en paysage), puis on le retrace case par case, du départ à l'arrivée. 3 erreurs par manche, 3 affichages en tout ; score sur 100 (−6 par erreur, −8 par affichage supplémentaire). Le chemin est tiré au hasard, sans raccourci possible (`games/path/path.js`, testé par `tests/path.test.js`). Aucune image ni service externe : les sons sont produits par Web Audio.
+Un jeu de mémoire : un chemin s'allume pendant 6 secondes sur une grille de 11 × 14 cases (14 × 11 en paysage), puis on le retrace case par case, du départ à l'arrivée. 5 erreurs et 3 affichages par parcours ; à la 5e erreur, un nouveau chemin est tiré. Score sur 100 (−6 par erreur, −8 par affichage supplémentaire). Le chemin est tiré au hasard, sans raccourci possible (`games/path/path.js`, testé par `tests/path.test.js`). Aucune image ni service externe : les sons sont produits par Web Audio.
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 

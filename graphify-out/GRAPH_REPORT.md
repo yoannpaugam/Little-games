@@ -1,15 +1,17 @@
 # Graph Report - little-games  (2026-11-06)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 60 files · ~128,428 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 9 file(s) not represented in the graph (top: .css 7, (none) 2)
 
 ## Summary
-- 639 nodes · 1231 edges · 29 communities
+- 639 nodes · 1232 edges · 29 communities
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4caace64`
+- Built from commit: `cd02d69f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -48,8 +50,8 @@
 1. `h()` - 56 edges
 2. `mount()` - 31 edges
 3. `mount()` - 25 edges
-4. `icon()` - 23 edges
-5. `renderPlay()` - 23 edges
+4. `renderPlay()` - 23 edges
+5. `icon()` - 23 edges
 6. `main()` - 20 edges
 7. `mount()` - 19 edges
 8. `mount()` - 18 edges
@@ -63,10 +65,10 @@
   SECURITY.md → js/core/dom.js
 - `Réglages du dépôt GitHub (à faire par le propriétaire)` --references--> `main()`  [INFERRED]
   SECURITY.md → scripts/celeb-quiz-builder.py
-- `buildAnswers()` --calls--> `normalize()`  [EXTRACTED]
-  games/movie-posters/index.js → js/core/fuzzy.js
-- `compact()` --calls--> `normalize()`  [EXTRACTED]
-  games/movie-posters/index.js → js/core/fuzzy.js
+- `mount()` --calls--> `h()`  [EXTRACTED]
+  games/books/index.js → js/core/dom.js
+- `mount()` --calls--> `icon()`  [EXTRACTED]
+  games/books/index.js → js/core/dom.js
 
 ## Import Cycles
 - None detected.
@@ -111,7 +113,7 @@ Nodes (5): Modes retirés (1.19.0), Navigation (URL), Pistes pour la suite, Prin
 
 ### Community 9 - "Coquille : routeur et liste des jeux"
 Cohesion: 0.19
-Nodes (12): ./books/index.js?v=1.25.0, ./faces/index.js?v=1.25.0, ./geo/index.js?v=1.25.0, ./movie-posters/index.js?v=1.25.0, ./path/index.js?v=1.25.0, GAMES, APP_VERSION, navigate() (+4 more)
+Nodes (12): ./books/index.js?v=1.26.0, ./faces/index.js?v=1.26.0, ./geo/index.js?v=1.26.0, ./movie-posters/index.js?v=1.26.0, ./path/index.js?v=1.26.0, GAMES, APP_VERSION, navigate() (+4 more)
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
@@ -171,7 +173,7 @@ Nodes (62): ensureStyles(), mount(), closeSub(), openSub(), renderHome(), subCar
 
 ### Community 24 - "Le chemin : grille, tirage du chemin et score"
 Cohesion: 0.11
-Nodes (37): createSound(), ensureStyles(), mount(), clearRound(), finish(), listen(), newGame(), renderEnd() (+29 more)
+Nodes (37): createSound(), ensureStyles(), mount(), finish(), listen(), newGame(), newPath(), renderEnd() (+29 more)
 
 ### Community 25 - "Spécification Livres"
 Cohesion: 0.18
@@ -190,7 +192,7 @@ Cohesion: 0.18
 Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le chemin : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ## Knowledge Gaps
-- **6 isolated node(s):** `./morceaux/index.js?v=1.25.0`, `./books/index.js?v=1.25.0`, `./faces/index.js?v=1.25.0`, `./geo/index.js?v=1.25.0`, `./movie-posters/index.js?v=1.25.0` (+1 more)
+- **6 isolated node(s):** `./morceaux/index.js?v=1.26.0`, `./movie-posters/index.js?v=1.26.0`, `./faces/index.js?v=1.26.0`, `./books/index.js?v=1.26.0`, `./geo/index.js?v=1.26.0` (+1 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 276 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
@@ -200,7 +202,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.279) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.25.0`, `./books/index.js?v=1.25.0`, `./faces/index.js?v=1.25.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.26.0`, `./movie-posters/index.js?v=1.26.0`, `./faces/index.js?v=1.26.0` to the rest of the system?**
   _6 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.06874717322478517 - nodes in this community are weakly interconnected._
