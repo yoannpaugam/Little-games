@@ -9,6 +9,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 👤 Visages (Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
 | 📚 Livres | `games/books/` | ✅ jouable |
 | 🌍 Géoquizz | `games/geo/` | ✅ jouable |
+| 👣 Le chemin | `games/path/` | ✅ jouable |
 
 ---
 
@@ -69,6 +70,10 @@ Une couverture s'affiche (titre français et année), il faut retrouver l'auteur
 ## 🌍 Géoquizz
 
 Une partie compte 10 pays, répartis sur tous les continents. Pour chacun, on touche la carte du monde là où on pense qu'il se trouve (zoom et déplacement possibles). L'écart est la distance entre le point et la frontière la plus proche du pays, calculée sur la sphère ; les écarts s'additionnent et donnent un score sur 100. Les contours viennent de Natural Earth (domaine public, via world-atlas) : `games/geo/data/world.json`, vérifié par `tests/catalogs.test.js`. Ses contours sont simplifiés par `python3 scripts/simplify-geo.py` (frontières communes conservées entre voisins). Aucune image ni service externe.
+
+## 👣 Le chemin
+
+Un jeu de mémoire : un chemin s'allume pendant 6 secondes sur une grille de 9 × 14 cases (14 × 9 en paysage), puis on le retrace case par case, du départ à l'arrivée. 3 erreurs par manche, 3 affichages en tout ; score sur 100 (−6 par erreur, −8 par affichage supplémentaire). Le chemin est tiré au hasard, sans raccourci possible (`games/path/path.js`, testé par `tests/path.test.js`). Aucune image ni service externe : les sons sont produits par Web Audio.
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -139,6 +144,11 @@ games/geo/               Le jeu « Géoquizz » (placer des pays sur la carte), 
   ├─ geo.js              Distances sur la sphère, contours, tirage des pays (testé)
   ├─ styles.css          Styles du jeu (préfixe .gq-)
   ├─ data/world.json     Contours de 167 pays (Natural Earth, domaine public)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/path/              Le jeu « Le chemin » (mémoriser et retracer un chemin), autonome
+  ├─ index.js            Logique et vues (partie, bilan, réglages), sons Web Audio
+  ├─ path.js             Tirage du chemin et calcul du score (testé)
+  ├─ styles.css          Styles du jeu (préfixe .ch-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)

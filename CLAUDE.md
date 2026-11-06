@@ -20,6 +20,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 👤 Visages | `visages` | `games/faces/` (modes Morceaux et jeunesse dans `games/faces/morceaux/`) | `.vz-`, `.mx-` | `morceaux`, `jeunesse` (anciens : `visages`) | — (ancien : `little-games-visages`) |
 | 📚 Livres | `livres` | `games/books/` | `.lv-` | `livres` | — |
 | 🌍 Géoquizz | `geoquizz` | `games/geo/` | `.gq-` | `geoquizz` | — |
+| 👣 Le chemin | `chemin` | `games/path/` | `.ch-` | `chemin` | — |
 
 ## Carte du code (Graphify)
 - **Avant d'explorer le code, lire `graphify-out/GRAPH_REPORT.md`** : les 24 groupes (« communautés ») portent un nom en français (« Affiches : écran de jeu et grille », « Réponses acceptées et tolérance aux fautes », « Agent qa-testeur »…), avec les fonctions centrales et les liens entre fichiers.
