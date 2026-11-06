@@ -30,26 +30,55 @@ export function cellPos(i, cols = BOARD_COLS, rows = BOARD_ROWS) {
   return [0, rows - 2 - (i - top - right - bottom)];
 }
 
-/** Plateau : la case 0 est le départ, les autres alternent les jeux, jamais deux fois le même d'affilée. */
-export function makeBoard(games, rnd = Math.random, size = BOARD_SIZE) {
+export const MAX_WEIGHT = 3; // proportion d'un jeu sur le plateau : 0 (absent) à 3 (beaucoup)
+
+/**
+ * Nombre de cases de chaque jeu sur `cells` cases, proportionnel à son poids (méthode du plus fort reste).
+ * weights : { jeu: poids } (poids absent = 1). → { jeu: nombre de cases }
+ */
+export function boardCounts(games, weights = {}, cells = BOARD_SIZE - 1) {
+  const w = games.map((g) => Math.max(0, weights[g] ?? 1));
+  const total = w.reduce((a, b) => a + b, 0) || 1;
+  const exact = w.map((x) => (x * cells) / total);
+  const out = exact.map(Math.floor);
+  let left = cells - out.reduce((a, b) => a + b, 0);
+  exact.map((x, i) => [x - Math.floor(x), i]).filter(([, i]) => w[i] > 0).sort((a, b) => b[0] - a[0])
+    .forEach(([, i]) => { if (left > 0) { out[i]++; left--; } });
+  return Object.fromEntries(games.map((g, i) => [g, out[i]]));
+}
+
+/**
+ * Plateau : la case 0 est le départ, les autres prennent les jeux dans les proportions demandées,
+ * dans un ordre tiré au hasard et jamais deux fois le même jeu d'affilée quand c'est possible.
+ */
+export function makeBoard(games, rnd = Math.random, size = BOARD_SIZE, weights = {}) {
   const board = ['depart'];
-  if (!games.length) return board;
-  const count = Object.fromEntries(games.map((g) => [g, 0]));
+  const counts = boardCounts(games, weights, size - 1);
+  const left = { ...counts };
   for (let i = 1; i < size; i++) {
-    let opts = games.filter((g) => g !== board[i - 1]);
-    if (!opts.length) opts = games;
-    const min = Math.min(...opts.map((g) => count[g]));
-    opts = opts.filter((g) => count[g] === min); // répartition équilibrée
-    const g = opts[Math.floor(rnd() * opts.length)];
-    count[g]++;
+    const remaining = size - i;
+    const prev = board[i - 1];
+    const avail = games.filter((g) => left[g] > 0);
+    if (!avail.length) break;
+    let opts = avail.filter((g) => g !== prev);
+    // un jeu qui occupe plus de la moitié des cases restantes doit passer maintenant, sinon il finirait collé
+    const urgent = opts.find((g) => left[g] > remaining / 2);
+    if (urgent) opts = [urgent];
+    if (!opts.length) opts = avail; // inévitable : seul ce jeu reste
+    let r = rnd() * opts.reduce((a, g) => a + left[g], 0), g = opts[opts.length - 1];
+    for (const o of opts) { r -= left[o]; if (r <= 0) { g = o; break; } }
+    left[g]--;
     board.push(g);
   }
   return board;
 }
 
 /** Nouvel état de partie. teams : [{ cid, name }] */
-export function newGame({ mode = 'solo', laps = 1, maxTeams = 4, games = [], teams = [] }, env = {}) {
+export function newGame({ mode = 'solo', laps = 1, maxTeams = 4, games = [], weights = {}, teams = [] }, env = {}) {
   const rnd = env.rnd || Math.random;
+  const w = Object.fromEntries(games.map((g) => [g, clamp(weights[g] ?? 1, 0, MAX_WEIGHT)]));
+  if (!games.some((g) => w[g] > 0)) games.forEach((g) => { w[g] = 1; }); // au moins un jeu
+  games = games.filter((g) => w[g] > 0);
   return {
     v: 1,
     mode,
@@ -57,7 +86,8 @@ export function newGame({ mode = 'solo', laps = 1, maxTeams = 4, games = [], tea
     laps: clamp(laps | 0, MIN_LAPS, MAX_LAPS),
     maxTeams: clamp(maxTeams | 0, MIN_TEAMS, MAX_TEAMS),
     games,
-    board: makeBoard(games, rnd),
+    weights: w,
+    board: makeBoard(games, rnd, BOARD_SIZE, w),
     teams: teams.map((t, i) => team(t, i)),
     turn: { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: null, final: null },
     used: {},
@@ -212,7 +242,7 @@ export function applyAction(G, a, env = {}) {
     }
     case 'restart': {
       if (!isHost(G, a) || G.phase !== 'end') return false;
-      G.board = makeBoard(G.games, rnd);
+      G.board = makeBoard(G.games, rnd, BOARD_SIZE, G.weights || {});
       G.teams.forEach((t) => { t.steps = 0; t.stuck = false; });
       G.winner = null;
       G.phase = 'play';

@@ -11,15 +11,15 @@
 //     sauvegardée et affichée ; chez un invité, elle est envoyée à l'arbitre sans rien modifier en local ;
 //   - render() reconstruit l'écran à partir de G.
 
-import { h, icon } from '../../js/core/dom.js?v=1.36.0';
-import { createStore } from '../../js/core/storage.js?v=1.36.0';
-import { GAMES } from '../registry.js?v=1.36.0';
+import { h, icon } from '../../js/core/dom.js?v=1.37.0';
+import { createStore } from '../../js/core/storage.js?v=1.37.0';
+import { GAMES } from '../registry.js?v=1.37.0';
 import {
   BOARD_COLS, BOARD_ROWS, MIN_TEAMS, MAX_TEAMS, MIN_LAPS, MAX_LAPS, DICE_MS, STEP_MS, REVEAL_MS, GRACE_MS,
-  cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName,
-} from './logic.js?v=1.36.0';
-import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.36.0';
-import { openLink, BROKERS } from './net.js?v=1.36.0';
+  cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName, boardCounts, MAX_WEIGHT,
+} from './logic.js?v=1.37.0';
+import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.37.0';
+import { openLink, BROKERS } from './net.js?v=1.37.0';
 
 const store = createStore('zinzin', { version: 1 });
 const DEFAULTS = { mode: 'solo', teams: 2, laps: 1, names: [] };
@@ -45,8 +45,15 @@ export async function mount(container, ctx) {
 
   let path = ctx.path || [];
   let settings = { ...DEFAULTS, ...store.get('settings', {}) };
-  /** Jeux choisis pour le plateau (tous par défaut, au moins un). */
-  const chosenGames = () => { const g = boardGames.filter((id) => !settings.off?.includes(id)); return g.length ? g : boardGames; };
+  // Proportion de chaque jeu sur le plateau : 0 (absent) à 3 (beaucoup), « Normal » (2) par défaut.
+  // Les anciens réglages (settings.off : jeux retirés) valent 0.
+  const WEIGHT_LABELS = ['Aucune', 'Peu', 'Normal', 'Beaucoup'];
+  const weightOf = (id) => settings.weights?.[id] ?? (settings.off?.includes(id) ? 0 : 2);
+  const weights = () => {
+    const w = Object.fromEntries(boardGames.map((id) => [id, weightOf(id)]));
+    if (!boardGames.some((id) => w[id] > 0)) boardGames.forEach((id) => { w[id] = 2; });
+    return w;
+  };
   const saveSettings = () => store.set('settings', settings);
 
   // ---------------------------------------------------------------- session
@@ -101,7 +108,7 @@ export async function mount(container, ctx) {
   function startSolo() {
     endSession({ silent: true });
     const names = Array.from({ length: settings.teams }, (_, i) => ({ name: settings.names[i] || '' }));
-    Object.assign(S, { kind: 'solo', G: newGame({ mode: 'solo', laps: settings.laps, games: chosenGames(), teams: names }) });
+    Object.assign(S, { kind: 'solo', G: newGame({ mode: 'solo', laps: settings.laps, games: boardGames, weights: weights(), teams: names }) });
     store.set('session', { role: 'solo' });
     saveGame();
     loadCatalogs();
@@ -111,7 +118,7 @@ export async function mount(container, ctx) {
   async function startHost() {
     endSession({ silent: true });
     const code = newCode();
-    const G = newGame({ mode: 'multi', laps: settings.laps, maxTeams: settings.teams, games: chosenGames(), teams: [{ cid: CID, name: store.get('myName', '') }] });
+    const G = newGame({ mode: 'multi', laps: settings.laps, maxTeams: settings.teams, games: boardGames, weights: weights(), teams: [{ cid: CID, name: store.get('myName', '') }] });
     Object.assign(S, { kind: 'host', G, code });
     store.set('session', { role: 'host', code });
     saveGame();
@@ -356,20 +363,27 @@ export async function mount(container, ctx) {
             stepper(multi ? 'Équipes (au plus)' : 'Équipes', settings.teams, MIN_TEAMS, MAX_TEAMS, (v) => { settings.teams = v; saveSettings(); if (!multi) draw(); }),
             names,
             stepper('Tours de plateau', settings.laps, MIN_LAPS, MAX_LAPS, (v) => { settings.laps = v; saveSettings(); }),
-            h('div.zz-field.zz-field--col', h('span.zz-label', 'Jeux du plateau'),
-              h('div.zz-games', boardGames.map((id) => {
-                const m = meta[id], on = chosenGames().includes(id);
-                return h('button.zz-game-chip', {
-                  type: 'button', 'aria-pressed': String(on), style: `--game: ${m.accent}`,
-                  onclick: () => {
-                    const off = new Set(settings.off || []);
-                    if (on) { if (chosenGames().length <= 1) return; off.add(id); } else off.delete(id); // au moins un jeu
-                    settings.off = [...off]; saveSettings(); draw();
-                  },
-                }, h('span.zz-chip-icon', icon(m.icon)), h('span', m.title));
-              }))),
+            h('div.zz-field.zz-field--col', h('span.zz-label', 'Épreuves du plateau'), weightRows()),
             h('button.zz-btn.zz-btn--go.zz-btn--big.zz-cta', { type: 'button', onclick: () => (multi ? startHost() : startSolo()) }, multi ? 'Créer la partie' : 'Lancer le jeu')));
       };
+      // Une ligne par jeu : – / + règle sa proportion, avec le nombre de cases qu'il aura sur le plateau
+      function weightRows() {
+        const w = weights(), counts = boardCounts(boardGames, w);
+        const set = (id, v) => {
+          const next = { ...w, [id]: Math.max(0, Math.min(MAX_WEIGHT, v)) };
+          if (!boardGames.some((g) => next[g] > 0)) return; // au moins une épreuve
+          settings.weights = next; delete settings.off; saveSettings(); draw();
+        };
+        return h('div.zz-weights', boardGames.map((id) => {
+          const m = meta[id], v = w[id];
+          return h('div.zz-weight', { class: v ? 'zz-weight' : 'zz-weight is-off', style: `--game: ${m.accent}` },
+            h('span.zz-chip-icon', icon(m.icon)),
+            h('span.zz-weight-name', h('b', m.title), h('small', v ? `${WEIGHT_LABELS[v]} · ${counts[id]} cases` : WEIGHT_LABELS[0])),
+            h('button.zz-round', { type: 'button', 'aria-label': `${m.title} : moins`, disabled: !v, onclick: () => set(id, v - 1) }, icon('minus')),
+            h('span.zz-weight-bar', Array.from({ length: MAX_WEIGHT }, (_, k) => h('i', { class: k < v ? 'is-on' : '' }))),
+            h('button.zz-round', { type: 'button', 'aria-label': `${m.title} : plus`, disabled: v >= MAX_WEIGHT, onclick: () => set(id, v + 1) }, icon('plus')));
+        }));
+      }
       draw();
       return { el };
     },
