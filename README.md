@@ -10,6 +10,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 📚 Livres | `games/books/` | ✅ jouable |
 | 🌍 Géoquizz | `games/geo/` | ✅ jouable |
 | 👣 Le chemin | `games/path/` | ✅ jouable |
+| 🧩 Nonogramme | `games/nonogram/` | ✅ jouable |
 
 ---
 
@@ -74,6 +75,10 @@ Une partie compte 10 pays, répartis sur tous les continents. Pour chacun, on to
 ## 👣 Le chemin
 
 Un jeu de mémoire : un chemin s'allume pendant 6 secondes sur une grille de 11 × 14 cases (14 × 11 en paysage), puis on le retrace case par case, du départ à l'arrivée. 5 erreurs et 3 affichages par parcours ; à la 5e erreur, un nouveau chemin est tiré. Score sur 100 (−6 par erreur, −8 par affichage supplémentaire). Le chemin est tiré au hasard, sans raccourci possible (`games/path/path.js`, testé par `tests/path.test.js`). Aucune image ni service externe : les sons sont produits par Web Audio.
+
+## 🧩 Nonogramme
+
+Un jeu de logique (picross) : on noircit les cases d'une grille d'après les chiffres des lignes et des colonnes, qui donnent la longueur des blocs. 3 niveaux (5 × 5, 10 × 10, 15 × 15) ; le bouton « Nouvelle grille », en haut, en tire une autre. Les grilles sont tirées au hasard et ne sont gardées que si elles se résolvent par logique, sans deviner (solution unique) : `games/nonogram/nonogram.js`, testé par `tests/nonogram.test.js`. Chronomètre et record par niveau. Aucune image ni service externe.
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -149,6 +154,11 @@ games/path/              Le jeu « Le chemin » (mémoriser et retracer un chemi
   ├─ index.js            Logique et vues (partie, bilan, réglages), sons Web Audio
   ├─ path.js             Tirage du chemin et calcul du score (testé)
   ├─ styles.css          Styles du jeu (préfixe .ch-)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/nonogram/          Le jeu « Nonogramme » (picross), autonome
+  ├─ index.js            Logique et vues (partie, réglages)
+  ├─ nonogram.js         Tirage des grilles, indices, solveur logique (testé)
+  ├─ styles.css          Styles du jeu (préfixe .ng-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)

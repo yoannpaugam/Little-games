@@ -1,0 +1,160 @@
+/* Jeu « Nonogramme ». Toutes les classes sont préfixées .ng- */
+
+.ng {
+  --accent: #5fc9a8;
+  --accent-ink: #062018;
+  --ng-cell: 28px;            /* recalculée par le jeu selon la place disponible */
+  --ng-ink: #f3efe8;          /* case noircie */
+  --ng-paper: #26232c;        /* case vide */
+  --ng-line: #3a3542;
+  --ng-thick: #6b6476;
+  max-width: 1100px; margin: 0 auto; padding: 0 1rem 1rem;
+}
+.ng .icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Barre du haut ---------- */
+.ng-bar { display: flex; align-items: center; gap: .5rem; padding: .6rem 0; flex: none; }
+.ng-title { flex: 1; min-width: 0; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ng-icon-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; flex: none; padding: 0;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.ng-icon-btn:hover, .ng-icon-btn:focus-visible { border-color: var(--accent); background: var(--bg-3); outline: none; }
+.ng-new {
+  display: inline-flex; align-items: center; gap: .4rem; flex: none;
+  min-height: 44px; padding: 0 1rem; border-radius: 999px; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); font-weight: 700;
+  transition: background .15s, transform .1s;
+}
+.ng-new:hover, .ng-new:focus-visible { background: #7fdcc0; outline: none; box-shadow: 0 0 0 3px #5fc9a844; }
+.ng-new:active { transform: scale(.97); }
+.ng-new.armed { background: var(--err); border-color: var(--err); color: #fff; }
+@media (max-width: 380px) { .ng-new { padding: 0 .75rem; } .ng-title { font-size: 0; } }
+@media (max-width: 420px) { .ng.is-play { padding-left: .5rem; padding-right: .5rem; } }
+
+/* ---------- Boutons ---------- */
+.ng-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-height: 46px; padding: 0 1.2rem;
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-weight: 600; white-space: nowrap;
+}
+.ng-btn:hover, .ng-btn:focus-visible { border-color: var(--accent); outline: none; }
+.ng-btn:disabled { opacity: .6; cursor: default; }
+.ng-btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.ng-btn-danger { border-color: #ff6b6b66; color: var(--err); background: transparent; }
+.ng-wide { width: 100%; }
+
+/* ---------- Écran de jeu : toute la hauteur visible, la grille prend la place restante ---------- */
+.ng.is-play {
+  display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh;
+  padding-bottom: max(.6rem, env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+.ng-play { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: .5rem; }
+.ng-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
+.ng-levels { display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.ng-level {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05;
+  min-height: 40px; min-width: 76px; padding: 0 .7rem; border: 0; border-radius: 999px; background: transparent; color: var(--muted);
+  cursor: pointer; font-weight: 600; font-size: .9rem;
+}
+.ng-level small { font-size: .68rem; font-weight: 500; opacity: .8; }
+.ng-level.on { background: var(--bg-3); color: var(--text); box-shadow: inset 0 0 0 1px var(--accent); }
+.ng-level:focus-visible { outline: 2px solid var(--accent); }
+.ng-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; font-variant-numeric: tabular-nums; }
+.ng-clock { font-weight: 700; }
+.ng-bestline { font-size: .75rem; color: var(--muted); }
+@media (max-width: 380px) { .ng-level { min-width: 0; padding: 0 .55rem; } }
+
+.ng-main { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: .5rem; }
+.ng-boardbox { flex: 1 1 auto; min-height: 0; min-width: 0; display: grid; place-items: center; overflow: hidden; }
+.ng-side { flex: none; display: flex; flex-direction: column; align-items: center; gap: .4rem; }
+
+/* Grille : une colonne d'indices, puis n colonnes de cases ; une ligne d'indices, puis n lignes */
+.ng-grid {
+  --clue: calc(var(--ng-cell) * .62);
+  display: grid;
+  grid-template-columns: calc(var(--clue) * var(--rcl)) repeat(var(--n), var(--ng-cell));
+  grid-template-rows: calc(var(--clue) * var(--ccl)) repeat(var(--n), var(--ng-cell));
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  font-size: clamp(9px, calc(var(--ng-cell) * .55), 20px); font-variant-numeric: tabular-nums;
+}
+.ng-corner { grid-row: 1; grid-column: 1; }
+.ng-rclue, .ng-cclue { display: flex; color: var(--text); font-weight: 700; transition: color .2s, opacity .2s; }
+.ng-rclue { grid-column: 1; justify-content: flex-end; align-items: center; gap: calc(var(--clue) * .12); padding-right: 3px; }
+.ng-cclue { grid-row: 1; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 3px; }
+.ng-rclue span { min-width: calc(var(--clue) * .8); text-align: center; }
+.ng-cclue span { height: var(--clue); line-height: var(--clue); }
+.ng-rclue:nth-of-type(even), .ng-cclue:nth-of-type(even) { background: #ffffff06; }
+.ng-rclue.done, .ng-cclue.done { color: var(--muted); opacity: .45; }
+
+.ng-cell {
+  box-sizing: border-box; width: var(--ng-cell); height: var(--ng-cell); padding: 0; margin: 0;
+  border: 0; border-right: 1px solid var(--ng-line); border-bottom: 1px solid var(--ng-line);
+  background: var(--ng-paper); cursor: pointer; position: relative; border-radius: 0;
+  transition: background .12s;
+}
+.ng-cell.bl { border-left: 2px solid var(--ng-thick); }
+.ng-cell.bt { border-top: 2px solid var(--ng-thick); }
+.ng-cell.br { border-right: 2px solid var(--ng-thick); }
+.ng-cell.bb { border-bottom: 2px solid var(--ng-thick); }
+.ng-cell.fill { background: var(--ng-ink); }
+.ng-cell.cross::before, .ng-cell.cross::after {
+  content: ""; position: absolute; left: 22%; right: 22%; top: 50%; height: 2px; margin-top: -1px;
+  background: var(--muted); border-radius: 1px; transform: rotate(45deg);
+}
+.ng-cell.cross::after { transform: rotate(-45deg); }
+.ng-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; z-index: 1; }
+.ng-grid[data-locked="true"] .ng-cell { cursor: default; }
+@media (hover: hover) { .ng-grid[data-locked="false"] .ng-cell:not(.fill):hover { background: #34303b; } }
+
+/* Grille résolue : le dessin apparaît, sans quadrillage */
+.ng-grid.won .ng-cell { border-color: transparent; transition: background .4s, border-color .4s; }
+.ng-grid.won .ng-cell:not(.fill) { background: var(--bg); }
+.ng-grid.won .ng-cell.fill { background: var(--accent); }
+.ng-grid.won .ng-rclue, .ng-grid.won .ng-cclue { opacity: .25; }
+
+/* Outils */
+.ng-tools { display: flex; align-items: center; justify-content: center; gap: .5rem; flex-wrap: wrap; }
+.ng-tools[hidden] { display: none; }
+.ng-modes { display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.ng-tool {
+  display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; padding: 0 .95rem;
+  border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-weight: 600;
+}
+.ng-tool[aria-pressed="true"] { background: var(--bg-3); color: var(--text); box-shadow: inset 0 0 0 1px var(--accent); }
+.ng-tool:focus-visible { outline: 2px solid var(--accent); }
+.ng-undo { background: var(--bg-2); border: 1px solid var(--line); }
+.ng-undo:disabled { opacity: .45; cursor: default; }
+.ng-swatch { width: 16px; height: 16px; border-radius: 3px; display: grid; place-items: center; font-size: 12px; line-height: 1; }
+.ng-swatch.fill { background: var(--ng-ink); }
+.ng-swatch.cross { box-shadow: inset 0 0 0 1px var(--line); color: var(--muted); }
+.ng-feedback { margin: 0; min-height: 1.2em; font-size: .85rem; color: var(--muted); text-align: center; }
+.ng-feedback:empty { display: none; }
+
+.ng-win { display: flex; flex-direction: column; align-items: center; gap: .35rem; text-align: center; }
+.ng-win[hidden] { display: none; }
+.ng-win p { margin: 0; }
+.ng-win-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: .04em; color: var(--accent); line-height: 1; }
+.ng-win-time { color: var(--muted); }
+.ng-win-record { color: var(--ok); font-weight: 600; }
+
+/* ---------- Téléphone en paysage : la grille à gauche, les commandes à droite ---------- */
+.ng.is-landscape .ng-bar { padding: .3rem 0; }
+.ng.is-landscape .ng-play { gap: .3rem; }
+.ng.is-landscape .ng-main { flex-direction: row; align-items: stretch; }
+.ng.is-landscape .ng-side { width: 220px; justify-content: center; }
+.ng.is-landscape .ng-tools { flex-direction: column; align-items: stretch; }
+.ng.is-landscape .ng-modes { justify-content: center; }
+.ng.is-landscape .ng-undo { justify-content: center; }
+
+/* ---------- Réglages ---------- */
+.ng-settings { display: grid; gap: 1rem; max-width: 560px; margin: .5rem auto 2rem; }
+.ng-settings fieldset { margin: 0; padding: 1rem 1.1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); display: grid; gap: .6rem; }
+.ng-settings legend { padding: 0 .4rem; font-weight: 700; }
+.ng-hint { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.ng-hint b { color: var(--text); }
+.ng-version { text-align: center; color: var(--muted); font-size: .8rem; margin: 0; }
