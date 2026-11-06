@@ -84,13 +84,13 @@
 .ch-link { flex: none; min-height: 44px; background: none; border: 0; color: var(--muted); text-decoration: underline; font-size: .82rem; padding: 0 .3rem; cursor: pointer; }
 .ch-link:hover, .ch-link:focus-visible { color: var(--text); outline: none; }
 
-/* Grille : 9 colonnes × 14 lignes en portrait. --s = étape (ligne), --l = couloir (colonne) */
+/* Grille : 11 colonnes × 14 lignes en portrait. --s = étape (ligne), --l = couloir (colonne) */
 .ch-stage { flex: 1 1 auto; min-height: 0; width: 100%; display: flex; }
 .ch-gridbox { flex: 1 1 auto; min-height: 0; min-width: 0; display: grid; place-items: center; overflow: hidden; }
 .ch-gridwrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .ch-grid {
   display: grid; gap: 3px;
-  grid-template-columns: repeat(9, var(--ch-cell)); grid-template-rows: repeat(14, var(--ch-cell));
+  grid-template-columns: repeat(11, var(--ch-cell)); grid-template-rows: repeat(14, var(--ch-cell));
   touch-action: manipulation; user-select: none; -webkit-user-select: none;
 }
 .ch-cell {
@@ -115,7 +115,7 @@
 .ch-feedback.good { color: var(--ok); }
 .ch-feedback.bad { color: var(--err); }
 
-/* ---------- Paysage (téléphone couché, ordinateur) : la grille se couche (14 × 9), le panneau passe à gauche ---------- */
+/* ---------- Paysage (téléphone couché, ordinateur) : la grille se couche (14 × 11), le panneau passe à gauche ---------- */
 .ch.is-landscape .ch-board { flex-direction: row; justify-content: center; align-items: stretch; gap: 1rem; }
 .ch.is-landscape .ch-panel { width: 210px; align-self: center; }
 .ch.is-landscape .ch-stats { flex-direction: column; gap: .45rem; }
@@ -124,7 +124,7 @@
 .ch.is-landscape .ch-go { flex: none; }
 .ch.is-landscape .ch-stage { width: auto; min-width: 0; }
 .ch.is-landscape .ch-gridwrap { flex-direction: row; }
-.ch.is-landscape .ch-grid { grid-template-columns: repeat(14, var(--ch-cell)); grid-template-rows: repeat(9, var(--ch-cell)); }
+.ch.is-landscape .ch-grid { grid-template-columns: repeat(14, var(--ch-cell)); grid-template-rows: repeat(11, var(--ch-cell)); }
 .ch.is-landscape .ch-cell { grid-row: calc(var(--l) + 1); grid-column: calc(var(--s) + 1); }
 .ch.is-landscape .ch-tag { flex-direction: column; writing-mode: vertical-rl; }
 .ch.is-landscape .ch-tag-start .ch-arrow { border-width: 6px 0 6px 7px; border-color: transparent transparent transparent var(--accent); }
@@ -171,6 +171,10 @@
 }
 @media (max-width: 360px) {
   .ch-best { display: none; }
+  .ch-panel { padding: .5rem .6rem; }
+  .ch-stat { gap: .35rem; }
+  .ch-hearts, .ch-leds { gap: 4px; }
+  .ch-hearts i, .ch-leds i { width: 11px; height: 11px; }
 }
 /* Téléphone en paysage : barre du haut et panneau plus compacts */
 @media (max-height: 520px) and (orientation: landscape) and (min-width: 600px) {

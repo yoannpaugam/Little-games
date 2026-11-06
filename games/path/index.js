@@ -4,12 +4,12 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.25.0';
-import { createStore } from '../../js/core/storage.js?v=1.25.0';
+import { h, icon } from '../../js/core/dom.js?v=1.26.0';
+import { createStore } from '../../js/core/storage.js?v=1.26.0';
 import {
   LANES, STEPS, MAX_ERRORS, MAX_VIEWS, SHOW_SECONDS, ERROR_PENALTY, EXTRA_VIEW_PENALTY,
   generatePath, computeScore,
-} from './path.js?v=1.25.0';
+} from './path.js?v=1.26.0';
 
 const store = createStore('chemin', { version: 1 });
 const GAP = 3, TAG_GAP = 6; // espaces entre les cases et autour des étiquettes (px), repris dans styles.css
@@ -37,15 +37,20 @@ export function mount(container, ctx) {
   const isLandscape = () => !!(mq && mq.matches);
 
   function newGame() {
+    game = { views: 0, totalErrors: 0, paths: 0, msg: '', bad: false };
+    newPath(game);
+    return game;
+  }
+  // Nouveau parcours : nouveau chemin, essais et affichages remis à neuf (les erreurs et affichages comptent toujours dans le score)
+  function newPath(g) {
     const path = generatePath();
-    game = {
+    Object.assign(g, {
       path,
       order: new Map(path.map(([s, l], i) => [s * LANES + l, i])),
       phase: 'idle', // idle → showing → play (→ reset) → done
-      viewsLeft: MAX_VIEWS, views: 0, errors: 0, totalErrors: 0, next: 0,
-      msg: '', bad: false, showEnd: 0,
-    };
-    return game;
+      viewsLeft: MAX_VIEWS, errors: 0, next: 0,
+    });
+    g.paths++;
   }
   function resetView() {
     stopTimers();
@@ -53,14 +58,13 @@ export function mount(container, ctx) {
     cleanup = [];
     // On quitte l'écran : un affichage en cours se termine, une manche perdue repart de zéro
     if (game?.phase === 'showing') { game.phase = 'play'; game.msg = 'À toi ! Touche le chemin en partant ' + fromTxt() + '.'; game.bad = false; }
-    if (game?.phase === 'reset') clearRound();
+    if (game?.phase === 'reset') { newPath(game); game.msg = 'Nouveau chemin ! Touche « Voir le chemin ».'; game.bad = false; }
   }
   function listen(target, type, fn, opts) {
     target.addEventListener(type, fn, opts);
     cleanup.push(() => target.removeEventListener(type, fn, opts));
   }
   const fromTxt = () => (isLandscape() ? 'de la gauche' : 'du haut');
-  function clearRound() { game.errors = 0; game.next = 0; game.phase = 'play'; }
 
   function setMuted(v) {
     muted = !!v; sound.setMuted(muted); store.set('muted', muted);
@@ -118,7 +122,7 @@ export function mount(container, ctx) {
     const stage = h('div.ch-stage', gridBox);
     const intro = h('p.ch-intro',
       'Un chemin s’allume pendant ', h('b', `${SHOW_SECONDS} secondes`), ' : mémorise-le, puis retrace-le case par case, du départ à l’arrivée. ',
-      `${MAX_ERRORS} erreurs et la manche recommence. Tu peux revoir le chemin, mais chaque nouvel affichage coûte ${EXTRA_VIEW_PENALTY} points.`
+      `À la ${MAX_ERRORS}e erreur, un nouveau chemin est tiré. Tu peux revoir le chemin, mais chaque nouvel affichage coûte ${EXTRA_VIEW_PENALTY} points.`
     );
     const board = h('div.ch-board',
       h('div.ch-panel',
@@ -140,7 +144,7 @@ export function mount(container, ctx) {
       goBtn.disabled = !(g.phase === 'idle' || g.phase === 'play') || g.viewsLeft <= 0;
       leds.forEach((el, i) => el.classList.toggle('on', i < g.viewsLeft));
       hearts.forEach((el, i) => el.classList.toggle('lost', i < g.errors));
-      if (g.phase !== 'showing') goTxt.textContent = g.phase === 'idle' ? 'Voir le chemin' : g.viewsLeft > 0 ? `Revoir (−${EXTRA_VIEW_PENALTY} pts)` : 'Plus d’affichage';
+      if (g.phase !== 'showing') goTxt.textContent = g.phase === 'idle' ? (g.paths > 1 ? 'Voir le nouveau chemin' : 'Voir le chemin') : g.viewsLeft > 0 ? `Revoir (−${EXTRA_VIEW_PENALTY} pts)` : 'Plus d’affichage';
     }
     function orient() {
       const land = isLandscape();
@@ -191,10 +195,11 @@ export function mount(container, ctx) {
       tick();
     }
     function restartRound() {
-      clearRound();
+      newPath(g);
       cells.forEach((c) => c.classList.remove('ok', 'bad'));
       sync();
-      say(g.viewsLeft > 0 ? 'Nouvelle tentative : repars ' + fromTxt() + '.' : 'Plus d’affichage : repars ' + fromTxt() + ', de mémoire.');
+      say(`Nouveau chemin (parcours ${g.paths}) : touche « Voir le nouveau chemin ».`);
+      goBtn.focus({ preventScroll: true });
     }
     function onCell(i) {
       if (g.phase !== 'play') return;
@@ -212,7 +217,7 @@ export function mount(container, ctx) {
       try { if (navigator.vibrate) navigator.vibrate(60); } catch { /* sans vibreur */ }
       if (g.errors >= MAX_ERRORS) {
         g.phase = 'reset'; sync();
-        say('Plus d’essais, on recommence !', true);
+        say('Plus d’essais ! Un nouveau chemin arrive…', true);
         later(restartRound, 1500);
       } else {
         sync();
@@ -257,12 +262,12 @@ export function mount(container, ctx) {
     stopTimers();
     g.phase = 'done';
     if (isWin) sound.win();
-    g.score = computeScore(g.totalErrors, g.views, abandoned);
+    g.score = computeScore(g.totalErrors, g.views, abandoned, g.paths);
     g.won = isWin; g.abandoned = abandoned;
     played += 1; store.set('played', played);
     if (isWin) { won += 1; store.set('won', won); }
     if (isWin && (!best || g.score > best.score || (g.score === best.score && g.totalErrors < best.errors))) {
-      best = { score: g.score, errors: g.totalErrors, views: g.views, date: Date.now() };
+      best = { score: g.score, errors: g.totalErrors, views: g.views, paths: g.paths, date: Date.now() };
       store.set('best', best);
       g.record = true;
     }
@@ -281,7 +286,7 @@ export function mount(container, ctx) {
         h('div.ch-seal' + (g.won ? '.won' : '.lost'), { 'aria-hidden': 'true' }, g.won ? '✓' : '✕'),
         h('h2.ch-final-title', g.won ? 'Bravo, chemin retracé !' : 'Partie abandonnée'),
         h('p.ch-final-score', h('strong', g.score), ' / 100'),
-        h('p.ch-final-details', `Erreurs : ${g.totalErrors} · Affichages : ${g.views} sur ${MAX_VIEWS}`),
+        h('p.ch-final-details', `Erreurs : ${g.totalErrors} · Affichages : ${g.views}` + (g.paths > 1 ? ` · Parcours : ${g.paths}` : '')),
         g.record ? h('p.ch-final-record', '🏆 Nouveau record !')
           : best ? h('p.ch-final-best', `Record : ${best.score} / 100`) : null,
         h('div.ch-final-actions',
@@ -311,8 +316,8 @@ export function mount(container, ctx) {
       h('section.ch-settings',
         h('fieldset', h('legend', 'Règle du jeu'),
           h('p.ch-hint', `Touche « Voir le chemin » : un chemin s’allume sur la grille pendant ${SHOW_SECONDS} secondes. Mémorise-le, puis touche ses cases une à une, dans l’ordre, du départ à l’arrivée.`),
-          h('p.ch-hint', `Chaque manche permet ${MAX_ERRORS} erreurs ; à la ${MAX_ERRORS}e, le chemin s’efface et tu repars du départ. Tu as ${MAX_VIEWS} affichages en tout.`),
-          h('p.ch-hint', `Score sur 100 : −${ERROR_PENALTY} points par erreur, −${EXTRA_VIEW_PENALTY} par affichage après le premier. Abandonner donne 0.`)
+          h('p.ch-hint', `Tu as droit à ${MAX_ERRORS} erreurs et ${MAX_VIEWS} affichages par parcours. À la ${MAX_ERRORS}e erreur, un nouveau chemin est tiré : il faut le mémoriser à son tour, avec à nouveau ${MAX_ERRORS} erreurs et ${MAX_VIEWS} affichages.`),
+          h('p.ch-hint', `Score sur 100 : −${ERROR_PENALTY} points par erreur (tous parcours confondus), −${EXTRA_VIEW_PENALTY} par affichage après le premier de chaque parcours. Abandonner donne 0.`)
         ),
         h('fieldset', h('legend', 'Son'),
           h('label.ch-switch', soundInput, h('span.ch-switch-track', { 'aria-hidden': 'true' }), h('span', 'Couper le son'))

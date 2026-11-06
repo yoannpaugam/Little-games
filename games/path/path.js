@@ -2,8 +2,8 @@
 // Une case s'écrit [étape, couloir] : l'étape va du départ (0) à l'arrivée (STEPS - 1),
 // le couloir de 0 à LANES - 1. En portrait, les étapes sont les lignes ; en paysage, les colonnes.
 
-export const LANES = 9, STEPS = 14;          // 9 colonnes × 14 lignes en portrait (14 × 9 en paysage)
-export const MAX_ERRORS = 3, MAX_VIEWS = 3;  // 3 erreurs permises par manche, 3 affichages en tout
+export const LANES = 11, STEPS = 14;         // 11 colonnes × 14 lignes en portrait (14 × 11 en paysage)
+export const MAX_ERRORS = 5, MAX_VIEWS = 3;  // 5 erreurs permises par parcours (puis nouveau chemin), 3 affichages par parcours
 export const SHOW_SECONDS = 6;               // durée d'affichage du chemin
 export const MIN_TURNS = 7, MIN_LENGTH = 24; // chemin sinueux
 export const ERROR_PENALTY = 6, EXTRA_VIEW_PENALTY = 8;
@@ -69,8 +69,11 @@ export function generatePath(rng = Math.random, lanes = LANES, steps = STEPS) {
   return fallbackPath(lanes, steps);
 }
 
-/** Score sur 100 : −6 par erreur, −8 par affichage au-delà du premier, 0 si abandon. */
-export function computeScore(errors, views, abandoned = false) {
+/**
+ * Score sur 100 : −6 par erreur, −8 par affichage au-delà du premier de chaque parcours, 0 si abandon.
+ * `paths` : nombre de parcours joués (un nouveau chemin est tiré après trop d'erreurs).
+ */
+export function computeScore(errors, views, abandoned = false, paths = 1) {
   if (abandoned) return 0;
-  return Math.max(0, 100 - ERROR_PENALTY * errors - EXTRA_VIEW_PENALTY * Math.max(0, views - 1));
+  return Math.max(0, 100 - ERROR_PENALTY * errors - EXTRA_VIEW_PENALTY * Math.max(0, views - paths));
 }

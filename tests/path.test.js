@@ -58,4 +58,7 @@ test('score : −6 par erreur, −8 par affichage supplémentaire, 0 si abandon'
   assert.equal(computeScore(1, 3), 78);
   assert.equal(computeScore(30, 3), 0);
   assert.equal(computeScore(0, 1, true), 0);
+  // nouveau parcours après trop d'erreurs : son premier affichage ne coûte rien, les erreurs comptent toujours
+  assert.equal(computeScore(5, 2, false, 2), 70);
+  assert.equal(computeScore(6, 4, false, 2), 48);
 });
