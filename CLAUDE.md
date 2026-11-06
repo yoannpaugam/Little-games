@@ -22,6 +22,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 🌍 Géoquizz | `geoquizz` | `games/geo/` | `.gq-` | `geoquizz` | — |
 | 👣 Le chemin | `chemin` | `games/path/` | `.ch-` | `chemin` | — |
 | 🧩 Nonogramme | `nonogramme` | `games/nonogram/` | `.ng-` | `nonogramme` | — |
+| 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)
 - **Avant d'explorer le code, lire `graphify-out/GRAPH_REPORT.md`** : les 24 groupes (« communautés ») portent un nom en français (« Affiches : écran de jeu et grille », « Réponses acceptées et tolérance aux fautes », « Agent qa-testeur »…), avec les fonctions centrales et les liens entre fichiers.
@@ -40,7 +41,8 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 ## Contrat d'un jeu
 - `games/<dossier>/index.js` exporte `mount(container, ctx)`. Il renvoie `{ update(path), destroy() }`.
 - `ctx` contient `path`, `navigate(...path)`, `home()` et `version`.
-- Le jeu n'importe que `js/core/`, jamais un autre jeu. Il charge ses styles (`ensureStyles()`) et ses données par une URL relative à `import.meta.url`.
+- Le jeu n'importe que `js/core/`, jamais un autre jeu. **Seule exception : Compète de zinzin** (`games/zinzin/challenges.js`), qui importe les modules sans DOM des autres jeux et lit leurs catalogues pour ses défis. Un changement d'API de ces modules (`answers.js`, `framing.js`, `geo.js`, `nonogram.js`, `buildAnswers`/`judge` d'Affiches) doit donc être répercuté dans ce fichier.
+- **Ordre de l'accueil** : Compète de zinzin (`last: true`) reste toujours en dernier, juste avant « Bientôt ». Un nouveau jeu s'ajoute à la fin de `GAMES` ; pour qu'il ait une case sur le plateau, on ajoute son défi dans `games/zinzin/challenges.js`. Il charge ses styles (`ensureStyles()`) et ses données par une URL relative à `import.meta.url`.
 - **Tous les imports et les fichiers chargés portent `?v=<version>`.** C'est `node scripts/set-version.mjs x.y.z` qui les met à jour, jamais à la main.
 - Écran de jeu : il tient dans `100dvh` sans défilement, de l'iPhone SE (320 × 568) à l'ordinateur, téléphone en paysage compris. Les images de jeu sont en 2:3, à la même taille que les affiches.
 - Chaque jeu a un `SPEC.md` qui le décrit indépendamment de la technologie.

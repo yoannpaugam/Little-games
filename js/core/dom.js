@@ -52,6 +52,11 @@ export function icon(name) {
     plus: 'M12 5v14M5 12h14',
     minus: 'M5 12h14',
     close: 'M18 6L6 18M6 6l12 12',
+    // Compète de zinzin
+    pawn: 'M12 3a3 3 0 100 6 3 3 0 000-6zM10 9.5L8.5 16h7L14 9.5M6 20.5h12M7.5 16h9l1 4.5h-11z',
+    phone: 'M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2zM11 18h2',
+    phones: 'M4 5h7a1.5 1.5 0 011.5 1.5v13A1.5 1.5 0 0111 21H4a1.5 1.5 0 01-1.5-1.5v-13A1.5 1.5 0 014 5zM15.5 3H20a1.5 1.5 0 011.5 1.5v13A1.5 1.5 0 0120 19h-4.5M7 18h1M17.5 16h1',
+    share: 'M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M12 3v12M7.5 7.5L12 3l4.5 4.5',
   };
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 24 24');
