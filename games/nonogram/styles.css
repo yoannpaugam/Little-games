@@ -140,7 +140,7 @@
 .ng-win p { margin: 0; }
 .ng-win-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: .04em; color: var(--accent); line-height: 1; }
 .ng-win-time { color: var(--muted); }
-.ng-win-record { color: var(--ok); font-weight: 600; }
+.ng-win-record { display: flex; align-items: center; justify-content: center; gap: .4rem; color: var(--ok); font-weight: 600; }
 
 /* ---------- Téléphone en paysage : la grille à gauche, les commandes à droite ---------- */
 .ng.is-landscape .ng-bar { padding: .3rem 0; }

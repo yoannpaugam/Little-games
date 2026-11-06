@@ -137,13 +137,14 @@
 }
 .ch-final > * { flex: none; }
 .ch-seal { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; font-weight: 700; color: #fff; }
+.ch-seal .icon { width: 30px; height: 30px; stroke-width: 3; }
 .ch-seal.won { background: var(--ok); color: #06210f; }
 .ch-seal.lost { background: var(--err); }
 .ch-final-title { margin: .7rem 0 0; font-size: 1.3rem; }
 .ch-final-score { margin: .3rem 0 0; font-size: 1.3rem; color: var(--muted); }
 .ch-final-score strong { font-family: var(--font-display); font-weight: 400; font-size: 4.2rem; line-height: 1; color: var(--accent); }
 .ch-final-details { margin: .1rem 0 0; }
-.ch-final-record { margin: .4rem 0 0; color: var(--ok); font-weight: 600; }
+.ch-final-record { display: flex; align-items: center; justify-content: center; gap: .4rem; margin: .4rem 0 0; color: var(--ok); font-weight: 600; }
 .ch-final-best { margin: .4rem 0 0; color: var(--muted); }
 .ch-final-actions { display: flex; gap: .6rem; justify-content: center; margin-top: 1rem; }
 

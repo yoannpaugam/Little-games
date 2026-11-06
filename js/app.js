@@ -1,11 +1,11 @@
 // Coquille de l'application : accueil + routeur par hash (#/jeu/sous-page).
 // Chaque jeu est un module autonome déclaré dans games/registry.js.
 
-import { GAMES } from '../games/registry.js?v=1.28.0';
-import { h } from './core/dom.js?v=1.28.0';
+import { GAMES } from '../games/registry.js?v=1.29.0';
+import { h, icon } from './core/dom.js?v=1.29.0';
 
 // Version affichée dans les réglages des jeux. À incrémenter à chaque mise en ligne.
-export const APP_VERSION = '1.28.0';
+export const APP_VERSION = '1.29.0';
 
 const root = document.getElementById('app');
 let current = null; // { id, instance }
@@ -32,13 +32,13 @@ function renderHome() {
       h('ul.game-list',
         GAMES.map((g) =>
           h('li',
-            h('a.game-card', { href: `#/${g.id}`, style: { '--accent': g.accent || '#e8b04a' } },
-              h('span.game-emoji', g.emoji || '🎲'),
+            h('a.game-card', { href: `#/${g.id}`, style: `--accent: ${g.accent || '#e8b04a'}` },
+              h('span.game-icon', icon(g.icon || 'dice')),
               h('span.game-meta', h('strong', g.title), h('small', g.description))
             )
           )
         ),
-        h('li.game-card.soon', h('span.game-emoji', '✨'), h('span.game-meta', h('strong', 'Bientôt'), h('small', 'Devinettes, quiz et plus encore…')))
+        h('li.game-card.soon', h('span.game-icon', icon('sparkles')), h('span.game-meta', h('strong', 'Bientôt'), h('small', 'Devinettes, quiz et plus encore…')))
       )
     )
   );

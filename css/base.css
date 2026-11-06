@@ -61,7 +61,14 @@ a { color: var(--accent); }
 }
 a.game-card:hover, a.game-card:focus-visible { transform: translateY(-2px); border-color: var(--accent); background: var(--bg-3); outline: none; }
 .game-card.soon { opacity: .75; border-style: dashed; }
-.game-emoji { font-size: 2.2rem; line-height: 1; }
+.game-icon {
+  flex: none; display: grid; place-items: center;
+  width: 3.2rem; height: 3.2rem; border-radius: 14px;
+  color: var(--accent, #e8b04a);
+  background: color-mix(in srgb, var(--accent, #e8b04a) 16%, transparent);
+}
+.game-icon .icon { width: 1.75rem; height: 1.75rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.game-card.soon .game-icon { color: var(--muted); background: var(--bg-3); }
 .game-meta { display: grid; gap: .2rem; }
 .game-meta strong { font-size: 1.15rem; }
 .game-meta small { color: var(--muted); }

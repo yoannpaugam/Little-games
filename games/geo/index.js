@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.28.0';
-import { createStore } from '../../js/core/storage.js?v=1.28.0';
-import { QUESTIONS, KM_FOR_ZERO_POINTS, geometry, distanceToCountry, pointsFromKm, pickQuiz } from './geo.js?v=1.28.0';
+import { h, icon } from '../../js/core/dom.js?v=1.29.0';
+import { createStore } from '../../js/core/storage.js?v=1.29.0';
+import { QUESTIONS, KM_FOR_ZERO_POINTS, geometry, distanceToCountry, pointsFromKm, pickQuiz } from './geo.js?v=1.29.0';
 
 const store = createStore('geoquizz', { version: 1 });
 const MAX_ZOOM = 20;
@@ -139,9 +139,9 @@ export async function mount(container, ctx) {
       h('div.gq-hud.gq-hud-q', count, h('span.gq-ask', 'Où se trouve…'), country),
       h('div.gq-hud.gq-hud-total', h('span', 'Écart total'), totalEl),
       h('div.gq-tools',
-        h('button', { type: 'button', 'aria-label': 'Zoom avant', title: 'Zoom avant', onclick: () => setZoom(view.z * 1.5) }, '+'),
-        h('button', { type: 'button', 'aria-label': 'Zoom arrière', title: 'Zoom arrière', onclick: () => setZoom(view.z / 1.5) }, '−'),
-        h('button', { type: 'button', 'aria-label': 'Vue d’ensemble', title: 'Vue d’ensemble', onclick: () => resetZoom() }, '⌂')
+        h('button', { type: 'button', 'aria-label': 'Zoom avant', title: 'Zoom avant', onclick: () => setZoom(view.z * 1.5) }, icon('plus')),
+        h('button', { type: 'button', 'aria-label': 'Zoom arrière', title: 'Zoom arrière', onclick: () => setZoom(view.z / 1.5) }, icon('minus')),
+        h('button', { type: 'button', 'aria-label': 'Vue d’ensemble', title: 'Vue d’ensemble', onclick: () => resetZoom() }, icon('home'))
       ),
       result
     );
@@ -339,7 +339,7 @@ export async function mount(container, ctx) {
         h('p.gq-final-label', 'Partie terminée'),
         h('p.gq-final-score', h('strong', points), ' / 100'),
         h('p.gq-final-total', `Écart total : ${fmt(total)} km`),
-        game.record ? h('p.gq-final-record', '🏆 Nouveau record !')
+        game.record ? h('p.gq-final-record', icon('trophy'), 'Nouveau record !')
           : best ? h('p.gq-final-best', `Record : ${best.points} / 100`) : null,
         h('div.gq-final-actions',
           h('button.gq-btn', { type: 'button', onclick: ctx.home }, 'Accueil'),

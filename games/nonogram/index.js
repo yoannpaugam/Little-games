@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.28.0';
-import { createStore } from '../../js/core/storage.js?v=1.28.0';
-import { LEVELS, levelById, generate, cluesOf, isSolved, lineMatches, rowOf, colOf, formatTime } from './nonogram.js?v=1.28.0';
+import { h, icon } from '../../js/core/dom.js?v=1.29.0';
+import { createStore } from '../../js/core/storage.js?v=1.29.0';
+import { LEVELS, levelById, generate, cluesOf, isSolved, lineMatches, rowOf, colOf, formatTime } from './nonogram.js?v=1.29.0';
 
 const store = createStore('nonogramme', { version: 1 });
 const EMPTY = 0, FILL = 1, CROSS = 2;
@@ -194,7 +194,7 @@ export function mount(container, ctx) {
         winPanel.replaceChildren(
           h('p.ng-win-title', 'Bravo !'),
           h('p.ng-win-time', `Grille résolue en ${formatTime(g.time)}`),
-          g.record ? h('p.ng-win-record', '🏆 Nouveau record !') : null,
+          g.record ? h('p.ng-win-record', icon('trophy'), 'Nouveau record !') : null,
           h('button.ng-btn.ng-btn-primary', { type: 'button', onclick: () => { game = newGame(settings.level); renderPlay(); } }, 'Nouvelle grille')
         );
       }
