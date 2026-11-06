@@ -30,7 +30,8 @@
 .ng-new:hover, .ng-new:focus-visible { background: #7fdcc0; outline: none; box-shadow: 0 0 0 3px #5fc9a844; }
 .ng-new:active { transform: scale(.97); }
 .ng-new.armed { background: var(--err); border-color: var(--err); color: #fff; }
-@media (max-width: 380px) { .ng-new { padding: 0 .75rem; } .ng-title { font-size: 0; } }
+/* Bouton « Nouvelle grille » en bas de l'écran, large */
+.ng-new-wide { width: min(100%, 360px); justify-content: center; min-height: 48px; font-size: 1rem; }
 @media (max-width: 420px) { .ng.is-play { padding-left: .5rem; padding-right: .5rem; } }
 
 /* ---------- Boutons ---------- */
@@ -55,8 +56,9 @@
 }
 .ng-play { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: .5rem; }
 .ng-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
-.ng-levels { display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.ng-levels { flex: 1 1 auto; max-width: 440px; display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
 .ng-level {
+  flex: 1 1 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05;
   min-height: 40px; min-width: 76px; padding: 0 .7rem; border: 0; border-radius: 999px; background: transparent; color: var(--muted);
   cursor: pointer; font-weight: 600; font-size: .9rem;
@@ -118,22 +120,6 @@
 .ng-grid.won .ng-rclue, .ng-grid.won .ng-cclue { opacity: .25; }
 
 /* Outils */
-.ng-tools { display: flex; align-items: center; justify-content: center; gap: .5rem; flex-wrap: wrap; }
-.ng-tools[hidden] { display: none; }
-.ng-modes { display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
-.ng-tool {
-  display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; padding: 0 .95rem;
-  border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-weight: 600;
-}
-.ng-tool[aria-pressed="true"] { background: var(--bg-3); color: var(--text); box-shadow: inset 0 0 0 1px var(--accent); }
-.ng-tool:focus-visible { outline: 2px solid var(--accent); }
-.ng-undo { background: var(--bg-2); border: 1px solid var(--line); }
-.ng-undo:disabled { opacity: .45; cursor: default; }
-.ng-swatch { width: 16px; height: 16px; border-radius: 3px; display: grid; place-items: center; font-size: 12px; line-height: 1; }
-.ng-swatch.fill { background: var(--ng-ink); }
-.ng-swatch.cross { box-shadow: inset 0 0 0 1px var(--line); color: var(--muted); }
-.ng-feedback { margin: 0; min-height: 1.2em; font-size: .85rem; color: var(--muted); text-align: center; }
-.ng-feedback:empty { display: none; }
 
 .ng-win { display: flex; flex-direction: column; align-items: center; gap: .35rem; text-align: center; }
 .ng-win[hidden] { display: none; }
@@ -147,9 +133,7 @@
 .ng.is-landscape .ng-play { gap: .3rem; }
 .ng.is-landscape .ng-main { flex-direction: row; align-items: stretch; }
 .ng.is-landscape .ng-side { width: 220px; justify-content: center; }
-.ng.is-landscape .ng-tools { flex-direction: column; align-items: stretch; }
-.ng.is-landscape .ng-modes { justify-content: center; }
-.ng.is-landscape .ng-undo { justify-content: center; }
+.ng.is-landscape .ng-new-wide { width: 100%; }
 
 /* ---------- Réglages ---------- */
 .ng-settings { display: grid; gap: 1rem; max-width: 560px; margin: .5rem auto 2rem; }

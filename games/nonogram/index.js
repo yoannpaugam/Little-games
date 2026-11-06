@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.29.0';
-import { createStore } from '../../js/core/storage.js?v=1.29.0';
-import { LEVELS, levelById, generate, cluesOf, isSolved, lineMatches, rowOf, colOf, formatTime } from './nonogram.js?v=1.29.0';
+import { h, icon } from '../../js/core/dom.js?v=1.30.0';
+import { createStore } from '../../js/core/storage.js?v=1.30.0';
+import { LEVELS, levelById, generate, cluesOf, isSolved, lineMatches, rowOf, colOf, formatTime } from './nonogram.js?v=1.30.0';
 
 const store = createStore('nonogramme', { version: 1 });
 const EMPTY = 0, FILL = 1, CROSS = 2;
@@ -21,7 +21,6 @@ export function mount(container, ctx) {
   let best = store.get('best', {});     // { niveau: ms }
   let solved = store.get('solved', {}); // { niveau: nombre de grilles résolues }
   let game = null;   // grille en cours du niveau choisi
-  let mode = FILL;   // outil : remplir ou croix
   let cleanup = [];
   let tick = null;
 
@@ -101,7 +100,7 @@ export function mount(container, ctx) {
     // --- nouvelle grille (bouton en haut) : confirmation si une grille est commencée
     let armT = null;
     const newTxt = h('span.ng-new-txt', 'Nouvelle grille');
-    const newBtn = h('button.ng-new', { type: 'button', title: 'Nouvelle grille', onclick: () => {
+    const newBtn = h('button.ng-new.ng-new-wide', { type: 'button', title: 'Nouvelle grille', onclick: () => {
       if (hasProgress(game) && !armT) {
         newTxt.textContent = 'Confirmer ?';
         newBtn.classList.add('armed');
@@ -150,18 +149,13 @@ export function mount(container, ctx) {
     const boardBox = h('div.ng-boardbox', board);
 
     // --- outils
-    const fillBtn = h('button.ng-tool', { type: 'button', 'aria-pressed': 'true', onclick: () => setMode(FILL) }, h('span.ng-swatch.fill'), 'Remplir');
-    const crossBtn = h('button.ng-tool', { type: 'button', 'aria-pressed': 'false', onclick: () => setMode(CROSS) }, h('span.ng-swatch.cross', '✕'), 'Croix');
-    const undoBtn = h('button.ng-tool.ng-undo', { type: 'button', title: 'Annuler', onclick: undo }, '↶ Annuler');
-    const tools = h('div.ng-tools', h('div.ng-modes', { role: 'group', 'aria-label': 'Outil' }, fillBtn, crossBtn), undoBtn);
-    const feedback = h('p.ng-feedback', { role: 'status', 'aria-live': 'polite' });
     const winPanel = h('div.ng-win', { hidden: true });
 
     container.replaceChildren(
-      topBar('Nonogramme', { extra: newBtn }),
+      topBar('Nonogramme'),
       h('section.ng-play',
         h('div.ng-head', levels, h('div.ng-meta', clock, bestEl)),
-        h('div.ng-main', boardBox, h('div.ng-side', tools, winPanel, feedback))
+        h('div.ng-main', boardBox, h('div.ng-side', winPanel, newBtn))
       )
     );
 
@@ -179,23 +173,15 @@ export function mount(container, ctx) {
     }
     function showClock() { clock.textContent = '⏱ ' + formatTime(g.time); }
     function showBest() { bestEl.textContent = best[g.level] ? 'Record ' + formatTime(best[g.level]) : ''; }
-    function setMode(m) {
-      mode = m;
-      fillBtn.setAttribute('aria-pressed', String(m === FILL));
-      crossBtn.setAttribute('aria-pressed', String(m === CROSS));
-    }
     function sync() {
       container.classList.toggle('is-done', g.done);
       board.dataset.locked = String(g.done);
-      undoBtn.disabled = g.done || !g.undo.length;
-      tools.hidden = g.done;
       winPanel.hidden = !g.done;
       if (g.done) {
         winPanel.replaceChildren(
           h('p.ng-win-title', 'Bravo !'),
           h('p.ng-win-time', `Grille résolue en ${formatTime(g.time)}`),
-          g.record ? h('p.ng-win-record', icon('trophy'), 'Nouveau record !') : null,
-          h('button.ng-btn.ng-btn-primary', { type: 'button', onclick: () => { game = newGame(settings.level); renderPlay(); } }, 'Nouvelle grille')
+          g.record ? h('p.ng-win-record', icon('trophy'), 'Nouveau record !') : null
         );
       }
     }
@@ -253,7 +239,6 @@ export function mount(container, ctx) {
     }
     function afterChange() {
       markLines();
-      feedback.textContent = '';
       if (isSolved(g.cells, n, g.clues)) win();
       else persist();
       sync();
@@ -271,7 +256,7 @@ export function mount(container, ctx) {
       showClock(); showBest();
       board.classList.add('won');
       try { if (navigator.vibrate) navigator.vibrate([40, 60, 40]); } catch { /* sans vibreur */ }
-      setTimeout(() => winPanel.querySelector('button')?.focus({ preventScroll: true }), 50);
+      setTimeout(() => newBtn.focus({ preventScroll: true }), 50);
     }
 
     // --- événements (souris, doigt, stylet) : appui long ou clic droit = croix
@@ -285,14 +270,27 @@ export function mount(container, ctx) {
       pid = e.pointerId;
       try { board.setPointerCapture(pid); } catch { /* ancien navigateur */ }
       b.focus({ preventScroll: true });
-      begin(+b.dataset.i, e.button === 2 ? (mode === FILL ? CROSS : FILL) : mode);
+      const i = +b.dataset.i;
+      begin(i, e.button === 2 ? CROSS : FILL);
+      // Doigt ou stylet : un appui long sans bouger pose une croix à la place
+      if (e.pointerType !== 'mouse') {
+        clearTimeout(pressT);
+        pressT = setTimeout(() => {
+          if (!stroke || stroke.axis || stroke.target === CROSS) return;
+          stroke.changes.forEach((v, k) => { g.cells[k] = v; paint(k); });
+          begin(i, CROSS);
+          try { if (navigator.vibrate) navigator.vibrate(25); } catch { /* sans vibreur */ }
+        }, 450);
+      }
     });
+    let pressT = null;
+    cleanup.push(() => clearTimeout(pressT));
     listen(board, 'pointermove', (e) => {
       if (e.pointerId !== pid) return;
       const b = cellAt(e.clientX, e.clientY);
       if (b && board.contains(b)) moveTo(+b.dataset.i);
     });
-    const up = (e) => { if (e.pointerId !== pid) return; pid = null; end(); };
+    const up = (e) => { if (e.pointerId !== pid) return; clearTimeout(pressT); pid = null; end(); };
     listen(board, 'pointerup', up);
     listen(board, 'pointercancel', up);
     listen(board, 'contextmenu', (e) => e.preventDefault());
@@ -332,13 +330,10 @@ export function mount(container, ctx) {
 
     cells.forEach((_, i) => paint(i));
     if (g.done) board.classList.add('won');
-    setMode(mode);
     markLines();
     showClock(); showBest();
     sync();
     fit();
-    feedback.textContent = g.done ? '' : g.cells.every((v) => v === EMPTY)
-      ? 'Noircis les cases : les chiffres donnent la longueur des blocs, dans l’ordre.' : '';
     startClock(showClock);
   }
 
@@ -359,8 +354,8 @@ export function mount(container, ctx) {
       h('section.ng-settings',
         h('fieldset', h('legend', 'Règle du jeu'),
           h('p.ng-hint', 'Il faut noircir des cases de la grille pour faire apparaître un dessin. Les chiffres à gauche de chaque ligne et au-dessus de chaque colonne donnent, dans l’ordre, la longueur des blocs de cases noires. Deux blocs sont toujours séparés par au moins une case blanche.'),
-          h('p.ng-hint', 'Touche une case pour la noircir, ou fais glisser le doigt pour en noircir plusieurs. L’outil « Croix » marque les cases que tu sais blanches (clic droit sur ordinateur). Un indice s’estompe quand sa ligne est juste.'),
-          h('p.ng-hint', 'Chaque grille a une seule solution, qu’on trouve par logique, sans jamais deviner. « Nouvelle grille », en haut de l’écran, en tire une autre.')
+          h('p.ng-hint', 'Touche une case pour la noircir, ou fais glisser le doigt pour en noircir plusieurs. Un appui long (clic droit sur ordinateur) pose une croix sur une case que tu sais blanche. Ctrl+Z annule le dernier coup. Un indice s’estompe quand sa ligne est juste.'),
+          h('p.ng-hint', 'Chaque grille a une seule solution, qu’on trouve par logique, sans jamais deviner. « Nouvelle grille », en bas de l’écran, en tire une autre.')
         ),
         h('fieldset', h('legend', 'Records'),
           LEVELS.map((lv) => h('p.ng-hint', h('b', `${lv.label} (${lv.size}×${lv.size}) : `),

@@ -6,8 +6,8 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.29.0';
-import { isUpright } from './morceaux/framing.js?v=1.29.0';
+import { h, icon } from '../../js/core/dom.js?v=1.30.0';
+import { isUpright } from './morceaux/framing.js?v=1.30.0';
 
 const SUB_MODES = ['morceaux', 'jeunesse'];
 const SUB_FILES = { morceaux: 'people.json', jeunesse: 'jeunesse.json' };
@@ -26,7 +26,7 @@ export async function mount(container, ctx) {
     container.classList.remove('vz');
     container.replaceChildren(h('div.loading', 'Chargement…'));
     try {
-      const mod = await import('./morceaux/index.js?v=1.29.0');
+      const mod = await import('./morceaux/index.js?v=1.30.0');
       if (token !== subSeq) return;
       const instance = await mod.mount(container, {
         path: rest,
