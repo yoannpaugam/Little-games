@@ -4,7 +4,7 @@
   --accent: #5fc9a8;
   --accent-ink: #062018;
   --ng-cell: 28px;            /* recalculée par le jeu selon la place disponible */
-  --ng-ink: #f3efe8;          /* case noircie */
+  --ng-ink: #7b86ff;          /* case noircie : le bleu du bouton « Voir le chemin » */
   --ng-paper: #26232c;        /* case vide */
   --ng-line: #3a3542;
   --ng-thick: #6b6476;
@@ -104,7 +104,12 @@
 .ng-cell.bt { border-top: 2px solid var(--ng-thick); }
 .ng-cell.br { border-right: 2px solid var(--ng-thick); }
 .ng-cell.bb { border-bottom: 2px solid var(--ng-thick); }
-.ng-cell.fill { background: var(--ng-ink); }
+/* Case noircie : un carré bleu, légèrement en retrait et aux coins arrondis */
+.ng-cell.fill::before {
+  content: ""; position: absolute; inset: max(1px, calc(var(--ng-cell) * .08));
+  border-radius: max(2px, calc(var(--ng-cell) * .18)); background: var(--ng-ink);
+  transition: background .4s;
+}
 .ng-cell.cross::before, .ng-cell.cross::after {
   content: ""; position: absolute; left: 22%; right: 22%; top: 50%; height: 2px; margin-top: -1px;
   background: var(--muted); border-radius: 1px; transform: rotate(45deg);
@@ -116,8 +121,8 @@
 
 /* Grille résolue : le dessin apparaît, sans quadrillage */
 .ng-grid.won .ng-cell { border-color: transparent; transition: background .4s, border-color .4s; }
-.ng-grid.won .ng-cell:not(.fill) { background: var(--bg); }
-.ng-grid.won .ng-cell.fill { background: var(--accent); }
+.ng-grid.won .ng-cell { background: var(--bg); }
+
 .ng-grid.won .ng-rclue, .ng-grid.won .ng-cclue { opacity: .25; }
 
 /* Outils */
