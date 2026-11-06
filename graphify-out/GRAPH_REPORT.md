@@ -1,17 +1,17 @@
 # Graph Report - little-games  (2026-11-06)
 
 ## Corpus Check
-- 60 files · ~128,428 words
+- 60 files · ~128,582 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: .css 7, (none) 2)
 
 ## Summary
-- 639 nodes · 1232 edges · 29 communities
+- 640 nodes · 1234 edges · 30 communities
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cd02d69f`
+- Built from commit: `8ec0600c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -45,6 +45,7 @@
 - Spécification Géoquizz
 - Scripts Python : catalogue Morceaux et carte du Géoquizz
 - Spécification Le chemin
+- icon
 
 ## God Nodes (most connected - your core abstractions)
 1. `h()` - 56 edges
@@ -67,33 +68,33 @@
   SECURITY.md → scripts/celeb-quiz-builder.py
 - `mount()` --calls--> `h()`  [EXTRACTED]
   games/books/index.js → js/core/dom.js
-- `mount()` --calls--> `icon()`  [EXTRACTED]
+- `topBar()` --calls--> `h()`  [EXTRACTED]
   games/books/index.js → js/core/dom.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (29 total, 0 thin omitted)
+## Communities (30 total, 0 thin omitted)
 
 ### Community 0 - "Affiches : écran de jeu et grille"
 Cohesion: 0.07
-Nodes (62): BLUR, BLUR_STEPS, buildAnswers(), compact(), DEFAULT_SETTINGS, ensureStyles(), judge(), mount() (+54 more)
+Nodes (61): BLUR, BLUR_STEPS, buildAnswers(), compact(), DEFAULT_SETTINGS, ensureStyles(), judge(), mount() (+53 more)
 
 ### Community 1 - "Workflows GitHub (affiches TMDB, Morceaux historiques)"
 Cohesion: 0.08
 Nodes (23): runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, group, jobs, build (+15 more)
 
 ### Community 2 - "Livres : écran de jeu, réponses et tolérance aux fautes"
-Cohesion: 0.07
-Nodes (47): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+39 more)
+Cohesion: 0.09
+Nodes (27): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+19 more)
 
 ### Community 3 - "Géoquizz : carte, distances, tirage et tests des catalogues"
 Cohesion: 0.08
 Nodes (49): angle(), cache, closestOnArc(), cross(), decodeRing(), distanceToCountry(), dot(), EASY (+41 more)
 
 ### Community 4 - "Scripts : affiches TMDB et version"
-Cohesion: 0.06
-Nodes (27): args, DOWNLOAD, downloadCropped(), fetchRetry(), FILMS, findMovie(), FORCE, GAME (+19 more)
+Cohesion: 0.09
+Nodes (23): args, DOWNLOAD, downloadCropped(), fetchRetry(), FILMS, findMovie(), FORCE, GAME (+15 more)
 
 ### Community 5 - "Workflow GitHub « Affiches (TMDB) »"
 Cohesion: 0.09
@@ -113,7 +114,7 @@ Nodes (5): Modes retirés (1.19.0), Navigation (URL), Pistes pour la suite, Prin
 
 ### Community 9 - "Coquille : routeur et liste des jeux"
 Cohesion: 0.19
-Nodes (12): ./books/index.js?v=1.26.0, ./faces/index.js?v=1.26.0, ./geo/index.js?v=1.26.0, ./movie-posters/index.js?v=1.26.0, ./path/index.js?v=1.26.0, GAMES, APP_VERSION, navigate() (+4 more)
+Nodes (12): ./books/index.js?v=1.27.0, ./faces/index.js?v=1.27.0, ./geo/index.js?v=1.27.0, ./movie-posters/index.js?v=1.27.0, ./path/index.js?v=1.27.0, GAMES, APP_VERSION, navigate() (+4 more)
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
@@ -173,7 +174,7 @@ Nodes (62): ensureStyles(), mount(), closeSub(), openSub(), renderHome(), subCar
 
 ### Community 24 - "Le chemin : grille, tirage du chemin et score"
 Cohesion: 0.11
-Nodes (37): createSound(), ensureStyles(), mount(), finish(), listen(), newGame(), newPath(), renderEnd() (+29 more)
+Nodes (38): createSound(), ensureStyles(), mount(), finish(), listen(), newGame(), newPath(), renderEnd() (+30 more)
 
 ### Community 25 - "Spécification Livres"
 Cohesion: 0.18
@@ -191,24 +192,28 @@ Nodes (42): box_of(), check_quality(), commons_search_files(), download(), downl
 Cohesion: 0.18
 Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le chemin : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
+### Community 29 - "icon"
+Cohesion: 0.15
+Nodes (25): byYear(), centuryLabel(), centuryOf(), COVERS, DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder() (+17 more)
+
 ## Knowledge Gaps
-- **6 isolated node(s):** `./morceaux/index.js?v=1.26.0`, `./movie-posters/index.js?v=1.26.0`, `./faces/index.js?v=1.26.0`, `./books/index.js?v=1.26.0`, `./geo/index.js?v=1.26.0` (+1 more)
+- **6 isolated node(s):** `./morceaux/index.js?v=1.27.0`, `./movie-posters/index.js?v=1.27.0`, `./faces/index.js?v=1.27.0`, `./books/index.js?v=1.27.0`, `./geo/index.js?v=1.27.0` (+1 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 276 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `h()` connect `Visages : écran Morceaux et jeunesse` to `Affiches : écran de jeu et grille`, `Livres : écran de jeu, réponses et tolérance aux fautes`, `Géoquizz : carte, distances, tirage et tests des catalogues`, `Sécurité et données (SECURITY.md)`, `Coquille : routeur et liste des jeux`, `Consignes pour Claude (CLAUDE.md)`, `Le chemin : grille, tirage du chemin et score`?**
+- **Why does `h()` connect `Visages : écran Morceaux et jeunesse` to `Affiches : écran de jeu et grille`, `Géoquizz : carte, distances, tirage et tests des catalogues`, `Sécurité et données (SECURITY.md)`, `Coquille : routeur et liste des jeux`, `Consignes pour Claude (CLAUDE.md)`, `Le chemin : grille, tirage du chemin et score`, `icon`?**
   _High betweenness centrality (0.279) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.26.0`, `./movie-posters/index.js?v=1.26.0`, `./faces/index.js?v=1.26.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.27.0`, `./movie-posters/index.js?v=1.27.0`, `./faces/index.js?v=1.27.0` to the rest of the system?**
   _6 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
-  _Cohesion score 0.06874717322478517 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.068997668997669 - nodes in this community are weakly interconnected._
 - **Why does `Protections en place` connect `Sécurité et données (SECURITY.md)` to `Visages : écran Morceaux et jeunesse`?**
   _High betweenness centrality (0.156) - this node is a cross-community bridge._
 - **Should `Workflows GitHub (affiches TMDB, Morceaux historiques)` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `Livres : écran de jeu, réponses et tolérance aux fautes` be split into smaller, more focused modules?**
-  _Cohesion score 0.07049180327868852 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08879492600422834 - nodes in this community are weakly interconnected._

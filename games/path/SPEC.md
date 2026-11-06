@@ -13,7 +13,7 @@ Le jeu reprend le fichier « Parcours de mémoire » fourni par Yoann le 6 novem
 - Le chemin est tiré au hasard à chaque partie :
   - il part d'une case de la rangée de départ et s'arrête dès qu'il atteint la rangée d'arrivée ;
   - chaque case touche (par un côté) la précédente et la suivante, et **aucune autre case du chemin** : pas de raccourci possible ;
-  - il compte au moins **24 cases** et **7 virages** ; il avance, serpente beaucoup et recule parfois ;
+  - il est **tortueux** (depuis la 1.27.0) : au moins **40 cases** et **20 virages** (en moyenne 46 cases et 30 virages), jamais plus de **4 cases alignées** ; il serpente beaucoup et recule aussi souvent qu'il avance ;
   - si le tirage échoue 5 000 fois (ce qui n'arrive pas en pratique), un serpentin fixe sert de secours.
 
 ## Écran de jeu
