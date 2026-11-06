@@ -196,6 +196,9 @@
 .zz-ch-title strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; letter-spacing: .04em; line-height: 1; color: var(--game); }
 .zz-ch-title small { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .zz-final { color: var(--zz-lit); font-weight: 700; }
+.zz-skip { flex: none; min-height: 40px; padding: 0 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-2); color: var(--muted); font-weight: 600; cursor: pointer; }
+.zz-skip:hover, .zz-skip:focus-visible { color: var(--text); border-color: var(--muted); outline: none; }
+.zz-ch.is-over .zz-skip { visibility: hidden; }
 .zz-live { flex: none; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #ff4d6d; border: 1px solid #ff4d6d77; }
 .zz-live::before { content: ''; display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: currentColor; margin-right: .35em; animation: zz-blink 1.2s infinite; }
 @keyframes zz-blink { 50% { opacity: .2; } }
@@ -240,7 +243,7 @@
 .zz-cover { container-type: inline-size; background: linear-gradient(160deg, hsl(var(--hue) 45% 34%), hsl(var(--hue) 50% 20%)); }
 .zz-cover-in { position: absolute; inset: 7%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6cqw; text-align: center; border: 2px solid #fff5; border-radius: 6px; padding: 8cqw 6cqw; }
 .zz-cover-author { margin: 0; font-size: 7cqw; letter-spacing: .12em; text-transform: uppercase; color: #fffd; }
-.zz-cover-title { margin: 0; font-family: var(--font-display); line-height: 1.02; letter-spacing: .03em; overflow-wrap: anywhere; }
+.zz-cover-title { margin: 0; max-width: 100%; font-family: var(--font-display); line-height: 1.02; letter-spacing: .03em; overflow-wrap: normal; word-break: normal; hyphens: none; }
 .zz-cover-year { margin: 0; font-size: 6cqw; color: #fffb; }
 .zz-cover-hint { margin: 0; min-height: 1.2em; font-size: 5.5cqw; color: var(--zz-lit); }
 

@@ -4,12 +4,12 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.37.0';
-import { createStore } from '../../js/core/storage.js?v=1.37.0';
+import { h, icon } from '../../js/core/dom.js?v=1.38.0';
+import { createStore } from '../../js/core/storage.js?v=1.38.0';
 import {
   LANES, STEPS, MAX_ERRORS, MAX_VIEWS, SHOW_SECONDS, ERROR_PENALTY, EXTRA_VIEW_PENALTY,
   generatePath, computeScore,
-} from './path.js?v=1.37.0';
+} from './path.js?v=1.38.0';
 
 const store = createStore('chemin', { version: 1 });
 const GAP = 3, TAG_GAP = 6; // espaces entre les cases et autour des étiquettes (px), repris dans styles.css

@@ -13,7 +13,7 @@ export const TEAM_COLORS = ['#ff4d6d', '#ffe14d', '#f4f1ea', '#b8f24a', '#ff9a3c
 
 // Durée de l'animation : le dé tourne, puis le pion avance case par case, puis le défi s'ouvre.
 export const DICE_MS = 900, STEP_MS = 260, PAUSE_MS = 450;
-export const REVEAL_MS = 2400;   // la réponse reste affichée sur tous les écrans avant le tour suivant
+export const REVEAL_MS = 4500;   // la réponse reste affichée sur tous les écrans avant le tour suivant
 export const GRACE_MS = 4000;    // l'arbitre déclare le défi raté s'il n'a pas reçu de résultat après le délai + cette marge
 
 // Durée de chaque défi (secondes)
