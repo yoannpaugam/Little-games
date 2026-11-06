@@ -1,7 +1,7 @@
 # Graph Report - little-games  (2026-11-06)
 
 ## Corpus Check
-- 64 files · ~133,607 words
+- 64 files · ~133,659 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 10 file(s) not represented in the graph (top: .css 8, (none) 2)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `26a13702`
+- Built from commit: `c8c2269e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -196,7 +196,7 @@ Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le ch
 
 ### Community 29 - "Coquille : routeur et liste des jeux"
 Cohesion: 0.17
-Nodes (13): ./books/index.js?v=1.32.0, ./faces/index.js?v=1.32.0, ./geo/index.js?v=1.32.0, ./movie-posters/index.js?v=1.32.0, ./nonogram/index.js?v=1.32.0, ./path/index.js?v=1.32.0, GAMES, APP_VERSION (+5 more)
+Nodes (13): ./books/index.js?v=1.33.0, ./faces/index.js?v=1.33.0, ./geo/index.js?v=1.33.0, ./movie-posters/index.js?v=1.33.0, ./nonogram/index.js?v=1.33.0, ./path/index.js?v=1.33.0, GAMES, APP_VERSION (+5 more)
 
 ### Community 30 - "Livres : écran de jeu et bibliothèque"
 Cohesion: 0.15
@@ -207,7 +207,7 @@ Cohesion: 0.29
 Nodes (6): Le jour où l'application aura un service en ligne (multijoueur, Supabase…), Où sont les données, Protections en place, Réglages du dépôt GitHub (à faire par le propriétaire), Signaler un problème, 🔒 Sécurité et données
 
 ## Knowledge Gaps
-- **7 isolated node(s):** `./morceaux/index.js?v=1.32.0`, `./movie-posters/index.js?v=1.32.0`, `./faces/index.js?v=1.32.0`, `./books/index.js?v=1.32.0`, `./geo/index.js?v=1.32.0` (+2 more)
+- **7 isolated node(s):** `./morceaux/index.js?v=1.33.0`, `./movie-posters/index.js?v=1.33.0`, `./faces/index.js?v=1.33.0`, `./books/index.js?v=1.33.0`, `./geo/index.js?v=1.33.0` (+2 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 290 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
@@ -217,7 +217,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.283) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.32.0`, `./movie-posters/index.js?v=1.32.0`, `./faces/index.js?v=1.32.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.33.0`, `./movie-posters/index.js?v=1.33.0`, `./faces/index.js?v=1.33.0` to the rest of the system?**
   _7 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.068997668997669 - nodes in this community are weakly interconnected._

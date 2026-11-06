@@ -29,12 +29,13 @@ Le niveau se choisit en haut de l'écran de jeu. Chaque niveau garde sa propre g
 - En bas de l'écran (à droite en paysage), un large bouton **Nouvelle grille** (360 px au plus) tire une autre grille du niveau choisi. Si la grille en cours est commencée et pas résolue, un premier appui affiche « Confirmer ? » (en rouge) pendant 3 s ; un second appui confirme.
 - Sous la barre : les 3 niveaux (Facile 5×5, Moyen 10×10, Difficile 15×15), dans un sélecteur **centré**, large de 440 px au plus (sur téléphone, toute la largeur moins 4 rem). Juste en dessous, **à gauche**, avec un petit retrait à gauche et en haut : le chronomètre, puis le record du niveau.
 - La grille : indices des lignes à gauche, des colonnes au-dessus, une bande sur deux légèrement teintée. Un trait épais tous les 5 cases. Un indice s'estompe quand sa ligne ou sa colonne est juste.
+- Une case noircie est un carré **bleu clair** (#7b86ff, le bleu du bouton « Voir le chemin » du jeu Le chemin), un peu en retrait dans sa case (8 % de la case, 1 px au moins) et aux coins légèrement arrondis (18 %).
 - Il n'y a pas de barre d'outils sous la grille (retirée en 1.30.0, à la demande de Yoann) :
   - toucher une case la noircit (ou l'efface si elle l'était déjà) ;
   - en faisant glisser le doigt ou la souris, on noircit (ou on efface) toute une rangée : le trait reste sur la ligne ou la colonne de départ. Un trait de remplissage ne recouvre pas les croix, et inversement ;
   - **appui long** (450 ms sans bouger, au doigt ou au stylet) ou **clic droit** : une croix, pour marquer une case qu'on sait blanche (glisser ensuite pose des croix sur la rangée) ;
   - clavier : flèches pour se déplacer, Espace ou Entrée pour noircir, X pour une croix ; Ctrl+Z (⌘Z) défait le dernier trait (200 traits au plus).
-- **Grille résolue** dès que toutes les lignes et colonnes respectent leurs indices : les croix disparaissent, le quadrillage s'efface et le dessin apparaît en couleur. Au-dessus du bouton du bas : **Bravo !**, « Grille résolue en 2:31 » et « Nouveau record ! » le cas échéant ; le bouton **Nouvelle grille** prend le focus.
+- **Grille résolue** dès que toutes les lignes et colonnes respectent leurs indices : les croix disparaissent, le quadrillage et le fond des cases s'effacent, et le dessin apparaît en carrés bleus. Au-dessus du bouton du bas : **Bravo !**, « Grille résolue en 2:31 » et « Nouveau record ! » le cas échéant ; le bouton **Nouvelle grille** prend le focus.
 - La taille des cases est la plus grande qui fait tenir la grille et ses indices dans la place restante (de 12 à 44 px, 64 px en Facile), sans défilement, de l'iPhone SE à l'ordinateur. Un chiffre d'indice prend 0,62 case ; un nombre à deux chiffres compte pour 1,5 chiffre.
 - Le chronomètre ne tourne que lorsque l'écran de jeu est visible.
 
