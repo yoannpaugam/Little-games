@@ -1,7 +1,7 @@
 // Réponses acceptées pour le jeu « Morceaux ».
 // JavaScript pur (sans DOM) : testé dans tests/morceaux.test.js.
 
-import { normalize, isMatch, closeness } from '../../../js/core/fuzzy.js?v=1.26.0';
+import { normalize, isMatch, closeness } from '../../../js/core/fuzzy.js?v=1.27.0';
 
 const compact = (s) => normalize(s).replace(/ /g, '');
 

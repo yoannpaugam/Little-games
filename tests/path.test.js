@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { generatePath, fallbackPath, countTurns, computeScore, LANES, STEPS, MIN_LENGTH, MIN_TURNS } from '../games/path/path.js';
+import { generatePath, fallbackPath, countTurns, computeScore, LANES, STEPS, MIN_LENGTH, MIN_TURNS, MAX_STRAIGHT } from '../games/path/path.js';
 
 // Générateur pseudo-aléatoire reproductible (mulberry32)
 function rngFrom(seed) {
@@ -35,10 +35,16 @@ function checkPath(p, { strict = true } = {}) {
   if (strict) {
     assert.ok(p.length >= MIN_LENGTH, `longueur ${p.length}`);
     assert.ok(countTurns(p) >= MIN_TURNS, `virages ${countTurns(p)}`);
+    let run = 1, max = 1;
+    for (let i = 2; i < p.length; i++) {
+      const same = p[i][0] - p[i - 1][0] === p[i - 1][0] - p[i - 2][0] && p[i][1] - p[i - 1][1] === p[i - 1][1] - p[i - 2][1];
+      run = same ? run + 1 : 1; max = Math.max(max, run);
+    }
+    assert.ok(max + 1 <= MAX_STRAIGHT, `${max + 1} cases alignées`);
   }
 }
 
-test('les chemins tirés sont valides, longs et sinueux', () => {
+test('les chemins tirés sont valides, longs et tortueux', () => {
   for (let seed = 1; seed <= 300; seed++) checkPath(generatePath(rngFrom(seed)));
 });
 

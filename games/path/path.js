@@ -5,7 +5,8 @@
 export const LANES = 11, STEPS = 14;         // 11 colonnes × 14 lignes en portrait (14 × 11 en paysage)
 export const MAX_ERRORS = 5, MAX_VIEWS = 3;  // 5 erreurs permises par parcours (puis nouveau chemin), 3 affichages par parcours
 export const SHOW_SECONDS = 6;               // durée d'affichage du chemin
-export const MIN_TURNS = 7, MIN_LENGTH = 24; // chemin sinueux
+export const MIN_TURNS = 20, MIN_LENGTH = 40; // chemin tortueux (en moyenne 46 cases et 30 virages)
+export const MAX_STRAIGHT = 4;               // jamais plus de 4 cases alignées
 export const ERROR_PENALTY = 6, EXTRA_VIEW_PENALTY = 8;
 
 const DIRS = [[0, -1], [0, 1], [1, 0], [-1, 0]];
@@ -41,10 +42,10 @@ export function fallbackPath(lanes = LANES, steps = STEPS) {
  */
 export function generatePath(rng = Math.random, lanes = LANES, steps = STEPS) {
   const key = (s, l) => s * lanes + l;
-  for (let attempt = 0; attempt < 5000; attempt++) {
+  for (let attempt = 0; attempt < 20000; attempt++) {
     const path = [[0, Math.floor(rng() * lanes)]];
     const used = new Set([key(0, path[0][1])]);
-    let last = -1;
+    let last = -1, run = 1; // run : cases alignées dans la direction en cours
     while (path[path.length - 1][0] < steps - 1) {
       const [s, l] = path[path.length - 1], opts = [];
       DIRS.forEach((d, i) => {
@@ -53,13 +54,15 @@ export function generatePath(rng = Math.random, lanes = LANES, steps = STEPS) {
         let touching = 0;
         for (const e of DIRS) if (used.has(key(ns + e[0], nl + e[1]))) touching++;
         if (touching !== 1) return;
-        let w = d[0] === 1 ? 2 : d[0] === -1 ? 0.5 : 3; // on avance, on recule peu, on serpente beaucoup
-        if (i === last) w *= 1.4;
+        if (i === last && run >= MAX_STRAIGHT) return;
+        let w = d[0] === 1 ? 1.2 : d[0] === -1 ? 1.2 : 3; // on serpente beaucoup, on recule autant qu'on avance
+        if (i === last) w *= 0.4;                          // on tourne plus souvent qu'on ne va tout droit
         opts.push([i, ns, nl, w]);
       });
       if (!opts.length) break;
       let t = rng() * opts.reduce((a, o) => a + o[3], 0), pick = opts[opts.length - 1];
       for (const o of opts) { t -= o[3]; if (t <= 0) { pick = o; break; } }
+      run = pick[0] === last ? run + 1 : 2;
       last = pick[0];
       path.push([pick[1], pick[2]]);
       used.add(key(pick[1], pick[2]));
