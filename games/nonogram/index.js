@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.34.0';
-import { createStore } from '../../js/core/storage.js?v=1.34.0';
-import { LEVELS, levelById, generate, cluesOf, isSolved, lineMatches, rowOf, colOf, formatTime } from './nonogram.js?v=1.34.0';
+import { h, icon } from '../../js/core/dom.js?v=1.35.0';
+import { createStore } from '../../js/core/storage.js?v=1.35.0';
+import { LEVELS, levelById, generate, cluesOf, isSolved, lineMatches, rowOf, colOf, formatTime } from './nonogram.js?v=1.35.0';
 
 const store = createStore('nonogramme', { version: 1 });
 const EMPTY = 0, FILL = 1, CROSS = 2;

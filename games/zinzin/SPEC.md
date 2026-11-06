@@ -31,7 +31,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 | Affiches de cinéma | Affiche floutée (flou 16 → 10 → 5 px) : taper le titre | bon titre en 3 essais | 45 s |
 | Visages | Photo très floutée et assombrie, une bande nette (yeux, nez ou bouche), une bande de plus à chaque raté | bon nom en 3 essais | 45 s |
 | Livres | Couverture dessinée (titre, année) : taper l'auteur. Après 1 raté : la littérature ; après 2 : les initiales | bon auteur en 3 essais | 40 s |
-| Géoquizz | Carte du monde muette (glisser, pincer, + / −) : toucher l'emplacement du pays | à moins de **500 km** du pays (un seul essai) | 25 s |
+| Géoquizz | Même carte que le jeu Géoquizz (Mercator, terres et frontières lissées, répétée à gauche et à droite ; glisser, pincer, + / −). Le pays sous la souris (ou sous le doigt quand on touche) s'allume en rose. Toucher l'emplacement du pays | à moins de **500 km** du pays (un seul essai) | 25 s |
 | Le chemin | Grille 5 × 7 : un chemin s'allume 4 s, puis on le retrace case par case | chemin complet avec moins de 3 erreurs | 40 s |
 | Nonogramme | Grille 5 × 5 à noircir d'après les indices (toucher ou glisser) | grille résolue | 90 s |
 
@@ -42,7 +42,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 
 ## Créer une partie
 - Accueil du jeu : **Créer une partie**, **Rejoindre une partie**, et **Reprendre la partie** (avec « Abandonner la partie en cours », confirmation en deux touches) s'il y en a une. La version s'affiche en bas : en multi, tous les téléphones doivent avoir la même.
-- Écran « Nouvelle partie » : le mode (**Un seul téléphone** / **Un téléphone par équipe**), le nombre d'**équipes** (2 à 6, en multi c'est le maximum accepté dans la salle d'attente), les noms des équipes (un seul téléphone seulement), le nombre de **tours de plateau** (1 à 3), puis **Lancer le jeu** ou **Créer la partie**. Les réglages sont mémorisés.
+- Écran « Nouvelle partie » : le mode (**Un seul téléphone** / **Un téléphone par équipe**), le nombre d'**équipes** (2 à 6, en multi c'est le maximum accepté dans la salle d'attente), les noms des équipes (un seul téléphone seulement), le nombre de **tours de plateau** (1 à 3), les **jeux du plateau** (un bouton par jeu, tous choisis par défaut, au moins un ; un jeu ajouté plus tard à l'application est choisi d'office), puis **Lancer le jeu** ou **Créer la partie**. Les réglages sont mémorisés.
 
 ## Multi : un téléphone par équipe
 - Le téléphone qui crée la partie est l'**arbitre** (équipe 1) : lui seul applique les actions et tire le dé et les défis ; il diffuse l'état complet après chaque changement. Les autres sont **invités** : ils envoient leurs actions et affichent l'état reçu.
@@ -71,7 +71,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 - `net.js` : la liaison MQTT.
 
 ## Persistance (sur l'appareil)
-`localStorage`, préfixe `little-games:zinzin:` (format version 1) : `cid` (identifiant de l'appareil), `settings` (`mode`, `teams`, `laps`, `names`), `myName`, `session` (`{ role: 'solo' | 'host' | 'guest', code }`), `solo` (partie sur un seul téléphone), `hostG` (partie de l'arbitre et dernières actions confirmées), `broker` (tests).
+`localStorage`, préfixe `little-games:zinzin:` (format version 1) : `cid` (identifiant de l'appareil), `settings` (`mode`, `teams`, `laps`, `names`, `off` : jeux retirés du plateau), `myName`, `session` (`{ role: 'solo' | 'host' | 'guest', code }`), `solo` (partie sur un seul téléphone), `hostG` (partie de l'arbitre et dernières actions confirmées), `broker` (tests).
 
 ## Navigation (URL)
 `#/zinzin` (accueil du jeu) · `#/zinzin/nouvelle` · `#/zinzin/rejoindre` · `#/zinzin/rejoindre/<code>` (lien partagé) · `#/zinzin/partie`

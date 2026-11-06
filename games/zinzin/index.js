@@ -11,15 +11,15 @@
 //     sauvegardée et affichée ; chez un invité, elle est envoyée à l'arbitre sans rien modifier en local ;
 //   - render() reconstruit l'écran à partir de G.
 
-import { h, icon } from '../../js/core/dom.js?v=1.34.0';
-import { createStore } from '../../js/core/storage.js?v=1.34.0';
-import { GAMES } from '../registry.js?v=1.34.0';
+import { h, icon } from '../../js/core/dom.js?v=1.35.0';
+import { createStore } from '../../js/core/storage.js?v=1.35.0';
+import { GAMES } from '../registry.js?v=1.35.0';
 import {
   BOARD_COLS, BOARD_ROWS, MIN_TEAMS, MAX_TEAMS, MIN_LAPS, MAX_LAPS, DICE_MS, STEP_MS, REVEAL_MS, GRACE_MS,
   cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName,
-} from './logic.js?v=1.34.0';
-import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.34.0';
-import { openLink, BROKERS } from './net.js?v=1.34.0';
+} from './logic.js?v=1.35.0';
+import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.35.0';
+import { openLink, BROKERS } from './net.js?v=1.35.0';
 
 const store = createStore('zinzin', { version: 1 });
 const DEFAULTS = { mode: 'solo', teams: 2, laps: 1, names: [] };
@@ -45,6 +45,8 @@ export async function mount(container, ctx) {
 
   let path = ctx.path || [];
   let settings = { ...DEFAULTS, ...store.get('settings', {}) };
+  /** Jeux choisis pour le plateau (tous par défaut, au moins un). */
+  const chosenGames = () => { const g = boardGames.filter((id) => !settings.off?.includes(id)); return g.length ? g : boardGames; };
   const saveSettings = () => store.set('settings', settings);
 
   // ---------------------------------------------------------------- session
@@ -99,7 +101,7 @@ export async function mount(container, ctx) {
   function startSolo() {
     endSession({ silent: true });
     const names = Array.from({ length: settings.teams }, (_, i) => ({ name: settings.names[i] || '' }));
-    Object.assign(S, { kind: 'solo', G: newGame({ mode: 'solo', laps: settings.laps, games: boardGames, teams: names }) });
+    Object.assign(S, { kind: 'solo', G: newGame({ mode: 'solo', laps: settings.laps, games: chosenGames(), teams: names }) });
     store.set('session', { role: 'solo' });
     saveGame();
     loadCatalogs();
@@ -109,7 +111,7 @@ export async function mount(container, ctx) {
   async function startHost() {
     endSession({ silent: true });
     const code = newCode();
-    const G = newGame({ mode: 'multi', laps: settings.laps, maxTeams: settings.teams, games: boardGames, teams: [{ cid: CID, name: store.get('myName', '') }] });
+    const G = newGame({ mode: 'multi', laps: settings.laps, maxTeams: settings.teams, games: chosenGames(), teams: [{ cid: CID, name: store.get('myName', '') }] });
     Object.assign(S, { kind: 'host', G, code });
     store.set('session', { role: 'host', code });
     saveGame();
@@ -354,6 +356,18 @@ export async function mount(container, ctx) {
             stepper(multi ? 'Équipes (au plus)' : 'Équipes', settings.teams, MIN_TEAMS, MAX_TEAMS, (v) => { settings.teams = v; saveSettings(); if (!multi) draw(); }),
             names,
             stepper('Tours de plateau', settings.laps, MIN_LAPS, MAX_LAPS, (v) => { settings.laps = v; saveSettings(); }),
+            h('div.zz-field.zz-field--col', h('span.zz-label', 'Jeux du plateau'),
+              h('div.zz-games', boardGames.map((id) => {
+                const m = meta[id], on = chosenGames().includes(id);
+                return h('button.zz-game-chip', {
+                  type: 'button', 'aria-pressed': String(on), style: `--game: ${m.accent}`,
+                  onclick: () => {
+                    const off = new Set(settings.off || []);
+                    if (on) { if (chosenGames().length <= 1) return; off.add(id); } else off.delete(id); // au moins un jeu
+                    settings.off = [...off]; saveSettings(); draw();
+                  },
+                }, h('span.zz-chip-icon', icon(m.icon)), h('span', m.title));
+              }))),
             h('button.zz-btn.zz-btn--go.zz-btn--big.zz-cta', { type: 'button', onclick: () => (multi ? startHost() : startSolo()) }, multi ? 'Créer la partie' : 'Lancer le jeu')));
       };
       draw();
