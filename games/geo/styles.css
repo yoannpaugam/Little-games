@@ -91,6 +91,8 @@
   width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line);
   background: var(--gq-panel); font-size: 1.3rem; line-height: 1; cursor: pointer;
 }
+.gq-tools button { display: grid; place-items: center; color: var(--text); }
+.gq-tools button .icon { width: 22px; height: 22px; }
 .gq-tools button:hover, .gq-tools button:focus-visible { border-color: var(--accent); outline: none; }
 
 /* Résultat après chaque pays */
@@ -118,7 +120,7 @@
 .gq-final-score { margin: .1rem 0 0; font-size: 1.3rem; color: var(--muted); }
 .gq-final-score strong { font-family: var(--font-display); font-weight: 400; font-size: 4.2rem; line-height: 1; color: var(--accent); }
 .gq-final-total { margin: .1rem 0 0; }
-.gq-final-record { margin: .4rem 0 0; color: var(--ok); font-weight: 600; }
+.gq-final-record { display: flex; align-items: center; justify-content: center; gap: .4rem; margin: .4rem 0 0; color: var(--ok); font-weight: 600; }
 .gq-final-best { margin: .4rem 0 0; color: var(--muted); }
 .gq-table { width: 100%; margin: .9rem 0 0; border-collapse: collapse; font-size: .92rem; }
 .gq-table th, .gq-table td { padding: .42rem .6rem; text-align: left; border-bottom: 1px solid var(--line); }

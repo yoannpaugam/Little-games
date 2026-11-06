@@ -4,12 +4,12 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.28.0';
-import { createStore } from '../../js/core/storage.js?v=1.28.0';
+import { h, icon } from '../../js/core/dom.js?v=1.29.0';
+import { createStore } from '../../js/core/storage.js?v=1.29.0';
 import {
   LANES, STEPS, MAX_ERRORS, MAX_VIEWS, SHOW_SECONDS, ERROR_PENALTY, EXTRA_VIEW_PENALTY,
   generatePath, computeScore,
-} from './path.js?v=1.28.0';
+} from './path.js?v=1.29.0';
 
 const store = createStore('chemin', { version: 1 });
 const GAP = 3, TAG_GAP = 6; // espaces entre les cases et autour des étiquettes (px), repris dans styles.css
@@ -68,7 +68,7 @@ export function mount(container, ctx) {
 
   function setMuted(v) {
     muted = !!v; sound.setMuted(muted); store.set('muted', muted);
-    container.querySelectorAll('.ch-sound').forEach((b) => { b.textContent = muted ? '🔇' : '🔊'; b.setAttribute('aria-pressed', String(muted)); });
+    container.querySelectorAll('.ch-sound').forEach((b) => { b.replaceChildren(icon(muted ? 'mute' : 'volume')); b.setAttribute('aria-pressed', String(muted)); });
   }
 
   // ---------------------------------------------------------------- barre du haut
@@ -77,7 +77,7 @@ export function mount(container, ctx) {
       h('button.ch-icon-btn', { type: 'button', title: 'Retour', 'aria-label': 'Retour', onclick: back || ctx.home }, icon('back')),
       h('h1.ch-title', titleText),
       best ? h('span.ch-best', { title: 'Meilleur score' }, 'Record ', h('strong', best.score), ' / 100') : null,
-      h('button.ch-icon-btn.ch-sound', { type: 'button', title: 'Couper le son', 'aria-label': 'Couper le son', 'aria-pressed': String(muted), onclick: () => setMuted(!muted) }, muted ? '🔇' : '🔊'),
+      h('button.ch-icon-btn.ch-sound', { type: 'button', title: 'Couper le son', 'aria-label': 'Couper le son', 'aria-pressed': String(muted), onclick: () => setMuted(!muted) }, icon(muted ? 'mute' : 'volume')),
       h('button.ch-icon-btn', { type: 'button', title: 'Réglages', 'aria-label': 'Réglages', onclick: () => ctx.navigate('reglages') }, icon('settings'))
     );
   }
@@ -283,11 +283,11 @@ export function mount(container, ctx) {
     container.replaceChildren(
       topBar('Le chemin'),
       h('section.ch-final',
-        h('div.ch-seal' + (g.won ? '.won' : '.lost'), { 'aria-hidden': 'true' }, g.won ? '✓' : '✕'),
+        h('div.ch-seal' + (g.won ? '.won' : '.lost'), { 'aria-hidden': 'true' }, icon(g.won ? 'check' : 'close')),
         h('h2.ch-final-title', g.won ? 'Bravo, chemin retracé !' : 'Partie abandonnée'),
         h('p.ch-final-score', h('strong', g.score), ' / 100'),
         h('p.ch-final-details', `Erreurs : ${g.totalErrors} · Affichages : ${g.views}` + (g.paths > 1 ? ` · Parcours : ${g.paths}` : '')),
-        g.record ? h('p.ch-final-record', '🏆 Nouveau record !')
+        g.record ? h('p.ch-final-record', icon('trophy'), 'Nouveau record !')
           : best ? h('p.ch-final-best', `Record : ${best.score} / 100`) : null,
         h('div.ch-final-actions',
           h('button.ch-btn', { type: 'button', onclick: ctx.home }, 'Accueil'),
