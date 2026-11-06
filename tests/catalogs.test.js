@@ -63,6 +63,8 @@ test('catalogue des célébrités (visages)', async () => {
     g: [true, (v) => v === 'f' || v === 'm'],
     born: [true, (v) => Number.isInteger(v) && v >= 1850 && v <= THIS_YEAR - 10],
     alt: [false, textList],
+    // false : pas dans Morceaux (photo Commons qui ne correspond pas à la personne)
+    morceaux: [false, (v) => v === false],
   }, 'celebs');
   const names = new Set();
   celebs.forEach((c) => { if (names.has(c.name)) errors.push(`celebs ${c.id} : nom en double`); names.add(c.name); });

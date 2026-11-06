@@ -11,15 +11,15 @@
 //     sauvegardée et affichée ; chez un invité, elle est envoyée à l'arbitre sans rien modifier en local ;
 //   - render() reconstruit l'écran à partir de G.
 
-import { h, icon } from '../../js/core/dom.js?v=1.40.0';
-import { createStore } from '../../js/core/storage.js?v=1.40.0';
-import { GAMES } from '../registry.js?v=1.40.0';
+import { h, icon } from '../../js/core/dom.js?v=1.41.0';
+import { createStore } from '../../js/core/storage.js?v=1.41.0';
+import { GAMES } from '../registry.js?v=1.41.0';
 import {
   BOARD_COLS, BOARD_ROWS, MIN_TEAMS, MAX_TEAMS, MIN_LAPS, MAX_LAPS, DICE_MS, STEP_MS, REVEAL_MS, GRACE_MS,
   cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName, boardCounts, MAX_WEIGHT,
-} from './logic.js?v=1.40.0';
-import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.40.0';
-import { openLink, BROKERS } from './net.js?v=1.40.0';
+} from './logic.js?v=1.41.0';
+import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.41.0';
+import { openLink, BROKERS } from './net.js?v=1.41.0';
 
 const store = createStore('zinzin', { version: 1 });
 const DEFAULTS = { mode: 'solo', teams: 2, laps: 1, names: [] };
