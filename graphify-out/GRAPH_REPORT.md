@@ -1,15 +1,17 @@
 # Graph Report - little-games  (2026-11-06)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 70 files · ~150,274 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 11 file(s) not represented in the graph (top: .css 9, (none) 2)
 
 ## Summary
 - 843 nodes · 1775 edges · 39 communities
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.87)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `de8e8494`
+- Built from commit: `5aabff4d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -63,8 +65,8 @@
 6. `mount()` - 25 edges
 7. `mount()` - 25 edges
 8. `renderPlay()` - 24 edges
-9. `main()` - 19 edges
-10. `mount()` - 19 edges
+9. `mount()` - 19 edges
+10. `applyAction()` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Contrat d'un jeu` --references--> `judge()`  [INFERRED]
@@ -97,7 +99,7 @@ Nodes (53): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle()
 
 ### Community 3 - "Géoquizz : carte, distances et tirage"
 Cohesion: 0.07
-Nodes (62): angle(), cache, closestOnArc(), cross(), decodeRing(), distanceToCountry(), dot(), EASY (+54 more)
+Nodes (61): angle(), cache, closestOnArc(), cross(), decodeRing(), distanceToCountry(), dot(), EASY (+53 more)
 
 ### Community 4 - "Scripts : affiches TMDB, version et tests des catalogues"
 Cohesion: 0.09
@@ -201,7 +203,7 @@ Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le ch
 
 ### Community 29 - "Coquille : routeur et liste des jeux"
 Cohesion: 0.16
-Nodes (14): ./books/index.js?v=1.39.0, ./faces/index.js?v=1.39.0, ./geo/index.js?v=1.39.0, ./movie-posters/index.js?v=1.39.0, ./nonogram/index.js?v=1.39.0, ./path/index.js?v=1.39.0, GAMES, ./zinzin/index.js?v=1.39.0 (+6 more)
+Nodes (14): ./books/index.js?v=1.40.0, ./faces/index.js?v=1.40.0, ./geo/index.js?v=1.40.0, ./movie-posters/index.js?v=1.40.0, ./nonogram/index.js?v=1.40.0, ./path/index.js?v=1.40.0, GAMES, ./zinzin/index.js?v=1.40.0 (+6 more)
 
 ### Community 30 - "Compète de zinzin : règles du plateau (applyAction)"
 Cohesion: 0.19
@@ -240,8 +242,8 @@ Cohesion: 0.25
 Nodes (7): Le jour où l'application aura un service en ligne (multijoueur, Supabase…), Multijoueur de Compète de zinzin (relais MQTT publics), Où sont les données, Protections en place, Réglages du dépôt GitHub (à faire par le propriétaire), Signaler un problème, 🔒 Sécurité et données
 
 ## Knowledge Gaps
-- **8 isolated node(s):** `./morceaux/index.js?v=1.39.0`, `./books/index.js?v=1.39.0`, `./faces/index.js?v=1.39.0`, `./geo/index.js?v=1.39.0`, `./movie-posters/index.js?v=1.39.0` (+3 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 322 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **8 isolated node(s):** `./morceaux/index.js?v=1.40.0`, `./movie-posters/index.js?v=1.40.0`, `./faces/index.js?v=1.40.0`, `./books/index.js?v=1.40.0`, `./geo/index.js?v=1.40.0` (+3 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 323 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -250,7 +252,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.159) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.39.0`, `./books/index.js?v=1.39.0`, `./faces/index.js?v=1.39.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.40.0`, `./movie-posters/index.js?v=1.40.0`, `./faces/index.js?v=1.40.0` to the rest of the system?**
   _8 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.06994047619047619 - nodes in this community are weakly interconnected._

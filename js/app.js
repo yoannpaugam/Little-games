@@ -1,11 +1,11 @@
 // Coquille de l'application : accueil + routeur par hash (#/jeu/sous-page).
 // Chaque jeu est un module autonome déclaré dans games/registry.js.
 
-import { GAMES } from '../games/registry.js?v=1.39.0';
-import { h, icon } from './core/dom.js?v=1.39.0';
+import { GAMES } from '../games/registry.js?v=1.40.0';
+import { h, icon } from './core/dom.js?v=1.40.0';
 
 // Version affichée dans les réglages des jeux. À incrémenter à chaque mise en ligne.
-export const APP_VERSION = '1.39.0';
+export const APP_VERSION = '1.40.0';
 
 const root = document.getElementById('app');
 let current = null; // { id, instance }
