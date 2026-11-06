@@ -85,20 +85,55 @@ test('délai dépassé : l’arbitre déclare le défi raté, pas avant la marge
   assert.equal(G.teams[0].stuck, true);
 });
 
-test('victoire : la première équipe qui finit ses tours de plateau gagne', () => {
+test('arrivée : un défi de chaque jeu à la suite, puis victoire', () => {
   const G = solo(3, 2);
   assert.equal(goalOf(G), 56);
   G.teams[1].steps = 54;
   G.turn.team = 1;
   applyAction(G, { t: 'roll' }, env({ rnd: seq(0.99) }));
+  assert.equal(G.teams[1].steps, 56);
+  assert.equal(G.phase, 'play');
+  assert.equal(G.turn.stage, 'challenge');
+  assert.deepEqual([...G.turn.final.games].sort(), [...GAMES].sort(), 'un défi par jeu du plateau');
+  for (let k = 0; k < GAMES.length; k++) {
+    assert.equal(G.turn.ch.game, G.turn.final.games[k]);
+    assert.deepEqual(G.turn.ch.final, { k, n: GAMES.length });
+    assert.equal(G.turn.team, 1, 'la même équipe enchaîne');
+    applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: true }, env({ now: 2000 + k }));
+    if (k < GAMES.length - 1) assert.ok(G.turn.ch.startAt > 2000 + k, 'le défi suivant attend la fin de la révélation');
+    assert.equal(G.turn.last.ok, true);
+  }
   assert.equal(G.phase, 'end');
   assert.equal(G.winner, 1);
-  assert.equal(G.teams[1].steps, 56);
   assert.equal(ranking(G)[0].i, 1);
-  // Rejouer : même équipes, nouveau plateau, tout le monde au départ
+  // Rejouer : mêmes équipes, nouveau plateau, tout le monde au départ
   applyAction(G, { t: 'restart' }, env());
   assert.equal(G.phase, 'play');
   assert.ok(G.teams.every((t) => t.steps === 0 && !t.stuck));
+  assert.equal(G.turn.final, null);
+});
+
+test('arrivée : un défi raté renvoie à la case d’où l’on venait', () => {
+  const G = solo(2, 1);
+  G.teams[0].steps = 25;
+  applyAction(G, { t: 'roll' }, env({ rnd: seq(0.99) }));
+  assert.equal(G.teams[0].steps, 28);
+  applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: true });
+  applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: false });
+  assert.equal(G.teams[0].steps, 25);
+  assert.equal(G.teams[0].stuck, false, 'la case d’origine est déjà résolue');
+  assert.equal(G.turn.final, null);
+  assert.equal(G.turn.team, 1);
+  assert.equal(G.phase, 'play');
+  assert.equal(G.turn.last.ok, false);
+});
+
+test('arrivée : seulement les jeux choisis', () => {
+  const G = newGame({ mode: 'solo', games: ['livres', 'chemin'], teams: [{}, {}] }, env());
+  assert.ok(G.board.slice(1).every((g) => g === 'livres' || g === 'chemin'));
+  G.teams[0].steps = 27;
+  applyAction(G, { t: 'roll' }, env());
+  assert.equal(G.turn.final.games.length, 2);
 });
 
 test('case départ (après un tour) : pas de défi, équipe suivante', () => {

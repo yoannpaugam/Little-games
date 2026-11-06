@@ -184,6 +184,7 @@
 .zz-ch-title { flex: 1; min-width: 0; display: grid; }
 .zz-ch-title strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; letter-spacing: .04em; line-height: 1; color: var(--game); }
 .zz-ch-title small { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.zz-final { color: var(--zz-lit); font-weight: 700; }
 .zz-live { flex: none; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #ff4d6d; border: 1px solid #ff4d6d77; }
 .zz-live::before { content: ''; display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: currentColor; margin-right: .35em; animation: zz-blink 1.2s infinite; }
 @keyframes zz-blink { 50% { opacity: .2; } }

@@ -1,6 +1,8 @@
-# 🎬 Affiches de cinéma : spécification
+# 🎬 Affiche (affiches de cinéma) : spécification
 
 Ce document décrit le jeu indépendamment de la technologie, pour pouvoir le refaire dans une autre application.
+
+Le jeu s’appelle « Affiche » depuis la 1.36.0 (anciennement « Affiches de cinéma ») : nom affiché dans l’accueil, la barre du haut et le plateau de Compète de zinzin. L’identifiant `affiches`, les URL et les données enregistrées ne changent pas.
 
 ## Principe
 On montre au joueur l'affiche **floutée** d'un film célèbre, et il doit retrouver son titre.

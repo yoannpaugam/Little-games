@@ -6,14 +6,14 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.35.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.35.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.35.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.35.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.35.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.35.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.35.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.35.0';
+import { h, icon } from '../../js/core/dom.js?v=1.36.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.36.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.36.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.36.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.36.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.36.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.36.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.36.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -98,7 +98,8 @@ export async function mountChallenge(el, ch, ctx) {
   const bar = h('span.zz-ch-time-bar');
   const head = h('header.zz-ch-head', { style: `--game: ${meta.accent || '#e8b04a'}` },
     h('span.zz-ch-icon', icon(meta.icon || 'dice')),
-    h('span.zz-ch-title', h('strong', meta.title || ''), h('small', h('i.zz-dot', { style: `background: ${ctx.team?.color}` }), ctx.team?.name || '')),
+    h('span.zz-ch-title', h('strong', meta.title || ''), h('small', h('i.zz-dot', { style: `background: ${ctx.team?.color}` }), ctx.team?.name || '',
+      ch.final ? h('b.zz-final', ` · Arrivée ${ch.final.k + 1}/${ch.final.n}`) : null)),
     ctx.active ? null : h('span.zz-live', 'En direct'),
     h('span.zz-ch-time', bar)
   );

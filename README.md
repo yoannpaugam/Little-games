@@ -5,7 +5,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 
 | Jeu | Dossier | Statut |
 | --- | --- | --- |
-| 🎬 Affiches de cinéma | `games/movie-posters/` | ✅ jouable |
+| 🎬 Affiche | `games/movie-posters/` | ✅ jouable |
 | 👤 Visages (Morceaux, portraits de jeunesse) | `games/faces/` | ✅ jouable |
 | 📚 Livres | `games/books/` | ✅ jouable |
 | 🌍 Géoquizz | `games/geo/` | ✅ jouable |
@@ -124,7 +124,7 @@ js/core/                 Briques réutilisables, sans dépendance
   ├─ storage.js          localStorage avec espace de noms
   └─ dom.js              Mini-helper h() pour créer le DOM + icônes
 games/registry.js        Liste des jeux affichés dans l'accueil
-games/movie-posters/     Le jeu « Affiches de cinéma », autonome
+games/movie-posters/     Le jeu « Affiche » (affiches de cinéma floutées), autonome
   ├─ index.js            Logique et vues (jeu, grille, réglages)
   ├─ posters.js          Résolution des affiches (manifest / TMDB)
   ├─ styles.css          Styles du jeu (préfixe .mp-)
