@@ -20,7 +20,7 @@ On montre au joueur une **bande** du visage d’une célébrité (yeux, nez ou b
 
 ## Écran de jeu
 - De haut en bas : compteur et partie visible, cadre, ronds d'essais, ligne **‹ · Voir plus · ›**, champ « Qui est-ce ? » avec **Valider** (Entrée valide aussi).
-- **Bande** (yeux, nez ou bouche) : sur **toute la largeur de l'écran** (520 px au plus), sans dépasser la hauteur disponible. Elle montre toute la largeur du visage, et la hauteur de la zone détectée.
+- **Affichage unique (depuis la 1.31.0)** : le cadre 2:3 montre dès le début le même plan rapproché que le visage dévoilé, très flouté et assombri. Seule la zone visible (les bandes yeux, nez ou bouche) est nette, à sa place sur le visage. Les bandes ajoutées s'élargissent avec une transition, et la photo devient nette à la résolution. L'ancien mode « Bandes seules » (la bande seule sur toute la largeur de l'écran) et le choix d'affichage dans les Réglages ont été retirés.
 - **Complet** : cadre **2:3** toujours de la même taille pour toutes les personnes (comme les affiches). C'est un **plan rapproché** : la boîte `complet` (le visage et ses marges) remplit le cadre dans un sens, en général la hauteur, et le reste est rogné. Le cadre ne sort jamais de la photo.
 - Les flèches sont sous la photo : ‹ revient à la personne précédente, › passe à la suivante (il n'y a plus de bouton « Passer » ni « Précédent » séparé).
 - **Essais** : 9 ronds sous le cadre. Tous les 3 essais ratés, on ajoute une bande. Au 9e, la réponse est donnée (« C’était… »), sans compter comme trouvée.
@@ -42,9 +42,6 @@ Tirage aléatoire au début de chaque personne (mémorisé). Les paliers sont **
 Comme Visages : `fuzzy.js`, nom complet, alternatives, nom de famille seul s’il est unique (≥ 4 lettres, exact). Le nom exact d’une autre entrée du catalogue est refusé.
 
 ## Réglages
-- **Affichage** :
-  - *Bandes seules* (par défaut) : seule la bande est visible, comme décrit plus haut.
-  - *Photo entière floutée* : le cadre 2:3 montre dès le début le même plan rapproché que le visage dévoilé, très floutée et assombrie. Seule la zone visible (les bandes) est nette, à sa place sur le visage. Les bandes ajoutées s'élargissent avec une transition, et la photo devient nette à la résolution.
 - Mélanger à nouveau.
 - Effacer la progression (confirmation en deux clics).
 - Lien vers les **crédits photo** (en bas de la grille).
@@ -58,7 +55,7 @@ Comme Visages : `fuzzy.js`, nom complet, alternatives, nom de famille seul s’i
 - **Crédits photo** (obligation Commons / CC) : en bas de la grille, une section dépliable liste toutes les photos avec auteur et licence, par ordre alphabétique. Le bouton « Crédits photo » en haut de la grille l'ouvre. Le crédit est aussi dans l'infobulle des vignettes déjà trouvées, et sous le nom quand on trouve.
 
 ## Persistance (sur l’appareil)
-`found`, `tries`, `given`, `stage` (palier atteint et séquence par personne), `current`, `seed`, `settings` (`view` : `bandes` ou `entiere`), `lowres` (photos de basse qualité : id → hauteur utile en px).
+`found`, `tries`, `given`, `stage` (palier atteint et séquence par personne), `current`, `seed`, `settings` (ancien réglage `view`, ignoré depuis la 1.31.0), `lowres` (photos de basse qualité : id → hauteur utile en px).
 
 ## Portraits de jeunesse
 - Catalogue `data/jeunesse.json`, même format que `people.json`, avec un champ facultatif `year` (année de la photo). Il est vide tant que la liste n'a pas été fournie.
@@ -66,7 +63,6 @@ Comme Visages : `fuzzy.js`, nom complet, alternatives, nom de famille seul s’i
 - Écran : la photo est visible en entier dès le début, dans le même cadre 2:3 en plan rapproché que le visage dévoilé de Morceaux. L'étiquette indique « photo de 1975 » (ou « photo de jeunesse »). Entre les flèches, le bouton est **Solution**. 9 essais, comme Morceaux, mais sans bande à ajouter.
 - Bonne réponse : **Bravo !**, le nom, l'année de la photo et les crédits.
 - Catalogue vide : un écran explique comment le remplir, avec un bouton de retour à Visages.
-- Réglages : pas d'option d'affichage (elle ne sert qu'aux bandes).
 - Stockage séparé : `jeunesse` (mêmes clés que `morceaux`).
 
 ## Navigation (URL)
