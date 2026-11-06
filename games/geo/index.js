@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.29.0';
-import { createStore } from '../../js/core/storage.js?v=1.29.0';
-import { QUESTIONS, KM_FOR_ZERO_POINTS, geometry, distanceToCountry, pointsFromKm, pickQuiz } from './geo.js?v=1.29.0';
+import { h, icon } from '../../js/core/dom.js?v=1.30.0';
+import { createStore } from '../../js/core/storage.js?v=1.30.0';
+import { QUESTIONS, KM_FOR_ZERO_POINTS, geometry, distanceToCountry, pointsFromKm, pickQuiz } from './geo.js?v=1.30.0';
 
 const store = createStore('geoquizz', { version: 1 });
 const MAX_ZOOM = 20;

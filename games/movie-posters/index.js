@@ -4,10 +4,10 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.29.0';
-import { createStore } from '../../js/core/storage.js?v=1.29.0';
-import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.29.0';
-import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster, checkAllPosters } from './posters.js?v=1.29.0';
+import { h, icon } from '../../js/core/dom.js?v=1.30.0';
+import { createStore } from '../../js/core/storage.js?v=1.30.0';
+import { isMatch, closeness, normalize } from '../../js/core/fuzzy.js?v=1.30.0';
+import { loadManifest, posterUrl, resolvePoster, testTmdbKey, clearLiveCache, clearMisses, dropQueued, forgetPoster, checkAllPosters } from './posters.js?v=1.30.0';
 
 const store = createStore('affiches');
 const DEFAULT_SETTINGS = { order: 'random', blur: 'medium', tmdbKey: '', posterLang: 'fr-FR' };
