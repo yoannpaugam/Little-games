@@ -11,15 +11,15 @@
 //     sauvegardée et affichée ; chez un invité, elle est envoyée à l'arbitre sans rien modifier en local ;
 //   - render() reconstruit l'écran à partir de G.
 
-import { h, icon } from '../../js/core/dom.js?v=1.35.0';
-import { createStore } from '../../js/core/storage.js?v=1.35.0';
-import { GAMES } from '../registry.js?v=1.35.0';
+import { h, icon } from '../../js/core/dom.js?v=1.36.0';
+import { createStore } from '../../js/core/storage.js?v=1.36.0';
+import { GAMES } from '../registry.js?v=1.36.0';
 import {
   BOARD_COLS, BOARD_ROWS, MIN_TEAMS, MAX_TEAMS, MIN_LAPS, MAX_LAPS, DICE_MS, STEP_MS, REVEAL_MS, GRACE_MS,
   cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName,
-} from './logic.js?v=1.35.0';
-import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.35.0';
-import { openLink, BROKERS } from './net.js?v=1.35.0';
+} from './logic.js?v=1.36.0';
+import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.36.0';
+import { openLink, BROKERS } from './net.js?v=1.36.0';
 
 const store = createStore('zinzin', { version: 1 });
 const DEFAULTS = { mode: 'solo', teams: 2, laps: 1, names: [] };
@@ -616,13 +616,13 @@ export async function mount(container, ctx) {
     function updateOverlay() {
       const G = S.G, T = G.turn, ch = T.ch;
       let want = null, reveal = false;
-      if (ch && G.phase === 'play' && T.stage === 'challenge' && now() >= ch.startAt) want = ch;
-      else if (ch && T.last?.ch === ch.id && now() < T.last.at + REVEAL_MS) { want = ch; reveal = true; }
+      if (T.last?.c && now() < T.last.at + REVEAL_MS) { want = T.last.c; reveal = true; } // réponse du défi terminé
+      else if (ch && G.phase === 'play' && T.stage === 'challenge' && now() >= ch.startAt) want = ch;
       if (!want) { if (CH.id != null) closeChallenge(); overlay.hidden = true; return; }
       if (CH.id !== want.id) openChallenge(want, overlay);
       overlay.hidden = false;
       if (!CH.ctl) return;
-      if (reveal) CH.ctl.reveal(T.last.ok, T.live);
+      if (reveal) CH.ctl.reveal(T.last.ok, T.last.L);
       else CH.ctl.update(T.live);
       CH.ctl.tick();
     }
@@ -665,14 +665,14 @@ export async function mount(container, ctx) {
     CH.id = ch.id;
     const token = CH.token;
     const G = S.G, T = G.turn;
-    const teamIdx = T.stage === 'challenge' ? T.team : T.last?.team ?? T.team;
-    const team = G.teams[teamIdx];
-    const active = T.stage === 'challenge' && (S.kind === 'solo' || team.cid === CID);
+    const current = T.stage === 'challenge' && T.ch?.id === ch.id; // défi en cours (et non réponse affichée)
+    const team = G.teams[current ? T.team : T.last?.team ?? T.team];
+    const active = current && (S.kind === 'solo' || team.cid === CID);
     let liveTimer = null, liveL = null;
     el.replaceChildren(h('div.zz-ch-loading'));
     const ctl = await mountChallenge(el, ch, {
       active,
-      L: T.live,
+      L: current ? T.live : T.last?.L,
       now,
       meta: meta[ch.game] || {},
       team,

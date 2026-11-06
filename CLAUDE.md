@@ -16,7 +16,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 
 | Jeu | id (URL) | Dossier | Préfixe CSS | Store localStorage | IndexedDB |
 | --- | --- | --- | --- | --- | --- |
-| 🎬 Affiches de cinéma | `affiches` | `games/movie-posters/` | `.mp-` | `affiches`, `affiches-posters` | — |
+| 🎬 Affiche | `affiches` | `games/movie-posters/` | `.mp-` | `affiches`, `affiches-posters` | — |
 | 👤 Visages | `visages` | `games/faces/` (modes Morceaux et jeunesse dans `games/faces/morceaux/`) | `.vz-`, `.mx-` | `morceaux`, `jeunesse` (anciens : `visages`) | — (ancien : `little-games-visages`) |
 | 📚 Livres | `livres` | `games/books/` | `.lv-` | `livres` | — |
 | 🌍 Géoquizz | `geoquizz` | `games/geo/` | `.gq-` | `geoquizz` | — |

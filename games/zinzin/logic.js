@@ -59,7 +59,7 @@ export function newGame({ mode = 'solo', laps = 1, maxTeams = 4, games = [], tea
     games,
     board: makeBoard(games, rnd),
     teams: teams.map((t, i) => team(t, i)),
-    turn: { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: null },
+    turn: { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: null, final: null },
     used: {},
     winner: null,
     seq: 0,
@@ -140,7 +140,7 @@ export function applyAction(G, a, env = {}) {
     case 'start': {
       if (!isHost(G, a) || G.phase !== 'lobby' || G.teams.length < MIN_TEAMS) return false;
       G.phase = 'play';
-      G.turn = { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: G.turn.last };
+      G.turn = { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: G.turn.last, final: null };
       return bump(G);
     }
     case 'roll': {
@@ -150,11 +150,10 @@ export function applyAction(G, a, env = {}) {
       const from = t.steps;
       t.steps = Math.min(goalOf(G), from + value);
       T.roll = { id: (T.roll?.id || 0) + 1, value, from, to: t.steps, at: now, team: T.team };
-      if (t.steps >= goalOf(G)) { // tour du plateau terminé : victoire
-        G.winner = T.team;
-        G.phase = 'end';
-        G.endAt = challengeStart(now, value) - PAUSE_MS;
-        T.stage = 'done';
+      if (t.steps >= goalOf(G)) { // arrivée : un défi de chaque jeu du plateau, à la suite
+        const games = G.games.length ? shuffle(G.games, rnd) : ['chemin'];
+        T.final = { from, games, k: 0 };
+        openChallenge(G, games[0], challengeStart(now, value), env);
         return bump(G);
       }
       const game = G.board[cellOf(G, t)];
@@ -185,8 +184,29 @@ export function applyAction(G, a, env = {}) {
       const ok = a.t === 'result' && Boolean(a.ok);
       if (a.L !== undefined) T.live = a.L;
       const t = G.teams[T.team];
+      // le défi terminé reste affiché (avec son état final) pendant la révélation
+      T.last = { team: T.team, ok, game: T.ch.game, ch: T.ch.id, at: now, c: T.ch, L: T.live ?? null };
+      const fin = T.final;
+      if (fin) { // série de l'arrivée
+        if (ok && fin.k + 1 < fin.games.length) {
+          fin.k++;
+          openChallenge(G, fin.games[fin.k], now + REVEAL_MS + 300, env);
+          return bump(G);
+        }
+        T.final = null;
+        if (ok) { // tous les défis de l'arrivée réussis : victoire
+          G.winner = T.team;
+          G.phase = 'end';
+          G.endAt = now + REVEAL_MS;
+          T.stage = 'done';
+          return bump(G);
+        }
+        t.steps = fin.from; // raté : retour à la case d'où l'équipe venait (déjà résolue)
+        t.stuck = false;
+        nextTeam(G);
+        return bump(G);
+      }
       t.stuck = !ok; // raté : l'équipe reste sur la case et retente au prochain tour
-      T.last = { team: T.team, ok, game: T.ch.game, ch: T.ch.id, at: now };
       nextTeam(G);
       return bump(G);
     }
@@ -197,12 +217,18 @@ export function applyAction(G, a, env = {}) {
       G.winner = null;
       G.phase = 'play';
       G.used = {};
-      G.turn = { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: null };
+      G.turn = { team: 0, n: 1, stage: 'roll', roll: null, ch: null, live: null, last: null, final: null };
       return bump(G);
     }
     default:
       return false;
   }
+}
+
+function shuffle(arr, rnd) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
 }
 
 function bump(G) { G.seq = (G.seq || 0) + 1; return true; }
@@ -219,6 +245,7 @@ function openChallenge(G, game, startAt, env) {
   if (payload.id != null) { used.push(payload.id); if (used.length > 200) used.shift(); }
   const T = G.turn;
   T.ch = { id: (T.ch?.id || 0) + 1, game: g, cell: game, p: payload, startAt, deadline: startAt + (DURATION[g] || 45) * 1000 };
+  if (T.final) T.ch.final = { k: T.final.k, n: T.final.games.length }; // « Arrivée 2/6 »
   T.live = null;
   T.stage = 'challenge';
 }
