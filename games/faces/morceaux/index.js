@@ -4,10 +4,10 @@
 // Monté par games/faces/index.js : mount(container, ctx) → { update(path), destroy() },
 // avec ctx.mode = 'morceaux' | 'jeunesse'.
 
-import { h, icon } from '../../../js/core/dom.js?v=1.30.0';
-import { createStore } from '../../../js/core/storage.js?v=1.30.0';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.30.0';
-import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES, thumbUrl } from './framing.js?v=1.30.0';
+import { h, icon } from '../../../js/core/dom.js?v=1.31.0';
+import { createStore } from '../../../js/core/storage.js?v=1.31.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.31.0';
+import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES, thumbUrl } from './framing.js?v=1.31.0';
 
 const MAX_TRIES = 9;
 const TRY_STEP = 3;
@@ -77,7 +77,6 @@ export async function mount(container, ctx) {
   let tries = store.get('tries', {});
   let given = store.get('given', {});
   let stage = store.get('stage', {}); // id → { seq: string[], i: number }
-  let settings = { view: 'bandes', ...store.get('settings', {}) }; // view : 'bandes' | 'entiere'
   // Photos mesurées trop petites sur cet appareil (id → hauteur utile en px) : écartées du jeu
   let lowres = store.get('lowres', {});
   let seed = store.get('seed', null) ?? reseed();
@@ -161,10 +160,10 @@ export async function mount(container, ctx) {
 
   /**
    * Cadre de jeu.
-   * - mode « bandes » : bande(s) sur toute la largeur disponible, hauteur = union des zones ;
+   * - Morceaux (whole) : cadre 2:3 dès le début, photo très floutée, seule la zone visible
+   *   (les bandes) est nette. Depuis la 1.31.0, c'est l'unique affichage de Morceaux.
+   * - sans whole (ancien mode « bandes seules ») : bande(s) sur toute la largeur disponible ;
    *   à la résolution, cadre 2:3 (même taille pour tout le monde).
-   * - mode « photo entière » (réglage) : cadre 2:3 dès le début, photo très floutée,
-   *   seule la zone visible est nette.
    * Premier affichage sans transition (évite le spoil) ; élargissements animés.
    */
   function faceFrame(person, boxKey, { revealName = false, whole = false, onMeasure = null } = {}) {
@@ -282,7 +281,7 @@ export async function mount(container, ctx) {
       if (p) { const im = new Image(); im.onload = () => measure(p, im); im.src = p.img; }
     });
 
-    const whole = CFG.strips && settings.view === 'entiere';
+    const whole = CFG.strips; // Morceaux : photo entière floutée, seule la zone visible est nette
     const stepLabel = (keys) => (CFG.strips ? partLabelText(keys) : person.year ? `photo de ${person.year}` : 'photo de jeunesse');
     let skipped = false;
     const frame = faceFrame(person, solved ? 'complet' : st.seq[level], {
@@ -695,17 +694,6 @@ export async function mount(container, ctx) {
     container.replaceChildren(
       topBar('Réglages', { back: backToGame }),
       h('section.mx-settings',
-        !CFG.strips ? null : h('fieldset', h('legend', 'Affichage'),
-          h('p.mx-hint', 'Comment montrer la partie visible du visage.'),
-          h('div.mx-choices', { role: 'radiogroup', 'aria-label': 'Affichage' },
-            [['bandes', 'Bandes seules', 'Seule la bande du visage est visible.'],
-              ['entiere', 'Photo entière floutée', 'Toute la photo est très floutée, sauf la zone visible.']]
-              .map(([val, label, desc]) => h('label.mx-choice',
-                h('input', { type: 'radio', name: 'mx-view', value: val, checked: settings.view === val,
-                  onchange: () => { settings = { ...settings, view: val }; store.set('settings', settings); } }),
-                h('span', h('strong', label), h('small', desc))
-              )))
-        ),
         h('fieldset', h('legend', 'Ordre'),
           h('p.mx-hint', 'Les personnes sont proposées dans un ordre aléatoire mémorisé.'),
           h('button.mx-btn.mx-btn-ghost', { type: 'button', onclick: (e) => {
