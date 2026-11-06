@@ -4,10 +4,10 @@
 // Monté par games/faces/index.js : mount(container, ctx) → { update(path), destroy() },
 // avec ctx.mode = 'morceaux' | 'jeunesse'.
 
-import { h, icon } from '../../../js/core/dom.js?v=1.37.0';
-import { createStore } from '../../../js/core/storage.js?v=1.37.0';
-import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.37.0';
-import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES, thumbUrl } from './framing.js?v=1.37.0';
+import { h, icon } from '../../../js/core/dom.js?v=1.38.0';
+import { createStore } from '../../../js/core/storage.js?v=1.38.0';
+import { buildAnswers, buildOwners, checkAnswer } from './answers.js?v=1.38.0';
+import { isUpright, portraitRect, tiltOf, MAX_TILT, faceResolution, qualityOf, LOW_RES, thumbUrl } from './framing.js?v=1.38.0';
 
 const MAX_TRIES = 9;
 const TRY_STEP = 3;

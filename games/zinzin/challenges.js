@@ -6,14 +6,14 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.37.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.37.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.37.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.37.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.37.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.37.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.37.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.37.0';
+import { h, icon } from '../../js/core/dom.js?v=1.38.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.38.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.38.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.38.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.38.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.38.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.38.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.38.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -100,7 +100,7 @@ export async function mountChallenge(el, ch, ctx) {
     h('span.zz-ch-icon', icon(meta.icon || 'dice')),
     h('span.zz-ch-title', h('strong', meta.title || ''), h('small', h('i.zz-dot', { style: `background: ${ctx.team?.color}` }), ctx.team?.name || '',
       ch.final ? h('b.zz-final', ` · Arrivée ${ch.final.k + 1}/${ch.final.n}`) : null)),
-    ctx.active ? null : h('span.zz-live', 'En direct'),
+    ctx.active ? h('button.zz-skip', { type: 'button', onclick: () => giveUp() }, 'Passer') : h('span.zz-live', 'En direct'),
     h('span.zz-ch-time', bar)
   );
   const body = h('div.zz-ch-body');
@@ -120,6 +120,8 @@ export async function mountChallenge(el, ch, ctx) {
   };
   const make = KINDS[ch.game] || KINDS.chemin;
   const ctl = make(body, foot, ch, api, ctx.L || null);
+  // « Passer » : on ne sait pas, le défi compte comme raté (l'équipe reste sur la case)
+  function giveUp() { if (api.done) return; if (ctl.timeout) ctl.timeout(); else api.finish(false, null); }
 
   let revealed = false;
   return {
@@ -233,11 +235,25 @@ const KINDS = {
       const mk = (cls) => h('img', { class: cls, alt: '', draggable: false, src: p.img, referrerPolicy: 'no-referrer' });
       const blur = mk('zz-face zz-face--blur');
       const bands = ch.p.bands.map(() => mk('zz-face zz-face--band'));
-      ch.p.bands.forEach((name, k) => { // bande sur toute la largeur du visage, un peu plus haute que la zone détectée
-        const b = p.box[name];
-        const top = Math.max(0, b[1] - b[3] * 0.3), bottom = Math.min(1, b[1] + b[3] * 1.3);
-        bands[k].style.clipPath = `inset(${top * 100}% ${(1 - c[0] - c[2]) * 100}% ${(1 - bottom) * 100}% ${c[0] * 100}%)`;
-      });
+      // Hauteur de chaque bande (sur toute la largeur du visage), un peu plus haute que la zone détectée
+      const ORDER = ['yeux', 'nez', 'bouche'];
+      const range = (name) => { const b = p.box[name]; return [Math.max(0, b[1] - b[3] * 0.3), Math.min(1, b[1] + b[3] * 1.3)]; };
+      // Bandes visibles : deux parties voisines sur le visage (yeux et nez, nez et bouche) sont reliées en une seule bande
+      const showBands = (n) => {
+        const open = ORDER.filter((name) => ch.p.bands.slice(0, n + 1).includes(name));
+        const parts = [];
+        open.forEach((name) => {
+          const [top, bottom] = range(name);
+          const last = parts[parts.length - 1];
+          if (last && ORDER.indexOf(name) === last.end + 1) { last.bottom = Math.max(last.bottom, bottom); last.top = Math.min(last.top, top); last.end++; }
+          else parts.push({ top, bottom, end: ORDER.indexOf(name) });
+        });
+        bands.forEach((img, k) => {
+          const part = parts[k];
+          img.hidden = !part;
+          if (part) img.style.clipPath = `inset(${part.top * 100}% ${(1 - c[0] - c[2]) * 100}% ${(1 - part.bottom) * 100}% ${c[0] * 100}%)`;
+        });
+      };
       const credit = h('p.zz-credit', [p.by, p.lic].filter(Boolean).join(' · '));
       const frame = h('div.zz-frame', blur, bands);
       body.append(frame);
@@ -247,7 +263,7 @@ const KINDS = {
         frame.classList.add('is-ready');
       });
       return {
-        setTries(n) { bands.forEach((b, k) => { b.hidden = k > n; }); },
+        setTries(n) { showBands(n); },
         reveal() { frame.classList.add('is-revealed'); frame.append(credit); },
       };
     },
@@ -266,8 +282,10 @@ const KINDS = {
       const who = h('p.zz-cover-author', 'Auteur ?');
       const hint = h('p.zz-cover-hint');
       const title = h('p.zz-cover-title', b.title);
+      // Taille du titre en % de la largeur de la couverture : le mot le plus long tient sur une ligne,
+      // et le titre entier tient dans la place disponible (lettres de Bebas Neue ≈ 0,42 de la taille)
       const longest = Math.max(...b.title.split(/\s+/).map((w) => w.length));
-      title.style.fontSize = `clamp(1rem, ${Math.min(9, 60 / Math.max(longest, b.title.length / 2.2))}cqw, 2.6rem)`;
+      title.style.fontSize = `${Math.min(16, 155 / longest, Math.sqrt(8500 / b.title.length)).toFixed(1)}cqw`;
       const cover = h('div.zz-frame.zz-cover', { style: `--hue: ${hash % 360}` }, h('div.zz-cover-in', who, title, h('p.zz-cover-year', String(b.year)), hint));
       body.append(cover);
       return {

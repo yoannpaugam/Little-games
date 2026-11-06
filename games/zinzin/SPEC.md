@@ -22,8 +22,8 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 ## Tour de jeu
 1. L'équipe touche le dé. Le dé roule 0,9 s, puis le pion avance case par case (0,26 s par case), puis le défi s'ouvre 0,45 s plus tard. Ces durées sont calculées à partir de l'heure du lancer : tous les téléphones voient la même animation au même moment.
 2. Case départ (après un tour complet) : pas de défi, on passe à l'équipe suivante.
-3. Le défi occupe l'écran à la place du plateau, avec une barre de temps qui se vide. À la fin, un bandeau **Réussi !** (vert) ou **Raté !** (rouge, avec la réponse : « C'était Titanic ») reste affiché 2,4 s sur tous les écrans.
-4. **Arrivée** : quand le pion atteint ou dépasse l'arrivée du dernier tour (la case départ), l'équipe enchaîne **un défi de chaque jeu du plateau**, dans un ordre tiré au hasard (« Arrivée 2/6 » dans l'en-tête du défi). Entre deux défis, la réponse reste affichée 2,4 s.
+3. Le défi occupe l'écran à la place du plateau, avec une barre de temps qui se vide. À la fin, un bandeau **Réussi !** (vert) ou **Raté !** (rouge, avec la réponse : « C'était Titanic ») reste affiché 4,5 s sur tous les écrans.
+4. **Arrivée** : quand le pion atteint ou dépasse l'arrivée du dernier tour (la case départ), l'équipe enchaîne **un défi de chaque jeu du plateau**, dans un ordre tiré au hasard (« Arrivée 2/6 » dans l'en-tête du défi). Entre deux défis, la réponse reste affichée 4,5 s.
    - Tous réussis : l'équipe gagne.
    - Un seul raté : l'équipe revient à la case où elle était avant ce lancer (déjà résolue, donc elle relancera le dé à son prochain tour), et c'est à l'équipe suivante. Elle devra refaire toute la série à sa prochaine arrivée.
 5. Équipe suivante, dans l'ordre ; une équipe absente est sautée.
@@ -32,8 +32,8 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 | Case | Défi | Réussi si… | Temps |
 | --- | --- | --- | --- |
 | Affiche | Affiche floutée (flou 16 → 10 → 5 px) : taper le titre | bon titre en 3 essais | 45 s |
-| Visages | Photo très floutée et assombrie, une bande nette (yeux, nez ou bouche), une bande de plus à chaque raté | bon nom en 3 essais | 45 s |
-| Livres | Couverture dessinée (titre, année) : taper l'auteur. Après 1 raté : la littérature ; après 2 : les initiales | bon auteur en 3 essais | 40 s |
+| Visages | Photo très floutée et assombrie, une bande nette (yeux, nez ou bouche), une bande de plus à chaque raté. Deux parties voisines sur le visage (yeux et nez, nez et bouche) sont reliées en une seule bande, sans flou entre elles | bon nom en 3 essais | 45 s |
+| Livres | Couverture dessinée (titre, année) : taper l'auteur. Le titre est à la taille de la couverture : son mot le plus long tient sur une ligne, sans être coupé. Après 1 raté : la littérature ; après 2 : les initiales | bon auteur en 3 essais | 40 s |
 | Géoquizz | Même carte que le jeu Géoquizz (Mercator, terres et frontières lissées, répétée à gauche et à droite ; glisser, pincer, + / −). Le pays sous la souris (ou sous le doigt quand on touche) s'allume en rose. Toucher l'emplacement du pays | à moins de **500 km** du pays (un seul essai) | 25 s |
 | Le chemin | Grille 5 × 7 : un chemin s'allume 4 s, puis on le retrace case par case | chemin complet avec moins de 3 erreurs | 40 s |
 | Nonogramme | Grille 5 × 5 à noircir d'après les indices (toucher ou glisser) | grille résolue | 90 s |
@@ -41,6 +41,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 - Les réponses écrites suivent les règles de chaque jeu d'origine (fautes tolérées, nom de famille seul s'il est unique, nom d'un autre élément du catalogue refusé). Une réponse « presque juste » (« Tu chauffes ! », « Il manque le nom de famille. ») ne coûte pas d'essai.
 - Les défis réutilisent les catalogues des autres jeux (films avec affiche TMDB, personnes de Morceaux à la tête droite, 300 livres, 89 pays faciles). Un élément déjà sorti n'est pas reproposé dans la même partie. Si un catalogue n'a pas pu être chargé, la case donne un défi « Le chemin ».
 - Le crédit de la photo (auteur · licence) s'affiche sous le visage à la fin du défi Visages.
+- **Passer** : en haut à droite du défi, sur le téléphone de l'équipe qui joue. Quand on ne sait pas, on passe : le défi compte comme raté (l'équipe reste sur la case, ou revient en arrière à l'arrivée) et la réponse s'affiche.
 - Temps écoulé : le défi est raté. C'est le téléphone de l'équipe qui le déclare ; à défaut, l'arbitre le déclare 4 s après le délai.
 
 ## Créer une partie
