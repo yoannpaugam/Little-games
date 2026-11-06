@@ -12,7 +12,8 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 
 ## Plateau
 - Un anneau de **28 cases** sur le bord d'une grille 6 × 10 en portrait (10 × 6 sur un écran plus large que haut). La case 0 est le **départ** (damier) ; on tourne dans le sens des aiguilles d'une montre.
-- Les 27 autres cases prennent la **couleur et l'icône d'un jeu de l'application** (sauf celui-ci), réparties de façon équilibrée et jamais deux fois le même jeu d'affilée. Le plateau est tiré au hasard à chaque partie.
+- Les 27 autres cases prennent la **couleur et l'icône d'un jeu de l'application** (sauf celui-ci), dans la **proportion choisie pour chaque épreuve** (voir « Créer une partie »), et jamais deux fois le même jeu d'affilée quand c'est possible. Le plateau est tiré au hasard à chaque partie.
+- Proportions : le nombre de cases de chaque jeu est proportionnel à son poids (méthode du plus fort reste sur 27 cases ; par exemple tout à « Normal » donne 5, 5, 5, 4, 4, 4). L'ordre est tiré au hasard, pondéré par les cases restantes ; un jeu qui occupe plus de la moitié des cases restantes passe en priorité pour ne pas finir collé.
 - Un jeu ajouté plus tard à l'application apparaît sur le plateau dès qu'il a un défi dans `challenges.js` (`CHALLENGE_GAMES`).
 - Les cases sont un peu plus hautes que larges (1,3 au plus) pour occuper tout l'écran.
 - Les pions sont des ronds de la couleur de l'équipe, avec l'initiale de son nom. Plusieurs pions sur une case se décalent et rapetissent. Le pion de l'équipe dont c'est le tour est cerclé de blanc.
@@ -30,7 +31,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 ## Les défis
 | Case | Défi | Réussi si… | Temps |
 | --- | --- | --- | --- |
-| Affiches de cinéma | Affiche floutée (flou 16 → 10 → 5 px) : taper le titre | bon titre en 3 essais | 45 s |
+| Affiche | Affiche floutée (flou 16 → 10 → 5 px) : taper le titre | bon titre en 3 essais | 45 s |
 | Visages | Photo très floutée et assombrie, une bande nette (yeux, nez ou bouche), une bande de plus à chaque raté | bon nom en 3 essais | 45 s |
 | Livres | Couverture dessinée (titre, année) : taper l'auteur. Après 1 raté : la littérature ; après 2 : les initiales | bon auteur en 3 essais | 40 s |
 | Géoquizz | Même carte que le jeu Géoquizz (Mercator, terres et frontières lissées, répétée à gauche et à droite ; glisser, pincer, + / −). Le pays sous la souris (ou sous le doigt quand on touche) s'allume en rose. Toucher l'emplacement du pays | à moins de **500 km** du pays (un seul essai) | 25 s |
@@ -44,7 +45,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 
 ## Créer une partie
 - Accueil du jeu : **Créer une partie**, **Rejoindre une partie**, et **Reprendre la partie** (avec « Abandonner la partie en cours », confirmation en deux touches) s'il y en a une. La version s'affiche en bas : en multi, tous les téléphones doivent avoir la même.
-- Écran « Nouvelle partie » : le mode (**Un seul téléphone** / **Un téléphone par équipe**), le nombre d'**équipes** (2 à 6, en multi c'est le maximum accepté dans la salle d'attente), les noms des équipes (un seul téléphone seulement), le nombre de **tours de plateau** (1 à 3), les **jeux du plateau** (un bouton par jeu, tous choisis par défaut, au moins un ; un jeu ajouté plus tard à l'application est choisi d'office), puis **Lancer le jeu** ou **Créer la partie**. Les réglages sont mémorisés.
+- Écran « Nouvelle partie » : le mode (**Un seul téléphone** / **Un téléphone par équipe**), le nombre d'**équipes** (2 à 6, en multi c'est le maximum accepté dans la salle d'attente), les noms des équipes (un seul téléphone seulement), le nombre de **tours de plateau** (1 à 3), les **épreuves du plateau** : une ligne par jeu avec – / + pour régler sa proportion, **Aucune** (0, le jeu n'est ni sur le plateau ni à l'arrivée), **Peu** (1), **Normal** (2, par défaut) ou **Beaucoup** (3), avec trois barres à la couleur du jeu et le nombre de cases qu'il aura (« Normal · 5 cases ») ; il reste toujours au moins une épreuve, et un jeu ajouté plus tard à l'application est à « Normal » d'office, puis **Lancer le jeu** ou **Créer la partie**. Les réglages sont mémorisés.
 
 ## Multi : un téléphone par équipe
 - Le téléphone qui crée la partie est l'**arbitre** (équipe 1) : lui seul applique les actions et tire le dé et les défis ; il diffuse l'état complet après chaque changement. Les autres sont **invités** : ils envoient leurs actions et affichent l'état reçu.
@@ -73,7 +74,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 - `net.js` : la liaison MQTT.
 
 ## Persistance (sur l'appareil)
-`localStorage`, préfixe `little-games:zinzin:` (format version 1) : `cid` (identifiant de l'appareil), `settings` (`mode`, `teams`, `laps`, `names`, `off` : jeux retirés du plateau), `myName`, `session` (`{ role: 'solo' | 'host' | 'guest', code }`), `solo` (partie sur un seul téléphone), `hostG` (partie de l'arbitre et dernières actions confirmées), `broker` (tests).
+`localStorage`, préfixe `little-games:zinzin:` (format version 1) : `cid` (identifiant de l'appareil), `settings` (`mode`, `teams`, `laps`, `names`, `weights` : proportion de chaque épreuve, 0 à 3 ; l'ancien réglage `off` (jeux retirés) vaut 0), `myName`, `session` (`{ role: 'solo' | 'host' | 'guest', code }`), `solo` (partie sur un seul téléphone), `hostG` (partie de l'arbitre et dernières actions confirmées), `broker` (tests).
 
 ## Navigation (URL)
 `#/zinzin` (accueil du jeu) · `#/zinzin/nouvelle` · `#/zinzin/rejoindre` · `#/zinzin/rejoindre/<code>` (lien partagé) · `#/zinzin/partie`

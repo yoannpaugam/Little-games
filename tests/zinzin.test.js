@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  BOARD_SIZE, BOARD_COLS, BOARD_ROWS, cellPos, makeBoard, newGame, applyAction, goalOf, ranking,
+  BOARD_SIZE, BOARD_COLS, BOARD_ROWS, cellPos, makeBoard, boardCounts, newGame, applyAction, goalOf, ranking,
   randomPath, PATH_LANES, PATH_STEPS, PATH_MIN, challengeStart, GRACE_MS,
 } from '../games/zinzin/logic.js';
 
@@ -34,6 +34,35 @@ test('plateau : départ, jeux équilibrés, jamais deux fois le même d’affil�
     const counts = GAMES.map((g) => b.filter((x) => x === g).length);
     assert.ok(Math.max(...counts) - Math.min(...counts) <= 1, counts.join(','));
   }
+});
+
+test('proportions : nombre de cases selon le poids de chaque épreuve', () => {
+  const w = { affiches: 3, visages: 0, livres: 1, geoquizz: 2, chemin: 2, nonogramme: 1 };
+  const c = boardCounts(GAMES, w);
+  assert.equal(Object.values(c).reduce((a, b) => a + b, 0), BOARD_SIZE - 1);
+  assert.equal(c.visages, 0);
+  assert.ok(c.affiches > c.geoquizz && c.geoquizz > c.livres, JSON.stringify(c));
+  for (let k = 0; k < 100; k++) {
+    const b = makeBoard(GAMES, Math.random, BOARD_SIZE, w);
+    assert.equal(b.length, BOARD_SIZE);
+    for (const g of GAMES) assert.equal(b.filter((x) => x === g).length, c[g]);
+    for (let i = 2; i < b.length; i++) assert.notEqual(b[i], b[i - 1], 'jamais deux fois de suite');
+  }
+  // un jeu très majoritaire : alterné tant que c'est possible
+  const big = makeBoard(['chemin', 'livres'], Math.random, BOARD_SIZE, { chemin: 3, livres: 1 });
+  assert.equal(big.filter((x) => x === 'chemin').length, boardCounts(['chemin', 'livres'], { chemin: 3, livres: 1 }).chemin);
+});
+
+test('proportions : une épreuve à 0 n’est ni sur le plateau ni à l’arrivée', () => {
+  const G = newGame({ mode: 'solo', games: GAMES, weights: { visages: 0, livres: 0 }, teams: [{}, {}] }, env());
+  assert.ok(!G.board.includes('visages') && !G.board.includes('livres'));
+  assert.deepEqual(G.games, GAMES.filter((g) => g !== 'visages' && g !== 'livres'));
+  G.teams[0].steps = 27;
+  applyAction(G, { t: 'roll' }, env());
+  assert.equal(G.turn.final.games.length, 4);
+  // tout à 0 : on garde toutes les épreuves
+  const H = newGame({ mode: 'solo', games: GAMES, weights: Object.fromEntries(GAMES.map((g) => [g, 0])), teams: [{}, {}] }, env());
+  assert.equal(H.games.length, GAMES.length);
 });
 
 test('lancer : le pion avance, le défi de la case s’ouvre après l’animation', () => {
