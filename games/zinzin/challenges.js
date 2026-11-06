@@ -6,18 +6,19 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.39.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.39.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.39.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.39.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.39.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.39.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.39.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.39.0';
+import { h, icon } from '../../js/core/dom.js?v=1.40.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.40.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.40.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.40.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.40.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.40.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.40.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.40.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
 const TRIES = 3;          // essais des défis à réponse écrite
-const GEO_KM = 500;       // Géoquizz : réussi à moins de 500 km du pays
+const GEO_COUNT = 3;      // Géoquizz : 3 pays à placer…
+const GEO_TOTAL_KM = 3000; // … réussi si l'écart total reste inférieur ou égal à 3 000 km
 const POSTER = 'https://image.tmdb.org/t/p/w342';
 
 // ---------------------------------------------------------------- catalogues
@@ -72,6 +73,10 @@ export function pick(game, used = [], rnd = Math.random) {
   const pool = fresh.length ? fresh : d.ids;
   const id = pool[Math.floor(rnd() * pool.length)];
   if (game === 'visages') return { id, bands: shuffle(['yeux', 'nez', 'bouche'], rnd) };
+  if (game === 'geoquizz') { // plusieurs pays différents
+    const ids = shuffle(pool.length >= GEO_COUNT ? pool : d.ids, rnd).slice(0, GEO_COUNT);
+    return { id: ids[0], ids };
+  }
   return { id };
 }
 
@@ -81,7 +86,7 @@ export function answerOf(ch) {
   if (ch?.game === 'affiches') return D.affiches?.films.get(id)?.title;
   if (ch?.game === 'visages') return D.visages?.people.get(id)?.name;
   if (ch?.game === 'livres') { const b = D.livres?.books.get(id); return b && D.livres.authors.get(b.author)?.name; }
-  if (ch?.game === 'geoquizz') return D.geoquizz?.countries.get(id)?.n;
+  if (ch?.game === 'geoquizz') return null; // le bandeau donne l'écart total (voir summary du défi)
   return null;
 }
 
@@ -132,7 +137,8 @@ export async function mountChallenge(el, ch, ctx) {
       if (L && !ctx.active) ctl.update(L);
       ctl.reveal?.(ok);
       const ans = answerOf(ch);
-      banner.replaceChildren(...[h('strong', ok ? 'Réussi !' : 'Raté !'), ans ? h('span', ok ? ans : `C’était ${ans}`) : null].filter(Boolean));
+      const sum = ctl.summary?.();
+      banner.replaceChildren(...[h('strong', ok ? 'Réussi !' : 'Raté !'), sum ? h('span', sum) : ans ? h('span', ok ? ans : `C’était ${ans}`) : null].filter(Boolean));
       banner.className = 'zz-ch-banner ' + (ok ? 'is-ok' : 'is-ko');
       banner.hidden = false;
       root.classList.add('is-over');
@@ -373,7 +379,11 @@ function countryAt(lon, lat) {
 
 function geoChallenge(body, foot, ch, api, L0) {
   const P = geoWorld(), { U, W, H, X, Y } = P;
-  const country = D.geoquizz.countries.get(ch.p.id);
+  const ids = ch.p.ids || [ch.p.id];
+  const countryOf = (k) => D.geoquizz.countries.get(ids[Math.min(k, ids.length - 1)]);
+  // L = { k : pays en cours, res : [{ g: point posé, n: point du pays le plus proche, km }] }
+  let L = { k: 0, res: [], ...(L0 || {}) };
+  const total = () => L.res.reduce((a, r) => a + r.km, 0);
   const NS = 'http://www.w3.org/2000/svg';
   const mk = (tag, attrs = {}, ...kids) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); e.append(...kids); return e; };
   const svg = mk('svg', { class: 'zz-map', 'shape-rendering': 'geometricPrecision' });
@@ -386,7 +396,13 @@ function geoChallenge(body, foot, ch, api, L0) {
   const hover = mk('path', { class: 'zz-hover', d: '' }); // pays survolé ou touché
   const marks = mk('g', {});
   svg.append(hover, marks);
-  const ask = h('p.zz-geo-ask', h('small', 'Place'), h('strong', country.n));
+  const askK = h('small'), askName = h('strong');
+  const ask = h('p.zz-geo-ask', askK, askName);
+  const drawAsk = () => {
+    askK.textContent = ids.length > 1 ? `Place · pays ${Math.min(L.k, ids.length - 1) + 1}/${ids.length}` : 'Place';
+    askName.textContent = countryOf(L.k).n;
+  };
+  drawAsk();
   const zoom = h('div.zz-zoom',
     h('button.zz-round', { type: 'button', 'aria-label': 'Zoomer', onclick: () => zoomBy(1.6) }, icon('plus')),
     h('button.zz-round', { type: 'button', 'aria-label': 'Dézoomer', onclick: () => zoomBy(1 / 1.6) }, icon('minus')));
@@ -397,13 +413,14 @@ function geoChallenge(body, foot, ch, api, L0) {
 
   // vue : centre (cx, cy) et largeur w, en unités de la carte (Mercator)
   const view = { cx: X(15), cy: Y(25), w: W };
+  let startW = W;
   let size = { w: 1, h: 1 };
   function layout() {
     const r = svg.getBoundingClientRect();
     if (!r.width || !r.height) return;
     const first = size.w === 1;
     size = { w: r.width, h: r.height };
-    if (first) view.w = Math.min(W, H * 0.8 * size.w / size.h); // vue de départ : presque toute la hauteur du monde
+    if (first) view.w = startW = Math.min(W, H * 0.8 * size.w / size.h); // vue de départ : presque toute la hauteur du monde
     apply();
   }
   const toMap = (clientX, clientY) => {
@@ -437,7 +454,7 @@ function geoChallenge(body, foot, ch, api, L0) {
   let moved = 0, downAt = 0, pinch = null;
   let hovered = null;
   function setHover(clientX, clientY) {
-    if (api.done && L?.g) return;
+    if (api.done || locked) return;
     let c = null;
     if (clientX != null) { const [x, y] = toMap(clientX, clientY); c = countryAt(lonOf(x), P.latOfY(Math.max(0, Math.min(H, y)))); }
     if (c === hovered) return;
@@ -481,26 +498,44 @@ function geoChallenge(body, foot, ch, api, L0) {
     if (!pts.has(e.pointerId)) return;
     pts.delete(e.pointerId);
     if (pts.size < 2) pinch = null;
-    if (pts.size === 0 && moved <= 8 && Date.now() - downAt < 700 && api.active && !api.done) place(...toMap(e.clientX, e.clientY));
+    if (pts.size === 0 && moved <= 8 && Date.now() - downAt < 700 && api.active && !api.done && !locked) place(...toMap(e.clientX, e.clientY));
   };
   svg.addEventListener('pointerup', up);
   svg.addEventListener('pointercancel', (e) => { pts.delete(e.pointerId); moved = 99; });
   svg.addEventListener('wheel', (e) => { e.preventDefault(); const r = svg.getBoundingClientRect(); zoomBy(e.deltaY < 0 ? 1.25 : 0.8, e.clientX - r.left, e.clientY - r.top); }, { passive: false });
 
-  let L = L0 || null;
+  let locked = L.res.length > L.k; // résultat affiché avant le pays suivant
+  let nextTimer = null;
   function place(x, y) {
     const lon = lonOf(x), lat = P.latOfY(Math.max(0, Math.min(H, y)));
-    const r = distanceToCountry(country, lat, lon);
-    L = { g: [lat, lon], n: [r.near.lat, r.near.lon], km: r.km };
+    const r = distanceToCountry(countryOf(L.k), lat, lon);
+    L = { ...L, res: [...L.res, { g: [lat, lon], n: [r.near.lat, r.near.lon], km: r.km }] };
+    locked = true;
     drawMarks();
-    api.finish(r.km <= GEO_KM, L);
+    if (total() > GEO_TOTAL_KM) { api.finish(false, L); return; } // écart total dépassé : raté tout de suite
+    if (L.res.length >= ids.length) { api.finish(true, L); return; }
+    api.send(L);
+    nextTimer = setTimeout(() => { // pays suivant
+      L = { ...L, k: L.k + 1 };
+      locked = false;
+      hovered = null; drawHover();
+      view.w = startW; apply();
+      drawAsk(); drawMarks();
+      api.send(L);
+    }, 1600);
   }
-  let shown = false;
+  let shownFor = -1;
   function drawMarks() {
     marks.replaceChildren();
-    if (!L?.g) return;
+    const fmt = (km) => km.toLocaleString('fr-FR');
+    const t = total();
+    msg.textContent = L.res.length ? `Écart total ${fmt(t)} / ${fmt(GEO_TOTAL_KM)} km` : `Écart total max ${fmt(GEO_TOTAL_KM)} km`;
+    msg.className = 'zz-msg ' + (L.res.length ? (t <= GEO_TOTAL_KM ? 'is-ok' : 'is-err') : '');
+    const i = L.res.length - 1;
+    if (i < 0 || i < L.k) return; // pas de résultat pour le pays en cours
+    const res = L.res[i], country = countryOf(i);
     const toXY = ([lat, lon]) => [X(lon), Y(lat)];
-    let [gx, gy] = toXY(L.g), [nx, ny] = toXY(L.n);
+    let [gx, gy] = toXY(res.g), [nx, ny] = toXY(res.n);
     // on dessine la copie de la carte la plus proche du centre de la vue
     const near = (x) => x + W * Math.round((view.cx - x) / W);
     const sx = near(gx) - gx;
@@ -512,9 +547,8 @@ function geoChallenge(body, foot, ch, api, L0) {
       mk('circle', { cx: nx, cy: ny, r: 5 * view.w / size.w, class: 'zz-near' }),
       mk('circle', { cx: gx, cy: gy, r: 6 * view.w / size.w, class: 'zz-guess' }),
     );
-    msg.textContent = L.km === 0 ? 'Dans le mille !' : `À ${L.km.toLocaleString('fr-FR')} km`;
-    msg.className = 'zz-msg ' + (L.km <= GEO_KM ? 'is-ok' : 'is-err');
-    if (!shown) { shown = true; focusOn(gx, gy, nx, ny); }
+    msg.textContent = `${res.km === 0 ? 'Dans le mille !' : `+${fmt(res.km)} km`} · total ${fmt(t)} / ${fmt(GEO_TOTAL_KM)} km`;
+    if (shownFor !== i) { shownFor = i; focusOn(gx, gy, nx, ny); }
   }
   function focusOn(gx, gy, nx, ny) { // cadre le point posé et le pays
     view.cx = (gx + nx) / 2; view.cy = (gy + ny) / 2;
@@ -523,10 +557,17 @@ function geoChallenge(body, foot, ch, api, L0) {
     apply();
   }
   return {
-    update(nL) { if (nL?.g && !L?.g) { L = nL; drawMarks(); } },
-    reveal() { if (!L?.g) msg.textContent = ''; },
+    update(nL) { // spectateur
+      if (!nL?.res) return;
+      const nextCountry = nL.k !== L.k;
+      L = { k: 0, res: [], ...nL };
+      if (nextCountry) { view.w = startW; apply(); drawAsk(); }
+      drawMarks();
+    },
+    reveal() { clearTimeout(nextTimer); locked = true; },
     timeout() { api.finish(false, L); },
-    destroy() { ro.disconnect(); },
+    summary() { const t = total(); return `Écart total ${t.toLocaleString('fr-FR')} km${t > GEO_TOTAL_KM ? ` (max ${GEO_TOTAL_KM.toLocaleString('fr-FR')})` : ''}`; },
+    destroy() { ro.disconnect(); clearTimeout(nextTimer); },
   };
 }
 

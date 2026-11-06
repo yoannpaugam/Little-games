@@ -17,7 +17,7 @@ export const REVEAL_MS = 4500;   // la réponse reste affichée sur tous les éc
 export const GRACE_MS = 4000;    // l'arbitre déclare le défi raté s'il n'a pas reçu de résultat après le délai + cette marge
 
 // Durée de chaque défi (secondes)
-export const DURATION = { affiches: 45, visages: 45, livres: 40, geoquizz: 25, chemin: 40, nonogramme: 90 };
+export const DURATION = { affiches: 45, visages: 45, livres: 40, geoquizz: 50, chemin: 40, nonogramme: 90 };
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
@@ -272,7 +272,8 @@ function openChallenge(G, game, startAt, env) {
     g = 'chemin';
     payload = env.pick?.('chemin', [], rnd) || { path: randomPath(rnd) };
   }
-  if (payload.id != null) { used.push(payload.id); if (used.length > 200) used.shift(); }
+  for (const id of payload.ids || (payload.id != null ? [payload.id] : [])) used.push(id); // déjà sortis
+  while (used.length > 200) used.shift();
   const T = G.turn;
   T.ch = { id: (T.ch?.id || 0) + 1, game: g, cell: game, p: payload, startAt, deadline: startAt + (DURATION[g] || 45) * 1000 };
   if (T.final) T.ch.final = { k: T.final.k, n: T.final.games.length }; // « Arrivée 2/6 »
