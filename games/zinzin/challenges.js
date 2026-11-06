@@ -6,14 +6,14 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.34.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.34.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.34.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.34.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.34.0';
-import { EASY, distanceToCountry, decodeRing } from '../geo/geo.js?v=1.34.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.34.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.34.0';
+import { h, icon } from '../../js/core/dom.js?v=1.35.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.35.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.35.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.35.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.35.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.35.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.35.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.35.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -287,21 +287,69 @@ const KINDS = {
   nonogramme: nonogramChallenge,
 };
 // ---------------------------------------------------------------- Géoquizz : placer un pays
+// Même carte que le jeu Géoquizz : projection de Mercator, terres et frontières, répétée à gauche et à droite.
+function geoWorld() {
+  const d = D.geoquizz;
+  if (d.proj) return d.proj;
+  const w = d.world, U = w.units, W = w.width, RAD = Math.PI / 180, S = U * 180 / Math.PI;
+  const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + Math.max(-89, Math.min(89, lat)) * RAD / 2));
+  const unmerc = (m) => (2 * Math.atan(Math.exp(m)) - Math.PI / 2) / RAD;
+  const M0 = merc(w.latMax), H = (M0 - merc(w.latMin)) * S;
+  const X = (lon) => (lon - w.lonMin) * U, Y = (lat) => (M0 - merc(lat)) * S;
+  const latOfY = (y) => unmerc(M0 - y / S);
+  const reproject = (path) => { // tracé M/l/z en équirectangulaire → Mercator
+    let out = '', x = 0, y = 0, m;
+    const re = /([Mlz])([^Mlz]*)/g;
+    while ((m = re.exec(path))) {
+      if (m[1] === 'z') { out += 'z'; continue; }
+      const n = (m[2].match(/-?\d+(?:\.\d+)?/g) || []).map(Number);
+      for (let i = 0; i + 1 < n.length; i += 2) {
+        if (m[1] === 'M' && i === 0) { x = n[0]; y = n[1]; out += 'M'; } else { x += n[i]; y += n[i + 1]; out += 'L'; }
+        out += x + ' ' + Y(w.latMax - y / U).toFixed(1) + ' ';
+      }
+    }
+    return out;
+  };
+  const pathOf = (c, dx = 0) => geometry(c).polys.map((poly) => poly.map((r) => 'M' + r.pts.map(([lo, la]) => (X(lo) + dx).toFixed(1) + ' ' + Y(la).toFixed(1)).join('L') + 'Z').join('')).join('');
+  const grid = [-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150].map((l) => `M${X(l)} 0V${H.toFixed(0)}`).join('')
+    + [60, 30, 0, -30].map((l) => `M0 ${Y(l).toFixed(0)}H${W}`).join('');
+  d.proj = { U, W, H, X, Y, latOfY, pathOf, grid, land: reproject(w.land), borders: w.countries.map((c) => pathOf(c)).join('') };
+  return d.proj;
+}
+
+// Pays sous un point (lancer de rayon dans le plan longitude, latitude)
+function countryAt(lon, lat) {
+  const inRing = (pts) => {
+    let inside = false;
+    for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+      const [xi, yi] = pts[i], [xj, yj] = pts[j];
+      if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  for (const c of D.geoquizz.world.countries) {
+    const g = geometry(c), b = g.bbox;
+    if (lon < b.minX || lon > b.maxX || lat < b.minY || lat > b.maxY) continue;
+    if (g.polys.some((poly) => inRing(poly[0].pts) && !poly.slice(1).some((r) => inRing(r.pts)))) return c;
+  }
+  return null;
+}
+
 function geoChallenge(body, foot, ch, api, L0) {
-  const d = D.geoquizz, W = d.world.width, H = d.world.height, U = d.world.units;
-  const country = d.countries.get(ch.p.id);
+  const P = geoWorld(), { U, W, H, X, Y } = P;
+  const country = D.geoquizz.countries.get(ch.p.id);
   const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('class', 'zz-map');
-  const mk = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
-  const land = mk('path', { d: d.world.land, class: 'zz-land' });
-  const defs = mk('defs', {});
-  land.id = 'zz-land-' + ch.id;
-  defs.append(land);
-  svg.append(defs);
-  for (const dx of [-W, 0, W]) svg.append(mk('use', { href: '#' + land.id, x: dx, y: 0 }));
+  const mk = (tag, attrs = {}, ...kids) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); e.append(...kids); return e; };
+  const svg = mk('svg', { class: 'zz-map', 'shape-rendering': 'geometricPrecision' });
+  const worldId = 'zz-world-' + ch.id;
+  svg.append(mk('defs', {}, mk('g', { id: worldId },
+    mk('path', { class: 'zz-grid', d: P.grid }),
+    mk('path', { class: 'zz-land', d: P.land }),
+    mk('path', { class: 'zz-borders', d: P.borders }))));
+  for (const dx of [-W, 0, W]) svg.append(mk('use', { href: '#' + worldId, x: dx, y: 0 }));
+  const hover = mk('path', { class: 'zz-hover', d: '' }); // pays survolé ou touché
   const marks = mk('g', {});
-  svg.append(marks);
+  svg.append(hover, marks);
   const ask = h('p.zz-geo-ask', h('small', 'Place'), h('strong', country.n));
   const zoom = h('div.zz-zoom',
     h('button.zz-round', { type: 'button', 'aria-label': 'Zoomer', onclick: () => zoomBy(1.6) }, icon('plus')),
@@ -311,26 +359,30 @@ function geoChallenge(body, foot, ch, api, L0) {
   const msg = h('p.zz-msg');
   foot.append(h('div.zz-foot-row', msg));
 
-  // vue : centre (cx, cy) et largeur w, en unités de la carte (20 par degré, équirectangulaire)
-  const view = { cx: (15 + 180) * U, cy: (84 - 15) * U, w: W };
+  // vue : centre (cx, cy) et largeur w, en unités de la carte (Mercator)
+  const view = { cx: X(15), cy: Y(25), w: W };
   let size = { w: 1, h: 1 };
-  const fitHeight = () => H * size.w / size.h;
   function layout() {
     const r = svg.getBoundingClientRect();
     if (!r.width || !r.height) return;
     const first = size.w === 1;
     size = { w: r.width, h: r.height };
-    if (first) view.w = Math.min(W, fitHeight());
+    if (first) view.w = Math.min(W, H * 0.8 * size.w / size.h); // vue de départ : presque toute la hauteur du monde
     apply();
   }
+  const toMap = (clientX, clientY) => {
+    const r = svg.getBoundingClientRect(), k = view.w / size.w, vh = view.w * size.h / size.w;
+    return [view.cx - view.w / 2 + (clientX - r.left) * k, view.cy - vh / 2 + (clientY - r.top) * k];
+  };
+  const lonOf = (x) => ((x / U) % 360 + 360) % 360 - 180;
   function apply() {
     view.w = Math.max(W / 24, Math.min(W, view.w));
     const vh = view.w * size.h / size.w;
     view.cy = vh >= H ? H / 2 : Math.max(vh / 2, Math.min(H - vh / 2, view.cy));
     view.cx = ((view.cx % W) + W) % W;
     svg.setAttribute('viewBox', `${view.cx - view.w / 2} ${view.cy - vh / 2} ${view.w} ${vh}`);
-    svg.style.setProperty('--k', String(view.w / size.w)); // unités de carte par pixel (traits et points de taille fixe)
     drawMarks();
+    drawHover();
   }
   function zoomBy(f, px = size.w / 2, py = size.h / 2) {
     const k = view.w / size.w, vh = view.w * size.h / size.w;
@@ -347,7 +399,23 @@ function geoChallenge(body, foot, ch, api, L0) {
   // gestes : glisser pour déplacer, pincer ou molette pour zoomer, toucher pour placer
   const pts = new Map();
   let moved = 0, downAt = 0, pinch = null;
+  let hovered = null;
+  function setHover(clientX, clientY) {
+    if (api.done && L?.g) return;
+    let c = null;
+    if (clientX != null) { const [x, y] = toMap(clientX, clientY); c = countryAt(lonOf(x), P.latOfY(Math.max(0, Math.min(H, y)))); }
+    if (c === hovered) return;
+    hovered = c;
+    drawHover();
+  }
+  function drawHover() {
+    if (!hovered) { hover.setAttribute('d', ''); return; }
+    const sx = W * Math.round((view.cx - X(0)) / W); // copie de la carte la plus proche du centre de la vue
+    hover.setAttribute('d', [-W, 0, W].map((dx) => P.pathOf(hovered, sx + dx)).join(''));
+  }
+  svg.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') setHover(null); });
   svg.addEventListener('pointerdown', (e) => {
+    if (api.active && !api.done) setHover(e.clientX, e.clientY); // au doigt : le pays touché s'allume
     svg.setPointerCapture(e.pointerId);
     pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pts.size === 1) { moved = 0; downAt = Date.now(); }
@@ -355,11 +423,14 @@ function geoChallenge(body, foot, ch, api, L0) {
   });
   svg.addEventListener('pointermove', (e) => {
     const p = pts.get(e.pointerId);
-    if (!p) return;
+    if (!p) { if (e.pointerType === 'mouse' && api.active && !api.done) setHover(e.clientX, e.clientY); return; }
     const k = view.w / size.w;
     if (pts.size === 1) {
       moved += Math.abs(e.clientX - p.x) + Math.abs(e.clientY - p.y);
-      if (moved > 8) { view.cx -= (e.clientX - p.x) * k; view.cy -= (e.clientY - p.y) * k; apply(); }
+      if (moved > 8) {
+        view.cx -= (e.clientX - p.x) * k; view.cy -= (e.clientY - p.y) * k; apply();
+        if (e.pointerType !== 'mouse') setHover(null);
+      }
     }
     p.x = e.clientX; p.y = e.clientY;
     if (pts.size === 2 && pinch) {
@@ -374,10 +445,7 @@ function geoChallenge(body, foot, ch, api, L0) {
     if (!pts.has(e.pointerId)) return;
     pts.delete(e.pointerId);
     if (pts.size < 2) pinch = null;
-    if (pts.size === 0 && moved <= 8 && Date.now() - downAt < 700 && api.active && !api.done) {
-      const r = svg.getBoundingClientRect(), k = view.w / size.w, vh = view.w * size.h / size.w;
-      place(view.cx - view.w / 2 + (e.clientX - r.left) * k, view.cy - vh / 2 + (e.clientY - r.top) * k);
-    }
+    if (pts.size === 0 && moved <= 8 && Date.now() - downAt < 700 && api.active && !api.done) place(...toMap(e.clientX, e.clientY));
   };
   svg.addEventListener('pointerup', up);
   svg.addEventListener('pointercancel', (e) => { pts.delete(e.pointerId); moved = 99; });
@@ -385,7 +453,7 @@ function geoChallenge(body, foot, ch, api, L0) {
 
   let L = L0 || null;
   function place(x, y) {
-    const lon = ((x / U) % 360 + 360) % 360 - 180, lat = Math.max(-58, Math.min(84, 84 - y / U));
+    const lon = lonOf(x), lat = P.latOfY(Math.max(0, Math.min(H, y)));
     const r = distanceToCountry(country, lat, lon);
     L = { g: [lat, lon], n: [r.near.lat, r.near.lon], km: r.km };
     drawMarks();
@@ -395,16 +463,15 @@ function geoChallenge(body, foot, ch, api, L0) {
   function drawMarks() {
     marks.replaceChildren();
     if (!L?.g) return;
-    const toXY = ([lat, lon]) => [(lon + 180) * U, (84 - lat) * U];
+    const toXY = ([lat, lon]) => [X(lon), Y(lat)];
     let [gx, gy] = toXY(L.g), [nx, ny] = toXY(L.n);
     // on dessine la copie de la carte la plus proche du centre de la vue
     const near = (x) => x + W * Math.round((view.cx - x) / W);
     const sx = near(gx) - gx;
     gx += sx; nx += sx;
     if (Math.abs(nx - gx) > W / 2) nx += nx > gx ? -W : W;
-    const outline = country.p.map((poly) => poly.map((ring) => 'M' + decodeRing(ring).map(([lo, la]) => `${((lo + 180) * U + sx).toFixed(1)} ${((84 - la) * U).toFixed(1)}`).join('L') + 'Z').join('')).join('');
     marks.append(
-      mk('path', { d: outline, class: 'zz-country' }),
+      mk('path', { d: P.pathOf(country, sx), class: 'zz-country', 'fill-rule': 'evenodd' }),
       mk('line', { x1: gx, y1: gy, x2: nx, y2: ny, class: 'zz-gap' }),
       mk('circle', { cx: nx, cy: ny, r: 5 * view.w / size.w, class: 'zz-near' }),
       mk('circle', { cx: gx, cy: gy, r: 6 * view.w / size.w, class: 'zz-guess' }),

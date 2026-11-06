@@ -69,6 +69,14 @@
 .zz-field .zz-label { font-size: 1rem; color: var(--text); }
 .zz-stepper { display: flex; align-items: center; gap: .75rem; }
 .zz-step-val { min-width: 2ch; text-align: center; font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+.zz-field--col { flex-direction: column; align-items: stretch; gap: .6rem; }
+.zz-games { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.zz-game-chip {
+  display: flex; align-items: center; gap: .55rem; min-height: 48px; padding: .3rem .6rem .3rem .35rem; text-align: left; font-weight: 600; font-size: .9rem;
+  background: var(--bg-2); border: 2px solid var(--line); border-radius: 14px; cursor: pointer; opacity: .55; transition: opacity .15s, border-color .15s;
+}
+.zz-game-chip[aria-pressed="true"] { opacity: 1; border-color: var(--game); background: color-mix(in srgb, var(--game) 12%, var(--bg-2)); }
+.zz-chip-icon { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 10px; color: var(--game); background: color-mix(in srgb, var(--game) 18%, transparent); }
 .zz-names { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
 .zz-cta { margin-top: .5rem; }
 
@@ -225,10 +233,13 @@
 .zz-cover-hint { margin: 0; min-height: 1.2em; font-size: 5.5cqw; color: var(--zz-lit); }
 
 /* Géoquizz */
-.zz-geo { position: relative; width: 100cqw; height: 100cqh; border-radius: 14px; overflow: hidden; background: #10263b; }
+.zz-geo { position: relative; width: 100cqw; height: 100cqh; border-radius: 14px; overflow: hidden; background: #10202e; }
 .zz-map { display: block; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
-.zz-land { fill: #e8dcc2; }
-.zz-country { fill: #ff5fa299; stroke: #ff5fa2; stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.zz-grid { fill: none; stroke: rgba(255, 255, 255, .06); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.zz-land { fill: #c9c2b0; }
+.zz-borders { fill: none; stroke: #7d7666; stroke-width: .9; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+.zz-hover { fill: #ff5fa255; stroke: #ff5fa2; stroke-width: 1.5; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; fill-rule: evenodd; }
+.zz-country { fill: rgba(79, 179, 217, .5); stroke: #1d7fa6; stroke-width: 2px; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .zz-gap { stroke: #fff; stroke-width: 2px; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
 .zz-guess { fill: var(--err); stroke: #fff; stroke-width: 2px; vector-effect: non-scaling-stroke; }
 .zz-near { fill: var(--ok); stroke: #fff; stroke-width: 2px; vector-effect: non-scaling-stroke; }
