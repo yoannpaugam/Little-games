@@ -1,0 +1,184 @@
+/* Jeu « Le chemin ». Toutes les classes sont préfixées .ch- */
+
+.ch {
+  --accent: #7b86ff;
+  --accent-ink: #0f1220;
+  --ch-tile: #26232c;
+  --ch-zone: #323a63;
+  --ch-lit: #ffc94a;
+  --ch-cell: 28px; /* recalculée par le jeu selon la place disponible */
+  max-width: 1100px; margin: 0 auto; padding: 0 1rem 1rem;
+}
+.ch .icon { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Barre du haut ---------- */
+.ch-bar { display: flex; align-items: center; gap: .5rem; padding: .6rem 0; flex: none; }
+.ch-title { flex: 1; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ch-best { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: .25rem; white-space: nowrap; font-size: .9rem; }
+.ch-best strong { color: var(--accent); }
+.ch-icon-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; flex: none; padding: 0;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; font-size: 1.05rem; line-height: 1;
+  transition: border-color .15s, background .15s;
+}
+.ch-icon-btn:hover, .ch-icon-btn:focus-visible { border-color: var(--accent); background: var(--bg-3); outline: none; }
+
+/* ---------- Boutons ---------- */
+.ch-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-height: 46px; padding: 0 1.2rem;
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-weight: 600; white-space: nowrap;
+  transition: background .15s, border-color .15s, transform .1s;
+}
+.ch-btn:hover, .ch-btn:focus-visible { border-color: var(--accent); outline: none; }
+.ch-btn:active { transform: scale(.97); }
+.ch-btn:disabled { opacity: .6; cursor: default; }
+.ch-btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.ch-btn-primary:hover, .ch-btn-primary:focus-visible { background: #9aa2ff; box-shadow: 0 0 0 3px #7b86ff44; }
+.ch-btn-danger { border-color: #ff6b6b66; color: var(--err); background: transparent; }
+.ch-btn-danger:hover { border-color: var(--err); }
+.ch-wide { width: 100%; }
+
+/* ---------- Écran de jeu : toute la hauteur visible, la grille prend la place restante ---------- */
+.ch.is-play {
+  display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh;
+  padding-bottom: max(.6rem, env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+.ch-play { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; align-items: center; gap: .55rem; }
+.ch-intro { flex: none; margin: 0; max-width: 560px; font-size: .85rem; line-height: 1.45; color: var(--muted); text-align: center; }
+.ch-intro b { color: var(--text); }
+.ch.is-started .ch-intro { display: none; }
+@media (max-height: 700px) { .ch-intro { display: none; } }
+
+.ch-board { flex: 1 1 auto; min-height: 0; width: 100%; display: flex; flex-direction: column; align-items: center; gap: .55rem; }
+
+/* Panneau : essais, affichages, bouton */
+.ch-panel {
+  flex: none; width: 100%; max-width: 420px;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: .55rem .75rem; display: flex; flex-direction: column; gap: .5rem;
+}
+.ch-stats { display: flex; justify-content: space-between; gap: .75rem; }
+.ch-stat { display: flex; align-items: center; gap: .5rem; }
+.ch-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ch-hearts, .ch-leds { display: flex; gap: 5px; }
+.ch-hearts i, .ch-leds i { width: 13px; height: 13px; border-radius: 50%; background: var(--err); transition: opacity .25s, transform .25s, background .25s; }
+.ch-hearts i.lost { opacity: .2; transform: scale(.7); }
+.ch-leds i { background: var(--bg-3); box-shadow: inset 0 0 0 1px var(--line); }
+.ch-leds i.on { background: var(--accent); box-shadow: none; }
+.ch-actions { display: flex; align-items: center; gap: .5rem; }
+.ch-go {
+  position: relative; overflow: hidden; flex: 1; min-height: 46px;
+  border: 0; border-radius: 999px; padding: 0 1rem;
+  font-weight: 700; font-size: 1rem; background: var(--accent); color: var(--accent-ink); cursor: pointer;
+  transition: transform .08s, opacity .2s;
+}
+.ch-go:active:not(:disabled) { transform: scale(.98); }
+.ch-go:disabled { opacity: .55; cursor: default; }
+.ch-go:focus-visible { outline: none; box-shadow: 0 0 0 3px #7b86ff66; }
+.ch-go-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: var(--ch-lit); transform: scaleX(0); transform-origin: left; }
+.ch-go-txt { position: relative; white-space: nowrap; }
+.ch-link { flex: none; min-height: 44px; background: none; border: 0; color: var(--muted); text-decoration: underline; font-size: .82rem; padding: 0 .3rem; cursor: pointer; }
+.ch-link:hover, .ch-link:focus-visible { color: var(--text); outline: none; }
+
+/* Grille : 9 colonnes × 14 lignes en portrait. --s = étape (ligne), --l = couloir (colonne) */
+.ch-stage { flex: 1 1 auto; min-height: 0; width: 100%; display: flex; }
+.ch-gridbox { flex: 1 1 auto; min-height: 0; min-width: 0; display: grid; place-items: center; overflow: hidden; }
+.ch-gridwrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ch-grid {
+  display: grid; gap: 3px;
+  grid-template-columns: repeat(9, var(--ch-cell)); grid-template-rows: repeat(14, var(--ch-cell));
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+}
+.ch-cell {
+  grid-row: calc(var(--s) + 1); grid-column: calc(var(--l) + 1);
+  width: var(--ch-cell); height: var(--ch-cell); padding: 0; border: 0;
+  border-radius: calc(var(--ch-cell) * .22); background: var(--ch-tile); cursor: pointer;
+  transition: background .25s, transform .12s, box-shadow .25s;
+}
+.ch-cell.z-start, .ch-cell.z-end { background: var(--ch-zone); }
+.ch-grid[data-locked="true"] .ch-cell { cursor: default; }
+.ch-grid[data-locked="false"] .ch-cell:active { transform: scale(.92); }
+.ch-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ch-cell.lit { background: var(--ch-lit); box-shadow: 0 0 12px rgba(255, 201, 74, .7); }
+.ch-cell.ok { background: var(--ok); }
+.ch-cell.bad { background: var(--err); transform: scale(.88); }
+
+.ch-tag { flex: none; display: flex; align-items: center; gap: .45rem; font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 1; }
+.ch-arrow { width: 0; height: 0; border-style: solid; border-width: 7px 6px 0; border-color: var(--accent) transparent transparent; }
+.ch-tag-end .ch-arrow { border-width: 0 6px 7px; border-color: transparent transparent var(--accent); }
+
+.ch-feedback { flex: none; margin: 0; min-height: 1.3em; text-align: center; font-size: .88rem; color: var(--muted); }
+.ch-feedback.good { color: var(--ok); }
+.ch-feedback.bad { color: var(--err); }
+
+/* ---------- Paysage (téléphone couché, ordinateur) : la grille se couche (14 × 9), le panneau passe à gauche ---------- */
+.ch.is-landscape .ch-board { flex-direction: row; justify-content: center; align-items: stretch; gap: 1rem; }
+.ch.is-landscape .ch-panel { width: 210px; align-self: center; }
+.ch.is-landscape .ch-stats { flex-direction: column; gap: .45rem; }
+.ch.is-landscape .ch-stat { justify-content: space-between; }
+.ch.is-landscape .ch-actions { flex-direction: column; align-items: stretch; }
+.ch.is-landscape .ch-go { flex: none; }
+.ch.is-landscape .ch-stage { width: auto; min-width: 0; }
+.ch.is-landscape .ch-gridwrap { flex-direction: row; }
+.ch.is-landscape .ch-grid { grid-template-columns: repeat(14, var(--ch-cell)); grid-template-rows: repeat(9, var(--ch-cell)); }
+.ch.is-landscape .ch-cell { grid-row: calc(var(--l) + 1); grid-column: calc(var(--s) + 1); }
+.ch.is-landscape .ch-tag { flex-direction: column; writing-mode: vertical-rl; }
+.ch.is-landscape .ch-tag-start .ch-arrow { border-width: 6px 0 6px 7px; border-color: transparent transparent transparent var(--accent); }
+.ch.is-landscape .ch-tag-end .ch-arrow { border-width: 6px 7px 6px 0; border-color: transparent var(--accent) transparent transparent; }
+
+/* ---------- Bilan ---------- */
+.ch-final {
+  flex: 1; min-height: 0; overflow-y: auto; width: min(420px, 100%); margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .5rem 0 1rem;
+}
+.ch-final > * { flex: none; }
+.ch-seal { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; font-weight: 700; color: #fff; }
+.ch-seal.won { background: var(--ok); color: #06210f; }
+.ch-seal.lost { background: var(--err); }
+.ch-final-title { margin: .7rem 0 0; font-size: 1.3rem; }
+.ch-final-score { margin: .3rem 0 0; font-size: 1.3rem; color: var(--muted); }
+.ch-final-score strong { font-family: var(--font-display); font-weight: 400; font-size: 4.2rem; line-height: 1; color: var(--accent); }
+.ch-final-details { margin: .1rem 0 0; }
+.ch-final-record { margin: .4rem 0 0; color: var(--ok); font-weight: 600; }
+.ch-final-best { margin: .4rem 0 0; color: var(--muted); }
+.ch-final-actions { display: flex; gap: .6rem; justify-content: center; margin-top: 1rem; }
+
+/* ---------- Réglages ---------- */
+.ch-settings { display: grid; gap: 1rem; max-width: 560px; margin: .5rem auto 2rem; }
+.ch-settings fieldset { margin: 0; padding: 1rem 1.1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); display: grid; gap: .6rem; }
+.ch-settings legend { padding: 0 .4rem; font-weight: 700; }
+.ch-hint { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.ch-version { text-align: center; color: var(--muted); font-size: .8rem; margin: 0; }
+.ch-switch { position: relative; display: flex; align-items: center; gap: .6rem; min-height: 44px; cursor: pointer; user-select: none; }
+.ch-switch input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.ch-switch-track { position: relative; width: 40px; height: 24px; border-radius: 999px; background: var(--bg-3); box-shadow: inset 0 0 0 1px var(--line); transition: background .2s; flex: none; }
+.ch-switch-track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--text); transition: transform .2s; }
+.ch-switch input:checked + .ch-switch-track { background: var(--accent); }
+.ch-switch input:checked + .ch-switch-track::after { transform: translateX(16px); background: var(--accent-ink); }
+.ch-switch input:focus-visible + .ch-switch-track { box-shadow: 0 0 0 3px #7b86ff66; }
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 640px) {
+  .ch { padding: 0 .6rem .6rem; }
+  .ch-bar { gap: .4rem; }
+  .ch-title { font-size: 1.4rem; }
+  .ch-best { font-size: .8rem; }
+  .ch-final-score strong { font-size: 3.2rem; }
+}
+@media (max-width: 360px) {
+  .ch-best { display: none; }
+}
+/* Téléphone en paysage : barre du haut et panneau plus compacts */
+@media (max-height: 520px) and (orientation: landscape) and (min-width: 600px) {
+  .ch-bar { padding: .3rem 0; }
+  .ch-icon-btn { width: 40px; height: 40px; }
+  .ch-play { gap: .3rem; }
+  .ch.is-landscape .ch-panel { width: 190px; padding: .5rem .6rem; }
+  .ch-feedback { font-size: .8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { .ch * { transition: none !important; } }
