@@ -25,6 +25,11 @@ Requêtes vers des tiers : polices (Google Fonts), affiches (TMDB, Wikipédia, W
 - **Settings → Advanced Security** : *Secret scanning* et *Push protection* activés.
 - **Settings → Pages** : *Enforce HTTPS* coché.
 
+## Multijoueur de Compète de zinzin (relais MQTT publics)
+- Les téléphones se synchronisent par deux relais MQTT **publics** (`wss://broker.hivemq.com:8884`, `wss://broker.emqx.io:8084`, ajoutés à `connect-src`). N'importe qui connaissant un code de partie peut lire ses messages : on n'y met **que** des noms d'équipe, des positions et des propositions de réponse. Jamais d'adresse, de compte ni de donnée personnelle.
+- Le code de partie (5 chiffres) est tiré avec `crypto.getRandomValues`. L'état retenu est effacé (message vide) quand l'arbitre termine la partie.
+- mqtt.js est livré dans `games/zinzin/vendor/` (licence MIT jointe), sans CDN, et n'est chargé qu'en multi.
+
 ## Le jour où l'application aura un service en ligne (multijoueur, Supabase…)
 - **Clé publique et règles d'accès** : seule la clé publique (*anon*) peut aller dans le code. Chaque table a la *Row Level Security* activée, avec des règles qui n'autorisent que le strict nécessaire, par exemple un joueur n'écrit que ses propres réponses dans sa partie.
 - **Clé secrète** : la clé `service_role` n'apparaît jamais dans le dépôt, dans le navigateur ni dans une conversation. Elle ne sert que dans une fonction côté serveur, si besoin.

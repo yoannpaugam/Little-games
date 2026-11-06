@@ -11,6 +11,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 🌍 Géoquizz | `games/geo/` | ✅ jouable |
 | 👣 Le chemin | `games/path/` | ✅ jouable |
 | 🧩 Nonogramme | `games/nonogram/` | ✅ jouable |
+| 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
 
@@ -79,6 +80,10 @@ Un jeu de mémoire : un chemin s'allume pendant 6 secondes sur une grille de 11 
 ## 🧩 Nonogramme
 
 Un jeu de logique (picross) : on noircit les cases d'une grille d'après les chiffres des lignes et des colonnes, qui donnent la longueur des blocs. 3 niveaux (5 × 5, 10 × 10, 15 × 15) ; le bouton « Nouvelle grille », en haut, en tire une autre. Les grilles sont tirées au hasard et ne sont gardées que si elles se résolvent par logique, sans deviner (solution unique) : `games/nonogram/nonogram.js`, testé par `tests/nonogram.test.js`. Chronomètre et record par niveau. Aucune image ni service externe.
+
+## 🎲 Compète de zinzin
+
+Un jeu de plateau entre équipes : on lance le dé, le pion avance, et chaque case donne un défi court tiré d'un autre jeu (affiche floutée, visage, auteur d'un livre, pays à placer, chemin à retracer, nonogramme 5 × 5). Tant que le défi n'est pas réussi, l'équipe reste sur la case ; la première qui finit ses tours de plateau gagne. On joue sur un seul téléphone ou avec un téléphone par équipe : code à 5 chiffres, salle d'attente, et tout le monde voit en direct le dé, les pions et le défi en cours. La synchronisation passe par deux relais MQTT publics (HiveMQ et EMQX), sans serveur à nous ; mqtt.js (MIT) est livré dans `games/zinzin/vendor/`. Règles dans `games/zinzin/logic.js`, testées par `tests/zinzin.test.js`. Le jeu reste toujours en avant-dernière position de l'accueil (`last: true`).
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -159,6 +164,14 @@ games/nonogram/          Le jeu « Nonogramme » (picross), autonome
   ├─ index.js            Logique et vues (partie, réglages)
   ├─ nonogram.js         Tirage des grilles, indices, solveur logique (testé)
   ├─ styles.css          Styles du jeu (préfixe .ng-)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/zinzin/            Le jeu « Compète de zinzin » (plateau et défis des autres jeux, multi)
+  ├─ index.js            Écrans (création, rejoindre, salle d'attente, plateau, victoire), dispatch et rendu
+  ├─ logic.js            État de la partie et applyAction (testé)
+  ├─ challenges.js       Les six défis, d'après les modules et catalogues des autres jeux
+  ├─ net.js              Liaison MQTT sur deux relais publics
+  ├─ vendor/             mqtt.js (MIT) et sa licence
+  ├─ styles.css          Styles du jeu (préfixe .zz-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)
