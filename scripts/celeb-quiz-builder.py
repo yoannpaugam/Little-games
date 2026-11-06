@@ -624,6 +624,8 @@ def rows_from_faces(celebs_path: Path, delay: float = 0.35):
     """Catalogue Visages → résolution photo via Wikidata P18 (Commons)."""
     import time
     celebs = json.loads(celebs_path.read_text(encoding="utf-8"))
+    # « morceaux »: false dans celebs.json : personne écartée de Morceaux (photo Commons erronée…)
+    celebs = [c for c in celebs if c.get("morceaux", True) is not False]
     resolve_path = CACHE / "faces-resolve.json"
     CACHE.mkdir(parents=True, exist_ok=True)
     cache: dict = {}

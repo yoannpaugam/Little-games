@@ -11181,51 +11181,6 @@
     }
   },
   {
-    "id": "jul",
-    "name": "Jul",
-    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Jul_BD_Angouleme_2013.jpg/1280px-Jul_BD_Angouleme_2013.jpg",
-    "by": "Myrabella",
-    "lic": "CC BY-SA 3.0",
-    "box": {
-      "yeux": [
-        0.286,
-        0.203,
-        0.247,
-        0.067
-      ],
-      "nez": [
-        0.345,
-        0.274,
-        0.111,
-        0.054
-      ],
-      "bouche": [
-        0.344,
-        0.333,
-        0.138,
-        0.039
-      ],
-      "haut": [
-        0.249,
-        0.098,
-        0.388,
-        0.241
-      ],
-      "bas": [
-        0.249,
-        0.301,
-        0.388,
-        0.144
-      ],
-      "complet": [
-        0.21,
-        0.063,
-        0.465,
-        0.425
-      ]
-    }
-  },
-  {
     "id": "gims",
     "name": "Gims",
     "img": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Ma%C3%AEtre_Gims_Cannes_2016.jpg",
