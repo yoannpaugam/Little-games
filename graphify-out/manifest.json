@@ -1,392 +1,392 @@
 {
   ".github/workflows/affiches-tmdb.yml": {
-    "mtime": 1793794420.1774771,
-    "seen": 1793960551.0868876,
+    "mtime": 1793959294.6501143,
+    "seen": 1793960840.7301245,
     "ast_hash": "96ffba05590cbf1eefeb68a10cb6df2e",
     "semantic_hash": ""
   },
   "games/faces/data/celebs.json": {
-    "mtime": 1793794420.331695,
-    "seen": 1793960551.0869026,
+    "mtime": 1793959294.6508782,
+    "seen": 1793960840.7301385,
     "ast_hash": "7cd0f9c3fa08f6fc508696c19773aedf",
     "semantic_hash": ""
   },
   "games/faces/index.js": {
-    "mtime": 1793960477.4011807,
-    "seen": 1793960551.0869036,
-    "ast_hash": "d404867281dbfa8a924f37470336abe8",
+    "mtime": 1793960804.231375,
+    "seen": 1793960840.73014,
+    "ast_hash": "8e15313d6875ac43c8c5c27aafe4ed53",
     "semantic_hash": ""
   },
   "games/movie-posters/data/films.json": {
-    "mtime": 1793794420.3396952,
-    "seen": 1793960551.0869148,
+    "mtime": 1793959294.6526527,
+    "seen": 1793960840.73015,
     "ast_hash": "6431b33f139494ba34e084303a52f592",
     "semantic_hash": ""
   },
   "games/movie-posters/data/posters.json": {
-    "mtime": 1793794420.3436952,
-    "seen": 1793960551.0869162,
+    "mtime": 1793959294.6528122,
+    "seen": 1793960840.730151,
     "ast_hash": "453b0a32728bdaed4ddeb2d03396de59",
     "semantic_hash": ""
   },
   "games/movie-posters/index.js": {
-    "mtime": 1793960477.4091809,
-    "seen": 1793960551.0869174,
-    "ast_hash": "f485220d4fdc7d1eb63eb787392b264e",
+    "mtime": 1793960804.2393749,
+    "seen": 1793960840.7301521,
+    "ast_hash": "dfa2ddea86093bf7b1844e73222890c9",
     "semantic_hash": ""
   },
   "games/movie-posters/posters.js": {
-    "mtime": 1793960477.4091809,
-    "seen": 1793960551.0869186,
-    "ast_hash": "95b9db8850799fb6f9c7c498fb537c13",
+    "mtime": 1793960804.2393749,
+    "seen": 1793960840.7301533,
+    "ast_hash": "8d9b08fb5c647f6cc33dbaf4c86911fa",
     "semantic_hash": ""
   },
   "games/registry.js": {
-    "mtime": 1793960477.4131808,
-    "seen": 1793960551.0869248,
-    "ast_hash": "ae6b2691e0aa191cac01ba4c5063841e",
+    "mtime": 1793960804.2433748,
+    "seen": 1793960840.7301586,
+    "ast_hash": "1a209f7cc90d0c7516cb686dbc2cd23d",
     "semantic_hash": ""
   },
   "js/app.js": {
-    "mtime": 1793960477.4211807,
-    "seen": 1793960551.0869255,
-    "ast_hash": "302a527f213a62c2ed80ee57b6b681c7",
+    "mtime": 1793960804.255375,
+    "seen": 1793960840.7301595,
+    "ast_hash": "a77afd5b90331a1f5cd761c8f52b66e4",
     "semantic_hash": ""
   },
   "js/core/dom.js": {
-    "mtime": 1793960448.825179,
-    "seen": 1793960551.0869267,
+    "mtime": 1793960311.2005887,
+    "seen": 1793960840.7301607,
     "ast_hash": "a5ba3d04129170cdc65d96b00ea2ce5c",
     "semantic_hash": ""
   },
   "js/core/fuzzy.js": {
-    "mtime": 1793696320.3739164,
-    "seen": 1793960551.0869274,
+    "mtime": 1793959294.6548102,
+    "seen": 1793960840.7301617,
     "ast_hash": "5c648e851b278f0fff9856ab986caf4a",
     "semantic_hash": ""
   },
   "js/core/storage.js": {
-    "mtime": 1793794420.347695,
-    "seen": 1793960551.0869281,
+    "mtime": 1793959294.6548102,
+    "seen": 1793960840.7301624,
     "ast_hash": "792f3632aef02c06dfcbaf6b7128d25f",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1793960477.4211807,
-    "seen": 1793960551.086929,
-    "ast_hash": "9862f3fe763b3676c41e38062143e7b0",
+    "mtime": 1793960804.255375,
+    "seen": 1793960840.7301636,
+    "ast_hash": "b5755d7cfec0ee239b17c3693ea68b93",
     "semantic_hash": ""
   },
   "scripts/fetch-posters.mjs": {
-    "mtime": 1793696320.3739164,
-    "seen": 1793960551.086932,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301667,
     "ast_hash": "3d47be7a76c0412e7d4cc38484660595",
     "semantic_hash": ""
   },
   "scripts/set-version.mjs": {
-    "mtime": 1793696320.374041,
-    "seen": 1793960551.0869346,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301693,
     "ast_hash": "699133cc09c938b2fd74b7df18aa90f6",
     "semantic_hash": ""
   },
   "tests/catalogs.test.js": {
-    "mtime": 1793960448.825179,
-    "seen": 1793960551.0869372,
+    "mtime": 1793959294.6552224,
+    "seen": 1793960840.7301722,
     "ast_hash": "c518cfaa4b7ac46d0cb06d314e4d5c03",
     "semantic_hash": ""
   },
   "tests/fuzzy.test.js": {
-    "mtime": 1793696320.3741505,
-    "seen": 1793960551.0869381,
+    "mtime": 1793959294.6552224,
+    "seen": 1793960840.7301729,
     "ast_hash": "a9726d5d68100b081942e951cb658ea1",
     "semantic_hash": ""
   },
   "tests/movie-answers.test.js": {
-    "mtime": 1793794420.355695,
-    "seen": 1793960551.086941,
+    "mtime": 1793959294.6552224,
+    "seen": 1793960840.7301757,
     "ast_hash": "aa24c6d55df5e9902fd221f68a048f70",
     "semantic_hash": ""
   },
   "tests/storage.test.js": {
-    "mtime": 1793794420.355695,
-    "seen": 1793960551.0869434,
+    "mtime": 1793959294.6552224,
+    "seen": 1793960840.7301786,
     "ast_hash": "26e2deaa8514c28fda83eefe49a6bfbe",
     "semantic_hash": ""
   },
   ".claude/agents/architecte-front.md": {
-    "mtime": 1793794420.1690214,
-    "seen": 1793960551.0869446,
+    "mtime": 1793959294.6497855,
+    "seen": 1793960840.7301793,
     "ast_hash": "95a54b67cdcad4de858fea0b5bca1a01",
     "semantic_hash": ""
   },
   ".claude/agents/coordinateur-release.md": {
-    "mtime": 1793794420.1698253,
-    "seen": 1793960551.0869455,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.7301803,
     "ast_hash": "929d0cff448d056d4287a2a57c5852dd",
     "semantic_hash": ""
   },
   ".claude/agents/curateur-contenu.md": {
-    "mtime": 1793802343.2697551,
-    "seen": 1793960551.0869462,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.7301815,
     "ast_hash": "66af4a61d1279886454dfc3acbd52585",
     "semantic_hash": ""
   },
   ".claude/agents/game-designer.md": {
-    "mtime": 1793794420.171695,
-    "seen": 1793960551.086947,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.7301824,
     "ast_hash": "05c2eb186817c1b5f653ba04c63972ff",
     "semantic_hash": ""
   },
   ".claude/agents/juridique-conformite.md": {
-    "mtime": 1793794420.171695,
-    "seen": 1793960551.086948,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.7301831,
     "ast_hash": "8d942fd18a30f398f33a8c8fcd489fcd",
     "semantic_hash": ""
   },
   ".claude/agents/multijoueur.md": {
-    "mtime": 1793794420.171695,
-    "seen": 1793960551.0869489,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.730184,
     "ast_hash": "5c90c0530f596258373e8ed88edff3ca",
     "semantic_hash": ""
   },
   ".claude/agents/performance-pwa.md": {
-    "mtime": 1793794420.171695,
-    "seen": 1793960551.0869496,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.730185,
     "ast_hash": "b2632e556fe4fb846623abad30f0514c",
     "semantic_hash": ""
   },
   ".claude/agents/qa-testeur.md": {
-    "mtime": 1793794420.1756952,
-    "seen": 1793960551.086951,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.730186,
     "ast_hash": "3b72f6c3d8ec9f82f8e63e6f5240d6ad",
     "semantic_hash": ""
   },
   ".claude/agents/ux-ui-mobile.md": {
-    "mtime": 1793794420.1756952,
-    "seen": 1793960551.0869517,
+    "mtime": 1793959294.6498725,
+    "seen": 1793960840.730187,
     "ast_hash": "b81d96bf7867a537ef587942a6968d3c",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1793960448.809179,
-    "seen": 1793960551.0869524,
+    "mtime": 1793959698.4284213,
+    "seen": 1793960840.730188,
     "ast_hash": "96e8013d0374a0f0ee34d65565613932",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1793960448.809179,
-    "seen": 1793960551.0869534,
+    "mtime": 1793959698.4282515,
+    "seen": 1793960840.7301888,
     "ast_hash": "907477c4b2ce28195455c06dbed75c62",
     "semantic_hash": ""
   },
   "SECURITY.md": {
-    "mtime": 1793878193.3013258,
-    "seen": 1793960551.0869544,
+    "mtime": 1793959294.6501465,
+    "seen": 1793960840.7301898,
     "ast_hash": "e67d94824ab1b26faf4c5e3a4cc57786",
     "semantic_hash": ""
   },
   "games/faces/SPEC.md": {
-    "mtime": 1793878193.3035398,
-    "seen": 1793960551.0869558,
+    "mtime": 1793959294.650422,
+    "seen": 1793960840.730192,
     "ast_hash": "7782d4aaf7493515b748f1198e550392",
     "semantic_hash": ""
   },
   "games/movie-posters/SPEC.md": {
-    "mtime": 1793794420.3396952,
-    "seen": 1793960551.0869586,
+    "mtime": 1793959294.6519253,
+    "seen": 1793960840.730195,
     "ast_hash": "a203cc9173250220f361c45dda16176e",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793960477.4211807,
-    "seen": 1793960551.0869615,
-    "ast_hash": "b5a35ca74e64f1811ec1db435481185b",
+    "mtime": 1793960804.255375,
+    "seen": 1793960840.730198,
+    "ast_hash": "e4622a062aba8a531dbaf75ac1cb5cc3",
     "semantic_hash": ""
   },
   "scripts/celeb-quiz-builder.py": {
-    "mtime": 1793879200.0176852,
-    "seen": 1793960551.0869303,
+    "mtime": 1793959294.6548102,
+    "seen": 1793960840.7301648,
     "ast_hash": "ae11b06a9a6410470a13887d64ea4e48",
     "semantic_hash": ""
   },
   "scripts/celeb-seed.json": {
-    "mtime": 1793802461.205973,
-    "seen": 1793960551.0869312,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301657,
     "ast_hash": "bfe170f988b7b1ca5b64d664339f6d49",
     "semantic_hash": ""
   },
   "tests/morceaux.test.js": {
-    "mtime": 1793878193.3152697,
-    "seen": 1793960551.08694,
+    "mtime": 1793959294.6552224,
+    "seen": 1793960840.730175,
     "ast_hash": "3e4d8ecaafa29d8a514d85e6307cea0a",
     "semantic_hash": ""
   },
   "games/faces/morceaux/answers.js": {
-    "mtime": 1793960477.4011807,
-    "seen": 1793960551.0869052,
-    "ast_hash": "53b56eb63d4ad630fbfe34d0799fdcdf",
+    "mtime": 1793960804.231375,
+    "seen": 1793960840.7301414,
+    "ast_hash": "2a96547fdc77063bb7dfad0d1f98ad94",
     "semantic_hash": ""
   },
   "games/faces/morceaux/data/jeunesse.json": {
-    "mtime": 1793878193.3056445,
-    "seen": 1793960551.0869064,
+    "mtime": 1793959294.6510425,
+    "seen": 1793960840.730142,
     "ast_hash": "58e0494c51d30eb3494f7c9198986bb9",
     "semantic_hash": ""
   },
   "games/faces/morceaux/data/people.json": {
-    "mtime": 1793879838.7946806,
-    "seen": 1793960551.0869074,
+    "mtime": 1793959294.6511395,
+    "seen": 1793960840.7301438,
     "ast_hash": "8d420f1873af27bba702ebfdb2cb5c45",
     "semantic_hash": ""
   },
   "games/faces/morceaux/framing.js": {
-    "mtime": 1793878193.3057282,
-    "seen": 1793960551.0869083,
+    "mtime": 1793959294.6511395,
+    "seen": 1793960840.7301447,
     "ast_hash": "75a2e9aa2708e66618fb6b8249e1785d",
     "semantic_hash": ""
   },
   "games/faces/morceaux/index.js": {
-    "mtime": 1793960477.4011807,
-    "seen": 1793960551.0869098,
-    "ast_hash": "b3f9e3f9c016ed2e2476079dbbc178cc",
+    "mtime": 1793960804.231375,
+    "seen": 1793960840.7301457,
+    "ast_hash": "ef881404851c308513d731efefd74880",
     "semantic_hash": ""
   },
   "scripts/jeunesse-seed.json": {
-    "mtime": 1793878193.3152697,
-    "seen": 1793960551.0869339,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301686,
     "ast_hash": "58e0494c51d30eb3494f7c9198986bb9",
     "semantic_hash": ""
   },
   "games/faces/morceaux/SPEC.md": {
-    "mtime": 1793960477.242973,
-    "seen": 1793960551.0869565,
+    "mtime": 1793960797.7393746,
+    "seen": 1793960840.7301927,
     "ast_hash": "2083b541fa04274e2e843253675a8690",
     "semantic_hash": ""
   },
   "games/books/answers.js": {
-    "mtime": 1793960477.4011807,
-    "seen": 1793960551.086898,
-    "ast_hash": "13dfcbe06a99ac05c7c354b550a4c35a",
+    "mtime": 1793960804.227375,
+    "seen": 1793960840.7301345,
+    "ast_hash": "a50addd43cdf071c1e9c13ce4151a306",
     "semantic_hash": ""
   },
   "games/books/data/livres.json": {
-    "mtime": 1793878193.3035398,
-    "seen": 1793960551.0868998,
+    "mtime": 1793959294.650422,
+    "seen": 1793960840.7301364,
     "ast_hash": "9e301fd14c7f3d86ebb984fdc6776815",
     "semantic_hash": ""
   },
   "games/books/index.js": {
-    "mtime": 1793960477.4011807,
-    "seen": 1793960551.0869007,
-    "ast_hash": "f549caca8d8c078c7faa9e6983a4bc84",
+    "mtime": 1793960804.231375,
+    "seen": 1793960840.7301373,
+    "ast_hash": "13783de3efa8a05f777e6dbefb0602cd",
     "semantic_hash": ""
   },
   "tests/books.test.js": {
-    "mtime": 1793878193.3152697,
-    "seen": 1793960551.0869362,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301714,
     "ast_hash": "bb68b17bd2023f085c6ae6020c2ff323",
     "semantic_hash": ""
   },
   "games/books/SPEC.md": {
-    "mtime": 1793878193.3013258,
-    "seen": 1793960551.086955,
+    "mtime": 1793959294.6503797,
+    "seen": 1793960840.7301908,
     "ast_hash": "6d08cdede53ec7727f68bcdbe7bced4a",
     "semantic_hash": ""
   },
   "scripts/historiques-seed.json": {
-    "mtime": 1793879568.1516466,
-    "seen": 1793960551.086933,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301676,
     "ast_hash": "b04ff8d565178ceeaf02efeb615ca07d",
     "semantic_hash": ""
   },
   ".github/workflows/morceaux-historiques.yml": {
-    "mtime": 1793878802.1331542,
-    "seen": 1793960551.0868945,
+    "mtime": 1793959294.6501465,
+    "seen": 1793960840.7301314,
     "ast_hash": "ce3a8c97e9cb82e5aa88a6fae874d012",
     "semantic_hash": ""
   },
   "games/geo/data/world.json": {
-    "mtime": 1793960448.81694,
-    "seen": 1793960551.0869107,
+    "mtime": 1793959294.6519253,
+    "seen": 1793960840.730147,
     "ast_hash": "3076415f138acdd324d7b48311d99af2",
     "semantic_hash": ""
   },
   "games/geo/geo.js": {
-    "mtime": 1793960448.81694,
-    "seen": 1793960551.0869122,
+    "mtime": 1793959294.6519253,
+    "seen": 1793960840.7301476,
     "ast_hash": "a77583ae334924bdb29743693cd2df46",
     "semantic_hash": ""
   },
   "games/geo/index.js": {
-    "mtime": 1793960477.4091809,
-    "seen": 1793960551.0869136,
-    "ast_hash": "2e8f0d8794438747abfd6967ff17de1a",
+    "mtime": 1793960804.235375,
+    "seen": 1793960840.7301488,
+    "ast_hash": "b605c451bf4990d8fc6a85899c9c2c68",
     "semantic_hash": ""
   },
   "tests/geo.test.js": {
-    "mtime": 1793960448.825179,
-    "seen": 1793960551.086939,
+    "mtime": 1793959294.6552224,
+    "seen": 1793960840.730174,
     "ast_hash": "baa47dba82f6a40c2397ae50cac61445",
     "semantic_hash": ""
   },
   "games/geo/SPEC.md": {
-    "mtime": 1793960448.813179,
-    "seen": 1793960551.0869575,
+    "mtime": 1793959294.6511395,
+    "seen": 1793960840.7301939,
     "ast_hash": "eacbaab338ec1f4df2ac5196411d0a59",
     "semantic_hash": ""
   },
   "scripts/simplify-geo.py": {
-    "mtime": 1793960448.825179,
-    "seen": 1793960551.0869353,
+    "mtime": 1793959294.6549752,
+    "seen": 1793960840.7301702,
     "ast_hash": "be15a3619c519cdf64adc8d09854a1aa",
     "semantic_hash": ""
   },
   "games/path/index.js": {
-    "mtime": 1793960477.4131808,
-    "seen": 1793960551.0869224,
-    "ast_hash": "89cc25bbf8b0cd839600b4256c9f1776",
+    "mtime": 1793960804.2433748,
+    "seen": 1793960840.7301567,
+    "ast_hash": "f094e92e5b5e153415d7b7274fc356b5",
     "semantic_hash": ""
   },
   "games/path/path.js": {
-    "mtime": 1793960448.8185945,
-    "seen": 1793960551.0869238,
+    "mtime": 1793959698.3928921,
+    "seen": 1793960840.7301576,
     "ast_hash": "77d5c005332bb5f7e90c6a3f09e8280c",
     "semantic_hash": ""
   },
   "tests/path.test.js": {
-    "mtime": 1793960448.825179,
-    "seen": 1793960551.0869427,
+    "mtime": 1793959698.396892,
+    "seen": 1793960840.7301776,
     "ast_hash": "c54ce29d81b79d08cf6ca1cc990ae1c4",
     "semantic_hash": ""
   },
   "games/path/SPEC.md": {
-    "mtime": 1793960448.8183322,
-    "seen": 1793960551.0869603,
+    "mtime": 1793959698.3928921,
+    "seen": 1793960840.730197,
     "ast_hash": "acfd83b39391f3534fa22a3316308250",
     "semantic_hash": ""
   },
   "games/nonogram/index.js": {
-    "mtime": 1793960477.4091809,
-    "seen": 1793960551.0869203,
-    "ast_hash": "141615a95f12c9460d1b40725ea23b72",
+    "mtime": 1793960804.2433748,
+    "seen": 1793960840.7301543,
+    "ast_hash": "fc57a320394ead64b352370516e21983",
     "semantic_hash": ""
   },
   "games/nonogram/nonogram.js": {
-    "mtime": 1793960448.8183322,
-    "seen": 1793960551.0869215,
+    "mtime": 1793959698.4041793,
+    "seen": 1793960840.7301552,
     "ast_hash": "a968504fbf9783558ba6a3a6ff115cc3",
     "semantic_hash": ""
   },
   "tests/nonogram.test.js": {
-    "mtime": 1793960448.825179,
-    "seen": 1793960551.086942,
+    "mtime": 1793959698.405695,
+    "seen": 1793960840.7301767,
     "ast_hash": "9c951ce213059711797f298f3c3ffe2f",
     "semantic_hash": ""
   },
   "games/nonogram/SPEC.md": {
-    "mtime": 1793960448.81694,
-    "seen": 1793960551.0869594,
-    "ast_hash": "2398d81dc7ef11f8160a96076d26778e",
+    "mtime": 1793960838.4881048,
+    "seen": 1793960840.730196,
+    "ast_hash": "7f17859d95a7cd3ba24ea2108c671ffa",
     "semantic_hash": ""
   }
 }
