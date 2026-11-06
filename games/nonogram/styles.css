@@ -55,8 +55,8 @@
   overflow: hidden;
 }
 .ng-play { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: .5rem; }
-.ng-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
-.ng-levels { flex: 1 1 auto; max-width: 440px; display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.ng-head { flex: none; display: flex; flex-direction: column; align-items: center; gap: 0; }
+.ng-levels { flex: none; width: min(440px, calc(100% - 4rem)); display: flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
 .ng-level {
   flex: 1 1 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05;
@@ -66,7 +66,8 @@
 .ng-level small { font-size: .68rem; font-weight: 500; opacity: .8; }
 .ng-level.on { background: var(--bg-3); color: var(--text); box-shadow: inset 0 0 0 1px var(--accent); }
 .ng-level:focus-visible { outline: 2px solid var(--accent); }
-.ng-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; font-variant-numeric: tabular-nums; }
+/* Chronomètre et record : sous les niveaux, à gauche */
+.ng-meta { align-self: flex-start; display: flex; align-items: baseline; gap: .6rem; padding: .5rem 0 0 .5rem; font-variant-numeric: tabular-nums; }
 .ng-clock { font-weight: 700; }
 .ng-bestline { font-size: .75rem; color: var(--muted); }
 @media (max-width: 380px) { .ng-level { min-width: 0; padding: 0 .55rem; } }

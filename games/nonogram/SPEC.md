@@ -27,7 +27,7 @@ Le niveau se choisit en haut de l'écran de jeu. Chaque niveau garde sa propre g
 ## Écran de jeu
 - Barre du haut : retour, « Nonogramme » et réglages.
 - En bas de l'écran (à droite en paysage), un large bouton **Nouvelle grille** (360 px au plus) tire une autre grille du niveau choisi. Si la grille en cours est commencée et pas résolue, un premier appui affiche « Confirmer ? » (en rouge) pendant 3 s ; un second appui confirme.
-- Sous la barre : les 3 niveaux (Facile 5×5, Moyen 10×10, Difficile 15×15), dans un sélecteur qui prend la largeur disponible (440 px au plus), puis le chronomètre et le record du niveau.
+- Sous la barre : les 3 niveaux (Facile 5×5, Moyen 10×10, Difficile 15×15), dans un sélecteur **centré**, large de 440 px au plus (sur téléphone, toute la largeur moins 4 rem). Juste en dessous, **à gauche**, avec un petit retrait à gauche et en haut : le chronomètre, puis le record du niveau.
 - La grille : indices des lignes à gauche, des colonnes au-dessus, une bande sur deux légèrement teintée. Un trait épais tous les 5 cases. Un indice s'estompe quand sa ligne ou sa colonne est juste.
 - Il n'y a pas de barre d'outils sous la grille (retirée en 1.30.0, à la demande de Yoann) :
   - toucher une case la noircit (ou l'efface si elle l'était déjà) ;
