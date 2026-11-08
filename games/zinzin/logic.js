@@ -14,7 +14,8 @@ export const TEAM_COLORS = ['#ff4d6d', '#ffe14d', '#f4f1ea', '#b8f24a', '#ff9a3c
 // Durée de l'animation : le dé tourne, puis le pion avance case par case, puis le défi s'ouvre.
 export const DICE_MS = 900, STEP_MS = 260, PAUSE_MS = 450;
 export const REVEAL_MS = 4500;   // la réponse reste affichée sur tous les écrans avant le tour suivant
-export const GRACE_MS = 4000;    // l'arbitre déclare le défi raté s'il n'a pas reçu de résultat après le délai + cette marge
+export const GRACE_MS = 4000;
+export const FINAL_COUNT = 2;    // à l'arrivée : 2 défis à réussir à la suite, dans des jeux choisis par l'équipe    // l'arbitre déclare le défi raté s'il n'a pas reçu de résultat après le délai + cette marge
 
 // Durée de chaque défi (secondes)
 export const DURATION = { affiches: 45, visages: 45, livres: 40, geoquizz: 50, chemin: 40, nonogramme: 90 };
@@ -124,7 +125,7 @@ const findTeam = (G, cid) => G.teams.findIndex((t) => t.cid === cid);
 
 /**
  * Applique une action à l'état (modifié sur place). Renvoie true si l'état a changé.
- * Actions : join, name, leave, settings, start, roll, retry, live, result, timeout, restart.
+ * Actions : join, name, leave, settings, start, roll, choose, retry, live, result, timeout, restart.
  */
 export function applyAction(G, a, env = {}) {
   const now = env.now ?? Date.now();
@@ -157,7 +158,10 @@ export function applyAction(G, a, env = {}) {
         G.teams.forEach((t, k) => { t.color = TEAM_COLORS[k % TEAM_COLORS.length]; });
       } else {
         G.teams[i].away = true;
-        if (G.phase === 'play' && T.team === i && T.stage !== 'challenge') nextTeam(G);
+        if (G.phase === 'play' && T.team === i && T.stage !== 'challenge') {
+          if (T.final) { G.teams[i].steps = T.final.from; T.final = null; } // partie au milieu de l'arrivée : elle la refera
+          nextTeam(G);
+        }
       }
       return bump(G);
     }
@@ -180,10 +184,9 @@ export function applyAction(G, a, env = {}) {
       const from = t.steps;
       t.steps = Math.min(goalOf(G), from + value);
       T.roll = { id: (T.roll?.id || 0) + 1, value, from, to: t.steps, at: now, team: T.team };
-      if (t.steps >= goalOf(G)) { // arrivée : un défi de chaque jeu du plateau, à la suite
-        const games = G.games.length ? shuffle(G.games, rnd) : ['chemin'];
-        T.final = { from, games, k: 0 };
-        openChallenge(G, games[0], challengeStart(now, value), env);
+      if (t.steps >= goalOf(G)) { // arrivée : l'équipe choisit FINAL_COUNT jeux, un défi de chacun à la suite
+        T.final = { from, games: [], k: 0, n: FINAL_COUNT, at: challengeStart(now, value) - PAUSE_MS };
+        T.stage = 'choose';
         return bump(G);
       }
       const game = G.board[cellOf(G, t)];
@@ -193,6 +196,13 @@ export function applyAction(G, a, env = {}) {
         return bump(G);
       }
       openChallenge(G, game, challengeStart(now, value), env);
+      return bump(G);
+    }
+    case 'choose': {
+      if (G.phase !== 'play' || T.stage !== 'choose' || !isActive(G, a) || !T.final) return false;
+      if (!finalChoices(G).includes(a.game)) return false;
+      T.final.games.push(a.game);
+      openChallenge(G, a.game, now + PAUSE_MS, env);
       return bump(G);
     }
     case 'retry': {
@@ -218,9 +228,10 @@ export function applyAction(G, a, env = {}) {
       T.last = { team: T.team, ok, game: T.ch.game, ch: T.ch.id, at: now, c: T.ch, L: T.live ?? null };
       const fin = T.final;
       if (fin) { // série de l'arrivée
-        if (ok && fin.k + 1 < fin.games.length) {
+        if (ok && fin.k + 1 < (fin.n || fin.games.length)) {
           fin.k++;
-          openChallenge(G, fin.games[fin.k], now + REVEAL_MS + 300, env);
+          fin.at = now + REVEAL_MS; // le choix suivant apparaît après la révélation
+          T.stage = 'choose';
           return bump(G);
         }
         T.final = null;
@@ -255,10 +266,11 @@ export function applyAction(G, a, env = {}) {
   }
 }
 
-function shuffle(arr, rnd) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
-  return a;
+/** Jeux que l'équipe peut choisir à l'arrivée : ceux du plateau, sans reprendre un jeu déjà choisi (sauf s'il n'y en a qu'un). */
+export function finalChoices(G) {
+  const games = G.games.length ? G.games : ['chemin'];
+  const left = games.filter((g) => !G.turn.final?.games.includes(g));
+  return left.length ? left : games;
 }
 
 function bump(G) { G.seq = (G.seq || 0) + 1; return true; }
@@ -276,7 +288,7 @@ function openChallenge(G, game, startAt, env) {
   while (used.length > 200) used.shift();
   const T = G.turn;
   T.ch = { id: (T.ch?.id || 0) + 1, game: g, cell: game, p: payload, startAt, deadline: startAt + (DURATION[g] || 45) * 1000 };
-  if (T.final) T.ch.final = { k: T.final.k, n: T.final.games.length }; // « Arrivée 2/6 »
+  if (T.final) T.ch.final = { k: T.final.k, n: T.final.n || T.final.games.length }; // « Arrivée 1/2 »
   T.live = null;
   T.stage = 'challenge';
 }

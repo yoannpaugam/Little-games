@@ -11,15 +11,15 @@
 //     sauvegardée et affichée ; chez un invité, elle est envoyée à l'arbitre sans rien modifier en local ;
 //   - render() reconstruit l'écran à partir de G.
 
-import { h, icon } from '../../js/core/dom.js?v=1.41.0';
-import { createStore } from '../../js/core/storage.js?v=1.41.0';
-import { GAMES } from '../registry.js?v=1.41.0';
+import { h, icon } from '../../js/core/dom.js?v=1.42.0';
+import { createStore } from '../../js/core/storage.js?v=1.42.0';
+import { GAMES } from '../registry.js?v=1.42.0';
 import {
   BOARD_COLS, BOARD_ROWS, MIN_TEAMS, MAX_TEAMS, MIN_LAPS, MAX_LAPS, DICE_MS, STEP_MS, REVEAL_MS, GRACE_MS,
-  cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName, boardCounts, MAX_WEIGHT,
-} from './logic.js?v=1.41.0';
-import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.41.0';
-import { openLink, BROKERS } from './net.js?v=1.41.0';
+  cellPos, newGame, applyAction, cellOf, goalOf, ranking, cleanName, boardCounts, MAX_WEIGHT, finalChoices,
+} from './logic.js?v=1.42.0';
+import { CHALLENGE_GAMES, loadCatalogs, pick, mountChallenge } from './challenges.js?v=1.42.0';
+import { openLink, BROKERS } from './net.js?v=1.42.0';
 
 const store = createStore('zinzin', { version: 1 });
 const DEFAULTS = { mode: 'solo', teams: 2, laps: 1, names: [] };
@@ -581,12 +581,28 @@ export async function mount(container, ctx) {
       const G = S.G, T = G.turn, t = G.teams[T.team];
       const mine = canAct();
       const rolling = T.roll && now() - T.roll.at < DICE_MS;
-      const key = [T.team, T.stage, mine, rolling, t.name, t.color, G.seq].join('|');
+      const choosing = T.stage === 'choose' && T.final && now() >= T.final.at; // le pion est arrivé, la réponse précédente est passée
+      const key = [T.team, T.stage, mine, rolling, choosing, t.name, t.color, G.seq].join('|');
       if (key === centerKey) return;
       centerKey = key;
       bannerEl.replaceChildren(h('i.zz-dot', { style: `background: ${t.color}` }),
         S.kind !== 'solo' && mine ? 'À toi !' : `Au tour de ${t.name}`);
-      if (T.stage === 'retry' && !rolling) {
+      if (choosing) {
+        const k = T.final.k + 1, n = T.final.n || 2;
+        bannerEl.replaceChildren(h('i.zz-dot', { style: `background: ${t.color}` }),
+          mine ? `Arrivée ${k}/${n} : choisis ton jeu` : `${t.name} choisit son jeu (${k}/${n})`);
+        actionBox.replaceChildren(h('div.zz-choices', finalChoices(G).map((g) => {
+          const m = meta[g] || {};
+          return h('button.zz-choice', {
+            type: 'button', disabled: !mine, style: `--game: ${m.accent || '#888'}`, 'aria-label': m.title || g,
+            onclick: () => dispatch({ t: 'choose', game: g }),
+          }, h('span.zz-retry-tile', icon(m.icon || 'dice')), h('small', m.title || g));
+        })));
+      } else if (T.stage === 'choose') {
+        if (actionBox.firstChild !== die) actionBox.replaceChildren(die);
+        die.disabled = true;
+        die.classList.remove('is-ready');
+      } else if (T.stage === 'retry' && !rolling) {
         const g = G.board[cellOf(G, t)], m = meta[g];
         retryTile.replaceChildren(icon(m?.icon || 'dice'));
         retryTile.style.setProperty('--game', m?.accent || '#888');

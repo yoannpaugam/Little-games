@@ -3,7 +3,7 @@
 Ce document décrit le jeu indépendamment de la technologie, pour pouvoir le refaire dans une autre application.
 
 ## Principe
-Un jeu de plateau entre équipes. À son tour, une équipe lance le dé, son pion avance, et la case où il s'arrête donne un **défi** tiré de l'un des autres jeux de l'application. **Tant que le défi n'est pas réussi, l'équipe reste sur la case** : à son tour suivant, elle retente un nouveau défi du même jeu au lieu de lancer le dé. **Pour gagner, il faut finir ses tours de plateau puis réussir, à l'arrivée, un défi de chaque jeu du plateau à la suite** ; un seul raté et l'équipe revient à la case d'où elle venait.
+Un jeu de plateau entre équipes. À son tour, une équipe lance le dé, son pion avance, et la case où il s'arrête donne un **défi** tiré de l'un des autres jeux de l'application. **Tant que le défi n'est pas réussi, l'équipe reste sur la case** : à son tour suivant, elle retente un nouveau défi du même jeu au lieu de lancer le dé. **Pour gagner, il faut finir ses tours de plateau puis réussir, à l'arrivée, 2 défis à la suite, dans 2 jeux choisis par l'équipe** ; un seul raté et l'équipe revient à la case d'où elle venait.
 
 On joue sur **un seul téléphone** (on se le passe) ou avec **un téléphone par équipe**. En multi, tout le monde voit en direct ce qui se passe sur le téléphone de l'équipe qui joue : le dé qui roule, le pion qui avance, le défi en cours (propositions tapées, cases touchées, point posé sur la carte).
 
@@ -23,16 +23,17 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 1. L'équipe touche le dé. Le dé roule 0,9 s, puis le pion avance case par case (0,26 s par case), puis le défi s'ouvre 0,45 s plus tard. Ces durées sont calculées à partir de l'heure du lancer : tous les téléphones voient la même animation au même moment.
 2. Case départ (après un tour complet) : pas de défi, on passe à l'équipe suivante.
 3. Le défi occupe l'écran à la place du plateau, avec une barre de temps qui se vide. À la fin, un bandeau **Réussi !** (vert) ou **Raté !** (rouge, avec la réponse : « C'était Titanic » ; pour Géoquizz, l'écart total) reste affiché 4,5 s sur tous les écrans.
-4. **Arrivée** : quand le pion atteint ou dépasse l'arrivée du dernier tour (la case départ), l'équipe enchaîne **un défi de chaque jeu du plateau**, dans un ordre tiré au hasard (« Arrivée 2/6 » dans l'en-tête du défi). Entre deux défis, la réponse reste affichée 4,5 s.
-   - Tous réussis : l'équipe gagne.
-   - Un seul raté : l'équipe revient à la case où elle était avant ce lancer (déjà résolue, donc elle relancera le dé à son prochain tour), et c'est à l'équipe suivante. Elle devra refaire toute la série à sa prochaine arrivée.
+4. **Arrivée** (depuis la 1.42.0, à la demande de Yoann) : quand le pion atteint ou dépasse l'arrivée du dernier tour (la case départ), l'équipe **choisit un jeu** parmi ceux du plateau : au centre, une tuile par jeu (icône et nom), « Arrivée 1/2 : choisis ton jeu ». Le défi de ce jeu s'ouvre ; s'il est réussi, elle choisit un **second jeu, différent du premier** (sauf s'il n'y a qu'un jeu sur le plateau), « Arrivée 2/2 » dans l'en-tête du défi. Les autres téléphones voient « <équipe> choisit son jeu (1/2) ». Entre deux défis, la réponse reste affichée 4,5 s, puis le choix apparaît.
+   - Les deux réussis : l'équipe gagne.
+   - Un seul raté : l'équipe revient à la case où elle était avant ce lancer (déjà résolue, donc elle relancera le dé à son prochain tour), et c'est à l'équipe suivante. Elle devra refaire ses 2 défis à sa prochaine arrivée.
+   - Une équipe qui quitte la partie pendant son choix revient aussi à sa case d'avant.
 5. Équipe suivante, dans l'ordre ; une équipe absente est sautée.
 
 ## Les défis
 | Case | Défi | Réussi si… | Temps |
 | --- | --- | --- | --- |
-| Affiche | Affiche floutée (flou 16 → 10 → 5 px) : taper le titre | bon titre en 3 essais | 45 s |
-| Visages | Photo très floutée et assombrie, une bande nette (yeux, nez ou bouche), une bande de plus à chaque raté. Le visage est découpé en **trois tranches qui se touchent sans se chevaucher** : la limite yeux / nez est à mi-chemin entre le centre des yeux et celui du nez, la limite nez / bouche à mi-chemin entre le nez et la bouche ; les yeux montent au-dessus de leur centre de 1,3 fois cette demi-distance (sourcils), la bouche descend d'autant (menton). Une tranche ne montre donc jamais la partie voisine. Deux tranches voisines dévoilées forment une seule bande, sans trait flou ; yeux et bouche sans le nez restent séparés par la tranche du nez, floutée | bon nom en 3 essais | 45 s |
+| Affiche | Affiche floutée (16 px, puis 10 px après le 1er raté ; plus d'éclaircissement ensuite, depuis la 1.42.0 : à 5 px le titre se lisait trop souvent) : taper le titre | bon titre en 3 essais | 45 s |
+| Visages | Photo très floutée et assombrie, **une seule bande nette** (yeux, nez ou bouche) ; à chaque raté, elle **change de place** sans s'ajouter à la précédente (depuis la 1.42.0), donc les trois parties sont vues une à une. Le visage est découpé en **trois tranches qui se touchent sans se chevaucher** : la limite yeux / nez est à mi-chemin entre le centre des yeux et celui du nez, la limite nez / bouche à mi-chemin entre le nez et la bouche ; les yeux montent au-dessus de leur centre de 1,3 fois cette demi-distance (sourcils), la bouche descend d'autant (menton). Une tranche ne montre donc jamais la partie voisine. | bon nom en 3 essais | 45 s |
 | Livres | Couverture dessinée (titre, année) : taper l'auteur. Le titre est à la taille de la couverture : son mot le plus long tient sur une ligne, sans être coupé. Après 1 raté : la littérature ; après 2 : les initiales | bon auteur en 3 essais | 40 s |
 | Géoquizz | **3 pays** à placer l'un après l'autre (« Place · pays 2/3 »), sur la même carte que le jeu Géoquizz (Mercator, terres et frontières lissées, répétée à gauche et à droite ; glisser, pincer, + / −). Le pays sous la souris (ou sous le doigt quand on touche) s'allume en rose. Après chaque point, le pays, l'écart et le total s'affichent 1,6 s (« +820 km · total 1 340 / 3 000 km »), puis le pays suivant arrive. Dès que le total dépasse 3 000 km, le défi est raté | **écart total ≤ 3 000 km** sur les 3 pays | 50 s |
 | Le chemin | Grille 5 × 7 : un chemin s'allume 4 s, puis on le retrace case par case | chemin complet avec moins de 3 erreurs | 40 s |
@@ -69,7 +70,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 - Tests : un relais local remplace les relais publics avec la clé `little-games:zinzin:broker` (`"ws://localhost:8888"`).
 
 ## Architecture
-- `logic.js` : état `G` sérialisable et `applyAction(G, action, env)`, sans DOM, testé (`tests/zinzin.test.js`). La même fonction sert sur un seul téléphone et chez l'arbitre. Actions : `join`, `name`, `leave`, `settings`, `start`, `roll`, `retry`, `live`, `result`, `timeout`, `restart`.
+- `logic.js` : état `G` sérialisable et `applyAction(G, action, env)`, sans DOM, testé (`tests/zinzin.test.js`). La même fonction sert sur un seul téléphone et chez l'arbitre. Actions : `join`, `name`, `leave`, `settings`, `start`, `roll`, `choose` (jeu choisi à l'arrivée), `retry`, `live`, `result`, `timeout`, `restart`.
 - `index.js` : écrans ; toute interaction passe par `dispatch(action)` (appliquée en local sur un seul téléphone ou chez l'arbitre, envoyée à l'arbitre chez un invité) ; `render()` reconstruit l'écran à partir de `G` en gardant le focus.
 - `challenges.js` : les six défis. Exception au contrat des jeux : il importe les **modules sans DOM** des autres jeux (règles de réponse, cadrage des visages, géométrie des pays, tirage des nonogrammes) et lit leurs catalogues.
 - `net.js` : la liaison MQTT.
