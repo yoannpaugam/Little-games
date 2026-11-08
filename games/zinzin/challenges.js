@@ -6,14 +6,14 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.41.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.41.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.41.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.41.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.41.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.41.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.41.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.41.0';
+import { h, icon } from '../../js/core/dom.js?v=1.42.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.42.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.42.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.42.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.42.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.42.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.42.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.42.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -234,7 +234,7 @@ const KINDS = {
       const frame = h('div.zz-frame', img);
       img.addEventListener('error', () => frame.append(h('p.zz-frame-alt', `${f.year} · ${f.director}`)));
       body.append(frame);
-      const BLUR = [16, 10, 5];
+      const BLUR = [16, 10]; // un seul éclaircissement : plus net, le titre se lisait trop souvent
       return {
         setTries(n) { img.style.filter = `blur(${BLUR[Math.min(n, BLUR.length - 1)]}px)`; },
         reveal() { img.style.filter = 'none'; },
@@ -261,20 +261,13 @@ const KINDS = {
       const ORDER = ['yeux', 'nez', 'bouche'];
       const zones = faceZones(p.box);
       const range = (name) => zones[name];
-      // Bandes visibles : deux parties voisines sur le visage (yeux et nez, nez et bouche) sont reliées en une seule bande
+      // Une seule bande visible : à chaque raté, elle passe à une autre partie du visage (sans s'ajouter à la précédente)
       const showBands = (n) => {
-        const open = ORDER.filter((name) => ch.p.bands.slice(0, n + 1).includes(name));
-        const parts = [];
-        open.forEach((name) => {
-          const [top, bottom] = range(name);
-          const last = parts[parts.length - 1];
-          if (last && ORDER.indexOf(name) === last.end + 1) { last.bottom = Math.max(last.bottom, bottom); last.top = Math.min(last.top, top); last.end++; }
-          else parts.push({ top, bottom, end: ORDER.indexOf(name) });
-        });
+        const name = ch.p.bands[Math.min(n, ch.p.bands.length - 1)] || ORDER[0];
+        const [top, bottom] = range(name);
         bands.forEach((img, k) => {
-          const part = parts[k];
-          img.hidden = !part;
-          if (part) img.style.clipPath = `inset(${part.top * 100}% ${(1 - c[0] - c[2]) * 100}% ${(1 - part.bottom) * 100}% ${c[0] * 100}%)`;
+          img.hidden = k > 0;
+          if (k === 0) img.style.clipPath = `inset(${top * 100}% ${(1 - c[0] - c[2]) * 100}% ${(1 - bottom) * 100}% ${c[0] * 100}%)`;
         });
       };
       const credit = h('p.zz-credit', [p.by, p.lic].filter(Boolean).join(' · '));

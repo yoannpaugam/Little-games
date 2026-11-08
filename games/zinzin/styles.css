@@ -183,6 +183,13 @@
 @keyframes zz-roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(14deg) scale(1.06); } 100% { transform: rotate(-10deg) scale(1); } }
 .zz-retry-tile { display: grid; place-items: center; width: min(calc(var(--cell) * 1.6), 110px); aspect-ratio: 1; border-radius: 22%; color: var(--game); background: color-mix(in srgb, var(--game) 22%, var(--bg-2)); border: 2px solid var(--game); }
 .zz-retry-tile .icon { width: 50%; height: 50%; }
+/* Arrivée : choix du jeu (un bouton par jeu du plateau) */
+.zz-choices { display: grid; grid-template-columns: repeat(3, auto); gap: .55rem .7rem; justify-content: center; }
+.zz-choice { display: grid; justify-items: center; gap: .25rem; min-width: 44px; padding: 0; border: 0; background: none; color: var(--fg, inherit); font: inherit; cursor: pointer; }
+.zz-choice .zz-retry-tile { width: min(calc(var(--cell) * 1.05), 72px); min-width: 44px; }
+.zz-choice small { font-size: .72rem; line-height: 1.1; opacity: .85; }
+.zz-choice:not(:disabled):hover .zz-retry-tile, .zz-choice:focus-visible .zz-retry-tile { transform: scale(1.06); }
+.zz-choice:disabled { cursor: default; opacity: .75; }
 
 /* ---------- Défi (par-dessus le plateau) ---------- */
 .zz-overlay { position: absolute; inset: 0 0 .5rem; z-index: 5; display: flex; background: var(--bg); }

@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   BOARD_SIZE, BOARD_COLS, BOARD_ROWS, cellPos, makeBoard, boardCounts, newGame, applyAction, goalOf, ranking,
-  randomPath, PATH_LANES, PATH_STEPS, PATH_MIN, challengeStart, GRACE_MS,
+  randomPath, PATH_LANES, PATH_STEPS, PATH_MIN, challengeStart, GRACE_MS, REVEAL_MS, FINAL_COUNT, finalChoices,
 } from '../games/zinzin/logic.js';
 
 const GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
@@ -59,7 +59,9 @@ test('proportions : une épreuve à 0 n’est ni sur le plateau ni à l’arriv�
   assert.deepEqual(G.games, GAMES.filter((g) => g !== 'visages' && g !== 'livres'));
   G.teams[0].steps = 27;
   applyAction(G, { t: 'roll' }, env());
-  assert.equal(G.turn.final.games.length, 4);
+  assert.equal(G.turn.stage, 'choose');
+  assert.deepEqual([...finalChoices(G)].sort(), [...G.games].sort(), 'on choisit parmi les épreuves du plateau');
+  assert.equal(applyAction(G, { t: 'choose', game: 'visages' }, env()), false, 'épreuve retirée : pas au choix');
   // tout à 0 : on garde toutes les épreuves
   const H = newGame({ mode: 'solo', games: GAMES, weights: Object.fromEntries(GAMES.map((g) => [g, 0])), teams: [{}, {}] }, env());
   assert.equal(H.games.length, GAMES.length);
@@ -114,7 +116,7 @@ test('délai dépassé : l’arbitre déclare le défi raté, pas avant la marge
   assert.equal(G.teams[0].stuck, true);
 });
 
-test('arrivée : un défi de chaque jeu à la suite, puis victoire', () => {
+test('arrivée : 2 jeux au choix à la suite, puis victoire', () => {
   const G = solo(3, 2);
   assert.equal(goalOf(G), 56);
   G.teams[1].steps = 54;
@@ -122,16 +124,24 @@ test('arrivée : un défi de chaque jeu à la suite, puis victoire', () => {
   applyAction(G, { t: 'roll' }, env({ rnd: seq(0.99) }));
   assert.equal(G.teams[1].steps, 56);
   assert.equal(G.phase, 'play');
+  assert.equal(G.turn.stage, 'choose', 'l’équipe choisit son premier jeu');
+  assert.equal(G.turn.final.n, FINAL_COUNT);
+  assert.equal(FINAL_COUNT, 2);
+  assert.equal(applyAction(G, { t: 'roll' }, env()), false);
+  assert.equal(applyAction(G, { t: 'choose', game: 'inconnu' }, env()), false);
+  assert.ok(applyAction(G, { t: 'choose', game: 'livres' }, env({ now: 2000 })));
   assert.equal(G.turn.stage, 'challenge');
-  assert.deepEqual([...G.turn.final.games].sort(), [...GAMES].sort(), 'un défi par jeu du plateau');
-  for (let k = 0; k < GAMES.length; k++) {
-    assert.equal(G.turn.ch.game, G.turn.final.games[k]);
-    assert.deepEqual(G.turn.ch.final, { k, n: GAMES.length });
-    assert.equal(G.turn.team, 1, 'la même équipe enchaîne');
-    applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: true }, env({ now: 2000 + k }));
-    if (k < GAMES.length - 1) assert.ok(G.turn.ch.startAt > 2000 + k, 'le défi suivant attend la fin de la révélation');
-    assert.equal(G.turn.last.ok, true);
-  }
+  assert.equal(G.turn.ch.game, 'livres');
+  assert.deepEqual(G.turn.ch.final, { k: 0, n: 2 });
+  applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: true }, env({ now: 3000 }));
+  assert.equal(G.turn.stage, 'choose', 'puis le second');
+  assert.equal(G.turn.team, 1, 'la même équipe enchaîne');
+  assert.ok(G.turn.final.at >= 3000 + REVEAL_MS, 'le choix suivant attend la fin de la révélation');
+  assert.ok(!finalChoices(G).includes('livres'), 'pas deux fois le même jeu');
+  assert.equal(applyAction(G, { t: 'choose', game: 'livres' }, env()), false);
+  applyAction(G, { t: 'choose', game: 'chemin' }, env({ now: 9000 }));
+  assert.deepEqual(G.turn.ch.final, { k: 1, n: 2 });
+  applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: true }, env({ now: 9500 }));
   assert.equal(G.phase, 'end');
   assert.equal(G.winner, 1);
   assert.equal(ranking(G)[0].i, 1);
@@ -147,7 +157,9 @@ test('arrivée : un défi raté renvoie à la case d’où l’on venait', () =>
   G.teams[0].steps = 25;
   applyAction(G, { t: 'roll' }, env({ rnd: seq(0.99) }));
   assert.equal(G.teams[0].steps, 28);
+  applyAction(G, { t: 'choose', game: G.games[0] });
   applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: true });
+  applyAction(G, { t: 'choose', game: finalChoices(G)[0] });
   applyAction(G, { t: 'result', ch: G.turn.ch.id, ok: false });
   assert.equal(G.teams[0].steps, 25);
   assert.equal(G.teams[0].stuck, false, 'la case d’origine est déjà résolue');
@@ -162,7 +174,14 @@ test('arrivée : seulement les jeux choisis', () => {
   assert.ok(G.board.slice(1).every((g) => g === 'livres' || g === 'chemin'));
   G.teams[0].steps = 27;
   applyAction(G, { t: 'roll' }, env());
-  assert.equal(G.turn.final.games.length, 2);
+  assert.deepEqual([...finalChoices(G)].sort(), ['chemin', 'livres']);
+  // un seul jeu sur le plateau : on le choisit deux fois
+  const H = newGame({ mode: 'solo', games: ['livres'], teams: [{}, {}] }, env());
+  H.teams[0].steps = 27;
+  applyAction(H, { t: 'roll' }, env());
+  applyAction(H, { t: 'choose', game: 'livres' }, env());
+  applyAction(H, { t: 'result', ch: H.turn.ch.id, ok: true }, env());
+  assert.deepEqual(finalChoices(H), ['livres']);
 });
 
 test('case départ (après un tour) : pas de défi, équipe suivante', () => {
@@ -249,4 +268,19 @@ test('visages : zones yeux / nez / bouche qui se touchent, sans chevauchement', 
     assert.ok(ye > z.yeux[0] && ye < z.yeux[1], `${p.id} : centre des yeux dans sa zone`);
     assert.ok(ym > z.bouche[0] && ym < z.bouche[1], `${p.id} : centre de la bouche dans sa zone`);
   }
+});
+
+test('arrivée : une équipe qui quitte pendant le choix revient à sa case', () => {
+  const G = newGame({ mode: 'multi', games: GAMES, teams: [{ cid: 'H' }] }, env());
+  applyAction(G, { t: 'join', cid: 'B' }, env());
+  applyAction(G, { t: 'start', cid: 'H' }, env());
+  G.turn.team = 1;
+  G.teams[1].steps = 26;
+  applyAction(G, { t: 'roll', cid: 'B' }, env({ rnd: seq(0.99) }));
+  assert.equal(G.turn.stage, 'choose');
+  assert.equal(applyAction(G, { t: 'choose', cid: 'H', game: 'livres' }, env()), false, 'seule l’équipe active choisit');
+  applyAction(G, { t: 'leave', cid: 'B' }, env());
+  assert.equal(G.teams[1].steps, 26);
+  assert.equal(G.turn.final, null);
+  assert.equal(G.turn.team, 0);
 });

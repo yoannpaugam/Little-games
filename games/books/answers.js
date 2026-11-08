@@ -1,7 +1,7 @@
 // Réponses acceptées pour le jeu « Livres » : on devine l'auteur d'un livre.
 // JavaScript pur (sans DOM) : testé dans tests/books.test.js.
 
-import { normalize, levenshtein, isMatch, closeness } from '../../js/core/fuzzy.js?v=1.41.0';
+import { normalize, levenshtein, isMatch, closeness } from '../../js/core/fuzzy.js?v=1.42.0';
 
 /** Forme comparable d'une réponse complète (comme fuzzy.js : sans accents, ni espaces, ni article initial). */
 const compact = (s) => normalize(s).replace(/ /g, '');
