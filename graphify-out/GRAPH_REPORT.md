@@ -1,17 +1,17 @@
-# Graph Report - little-games  (2026-11-16)
+# Graph Report - little-games  (2026-11-17)
 
 ## Corpus Check
-- 87 files · ~187,423 words
+- 87 files · ~187,433 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .css 11, (none) 2)
 
 ## Summary
-- 1037 nodes · 2149 edges · 39 communities
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.86)
+- 1037 nodes · 2150 edges · 39 communities
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `529dd0af`
+- Built from commit: `e9efdfd0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -73,11 +73,11 @@
   CLAUDE.md → js/core/dom.js
 - `Protections en place` --references--> `h()`  [INFERRED]
   SECURITY.md → js/core/dom.js
+- `Persistance (sur l'appareil)` --references--> `solo()`  [INFERRED]
+  games/zinzin/SPEC.md → tests/zinzin.test.js
 - `drawDie()` --calls--> `h()`  [EXTRACTED]
   games/zinzin/index.js → js/core/dom.js
 - `mount()` --calls--> `h()`  [EXTRACTED]
-  games/books/index.js → js/core/dom.js
-- `mount()` --calls--> `icon()`  [EXTRACTED]
   games/books/index.js → js/core/dom.js
 
 ## Import Cycles
@@ -127,7 +127,7 @@ Nodes (9): Navigation (URL), Niveaux, 🧩 Nonogramme : spécification, Persista
 
 ### Community 10 - "Spécification Affiches de cinéma"
 Cohesion: 0.18
-Nodes (10): 🎬 Affiche (affiches de cinéma) : spécification, Catalogue, Grille de toutes les affiches, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
+Nodes (10): 🎬 Affiches (affiches de cinéma) : spécification, Catalogue, Grille de toutes les affiches, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ### Community 11 - "README"
 Cohesion: 0.11
@@ -199,19 +199,19 @@ Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le ch
 
 ### Community 30 - "Compète de zinzin : règles, écrans, plateau et multi"
 Cohesion: 0.05
-Nodes (85): CHALLENGE_GAMES, faceZones(), loadCatalogs(), mountChallenge(), pick(), shuffle(), CID, DEFAULTS (+77 more)
+Nodes (86): CHALLENGE_GAMES, faceZones(), loadCatalogs(), mountChallenge(), pick(), shuffle(), CID, DEFAULTS (+78 more)
 
 ### Community 34 - "Workflow GitHub « Chiens : photos »"
 Cohesion: 0.07
 Nodes (27): default, description, type, concurrency, cancel-in-progress, group, all, jobs (+19 more)
 
 ### Community 35 - "Spécification Compète de zinzin"
-Cohesion: 0.14
-Nodes (13): Architecture, 🎲 Compète de zinzin : spécification, Créer une partie, Les défis, Multi : un téléphone par équipe, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite (+5 more)
+Cohesion: 0.15
+Nodes (12): Architecture, 🎲 Compète de zinzin : spécification, Créer une partie, Les défis, Multi : un téléphone par équipe, Navigation (URL), Pistes pour la suite, Place dans l'accueil (+4 more)
 
 ### Community 37 - "Pionnières : écran de jeu, réponses et galerie"
 Cohesion: 0.06
-Nodes (63): ./books/index.js?v=1.52.0, ./dogs/index.js?v=1.52.0, ensureStyles(), ./faces/index.js?v=1.52.0, mount(), closeSub(), openSub(), renderHome() (+55 more)
+Nodes (63): ./books/index.js?v=1.53.0, ./dogs/index.js?v=1.53.0, ensureStyles(), ./faces/index.js?v=1.53.0, mount(), closeSub(), openSub(), renderHome() (+55 more)
 
 ### Community 38 - "Sécurité et données (SECURITY.md)"
 Cohesion: 0.25
@@ -242,23 +242,23 @@ Cohesion: 0.15
 Nodes (12): Catalogue, Compète de zinzin, Galerie, Navigation (URL), Ordre, Persistance (sur l'appareil), ♀️ Pionnières : spécification, Pistes pour la suite (+4 more)
 
 ## Knowledge Gaps
-- **10 isolated node(s):** `./morceaux/index.js?v=1.52.0`, `./movie-posters/index.js?v=1.52.0`, `./faces/index.js?v=1.52.0`, `./books/index.js?v=1.52.0`, `./geo/index.js?v=1.52.0` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 413 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **10 isolated node(s):** `./morceaux/index.js?v=1.53.0`, `./movie-posters/index.js?v=1.53.0`, `./faces/index.js?v=1.53.0`, `./books/index.js?v=1.53.0`, `./geo/index.js?v=1.53.0` (+5 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 412 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `h()` connect `Pionnières : écran de jeu, réponses et galerie` to `Affiches : écran de jeu et grille`, `Livres : écran de jeu et réponses acceptées`, `Géoquizz : carte, distances et tirage`, `Nonogramme : grille, tirage et solveur logique`, `Sécurité et données (SECURITY.md)`, `Consignes pour Claude (CLAUDE.md)`, `Chiens : écran de jeu, tirage et photos`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : règles, écrans, plateau et multi`?**
-  _High betweenness centrality (0.161) - this node is a cross-community bridge._
+  _High betweenness centrality (0.173) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.52.0`, `./movie-posters/index.js?v=1.52.0`, `./faces/index.js?v=1.52.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.53.0`, `./movie-posters/index.js?v=1.53.0`, `./faces/index.js?v=1.53.0` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.07093253968253968 - nodes in this community are weakly interconnected._
 - **Why does `icon()` connect `Le chemin : grille, tirage du chemin et score` to `Affiches : écran de jeu et grille`, `Livres : écran de jeu et réponses acceptées`, `Géoquizz : carte, distances et tirage`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Chiens : écran de jeu, tirage et photos`, `Visages : écran Morceaux et jeunesse`, `Compète de zinzin : règles, écrans, plateau et multi`?**
-  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
 - **Should `Workflow GitHub « Morceaux historiques »` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Why does `renderPlay()` connect `Nonogramme : grille, tirage et solveur logique` to `Pionnières : écran de jeu, réponses et galerie`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
