@@ -6,15 +6,15 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.45.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.45.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.45.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.45.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.45.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.45.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.45.0';
-import { optionsFor, correctIndex, HIDDEN, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.45.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.45.0';
+import { h, icon } from '../../js/core/dom.js?v=1.46.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.46.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.46.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.46.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.46.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.46.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.46.0';
+import { optionsFor, correctIndex, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.46.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.46.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme', 'pionnieres'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -332,8 +332,8 @@ const KINDS = {
   pionnieres: womenChallenge,
 };
 
-// ---------------------------------------------------------------- Pionnières : 3 réponses visibles et 1 carte mystère
-// Une seule tentative. L = { pick } (réponse choisie, 3 = carte mystère).
+// ---------------------------------------------------------------- Pionnières : 4 réponses visibles
+// Une seule tentative. L = { pick } (position de la réponse choisie).
 function womenChallenge(body, foot, ch, api, L0) {
   const d = D.pionnieres, w = d.women.get(ch.p.id);
   const st = { pick: null, ...(L0 || {}) };
@@ -351,9 +351,9 @@ function womenChallenge(body, foot, ch, api, L0) {
   }
   body.append(frame);
   const btns = options.map((o, i) => h('button.zz-qcm', {
-    type: 'button', class: `zz-qcm${i === HIDDEN ? ' is-mystery' : ''}`, disabled: !api.active,
+    type: 'button', disabled: !api.active,
     onclick: () => choose(i),
-  }, i === HIDDEN ? h('span', h('strong', 'Carte mystère'), ' · la réponse cachée') : o.text));
+  }, o.text));
   foot.append(h('div.zz-qcm-list', btns));
   function choose(i) {
     if (!api.active || api.done || st.pick != null) return;
@@ -368,7 +368,6 @@ function womenChallenge(body, foot, ch, api, L0) {
       if (final) {
         b.classList.toggle('is-good', i === good);
         b.classList.toggle('is-bad', st.pick === i && i !== good);
-        if (i === HIDDEN) b.replaceChildren(h('span', h('strong', 'Carte mystère : '), options[HIDDEN].text));
       }
     });
   }

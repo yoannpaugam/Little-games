@@ -1,17 +1,16 @@
 // Jeu « Pionnières » : découvrir des femmes célèbres ou oubliées de l'histoire.
-// On voit son portrait, son nom et ses dates ; on devine son accomplissement principal parmi 4 réponses :
-// 3 visibles et 1 « carte mystère », retournée. La bonne réponse peut être cachée sous la carte mystère.
+// On voit son portrait, son nom et ses dates ; on devine son accomplissement principal parmi 4 réponses visibles.
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : sous-chemin de l'URL (['femme', id] | ['galerie'] | ['reglages'] | [])
 
-import { h, icon } from '../../js/core/dom.js?v=1.45.0';
-import { createStore } from '../../js/core/storage.js?v=1.45.0';
-import { DOMAINS, HIDDEN, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.45.0';
+import { h, icon } from '../../js/core/dom.js?v=1.46.0';
+import { createStore } from '../../js/core/storage.js?v=1.46.0';
+import { DOMAINS, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.46.0';
 
 const store = createStore('pionnieres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };
-const LETTERS = ['A', 'B', 'C'];
-const FLIP_MS = 900; // retournement de la carte mystère avant l'explication
+const LETTERS = ['A', 'B', 'C', 'D'];
+const REVEAL_MS = 900; // bonne et mauvaise réponse en couleur, avant l'explication
 const SOURCES = [
   ['Savanturières. Une histoire naturelle au féminin', 'Muséum national d’Histoire naturelle, 2025'],
   ['AWARE', 'Archives of Women Artists, Research and Exhibitions'],
@@ -70,16 +69,16 @@ export async function mount(container, ctx) {
   }
   const stats = () => {
     const list = Object.entries(answers).filter(([id]) => byId.has(id));
-    return { played: list.length, good: list.filter(([, a]) => a.ok).length, pts: list.reduce((t, [, a]) => t + (a.pts ?? (a.ok ? 1 : 0)), 0) };
+    return { played: list.length, good: list.filter(([, a]) => a.ok).length };
   };
 
   // ---------------------------------------------------------------- barre du haut
   function topBar(titleText, { back } = {}) {
-    const { pts } = stats();
+    const { played, good } = stats();
     return h('header.pn-bar',
       h('button.pn-icon-btn', { title: 'Retour', 'aria-label': 'Retour', onclick: back || ctx.home }, icon('back')),
       h('h1.pn-title', titleText),
-      h('span.pn-score', { title: 'Points (1 par bonne réponse, 2 avec la carte mystère)' }, h('strong', pts), ' pt', pts > 1 ? 's' : ''),
+      h('span.pn-score', { title: 'Bonnes réponses / femmes découvertes' }, h('strong', good), ` / ${played}`),
       h('button.pn-icon-btn', { title: 'Galerie', 'aria-label': 'Galerie', onclick: () => ctx.navigate('galerie') }, icon('grid')),
       h('button.pn-icon-btn', { title: 'Réglages', 'aria-label': 'Réglages', onclick: () => ctx.navigate('reglages') }, icon('settings'))
     );
@@ -129,46 +128,32 @@ export async function mount(container, ctx) {
     const done = answers[w.id];
 
     const announce = h('p.pn-sr', { role: 'status', 'aria-live': 'polite' });
-    const buttons = options.map((o, i) => {
-      const hidden = i === HIDDEN;
-      return h('button.pn-choice', {
-        type: 'button',
-        class: `pn-choice${hidden ? ' is-mystery' : ''}`,
-        'aria-label': hidden ? 'Carte mystère : la réponse cachée' : `${LETTERS[i]}. ${o.text}`,
-        onclick: () => choose(i),
-      },
-        hidden
-          ? h('span.pn-card',
-            h('span.pn-card-back', icon('sparkles'), h('span', h('strong', 'Carte mystère'), h('small', 'Parfois la bonne réponse')), h('b.pn-card-pts', '2 pts')),
-            h('span.pn-card-front', o.text))
-          : [h('span.pn-letter', LETTERS[i]), h('span.pn-choice-text', o.text)]
-      );
-    });
+    const buttons = options.map((o, i) => h('button.pn-choice', {
+      type: 'button', 'aria-label': `${LETTERS[i]}. ${o.text}`, onclick: () => choose(i),
+    }, h('span.pn-letter', LETTERS[i]), h('span.pn-choice-text', o.text)));
     const choices = h('div.pn-choices', { role: 'group', 'aria-label': 'Réponses' }, buttons);
     const area = h('div.pn-area', choices);
-    const hint = h('p.pn-hint', 'Qu’a-t-elle accompli ? La carte mystère cache parfois la bonne réponse : elle vaut 2 points.');
+    const hint = h('p.pn-hint', 'Qu’a-t-elle accompli ? Une seule réponse : choisis bien !');
     const row = h('div.pn-row', hint);
 
     function panel(a) {
       const picked = options[a.pick];
-      const mystery = options[HIDDEN];
       const credit = creditOf(w);
       const next = h('button.pn-btn.pn-btn-primary', { type: 'button', onclick: () => go(1) }, 'Suivante', icon('next'));
       row.replaceChildren(next);
       later(() => next.focus({ preventScroll: true }), 60);
       return h('div.pn-reveal', { class: `pn-reveal ${a.ok ? 'is-ok' : 'is-ko'}` },
-        h('p.pn-verdict', a.ok ? [icon('check'), a.pick === HIDDEN ? ' Carte mystère gagnante ! +2' : ' Bravo ! +1'] : a.pick === HIDDEN ? 'Carte mystère ratée !' : 'Raté !'),
+        h('p.pn-verdict', a.ok ? [icon('check'), ' Bravo !'] : 'Raté !'),
         h('p.pn-answer', options[good].text),
         h('p.pn-fact', w.fact),
-        good !== HIDDEN ? h('p.pn-mystery-was', h('span', 'La carte mystère cachait : '), mystery.text) : null,
-        !a.ok && a.pick !== HIDDEN && good === HIDDEN ? h('p.pn-mystery-was', h('span', 'Ta réponse : '), picked.text) : null,
+        !a.ok && picked ? h('p.pn-picked', h('span', 'Ta réponse : '), picked.text) : null,
         credit ? h('p.pn-credit', `Photo : ${credit}`) : null
       );
     }
 
     function choose(i) {
       if (answers[w.id]) return;
-      const a = { pick: i, ok: i === good, pts: i === good ? (i === HIDDEN ? 2 : 1) : 0, at: Date.now() };
+      const a = { pick: i, ok: i === good, at: Date.now() };
       answers[w.id] = a;
       store.set('answers', answers);
       buttons.forEach((b, k) => {
@@ -177,11 +162,10 @@ export async function mount(container, ctx) {
         b.classList.toggle('is-bad', k === i && i !== good);
         b.classList.toggle('is-picked', k === i);
       });
-      buttons[HIDDEN].classList.add('is-flipped');
       stage.classList.add(a.ok ? 'is-ok' : 'is-ko');
-      announce.textContent = `${a.ok ? `Bravo ! +${a.pts}` : 'Raté.'} ${w.name} : ${options[good].text}.`;
+      announce.textContent = `${a.ok ? 'Bravo !' : 'Raté.'} ${w.name} : ${options[good].text}.`;
       bar.replaceWith((bar = topBar('Pionnières')));
-      later(() => { area.replaceChildren(panel(a)); }, FLIP_MS);
+      later(() => { area.replaceChildren(panel(a)); }, REVEAL_MS);
     }
 
     const stage = h('section.pn-stage', { class: `pn-stage${done ? (done.ok ? ' is-ok' : ' is-ko') : ''}` },
@@ -264,14 +248,14 @@ export async function mount(container, ctx) {
       resetBtn.textContent = '✓ Progression effacée';
       resetBtn.disabled = true;
     } }, 'Effacer ma progression');
-    const { played, good, pts } = stats();
+    const { played, good } = stats();
     const nPhotos = women.filter((w) => photos[w.id]?.img).length;
 
     container.replaceChildren(
       topBar('Réglages', { back: () => ctx.navigate('femme', currentId) }),
       h('section.pn-settings',
         h('fieldset', h('legend', 'Règle du jeu'),
-          h('p.pn-small', `Découvre ${women.length} femmes, célèbres ou oubliées de l’histoire. Pour chacune, devine ce qu’elle a accompli. Trois réponses sont visibles ; la quatrième est une carte mystère, retournée. La bonne réponse est cachée sous la carte mystère une fois sur quatre : choisis-la si aucune réponse visible ne te convainc. Une seule tentative par femme : 1 point pour une bonne réponse visible, 2 points si la carte mystère était la bonne.`)
+          h('p.pn-small', `Découvre ${women.length} femmes, célèbres ou oubliées de l’histoire. Pour chacune, devine ce qu’elle a accompli parmi 4 réponses. Une seule tentative par femme : 1 point par bonne réponse.`)
         ),
         h('fieldset', h('legend', 'Ordre'),
           radio('order', 'random', 'Aléatoire', 'Des femmes célèbres reviennent de temps en temps parmi les oubliées.'),
@@ -283,7 +267,7 @@ export async function mount(container, ctx) {
           } }, 'Mélanger à nouveau')
         ),
         h('fieldset', h('legend', 'Progression'),
-          h('p.pn-small', `${played} femme${played > 1 ? 's' : ''} découverte${played > 1 ? 's' : ''} sur ${women.length}, ${good} bonne${good > 1 ? 's' : ''} réponse${good > 1 ? 's' : ''}, ${pts} point${pts > 1 ? 's' : ''}.`),
+          h('p.pn-small', `${played} femme${played > 1 ? 's' : ''} découverte${played > 1 ? 's' : ''} sur ${women.length}, ${good} bonne${good > 1 ? 's' : ''} réponse${good > 1 ? 's' : ''}.`),
           resetBtn
         ),
         h('fieldset', h('legend', 'Sources'),

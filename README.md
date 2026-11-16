@@ -89,7 +89,7 @@ On montre la photo d'un chien et il faut trouver sa race, parmi 110 : un QCM à 
 
 ## ♀️ Pionnières
 
-Faire découvrir 200 femmes célèbres ou, surtout, oubliées de l'histoire : scientifiques et naturalistes, artistes, exploratrices, aviatrices, inventrices, militantes, résistantes, sportives… On voit le portrait de chaque femme, son nom, ses dates et son domaine, et on devine ce qu'elle a accompli. Quatre réponses : 3 visibles et une carte mystère, retournée, qui cache la bonne réponse 1 fois sur 4 (1 point, 2 avec la carte mystère). Après la réponse, une phrase raconte son histoire. Galerie des 200 portraits, et un défi Pionnières dans Compète de zinzin. Sources d'inspiration : *Savanturières* (Muséum national d'Histoire naturelle), AWARE, Les femmes de l'histoire, Parcours de pionnières. Les portraits viennent de Wikimedia Commons (auteur et licence affichés) : `data/photos.json` est rempli par le workflow « Portraits (Pionnières) » (`scripts/fetch-pionnieres-photos.mjs`) ; en attendant, les portraits sont dessinés. Règles dans `games/women/quiz.js`, testées par `tests/pionnieres.test.js`.
+Faire découvrir 200 femmes célèbres ou, surtout, oubliées de l'histoire : scientifiques et naturalistes, artistes, exploratrices, aviatrices, inventrices, militantes, résistantes, sportives… On voit le portrait de chaque femme, son nom, ses dates et son domaine, et on devine ce qu'elle a accompli. Quatre réponses visibles, une seule tentative (1 point par bonne réponse). Après la réponse, une phrase raconte son histoire. Galerie des 200 portraits, et un défi Pionnières dans Compète de zinzin. Sources d'inspiration : *Savanturières* (Muséum national d'Histoire naturelle), AWARE, Les femmes de l'histoire, Parcours de pionnières. Les portraits viennent de Wikimedia Commons (auteur et licence affichés) : `data/photos.json` est rempli par le workflow « Portraits (Pionnières) » (`scripts/fetch-pionnieres-photos.mjs`) ; en attendant, les portraits sont dessinés. Règles dans `games/women/quiz.js`, testées par `tests/pionnieres.test.js`.
 
 ## 🎲 Compète de zinzin
 
@@ -184,7 +184,7 @@ games/dogs/              Le jeu « Chiens » (trouver la race d'après la photo)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 200 femmes), autonome
   ├─ index.js            Logique et vues (jeu, galerie, réglages)
-  ├─ quiz.js             Réponses (3 visibles + carte mystère), ordre de jeu, dates (testé)
+  ├─ quiz.js             Réponses (4 visibles), ordre de jeu, dates (testé)
   ├─ data/femmes.json    200 femmes ; data/photos.json : portraits (workflow « Portraits (Pionnières) »)
   ├─ styles.css          Styles du jeu (préfixe .pn-)
   └─ SPEC.md             Spécification fonctionnelle du jeu

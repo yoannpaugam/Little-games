@@ -1,9 +1,6 @@
 // Pionnières : règles du quiz, sans DOM (testées, et réutilisées par Compète de zinzin).
-// Pour chaque femme, 4 réponses : la bonne et 3 leurres. Elles sont mélangées d'après l'identifiant et une graine :
-// les 3 premières sont visibles, la 4e est la « carte mystère », retournée. La bonne réponse est donc
-// cachée une fois sur quatre : si aucune réponse visible ne convainc, on choisit la carte mystère.
-
-export const HIDDEN = 3; // position de la carte mystère
+// Pour chaque femme, 4 réponses visibles : la bonne et 3 leurres, mélangés d'après l'identifiant et une graine
+// (la bonne réponse reste à la même place quand on revient sur une femme).
 
 /** Domaines du catalogue : libellé et teinte (portrait dessiné quand il n'y a pas de photo). */
 export const DOMAINS = {
@@ -49,13 +46,13 @@ export function shuffle(arr, rand) {
   return a;
 }
 
-/** Les 4 réponses d'une femme, dans l'ordre d'affichage : [{ text, ok }] ; la dernière est la carte mystère. */
+/** Les 4 réponses d'une femme, dans l'ordre d'affichage : [{ text, ok }]. */
 export function optionsFor(woman, seed = 0) {
   const all = [{ text: woman.answer, ok: true }, ...woman.lures.map((text) => ({ text, ok: false }))];
   return shuffle(all, rng(hash(`${woman.id}:${seed}`)));
 }
 
-/** Position de la bonne réponse (0, 1, 2 visibles ; 3 = carte mystère). */
+/** Position de la bonne réponse (0 à 3). */
 export const correctIndex = (options) => options.findIndex((o) => o.ok);
 
 /**
