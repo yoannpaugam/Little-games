@@ -1,7 +1,7 @@
 # Graph Report - little-games  (2026-11-16)
 
 ## Corpus Check
-- 87 files · ~186,935 words
+- 87 files · ~187,242 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .css 11, (none) 2)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5f4b7d7c`
+- Built from commit: `45712bb7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -211,7 +211,7 @@ Nodes (13): Architecture, 🎲 Compète de zinzin : spécification, Créer une p
 
 ### Community 37 - "Pionnières : écran de jeu, réponses et galerie"
 Cohesion: 0.06
-Nodes (63): ./books/index.js?v=1.50.0, ./dogs/index.js?v=1.50.0, ensureStyles(), ./faces/index.js?v=1.50.0, mount(), closeSub(), openSub(), renderHome() (+55 more)
+Nodes (63): ./books/index.js?v=1.51.0, ./dogs/index.js?v=1.51.0, ensureStyles(), ./faces/index.js?v=1.51.0, mount(), closeSub(), openSub(), renderHome() (+55 more)
 
 ### Community 38 - "Sécurité et données (SECURITY.md)"
 Cohesion: 0.25
@@ -242,7 +242,7 @@ Cohesion: 0.15
 Nodes (12): Catalogue, Compète de zinzin, Galerie, Navigation (URL), Ordre, Persistance (sur l'appareil), ♀️ Pionnières : spécification, Pistes pour la suite (+4 more)
 
 ## Knowledge Gaps
-- **10 isolated node(s):** `./morceaux/index.js?v=1.50.0`, `./movie-posters/index.js?v=1.50.0`, `./faces/index.js?v=1.50.0`, `./books/index.js?v=1.50.0`, `./geo/index.js?v=1.50.0` (+5 more)
+- **10 isolated node(s):** `./morceaux/index.js?v=1.51.0`, `./movie-posters/index.js?v=1.51.0`, `./faces/index.js?v=1.51.0`, `./books/index.js?v=1.51.0`, `./geo/index.js?v=1.51.0` (+5 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 413 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
@@ -252,7 +252,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.149) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.50.0`, `./movie-posters/index.js?v=1.50.0`, `./faces/index.js?v=1.50.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.51.0`, `./movie-posters/index.js?v=1.51.0`, `./faces/index.js?v=1.51.0` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.07093253968253968 - nodes in this community are weakly interconnected._

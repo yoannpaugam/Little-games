@@ -196,7 +196,7 @@ test('catalogue des races de chiens', async () => {
 test('catalogue des Pionnières', async () => {
   const women = await load('games/women/data/femmes.json');
   const { DOMAINS } = await import('../games/women/quiz.js');
-  assert.equal(women.length, 200);
+  assert.equal(women.length, 202);
   const sentence = (v) => text(v) && v.length <= 80;
   const errors = checkEntries(women, {
     id: [true, (v) => SLUG.test(v)],
