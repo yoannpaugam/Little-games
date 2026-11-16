@@ -1,8 +1,8 @@
-// Pionnières : 4 réponses dont une cachée, ordre de jeu, dates.
+// Pionnières : 4 réponses visibles, ordre de jeu, dates.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { optionsFor, correctIndex, HIDDEN, playOrder, lifespan, initials } from '../games/women/quiz.js';
+import { optionsFor, correctIndex, playOrder, lifespan, initials } from '../games/women/quiz.js';
 
 const women = JSON.parse(await readFile(new URL('../games/women/data/femmes.json', import.meta.url), 'utf8'));
 
@@ -16,11 +16,11 @@ test('4 réponses, une seule bonne, toujours à la même place pour une graine d
   }
 });
 
-test('la bonne réponse est sous la carte mystère environ une fois sur quatre', () => {
-  let hidden = 0, n = 0;
-  for (let seed = 0; seed < 20; seed++) for (const w of women) { n++; if (correctIndex(optionsFor(w, seed)) === HIDDEN) hidden++; }
-  const rate = hidden / n;
-  assert.ok(rate > 0.2 && rate < 0.3, `taux ${rate}`);
+test('la bonne réponse est à chacune des 4 places environ une fois sur quatre', () => {
+  const at = [0, 0, 0, 0];
+  let n = 0;
+  for (let seed = 0; seed < 20; seed++) for (const w of women) { n++; at[correctIndex(optionsFor(w, seed))]++; }
+  for (const k of at) assert.ok(k / n > 0.2 && k / n < 0.3, `répartition ${at}`);
 });
 
 test('ordre de jeu : toutes les femmes, une seule fois, célèbres réparties', () => {
