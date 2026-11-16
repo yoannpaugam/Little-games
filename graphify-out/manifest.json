@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "games/faces/index.js": {
-    "mtime": 1794862125.52691,
-    "seen": 1794862174.4353979,
-    "ast_hash": "83b270f923ae04d03757b4d66097e580",
+    "mtime": 1794869004.1753802,
+    "seen": 1794869043.8713286,
+    "ast_hash": "f01e6cd873b6a545406e60ed2bf5afea",
     "semantic_hash": ""
   },
   "games/movie-posters/data/films.json": {
@@ -30,27 +30,27 @@
     "semantic_hash": ""
   },
   "games/movie-posters/index.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.435424,
-    "ast_hash": "5131cf8757549f72ad3c9bdfcc41cb9c",
+    "mtime": 1794869004.19138,
+    "seen": 1794869043.8713474,
+    "ast_hash": "68ff766fabbbce06dc53f3893d3de1a4",
     "semantic_hash": ""
   },
   "games/movie-posters/posters.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.4354262,
-    "ast_hash": "b3370162e517e499ab374667f2b48945",
+    "mtime": 1794869004.19138,
+    "seen": 1794869043.871349,
+    "ast_hash": "40be98e277985e93680767a5121b7c2c",
     "semantic_hash": ""
   },
   "games/registry.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.4354377,
-    "ast_hash": "8a95321755d6e12e2411791dbe3d4b4a",
+    "mtime": 1794869004.1953802,
+    "seen": 1794869043.871357,
+    "ast_hash": "b674cde9db35c923814dfde3f11f4a1b",
     "semantic_hash": ""
   },
   "js/app.js": {
-    "mtime": 1794862125.54691,
-    "seen": 1794862174.435456,
-    "ast_hash": "4ab60187c7d9db21f5476862ecdfaef2",
+    "mtime": 1794869004.2153802,
+    "seen": 1794869043.8713691,
+    "ast_hash": "775560090593cf963b696702a0c0f7ae",
     "semantic_hash": ""
   },
   "js/core/dom.js": {
@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1794862125.54691,
-    "seen": 1794862174.4354646,
-    "ast_hash": "5c4a0a75ffb7facda7d796e6bb3ad238",
+    "mtime": 1794869004.2153802,
+    "seen": 1794869043.871374,
+    "ast_hash": "59cf7396ff35f9a11928be3a866336fe",
     "semantic_hash": ""
   },
   "scripts/fetch-posters.mjs": {
@@ -174,9 +174,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1794862171.0152643,
-    "seen": 1794862174.4355662,
-    "ast_hash": "0f72171332c79245b64084e62f18bfb1",
+    "mtime": 1794869003.9530356,
+    "seen": 1794869043.871415,
+    "ast_hash": "dcbd865f8025ff5ca325dcc703bf0caf",
     "semantic_hash": ""
   },
   "SECURITY.md": {
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1794862125.54691,
-    "seen": 1794862174.435594,
-    "ast_hash": "ab48d46f016ccc0877065c32c3403cb9",
+    "mtime": 1794869004.2153802,
+    "seen": 1794869043.8714297,
+    "ast_hash": "4dd7139d2491c4401c39fe094d0d67bf",
     "semantic_hash": ""
   },
   "scripts/celeb-quiz-builder.py": {
@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "games/faces/morceaux/answers.js": {
-    "mtime": 1794862125.52691,
-    "seen": 1794862174.4354002,
-    "ast_hash": "ad82bf48815b824b871b4bc019303dda",
+    "mtime": 1794869004.1753802,
+    "seen": 1794869043.8713303,
+    "ast_hash": "62b5bf10acd612a21a8765adf523983f",
     "semantic_hash": ""
   },
   "games/faces/morceaux/data/jeunesse.json": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "games/faces/morceaux/index.js": {
-    "mtime": 1794862125.52691,
-    "seen": 1794862174.4354103,
-    "ast_hash": "65143c570047714644a1b752a3ba76b6",
+    "mtime": 1794869004.1833801,
+    "seen": 1794869043.8713372,
+    "ast_hash": "5f76a8935b61efddc721615a00d97b05",
     "semantic_hash": ""
   },
   "scripts/jeunesse-seed.json": {
@@ -264,9 +264,9 @@
     "semantic_hash": ""
   },
   "games/books/answers.js": {
-    "mtime": 1794862125.5229099,
-    "seen": 1794862174.4353755,
-    "ast_hash": "25d2e2fb75a1eb545b7fca77667a017a",
+    "mtime": 1794869004.17138,
+    "seen": 1794869043.8713107,
+    "ast_hash": "d9ad4c9003f5f9bddfb5cd4ffeb08629",
     "semantic_hash": ""
   },
   "games/books/data/livres.json": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "games/books/index.js": {
-    "mtime": 1794862125.5229099,
-    "seen": 1794862174.4353805,
-    "ast_hash": "577ce05ff6689a995b72d2a225758a7a",
+    "mtime": 1794869004.17138,
+    "seen": 1794869043.871315,
+    "ast_hash": "8fd29524a4d7de6706e94952f6351274",
     "semantic_hash": ""
   },
   "tests/books.test.js": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "games/geo/index.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.4354165,
-    "ast_hash": "fda2447e7966dd626cb9b1ab571258ad",
+    "mtime": 1794869004.18738,
+    "seen": 1794869043.8713424,
+    "ast_hash": "3e1b3bb728d111dc1937dcecd0bebc25",
     "semantic_hash": ""
   },
   "tests/geo.test.js": {
@@ -342,9 +342,9 @@
     "semantic_hash": ""
   },
   "games/path/index.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.4354334,
-    "ast_hash": "9d9f68c3ea59d7d333c8af30a4299663",
+    "mtime": 1794869004.1953802,
+    "seen": 1794869043.8713546,
+    "ast_hash": "f1a02343766f3ae1a88a62060d671d92",
     "semantic_hash": ""
   },
   "games/path/path.js": {
@@ -366,9 +366,9 @@
     "semantic_hash": ""
   },
   "games/nonogram/index.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.4354289,
-    "ast_hash": "e033cd82e2810d95fd4ce2b650f186f3",
+    "mtime": 1794869004.19138,
+    "seen": 1794869043.8713515,
+    "ast_hash": "a9818f19dc0deada386fe263acf5b09d",
     "semantic_hash": ""
   },
   "games/nonogram/nonogram.js": {
@@ -390,15 +390,15 @@
     "semantic_hash": ""
   },
   "games/zinzin/challenges.js": {
-    "mtime": 1794862125.53491,
-    "seen": 1794862174.4354482,
-    "ast_hash": "ccfcc00ce028eb891261c6d1db29959a",
+    "mtime": 1794869004.1993802,
+    "seen": 1794869043.8713644,
+    "ast_hash": "f7e74da6556a709bffa1b8da17e1d4f3",
     "semantic_hash": ""
   },
   "games/zinzin/index.js": {
-    "mtime": 1794862125.53491,
-    "seen": 1794862174.43545,
-    "ast_hash": "39b7ad44d03c40aaad3a0ea3c072b71f",
+    "mtime": 1794869004.1993802,
+    "seen": 1794869043.871365,
+    "ast_hash": "c1896bffafe13cadad0e88ccbf57b771",
     "semantic_hash": ""
   },
   "games/zinzin/logic.js": {
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "games/dogs/index.js": {
-    "mtime": 1794862125.5229099,
-    "seen": 1794862174.4353876,
-    "ast_hash": "8371ddee04290a4540c9386620acd305",
+    "mtime": 1794869004.17138,
+    "seen": 1794869043.8713198,
+    "ast_hash": "8f0fd7ee13865b244790a8331f6eeb36",
     "semantic_hash": ""
   },
   "games/dogs/quiz.js": {
@@ -492,15 +492,15 @@
     "semantic_hash": ""
   },
   "games/women/data/photos.json": {
-    "mtime": 1794862104.0264773,
-    "seen": 1794862174.4354422,
-    "ast_hash": "0743eda18f06f9d87607613445ef823d",
+    "mtime": 1794869003.9275286,
+    "seen": 1794869043.87136,
+    "ast_hash": "87ed2725f013e1c932365eba8753ec7a",
     "semantic_hash": ""
   },
   "games/women/index.js": {
-    "mtime": 1794862125.53091,
-    "seen": 1794862174.4354439,
-    "ast_hash": "e3b24c50a756af09474bdb84f64c1244",
+    "mtime": 1794869004.1953802,
+    "seen": 1794869043.8713615,
+    "ast_hash": "db7d0b0c94f1637d89411894539d0297",
     "semantic_hash": ""
   },
   "games/women/quiz.js": {
@@ -522,9 +522,9 @@
     "semantic_hash": ""
   },
   "games/women/SPEC.md": {
-    "mtime": 1794862171.0145776,
-    "seen": 1794862174.4355896,
-    "ast_hash": "35b2067cea2ed02523ad2dae09d7e1e0",
+    "mtime": 1794869003.947342,
+    "seen": 1794869043.871427,
+    "ast_hash": "b50cd563b07f1925bc8140e1ee2dc8ff",
     "semantic_hash": ""
   },
   "games/women/photos/ada-lovelace.jpg": {
@@ -558,9 +558,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/alice-ball.jpg": {
-    "mtime": 1794862104.0212004,
-    "seen": 1794862174.4356072,
-    "ast_hash": "6d756c21652cd24e9d0df341280fffb5",
+    "mtime": 1794869003.901951,
+    "seen": 1794869043.871437,
+    "ast_hash": "21b4c349a4aec153a8fb4308d60b8fb3",
     "semantic_hash": ""
   },
   "games/women/photos/alice-guy.jpg": {
@@ -606,9 +606,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/annie-londonderry.jpg": {
-    "mtime": 1794862104.0197473,
-    "seen": 1794862174.4356225,
-    "ast_hash": "25cb064721c19708e3189c583da663c1",
+    "mtime": 1794869003.9022648,
+    "seen": 1794869043.8714461,
+    "ast_hash": "75e966cb24e0f1cee9cddde1be6a7f16",
     "semantic_hash": ""
   },
   "games/women/photos/artemisia-gentileschi.jpg": {
@@ -648,8 +648,8 @@
     "semantic_hash": ""
   },
   "games/women/photos/berty-albrecht.jpg": {
-    "mtime": 1794862104.0213754,
-    "seen": 1794862174.435635,
+    "mtime": 1794869003.9025586,
+    "seen": 1794869043.8714569,
     "ast_hash": "20da08f7a80e76177ead86840bbde3f3",
     "semantic_hash": ""
   },
@@ -1158,9 +1158,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/katia-krafft.jpg": {
-    "mtime": 1794862104.0255077,
-    "seen": 1794862174.435793,
-    "ast_hash": "5b5f3c745f16c89790ec5ba92a47c46b",
+    "mtime": 1794869003.902864,
+    "seen": 1794869043.871566,
+    "ast_hash": "f7d27f17e659ea59380b6732d737bf5b",
     "semantic_hash": ""
   },
   "games/women/photos/lee-miller.jpg": {
@@ -1176,9 +1176,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/lili-boulanger.jpg": {
-    "mtime": 1794862104.021418,
-    "seen": 1794862174.4357982,
-    "ast_hash": "ac44b54e0945845c341870d7f8f71d62",
+    "mtime": 1794869003.9030716,
+    "seen": 1794869043.8715696,
+    "ast_hash": "49f15d8d27324ec21c5a650a3aa617a7",
     "semantic_hash": ""
   },
   "games/women/photos/lise-meitner.jpg": {
@@ -1230,9 +1230,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/madame-de-la-fayette.jpg": {
-    "mtime": 1794862104.0166533,
-    "seen": 1794862174.4358144,
-    "ast_hash": "accdaca9bc53d03ee9e187b10da333c0",
+    "mtime": 1794869003.9032478,
+    "seen": 1794869043.871581,
+    "ast_hash": "d03260b649b521359777b19f6990e2e7",
     "semantic_hash": ""
   },
   "games/women/photos/madeleine-basseporte.jpg": {
@@ -1524,9 +1524,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/selma-lagerlof.jpg": {
-    "mtime": 1794862104.018965,
-    "seen": 1794862174.4359093,
-    "ast_hash": "a05bf57ca0c07d966ad5e7a1389c0829",
+    "mtime": 1794869003.9036164,
+    "seen": 1794869043.8716462,
+    "ast_hash": "832225bdb3687c0ea9d2623a252175c8",
     "semantic_hash": ""
   },
   "games/women/photos/simone-de-beauvoir.jpg": {
@@ -1584,9 +1584,9 @@
     "semantic_hash": ""
   },
   "games/women/photos/sophie-scholl.jpg": {
-    "mtime": 1794862104.0242548,
-    "seen": 1794862174.4359276,
-    "ast_hash": "5ab703878e59be1c09d982851c8cae92",
+    "mtime": 1794869003.903962,
+    "seen": 1794869043.87166,
+    "ast_hash": "a246fa3a52ca44d1cd64110ebf6ef273",
     "semantic_hash": ""
   },
   "games/women/photos/sophie-taeuber-arp.jpg": {
@@ -1677,6 +1677,54 @@
     "mtime": 1794862104.0211499,
     "seen": 1794862174.4359543,
     "ast_hash": "00e98215064bc4daa49b4721cc56a6a0",
+    "semantic_hash": ""
+  },
+  "games/women/photos/barbe-nicole-clicquot.jpg": {
+    "mtime": 1794869003.902431,
+    "seen": 1794869043.8714526,
+    "ast_hash": "da5d7ad403ed3381208c2a7576ae7877",
+    "semantic_hash": ""
+  },
+  "games/women/photos/margaret-hamilton.jpg": {
+    "mtime": 1794869003.9033694,
+    "seen": 1794869043.8715901,
+    "ast_hash": "c3c761ca44fec45bbde0b4bb6cf7e683",
+    "semantic_hash": ""
+  },
+  "games/women/photos/marie-anne-lavoisier.jpg": {
+    "mtime": 1794869003.903415,
+    "seen": 1794869043.8715985,
+    "ast_hash": "dd0862f2f476e8e85713500c0ba716eb",
+    "semantic_hash": ""
+  },
+  "games/women/photos/marie-louise-paris.jpg": {
+    "mtime": 1794869003.903463,
+    "seen": 1794869043.871602,
+    "ast_hash": "8a80374adbddf4dc2717be90ea8eaf6d",
+    "semantic_hash": ""
+  },
+  "games/women/photos/mary-anderson.jpg": {
+    "mtime": 1794869003.9034927,
+    "seen": 1794869043.871609,
+    "ast_hash": "92b27592b5cdc72c091c260db618ac42",
+    "semantic_hash": ""
+  },
+  "games/women/photos/seraphine-louis.jpg": {
+    "mtime": 1794869003.903715,
+    "seen": 1794869043.8716471,
+    "ast_hash": "17b34d118678f7780cd1ae661bd7c375",
+    "semantic_hash": ""
+  },
+  "games/women/photos/tamara-de-lempicka.jpg": {
+    "mtime": 1794869003.9040537,
+    "seen": 1794869043.8716667,
+    "ast_hash": "854e2539c6e8c2e08ebe3970f842cfed",
+    "semantic_hash": ""
+  },
+  "games/women/photos/vivian-maier.jpg": {
+    "mtime": 1794869003.9041307,
+    "seen": 1794869043.8716748,
+    "ast_hash": "0a48ef39c48c6a40b3c9315cb3a0f758",
     "semantic_hash": ""
   }
 }
