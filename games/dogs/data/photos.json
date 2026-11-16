@@ -1,0 +1,772 @@
+{
+ "berger-allemand": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/German_Shepherd_-_DSC_0346_%2810096362833%29.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/d0/German_Shepherd_-_DSC_0346_%2810096362833%29.jpg",
+  "file": "German Shepherd - DSC 0346 (10096362833).jpg",
+  "by": "gomagoti",
+  "lic": "CC BY-SA 2.5"
+ },
+ "berger-australien": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Australian_Shepherd_red_bi.JPG/960px-Australian_Shepherd_red_bi.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Australian_Shepherd_red_bi.JPG/330px-Australian_Shepherd_red_bi.JPG",
+  "file": "Australian Shepherd red bi.JPG",
+  "by": "Trickdog-Fina",
+  "lic": "CC BY-SA 3.0"
+ },
+ "border-collie": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Border_Collie_600.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Border_Collie_600.jpg",
+  "file": "Border Collie 600.jpg",
+  "by": "Auteur inconnu",
+  "lic": "CC BY-SA 3.0"
+ },
+ "colley-a-poil-long": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Rough-Collie-japan08_%28cropped%29.jpg/960px-Rough-Collie-japan08_%28cropped%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Rough-Collie-japan08_%28cropped%29.jpg/330px-Rough-Collie-japan08_%28cropped%29.jpg",
+  "file": "Rough-Collie-japan08 (cropped).jpg",
+  "by": "Yasu w",
+  "lic": "CC BY-SA 4.0"
+ },
+ "berger-des-shetland": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Shetland_Sheepdog_sable.jpg/960px-Shetland_Sheepdog_sable.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Shetland_Sheepdog_sable.jpg/330px-Shetland_Sheepdog_sable.jpg",
+  "file": "Shetland Sheepdog sable.jpg",
+  "by": "Flickr user nickobec (Nick Cowie)",
+  "lic": "CC BY-SA 2.0"
+ },
+ "berger-belge-malinois": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Malinois_portrait.jpg/960px-Malinois_portrait.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Malinois_portrait.jpg/330px-Malinois_portrait.jpg",
+  "file": "Malinois portrait.jpg",
+  "by": "U.S. Department of Defense",
+  "lic": "Public domain"
+ },
+ "berger-belge-groenendael": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/I%C2%B4Ker_de_R.Brown.jpg/960px-I%C2%B4Ker_de_R.Brown.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/I%C2%B4Ker_de_R.Brown.jpg/330px-I%C2%B4Ker_de_R.Brown.jpg",
+  "file": "I´Ker de R.Brown.jpg",
+  "by": "Jpiularch",
+  "lic": "CC BY-SA 4.0"
+ },
+ "berger-belge-tervueren": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Tervuren.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Tervuren.jpg",
+  "file": "Tervuren.jpg",
+  "by": "Patty Carlson",
+  "lic": "CC BY 2.0"
+ },
+ "berger-blanc-suisse": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/White_Swiss_Shepherd_Dog_Djinn_%28cropped%29.JPG/960px-White_Swiss_Shepherd_Dog_Djinn_%28cropped%29.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/White_Swiss_Shepherd_Dog_Djinn_%28cropped%29.JPG/330px-White_Swiss_Shepherd_Dog_Djinn_%28cropped%29.JPG",
+  "file": "White Swiss Shepherd Dog Djinn (cropped).JPG",
+  "by": "Durdur31",
+  "lic": "Public domain"
+ },
+ "beauceron": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/3/31/BeauceronStand.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/31/BeauceronStand.jpg",
+  "file": "BeauceronStand.jpg",
+  "by": "Stefan Schmitz",
+  "lic": "CC BY-SA 3.0 de"
+ },
+ "briard": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Briard_fauve.JPG/960px-Briard_fauve.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Briard_fauve.JPG/330px-Briard_fauve.JPG",
+  "file": "Briard fauve.JPG",
+  "by": "Birgit Balzer, Deutschland (uploaded by Caronna 17:00, 10 Feb 2005 (UTC))",
+  "lic": "CC BY-SA 3.0"
+ },
+ "bobtail": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Old_English_Sheepdog_%28side%29.jpg/960px-Old_English_Sheepdog_%28side%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Old_English_Sheepdog_%28side%29.jpg/330px-Old_English_Sheepdog_%28side%29.jpg",
+  "file": "Old English Sheepdog (side).jpg",
+  "by": "AKS.9955",
+  "lic": "CC BY-SA 4.0"
+ },
+ "berger-des-pyrenees": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Berger-des-Pyrenees_Ellea_800x600.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Berger-des-Pyrenees_Ellea_800x600.jpg",
+  "file": "Berger-des-Pyrenees Ellea 800x600.jpg",
+  "by": "No machine-readable author provided. KeJa~commonswiki assumed (based on copyrig…",
+  "lic": "CC BY-SA 3.0"
+ },
+ "puli": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/PuliBlack_wb.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/ab/PuliBlack_wb.jpg",
+  "file": "PuliBlack wb.jpg",
+  "by": "Original uploader was Elf at en.wikipedia",
+  "lic": "CC BY-SA 3.0"
+ },
+ "komondor": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Komondor_delvin.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Komondor_delvin.jpg",
+  "file": "Komondor delvin.jpg",
+  "by": "Nikki68 at Russian Wikipedia",
+  "lic": "CC BY 2.5"
+ },
+ "bouvier-des-flandres": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Bouvier.JPG",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Bouvier.JPG",
+  "file": "Bouvier.JPG",
+  "by": "Basco at Dutch Wikipedia ( Original text: annekedirven@tiscali.nl )",
+  "lic": "CC BY-SA 3.0"
+ },
+ "welsh-corgi-pembroke": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Welsh_Pembroke_Corgi.jpg/960px-Welsh_Pembroke_Corgi.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Welsh_Pembroke_Corgi.jpg/330px-Welsh_Pembroke_Corgi.jpg",
+  "file": "Welsh Pembroke Corgi.jpg",
+  "by": "Dog breed facts",
+  "lic": "CC BY-SA 4.0"
+ },
+ "chien-loup-tchecoslovaque": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Czechoslovakian-wolfdog-profile_big.jpg/960px-Czechoslovakian-wolfdog-profile_big.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Czechoslovakian-wolfdog-profile_big.jpg/330px-Czechoslovakian-wolfdog-profile_big.jpg",
+  "file": "Czechoslovakian-wolfdog-profile big.jpg",
+  "by": "Pandora666",
+  "lic": "CC BY-SA 3.0"
+ },
+ "bouvier-bernois": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/3-BerneseMountainDogInGrass.jpg/960px-3-BerneseMountainDogInGrass.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/3-BerneseMountainDogInGrass.jpg/330px-3-BerneseMountainDogInGrass.jpg",
+  "file": "3-BerneseMountainDogInGrass.jpg",
+  "by": "FriendlyToaster",
+  "lic": "CC BY 4.0"
+ },
+ "grand-bouvier-suisse": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Greater_Swiss_Mountain_Dog_2018.jpg/960px-Greater_Swiss_Mountain_Dog_2018.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Greater_Swiss_Mountain_Dog_2018.jpg/330px-Greater_Swiss_Mountain_Dog_2018.jpg",
+  "file": "Greater Swiss Mountain Dog 2018.jpg",
+  "by": "Canarian",
+  "lic": "CC BY-SA 4.0"
+ },
+ "saint-bernard": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Hummel_Vedor_vd_Robandahoeve.jpg/960px-Hummel_Vedor_vd_Robandahoeve.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Hummel_Vedor_vd_Robandahoeve.jpg/330px-Hummel_Vedor_vd_Robandahoeve.jpg",
+  "file": "Hummel Vedor vd Robandahoeve.jpg",
+  "by": "Blanky",
+  "lic": "CC BY-SA 3.0"
+ },
+ "terre-neuve": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Newfoundland_dog_Smoky.jpg/960px-Newfoundland_dog_Smoky.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Newfoundland_dog_Smoky.jpg/330px-Newfoundland_dog_Smoky.jpg",
+  "file": "Newfoundland dog Smoky.jpg",
+  "by": "Flickr user DanDee Shots",
+  "lic": "CC BY 2.0"
+ },
+ "montagne-des-pyrenees": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Great_Pyrenees_Mountain_Dog_2.png/960px-Great_Pyrenees_Mountain_Dog_2.png",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Great_Pyrenees_Mountain_Dog_2.png/330px-Great_Pyrenees_Mountain_Dog_2.png",
+  "file": "Great Pyrenees Mountain Dog 2.png",
+  "by": "HeartSpoon",
+  "lic": "CC BY-SA 4.0"
+ },
+ "leonberg": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/7/76/Leonberger_male.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/76/Leonberger_male.jpg",
+  "file": "Leonberger male.jpg",
+  "by": "Kurre92",
+  "lic": "CC BY-SA 4.0"
+ },
+ "kangal": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Kangal_front_on.jpg/960px-Kangal_front_on.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Kangal_front_on.jpg/330px-Kangal_front_on.jpg",
+  "file": "Kangal front on.jpg",
+  "by": "Kangalshepherddog",
+  "lic": "CC BY-SA 4.0"
+ },
+ "dogue-allemand": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Dog_niemiecki_%C5%BC%C3%B3%C5%82ty_LM980.jpg/960px-Dog_niemiecki_%C5%BC%C3%B3%C5%82ty_LM980.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Dog_niemiecki_%C5%BC%C3%B3%C5%82ty_LM980.jpg/330px-Dog_niemiecki_%C5%BC%C3%B3%C5%82ty_LM980.jpg",
+  "file": "Dog niemiecki żółty LM980.jpg",
+  "by": "Lilly M",
+  "lic": "CC BY-SA 2.5"
+ },
+ "dogue-de-bordeaux": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/French_Mastiff_female_4.jpg/960px-French_Mastiff_female_4.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/French_Mastiff_female_4.jpg/330px-French_Mastiff_female_4.jpg",
+  "file": "French Mastiff female 4.jpg",
+  "by": "Canarian",
+  "lic": "CC BY-SA 4.0"
+ },
+ "rottweiler": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Rottweiler_standing_facing_left.jpg/960px-Rottweiler_standing_facing_left.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Rottweiler_standing_facing_left.jpg/330px-Rottweiler_standing_facing_left.jpg",
+  "file": "Rottweiler standing facing left.jpg",
+  "by": "Dr. Manfred Herrmann Allgemeiner Deutscher Rottweiler-Klub (ADRK) e.V. http://w…",
+  "lic": "CC BY-SA 3.0"
+ },
+ "dobermann": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Dobermann_handling.jpg/960px-Dobermann_handling.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Dobermann_handling.jpg/330px-Dobermann_handling.jpg",
+  "file": "Dobermann handling.jpg",
+  "by": "Miroslav Cacik",
+  "lic": "Copyrighted free use"
+ },
+ "boxer": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Male_fawn_Boxer_undocked.jpg/960px-Male_fawn_Boxer_undocked.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Male_fawn_Boxer_undocked.jpg/330px-Male_fawn_Boxer_undocked.jpg",
+  "file": "Male fawn Boxer undocked.jpg",
+  "by": "Mood210",
+  "lic": "CC BY-SA 3.0"
+ },
+ "mastiff": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Westgort_Anticipation_17_months.JPG/960px-Westgort_Anticipation_17_months.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Westgort_Anticipation_17_months.JPG/330px-Westgort_Anticipation_17_months.JPG",
+  "file": "Westgort Anticipation 17 months.JPG",
+  "by": "Radovan Rohovsky",
+  "lic": "CC BY-SA 3.0"
+ },
+ "bullmastiff": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Bullmastiff_edited.JPG/960px-Bullmastiff_edited.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Bullmastiff_edited.JPG/330px-Bullmastiff_edited.JPG",
+  "file": "Bullmastiff edited.JPG",
+  "by": "Fausto Moreno",
+  "lic": "CC BY-SA 3.0"
+ },
+ "cane-corso": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/0/03/Cane_corso_temi_1_1024x768x24_%28cropped%29.png",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/0/03/Cane_corso_temi_1_1024x768x24_%28cropped%29.png",
+  "file": "Cane corso temi 1 1024x768x24 (cropped).png",
+  "by": "Claudio Domiziani",
+  "lic": "CC BY-SA 2.5"
+ },
+ "matin-napolitain": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/2/29/5_Year_old_male_in_Napoli_Stance_%282%29.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/2/29/5_Year_old_male_in_Napoli_Stance_%282%29.jpg",
+  "file": "5 Year old male in Napoli Stance (2).jpg",
+  "by": "Philip Thompson",
+  "lic": "CC BY-SA 3.0"
+ },
+ "dogue-argentin": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Argentine_Dogo_%28535032632%29_%28cropped%29.jpg/960px-Argentine_Dogo_%28535032632%29_%28cropped%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Argentine_Dogo_%28535032632%29_%28cropped%29.jpg/330px-Argentine_Dogo_%28535032632%29_%28cropped%29.jpg",
+  "file": "Argentine Dogo (535032632) (cropped).jpg",
+  "by": "Ricardo Martins from Gent, Belgium",
+  "lic": "CC BY 2.0"
+ },
+ "shar-pei": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Adult_sharpei.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/0/05/Adult_sharpei.jpg",
+  "file": "Adult sharpei.jpg",
+  "by": "Yan Mis/&Den Rakov",
+  "lic": "CC BY-SA 4.0"
+ },
+ "bouledogue-anglais": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Whitebulldog.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Whitebulldog.jpg",
+  "file": "Whitebulldog.jpg",
+  "by": "Av3553 at English Wikipedia .",
+  "lic": "GFDL"
+ },
+ "schnauzer-geant": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Nev_Lemar_Barbara1.jpg/960px-Nev_Lemar_Barbara1.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Nev_Lemar_Barbara1.jpg/330px-Nev_Lemar_Barbara1.jpg",
+  "file": "Nev Lemar Barbara1.jpg",
+  "by": "Petrucha",
+  "lic": "CC BY-SA 3.0"
+ },
+ "jack-russell-terrier": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Jack_Russell_Terrier_1.jpg/960px-Jack_Russell_Terrier_1.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Jack_Russell_Terrier_1.jpg/330px-Jack_Russell_Terrier_1.jpg",
+  "file": "Jack Russell Terrier 1.jpg",
+  "by": "Plank",
+  "lic": "CC BY 3.0"
+ },
+ "yorkshire-terrier": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/4/41/%282_version%29_Grupp_3%2C_YORKSHIRETERRIER%2C_NO_UCH_SE_UCH_Oxzar_Amazing_Bel%E2%80%99s_Toffy_%2824310212305%29.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/4/41/%282_version%29_Grupp_3%2C_YORKSHIRETERRIER%2C_NO_UCH_SE_UCH_Oxzar_Amazing_Bel%E2%80%99s_Toffy_%2824310212305%29.jpg",
+  "file": "(2 version) Grupp 3, YORKSHIRETERRIER, NO UCH SE UCH Oxzar Amazing Bel’s Toffy (24310212305).jpg",
+  "by": "Svenska Mässan from Sweden",
+  "lic": "CC BY-SA 4.0"
+ },
+ "west-highland-white-terrier": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/2/2c/West_Highland_White_Terrier_Krakow.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/2/2c/West_Highland_White_Terrier_Krakow.jpg",
+  "file": "West Highland White Terrier Krakow.jpg",
+  "by": "Christopher Walker from Krakow, Poland",
+  "lic": "CC BY 2.0"
+ },
+ "scottish-terrier": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Scottish_Terrier_Photo_of_Face.jpg/960px-Scottish_Terrier_Photo_of_Face.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Scottish_Terrier_Photo_of_Face.jpg/330px-Scottish_Terrier_Photo_of_Face.jpg",
+  "file": "Scottish Terrier Photo of Face.jpg",
+  "by": "Elise Carroll",
+  "lic": "CC BY-SA 4.0"
+ },
+ "fox-terrier-a-poil-dur": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Elias1%C4%8Derven2006.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Elias1%C4%8Derven2006.jpg",
+  "file": "Elias1červen2006.jpg",
+  "by": "Simona Nováková, owner",
+  "lic": "Public domain"
+ },
+ "airedale-terrier": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/5/52/Airedale_Terrier.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/5/52/Airedale_Terrier.jpg",
+  "file": "Airedale Terrier.jpg",
+  "by": "by Jane@rangeairevision.com",
+  "lic": "Copyrighted free use"
+ },
+ "bull-terrier": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Bullterrier-3453301920.jpg/960px-Bullterrier-3453301920.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Bullterrier-3453301920.jpg/330px-Bullterrier-3453301920.jpg",
+  "file": "Bullterrier-3453301920.jpg",
+  "by": "Pixabay User TC-TORRES",
+  "lic": "CC0"
+ },
+ "staffordshire-bull-terrier": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/d/de/%D7%A1%D7%90%D7%98%D7%A3_%D7%90%D7%A0%D7%92%D7%9C%D7%99.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/de/%D7%A1%D7%90%D7%98%D7%A3_%D7%90%D7%A0%D7%92%D7%9C%D7%99.jpg",
+  "file": "סאטף אנגלי.jpg",
+  "by": "Or Logassi",
+  "lic": "CC BY-SA 4.0"
+ },
+ "american-staffordshire-terrier": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/6/66/AMERICAN_STAFFORDSHIRE_TERRIER%2C_Zican%E2%80%99s_Bz_Ez_Dragon_%2824208348891%29.2.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/6/66/AMERICAN_STAFFORDSHIRE_TERRIER%2C_Zican%E2%80%99s_Bz_Ez_Dragon_%2824208348891%29.2.jpg",
+  "file": "AMERICAN STAFFORDSHIRE TERRIER, Zican’s Bz Ez Dragon (24208348891).2.jpg",
+  "by": "Svenska Mässan from Sweden",
+  "lic": "CC BY-SA 4.0"
+ },
+ "cairn-terrier": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Cairn-Terrier-Garten1.jpg/960px-Cairn-Terrier-Garten1.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Cairn-Terrier-Garten1.jpg/330px-Cairn-Terrier-Garten1.jpg",
+  "file": "Cairn-Terrier-Garten1.jpg",
+  "by": "Ronald Müller-Hagen ( Ketterechts )",
+  "lic": "CC BY-SA 3.0"
+ },
+ "border-terrier": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/7/70/Border_Terrier.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/70/Border_Terrier.jpg",
+  "file": "Border Terrier.jpg",
+  "by": "Auteur inconnu",
+  "lic": "GPL"
+ },
+ "schnauzer-nain": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Miniature_Schnauzer_salt_%26_pepper_%28cropped%29.jpg/960px-Miniature_Schnauzer_salt_%26_pepper_%28cropped%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Miniature_Schnauzer_salt_%26_pepper_%28cropped%29.jpg/330px-Miniature_Schnauzer_salt_%26_pepper_%28cropped%29.jpg",
+  "file": "Miniature Schnauzer salt & pepper (cropped).jpg",
+  "by": "Canarian",
+  "lic": "CC BY-SA 3.0"
+ },
+ "bedlington-terrier": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Boutchie_apres_championnat_004.JPG/960px-Boutchie_apres_championnat_004.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Boutchie_apres_championnat_004.JPG/330px-Boutchie_apres_championnat_004.JPG",
+  "file": "Boutchie apres championnat 004.JPG",
+  "by": "David Owsiany",
+  "lic": "CC BY-SA 4.0"
+ },
+ "beagle": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Beagle_600.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/5/55/Beagle_600.jpg",
+  "file": "Beagle 600.jpg",
+  "by": "Auteur inconnu",
+  "lic": "CC BY-SA 3.0"
+ },
+ "basset-hound": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/c/cf/BassetHound_profil.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/cf/BassetHound_profil.jpg",
+  "file": "BassetHound profil.jpg",
+  "by": "Cali1008",
+  "lic": "Public domain"
+ },
+ "chien-de-saint-hubert": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Bloodhound_Erland22.jpg/960px-Bloodhound_Erland22.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Bloodhound_Erland22.jpg/330px-Bloodhound_Erland22.jpg",
+  "file": "Bloodhound Erland22.jpg",
+  "by": "User:Erland22",
+  "lic": "CC BY-SA 4.0"
+ },
+ "teckel": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/%EB%8B%A5%EC%8A%A4%ED%9B%88%ED%8A%B8%28%EB%8B%A8%EB%AA%A8%EC%A2%85%29_%28Dachshund_%28Short%29%29.jpg/960px-%EB%8B%A5%EC%8A%A4%ED%9B%88%ED%8A%B8%28%EB%8B%A8%EB%AA%A8%EC%A2%85%29_%28Dachshund_%28Short%29%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/%EB%8B%A5%EC%8A%A4%ED%9B%88%ED%8A%B8%28%EB%8B%A8%EB%AA%A8%EC%A2%85%29_%28Dachshund_%28Short%29%29.jpg/330px-%EB%8B%A5%EC%8A%A4%ED%9B%88%ED%8A%B8%28%EB%8B%A8%EB%AA%A8%EC%A2%85%29_%28Dachshund_%28Short%29%29.jpg",
+  "file": "닥스훈트(단모종) (Dachshund (Short)).jpg",
+  "by": "Katemil94",
+  "lic": "CC BY-SA 4.0"
+ },
+ "braque-allemand": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/3/38/Duitse_staande_korthaar_10-10-2.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/38/Duitse_staande_korthaar_10-10-2.jpg",
+  "file": "Duitse staande korthaar 10-10-2.jpg",
+  "by": "Bonnie van den Born, http://www.bonfoto.nl",
+  "lic": "CC BY-SA 3.0"
+ },
+ "braque-de-weimar": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Weimaraner_Freika-2.jpg/960px-Weimaraner_Freika-2.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Weimaraner_Freika-2.jpg/330px-Weimaraner_Freika-2.jpg",
+  "file": "Weimaraner Freika-2.jpg",
+  "by": "Rufus46",
+  "lic": "CC BY-SA 3.0"
+ },
+ "braque-hongrois": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Wy%C5%BCe%C5%82_w%C4%99gierski_g%C5%82adkow%C5%82osy_500.jpg/960px-Wy%C5%BCe%C5%82_w%C4%99gierski_g%C5%82adkow%C5%82osy_500.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Wy%C5%BCe%C5%82_w%C4%99gierski_g%C5%82adkow%C5%82osy_500.jpg/330px-Wy%C5%BCe%C5%82_w%C4%99gierski_g%C5%82adkow%C5%82osy_500.jpg",
+  "file": "Wyżeł węgierski gładkowłosy 500.jpg",
+  "by": "Pleple2000",
+  "lic": "CC BY-SA 3.0"
+ },
+ "epagneul-breton": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Zuri_txakurra_1_%28cropped%29.JPG/960px-Zuri_txakurra_1_%28cropped%29.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Zuri_txakurra_1_%28cropped%29.JPG/330px-Zuri_txakurra_1_%28cropped%29.JPG",
+  "file": "Zuri txakurra 1 (cropped).JPG",
+  "by": "Olatz / souligne",
+  "lic": "CC BY-SA 4.0"
+ },
+ "setter-irlandais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Can_Setter_dog_GFDL.jpg/960px-Can_Setter_dog_GFDL.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Can_Setter_dog_GFDL.jpg/330px-Can_Setter_dog_GFDL.jpg",
+  "file": "Can Setter dog GFDL.jpg",
+  "by": "Luis Miguel Bugallo Sánchez ( Lmbuga Commons )( Lmbuga Galipedia ) Publicada po…",
+  "lic": "CC BY-SA 3.0"
+ },
+ "setter-anglais": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/1/15/EnglishSetter9_fx_wb.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/1/15/EnglishSetter9_fx_wb.jpg",
+  "file": "EnglishSetter9 fx wb.jpg",
+  "by": "Elf at English Wikipedia",
+  "lic": "CC BY-SA 3.0"
+ },
+ "pointer-anglais": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/85/English_Pointer_orange-white.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/85/English_Pointer_orange-white.jpg",
+  "file": "English Pointer orange-white.jpg",
+  "by": "Canarian",
+  "lic": "CC BY-SA 3.0"
+ },
+ "grand-bleu-de-gascogne": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Grand_Bleu_de_Gascogne_in_a_blue_dogcollar.jpg/960px-Grand_Bleu_de_Gascogne_in_a_blue_dogcollar.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Grand_Bleu_de_Gascogne_in_a_blue_dogcollar.jpg/330px-Grand_Bleu_de_Gascogne_in_a_blue_dogcollar.jpg",
+  "file": "Grand Bleu de Gascogne in a blue dogcollar.jpg",
+  "by": "RanchoRosco",
+  "lic": "CC BY-SA 3.0"
+ },
+ "basset-fauve-de-bretagne": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Basset_Fauve_de_Bretagne_600.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Basset_Fauve_de_Bretagne_600.jpg",
+  "file": "Basset Fauve de Bretagne 600.jpg",
+  "by": "Auteur inconnu",
+  "lic": "CC BY-SA 3.0"
+ },
+ "rhodesian-ridgeback": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/0/01/Rhodesian_ridgeback.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/0/01/Rhodesian_ridgeback.jpg",
+  "file": "Rhodesian ridgeback.jpg",
+  "by": "Bonnie van den Born, http://www.bonfoto.nl",
+  "lic": "CC BY-SA 3.0"
+ },
+ "dalmatien": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/6/68/Sun_Dog_Dalmatian.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/6/68/Sun_Dog_Dalmatian.jpg",
+  "file": "Sun Dog Dalmatian.jpg",
+  "by": "Bradlien",
+  "lic": "CC BY-SA 4.0"
+ },
+ "labrador-retriever": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Labrador_on_Quantock_%282175262184%29.jpg/960px-Labrador_on_Quantock_%282175262184%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Labrador_on_Quantock_%282175262184%29.jpg/330px-Labrador_on_Quantock_%282175262184%29.jpg",
+  "file": "Labrador on Quantock (2175262184).jpg",
+  "by": "IDS.photos from Tiverton, UK",
+  "lic": "CC BY-SA 2.0"
+ },
+ "golden-retriever": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_Retriever_Dukedestiny01_drvd.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_Retriever_Dukedestiny01_drvd.jpg",
+  "file": "Golden Retriever Dukedestiny01 drvd.jpg",
+  "by": "Dukedestiny01.jpg : \"Janneke Vreugdenhil\" derivative work: Anka Friedrich ([[Us…",
+  "lic": "Public domain"
+ },
+ "flat-coated-retriever": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Flat_Coated_Retriever_-_black.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Flat_Coated_Retriever_-_black.jpg",
+  "file": "Flat Coated Retriever - black.jpg",
+  "by": "Gunnandreassen",
+  "lic": "CC BY-SA 3.0"
+ },
+ "cocker-anglais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/%22Bill%22_-_Cocker_spaniel_anglais_2.JPG/960px-%22Bill%22_-_Cocker_spaniel_anglais_2.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/%22Bill%22_-_Cocker_spaniel_anglais_2.JPG/330px-%22Bill%22_-_Cocker_spaniel_anglais_2.JPG",
+  "file": "\"Bill\" - Cocker spaniel anglais 2.JPG",
+  "by": "Jean-Pol GRANDMONT",
+  "lic": "CC BY 4.0"
+ },
+ "cocker-americain": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/6/62/PointbreakHoneyimHome.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/6/62/PointbreakHoneyimHome.jpg",
+  "file": "PointbreakHoneyimHome.jpg",
+  "by": "Kulala",
+  "lic": "CC BY-SA 4.0"
+ },
+ "springer-anglais": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Springer_Spaniel_Wide_Shot.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Springer_Spaniel_Wide_Shot.jpg",
+  "file": "Springer Spaniel Wide Shot.jpg",
+  "by": "Ratsniffer",
+  "lic": "CC0"
+ },
+ "chien-d-eau-portugais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/C%C3%A3o_de_agua_Portugu%C3%AAs_2.jpg/960px-C%C3%A3o_de_agua_Portugu%C3%AAs_2.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/C%C3%A3o_de_agua_Portugu%C3%AAs_2.jpg/330px-C%C3%A3o_de_agua_Portugu%C3%AAs_2.jpg",
+  "file": "Cão de agua Português 2.jpg",
+  "by": "Silke Hollje-Schumacher",
+  "lic": "CC BY-SA 3.0"
+ },
+ "lagotto-romagnolo": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Bellalagotto4.jpg/960px-Bellalagotto4.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Bellalagotto4.jpg/330px-Bellalagotto4.jpg",
+  "file": "Bellalagotto4.jpg",
+  "by": "Entheta",
+  "lic": "CC BY-SA 3.0"
+ },
+ "husky-de-siberie": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Husky_L.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Husky_L.jpg",
+  "file": "Husky L.jpg",
+  "by": "xJaM ( talk · contribs )",
+  "lic": "CC BY-SA 3.0"
+ },
+ "malamute-de-l-alaska": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Alaskan_Malamute.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Alaskan_Malamute.jpg",
+  "file": "Alaskan Malamute.jpg",
+  "by": "SCMW",
+  "lic": "CC BY 3.0"
+ },
+ "samoyede": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Samojed00.jpg/960px-Samojed00.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Samojed00.jpg/330px-Samojed00.jpg",
+  "file": "Samojed00.jpg",
+  "by": "No machine-readable author provided. Pleple2000 assumed (based on copyright cla…",
+  "lic": "CC BY-SA 3.0"
+ },
+ "akita-inu": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/French_akita.jpg/960px-French_akita.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/French_akita.jpg/330px-French_akita.jpg",
+  "file": "French akita.jpg",
+  "by": "Kaiju32",
+  "lic": "CC0"
+ },
+ "shiba-inu": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Taka_Shiba.jpg/960px-Taka_Shiba.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Taka_Shiba.jpg/330px-Taka_Shiba.jpg",
+  "file": "Taka Shiba.jpg",
+  "by": "Takashiba at English Wikipedia",
+  "lic": "Public domain"
+ },
+ "chow-chow": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Chow-chow_in_Tallinn.JPG/960px-Chow-chow_in_Tallinn.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Chow-chow_in_Tallinn.JPG/330px-Chow-chow_in_Tallinn.JPG",
+  "file": "Chow-chow in Tallinn.JPG",
+  "by": "Томасина",
+  "lic": "CC BY-SA 3.0"
+ },
+ "loulou-de-pomeranie": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Pomeranian.JPG",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Pomeranian.JPG",
+  "file": "Pomeranian.JPG",
+  "by": "Blackoranges",
+  "lic": "Public domain"
+ },
+ "keeshond": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Keeshond_Majic_standing_cropped.jpg/960px-Keeshond_Majic_standing_cropped.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Keeshond_Majic_standing_cropped.jpg/330px-Keeshond_Majic_standing_cropped.jpg",
+  "file": "Keeshond Majic standing cropped.jpg",
+  "by": "dancing with wolves",
+  "lic": "CC BY 2.0"
+ },
+ "spitz-japonais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/BIR_Grupp_5-_JAPANSK_SPETS%2C_Chezzay%E2%80%99s_Nice_N%E2%80%99Easy_%2823938629860%29.jpg/960px-BIR_Grupp_5-_JAPANSK_SPETS%2C_Chezzay%E2%80%99s_Nice_N%E2%80%99Easy_%2823938629860%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/BIR_Grupp_5-_JAPANSK_SPETS%2C_Chezzay%E2%80%99s_Nice_N%E2%80%99Easy_%2823938629860%29.jpg/330px-BIR_Grupp_5-_JAPANSK_SPETS%2C_Chezzay%E2%80%99s_Nice_N%E2%80%99Easy_%2823938629860%29.jpg",
+  "file": "BIR Grupp 5- JAPANSK SPETS, Chezzay’s Nice N’Easy (23938629860).jpg",
+  "by": "Svenska Mässan from Sweden",
+  "lic": "CC BY 2.0"
+ },
+ "basenji": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Basenji_Profile_%28loosercrop%29.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Basenji_Profile_%28loosercrop%29.jpg",
+  "file": "Basenji Profile (loosercrop).jpg",
+  "by": "fugzu",
+  "lic": "CC BY 2.0"
+ },
+ "levrier-afghan": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Afghan_dog_-_cropped.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Afghan_dog_-_cropped.jpg",
+  "file": "Afghan dog - cropped.jpg",
+  "by": "Weaveravel",
+  "lic": "CC BY-SA 4.0"
+ },
+ "greyhound": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/GraceTheGreyhound.jpg/960px-GraceTheGreyhound.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/GraceTheGreyhound.jpg/330px-GraceTheGreyhound.jpg",
+  "file": "GraceTheGreyhound.jpg",
+  "by": "Neurodoc",
+  "lic": "CC BY-SA 3.0"
+ },
+ "whippet": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Whippet_2018_6.jpg/960px-Whippet_2018_6.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Whippet_2018_6.jpg/330px-Whippet_2018_6.jpg",
+  "file": "Whippet 2018 6.jpg",
+  "by": "Canarian",
+  "lic": "CC BY-SA 4.0"
+ },
+ "petit-levrier-italien": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Italian_Greyhound_standing_gray_%28cropped%29.jpg/960px-Italian_Greyhound_standing_gray_%28cropped%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Italian_Greyhound_standing_gray_%28cropped%29.jpg/330px-Italian_Greyhound_standing_gray_%28cropped%29.jpg",
+  "file": "Italian Greyhound standing gray (cropped).jpg",
+  "by": "christina",
+  "lic": "CC BY 2.0"
+ },
+ "barzoi": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Chart_rosyjski_borzoj_rybnik-kamien_pl.jpg/960px-Chart_rosyjski_borzoj_rybnik-kamien_pl.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Chart_rosyjski_borzoj_rybnik-kamien_pl.jpg/330px-Chart_rosyjski_borzoj_rybnik-kamien_pl.jpg",
+  "file": "Chart rosyjski borzoj rybnik-kamien pl.jpg",
+  "by": "Pleple2000",
+  "lic": "CC BY-SA 4.0"
+ },
+ "saluki": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Red_Smooth_Saluki.jpg/960px-Red_Smooth_Saluki.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Red_Smooth_Saluki.jpg/330px-Red_Smooth_Saluki.jpg",
+  "file": "Red Smooth Saluki.jpg",
+  "by": "r.",
+  "lic": "CC BY-SA 3.0"
+ },
+ "levrier-irlandais": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/d/da/%282%29_Irish_Wolfhound_4.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/da/%282%29_Irish_Wolfhound_4.jpg",
+  "file": "(2) Irish Wolfhound 4.jpg",
+  "by": "Dux",
+  "lic": "CC BY-SA 3.0"
+ },
+ "chihuahua": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Chihuahua1_bvdb.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Chihuahua1_bvdb.jpg",
+  "file": "Chihuahua1 bvdb.jpg",
+  "by": "Bonnie van den Born, http://www.bonfoto.nl . The original uploader was Cwazi at…",
+  "lic": "CC BY-SA 3.0"
+ },
+ "caniche": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Full_attention_%288067543690%29.jpg/960px-Full_attention_%288067543690%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Full_attention_%288067543690%29.jpg/330px-Full_attention_%288067543690%29.jpg",
+  "file": "Full attention (8067543690).jpg",
+  "by": "Tim Wilson from Blaine, MN, USA",
+  "lic": "CC BY 2.0"
+ },
+ "bichon-frise": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Bichon_Fris%C3%A9_-_studdogbichon.jpg/960px-Bichon_Fris%C3%A9_-_studdogbichon.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Bichon_Fris%C3%A9_-_studdogbichon.jpg/330px-Bichon_Fris%C3%A9_-_studdogbichon.jpg",
+  "file": "Bichon Frisé - studdogbichon.jpg",
+  "by": "Heike Andres",
+  "lic": "CC BY-SA 3.0 de"
+ },
+ "bichon-maltais": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/9/94/Maltese_600.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/94/Maltese_600.jpg",
+  "file": "Maltese 600.jpg",
+  "by": "Sannse",
+  "lic": "CC BY-SA 3.0"
+ },
+ "shih-tzu": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/d/df/Shihtzu_%28cropped%29.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/df/Shihtzu_%28cropped%29.jpg",
+  "file": "Shihtzu (cropped).jpg",
+  "by": "Canino21",
+  "lic": "Public domain"
+ },
+ "lhassa-apso": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/87/Aishia.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/87/Aishia.jpg",
+  "file": "Aishia.jpg",
+  "by": "Elminjas at Dutch Wikipedia",
+  "lic": "CC BY-SA 3.0"
+ },
+ "pekinois": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/1AKC_Pekingese_Dog_Show_2011.jpg/960px-1AKC_Pekingese_Dog_Show_2011.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/1AKC_Pekingese_Dog_Show_2011.jpg/330px-1AKC_Pekingese_Dog_Show_2011.jpg",
+  "file": "1AKC Pekingese Dog Show 2011.jpg",
+  "by": "SheltieBoy",
+  "lic": "CC BY 2.0"
+ },
+ "cavalier-king-charles": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/5/5f/CarterBIS.Tiki.13.6.09.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/5/5f/CarterBIS.Tiki.13.6.09.jpg",
+  "file": "CarterBIS.Tiki.13.6.09.jpg",
+  "by": "Andreweatock",
+  "lic": "CC BY-SA 3.0"
+ },
+ "papillon": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Outdoor_Continental_Toy_Spaniel_Papillon.jpeg/960px-Outdoor_Continental_Toy_Spaniel_Papillon.jpeg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Outdoor_Continental_Toy_Spaniel_Papillon.jpeg/330px-Outdoor_Continental_Toy_Spaniel_Papillon.jpeg",
+  "file": "Outdoor Continental Toy Spaniel Papillon.jpeg",
+  "by": "Gvdmoort",
+  "lic": "CC BY-SA 3.0"
+ },
+ "coton-de-tulear": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Coton_de_Tular_1.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Coton_de_Tular_1.jpg",
+  "file": "Coton de Tular 1.jpg",
+  "by": "Uschi Goess (eingestellt von Caronna )",
+  "lic": "CC BY-SA 3.0"
+ },
+ "bichon-havanais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/A_Havanese_judging.jpg/960px-A_Havanese_judging.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/A_Havanese_judging.jpg/330px-A_Havanese_judging.jpg",
+  "file": "A Havanese judging.jpg",
+  "by": "audrey_sel",
+  "lic": "CC BY-SA 2.0"
+ },
+ "griffon-bruxellois": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/2/23/Monkey_Bizniz_Drama_Queen.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/2/23/Monkey_Bizniz_Drama_Queen.jpg",
+  "file": "Monkey Bizniz Drama Queen.jpg",
+  "by": "Arne Fagerholt",
+  "lic": "CC BY 3.0"
+ },
+ "chien-chinois-a-crete": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/IndyStands.jpg/960px-IndyStands.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/IndyStands.jpg/330px-IndyStands.jpg",
+  "file": "IndyStands.jpg",
+  "by": "Tommy Gildseth",
+  "lic": "CC BY 3.0"
+ },
+ "chien-nu-du-mexique": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/BIR_Grupp_5-_MEXIKANSK_NAKENHUND%2C_Lokal_Hero%E2%80%99s_King_Og_Hart%E2%80%99s_Istas_%2823607403303%29.jpg/960px-BIR_Grupp_5-_MEXIKANSK_NAKENHUND%2C_Lokal_Hero%E2%80%99s_King_Og_Hart%E2%80%99s_Istas_%2823607403303%29.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/BIR_Grupp_5-_MEXIKANSK_NAKENHUND%2C_Lokal_Hero%E2%80%99s_King_Og_Hart%E2%80%99s_Istas_%2823607403303%29.jpg/330px-BIR_Grupp_5-_MEXIKANSK_NAKENHUND%2C_Lokal_Hero%E2%80%99s_King_Og_Hart%E2%80%99s_Istas_%2823607403303%29.jpg",
+  "file": "BIR Grupp 5- MEXIKANSK NAKENHUND, Lokal Hero’s King Og Hart’s Istas (23607403303).jpg",
+  "by": "Svenska Mässan from Sweden",
+  "lic": "CC BY 2.0"
+ },
+ "carlin": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Mops_oct09_cropped2.jpg/960px-Mops_oct09_cropped2.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Mops_oct09_cropped2.jpg/330px-Mops_oct09_cropped2.jpg",
+  "file": "Mops oct09 cropped2.jpg",
+  "by": "Mops_oct09.jpg : Dagur Brynjólfsson from Hafnarfjordur, Iceland; derivative wor…",
+  "lic": "CC BY-SA 2.0"
+ },
+ "bouledogue-francais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/2008-07-28_Dog_at_Frolick_Field.jpg/960px-2008-07-28_Dog_at_Frolick_Field.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/2008-07-28_Dog_at_Frolick_Field.jpg/330px-2008-07-28_Dog_at_Frolick_Field.jpg",
+  "file": "2008-07-28 Dog at Frolick Field.jpg",
+  "by": "Ildar Sagdejev ( Specious )",
+  "lic": "CC BY-SA 4.0"
+ },
+ "boston-terrier": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Boston-terrier-carlos-de.JPG/960px-Boston-terrier-carlos-de.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Boston-terrier-carlos-de.JPG/330px-Boston-terrier-carlos-de.JPG",
+  "file": "Boston-terrier-carlos-de.JPG",
+  "by": "Andreas Schlaugat",
+  "lic": "CC BY 3.0"
+ },
+ "epagneul-japonais": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Chin_posing.jpg/960px-Chin_posing.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Chin_posing.jpg/330px-Chin_posing.jpg",
+  "file": "Chin posing.jpg",
+  "by": "Joliot",
+  "lic": "CC BY-SA 3.0"
+ },
+ "pinscher-nain": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Miniature_pinscher.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Miniature_pinscher.jpg",
+  "file": "Miniature pinscher.jpg",
+  "by": "Sebastian Wallin. Sebastian Wallin. Sebwal",
+  "lic": "CC BY 3.0"
+ }
+}
