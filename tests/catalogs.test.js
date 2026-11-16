@@ -209,6 +209,7 @@ test('catalogue des Pionnières', async () => {
     answer: [true, sentence],
     lures: [true, (v) => textList(v) && v.length === 3 && v.every(sentence)],
     fact: [true, (v) => text(v) && v.length <= 200],
+    bio: [true, (v) => text(v) && v.length >= 120 && v.length <= 600], // biographie de la carte, après la réponse
     qid: [false, (v) => /^Q\d+$/.test(v)], // identifiant Wikidata, si la recherche du portrait se trompe
     search: [false, text], // nom à chercher sur Wikidata, si différent
   }, 'femmes');
