@@ -4,9 +4,9 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : sous-chemin de l'URL (['femme', id] | ['galerie'] | ['reglages'] | [])
 
-import { h, icon } from '../../js/core/dom.js?v=1.44.0';
-import { createStore } from '../../js/core/storage.js?v=1.44.0';
-import { DOMAINS, HIDDEN, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.44.0';
+import { h, icon } from '../../js/core/dom.js?v=1.45.0';
+import { createStore } from '../../js/core/storage.js?v=1.45.0';
+import { DOMAINS, HIDDEN, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.45.0';
 
 const store = createStore('pionnieres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };

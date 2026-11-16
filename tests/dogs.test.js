@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { makeOptions, newGame, pointsFor, maxScore, updateSeen, rng, HIDDEN, ROUND } from '../games/dogs/quiz.js';
+import { makeOptions, newGame, pointsFor, maxScore, updateSeen, rng, ROUND } from '../games/dogs/quiz.js';
 import { fetchPhotos, plainText, thumbOf } from '../games/dogs/wiki.js';
 
 const breeds = JSON.parse(await readFile(new URL('../games/dogs/data/chiens.json', import.meta.url), 'utf8'));
@@ -23,15 +23,15 @@ test('chiens : 4 réponses différentes, dont la bonne', () => {
   }
 });
 
-test('chiens : la bonne réponse est cachée environ une fois sur quatre', () => {
+test('chiens : la bonne réponse est à chacune des 4 places', () => {
   const rand = rng(7);
-  let hidden = 0;
+  const at = [0, 0, 0, 0];
   const N = 4000;
   for (let i = 0; i < N; i++) {
     const b = breeds[i % breeds.length];
-    if (makeOptions(b, breeds, 'normal', rand)[HIDDEN] === b.id) hidden++;
+    at[makeOptions(b, breeds, 'normal', rand).indexOf(b.id)]++;
   }
-  assert.ok(Math.abs(hidden / N - 0.25) < 0.03, `${hidden / N}`);
+  at.forEach((n) => assert.ok(Math.abs(n / N - 0.25) < 0.03, `${at}`));
 });
 
 test('chiens : une partie évite les races déjà sorties', () => {
@@ -53,14 +53,12 @@ test('chiens : une partie évite les races déjà sorties', () => {
   assert.ok(seen.length <= ROUND);
 });
 
-test('chiens : points (1 visible, 2 pour la carte cachée, 0 si faux)', () => {
+test('chiens : points (1 si c’est la bonne race, 0 sinon)', () => {
   const q = { id: 'beagle', options: ['caniche', 'beagle', 'carlin', 'barzoi'] };
   assert.equal(pointsFor(q, 1), 1);
   assert.equal(pointsFor(q, 0), 0);
-  assert.equal(pointsFor(q, HIDDEN), 0);
-  const h = { id: 'beagle', options: ['caniche', 'carlin', 'barzoi', 'beagle'] };
-  assert.equal(pointsFor(h, HIDDEN), 2);
-  assert.equal(maxScore([q, h]), 3);
+  assert.equal(pointsFor(q, 3), 0);
+  assert.equal(maxScore([q, q, q]), 3);
 });
 
 test('chiens : photos Wikipédia (réponses simulées)', async () => {

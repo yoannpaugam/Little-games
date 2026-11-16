@@ -1,12 +1,12 @@
 // Jeu « Chiens » : retrouver la race d'un chien d'après sa photo.
-// 4 réponses : 3 visibles et une 4e cachée. La carte cachée est parfois la bonne : elle rapporte 2 points.
+// QCM : 4 races proposées, une seule réponse par chien, 1 point par bonne réponse.
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (partie) | ['races'] | ['reglages']
 
-import { h, icon } from '../../js/core/dom.js?v=1.44.0';
-import { createStore } from '../../js/core/storage.js?v=1.44.0';
-import { GROUPS, FAMILIES, LEVELS, HIDDEN, POINTS, newGame, pointsFor, maxScore, updateSeen } from './quiz.js?v=1.44.0';
-import { fetchPhotos } from './wiki.js?v=1.44.0';
+import { h, icon } from '../../js/core/dom.js?v=1.45.0';
+import { createStore } from '../../js/core/storage.js?v=1.45.0';
+import { GROUPS, FAMILIES, LEVELS, newGame, pointsFor, maxScore, updateSeen } from './quiz.js?v=1.45.0';
+import { fetchPhotos } from './wiki.js?v=1.45.0';
 
 const store = createStore('chiens', { version: 1 });
 const DEFAULT_SETTINGS = { level: 'normal' };
@@ -45,6 +45,8 @@ export async function mount(container, ctx) {
     }
   }
 
+  // Record de la 1.43.0 (carte cachée à 2 points) au-dessus du nouveau maximum de 10 : il ne serait jamais battu
+  if (store.get('best', null)?.score > 10) store.set('best', null);
   let game = store.get('game', null);
   if (game && !(Array.isArray(game.qs) && game.qs.every((q) => byId.has(q.id) && q.options.every((o) => byId.has(o))))) game = null;
   let shown = null; // index de la question dont on montre la réponse (avant « Suivant »)
@@ -118,20 +120,10 @@ export async function mount(container, ctx) {
     const breed = byId.get(q.id);
 
     const status = h('p.dg-status', { role: 'status', 'aria-live': 'polite' });
-    const cards = q.options.map((id, k) => {
-      const hidden = k === HIDDEN;
-      return h('button.dg-card', {
-        type: 'button', class: `dg-card${hidden ? ' is-hidden' : ''}`,
-        'aria-label': hidden ? `Carte cachée : choisir sans la voir (${POINTS.hidden} points si c’est la bonne)` : byId.get(id).name,
-        onclick: () => choose(k),
-      },
-        h('span.dg-key', { 'aria-hidden': 'true' }, k + 1),
-        hidden
-          ? h('span.dg-card-face', h('span.dg-card-back', '?'), h('span.dg-card-name', byId.get(id).name))
-          : h('span.dg-card-name', byId.get(id).name),
-        hidden ? h('span.dg-card-pts', `${POINTS.hidden} pts`) : null
-      );
-    });
+    const cards = q.options.map((id, k) => h('button.dg-card', { type: 'button', onclick: () => choose(k) },
+      h('span.dg-key', { 'aria-hidden': 'true' }, k + 1),
+      h('span.dg-card-name', byId.get(id).name)
+    ));
     const next = h('button.dg-btn.dg-btn-primary', { type: 'button', onclick: goNext },
       i + 1 < game.qs.length ? 'Suivant' : 'Voir le score', icon('next'));
     const foot = h('div.dg-foot', status);
@@ -139,8 +131,6 @@ export async function mount(container, ctx) {
     function paint(a) {
       cards.forEach((c, k) => {
         c.disabled = true;
-        c.setAttribute('aria-label', byId.get(q.options[k]).name);
-        c.classList.toggle('is-flipped', k === HIDDEN);
         c.classList.toggle('is-right', q.options[k] === q.id);
         c.classList.toggle('is-wrong', k === a.choice && a.pts === 0);
         c.classList.toggle('is-chosen', k === a.choice);
@@ -149,7 +139,7 @@ export async function mount(container, ctx) {
       status.replaceChildren(
         h('span.dg-line',
           h('span.dg-verdict', { class: `dg-verdict ${a.pts ? 'is-ok' : 'is-err'}` },
-            a.pts === POINTS.hidden ? 'Poker gagnant ! +2' : a.pts ? 'Bravo ! +1' : a.choice === HIDDEN ? 'Carte cachée ratée !' : 'Raté !'),
+            a.pts ? 'Bravo ! +1' : 'Raté !'),
           ' ', h('span.dg-extra', extra)),
         h('strong.dg-answer', breed.name)
       );
@@ -182,7 +172,7 @@ export async function mount(container, ctx) {
         foot
       )
     );
-    if (!answered) status.replaceChildren(h('span.dg-hint', 'La 4e carte est cachée : parfois, c’est la bonne. Elle vaut 2 points.'));
+    if (!answered) status.replaceChildren(h('span.dg-hint', 'Une seule réponse par chien : choisis bien !'));
     let bar = topBar('Chiens');
     container.replaceChildren(bar, stage);
     if (answered) paint(answered);
@@ -233,7 +223,7 @@ export async function mount(container, ctx) {
           return h('li', { class: a?.pts ? 'is-ok' : 'is-err' },
             h('span.dg-recap-mark', a?.pts ? '✓' : '✗'),
             h('span.dg-recap-name', byId.get(q.id).name),
-            h('span.dg-recap-pts', a?.pts ? `+${a.pts}` : a?.choice === HIDDEN ? 'carte cachée' : byId.get(q.options[a?.choice])?.name || '')
+            h('span.dg-recap-pts', a?.pts ? `+${a.pts}` : byId.get(q.options[a?.choice])?.name || '')
           );
         }))
       )
@@ -294,7 +284,7 @@ export async function mount(container, ctx) {
       topBar('Réglages', { back: () => ctx.navigate() }),
       h('section.dg-settings',
         h('fieldset', h('legend', 'Règle du jeu'),
-          h('p.dg-hint', `Une partie compte 10 chiens. Pour chacun, 4 races sont proposées : 3 visibles et une 4e cachée. Une seule réponse par chien. Une bonne réponse visible rapporte ${POINTS.visible} point. Si tu penses que la race n’est pas parmi les 3, tente la carte cachée : 1 fois sur 4 c’est la bonne, et elle rapporte ${POINTS.hidden} points.`)
+          h('p.dg-hint', 'Une partie compte 10 chiens. Pour chacun, 4 races sont proposées : une seule réponse par chien, et 1 point par bonne réponse. Le niveau règle la ressemblance entre les mauvaises réponses et la bonne race.')
         ),
         h('fieldset', h('legend', 'Niveau'), radios, levelNote),
         h('fieldset', h('legend', 'Scores'),
