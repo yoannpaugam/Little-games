@@ -53,11 +53,17 @@
  "elisabeth-vigee-le-brun": {
   "img": "photos/elisabeth-vigee-le-brun.jpg"
  },
+ "marie-anne-lavoisier": {
+  "img": "photos/marie-anne-lavoisier.jpg"
+ },
  "mary-wollstonecraft": {
   "img": "photos/mary-wollstonecraft.jpg"
  },
  "sophie-germain": {
   "img": "photos/sophie-germain.jpg"
+ },
+ "barbe-nicole-clicquot": {
+  "img": "photos/barbe-nicole-clicquot.jpg"
  },
  "henriette-dangeville": {
   "img": "photos/henriette-dangeville.jpg"
@@ -179,8 +185,14 @@
  "nellie-bly": {
   "img": "photos/nellie-bly.jpg"
  },
+ "seraphine-louis": {
+  "img": "photos/seraphine-louis.jpg"
+ },
  "suzanne-valadon": {
   "img": "photos/suzanne-valadon.jpg"
+ },
+ "mary-anderson": {
+  "img": "photos/mary-anderson.jpg"
  },
  "kathe-kollwitz": {
   "img": "photos/kathe-kollwitz.jpg"
@@ -278,6 +290,9 @@
  "inge-lehmann": {
   "img": "photos/inge-lehmann.jpg"
  },
+ "marie-louise-paris": {
+  "img": "photos/marie-louise-paris.jpg"
+ },
  "sophie-taeuber-arp": {
   "img": "photos/sophie-taeuber-arp.jpg"
  },
@@ -334,6 +349,9 @@
  },
  "maryse-bastie": {
   "img": "photos/maryse-bastie.jpg"
+ },
+ "tamara-de-lempicka": {
+  "img": "photos/tamara-de-lempicka.jpg"
  },
  "lotte-reiniger": {
   "img": "photos/lotte-reiniger.jpg"
@@ -479,6 +497,9 @@
  "marthe-gautier": {
   "img": "photos/marthe-gautier.jpg"
  },
+ "vivian-maier": {
+  "img": "photos/vivian-maier.jpg"
+ },
  "althea-gibson": {
   "img": "photos/althea-gibson.jpg"
  },
@@ -517,6 +538,9 @@
  },
  "assia-djebar": {
   "img": "photos/assia-djebar.jpg"
+ },
+ "margaret-hamilton": {
+  "img": "photos/margaret-hamilton.jpg"
  },
  "delia-derbyshire": {
   "img": "photos/delia-derbyshire.jpg"
