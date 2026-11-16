@@ -11,6 +11,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 🌍 Géoquizz | `games/geo/` | ✅ jouable |
 | 👣 Le chemin | `games/path/` | ✅ jouable |
 | 🧩 Nonogramme | `games/nonogram/` | ✅ jouable |
+| 🐕 Chiens | `games/dogs/` | ✅ jouable |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -80,6 +81,10 @@ Un jeu de mémoire : un chemin s'allume pendant 6 secondes sur une grille de 11 
 ## 🧩 Nonogramme
 
 Un jeu de logique (picross) : on noircit les cases d'une grille d'après les chiffres des lignes et des colonnes, qui donnent la longueur des blocs. 3 niveaux (5 × 5, 10 × 10, 15 × 15) ; le bouton « Nouvelle grille », en haut, en tire une autre. Les grilles sont tirées au hasard et ne sont gardées que si elles se résolvent par logique, sans deviner (solution unique) : `games/nonogram/nonogram.js`, testé par `tests/nonogram.test.js`. Chronomètre et record par niveau. Aucune image ni service externe.
+
+## 🐕 Chiens
+
+On montre la photo d'un chien et il faut trouver sa race, parmi 110. Quatre réponses : 3 visibles et une 4e cachée, qui est la bonne 1 fois sur 4. Une bonne réponse visible vaut 1 point ; la carte cachée, tentée sans la voir, en vaut 2. Parties de 10 chiens, 3 niveaux (les mauvaises réponses sont plus ou moins proches de la bonne), record. Les photos sont les images principales des articles Wikipédia (Wikimedia Commons, licences libres, crédits affichés) : `data/photos.json` est rempli par le workflow « Chiens : photos » (`scripts/fetch-dog-photos.mjs`), et une photo manquante est cherchée en direct. Tirage et score dans `games/dogs/quiz.js`, testés par `tests/dogs.test.js`.
 
 ## 🎲 Compète de zinzin
 
@@ -164,6 +169,13 @@ games/nonogram/          Le jeu « Nonogramme » (picross), autonome
   ├─ index.js            Logique et vues (partie, réglages)
   ├─ nonogram.js         Tirage des grilles, indices, solveur logique (testé)
   ├─ styles.css          Styles du jeu (préfixe .ng-)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/dogs/              Le jeu « Chiens » (trouver la race d'après la photo), autonome
+  ├─ index.js            Logique et vues (partie, fin de partie, toutes les races, réglages)
+  ├─ quiz.js             Tirage des parties, des réponses et score (testé)
+  ├─ wiki.js             Photos, auteurs et licences depuis Wikipédia et Commons (testé)
+  ├─ data/chiens.json    110 races ; data/photos.json : photos (workflow « Chiens : photos »)
+  ├─ styles.css          Styles du jeu (préfixe .dg-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/zinzin/            Le jeu « Compète de zinzin » (plateau et défis des autres jeux, multi)
   ├─ index.js            Écrans (création, rejoindre, salle d'attente, plateau, victoire), dispatch et rendu

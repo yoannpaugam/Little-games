@@ -8,8 +8,8 @@ export const THUMB = 330; // largeur des vignettes de la grille
 
 const chunks = (arr, n) => Array.from({ length: Math.ceil(arr.length / n) }, (_, i) => arr.slice(i * n, i * n + n));
 
-async function query(params, fetchFn) {
-  const url = `${API}?${new URLSearchParams({ action: 'query', format: 'json', formatversion: '2', origin: '*', ...params })}`;
+async function query(params, fetchFn, lang = 'en') {
+  const url = `${lang === 'en' ? API : `https://${lang}.wikipedia.org/w/api.php`}?${new URLSearchParams({ action: 'query', format: 'json', formatversion: '2', origin: '*', ...params })}`;
   const res = await fetchFn(url);
   if (!res.ok) throw new Error(`Wikipédia : ${res.status}`);
   return res.json();
@@ -49,14 +49,20 @@ export async function fetchPhotos(breeds, { fetch: fetchFn = globalThis.fetch } 
   // 1. Fichier de chaque race : forcé (`file`) ou image principale de l'article
   const fileOf = new Map();
   for (const b of breeds) if (b.file) fileOf.set(b.id, b.file.replace(/^File:/, ''));
-  const todo = breeds.filter((b) => !b.file);
-  for (const part of chunks(todo, 40)) {
-    const q = (await query({ redirects: '1', prop: 'pageimages', piprop: 'name', titles: part.map((b) => b.wiki).join('|') }, fetchFn)).query || {};
-    const final = resolver(q);
-    const pages = new Map((q.pages || []).map((p) => [p.title, p.pageimage]));
-    for (const b of part) {
-      const name = pages.get(final(b.wiki));
-      if (name) fileOf.set(b.id, name);
+  // `wiki` peut viser une autre langue : « fr:Akita inu » (Wikipédia en français)
+  const todo = breeds.filter((b) => !b.file).map((b) => {
+    const m = /^(fr):(.+)$/.exec(b.wiki);
+    return { id: b.id, lang: m ? m[1] : 'en', title: m ? m[2] : b.wiki };
+  });
+  for (const lang of new Set(todo.map((t) => t.lang))) {
+    for (const part of chunks(todo.filter((t) => t.lang === lang), 40)) {
+      const q = (await query({ redirects: '1', prop: 'pageimages', piprop: 'name', titles: part.map((t) => t.title).join('|') }, fetchFn, lang)).query || {};
+      const final = resolver(q);
+      const pages = new Map((q.pages || []).map((p) => [p.title, p.pageimage]));
+      for (const t of part) {
+        const name = pages.get(final(t.title));
+        if (name) fileOf.set(t.id, name);
+      }
     }
   }
   // 2. URL, auteur et licence de chaque fichier

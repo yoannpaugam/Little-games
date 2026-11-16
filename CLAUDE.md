@@ -22,6 +22,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 🌍 Géoquizz | `geoquizz` | `games/geo/` | `.gq-` | `geoquizz` | — |
 | 👣 Le chemin | `chemin` | `games/path/` | `.ch-` | `chemin` | — |
 | 🧩 Nonogramme | `nonogramme` | `games/nonogram/` | `.ng-` | `nonogramme` | — |
+| 🐕 Chiens | `chiens` | `games/dogs/` | `.dg-` | `chiens` | — |
 | 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)

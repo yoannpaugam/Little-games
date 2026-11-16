@@ -1,15 +1,17 @@
-# Graph Report - little-games  (2026-11-08)
+# Graph Report - little-games  (2026-11-16)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 79 files · ~159,973 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 12 file(s) not represented in the graph (top: .css 10, (none) 2)
 
 ## Summary
-- 844 nodes · 1783 edges · 38 communities
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.87)
+- 943 nodes · 1964 edges · 45 communities
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f8f8469d`
+- Built from commit: `ff8927f7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -17,7 +19,7 @@
 - Affiches : écran de jeu et grille
 - Workflow GitHub « Morceaux historiques »
 - Réponses acceptées et tolérance aux fautes
-- Géoquizz : carte, distances et tirage
+- Géoquizz : distances et tirage des pays
 - Scripts : affiches TMDB, version et tests des catalogues
 - Workflow GitHub « Affiches (TMDB) »
 - Nonogramme : grille, tirage et solveur logique
@@ -26,7 +28,7 @@
 - Spécification Nonogramme
 - Spécification Affiches de cinéma
 - README
-- Compète de zinzin : arrivée, choix des jeux
+- Chiens : écran de jeu, tirage et photos Wikipédia
 - Visages : spécification Morceaux et jeunesse
 - Agent ux-ui-mobile
 - Agent architecte-front
@@ -43,60 +45,67 @@
 - Spécification Géoquizz
 - Scripts Python : catalogue Morceaux et carte du Géoquizz
 - Spécification Le chemin
-- Coquille : routeur et liste des jeux
+- Coquille : routeur et vues des jeux (Livres, Chiens, Visages)
 - Compète de zinzin : règles du plateau (applyAction) et tests
 - Compète de zinzin : écrans et session multi
 - Compète de zinzin : défis à réponse écrite et catalogues
 - Compète de zinzin : liaison MQTT et dispatch
+- Workflow GitHub « Chiens : photos »
 - Spécification Compète de zinzin
 - Compète de zinzin : plateau, dé et pions
-- Compète de zinzin : défis chemin, nonogramme et carte
+- Géoquizz : chargement de la carte, score et réglages
 - Sécurité et données (SECURITY.md)
+- Géoquizz : écran de jeu, zoom et déplacement
+- Spécification Chiens
+- Liste des jeux (registry.js)
+- Consignes pour Claude (CLAUDE.md)
+- Compète de zinzin : défi Géoquizz (carte)
+- Géoquizz : contours des pays et point dans un pays
 
 ## God Nodes (most connected - your core abstractions)
-1. `h()` - 81 edges
-2. `icon()` - 43 edges
+1. `h()` - 91 edges
+2. `icon()` - 49 edges
 3. `mount()` - 38 edges
 4. `mount()` - 31 edges
 5. `renderPlay()` - 27 edges
 6. `mount()` - 25 edges
 7. `mount()` - 25 edges
 8. `renderPlay()` - 24 edges
-9. `main()` - 19 edges
-10. `mount()` - 19 edges
+9. `mount()` - 20 edges
+10. `main()` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Protections en place` --references--> `h()`  [INFERRED]
-  SECURITY.md → js/core/dom.js
-- `Contrat d'un jeu` --references--> `judge()`  [INFERRED]
-  CLAUDE.md → games/movie-posters/index.js
 - `Sécurité et données (détails dans `SECURITY.md`)` --references--> `h()`  [INFERRED]
   CLAUDE.md → js/core/dom.js
-- `Persistance (sur l'appareil)` --references--> `solo()`  [INFERRED]
-  games/zinzin/SPEC.md → tests/zinzin.test.js
+- `Protections en place` --references--> `h()`  [INFERRED]
+  SECURITY.md → js/core/dom.js
 - `drawDie()` --calls--> `h()`  [EXTRACTED]
   games/zinzin/index.js → js/core/dom.js
+- `buildAnswers()` --calls--> `normalize()`  [EXTRACTED]
+  games/movie-posters/index.js → js/core/fuzzy.js
+- `compact()` --calls--> `normalize()`  [EXTRACTED]
+  games/movie-posters/index.js → js/core/fuzzy.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (38 total, 0 thin omitted)
+## Communities (45 total, 0 thin omitted)
 
 ### Community 0 - "Affiches : écran de jeu et grille"
-Cohesion: 0.05
-Nodes (80): Agents, Architecture, Carte du code (Graphify), Contrat d'un jeu, Little Games : consignes pour Claude, Livraison (règle de Yoann), Règles de coordination, Sécurité et données (détails dans `SECURITY.md`) (+72 more)
+Cohesion: 0.07
+Nodes (61): BLUR, BLUR_STEPS, buildAnswers(), compact(), DEFAULT_SETTINGS, ensureStyles(), judge(), mount() (+53 more)
 
 ### Community 1 - "Workflow GitHub « Morceaux historiques »"
 Cohesion: 0.08
 Nodes (23): runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, group, jobs, build (+15 more)
 
 ### Community 2 - "Réponses acceptées et tolérance aux fautes"
-Cohesion: 0.06
-Nodes (52): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+44 more)
+Cohesion: 0.08
+Nodes (33): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+25 more)
 
-### Community 3 - "Géoquizz : carte, distances et tirage"
-Cohesion: 0.07
-Nodes (59): angle(), cache, closestOnArc(), cross(), decodeRing(), distanceToCountry(), dot(), geometry() (+51 more)
+### Community 3 - "Géoquizz : distances et tirage des pays"
+Cohesion: 0.16
+Nodes (16): angle(), cache, closestOnArc(), cross(), dot(), haversineKm(), KM_FOR_ZERO_POINTS, pickQuiz() (+8 more)
 
 ### Community 4 - "Scripts : affiches TMDB, version et tests des catalogues"
 Cohesion: 0.08
@@ -128,11 +137,11 @@ Nodes (10): 🎬 Affiche (affiches de cinéma) : spécification, Catalogue, Gril
 
 ### Community 11 - "README"
 Cohesion: 0.12
-Nodes (15): Ajouter un jeu, 🧱 Architecture (pensée pour migrer facilement), 🎲 Compète de zinzin, 🌍 Géoquizz, 👣 Le chemin, 🖼️ Les affiches, 🎲 Little Games, 📚 Livres (+7 more)
+Nodes (16): Ajouter un jeu, 🧱 Architecture (pensée pour migrer facilement), 🐕 Chiens, 🎲 Compète de zinzin, 🌍 Géoquizz, 👣 Le chemin, 🖼️ Les affiches, 🎲 Little Games (+8 more)
 
-### Community 12 - "Compète de zinzin : arrivée, choix des jeux"
-Cohesion: 0.67
-Nodes (3): updateCenter(), cellOf(), finalChoices()
+### Community 12 - "Chiens : écran de jeu, tirage et photos Wikipédia"
+Cohesion: 0.09
+Nodes (33): DEFAULT_SETTINGS, store, FAMILIES, GROUPS, HIDDEN, LEVELS, makeOptions(), maxScore() (+25 more)
 
 ### Community 13 - "Visages : spécification Morceaux et jeunesse"
 Cohesion: 0.15
@@ -175,12 +184,12 @@ Cohesion: 0.50
 Nodes (3): Ce que tu produis, Contraintes, Format du rapport
 
 ### Community 23 - "Visages : écran Morceaux et jeunesse"
-Cohesion: 0.10
-Nodes (50): buildAnswers(), buildOwners(), checkAnswer(), compact(), PARTICLES, clamp(), faceResolution(), isUpright() (+42 more)
+Cohesion: 0.11
+Nodes (44): clamp(), faceResolution(), isUpright(), LOW_RES, MAX_TILT, MID_RES, portraitRect(), qualityOf() (+36 more)
 
 ### Community 24 - "Le chemin : grille, tirage du chemin et score"
-Cohesion: 0.10
-Nodes (40): createSound(), ensureStyles(), mount(), finish(), listen(), newGame(), newPath(), renderEnd() (+32 more)
+Cohesion: 0.11
+Nodes (38): createSound(), ensureStyles(), mount(), finish(), listen(), newGame(), newPath(), renderEnd() (+30 more)
 
 ### Community 25 - "Spécification Livres"
 Cohesion: 0.18
@@ -198,25 +207,29 @@ Nodes (42): box_of(), check_quality(), commons_search_files(), download(), downl
 Cohesion: 0.18
 Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le chemin : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
-### Community 29 - "Coquille : routeur et liste des jeux"
-Cohesion: 0.16
-Nodes (14): ./books/index.js?v=1.42.0, ./faces/index.js?v=1.42.0, ./geo/index.js?v=1.42.0, ./movie-posters/index.js?v=1.42.0, ./nonogram/index.js?v=1.42.0, ./path/index.js?v=1.42.0, GAMES, ./zinzin/index.js?v=1.42.0 (+6 more)
+### Community 29 - "Coquille : routeur et vues des jeux (Livres, Chiens, Visages)"
+Cohesion: 0.08
+Nodes (59): byYear(), centuryLabel(), centuryOf(), COVERS, DEFAULT_SETTINGS, ensureStyles(), mount(), computeOrder() (+51 more)
 
 ### Community 30 - "Compète de zinzin : règles du plateau (applyAction) et tests"
-Cohesion: 0.12
-Nodes (27): applyAction(), BOARD_COLS, BOARD_ROWS, BOARD_SIZE, boardCounts(), bump(), challengeStart(), clamp() (+19 more)
+Cohesion: 0.11
+Nodes (31): faceZones(), applyAction(), BOARD_COLS, BOARD_ROWS, BOARD_SIZE, boardCounts(), bump(), challengeStart() (+23 more)
 
 ### Community 31 - "Compète de zinzin : écrans et session multi"
 Cohesion: 0.20
 Nodes (23): loadCatalogs(), mountChallenge(), mount(), closeChallenge(), connectHost(), dispatch(), endSession(), flushPending() (+15 more)
 
 ### Community 32 - "Compète de zinzin : défis à réponse écrite et catalogues"
-Cohesion: 0.14
-Nodes (13): EASY, CHALLENGE_GAMES, D, faceZones(), KINDS, LOADERS, pick(), shuffle() (+5 more)
+Cohesion: 0.13
+Nodes (17): EASY, CHALLENGE_GAMES, D, dots(), KINDS, LOADERS, pathChallenge(), draw() (+9 more)
 
 ### Community 33 - "Compète de zinzin : liaison MQTT et dispatch"
-Cohesion: 0.13
-Nodes (15): CID, DEFAULTS, ensureStyles(), newCode(), store, DICE_MS, MAX_LAPS, MAX_TEAMS (+7 more)
+Cohesion: 0.11
+Nodes (19): CID, DEFAULTS, ensureStyles(), updateCenter(), newCode(), store, cellOf(), DICE_MS (+11 more)
+
+### Community 34 - "Workflow GitHub « Chiens : photos »"
+Cohesion: 0.07
+Nodes (27): default, description, type, concurrency, cancel-in-progress, group, all, jobs (+19 more)
 
 ### Community 35 - "Spécification Compète de zinzin"
 Cohesion: 0.14
@@ -226,32 +239,56 @@ Nodes (13): Architecture, 🎲 Compète de zinzin : spécification, Créer une p
 Cohesion: 0.29
 Nodes (10): gameScreen(), buildBoard(), drawDie(), placePawns(), shownSteps(), updateEnd(), updatePills(), cellPos() (+2 more)
 
-### Community 37 - "Compète de zinzin : défis chemin, nonogramme et carte"
-Cohesion: 0.36
-Nodes (8): dots(), pathChallenge(), draw(), flash(), tap(), textChallenge(), refresh(), say()
+### Community 37 - "Géoquizz : chargement de la carte, score et réglages"
+Cohesion: 0.24
+Nodes (12): pointsFromKm(), ensureStyles(), fmt(), mount(), buildWorld(), renderFinal(), renderSettings(), reproject() (+4 more)
 
 ### Community 38 - "Sécurité et données (SECURITY.md)"
 Cohesion: 0.25
 Nodes (7): Le jour où l'application aura un service en ligne (multijoueur, Supabase…), Multijoueur de Compète de zinzin (relais MQTT publics), Où sont les données, Protections en place, Réglages du dépôt GitHub (à faire par le propriétaire), Signaler un problème, 🔒 Sécurité et données
 
+### Community 39 - "Géoquizz : écran de jeu, zoom et déplacement"
+Cohesion: 0.25
+Nodes (14): listen(), newGame(), renderPlay(), apply(), baseSize(), drawOverlay(), fitTo(), next() (+6 more)
+
+### Community 40 - "Spécification Chiens"
+Cohesion: 0.14
+Nodes (13): Catalogue, 🐕 Chiens : spécification, Fin de partie, Mauvaises réponses (niveaux), Navigation (URL), Persistance (sur l'appareil), Photos, Pistes pour la suite (+5 more)
+
+### Community 41 - "Liste des jeux (registry.js)"
+Cohesion: 0.20
+Nodes (9): ./books/index.js?v=1.43.0, ./dogs/index.js?v=1.43.0, ./faces/index.js?v=1.43.0, ./geo/index.js?v=1.43.0, ./movie-posters/index.js?v=1.43.0, ./nonogram/index.js?v=1.43.0, ./path/index.js?v=1.43.0, GAMES (+1 more)
+
+### Community 42 - "Consignes pour Claude (CLAUDE.md)"
+Cohesion: 0.22
+Nodes (8): Agents, Architecture, Carte du code (Graphify), Contrat d'un jeu, Little Games : consignes pour Claude, Livraison (règle de Yoann), Règles de coordination, Sécurité et données (détails dans `SECURITY.md`)
+
+### Community 43 - "Compète de zinzin : défi Géoquizz (carte)"
+Cohesion: 0.50
+Nodes (9): geoChallenge(), apply(), drawHover(), drawMarks(), focusOn(), layout(), place(), setHover() (+1 more)
+
+### Community 44 - "Géoquizz : contours des pays et point dans un pays"
+Cohesion: 0.32
+Nodes (8): decodeRing(), distanceToCountry(), geometry(), inRing(), toLatLon(), guess(), countryAt(), geoWorld()
+
 ## Knowledge Gaps
-- **8 isolated node(s):** `./morceaux/index.js?v=1.42.0`, `./books/index.js?v=1.42.0`, `./faces/index.js?v=1.42.0`, `./geo/index.js?v=1.42.0`, `./movie-posters/index.js?v=1.42.0` (+3 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 323 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **9 isolated node(s):** `./morceaux/index.js?v=1.43.0`, `./books/index.js?v=1.43.0`, `./dogs/index.js?v=1.43.0`, `./faces/index.js?v=1.43.0`, `./geo/index.js?v=1.43.0` (+4 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 371 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `h()` connect `Affiches : écran de jeu et grille` to `Compète de zinzin : défis à réponse écrite et catalogues`, `Compète de zinzin : liaison MQTT et dispatch`, `Réponses acceptées et tolérance aux fautes`, `Géoquizz : carte, distances et tirage`, `Compète de zinzin : plateau, dé et pions`, `Compète de zinzin : défis chemin, nonogramme et carte`, `Nonogramme : grille, tirage et solveur logique`, `Sécurité et données (SECURITY.md)`, `Compète de zinzin : arrivée, choix des jeux`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Coquille : routeur et liste des jeux`, `Compète de zinzin : écrans et session multi`?**
-  _High betweenness centrality (0.159) - this node is a cross-community bridge._
+- **Why does `h()` connect `Coquille : routeur et vues des jeux (Livres, Chiens, Visages)` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Géoquizz : chargement de la carte, score et réglages`, `Nonogramme : grille, tirage et solveur logique`, `Géoquizz : écran de jeu, zoom et déplacement`, `Sécurité et données (SECURITY.md)`, `Consignes pour Claude (CLAUDE.md)`, `Compète de zinzin : défi Géoquizz (carte)`, `Chiens : écran de jeu, tirage et photos Wikipédia`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : écrans et session multi`?**
+  _High betweenness centrality (0.157) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.42.0`, `./books/index.js?v=1.42.0`, `./faces/index.js?v=1.42.0` to the rest of the system?**
-  _8 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `./morceaux/index.js?v=1.43.0`, `./books/index.js?v=1.43.0`, `./dogs/index.js?v=1.43.0` to the rest of the system?**
+  _9 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
-  _Cohesion score 0.05078855920876771 - nodes in this community are weakly interconnected._
-- **Why does `icon()` connect `Le chemin : grille, tirage du chemin et score` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Réponses acceptées et tolérance aux fautes`, `Géoquizz : carte, distances et tirage`, `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Nonogramme : grille, tirage et solveur logique`, `Compète de zinzin : arrivée, choix des jeux`, `Visages : écran Morceaux et jeunesse`, `Coquille : routeur et liste des jeux`, `Compète de zinzin : écrans et session multi`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
+  _Cohesion score 0.068997668997669 - nodes in this community are weakly interconnected._
+- **Why does `icon()` connect `Coquille : routeur et vues des jeux (Livres, Chiens, Visages)` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Géoquizz : chargement de la carte, score et réglages`, `Nonogramme : grille, tirage et solveur logique`, `Géoquizz : écran de jeu, zoom et déplacement`, `Compète de zinzin : défi Géoquizz (carte)`, `Chiens : écran de jeu, tirage et photos Wikipédia`, `Géoquizz : contours des pays et point dans un pays`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : écrans et session multi`?**
+  _High betweenness centrality (0.052) - this node is a cross-community bridge._
 - **Should `Workflow GitHub « Morceaux historiques »` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
-- **Why does `mount()` connect `Compète de zinzin : écrans et session multi` to `Affiches : écran de jeu et grille`, `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Compète de zinzin : arrivée, choix des jeux`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : règles du plateau (applyAction) et tests`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Why does `mount()` connect `Compète de zinzin : écrans et session multi` to `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Coquille : routeur et vues des jeux (Livres, Chiens, Visages)`, `Compète de zinzin : règles du plateau (applyAction) et tests`?**
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
