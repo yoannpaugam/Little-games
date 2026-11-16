@@ -23,6 +23,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 👣 Le chemin | `chemin` | `games/path/` | `.ch-` | `chemin` | — |
 | 🧩 Nonogramme | `nonogramme` | `games/nonogram/` | `.ng-` | `nonogramme` | — |
 | 🐕 Chiens | `chiens` | `games/dogs/` | `.dg-` | `chiens` | — |
+| ♀️ Pionnières | `pionnieres` | `games/women/` | `.pn-` | `pionnieres` | — |
 | 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)

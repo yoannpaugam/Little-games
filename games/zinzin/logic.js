@@ -18,7 +18,7 @@ export const GRACE_MS = 4000;
 export const FINAL_COUNT = 2;    // à l'arrivée : 2 défis à réussir à la suite, dans des jeux choisis par l'équipe    // l'arbitre déclare le défi raté s'il n'a pas reçu de résultat après le délai + cette marge
 
 // Durée de chaque défi (secondes)
-export const DURATION = { affiches: 45, visages: 45, livres: 40, geoquizz: 50, chemin: 40, nonogramme: 90 };
+export const DURATION = { affiches: 45, visages: 45, livres: 40, geoquizz: 50, chemin: 40, nonogramme: 90, pionnieres: 30 };
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 

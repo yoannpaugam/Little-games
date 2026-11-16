@@ -12,6 +12,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 👣 Le chemin | `games/path/` | ✅ jouable |
 | 🧩 Nonogramme | `games/nonogram/` | ✅ jouable |
 | 🐕 Chiens | `games/dogs/` | ✅ jouable |
+| ♀️ Pionnières | `games/women/` | ✅ jouable |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -86,9 +87,13 @@ Un jeu de logique (picross) : on noircit les cases d'une grille d'après les chi
 
 On montre la photo d'un chien et il faut trouver sa race, parmi 110. Quatre réponses : 3 visibles et une 4e cachée, qui est la bonne 1 fois sur 4. Une bonne réponse visible vaut 1 point ; la carte cachée, tentée sans la voir, en vaut 2. Parties de 10 chiens, 3 niveaux (les mauvaises réponses sont plus ou moins proches de la bonne), record. Les photos sont les images principales des articles Wikipédia (Wikimedia Commons, licences libres, crédits affichés) : `data/photos.json` est rempli par le workflow « Chiens : photos » (`scripts/fetch-dog-photos.mjs`), et une photo manquante est cherchée en direct. Tirage et score dans `games/dogs/quiz.js`, testés par `tests/dogs.test.js`.
 
+## ♀️ Pionnières
+
+Faire découvrir 200 femmes célèbres ou, surtout, oubliées de l'histoire : scientifiques et naturalistes, artistes, exploratrices, aviatrices, inventrices, militantes, résistantes, sportives… On voit le portrait de chaque femme, son nom, ses dates et son domaine, et on devine ce qu'elle a accompli. Quatre réponses : 3 visibles et une carte mystère, retournée, qui cache la bonne réponse 1 fois sur 4 (1 point, 2 avec la carte mystère). Après la réponse, une phrase raconte son histoire. Galerie des 200 portraits, et un défi Pionnières dans Compète de zinzin. Sources d'inspiration : *Savanturières* (Muséum national d'Histoire naturelle), AWARE, Les femmes de l'histoire, Parcours de pionnières. Les portraits viennent de Wikimedia Commons (auteur et licence affichés) : `data/photos.json` est rempli par le workflow « Portraits (Pionnières) » (`scripts/fetch-pionnieres-photos.mjs`) ; en attendant, les portraits sont dessinés. Règles dans `games/women/quiz.js`, testées par `tests/pionnieres.test.js`.
+
 ## 🎲 Compète de zinzin
 
-Un jeu de plateau entre équipes : on lance le dé, le pion avance, et chaque case donne un défi court tiré d'un autre jeu (affiche floutée, visage, auteur d'un livre, pays à placer, chemin à retracer, nonogramme 5 × 5). Tant que le défi n'est pas réussi, l'équipe reste sur la case ; pour gagner, il faut finir ses tours de plateau puis réussir 2 défis à la suite, dans 2 jeux choisis par l'équipe. On joue sur un seul téléphone ou avec un téléphone par équipe : code à 5 chiffres, salle d'attente, et tout le monde voit en direct le dé, les pions et le défi en cours. La synchronisation passe par deux relais MQTT publics (HiveMQ et EMQX), sans serveur à nous ; mqtt.js (MIT) est livré dans `games/zinzin/vendor/`. Règles dans `games/zinzin/logic.js`, testées par `tests/zinzin.test.js`. Le jeu reste toujours en avant-dernière position de l'accueil (`last: true`).
+Un jeu de plateau entre équipes : on lance le dé, le pion avance, et chaque case donne un défi court tiré d'un autre jeu (affiche floutée, visage, auteur d'un livre, pays à placer, chemin à retracer, nonogramme 5 × 5, accomplissement d'une pionnière). Tant que le défi n'est pas réussi, l'équipe reste sur la case ; pour gagner, il faut finir ses tours de plateau puis réussir 2 défis à la suite, dans 2 jeux choisis par l'équipe. On joue sur un seul téléphone ou avec un téléphone par équipe : code à 5 chiffres, salle d'attente, et tout le monde voit en direct le dé, les pions et le défi en cours. La synchronisation passe par deux relais MQTT publics (HiveMQ et EMQX), sans serveur à nous ; mqtt.js (MIT) est livré dans `games/zinzin/vendor/`. Règles dans `games/zinzin/logic.js`, testées par `tests/zinzin.test.js`. Le jeu reste toujours en avant-dernière position de l'accueil (`last: true`).
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -177,15 +182,22 @@ games/dogs/              Le jeu « Chiens » (trouver la race d'après la photo)
   ├─ data/chiens.json    110 races ; data/photos.json : photos (workflow « Chiens : photos »)
   ├─ styles.css          Styles du jeu (préfixe .dg-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
+games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 200 femmes), autonome
+  ├─ index.js            Logique et vues (jeu, galerie, réglages)
+  ├─ quiz.js             Réponses (3 visibles + carte mystère), ordre de jeu, dates (testé)
+  ├─ data/femmes.json    200 femmes ; data/photos.json : portraits (workflow « Portraits (Pionnières) »)
+  ├─ styles.css          Styles du jeu (préfixe .pn-)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
 games/zinzin/            Le jeu « Compète de zinzin » (plateau et défis des autres jeux, multi)
   ├─ index.js            Écrans (création, rejoindre, salle d'attente, plateau, victoire), dispatch et rendu
   ├─ logic.js            État de la partie et applyAction (testé)
-  ├─ challenges.js       Les six défis, d'après les modules et catalogues des autres jeux
+  ├─ challenges.js       Les sept défis, d'après les modules et catalogues des autres jeux
   ├─ net.js              Liaison MQTT sur deux relais publics
   ├─ vendor/             mqtt.js (MIT) et sa licence
   ├─ styles.css          Styles du jeu (préfixe .zz-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 scripts/fetch-posters.mjs       Récupération des affiches (Node 18+)
+scripts/fetch-pionnieres-photos.mjs  Portraits des Pionnières (Wikidata, Commons)
 scripts/celeb-quiz-builder.py   Catalogues Morceaux et jeunesse (MediaPipe)
 scripts/celeb-seed.json         Liste seed Commons pour le builder
 scripts/simplify-geo.py         Simplifie les contours de la carte du Géoquizz
