@@ -3,10 +3,10 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (partie) | ['races'] | ['reglages']
 
-import { h, icon } from '../../js/core/dom.js?v=1.52.0';
-import { createStore } from '../../js/core/storage.js?v=1.52.0';
-import { GROUPS, FAMILIES, LEVELS, newGame, pointsFor, maxScore, updateSeen } from './quiz.js?v=1.52.0';
-import { fetchPhotos } from './wiki.js?v=1.52.0';
+import { h, icon } from '../../js/core/dom.js?v=1.53.0';
+import { createStore } from '../../js/core/storage.js?v=1.53.0';
+import { GROUPS, FAMILIES, LEVELS, newGame, pointsFor, maxScore, updateSeen } from './quiz.js?v=1.53.0';
+import { fetchPhotos } from './wiki.js?v=1.53.0';
 
 const store = createStore('chiens', { version: 1 });
 const DEFAULT_SETTINGS = { level: 'normal' };
