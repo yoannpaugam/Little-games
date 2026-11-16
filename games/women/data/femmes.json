@@ -1,0 +1,3191 @@
+[
+ {
+  "id": "hypatie",
+  "name": "Hypatie",
+  "born": 370,
+  "died": 415,
+  "from": "grecque d'Alexandrie",
+  "domain": "sci",
+  "famous": true,
+  "answer": "Mathématicienne d'Alexandrie",
+  "lures": [
+   "A inventé le zéro",
+   "A mesuré la circonférence de la Terre",
+   "A écrit l'Odyssée"
+  ],
+  "fact": "Elle enseignait l'astronomie et les mathématiques ; elle fut tuée par une foule chrétienne."
+ },
+ {
+  "id": "murasaki-shikibu",
+  "name": "Murasaki Shikibu",
+  "born": 973,
+  "died": 1014,
+  "from": "japonaise",
+  "domain": "lett",
+  "famous": false,
+  "answer": "A écrit le « Dit du Genji »",
+  "lures": [
+   "A inventé le haïku",
+   "A fondé le théâtre nô",
+   "A écrit « L'Art de la guerre »"
+  ],
+  "fact": "Dame de la cour de Heian, vers l'an 1000."
+ },
+ {
+  "id": "hildegarde-de-bingen",
+  "name": "Hildegarde de Bingen",
+  "born": 1098,
+  "died": 1179,
+  "from": "allemande",
+  "domain": "mus",
+  "famous": false,
+  "answer": "Abbesse compositrice du Moyen Âge",
+  "lures": [
+   "A fondé l'université de Paris",
+   "A écrit la première encyclopédie médicale arabe",
+   "A inventé la notation musicale"
+  ],
+  "fact": "Elle composa des chants encore joués et écrivit sur les plantes et la médecine."
+ },
+ {
+  "id": "christine-de-pizan",
+  "name": "Christine de Pizan",
+  "born": 1364,
+  "died": 1430,
+  "from": "française",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Première femme à vivre de sa plume",
+  "lures": [
+   "A écrit « Le Roman de la Rose »",
+   "A fondé la Sorbonne",
+   "A traduit la Bible en français"
+  ],
+  "fact": "Veuve à 25 ans, elle écrivit « La Cité des dames » pour défendre les femmes."
+ },
+ {
+  "id": "louise-labe",
+  "name": "Louise Labé",
+  "born": 1524,
+  "died": 1566,
+  "from": "française",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Poétesse de la Renaissance",
+  "lures": [
+   "A écrit « Les Fleurs du mal »",
+   "A fondé l'imprimerie de Lyon",
+   "A traduit Homère en français"
+  ],
+  "fact": "Ses sonnets amoureux, publiés en 1555, revendiquent le droit des femmes au savoir."
+ },
+ {
+  "id": "sofonisba-anguissola",
+  "name": "Sofonisba Anguissola",
+  "born": 1532,
+  "died": 1625,
+  "from": "italienne",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Peintre de la cour d'Espagne",
+  "lures": [
+   "A peint la Joconde",
+   "A inventé la perspective",
+   "A sculpté la fontaine de Trevi"
+  ],
+  "fact": "Michel-Ange l'encouragea ; elle devint portraitiste de Philippe II."
+ },
+ {
+  "id": "artemisia-gentileschi",
+  "name": "Artemisia Gentileschi",
+  "born": 1593,
+  "died": 1656,
+  "from": "italienne",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Première femme de l'Académie de dessin de Florence",
+  "lures": [
+   "A peint les fresques d'une chapelle du Vatican",
+   "A fondé la première école de peinture pour filles",
+   "Première femme peintre officielle des Médicis"
+  ],
+  "fact": "Peintre baroque, elle peignit des héroïnes fortes comme Judith décapitant Holopherne."
+ },
+ {
+  "id": "judith-leyster",
+  "name": "Judith Leyster",
+  "born": 1609,
+  "died": 1660,
+  "from": "néerlandaise",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Première femme de la guilde des peintres de Haarlem",
+  "lures": [
+   "Élève de Rembrandt qui a peint « La Ronde de nuit »",
+   "A inventé la nature morte aux fleurs",
+   "Première femme conservatrice d'un musée"
+  ],
+  "fact": "Ses tableaux furent longtemps attribués à Frans Hals."
+ },
+ {
+  "id": "madame-de-la-fayette",
+  "name": "Madame de La Fayette",
+  "born": 1634,
+  "died": 1693,
+  "from": "française",
+  "domain": "lett",
+  "famous": false,
+  "answer": "A écrit « La Princesse de Clèves »",
+  "lures": [
+   "A écrit « Les Liaisons dangereuses »",
+   "A fondé l'Académie française",
+   "A écrit « Les Contes de ma mère l'Oye »"
+  ],
+  "fact": "Publié anonymement en 1678, souvent vu comme le premier roman psychologique."
+ },
+ {
+  "id": "maria-sibylla-merian",
+  "name": "Maria Sibylla Merian",
+  "born": 1647,
+  "died": 1717,
+  "from": "allemande",
+  "domain": "nat",
+  "famous": false,
+  "answer": "A peint la métamorphose des insectes",
+  "lures": [
+   "A découvert la photosynthèse",
+   "Première femme admise à la Royal Society",
+   "A classé les orchidées d'Europe"
+  ],
+  "fact": "À 52 ans, elle partit au Surinam observer chenilles et papillons ; son livre de 1705 fit date."
+ },
+ {
+  "id": "madeleine-basseporte",
+  "name": "Madeleine Basseporte",
+  "born": 1701,
+  "died": 1780,
+  "from": "française",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Peintre des vélins du Jardin du roi",
+  "lures": [
+   "Première femme professeure au Muséum",
+   "A rapporté le café des Antilles",
+   "A fondé le premier herbier de Paris"
+  ],
+  "fact": "Elle peignit plantes et animaux pour la collection royale des vélins pendant près de 40 ans."
+ },
+ {
+  "id": "emilie-du-chatelet",
+  "name": "Émilie du Châtelet",
+  "born": 1706,
+  "died": 1749,
+  "from": "française",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A traduit Newton en français",
+  "lures": [
+   "A calculé la distance Terre-Soleil",
+   "A inventé le calcul différentiel",
+   "A fondé la première école d'ingénieures"
+  ],
+  "fact": "Sa traduction commentée, publiée en 1759, est restée la référence en français."
+ },
+ {
+  "id": "nicole-reine-lepaute",
+  "name": "Nicole-Reine Lepaute",
+  "born": 1723,
+  "died": 1788,
+  "from": "française",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A calculé le retour de la comète de Halley",
+  "lures": [
+   "A découvert la première comète périodique de Paris",
+   "A calculé la masse de la planète Jupiter",
+   "A mesuré la longueur du méridien de Paris"
+  ],
+  "fact": "Avec Clairaut et Lalande, elle prédit le passage de 1759 à un mois près."
+ },
+ {
+  "id": "jeanne-baret",
+  "name": "Jeanne Baret",
+  "born": 1740,
+  "died": 1807,
+  "from": "française",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Première femme à faire le tour du monde",
+  "lures": [
+   "Première femme admise au Jardin du roi",
+   "A dessiné les vélins du Muséum",
+   "A découvert le fossile d'un ichtyosaure"
+  ],
+  "fact": "Déguisée en homme, elle embarqua avec Bougainville (1766-1769) comme assistante du botaniste Commerson."
+ },
+ {
+  "id": "angelica-kauffman",
+  "name": "Angelica Kauffman",
+  "born": 1741,
+  "died": 1807,
+  "from": "suisse",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Cofondatrice de la Royal Academy",
+  "lures": [
+   "A peint le sacre de Napoléon",
+   "A inventé le pastel",
+   "A fondé le musée du Prado"
+  ],
+  "fact": "Elle fut l'une des deux femmes fondatrices en 1768."
+ },
+ {
+  "id": "olympe-de-gouges",
+  "name": "Olympe de Gouges",
+  "born": 1748,
+  "died": 1793,
+  "from": "française",
+  "domain": "pol",
+  "famous": true,
+  "answer": "A écrit les droits de la femme et de la citoyenne",
+  "lures": [
+   "A écrit les paroles de « La Marseillaise »",
+   "Première femme élue députée en France",
+   "A fondé le premier journal féminin de Paris"
+  ],
+  "fact": "En 1791 ; elle fut guillotinée en 1793."
+ },
+ {
+  "id": "caroline-herschel",
+  "name": "Caroline Herschel",
+  "born": 1750,
+  "died": 1848,
+  "from": "germano-britannique",
+  "domain": "sci",
+  "famous": false,
+  "answer": "Première astronome payée, découvreuse de comètes",
+  "lures": [
+   "A découvert les anneaux de la planète Saturne",
+   "A construit le plus grand télescope d'Europe",
+   "A dressé la première carte complète de la Lune"
+  ],
+  "fact": "Elle découvrit 8 comètes et fut médaillée d'or de la Royal Astronomical Society."
+ },
+ {
+  "id": "elisabeth-vigee-le-brun",
+  "name": "Élisabeth Vigée Le Brun",
+  "born": 1755,
+  "died": 1842,
+  "from": "française",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Portraitiste de Marie-Antoinette",
+  "lures": [
+   "A peint « La Liberté guidant le peuple »",
+   "A fondé l'École des beaux-arts",
+   "A inventé le portrait en miniature"
+  ],
+  "fact": "Elle peignit la reine une trentaine de fois et dut fuir la Révolution."
+ },
+ {
+  "id": "marie-anne-lavoisier",
+  "name": "Marie-Anne Paulze-Lavoisier",
+  "born": 1758,
+  "died": 1836,
+  "from": "française",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A illustré et traduit la chimie de Lavoisier",
+  "lures": [
+   "A découvert l'oxygène",
+   "A inventé le baromètre de laboratoire",
+   "Première femme membre de l'Académie des sciences"
+  ],
+  "fact": "Elle grava les planches du « Traité élémentaire de chimie » et traduisit les chimistes anglais."
+ },
+ {
+  "id": "mary-wollstonecraft",
+  "name": "Mary Wollstonecraft",
+  "born": 1759,
+  "died": 1797,
+  "from": "britannique",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A défendu les droits de la femme en 1792",
+  "lures": [
+   "A écrit « Frankenstein »",
+   "Première femme élue au Parlement anglais",
+   "A fondé le mouvement des suffragettes"
+  ],
+  "fact": "En 1792 ; elle est la mère de Mary Shelley."
+ },
+ {
+  "id": "sophie-germain",
+  "name": "Sophie Germain",
+  "born": 1776,
+  "died": 1831,
+  "from": "française",
+  "domain": "sci",
+  "famous": false,
+  "answer": "Mathématicienne du théorème de Fermat",
+  "lures": [
+   "A inventé le système métrique",
+   "A calculé le nombre pi à 100 décimales",
+   "A fondé l'École normale de jeunes filles"
+  ],
+  "fact": "Elle écrivait à Gauss sous un nom d'homme ; les « nombres premiers de Sophie Germain » portent son nom."
+ },
+ {
+  "id": "barbe-nicole-clicquot",
+  "name": "Barbe-Nicole Clicquot",
+  "born": 1777,
+  "died": 1866,
+  "from": "française",
+  "domain": "eco",
+  "famous": false,
+  "answer": "A inventé la table de remuage du champagne",
+  "lures": [
+   "A inventé le bouchon de liège",
+   "A créé le premier vin rosé",
+   "A fondé la première coopérative de vignerons"
+  ],
+  "fact": "Veuve à 27 ans, elle dirigea la maison de champagne, qui porte encore son nom de veuve."
+ },
+ {
+  "id": "henriette-dangeville",
+  "name": "Henriette d'Angeville",
+  "born": 1794,
+  "died": 1871,
+  "from": "française",
+  "domain": "sport",
+  "famous": false,
+  "answer": "A réussi l'ascension du mont Blanc en 1838",
+  "lures": [
+   "A créé la Compagnie des guides de Chamonix",
+   "Première femme à skier dans les Alpes",
+   "A ouvert la route du col du Mont-Cenis"
+  ],
+  "fact": "En 1838, en jupe et pantalon, elle atteignit le sommet ; Marie Paradis l'avait précédée en 1808, emmenée par des guides."
+ },
+ {
+  "id": "jeanne-villepreux-power",
+  "name": "Jeanne Villepreux-Power",
+  "born": 1794,
+  "died": 1871,
+  "from": "française",
+  "domain": "nat",
+  "famous": false,
+  "answer": "A inventé l'aquarium",
+  "lures": [
+   "A découvert la pieuvre géante",
+   "A inventé le scaphandre",
+   "A créé le premier zoo marin"
+  ],
+  "fact": "Couturière devenue naturaliste, elle inventa des cages de verre pour observer l'argonaute."
+ },
+ {
+  "id": "mary-shelley",
+  "name": "Mary Shelley",
+  "born": 1797,
+  "died": 1851,
+  "from": "britannique",
+  "domain": "lett",
+  "famous": true,
+  "answer": "A écrit « Frankenstein »",
+  "lures": [
+   "A écrit « Dracula »",
+   "A écrit « Orgueil et Préjugés »",
+   "A écrit « Les Hauts de Hurlevent »"
+  ],
+  "fact": "Elle l'imagina à 18 ans, au bord du lac Léman, un soir d'orage de 1816."
+ },
+ {
+  "id": "sojourner-truth",
+  "name": "Sojourner Truth",
+  "born": 1797,
+  "died": 1883,
+  "from": "américaine",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Ancienne esclave, oratrice abolitionniste",
+  "lures": [
+   "A fondé le chemin de fer clandestin",
+   "Première femme noire élue au Congrès",
+   "A écrit « La Case de l'oncle Tom »"
+  ],
+  "fact": "Elle gagna en 1828 un procès pour récupérer son fils, vendu illégalement."
+ },
+ {
+  "id": "anna-atkins",
+  "name": "Anna Atkins",
+  "born": 1799,
+  "died": 1871,
+  "from": "britannique",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Premier livre illustré de photographies",
+  "lures": [
+   "A inventé l'appareil photo",
+   "A découvert la pénicilline dans des algues",
+   "A dessiné le premier atlas des oiseaux"
+  ],
+  "fact": "En 1843, elle publia un livre d'algues en cyanotypes, ces images d'un bleu profond."
+ },
+ {
+  "id": "mary-anning",
+  "name": "Mary Anning",
+  "born": 1799,
+  "died": 1847,
+  "from": "britannique",
+  "domain": "nat",
+  "famous": false,
+  "answer": "A découvert les premiers ichtyosaures",
+  "lures": [
+   "A créé le premier musée d'histoire naturelle de Londres",
+   "A décrit le premier dinosaure à plumes",
+   "A cartographié les fonds de la Manche"
+  ],
+  "fact": "Chasseuse de fossiles à Lyme Regis, longtemps ignorée par la Société géologique."
+ },
+ {
+  "id": "george-sand",
+  "name": "George Sand",
+  "born": 1804,
+  "died": 1876,
+  "from": "française",
+  "domain": "lett",
+  "famous": true,
+  "answer": "Romancière à nom d'homme, « La Mare au diable »",
+  "lures": [
+   "A écrit « Madame Bovary »",
+   "Première femme élue à l'Académie française",
+   "A fondé le premier journal féministe de France"
+  ],
+  "fact": "Elle portait pantalon et redingote et fut la compagne de Musset et de Chopin."
+ },
+ {
+  "id": "fanny-mendelssohn",
+  "name": "Fanny Mendelssohn",
+  "born": 1805,
+  "died": 1847,
+  "from": "allemande",
+  "domain": "mus",
+  "famous": false,
+  "answer": "Compositrice publiée sous le nom de son frère",
+  "lures": [
+   "Première femme cheffe de l'orchestre de Berlin",
+   "A composé la « Marche nuptiale » des mariages",
+   "Pianiste de la cour du roi de Prusse"
+  ],
+  "fact": "Certaines de ses mélodies parurent sous le nom de Felix Mendelssohn."
+ },
+ {
+  "id": "mary-seacole",
+  "name": "Mary Seacole",
+  "born": 1805,
+  "died": 1881,
+  "from": "jamaïcaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "A soigné les soldats en Crimée",
+  "lures": [
+   "A fondé la première école d'infirmières",
+   "A découvert un remède contre la fièvre jaune",
+   "Première femme médecin d'Amérique"
+  ],
+  "fact": "Refusée par l'armée, elle ouvrit à ses frais un « hôtel britannique » près du front."
+ },
+ {
+  "id": "ada-lovelace",
+  "name": "Ada Lovelace",
+  "born": 1815,
+  "died": 1852,
+  "from": "britannique",
+  "domain": "tech",
+  "famous": true,
+  "answer": "A écrit le premier programme informatique",
+  "lures": [
+   "A inventé la machine à calculer",
+   "A découvert les nombres complexes",
+   "A fondé le premier club d'échecs féminin"
+  ],
+  "fact": "En 1843, pour la machine analytique de Babbage ; elle était la fille de Lord Byron."
+ },
+ {
+  "id": "clara-schumann",
+  "name": "Clara Schumann",
+  "born": 1819,
+  "died": 1896,
+  "from": "allemande",
+  "domain": "mus",
+  "famous": true,
+  "answer": "Pianiste virtuose et compositrice",
+  "lures": [
+   "A composé « La Lettre à Élise »",
+   "A inventé le métronome",
+   "A fondé l'Opéra de Vienne"
+  ],
+  "fact": "Elle fit des concerts pendant plus de 60 ans ; elle figurait sur le billet de 100 marks."
+ },
+ {
+  "id": "florence-nightingale",
+  "name": "Florence Nightingale",
+  "born": 1820,
+  "died": 1910,
+  "from": "britannique",
+  "domain": "med",
+  "famous": true,
+  "answer": "A fondé les soins infirmiers modernes",
+  "lures": [
+   "A fondé la Croix-Rouge",
+   "A découvert les microbes",
+   "Première femme médecin d'Angleterre"
+  ],
+  "fact": "« La dame à la lampe » utilisa aussi des statistiques et des graphiques pour réformer les hôpitaux."
+ },
+ {
+  "id": "clara-barton",
+  "name": "Clara Barton",
+  "born": 1821,
+  "died": 1912,
+  "from": "américaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "A fondé la Croix-Rouge américaine",
+  "lures": [
+   "A fondé l'Armée du salut",
+   "A créé les ambulances militaires",
+   "Première femme médecin de l'armée"
+  ],
+  "fact": "Infirmière de la guerre de Sécession, surnommée « l'ange du champ de bataille »."
+ },
+ {
+  "id": "elizabeth-blackwell",
+  "name": "Elizabeth Blackwell",
+  "born": 1821,
+  "died": 1910,
+  "from": "anglo-américaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "Première diplômée de médecine aux États-Unis",
+  "lures": [
+   "Première femme chirurgienne des hôpitaux de Paris",
+   "A découvert la transmission du choléra par l'eau",
+   "A fondé la première école de sages-femmes"
+  ],
+  "fact": "Diplômée en 1849, elle fonda ensuite un hôpital pour femmes à New York."
+ },
+ {
+  "id": "harriet-tubman",
+  "name": "Harriet Tubman",
+  "born": 1822,
+  "died": 1913,
+  "from": "américaine",
+  "domain": "pol",
+  "famous": true,
+  "answer": "A fait évader des esclaves vers le Nord",
+  "lures": [
+   "A fondé la NAACP",
+   "Première femme noire médecin",
+   "A rédigé l'abolition de l'esclavage"
+  ],
+  "fact": "Elle fit environ 13 voyages et ne perdit jamais un passager."
+ },
+ {
+  "id": "rosa-bonheur",
+  "name": "Rosa Bonheur",
+  "born": 1822,
+  "died": 1899,
+  "from": "française",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Première femme officier de la Légion d'honneur",
+  "lures": [
+   "A sculpté le Lion de Belfort pour la ville",
+   "Première femme élue à l'Académie des beaux-arts",
+   "A peint le plafond de l'Opéra de Paris"
+  ],
+  "fact": "Elle obtint une permission pour porter le pantalon, pour aller dans les foires aux bestiaux."
+ },
+ {
+  "id": "louise-michel",
+  "name": "Louise Michel",
+  "born": 1830,
+  "died": 1905,
+  "from": "française",
+  "domain": "pol",
+  "famous": true,
+  "answer": "Figure de la Commune de Paris",
+  "lures": [
+   "Première femme élue maire en France",
+   "A écrit « L'Internationale »",
+   "A fondé la CGT"
+  ],
+  "fact": "Déportée en Nouvelle-Calédonie, elle y enseigna aux Kanaks."
+ },
+ {
+  "id": "marianne-north",
+  "name": "Marianne North",
+  "born": 1830,
+  "died": 1890,
+  "from": "britannique",
+  "domain": "arts",
+  "famous": false,
+  "answer": "A peint la flore du monde, exposée à Kew",
+  "lures": [
+   "Première femme à traverser l'Afrique",
+   "A rapporté le thé de Chine en Inde",
+   "A fondé le jardin botanique de Singapour"
+  ],
+  "fact": "Sa galerie aux 832 tableaux est toujours ouverte dans les jardins de Kew, à Londres."
+ },
+ {
+  "id": "isabella-bird",
+  "name": "Isabella Bird",
+  "born": 1831,
+  "died": 1904,
+  "from": "britannique",
+  "domain": "expl",
+  "famous": false,
+  "answer": "Première femme de la Royal Geographical Society",
+  "lures": [
+   "A découvert les sources du fleuve Zambèze",
+   "Première femme à franchir le cap Horn à la voile",
+   "A dressé la première carte de l'Himalaya"
+  ],
+  "fact": "Elle voyagea des Rocheuses au Japon et en Perse, souvent seule, à cheval."
+ },
+ {
+  "id": "josephine-cochrane",
+  "name": "Josephine Cochrane",
+  "born": 1839,
+  "died": 1913,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A inventé le lave-vaisselle",
+  "lures": [
+   "A inventé l'aspirateur",
+   "A inventé la machine à laver",
+   "A inventé le grille-pain"
+  ],
+  "fact": "Excédée qu'on ébrèche sa vaisselle, elle fit breveter sa machine en 1886."
+ },
+ {
+  "id": "berthe-morisot",
+  "name": "Berthe Morisot",
+  "born": 1841,
+  "died": 1895,
+  "from": "française",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Fondatrice de l'impressionnisme",
+  "lures": [
+   "A peint « Le Déjeuner sur l'herbe »",
+   "A fondé le musée d'Orsay",
+   "Première femme à exposer au Louvre de son vivant"
+  ],
+  "fact": "Elle exposa à la première exposition impressionniste, en 1874."
+ },
+ {
+  "id": "madeleine-bres",
+  "name": "Madeleine Brès",
+  "born": 1842,
+  "died": 1921,
+  "from": "française",
+  "domain": "med",
+  "famous": false,
+  "answer": "Première Française docteure en médecine",
+  "lures": [
+   "Première femme ministre de la Santé",
+   "A fondé l'Institut Pasteur",
+   "A créé le premier planning familial"
+  ],
+  "fact": "Thèse soutenue en 1875 ; elle se consacra ensuite aux nourrissons et aux crèches."
+ },
+ {
+  "id": "edmonia-lewis",
+  "name": "Edmonia Lewis",
+  "born": 1844,
+  "died": 1907,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Première sculptrice afro-américaine reconnue",
+  "lures": [
+   "A sculpté le Lincoln Memorial",
+   "A fondé l'université Howard",
+   "A peint les premiers portraits d'Indiens"
+  ],
+  "fact": "Installée à Rome, elle sculpta « La Mort de Cléopâtre » dans le marbre."
+ },
+ {
+  "id": "mary-cassatt",
+  "name": "Mary Cassatt",
+  "born": 1844,
+  "died": 1926,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Seule Américaine exposée avec les impressionnistes",
+  "lures": [
+   "A fondé le Museum of Modern Art de New York",
+   "A peint les premières affiches de Broadway",
+   "Première femme présidente d'une académie d'art"
+  ],
+  "fact": "Elle peignait surtout les mères et les enfants et conseilla les collectionneurs américains."
+ },
+ {
+  "id": "sarah-bernhardt",
+  "name": "Sarah Bernhardt",
+  "born": 1844,
+  "died": 1923,
+  "from": "française",
+  "domain": "cine",
+  "famous": true,
+  "answer": "La plus célèbre tragédienne de son temps",
+  "lures": [
+   "A fondé la Comédie-Française au XIXe siècle",
+   "Première femme à réaliser un film en France",
+   "A inventé le music-hall parisien"
+  ],
+  "fact": "Amputée d'une jambe en 1915, elle joua encore et alla au front soutenir les soldats."
+ },
+ {
+  "id": "kate-sheppard",
+  "name": "Kate Sheppard",
+  "born": 1847,
+  "died": 1934,
+  "from": "néo-zélandaise",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A obtenu le vote des femmes en Nouvelle-Zélande",
+  "lures": [
+   "Première femme Première ministre au monde",
+   "A fondé le parti travailliste australien",
+   "Première femme élue au Parlement anglais"
+  ],
+  "fact": "En 1893 ; son visage est sur le billet de 10 dollars néo-zélandais."
+ },
+ {
+  "id": "hubertine-auclert",
+  "name": "Hubertine Auclert",
+  "born": 1848,
+  "died": 1914,
+  "from": "française",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A popularisé le mot « féministe »",
+  "lures": [
+   "Première femme avocate de France",
+   "A fondé le Planning familial",
+   "Première femme élue au Sénat"
+  ],
+  "fact": "Elle refusa de payer ses impôts, puisqu'elle ne pouvait pas voter."
+ },
+ {
+  "id": "sofia-kovalevskaia",
+  "name": "Sofia Kovalevskaïa",
+  "born": 1850,
+  "died": 1891,
+  "from": "russe",
+  "domain": "sci",
+  "famous": false,
+  "answer": "Première professeure de mathématiques en Europe du Nord",
+  "lures": [
+   "A démontré la conjecture de Poincaré",
+   "A fondé la première université féminine de Russie",
+   "A inventé la notation des nombres complexes"
+  ],
+  "fact": "Elle enseigna à Stockholm à partir de 1884 et reçut le prix Bordin."
+ },
+ {
+  "id": "clara-zetkin",
+  "name": "Clara Zetkin",
+  "born": 1857,
+  "died": 1933,
+  "from": "allemande",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A proposé la Journée des femmes",
+  "lures": [
+   "A fondé le Parti communiste russe",
+   "Première femme chancelière allemande",
+   "A écrit « Le Capital »"
+  ],
+  "fact": "En 1910, à Copenhague ; le 8 mars fut ensuite retenu."
+ },
+ {
+  "id": "cecile-chaminade",
+  "name": "Cécile Chaminade",
+  "born": 1857,
+  "died": 1944,
+  "from": "française",
+  "domain": "mus",
+  "famous": false,
+  "answer": "Première compositrice à la Légion d'honneur",
+  "lures": [
+   "A composé l'opéra « Carmen »",
+   "A fondé la Sacem pour les droits d'auteur",
+   "Première pianiste à enregistrer un disque"
+  ],
+  "fact": "Ses pièces pour piano eurent un immense succès aux États-Unis."
+ },
+ {
+  "id": "emmeline-pankhurst",
+  "name": "Emmeline Pankhurst",
+  "born": 1858,
+  "died": 1928,
+  "from": "britannique",
+  "domain": "pol",
+  "famous": true,
+  "answer": "Meneuse des suffragettes",
+  "lures": [
+   "Première femme Première ministre britannique",
+   "A fondé le Parti travailliste",
+   "A fondé la Croix-Rouge britannique"
+  ],
+  "fact": "Emprisonnée plusieurs fois, elle fit des grèves de la faim pour le vote des femmes."
+ },
+ {
+  "id": "selma-lagerlof",
+  "name": "Selma Lagerlöf",
+  "born": 1858,
+  "died": 1940,
+  "from": "suédoise",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Première femme Nobel de littérature",
+  "lures": [
+   "A écrit les aventures de « Fifi Brindacier »",
+   "Première femme présidente de l'Académie suédoise",
+   "A écrit le conte de « La Petite Sirène »"
+  ],
+  "fact": "En 1909 ; on lui doit « Le Merveilleux Voyage de Nils Holgersson »."
+ },
+ {
+  "id": "nettie-stevens",
+  "name": "Nettie Stevens",
+  "born": 1861,
+  "died": 1912,
+  "from": "américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A découvert le chromosome Y",
+  "lures": [
+   "A découvert les groupes sanguins",
+   "A décrit la division cellulaire",
+   "A inventé le microscope électronique"
+  ],
+  "fact": "En 1905, en étudiant des vers de farine, elle montra le rôle du chromosome Y."
+ },
+ {
+  "id": "hilma-af-klint",
+  "name": "Hilma af Klint",
+  "born": 1862,
+  "died": 1944,
+  "from": "suédoise",
+  "domain": "arts",
+  "famous": false,
+  "answer": "A peint l'abstraction avant Kandinsky",
+  "lures": [
+   "A créé le cubisme avec Picasso et Braque",
+   "A dessiné le drapeau et les timbres suédois",
+   "Première femme admise au Bauhaus"
+  ],
+  "fact": "Elle voulut que ses œuvres restent cachées 20 ans après sa mort."
+ },
+ {
+  "id": "ida-b-wells",
+  "name": "Ida B. Wells",
+  "born": 1862,
+  "died": 1931,
+  "from": "américaine",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Journaliste contre les lynchages",
+  "lures": [
+   "A fondé le Washington Post",
+   "Première femme noire sénatrice",
+   "A créé le Black History Month"
+  ],
+  "fact": "Elle refusa de céder sa place dans un train en 1884, 70 ans avant Rosa Parks."
+ },
+ {
+  "id": "jeanne-chauvin",
+  "name": "Jeanne Chauvin",
+  "born": 1862,
+  "died": 1926,
+  "from": "française",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Première avocate à plaider en France",
+  "lures": [
+   "Première femme juge en France",
+   "Première femme notaire de France",
+   "A fondé l'École de la magistrature"
+  ],
+  "fact": "Elle prêta serment en 1900, après une loi votée pour l'y autoriser."
+ },
+ {
+  "id": "annie-jump-cannon",
+  "name": "Annie Jump Cannon",
+  "born": 1863,
+  "died": 1941,
+  "from": "américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A classé les étoiles en O B A F G K M",
+  "lures": [
+   "A découvert la première exoplanète",
+   "A mesuré la vitesse de la lumière",
+   "A dirigé le premier observatoire spatial"
+  ],
+  "fact": "Presque sourde, elle classa à la main environ 350 000 étoiles."
+ },
+ {
+  "id": "camille-claudel",
+  "name": "Camille Claudel",
+  "born": 1864,
+  "died": 1943,
+  "from": "française",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Sculptrice de « La Valse »",
+  "lures": [
+   "A sculpté « Le Penseur »",
+   "A sculpté la Statue de la Liberté",
+   "Première femme élue à l'Académie des beaux-arts"
+  ],
+  "fact": "Élève puis compagne de Rodin, elle passa ses 30 dernières années internée."
+ },
+ {
+  "id": "marguerite-durand",
+  "name": "Marguerite Durand",
+  "born": 1864,
+  "died": 1936,
+  "from": "française",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A fondé « La Fronde », journal fait par des femmes",
+  "lures": [
+   "A fondé le magazine Elle en 1945",
+   "Première femme ministre de la République",
+   "A créé la fête des mères en France"
+  ],
+  "fact": "Dès 1897 ; sa bibliothèque féministe à Paris porte son nom."
+ },
+ {
+  "id": "nellie-bly",
+  "name": "Nellie Bly",
+  "born": 1864,
+  "died": 1922,
+  "from": "américaine",
+  "domain": "lett",
+  "famous": false,
+  "answer": "A fait le tour du monde en 72 jours",
+  "lures": [
+   "Première femme à traverser les États-Unis en voiture",
+   "A fondé le New York Times",
+   "A inventé le reportage photo"
+  ],
+  "fact": "En 1889, elle battit le record de « Phileas Fogg » ; elle s'était aussi fait interner pour enquêter."
+ },
+ {
+  "id": "seraphine-louis",
+  "name": "Séraphine Louis",
+  "born": 1864,
+  "died": 1942,
+  "from": "française",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Femme de ménage devenue peintre",
+  "lures": [
+   "A peint « La Charmeuse de serpents »",
+   "A fondé l'art brut",
+   "A illustré les fables de La Fontaine"
+  ],
+  "fact": "Découverte par le collectionneur Wilhelm Uhde, à Senlis ; un film lui est consacré."
+ },
+ {
+  "id": "suzanne-valadon",
+  "name": "Suzanne Valadon",
+  "born": 1865,
+  "died": 1938,
+  "from": "française",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Modèle de Renoir devenue grande peintre",
+  "lures": [
+   "A peint « Le Moulin de la Galette »",
+   "A fondé le musée de Montmartre",
+   "A inventé le cubisme"
+  ],
+  "fact": "Elle posa pour Renoir et Toulouse-Lautrec ; elle est la mère du peintre Utrillo."
+ },
+ {
+  "id": "mary-anderson",
+  "name": "Mary Anderson",
+  "born": 1866,
+  "died": 1953,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A inventé l'essuie-glace",
+  "lures": [
+   "A inventé le feu de circulation",
+   "A inventé la ceinture de sécurité",
+   "A inventé le clignotant"
+  ],
+  "fact": "Brevet déposé en 1903, après un trajet en tramway sous la neige à New York."
+ },
+ {
+  "id": "kathe-kollwitz",
+  "name": "Käthe Kollwitz",
+  "born": 1867,
+  "died": 1945,
+  "from": "allemande",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Graveuse de la misère et de la guerre",
+  "lures": [
+   "A inventé la lithographie en couleurs",
+   "A dessiné l'aigle du drapeau allemand",
+   "Peintre officielle de l'empereur Guillaume II"
+  ],
+  "fact": "Sa « Pietà » est au cœur du mémorial de la Neue Wache, à Berlin."
+ },
+ {
+  "id": "madam-cj-walker",
+  "name": "Madam C. J. Walker",
+  "born": 1867,
+  "died": 1919,
+  "from": "américaine",
+  "domain": "eco",
+  "famous": false,
+  "answer": "Première millionnaire américaine partie de rien",
+  "lures": [
+   "A fondé la marque de cosmétiques Revlon",
+   "A créé la première banque tenue par des Noires",
+   "A inventé le premier rouge à lèvres en tube"
+  ],
+  "fact": "Fille d'esclaves affranchis, elle fit fortune avec des soins capillaires."
+ },
+ {
+  "id": "marie-curie",
+  "name": "Marie Curie",
+  "born": 1867,
+  "died": 1934,
+  "from": "franco-polonaise",
+  "domain": "sci",
+  "famous": true,
+  "answer": "Seule personne Nobel dans deux sciences",
+  "lures": [
+   "A découvert la radioactivité artificielle",
+   "A découvert les rayons X",
+   "A découvert l'électron"
+  ],
+  "fact": "Nobel de physique (1903) et de chimie (1911) ; elle découvrit le polonium et le radium."
+ },
+ {
+  "id": "alexandra-david-neel",
+  "name": "Alexandra David-Néel",
+  "born": 1868,
+  "died": 1969,
+  "from": "française",
+  "domain": "expl",
+  "famous": true,
+  "answer": "Première Européenne entrée à Lhassa",
+  "lures": [
+   "Première femme à gravir l'Everest",
+   "A traversé le Sahara à pied",
+   "A découvert les sources du Nil"
+  ],
+  "fact": "Déguisée en mendiante, elle atteignit la ville interdite en 1924, à 55 ans."
+ },
+ {
+  "id": "gertrude-bell",
+  "name": "Gertrude Bell",
+  "born": 1868,
+  "died": 1926,
+  "from": "britannique",
+  "domain": "expl",
+  "famous": false,
+  "answer": "A tracé les frontières de l'Irak",
+  "lures": [
+   "A découvert le tombeau de Toutânkhamon",
+   "A traversé l'Australie à cheval",
+   "A fondé le musée du Caire"
+  ],
+  "fact": "Elle fonda aussi le musée de Bagdad."
+ },
+ {
+  "id": "henrietta-leavitt",
+  "name": "Henrietta Swan Leavitt",
+  "born": 1868,
+  "died": 1921,
+  "from": "américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A trouvé comment mesurer les distances des étoiles",
+  "lures": [
+   "A découvert la planète naine Pluton en 1930",
+   "A classé les étoiles selon leur couleur",
+   "A photographié la première nébuleuse spirale"
+  ],
+  "fact": "Sa loi sur les céphéides permit à Hubble de prouver l'expansion de l'Univers."
+ },
+ {
+  "id": "annie-londonderry",
+  "name": "Annie Londonderry",
+  "born": 1870,
+  "died": 1947,
+  "from": "américaine",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première femme à faire le tour du monde à vélo",
+  "lures": [
+   "Première femme à traverser la Manche à la nage",
+   "A inventé le vélo pliant",
+   "A gagné le premier Tour de France féminin"
+  ],
+  "fact": "Partie de Boston en 1894, elle revint 15 mois plus tard."
+ },
+ {
+  "id": "charlotte-cooper",
+  "name": "Charlotte Cooper",
+  "born": 1870,
+  "died": 1966,
+  "from": "britannique",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première championne olympique",
+  "lures": [
+   "Première femme à gagner Wimbledon",
+   "A créé le double mixte",
+   "Première arbitre de tennis"
+  ],
+  "fact": "En tennis, aux Jeux de Paris de 1900."
+ },
+ {
+  "id": "ynes-mexia",
+  "name": "Ynés Mexía",
+  "born": 1870,
+  "died": 1938,
+  "from": "mexicano-américaine",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Botaniste qui a récolté 145 000 plantes",
+  "lures": [
+   "A découvert le cacao sauvage",
+   "Première femme à gravir l'Aconcagua",
+   "A créé la vanille de synthèse"
+  ],
+  "fact": "Elle commença la botanique à 55 ans et rapporta environ 145 000 spécimens."
+ },
+ {
+  "id": "alice-guy",
+  "name": "Alice Guy",
+  "born": 1873,
+  "died": 1968,
+  "from": "française",
+  "domain": "cine",
+  "famous": false,
+  "answer": "Première réalisatrice de l'histoire du cinéma",
+  "lures": [
+   "A inventé le cinématographe avant les Lumière",
+   "A fondé le festival de Cannes en 1946",
+   "A réalisé le premier film parlant français"
+  ],
+  "fact": "Son film « La Fée aux choux » date de 1896 ; elle fonda ensuite un studio aux États-Unis."
+ },
+ {
+  "id": "colette",
+  "name": "Colette",
+  "born": 1873,
+  "died": 1954,
+  "from": "française",
+  "domain": "lett",
+  "famous": true,
+  "answer": "Romancière des « Claudine »",
+  "lures": [
+   "A écrit « Bonjour tristesse »",
+   "Première femme Prix Nobel de littérature",
+   "A fondé le magazine Elle"
+  ],
+  "fact": "Première femme à recevoir des funérailles nationales en France, en 1954."
+ },
+ {
+  "id": "melitta-bentz",
+  "name": "Melitta Bentz",
+  "born": 1873,
+  "died": 1950,
+  "from": "allemande",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A inventé le filtre à café en papier",
+  "lures": [
+   "A inventé la cafetière italienne",
+   "A inventé le café soluble",
+   "A inventé le sachet de thé"
+  ],
+  "fact": "En 1908, elle perça une casserole et utilisa le papier buvard de son fils."
+ },
+ {
+  "id": "madeleine-pelletier",
+  "name": "Madeleine Pelletier",
+  "born": 1874,
+  "died": 1939,
+  "from": "française",
+  "domain": "med",
+  "famous": false,
+  "answer": "Première femme psychiatre des hôpitaux",
+  "lures": [
+   "Première femme élue députée en France",
+   "A fondé l'Ordre des médecins en France",
+   "Première femme professeure à la faculté de Paris"
+  ],
+  "fact": "Féministe radicale, elle défendit dès 1911 le droit à l'avortement."
+ },
+ {
+  "id": "marie-marvingt",
+  "name": "Marie Marvingt",
+  "born": 1875,
+  "died": 1963,
+  "from": "française",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Sportive pionnière de l'avion ambulance",
+  "lures": [
+   "Première femme à gagner le Tour de France",
+   "A fondé l'Aéro-Club de France",
+   "A fondé les Jeux olympiques féminins"
+  ],
+  "fact": "Alpiniste, nageuse, pilote : on la surnommait « la fiancée du danger »."
+ },
+ {
+  "id": "madeleine-vionnet",
+  "name": "Madeleine Vionnet",
+  "born": 1876,
+  "died": 1975,
+  "from": "française",
+  "domain": "eco",
+  "famous": false,
+  "answer": "A inventé la coupe en biais",
+  "lures": [
+   "A inventé la minijupe",
+   "A inventé la fermeture éclair",
+   "A fondé l'école de la Chambre syndicale"
+  ],
+  "fact": "Ses robes drapées épousent le corps sans corset ; on la surnomme « l'architecte de la couture »."
+ },
+ {
+  "id": "paula-modersohn-becker",
+  "name": "Paula Modersohn-Becker",
+  "born": 1876,
+  "died": 1907,
+  "from": "allemande",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Premier autoportrait nu d'une femme peintre",
+  "lures": [
+   "A peint « Le Baiser » avec des feuilles d'or",
+   "A fondé l'expressionnisme viennois",
+   "A illustré la première édition des contes de Grimm"
+  ],
+  "fact": "Elle mourut à 31 ans après avoir peint environ 750 tableaux."
+ },
+ {
+  "id": "gabriele-munter",
+  "name": "Gabriele Münter",
+  "born": 1877,
+  "died": 1962,
+  "from": "allemande",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Cofondatrice du Cavalier bleu",
+  "lures": [
+   "Première femme admise au Bauhaus de Weimar",
+   "A peint « Le Cri » avant Edvard Munch",
+   "A créé le fauvisme avec Matisse"
+  ],
+  "fact": "Elle cacha les œuvres de Kandinsky aux nazis dans sa cave à Murnau."
+ },
+ {
+  "id": "isabelle-eberhardt",
+  "name": "Isabelle Eberhardt",
+  "born": 1877,
+  "died": 1904,
+  "from": "suisse",
+  "domain": "expl",
+  "famous": false,
+  "answer": "Écrivaine voyageuse du Sahara",
+  "lures": [
+   "Première femme pilote de rallye",
+   "A fondé l'oasis de Tamanrasset",
+   "A traversé l'Atlantique à la rame"
+  ],
+  "fact": "Elle parcourait l'Algérie vêtue en cavalier ; elle mourut dans une crue à 27 ans."
+ },
+ {
+  "id": "eileen-gray",
+  "name": "Eileen Gray",
+  "born": 1878,
+  "died": 1976,
+  "from": "irlandaise",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Architecte de la villa E-1027",
+  "lures": [
+   "A dessiné la chaise Wassily",
+   "A construit la Cité radieuse",
+   "A fondé le Bauhaus"
+  ],
+  "fact": "Le Corbusier peignit des fresques sur les murs de sa villa sans son accord."
+ },
+ {
+  "id": "lise-meitner",
+  "name": "Lise Meitner",
+  "born": 1878,
+  "died": 1968,
+  "from": "autrichienne",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A expliqué la fission nucléaire",
+  "lures": [
+   "A découvert le radium",
+   "A inventé le compteur Geiger",
+   "A découvert l'électron"
+  ],
+  "fact": "En 1938, exilée en Suède, elle comprit que le noyau d'uranium se coupe en deux."
+ },
+ {
+  "id": "emmy-noether",
+  "name": "Emmy Noether",
+  "born": 1882,
+  "died": 1935,
+  "from": "allemande",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A lié symétries et lois de conservation",
+  "lures": [
+   "A inventé les logarithmes",
+   "A démontré le dernier théorème de Fermat",
+   "A inventé la théorie des ensembles"
+  ],
+  "fact": "Einstein la jugeait géniale ; l'université refusa longtemps de la payer."
+ },
+ {
+  "id": "germaine-dulac",
+  "name": "Germaine Dulac",
+  "born": 1882,
+  "died": 1942,
+  "from": "française",
+  "domain": "cine",
+  "famous": false,
+  "answer": "Pionnière du cinéma surréaliste",
+  "lures": [
+   "A fondé le festival de Cannes",
+   "A inventé le travelling",
+   "Première femme à gagner un Oscar"
+  ],
+  "fact": "« La Coquille et le Clergyman » (1928) est un des premiers films surréalistes."
+ },
+ {
+  "id": "raymonde-de-laroche",
+  "name": "Raymonde de Laroche",
+  "born": 1882,
+  "died": 1919,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première femme pilote brevetée",
+  "lures": [
+   "Première femme à traverser la Manche en avion",
+   "A inventé le parachute",
+   "A fondé Air France"
+  ],
+  "fact": "Elle obtint son brevet le 8 mars 1910 et battit des records d'altitude."
+ },
+ {
+  "id": "virginia-woolf",
+  "name": "Virginia Woolf",
+  "born": 1882,
+  "died": 1941,
+  "from": "britannique",
+  "domain": "lett",
+  "famous": true,
+  "answer": "A écrit « Une chambre à soi »",
+  "lures": [
+   "A écrit « Jane Eyre »",
+   "A écrit « Le Seigneur des anneaux »",
+   "A fondé la BBC"
+  ],
+  "fact": "Elle y explique qu'une femme a besoin d'argent et d'une pièce à elle pour écrire."
+ },
+ {
+  "id": "coco-chanel",
+  "name": "Coco Chanel",
+  "born": 1883,
+  "died": 1971,
+  "from": "française",
+  "domain": "eco",
+  "famous": true,
+  "answer": "A créé la petite robe noire",
+  "lures": [
+   "A inventé le bikini",
+   "A inventé le jean",
+   "A créé la première maison de haute couture"
+  ],
+  "fact": "Elle libéra les femmes du corset ; son parfum N° 5 date de 1921."
+ },
+ {
+  "id": "marie-laurencin",
+  "name": "Marie Laurencin",
+  "born": 1883,
+  "died": 1956,
+  "from": "française",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Peintre pastel du cercle de Picasso",
+  "lures": [
+   "A inventé le cubisme",
+   "A peint le plafond de l'Opéra Garnier",
+   "A fondé l'école de Pont-Aven"
+  ],
+  "fact": "Seule femme du cercle cubiste du Bateau-Lavoir ; elle illustra aussi des livres."
+ },
+ {
+  "id": "alice-milliat",
+  "name": "Alice Milliat",
+  "born": 1884,
+  "died": 1957,
+  "from": "française",
+  "domain": "sport",
+  "famous": false,
+  "answer": "A créé les Jeux mondiaux féminins",
+  "lures": [
+   "Première femme championne olympique",
+   "A fondé le Tour de France féminin",
+   "Première femme arbitre de football"
+  ],
+  "fact": "Face au refus du CIO, elle organisa ses propres jeux en 1922 ; le CIO céda en 1928."
+ },
+ {
+  "id": "eleanor-roosevelt",
+  "name": "Eleanor Roosevelt",
+  "born": 1884,
+  "died": 1962,
+  "from": "américaine",
+  "domain": "pol",
+  "famous": true,
+  "answer": "A présidé la rédaction de la Déclaration des droits de l'homme",
+  "lures": [
+   "Première femme candidate à la présidence américaine",
+   "A fondé l'Unicef pour les enfants",
+   "A rédigé la Constitution des États-Unis amendée"
+  ],
+  "fact": "Ancienne Première dame, elle présida la commission de l'ONU en 1948."
+ },
+ {
+  "id": "sonia-delaunay",
+  "name": "Sonia Delaunay",
+  "born": 1885,
+  "died": 1979,
+  "from": "franco-ukrainienne",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Première femme exposée au Louvre de son vivant",
+  "lures": [
+   "A inventé le pointillisme avec Seurat",
+   "A fondé le Salon d'automne à Paris",
+   "A dessiné les costumes de l'Opéra de Paris"
+  ],
+  "fact": "Avec Robert Delaunay, elle créa le simultanisme et l'appliqua aux tissus et aux voitures."
+ },
+ {
+  "id": "georgia-okeeffe",
+  "name": "Georgia O'Keeffe",
+  "born": 1887,
+  "died": 1986,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Peintre des fleurs géantes et des déserts",
+  "lures": [
+   "A peint « American Gothic » dans l'Iowa",
+   "A créé le pop art avec Andy Warhol",
+   "A peint les fresques du Rockefeller Center"
+  ],
+  "fact": "En 2014, une de ses toiles devint l'œuvre d'une femme la plus chère vendue aux enchères."
+ },
+ {
+  "id": "nadia-boulanger",
+  "name": "Nadia Boulanger",
+  "born": 1887,
+  "died": 1979,
+  "from": "française",
+  "domain": "mus",
+  "famous": false,
+  "answer": "Professeure des grands compositeurs du XXe siècle",
+  "lures": [
+   "A inventé la musique concrète à la radio",
+   "Première femme à diriger l'Opéra de Lyon",
+   "A composé l'hymne officiel de l'Union européenne"
+  ],
+  "fact": "Elle forma Philip Glass, Quincy Jones et Astor Piazzolla, et fut cheffe d'orchestre."
+ },
+ {
+  "id": "inge-lehmann",
+  "name": "Inge Lehmann",
+  "born": 1888,
+  "died": 1993,
+  "from": "danoise",
+  "domain": "nat",
+  "famous": false,
+  "answer": "A découvert que le noyau de la Terre est solide",
+  "lures": [
+   "A inventé l'échelle de Richter",
+   "A prédit le premier tremblement de terre",
+   "A mesuré l'épaisseur des glaces du Groenland"
+  ],
+  "fact": "En 1936, en étudiant les ondes sismiques, elle comprit que le cœur de la Terre est solide."
+ },
+ {
+  "id": "marie-louise-paris",
+  "name": "Marie-Louise Paris",
+  "born": 1889,
+  "died": 1969,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A fondé la première école d'ingénieures",
+  "lures": [
+   "Première femme admise à Polytechnique",
+   "A construit le premier pont suspendu",
+   "A fondé l'École des mines"
+  ],
+  "fact": "L'École polytechnique féminine, créée en 1925, est devenue l'EPF."
+ },
+ {
+  "id": "sophie-taeuber-arp",
+  "name": "Sophie Taeuber-Arp",
+  "born": 1889,
+  "died": 1943,
+  "from": "suisse",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Pionnière de l'abstraction et de dada",
+  "lures": [
+   "A inventé le collage",
+   "A fondé le surréalisme",
+   "A dessiné le logo de la Croix-Rouge"
+  ],
+  "fact": "Elle figure sur l'ancien billet suisse de 50 francs."
+ },
+ {
+  "id": "elsa-schiaparelli",
+  "name": "Elsa Schiaparelli",
+  "born": 1890,
+  "died": 1973,
+  "from": "italienne",
+  "domain": "eco",
+  "famous": false,
+  "answer": "A créé le « rose shocking » et la mode surréaliste",
+  "lures": [
+   "A inventé la petite robe noire et le tailleur",
+   "A créé le premier défilé de mode télévisé",
+   "A dessiné les uniformes des hôtesses d'Air France"
+  ],
+  "fact": "Elle travailla avec Dalí et Cocteau, dont la robe homard."
+ },
+ {
+  "id": "alfonsina-strada",
+  "name": "Alfonsina Strada",
+  "born": 1891,
+  "died": 1959,
+  "from": "italienne",
+  "domain": "sport",
+  "famous": false,
+  "answer": "A couru le Tour d'Italie masculin",
+  "lures": [
+   "Première femme à gagner le Tour de France",
+   "A inventé le vélo de course",
+   "A fondé le Giro féminin"
+  ],
+  "fact": "En 1924, elle termina hors délai mais fut acclamée."
+ },
+ {
+  "id": "zora-neale-hurston",
+  "name": "Zora Neale Hurston",
+  "born": 1891,
+  "died": 1960,
+  "from": "américaine",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Romancière de la Renaissance de Harlem",
+  "lures": [
+   "A écrit « La Couleur pourpre »",
+   "A écrit « La Case de l'oncle Tom »",
+   "Première femme noire Prix Nobel"
+  ],
+  "fact": "Son roman « Une femme noire » (1937) fut redécouvert par Alice Walker."
+ },
+ {
+  "id": "alice-ball",
+  "name": "Alice Ball",
+  "born": 1892,
+  "died": 1916,
+  "from": "américaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "A trouvé le premier traitement de la lèpre",
+  "lures": [
+   "A mis au point le vaccin contre la tuberculose",
+   "A découvert la vitamine C dans les agrumes",
+   "A isolé le premier antibiotique naturel"
+  ],
+  "fact": "Chimiste, elle rendit injectable l'huile de chaulmoogra ; elle mourut à 24 ans."
+ },
+ {
+  "id": "augusta-savage",
+  "name": "Augusta Savage",
+  "born": 1892,
+  "died": 1962,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Sculptrice de la Renaissance de Harlem",
+  "lures": [
+   "A sculpté la Statue de la Liberté",
+   "A fondé le premier musée afro-américain",
+   "A sculpté le mont Rushmore"
+  ],
+  "fact": "Sa sculpture « La Harpe » fut l'une des plus vues de l'Exposition universelle de 1939."
+ },
+ {
+  "id": "bessie-coleman",
+  "name": "Bessie Coleman",
+  "born": 1892,
+  "died": 1926,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première aviatrice afro-américaine",
+  "lures": [
+   "Première femme pilote de ligne",
+   "A traversé l'Atlantique en solitaire",
+   "A fondé la première école de pilotage noire"
+  ],
+  "fact": "Refusée aux États-Unis, elle apprit à piloter en France et obtint son brevet en 1921."
+ },
+ {
+  "id": "mary-pickford",
+  "name": "Mary Pickford",
+  "born": 1892,
+  "died": 1979,
+  "from": "canado-américaine",
+  "domain": "cine",
+  "famous": false,
+  "answer": "Actrice cofondatrice de United Artists",
+  "lures": [
+   "A réalisé le premier film parlant",
+   "A créé le premier dessin animé",
+   "A fondé Hollywood"
+  ],
+  "fact": "En 1919, avec Chaplin, Fairbanks et Griffith, pour contrôler leurs propres films."
+ },
+ {
+  "id": "berty-albrecht",
+  "name": "Berty Albrecht",
+  "born": 1893,
+  "died": 1943,
+  "from": "française",
+  "domain": "res",
+  "famous": false,
+  "answer": "Cofondatrice du mouvement Combat",
+  "lures": [
+   "A fondé le Planning familial",
+   "A fondé la Croix-Rouge française",
+   "Première femme préfète"
+  ],
+  "fact": "Arrêtée par la Gestapo, elle mourut à Fresnes ; elle est inhumée au Mont-Valérien."
+ },
+ {
+  "id": "lili-boulanger",
+  "name": "Lili Boulanger",
+  "born": 1893,
+  "died": 1918,
+  "from": "française",
+  "domain": "mus",
+  "famous": false,
+  "answer": "Première femme prix de Rome de composition",
+  "lures": [
+   "A composé « Le Boléro »",
+   "A fondé le Conservatoire américain",
+   "Première femme à diriger l'Opéra de Paris"
+  ],
+  "fact": "En 1913, à 19 ans ; elle mourut à 24 ans."
+ },
+ {
+  "id": "louise-weiss",
+  "name": "Louise Weiss",
+  "born": 1893,
+  "died": 1983,
+  "from": "française",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Suffragiste, doyenne du Parlement européen",
+  "lures": [
+   "Première femme Première ministre de France",
+   "A fondé l'Unesco",
+   "A rédigé le traité de Rome"
+  ],
+  "fact": "Ses suffragettes lâchaient des ballons et s'enchaînaient pour le droit de vote."
+ },
+ {
+  "id": "adrienne-bolland",
+  "name": "Adrienne Bolland",
+  "born": 1895,
+  "died": 1975,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première à franchir les Andes en avion",
+  "lures": [
+   "Première femme pilote de chasse",
+   "A survolé le pôle Nord",
+   "A battu le record de vitesse en hydravion"
+  ],
+  "fact": "Le 1er avril 1921, dans un Caudron G.3, à plus de 4 000 mètres et sans oxygène."
+ },
+ {
+  "id": "dorothea-lange",
+  "name": "Dorothea Lange",
+  "born": 1895,
+  "died": 1965,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "A photographié « Mère migrante » en 1936",
+  "lures": [
+   "A photographié le premier homme sur la Lune",
+   "A inventé le flash",
+   "A fondé le magazine National Geographic"
+  ],
+  "fact": "Ses images des paysans ruinés devinrent le symbole des années 1930."
+ },
+ {
+  "id": "eugenie-brazier",
+  "name": "Eugénie Brazier",
+  "born": 1895,
+  "died": 1977,
+  "from": "française",
+  "domain": "eco",
+  "famous": false,
+  "answer": "Première cheffe à six étoiles Michelin",
+  "lures": [
+   "A inventé le guide Michelin",
+   "A fondé l'école Ferrandi",
+   "A fondé une école de cuisine à Lyon"
+  ],
+  "fact": "En 1933, elle obtint trois étoiles pour chacun de ses deux restaurants ; Paul Bocuse fut son apprenti."
+ },
+ {
+  "id": "gerty-cori",
+  "name": "Gerty Cori",
+  "born": 1896,
+  "died": 1957,
+  "from": "tchéco-américaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "Première femme Nobel de médecine",
+  "lures": [
+   "A découvert l'insuline",
+   "A inventé la pilule contraceptive",
+   "A décrit le premier gène du cancer"
+  ],
+  "fact": "Avec son mari, elle expliqua comment le corps stocke et utilise le sucre (1947)."
+ },
+ {
+  "id": "amelia-earhart",
+  "name": "Amelia Earhart",
+  "born": 1897,
+  "died": 1937,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": true,
+  "answer": "Première femme à traverser l'Atlantique seule en avion",
+  "lures": [
+   "Première femme pilote de ligne d'une compagnie",
+   "A battu le record de vitesse en hydravion",
+   "Première femme à survoler le pôle Nord en avion"
+  ],
+  "fact": "En 1932 ; elle disparut dans le Pacifique en 1937 en tentant le tour du monde."
+ },
+ {
+  "id": "irene-joliot-curie",
+  "name": "Irène Joliot-Curie",
+  "born": 1897,
+  "died": 1956,
+  "from": "française",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A découvert la radioactivité artificielle",
+  "lures": [
+   "A découvert le radium",
+   "A construit la première pile atomique",
+   "A découvert le neutron"
+  ],
+  "fact": "Nobel de chimie 1935 avec Frédéric Joliot ; elle fut aussi l'une des trois premières femmes ministres en France."
+ },
+ {
+  "id": "golda-meir",
+  "name": "Golda Meir",
+  "born": 1898,
+  "died": 1978,
+  "from": "israélienne",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Première femme à diriger Israël",
+  "lures": [
+   "A négocié la paix avec l'Égypte",
+   "A fondé le Mossad",
+   "Première femme présidente de l'ONU"
+  ],
+  "fact": "Elle dirigea le pays de 1969 à 1974."
+ },
+ {
+  "id": "maryse-bastie",
+  "name": "Maryse Bastié",
+  "born": 1898,
+  "died": 1952,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A traversé seule l'Atlantique Sud en avion",
+  "lures": [
+   "Première femme à passer le mur du son",
+   "A ouvert la ligne de l'Aéropostale",
+   "A inventé le pilote automatique"
+  ],
+  "fact": "En 1936, en 12 heures ; elle avait aussi battu le record de durée en vol."
+ },
+ {
+  "id": "tamara-de-lempicka",
+  "name": "Tamara de Lempicka",
+  "born": 1898,
+  "died": 1980,
+  "from": "polonaise",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Peintre phare de l'Art déco",
+  "lures": [
+   "A inventé le surréalisme",
+   "A peint « Les Demoiselles d'Avignon »",
+   "A fondé le musée de l'Orangerie"
+  ],
+  "fact": "Ses portraits aux formes lisses et aux voitures de luxe incarnent les années folles."
+ },
+ {
+  "id": "lotte-reiniger",
+  "name": "Lotte Reiniger",
+  "born": 1899,
+  "died": 1981,
+  "from": "allemande",
+  "domain": "cine",
+  "famous": false,
+  "answer": "Plus ancien long métrage d'animation conservé",
+  "lures": [
+   "A créé Mickey Mouse avec Walt Disney",
+   "A inventé la pâte à modeler animée",
+   "Première femme à recevoir un Oscar d'animation"
+  ],
+  "fact": "« Les Aventures du prince Ahmed » (1926), en ombres chinoises découpées."
+ },
+ {
+  "id": "suzanne-lenglen",
+  "name": "Suzanne Lenglen",
+  "born": 1899,
+  "died": 1938,
+  "from": "française",
+  "domain": "sport",
+  "famous": true,
+  "answer": "Première star du tennis féminin",
+  "lures": [
+   "Première femme à courir un marathon",
+   "A fondé Roland-Garros",
+   "Première championne olympique"
+  ],
+  "fact": "Six fois gagnante de Wimbledon, elle jouait en jupe courte et sans corset."
+ },
+ {
+  "id": "cecilia-payne",
+  "name": "Cecilia Payne-Gaposchkin",
+  "born": 1900,
+  "died": 1979,
+  "from": "britannico-américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A montré que les étoiles sont faites d'hydrogène",
+  "lures": [
+   "A découvert les pulsars avec un radiotélescope",
+   "A calculé l'âge exact du Soleil",
+   "A découvert la première étoile à neutrons"
+  ],
+  "fact": "Sa thèse de 1925, d'abord contestée, est l'une des plus importantes de l'astronomie."
+ },
+ {
+  "id": "funmilayo-ransome-kuti",
+  "name": "Funmilayo Ransome-Kuti",
+  "born": 1900,
+  "died": 1978,
+  "from": "nigériane",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A fait abolir un impôt sur les femmes",
+  "lures": [
+   "Première femme présidente du Nigeria",
+   "A fondé l'afrobeat",
+   "A fondé l'université de Lagos"
+  ],
+  "fact": "Première Nigériane à conduire une voiture ; mère du musicien Fela Kuti."
+ },
+ {
+  "id": "barbara-mcclintock",
+  "name": "Barbara McClintock",
+  "born": 1902,
+  "died": 1992,
+  "from": "américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A découvert les gènes sauteurs",
+  "lures": [
+   "A découvert la structure de l'ADN",
+   "A inventé le vaccin contre la polio",
+   "A cloné la première plante"
+  ],
+  "fact": "Ses travaux sur le maïs, d'abord ignorés, lui valurent le Nobel de médecine en 1983."
+ },
+ {
+  "id": "germaine-richier",
+  "name": "Germaine Richier",
+  "born": 1902,
+  "died": 1959,
+  "from": "française",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Sculptrice d'êtres mi-hommes mi-insectes",
+  "lures": [
+   "A sculpté « Le Baiser »",
+   "A conçu la tour Eiffel en miniature",
+   "A fondé le musée Rodin"
+  ],
+  "fact": "Ses sculptures d'êtres hybrides, mi-hommes mi-insectes, firent scandale."
+ },
+ {
+  "id": "charlotte-perriand",
+  "name": "Charlotte Perriand",
+  "born": 1903,
+  "died": 1999,
+  "from": "française",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Designer de meubles et de la station des Arcs",
+  "lures": [
+   "A dessiné la chaise Tulipe en fibre de verre",
+   "A conçu le Centre Pompidou avec Renzo Piano",
+   "A dessiné le premier meuble en kit"
+  ],
+  "fact": "Elle conçut avec Le Corbusier la chaise longue LC4 en 1928."
+ },
+ {
+  "id": "marguerite-yourcenar",
+  "name": "Marguerite Yourcenar",
+  "born": 1903,
+  "died": 1987,
+  "from": "française",
+  "domain": "lett",
+  "famous": true,
+  "answer": "Première femme à l'Académie française",
+  "lures": [
+   "A écrit « Le Deuxième Sexe »",
+   "Première femme lauréate du prix Goncourt",
+   "A écrit le roman « L'Amant »"
+  ],
+  "fact": "Élue en 1980 ; auteure des « Mémoires d'Hadrien »."
+ },
+ {
+  "id": "gertrude-ederle",
+  "name": "Gertrude Ederle",
+  "born": 1905,
+  "died": 2003,
+  "from": "américaine",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première femme à traverser la Manche à la nage",
+  "lures": [
+   "Première femme championne olympique de natation",
+   "A inventé le maillot de bain une pièce",
+   "A traversé l'Atlantique à la voile"
+  ],
+  "fact": "En 1926, plus vite que tous les hommes avant elle."
+ },
+ {
+  "id": "grace-hopper",
+  "name": "Grace Hopper",
+  "born": 1906,
+  "died": 1992,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A créé le premier compilateur",
+  "lures": [
+   "A inventé la souris d'ordinateur",
+   "A conçu le premier microprocesseur",
+   "A fondé IBM"
+  ],
+  "fact": "Amirale de la marine américaine, elle popularisa le mot « bug » et inspira le COBOL."
+ },
+ {
+  "id": "josephine-baker",
+  "name": "Joséphine Baker",
+  "born": 1906,
+  "died": 1975,
+  "from": "franco-américaine",
+  "domain": "mus",
+  "famous": true,
+  "answer": "Première femme noire entrée au Panthéon",
+  "lures": [
+   "Première femme à chanter à l'Opéra de Paris",
+   "A fondé le Moulin Rouge",
+   "Première actrice noire oscarisée"
+  ],
+  "fact": "Elle adopta douze enfants, sa « tribu arc-en-ciel » ; entrée au Panthéon en 2021."
+ },
+ {
+  "id": "frida-kahlo",
+  "name": "Frida Kahlo",
+  "born": 1907,
+  "died": 1954,
+  "from": "mexicaine",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Peintre mexicaine d'autoportraits",
+  "lures": [
+   "A peint les fresques de Mexico avec Rivera",
+   "A fondé le surréalisme",
+   "A inventé le muralisme"
+  ],
+  "fact": "Clouée au lit après un accident de bus, elle peignit avec un miroir au-dessus d'elle."
+ },
+ {
+  "id": "germaine-tillion",
+  "name": "Germaine Tillion",
+  "born": 1907,
+  "died": 2008,
+  "from": "française",
+  "domain": "res",
+  "famous": true,
+  "answer": "Ethnologue résistante, déportée à Ravensbrück",
+  "lures": [
+   "A fondé le mouvement de résistance Combat",
+   "Première femme générale de l'armée française",
+   "A dirigé la libération de Paris en 1944"
+  ],
+  "fact": "Déportée à Ravensbrück, elle y écrivit une opérette ; entrée au Panthéon en 2015."
+ },
+ {
+  "id": "lee-miller",
+  "name": "Lee Miller",
+  "born": 1907,
+  "died": 1977,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Photographe de guerre à Dachau",
+  "lures": [
+   "A photographié le débarquement en Normandie la première",
+   "A inventé le photomontage",
+   "A fondé le magazine Life"
+  ],
+  "fact": "Ancien mannequin, elle se fit aussi photographier dans la baignoire d'Hitler."
+ },
+ {
+  "id": "rachel-carson",
+  "name": "Rachel Carson",
+  "born": 1907,
+  "died": 1964,
+  "from": "américaine",
+  "domain": "nat",
+  "famous": false,
+  "answer": "A dénoncé les pesticides",
+  "lures": [
+   "A fondé la Journée de la Terre",
+   "A découvert le trou dans la couche d'ozone",
+   "A créé le premier parc national"
+  ],
+  "fact": "Son livre de 1962 mena à l'interdiction du DDT aux États-Unis."
+ },
+ {
+  "id": "helene-boucher",
+  "name": "Hélène Boucher",
+  "born": 1908,
+  "died": 1934,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Record féminin de vitesse en avion",
+  "lures": [
+   "Première femme astronaute européenne",
+   "A traversé l'Atlantique en dirigeable",
+   "A dessiné le Concorde"
+  ],
+  "fact": "En 1934, elle dépassa 445 km/h, avant de se tuer à l'entraînement."
+ },
+ {
+  "id": "simone-de-beauvoir",
+  "name": "Simone de Beauvoir",
+  "born": 1908,
+  "died": 1986,
+  "from": "française",
+  "domain": "lett",
+  "famous": true,
+  "answer": "A écrit « Le Deuxième Sexe »",
+  "lures": [
+   "A écrit « Les Mots »",
+   "Première femme agrégée de philosophie",
+   "A fondé le Mouvement de libération des femmes"
+  ],
+  "fact": "« On ne naît pas femme, on le devient » (1949)."
+ },
+ {
+  "id": "marguerite-perey",
+  "name": "Marguerite Perey",
+  "born": 1909,
+  "died": 1975,
+  "from": "française",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A découvert le francium",
+  "lures": [
+   "A découvert le polonium",
+   "A inventé la radiographie",
+   "A isolé le fluor"
+  ],
+  "fact": "Ancienne assistante de Marie Curie, elle fut en 1962 la première femme élue correspondante de l'Académie des sciences."
+ },
+ {
+  "id": "marie-madeleine-fourcade",
+  "name": "Marie-Madeleine Fourcade",
+  "born": 1909,
+  "died": 1989,
+  "from": "française",
+  "domain": "res",
+  "famous": false,
+  "answer": "A dirigé le réseau Alliance",
+  "lures": [
+   "A fondé l'ordre de la Libération",
+   "Première femme pilote de la France libre",
+   "A fait évader le général Giraud seule"
+  ],
+  "fact": "Seule femme à la tête d'un grand réseau, avec environ 3 000 agents."
+ },
+ {
+  "id": "rita-levi-montalcini",
+  "name": "Rita Levi-Montalcini",
+  "born": 1909,
+  "died": 2012,
+  "from": "italienne",
+  "domain": "med",
+  "famous": false,
+  "answer": "A découvert le facteur de croissance des nerfs",
+  "lures": [
+   "A découvert les neurones miroirs",
+   "A réalisé la première greffe de moelle osseuse",
+   "A décrit la première la maladie de Parkinson"
+  ],
+  "fact": "Chassée par les lois antijuives, elle travailla dans sa chambre ; Nobel en 1986."
+ },
+ {
+  "id": "virginia-apgar",
+  "name": "Virginia Apgar",
+  "born": 1909,
+  "died": 1974,
+  "from": "américaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "A créé le score des nouveau-nés",
+  "lures": [
+   "A inventé la couveuse",
+   "A réalisé la première césarienne sans douleur",
+   "A découvert le facteur Rhésus"
+  ],
+  "fact": "Le score d'Apgar est utilisé dans les maternités du monde entier depuis 1952."
+ },
+ {
+  "id": "dorothy-hodgkin",
+  "name": "Dorothy Hodgkin",
+  "born": 1910,
+  "died": 1994,
+  "from": "britannique",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A déterminé la structure de l'insuline",
+  "lures": [
+   "A découvert la double hélice de l'ADN",
+   "A inventé les rayons X",
+   "A découvert la vitamine B12"
+  ],
+  "fact": "Prix Nobel de chimie 1964, grâce à la cristallographie aux rayons X."
+ },
+ {
+  "id": "dorothy-vaughan",
+  "name": "Dorothy Vaughan",
+  "born": 1910,
+  "died": 2008,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première cheffe de service noire de la NACA",
+  "lures": [
+   "A inventé le langage de programmation Fortran",
+   "A conçu la capsule des missions Apollo",
+   "Première femme ingénieure chez Boeing"
+  ],
+  "fact": "Elle forma ses « calculatrices » à programmer les premiers ordinateurs IBM."
+ },
+ {
+  "id": "gerda-taro",
+  "name": "Gerda Taro",
+  "born": 1910,
+  "died": 1937,
+  "from": "allemande",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Première femme photographe de guerre tuée en reportage",
+  "lures": [
+   "Photographe du débarquement d'Omaha Beach",
+   "A fondé l'agence photo Magnum avec Capa",
+   "A pris la photo du baiser de l'Hôtel de Ville"
+  ],
+  "fact": "Compagne de Robert Capa, elle mourut pendant la guerre d'Espagne à 26 ans."
+ },
+ {
+  "id": "irena-sendler",
+  "name": "Irena Sendler",
+  "born": 1910,
+  "died": 2008,
+  "from": "polonaise",
+  "domain": "res",
+  "famous": false,
+  "answer": "A sauvé 2 500 enfants du ghetto de Varsovie",
+  "lures": [
+   "A dirigé l'insurrection du ghetto de Varsovie",
+   "A caché Anne Frank et sa famille",
+   "A témoigné au procès de Nuremberg"
+  ],
+  "fact": "Elle cacha leurs vrais noms dans des bocaux enterrés sous un pommier."
+ },
+ {
+  "id": "louise-bourgeois",
+  "name": "Louise Bourgeois",
+  "born": 1911,
+  "died": 2010,
+  "from": "franco-américaine",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Sculptrice des araignées géantes",
+  "lures": [
+   "A sculpté « Le Penseur »",
+   "A dessiné la Pyramide du Louvre",
+   "A peint « Les Nymphéas »"
+  ],
+  "fact": "Sa première grande rétrospective au MoMA n'arriva qu'en 1982, à 70 ans."
+ },
+ {
+  "id": "chien-shiung-wu",
+  "name": "Chien-Shiung Wu",
+  "born": 1912,
+  "died": 1997,
+  "from": "sino-américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A prouvé la violation de la parité",
+  "lures": [
+   "A découvert le neutron",
+   "A inventé le laser",
+   "A construit le premier ordinateur chinois"
+  ],
+  "fact": "Son expérience de 1956 bouscula la physique ; le Nobel alla à deux collègues masculins."
+ },
+ {
+  "id": "lucie-aubrac",
+  "name": "Lucie Aubrac",
+  "born": 1912,
+  "died": 2007,
+  "from": "française",
+  "domain": "res",
+  "famous": true,
+  "answer": "A fait évader son mari de la Gestapo",
+  "lures": [
+   "A fondé le réseau Alliance",
+   "A dirigé les FFI de Lyon",
+   "Première femme Compagnon de la Libération"
+  ],
+  "fact": "En 1943 à Lyon, enceinte, elle attaqua le camion qui transportait Raymond Aubrac."
+ },
+ {
+  "id": "nancy-wake",
+  "name": "Nancy Wake",
+  "born": 1912,
+  "died": 2011,
+  "from": "australienne",
+  "domain": "res",
+  "famous": false,
+  "answer": "Résistante surnommée « la souris blanche »",
+  "lures": [
+   "A dirigé les services secrets australiens",
+   "Première femme parachutiste",
+   "A fondé les SAS"
+  ],
+  "fact": "Elle commandait des milliers de maquisards en 1944."
+ },
+ {
+  "id": "rosa-parks",
+  "name": "Rosa Parks",
+  "born": 1913,
+  "died": 2005,
+  "from": "américaine",
+  "domain": "pol",
+  "famous": true,
+  "answer": "A refusé de céder sa place dans un bus",
+  "lures": [
+   "A organisé la marche sur Washington",
+   "Première femme noire au Congrès",
+   "A fondé les Black Panthers"
+  ],
+  "fact": "Son arrestation, le 1er décembre 1955, lança le boycott des bus."
+ },
+ {
+  "id": "hedy-lamarr",
+  "name": "Hedy Lamarr",
+  "born": 1914,
+  "died": 2000,
+  "from": "austro-américaine",
+  "domain": "tech",
+  "famous": true,
+  "answer": "Actrice qui a co-inventé l'ancêtre du wifi",
+  "lures": [
+   "A inventé le premier téléphone portable",
+   "Première femme à réaliser un film parlant",
+   "A fondé la Metro-Goldwyn-Mayer"
+  ],
+  "fact": "En 1942, elle brevète l'étalement de spectre par saut de fréquence, pour guider des torpilles."
+ },
+ {
+  "id": "noor-inayat-khan",
+  "name": "Noor Inayat Khan",
+  "born": 1914,
+  "died": 1944,
+  "from": "britannique",
+  "domain": "res",
+  "famous": false,
+  "answer": "Opératrice radio secrète dans Paris occupé",
+  "lures": [
+   "A déchiffré le code Enigma à Bletchley Park",
+   "A dirigé la résistance indienne en Birmanie",
+   "Pilote de chasse de la Royal Air Force"
+  ],
+  "fact": "Princesse indienne de naissance, elle fut exécutée à Dachau ; son nom de code était Madeleine."
+ },
+ {
+  "id": "sister-rosetta-tharpe",
+  "name": "Sister Rosetta Tharpe",
+  "born": 1915,
+  "died": 1973,
+  "from": "américaine",
+  "domain": "mus",
+  "famous": false,
+  "answer": "Marraine du rock'n'roll",
+  "lures": [
+   "A inventé la guitare électrique",
+   "A fondé la Motown",
+   "A composé « Respect »"
+  ],
+  "fact": "Elle influença Elvis, Chuck Berry et Johnny Cash."
+ },
+ {
+  "id": "edith-piaf",
+  "name": "Édith Piaf",
+  "born": 1915,
+  "died": 1963,
+  "from": "française",
+  "domain": "mus",
+  "famous": true,
+  "answer": "Chanteuse de « La Vie en rose »",
+  "lures": [
+   "A écrit « Ne me quitte pas »",
+   "A fondé l'Olympia",
+   "A chanté pour l'ouverture des JO de Paris 1924"
+  ],
+  "fact": "Elle écrivit elle-même les paroles de « La Vie en rose » en 1945."
+ },
+ {
+  "id": "sirimavo-bandaranaike",
+  "name": "Sirimavo Bandaranaike",
+  "born": 1916,
+  "died": 2000,
+  "from": "sri-lankaise",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Première cheffe de gouvernement au monde",
+  "lures": [
+   "Première femme présidente de l'ONU",
+   "A fondé le mouvement des non-alignés",
+   "Première femme Prix Nobel de la paix d'Asie"
+  ],
+  "fact": "Élue Première ministre de Ceylan en 1960."
+ },
+ {
+  "id": "indira-gandhi",
+  "name": "Indira Gandhi",
+  "born": 1917,
+  "died": 1984,
+  "from": "indienne",
+  "domain": "pol",
+  "famous": true,
+  "answer": "Première femme à diriger l'Inde",
+  "lures": [
+   "A mené la marche du sel",
+   "A fondé le parti du Congrès",
+   "Première femme présidente de l'ONU"
+  ],
+  "fact": "Elle gouverna 16 ans et fut assassinée par ses gardes du corps."
+ },
+ {
+  "id": "jacqueline-auriol",
+  "name": "Jacqueline Auriol",
+  "born": 1917,
+  "died": 2000,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première Européenne à passer le mur du son",
+  "lures": [
+   "Première femme astronaute française",
+   "A traversé seule le Pacifique en avion",
+   "A dirigé Air Inter"
+  ],
+  "fact": "Pilote d'essai, elle devint l'une des femmes les plus rapides du monde en 1953."
+ },
+ {
+  "id": "leonora-carrington",
+  "name": "Leonora Carrington",
+  "born": 1917,
+  "died": 2011,
+  "from": "anglo-mexicaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Peintre et écrivaine surréaliste",
+  "lures": [
+   "A fondé le dadaïsme",
+   "A peint « La Persistance de la mémoire »",
+   "A créé le premier musée d'art moderne mexicain"
+  ],
+  "fact": "Elle s'installa au Mexique en 1942, où elle peignit des mondes peuplés de créatures."
+ },
+ {
+  "id": "marion-donovan",
+  "name": "Marion Donovan",
+  "born": 1917,
+  "died": 1998,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A inventé la couche jetable",
+  "lures": [
+   "A inventé le biberon en plastique",
+   "A inventé la poussette pliante",
+   "A inventé le tampon hygiénique"
+  ],
+  "fact": "Elle découpa un rideau de douche pour créer sa première couche-culotte."
+ },
+ {
+  "id": "gertrude-elion",
+  "name": "Gertrude Elion",
+  "born": 1918,
+  "died": 1999,
+  "from": "américaine",
+  "domain": "med",
+  "famous": false,
+  "answer": "A créé des médicaments contre la leucémie",
+  "lures": [
+   "A découvert la pénicilline par hasard",
+   "A inventé la première anesthésie générale",
+   "A découvert le groupe sanguin O"
+  ],
+  "fact": "Sans doctorat, elle reçut le Nobel de médecine en 1988."
+ },
+ {
+  "id": "katherine-johnson",
+  "name": "Katherine Johnson",
+  "born": 1918,
+  "died": 2020,
+  "from": "américaine",
+  "domain": "sci",
+  "famous": true,
+  "answer": "A calculé les trajectoires des vols de la NASA",
+  "lures": [
+   "A conçu le moteur de la fusée Saturn V",
+   "A dirigé le centre de contrôle de Houston",
+   "A programmé le premier satellite américain"
+  ],
+  "fact": "Une des « figures de l'ombre » ; John Glenn voulut qu'elle vérifie les calculs de l'ordinateur."
+ },
+ {
+  "id": "genevieve-de-gaulle-anthonioz",
+  "name": "Geneviève de Gaulle-Anthonioz",
+  "born": 1920,
+  "died": 2002,
+  "from": "française",
+  "domain": "res",
+  "famous": false,
+  "answer": "Résistante puis présidente d'ATD Quart Monde",
+  "lures": [
+   "A fondé les Restos du cœur avec Coluche",
+   "A fondé le mouvement Emmaüs",
+   "Première femme ministre de la Défense"
+  ],
+  "fact": "Nièce du général, elle se battit pour la loi contre la grande pauvreté (1998)."
+ },
+ {
+  "id": "marie-tharp",
+  "name": "Marie Tharp",
+  "born": 1920,
+  "died": 2006,
+  "from": "américaine",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Première carte des fonds océaniques",
+  "lures": [
+   "A inventé le sonar",
+   "A découvert le Titanic",
+   "A plongé la première dans la fosse des Mariannes"
+  ],
+  "fact": "Sa carte révéla la dorsale médio-atlantique et appuya la dérive des continents."
+ },
+ {
+  "id": "rosalind-franklin",
+  "name": "Rosalind Franklin",
+  "born": 1920,
+  "died": 1958,
+  "from": "britannique",
+  "domain": "sci",
+  "famous": true,
+  "answer": "A photographié l'ADN en double hélice",
+  "lures": [
+   "A découvert le virus de la grippe",
+   "A inventé le microscope électronique",
+   "A découvert la pénicilline"
+  ],
+  "fact": "Sa « photo 51 » servit à Watson et Crick, Nobel en 1962, sans qu'elle soit citée."
+ },
+ {
+  "id": "sophie-scholl",
+  "name": "Sophie Scholl",
+  "born": 1921,
+  "died": 1943,
+  "from": "allemande",
+  "domain": "res",
+  "famous": false,
+  "answer": "Résistante antinazie de la Rose blanche",
+  "lures": [
+   "A tenté d'assassiner Hitler en 1944",
+   "A caché la famille d'Anne Frank",
+   "A dirigé un maquis dans les Alpes bavaroises"
+  ],
+  "fact": "Arrêtée en distribuant des tracts à l'université de Munich, exécutée à 21 ans."
+ },
+ {
+  "id": "micheline-ostermeyer",
+  "name": "Micheline Ostermeyer",
+  "born": 1922,
+  "died": 2001,
+  "from": "française",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Pianiste et championne olympique",
+  "lures": [
+   "Première femme à courir sous 11 secondes",
+   "A fondé la Fédération française d'athlétisme",
+   "Première femme arbitre olympique"
+  ],
+  "fact": "En 1948, au poids et au disque ; elle joua Liszt en concert pour fêter ses médailles."
+ },
+ {
+  "id": "stephanie-kwolek",
+  "name": "Stephanie Kwolek",
+  "born": 1923,
+  "died": 2014,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A inventé le Kevlar",
+  "lures": [
+   "A inventé le Nylon",
+   "A inventé le Téflon",
+   "A inventé le Velcro"
+  ],
+  "fact": "Chimiste chez DuPont, elle créa en 1965 la fibre des gilets pare-balles."
+ },
+ {
+  "id": "marthe-gautier",
+  "name": "Marthe Gautier",
+  "born": 1925,
+  "died": 2022,
+  "from": "française",
+  "domain": "med",
+  "famous": false,
+  "answer": "A découvert le chromosome de la trisomie 21",
+  "lures": [
+   "A inventé la péridurale",
+   "A découvert le virus du sida",
+   "A créé le premier bébé éprouvette français"
+  ],
+  "fact": "Sa découverte de 1958 fut longtemps attribuée au seul Jérôme Lejeune."
+ },
+ {
+  "id": "vivian-maier",
+  "name": "Vivian Maier",
+  "born": 1926,
+  "died": 2009,
+  "from": "américaine",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Nounou photographe révélée après sa mort",
+  "lures": [
+   "A inventé le Polaroid",
+   "A fondé l'agence Magnum",
+   "A photographié la Lune pour la NASA"
+  ],
+  "fact": "Ses négatifs furent achetés aux enchères en 2007 ; elle n'avait presque rien montré."
+ },
+ {
+  "id": "althea-gibson",
+  "name": "Althea Gibson",
+  "born": 1927,
+  "died": 2003,
+  "from": "américaine",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première joueuse noire titrée en Grand Chelem",
+  "lures": [
+   "Première femme à gagner l'US Open de tennis",
+   "A fondé la WTA, le circuit féminin",
+   "Première championne olympique noire de tennis"
+  ],
+  "fact": "À Roland-Garros en 1956, puis à Wimbledon et à l'US Open."
+ },
+ {
+  "id": "gisele-halimi",
+  "name": "Gisèle Halimi",
+  "born": 1927,
+  "died": 2020,
+  "from": "franco-tunisienne",
+  "domain": "pol",
+  "famous": true,
+  "answer": "Avocate du procès de Bobigny",
+  "lures": [
+   "Première femme ministre de la Justice",
+   "A fondé Amnesty International",
+   "A fondé le Planning familial"
+  ],
+  "fact": "En 1972, elle défendit une jeune fille jugée pour avoir avorté."
+ },
+ {
+  "id": "simone-veil",
+  "name": "Simone Veil",
+  "born": 1927,
+  "died": 2017,
+  "from": "française",
+  "domain": "pol",
+  "famous": true,
+  "answer": "A fait légaliser l'IVG en France",
+  "lures": [
+   "Première femme Première ministre de France",
+   "A fondé l'Unicef",
+   "A créé le RSA"
+  ],
+  "fact": "En 1975 ; rescapée d'Auschwitz, elle présida ensuite le Parlement européen."
+ },
+ {
+  "id": "agnes-varda",
+  "name": "Agnès Varda",
+  "born": 1928,
+  "died": 2019,
+  "from": "française",
+  "domain": "cine",
+  "famous": true,
+  "answer": "Pionnière de la Nouvelle Vague",
+  "lures": [
+   "Première femme Palme d'or",
+   "A fondé la Cinémathèque française",
+   "A réalisé « Les 400 coups »"
+  ],
+  "fact": "« La Pointe courte » (1955) annonce la Nouvelle Vague ; elle reçut un Oscar d'honneur."
+ },
+ {
+  "id": "maya-angelou",
+  "name": "Maya Angelou",
+  "born": 1928,
+  "died": 2014,
+  "from": "américaine",
+  "domain": "lett",
+  "famous": true,
+  "answer": "A écrit « Je sais pourquoi chante l'oiseau en cage »",
+  "lures": [
+   "A écrit le roman « Beloved »",
+   "Première femme noire élue au Sénat américain",
+   "A fondé l'association NAACP pour les droits civiques"
+  ],
+  "fact": "Poétesse, elle lut un poème à l'investiture de Bill Clinton en 1993."
+ },
+ {
+  "id": "vera-rubin",
+  "name": "Vera Rubin",
+  "born": 1928,
+  "died": 2016,
+  "from": "américaine",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A prouvé l'existence de la matière noire",
+  "lures": [
+   "A découvert le fond diffus cosmologique",
+   "A photographié le premier trou noir",
+   "A dirigé le télescope Hubble"
+  ],
+  "fact": "En mesurant la rotation des galaxies, elle montra qu'il y manque de la masse visible."
+ },
+ {
+  "id": "mariama-ba",
+  "name": "Mariama Bâ",
+  "born": 1929,
+  "died": 1981,
+  "from": "sénégalaise",
+  "domain": "lett",
+  "famous": false,
+  "answer": "A écrit « Une si longue lettre »",
+  "lures": [
+   "A écrit « L'Enfant noir »",
+   "Première femme ministre du Sénégal",
+   "A fondé l'université de Dakar"
+  ],
+  "fact": "Ce roman de 1979 sur la polygamie est étudié dans toute l'Afrique francophone."
+ },
+ {
+  "id": "niki-de-saint-phalle",
+  "name": "Niki de Saint Phalle",
+  "born": 1930,
+  "died": 2002,
+  "from": "franco-américaine",
+  "domain": "arts",
+  "famous": true,
+  "answer": "Créatrice des « Nanas »",
+  "lures": [
+   "A inventé le pop art",
+   "A sculpté la Tour Eiffel",
+   "A dessiné le logo des JO"
+  ],
+  "fact": "Elle réalisa aussi le Jardin des tarots en Toscane et la fontaine Stravinsky à Paris."
+ },
+ {
+  "id": "tu-youyou",
+  "name": "Tu Youyou",
+  "born": 1930,
+  "from": "chinoise",
+  "domain": "med",
+  "famous": false,
+  "answer": "A découvert un remède au paludisme",
+  "lures": [
+   "A inventé l'acupuncture moderne",
+   "A découvert le virus du SRAS",
+   "A créé le premier vaccin chinois"
+  ],
+  "fact": "Inspirée par un texte du IVe siècle ; prix Nobel de médecine en 2015."
+ },
+ {
+  "id": "toni-morrison",
+  "name": "Toni Morrison",
+  "born": 1931,
+  "died": 2019,
+  "from": "américaine",
+  "domain": "lett",
+  "famous": true,
+  "answer": "Première Afro-Américaine Nobel de littérature",
+  "lures": [
+   "A écrit « Autant en emporte le vent »",
+   "Première femme noire présidente d'une université",
+   "A écrit « La Couleur pourpre »"
+  ],
+  "fact": "Nobel 1993 ; son roman « Beloved » reçut le prix Pulitzer."
+ },
+ {
+  "id": "dian-fossey",
+  "name": "Dian Fossey",
+  "born": 1932,
+  "died": 1985,
+  "from": "américaine",
+  "domain": "nat",
+  "famous": false,
+  "answer": "A protégé les gorilles des montagnes",
+  "lures": [
+   "A étudié les chimpanzés de Gombe",
+   "A appris la langue des signes à un orang-outan",
+   "A fondé le WWF"
+  ],
+  "fact": "Elle vécut 18 ans au Rwanda ; son histoire inspira le film « Gorilles dans la brume »."
+ },
+ {
+  "id": "jane-goodall",
+  "name": "Jane Goodall",
+  "born": 1934,
+  "died": 2025,
+  "from": "britannique",
+  "domain": "nat",
+  "famous": true,
+  "answer": "A vu des chimpanzés fabriquer des outils",
+  "lures": [
+   "A découvert les gorilles des montagnes",
+   "A fondé Greenpeace",
+   "A décrit le premier dinosaure d'Afrique"
+  ],
+  "fact": "À Gombe, en 1960, elle vit un chimpanzé effeuiller une brindille pour pêcher des termites."
+ },
+ {
+  "id": "assia-djebar",
+  "name": "Assia Djebar",
+  "born": 1936,
+  "died": 2015,
+  "from": "algérienne",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Première Maghrébine à l'Académie française",
+  "lures": [
+   "A écrit « L'Étranger »",
+   "Première femme présidente de l'Algérie",
+   "A fondé l'université d'Alger"
+  ],
+  "fact": "Élue en 2005 ; ses romans donnent voix aux femmes algériennes."
+ },
+ {
+  "id": "margaret-hamilton",
+  "name": "Margaret Hamilton",
+  "born": 1936,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "A dirigé le logiciel de vol d'Apollo",
+  "lures": [
+   "A inventé le langage Python",
+   "A conçu le premier jeu vidéo",
+   "A créé le premier moteur de recherche"
+  ],
+  "fact": "Elle inventa l'expression « génie logiciel » ; son code fit alunir Apollo 11."
+ },
+ {
+  "id": "delia-derbyshire",
+  "name": "Delia Derbyshire",
+  "born": 1937,
+  "died": 2001,
+  "from": "britannique",
+  "domain": "mus",
+  "famous": false,
+  "answer": "A créé le générique de « Doctor Who »",
+  "lures": [
+   "A inventé le synthétiseur Moog",
+   "A fondé le groupe Kraftwerk",
+   "A composé le générique de James Bond"
+  ],
+  "fact": "En 1963, à la BBC, en assemblant des bandes magnétiques à la main."
+ },
+ {
+  "id": "valentina-terechkova",
+  "name": "Valentina Terechkova",
+  "born": 1937,
+  "from": "russe",
+  "domain": "tech",
+  "famous": true,
+  "answer": "Première femme dans l'espace",
+  "lures": [
+   "Première femme à marcher sur la Lune",
+   "A dirigé la station Mir",
+   "A conçu la fusée Soyouz"
+  ],
+  "fact": "Le 16 juin 1963, à bord de Vostok 6, elle fit 48 fois le tour de la Terre."
+ },
+ {
+  "id": "ellen-johnson-sirleaf",
+  "name": "Ellen Johnson Sirleaf",
+  "born": 1938,
+  "from": "libérienne",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Première présidente élue en Afrique",
+  "lures": [
+   "Première femme secrétaire générale de l'ONU",
+   "A fondé l'Union africaine",
+   "A négocié la fin de l'apartheid"
+  ],
+  "fact": "Présidente du Liberia de 2006 à 2018 ; prix Nobel de la paix 2011."
+ },
+ {
+  "id": "claudette-colvin",
+  "name": "Claudette Colvin",
+  "born": 1939,
+  "from": "américaine",
+  "domain": "pol",
+  "famous": false,
+  "answer": "A refusé de céder sa place avant Rosa Parks",
+  "lures": [
+   "A organisé la marche de Selma avec Martin Luther King",
+   "Première avocate noire de l'Alabama",
+   "A fondé l'association NAACP à Montgomery"
+  ],
+  "fact": "Elle avait 15 ans en mars 1955 ; son cas servit au procès qui interdit la ségrégation dans les bus."
+ },
+ {
+  "id": "junko-tabei",
+  "name": "Junko Tabei",
+  "born": 1939,
+  "died": 2016,
+  "from": "japonaise",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première femme au sommet de l'Everest",
+  "lures": [
+   "Première femme à faire le tour du monde en solitaire",
+   "A traversé l'Antarctique à pied",
+   "Première femme à plonger à 100 mètres"
+  ],
+  "fact": "Le 16 mai 1975 ; elle gravit ensuite les sept plus hauts sommets des continents."
+ },
+ {
+  "id": "wangari-maathai",
+  "name": "Wangari Maathai",
+  "born": 1940,
+  "died": 2011,
+  "from": "kényane",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Première Africaine prix Nobel de la paix",
+  "lures": [
+   "A fondé la branche africaine de Greenpeace",
+   "Première femme présidente du Kenya",
+   "A créé le parc national du Serengeti"
+  ],
+  "fact": "Son mouvement de la ceinture verte planta des dizaines de millions d'arbres."
+ },
+ {
+  "id": "wilma-rudolph",
+  "name": "Wilma Rudolph",
+  "born": 1940,
+  "died": 1994,
+  "from": "américaine",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Triple championne olympique de sprint après la polio",
+  "lures": [
+   "Première femme à courir le marathon olympique",
+   "A fondé les Jeux paralympiques",
+   "Première femme entraîneuse d'une équipe NFL"
+  ],
+  "fact": "Aux Jeux de Rome, en 1960 ; on la surnommait « la gazelle noire »."
+ },
+ {
+  "id": "katia-krafft",
+  "name": "Katia Krafft",
+  "born": 1942,
+  "died": 1991,
+  "from": "française",
+  "domain": "nat",
+  "famous": false,
+  "answer": "Volcanologue qui filmait les éruptions",
+  "lures": [
+   "Première femme à atteindre le pôle Sud",
+   "A inventé le sismographe portable",
+   "A découvert un volcan sous-marin"
+  ],
+  "fact": "Avec son mari Maurice, elle filma des centaines d'éruptions ; ils moururent au mont Unzen."
+ },
+ {
+  "id": "jocelyn-bell-burnell",
+  "name": "Jocelyn Bell Burnell",
+  "born": 1943,
+  "from": "britannique",
+  "domain": "sci",
+  "famous": false,
+  "answer": "A découvert les pulsars",
+  "lures": [
+   "A découvert la matière noire",
+   "A détecté les ondes gravitationnelles",
+   "A découvert l'énergie sombre"
+  ],
+  "fact": "Doctorante en 1967, elle repéra le signal ; le Nobel 1974 alla à son directeur."
+ },
+ {
+  "id": "francoise-barre-sinoussi",
+  "name": "Françoise Barré-Sinoussi",
+  "born": 1947,
+  "from": "française",
+  "domain": "med",
+  "famous": false,
+  "answer": "A codécouvert le virus du sida",
+  "lures": [
+   "A inventé la trithérapie",
+   "A découvert le virus Ebola",
+   "A créé le premier vaccin contre l'hépatite"
+  ],
+  "fact": "Prix Nobel de médecine 2008 avec Luc Montagnier, pour l'identification du VIH en 1983."
+ },
+ {
+  "id": "kathrine-switzer",
+  "name": "Kathrine Switzer",
+  "born": 1947,
+  "from": "américaine",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première femme au marathon de Boston avec dossard",
+  "lures": [
+   "Première championne olympique du marathon",
+   "A fondé le marathon de New York",
+   "Première femme à courir 100 km en moins de 8 heures"
+  ],
+  "fact": "En 1967, un organisateur tenta de lui arracher son dossard pendant la course."
+ },
+ {
+  "id": "zaha-hadid",
+  "name": "Zaha Hadid",
+  "born": 1950,
+  "died": 2016,
+  "from": "irako-britannique",
+  "domain": "arts",
+  "famous": false,
+  "answer": "Première femme prix Pritzker d'architecture",
+  "lures": [
+   "A conçu la tour Burj Khalifa de Dubaï",
+   "A dessiné le Louvre Abou Dhabi",
+   "Architecte de l'Opéra de Sydney"
+  ],
+  "fact": "En 2004 ; on lui doit le centre aquatique des JO de Londres."
+ },
+ {
+  "id": "sally-ride",
+  "name": "Sally Ride",
+  "born": 1951,
+  "died": 2012,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première Américaine dans l'espace",
+  "lures": [
+   "Première femme à commander une navette",
+   "A découvert de l'eau sur Mars",
+   "A conçu le télescope Hubble"
+  ],
+  "fact": "En 1983, à bord de Challenger ; elle était aussi physicienne."
+ },
+ {
+  "id": "benazir-bhutto",
+  "name": "Benazir Bhutto",
+  "born": 1953,
+  "died": 2007,
+  "from": "pakistanaise",
+  "domain": "pol",
+  "famous": false,
+  "answer": "Première femme à diriger le Pakistan",
+  "lures": [
+   "Première femme Prix Nobel de la paix d'Asie",
+   "A fondé le Pakistan",
+   "A fondé l'université d'Islamabad"
+  ],
+  "fact": "Première ministre du Pakistan en 1988 ; assassinée en 2007."
+ },
+ {
+  "id": "mae-jemison",
+  "name": "Mae Jemison",
+  "born": 1956,
+  "from": "américaine",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première Afro-Américaine dans l'espace",
+  "lures": [
+   "Première femme à sortir dans l'espace",
+   "A dirigé la NASA",
+   "A conçu le robot martien Curiosity"
+  ],
+  "fact": "En 1992, à bord d'Endeavour ; elle est aussi médecin."
+ },
+ {
+  "id": "claudie-haignere",
+  "name": "Claudie Haigneré",
+  "born": 1957,
+  "from": "française",
+  "domain": "tech",
+  "famous": false,
+  "answer": "Première Française dans l'espace",
+  "lures": [
+   "Première femme à diriger l'ESA",
+   "A conçu la fusée Ariane",
+   "A découvert une comète"
+  ],
+  "fact": "En 1996, à bord de la station Mir ; elle fut ensuite ministre de la Recherche."
+ },
+ {
+  "id": "florence-arthaud",
+  "name": "Florence Arthaud",
+  "born": 1957,
+  "died": 2015,
+  "from": "française",
+  "domain": "sport",
+  "famous": false,
+  "answer": "Première femme à gagner la Route du Rhum",
+  "lures": [
+   "Première femme à faire le tour du monde à la rame",
+   "A fondé le Vendée Globe",
+   "Championne olympique de voile"
+  ],
+  "fact": "En 1990 ; on l'appelait « la petite fiancée de l'Atlantique »."
+ },
+ {
+  "id": "maryam-mirzakhani",
+  "name": "Maryam Mirzakhani",
+  "born": 1977,
+  "died": 2017,
+  "from": "iranienne",
+  "domain": "sci",
+  "famous": false,
+  "answer": "Première femme médaille Fields",
+  "lures": [
+   "A démontré la conjecture de Poincaré",
+   "A inventé un algorithme de cryptographie",
+   "Première femme championne du monde d'échecs"
+  ],
+  "fact": "Médaille Fields 2014 pour ses travaux sur les surfaces courbes ; elle mourut à 40 ans."
+ },
+ {
+  "id": "malala-yousafzai",
+  "name": "Malala Yousafzai",
+  "born": 1997,
+  "from": "pakistanaise",
+  "domain": "pol",
+  "famous": true,
+  "answer": "Plus jeune prix Nobel de la paix",
+  "lures": [
+   "Première femme Première ministre du Pakistan",
+   "A fondé l'Unesco",
+   "A écrit la Déclaration des droits de l'enfant"
+  ],
+  "fact": "Blessée par les talibans à 15 ans pour avoir défendu l'école des filles ; Nobel à 17 ans."
+ }
+]

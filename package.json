@@ -1,6 +1,6 @@
 {
   "name": "little-games",
-  "version": "1.43.0",
+  "version": "1.44.0",
   "private": true,
   "description": "Jeux d'ambiance à partager entre amis — application web statique.",
   "type": "module",
@@ -8,6 +8,7 @@
     "start": "npx --yes serve -l 8080 .",
     "posters": "node scripts/fetch-posters.mjs",
     "posters:download": "node scripts/fetch-posters.mjs --download",
+    "pionnieres:photos": "node scripts/fetch-pionnieres-photos.mjs",
     "morceaux:build": "python3 scripts/celeb-quiz-builder.py --top 30",
     "morceaux:faces": "python3 scripts/celeb-quiz-builder.py --from-faces --top 300 --max-yaw 0.9 --min-face 30",
     "morceaux:faces:resume": "python3 scripts/celeb-quiz-builder.py --from-faces --skip-fetch --top 300 --max-yaw 0.9 --min-face 30",

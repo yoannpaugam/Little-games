@@ -192,3 +192,44 @@ test('catalogue des races de chiens', async () => {
   }
   assert.deepEqual(errors, []);
 });
+
+test('catalogue des Pionnières', async () => {
+  const women = await load('games/women/data/femmes.json');
+  const { DOMAINS } = await import('../games/women/quiz.js');
+  assert.equal(women.length, 200);
+  const sentence = (v) => text(v) && v.length <= 80;
+  const errors = checkEntries(women, {
+    id: [true, (v) => SLUG.test(v)],
+    name: [true, text],
+    born: [true, (v) => Number.isInteger(v) && v > 0 && v <= THIS_YEAR],
+    died: [false, (v) => Number.isInteger(v) && v > 0 && v <= THIS_YEAR],
+    from: [true, text],
+    domain: [true, (v) => v in DOMAINS],
+    famous: [true, (v) => typeof v === 'boolean'],
+    answer: [true, sentence],
+    lures: [true, (v) => textList(v) && v.length === 3 && v.every(sentence)],
+    fact: [true, (v) => text(v) && v.length <= 200],
+    qid: [false, (v) => /^Q\d+$/.test(v)], // identifiant Wikidata, si la recherche du portrait se trompe
+    search: [false, text], // nom à chercher sur Wikidata, si différent
+  }, 'femmes');
+  women.forEach((w) => {
+    if (w.lures?.includes(w.answer)) errors.push(`femmes ${w.id} : un leurre est la bonne réponse`);
+    if (w.died && w.died < w.born) errors.push(`femmes ${w.id} : morte avant sa naissance`);
+  });
+  const names = women.map((w) => w.name);
+  names.forEach((n, i) => { if (names.indexOf(n) !== i) errors.push(`femmes : « ${n} » en double`); });
+  assert.deepEqual(errors, []);
+  // Surtout des femmes oubliées (demande de Yoann)
+  assert.ok(women.filter((w) => w.famous).length <= 60);
+});
+
+test('portraits des Pionnières : uniquement des femmes du catalogue, avec crédit', async () => {
+  const ids = new Set((await load('games/women/data/femmes.json')).map((w) => w.id));
+  const photos = await load('games/women/data/photos.json');
+  assert.equal(typeof photos, 'object');
+  assert.deepEqual(Object.keys(photos).filter((id) => !ids.has(id)), []);
+  for (const [id, p] of Object.entries(photos)) {
+    assert.match(p.img, /^https:\/\/upload\.wikimedia\.org\//, id);
+    assert.ok(text(p.by) && text(p.lic), `${id} : auteur et licence obligatoires`);
+  }
+});

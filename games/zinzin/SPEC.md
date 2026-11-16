@@ -38,9 +38,10 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 | Géoquizz | **3 pays** à placer l'un après l'autre (« Place · pays 2/3 »), sur la même carte que le jeu Géoquizz (Mercator, terres et frontières lissées, répétée à gauche et à droite ; glisser, pincer, + / −). Le pays sous la souris (ou sous le doigt quand on touche) s'allume en rose. Après chaque point, le pays, l'écart et le total s'affichent 1,6 s (« +820 km · total 1 340 / 3 000 km »), puis le pays suivant arrive. Dès que le total dépasse 3 000 km, le défi est raté | **écart total ≤ 3 000 km** sur les 3 pays | 50 s |
 | Le chemin | Grille 5 × 7 : un chemin s'allume 4 s, puis on le retrace case par case | chemin complet avec moins de 3 erreurs | 40 s |
 | Nonogramme | Grille 5 × 5 à noircir d'après les indices (toucher ou glisser) | grille résolue | 90 s |
+| Pionnières | Portrait, nom et dates d'une femme ; 3 réponses visibles et une **carte mystère** (la bonne réponse y est cachée 1 fois sur 4). Une seule tentative ; à la fin, la carte mystère se retourne et le bandeau donne « Nom : accomplissement » | bonne réponse | 30 s |
 
 - Les réponses écrites suivent les règles de chaque jeu d'origine (fautes tolérées, nom de famille seul s'il est unique, nom d'un autre élément du catalogue refusé). Une réponse « presque juste » (« Tu chauffes ! », « Il manque le nom de famille. ») ne coûte pas d'essai.
-- Les défis réutilisent les catalogues des autres jeux (films avec affiche TMDB, personnes de Morceaux à la tête droite, 300 livres, 89 pays faciles ; les 3 pays d'un défi sont différents). Un élément déjà sorti n'est pas reproposé dans la même partie. Si un catalogue n'a pas pu être chargé, la case donne un défi « Le chemin ».
+- Les défis réutilisent les catalogues des autres jeux (films avec affiche TMDB, personnes de Morceaux à la tête droite, 300 livres, 89 pays faciles, 200 pionnières ; les 3 pays d'un défi sont différents). Un élément déjà sorti n'est pas reproposé dans la même partie. Si un catalogue n'a pas pu être chargé, la case donne un défi « Le chemin ».
 - Le crédit de la photo (auteur · licence) s'affiche sous le visage à la fin du défi Visages.
 - **Passer** : en haut à droite du défi, sur le téléphone de l'équipe qui joue. Quand on ne sait pas, on passe : le défi compte comme raté (l'équipe reste sur la case, ou revient en arrière à l'arrivée) et la réponse s'affiche.
 - Temps écoulé : le défi est raté. C'est le téléphone de l'équipe qui le déclare ; à défaut, l'arbitre le déclare 4 s après le délai.
@@ -72,7 +73,7 @@ Toujours en **avant-dernière position**, juste avant la carte « Bientôt » (`
 ## Architecture
 - `logic.js` : état `G` sérialisable et `applyAction(G, action, env)`, sans DOM, testé (`tests/zinzin.test.js`). La même fonction sert sur un seul téléphone et chez l'arbitre. Actions : `join`, `name`, `leave`, `settings`, `start`, `roll`, `choose` (jeu choisi à l'arrivée), `retry`, `live`, `result`, `timeout`, `restart`.
 - `index.js` : écrans ; toute interaction passe par `dispatch(action)` (appliquée en local sur un seul téléphone ou chez l'arbitre, envoyée à l'arbitre chez un invité) ; `render()` reconstruit l'écran à partir de `G` en gardant le focus.
-- `challenges.js` : les six défis. Exception au contrat des jeux : il importe les **modules sans DOM** des autres jeux (règles de réponse, cadrage des visages, géométrie des pays, tirage des nonogrammes) et lit leurs catalogues.
+- `challenges.js` : les sept défis. Exception au contrat des jeux : il importe les **modules sans DOM** des autres jeux (règles de réponse, cadrage des visages, géométrie des pays, tirage des nonogrammes) et lit leurs catalogues.
 - `net.js` : la liaison MQTT.
 
 ## Persistance (sur l'appareil)

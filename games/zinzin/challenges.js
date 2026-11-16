@@ -6,16 +6,17 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.43.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.43.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.43.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.43.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.43.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.43.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.43.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.43.0';
+import { h, icon } from '../../js/core/dom.js?v=1.44.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.44.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.44.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.44.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.44.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.44.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.44.0';
+import { optionsFor, correctIndex, HIDDEN, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.44.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.44.0';
 
-export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme'];
+export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme', 'pionnieres'];
 const TRIES = 3;          // essais des défis à réponse écrite
 const GEO_COUNT = 3;      // Géoquizz : 3 pays à placer…
 const GEO_TOTAL_KM = 3000; // … réussi si l'écart total reste inférieur ou égal à 3 000 km
@@ -51,6 +52,12 @@ const LOADERS = {
     const world = await json('../geo/data/world.json');
     return { world, countries: new Map(world.countries.map((c) => [c.c, c])), ids: world.countries.filter((c) => EASY.has(c.c)).map((c) => c.c) };
   },
+  async pionnieres() {
+    const women = await json('../women/data/femmes.json');
+    let photos = {};
+    try { photos = await json('../women/data/photos.json'); } catch { /* portraits dessinés */ }
+    return { women: new Map(women.map((w) => [w.id, w])), photos, ids: women.map((w) => w.id) };
+  },
 };
 
 /** Charge tous les catalogues (une seule fois). Un catalogue indisponible est simplement ignoré. */
@@ -73,6 +80,7 @@ export function pick(game, used = [], rnd = Math.random) {
   const pool = fresh.length ? fresh : d.ids;
   const id = pool[Math.floor(rnd() * pool.length)];
   if (game === 'visages') return { id, bands: shuffle(['yeux', 'nez', 'bouche'], rnd) };
+  if (game === 'pionnieres') return { id, seed: Math.floor(rnd() * 1e6) }; // seed : place des 4 réponses
   if (game === 'geoquizz') { // plusieurs pays différents
     const ids = shuffle(pool.length >= GEO_COUNT ? pool : d.ids, rnd).slice(0, GEO_COUNT);
     return { id: ids[0], ids };
@@ -86,6 +94,7 @@ export function answerOf(ch) {
   if (ch?.game === 'affiches') return D.affiches?.films.get(id)?.title;
   if (ch?.game === 'visages') return D.visages?.people.get(id)?.name;
   if (ch?.game === 'livres') { const b = D.livres?.books.get(id); return b && D.livres.authors.get(b.author)?.name; }
+  if (ch?.game === 'pionnieres') return D.pionnieres?.women.get(id)?.answer;
   if (ch?.game === 'geoquizz') return null; // le bandeau donne l'écart total (voir summary du défi)
   return null;
 }
@@ -320,7 +329,57 @@ const KINDS = {
   geoquizz: geoChallenge,
   chemin: pathChallenge,
   nonogramme: nonogramChallenge,
+  pionnieres: womenChallenge,
 };
+
+// ---------------------------------------------------------------- Pionnières : 3 réponses visibles et 1 carte mystère
+// Une seule tentative. L = { pick } (réponse choisie, 3 = carte mystère).
+function womenChallenge(body, foot, ch, api, L0) {
+  const d = D.pionnieres, w = d.women.get(ch.p.id);
+  const st = { pick: null, ...(L0 || {}) };
+  const options = optionsFor(w, ch.p.seed || 0);
+  const good = correctIndex(options);
+  const hue = (DOMAINS[w.domain] || DOMAINS.sci).hue;
+  const frame = h('div.zz-frame.zz-woman', { style: `--hue: ${hue}` },
+    h('span.zz-woman-initials', initials(w.name)),
+    h('p.zz-woman-cap', h('strong', w.name), h('small', `${lifespan(w)} · ${w.from}`)));
+  const ph = d.photos[w.id];
+  if (ph?.img) {
+    const img = h('img.zz-woman-photo', { src: ph.img, alt: '', draggable: false, referrerPolicy: 'no-referrer' });
+    img.addEventListener('error', () => img.remove());
+    frame.prepend(img);
+  }
+  body.append(frame);
+  const btns = options.map((o, i) => h('button.zz-qcm', {
+    type: 'button', class: `zz-qcm${i === HIDDEN ? ' is-mystery' : ''}`, disabled: !api.active,
+    onclick: () => choose(i),
+  }, i === HIDDEN ? h('span', h('strong', 'Carte mystère'), ' · la réponse cachée') : o.text));
+  foot.append(h('div.zz-qcm-list', btns));
+  function choose(i) {
+    if (!api.active || api.done || st.pick != null) return;
+    st.pick = i;
+    draw();
+    api.finish(i === good, { ...st });
+  }
+  function draw(final = false) {
+    btns.forEach((b, i) => {
+      b.classList.toggle('is-picked', st.pick === i);
+      if (final || st.pick != null) b.disabled = true;
+      if (final) {
+        b.classList.toggle('is-good', i === good);
+        b.classList.toggle('is-bad', st.pick === i && i !== good);
+        if (i === HIDDEN) b.replaceChildren(h('span', h('strong', 'Carte mystère : '), options[HIDDEN].text));
+      }
+    });
+  }
+  draw();
+  return {
+    update(L) { Object.assign(st, L); draw(); },
+    reveal() { draw(true); if (ph?.img) frame.append(h('p.zz-credit', [ph.by, ph.lic].filter(Boolean).join(' · '))); },
+    summary() { return `${w.name} : ${w.answer}`; },
+    timeout() { api.finish(false, { ...st }); },
+  };
+}
 // ---------------------------------------------------------------- Géoquizz : placer un pays
 // Même carte que le jeu Géoquizz : projection de Mercator, terres et frontières, répétée à gauche et à droite.
 function geoWorld() {

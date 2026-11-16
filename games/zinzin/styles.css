@@ -254,6 +254,23 @@
 .zz-cover-year { margin: 0; font-size: 6cqw; color: #fffb; }
 .zz-cover-hint { margin: 0; min-height: 1.2em; font-size: 5.5cqw; color: var(--zz-lit); }
 
+/* Pionnières : portrait, puis 3 réponses et la carte mystère */
+.zz-woman { container-type: inline-size; background: radial-gradient(120% 80% at 30% 15%, hsl(var(--hue) 45% 34%), hsl(var(--hue) 35% 14%)); display: grid; place-items: center; }
+.zz-woman-initials { font-family: var(--font-display); font-size: 34cqw; color: hsl(var(--hue) 60% 82%); opacity: .9; }
+.zz-woman-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.zz-woman-cap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 16cqw 6cqw 5cqw; display: grid; gap: 1cqw; background: linear-gradient(transparent, #000000d9 55%); }
+.zz-woman-cap strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(1rem, 11cqw, 1.9rem); line-height: 1; letter-spacing: .03em; }
+.zz-woman-cap small { color: #ffffffc7; font-size: clamp(.7rem, 5cqw, .9rem); }
+.zz-qcm-list { display: grid; gap: 5px; }
+.zz-qcm { min-height: 44px; padding: .35rem .8rem; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-2); text-align: left; font-size: .88rem; line-height: 1.2; cursor: pointer; }
+.zz-qcm:hover:not(:disabled), .zz-qcm:focus-visible { border-color: var(--game); outline: none; }
+.zz-qcm:disabled { cursor: default; }
+.zz-qcm.is-mystery { border-style: dashed; border-color: var(--game); color: var(--muted); }
+.zz-qcm.is-mystery strong { color: var(--game); }
+.zz-qcm.is-picked { border-color: var(--zz-lit); box-shadow: 0 0 0 2px var(--zz-lit); }
+.zz-qcm.is-good { border-color: var(--ok); background: #5fd08a22; color: var(--text); }
+.zz-qcm.is-bad { border-color: var(--err); background: #ff6b6b1f; }
+
 /* Géoquizz */
 .zz-geo { position: relative; width: 100cqw; height: 100cqh; border-radius: 14px; overflow: hidden; background: #10202e; }
 .zz-map { display: block; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
