@@ -515,6 +515,9 @@
  "maya-angelou": {
   "img": "photos/maya-angelou.jpg"
  },
+ "michelle-perrot": {
+  "img": "photos/michelle-perrot.jpg"
+ },
  "vera-rubin": {
   "img": "photos/vera-rubin.jpg"
  },
@@ -580,6 +583,9 @@
  },
  "sally-ride": {
   "img": "photos/sally-ride.jpg"
+ },
+ "bell-hooks": {
+  "img": "photos/bell-hooks.jpg"
  },
  "benazir-bhutto": {
   "img": "photos/benazir-bhutto.jpg"

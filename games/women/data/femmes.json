@@ -2924,6 +2924,22 @@
   "bio": "Elle fut chanteuse, danseuse, journaliste et militante des droits civiques, aux côtés de Malcolm X et de Martin Luther King. Ses sept autobiographies racontent son enfance dans le Sud raciste et sa vie mouvementée. Barack Obama lui remit la médaille présidentielle de la Liberté."
  },
  {
+  "id": "michelle-perrot",
+  "name": "Michelle Perrot",
+  "born": 1928,
+  "from": "française",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Pionnière de l'histoire des femmes en France",
+  "lures": [
+   "Première femme professeure au Collège de France",
+   "A fondé le Mouvement de libération des femmes",
+   "Première femme présidente de la Sorbonne"
+  ],
+  "fact": "En 1973, à Jussieu, elle organisa avec deux collègues le premier cours en France intitulé « Les femmes ont-elles une histoire ? ».",
+  "bio": "Historienne, elle étudia d'abord les grèves ouvrières et les prisons du XIXe siècle, et enseigna à l'université Paris-VII. Avec Georges Duby, elle dirigea les cinq volumes de l'« Histoire des femmes en Occident » (1990-1992). Elle anima aussi pendant des années « Les Lundis de l'histoire » sur France Culture."
+ },
+ {
   "id": "vera-rubin",
   "name": "Vera Rubin",
   "born": 1928,
@@ -3288,6 +3304,24 @@
   ],
   "fact": "Elle vola en 1983, à bord de la navette Challenger.",
   "bio": "Docteure en physique de Stanford, elle fut choisie parmi 8 000 candidats. Elle participa à l'enquête après les accidents de Challenger et de Columbia. Elle fonda une société pour encourager les filles à faire des sciences."
+ },
+ {
+  "id": "bell-hooks",
+  "name": "bell hooks",
+  "born": 1952,
+  "died": 2021,
+  "from": "américaine",
+  "domain": "lett",
+  "famous": false,
+  "answer": "Penseuse du féminisme noir, autrice de « Ne suis-je pas une femme ? »",
+  "lures": [
+   "A inventé le mot « intersectionnalité »",
+   "A fondé le magazine féministe Ms.",
+   "Première femme noire élue au Sénat américain"
+  ],
+  "fact": "Elle signait en minuscules, d'un nom emprunté à son arrière-grand-mère, pour qu'on retienne ses idées plutôt que sa personne.",
+  "bio": "Née Gloria Jean Watkins dans le Kentucky, sous la ségrégation, elle commença à 19 ans son premier livre, paru en 1981. Elle y montre que les femmes noires subissent à la fois le racisme et le sexisme, longtemps oubliées par le féminisme blanc. Professeure à Yale, Oberlin puis Berea, elle écrivit une quarantaine de livres sur la race, le genre, la classe et l'amour.",
+  "search": "bell hooks"
  },
  {
   "id": "benazir-bhutto",
