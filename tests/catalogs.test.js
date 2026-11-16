@@ -187,7 +187,7 @@ test('catalogue des races de chiens', async () => {
   const url = (v) => typeof v === 'string' && v.startsWith('https://upload.wikimedia.org/');
   for (const [id, p] of Object.entries(photos)) {
     if (!ids.has(id)) errors.push(`photos ${id} : race inconnue`);
-    if (!url(p.img) || !url(p.thumb)) errors.push(`photos ${id} : URL invalide`);
+    if (!url(p.img) || !url(p.thumb)) errors.push(`photos ${id} : URL invalide (${p.img} | ${p.thumb})`);
     if (!text(p.by) || !text(p.lic) || !text(p.file)) errors.push(`photos ${id} : auteur, licence ou fichier manquant`);
   }
   assert.deepEqual(errors, []);

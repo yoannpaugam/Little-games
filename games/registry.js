@@ -54,6 +54,14 @@ export const GAMES = [
     load: () => import('./nonogram/index.js?v=1.42.0'),
   },
   {
+    id: 'chiens',
+    title: 'Chiens',
+    description: 'Trouve la race du chien : 3 réponses, et une 4e cachée qui vaut double.',
+    icon: 'dog',
+    accent: '#e0995e',
+    load: () => import('./dogs/index.js?v=1.42.0'),
+  },
+  {
     id: 'zinzin',
     title: 'Compète de zinzin',
     description: 'Le jeu de plateau qui enchaîne les défis de tous les jeux, sur un ou plusieurs téléphones.',

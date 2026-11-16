@@ -3,7 +3,7 @@
 // manquantes, cherchées en direct) et au script scripts/fetch-dog-photos.mjs (photos.json).
 
 export const API = 'https://en.wikipedia.org/w/api.php';
-export const WIDTH = 800; // largeur de la photo de jeu
+export const WIDTH = 960; // largeur de la photo de jeu (tailles standard de Wikimedia : 330, 500, 960, 1280…)
 export const THUMB = 330; // largeur des vignettes de la grille
 
 const chunks = (arr, n) => Array.from({ length: Math.ceil(arr.length / n) }, (_, i) => arr.slice(i * n, i * n + n));

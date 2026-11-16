@@ -18,6 +18,19 @@ export const GROUPS = {
   compagnie: 'Chien de compagnie',
 };
 
+// Titres des familles (grille de toutes les races)
+export const FAMILIES = {
+  berger: 'Chiens de berger',
+  montagne: 'Chiens de montagne',
+  molosse: 'Molosses',
+  terrier: 'Terriers',
+  chasse: 'Chiens de chasse',
+  eau: 'Rapporteurs et chiens d’eau',
+  spitz: 'Spitz et chiens nordiques',
+  levrier: 'Lévriers',
+  compagnie: 'Chiens de compagnie',
+};
+
 // Nombre de mauvaises réponses prises dans la même famille que la bonne
 export const LEVELS = {
   facile: { label: 'Facile', same: 0, desc: 'Les mauvaises réponses sont des chiens très différents.' },
