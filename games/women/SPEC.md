@@ -26,7 +26,7 @@ Demande de Yoann (16 novembre 2026) : « un jeu féministe, pour faire découvri
 
 ## Écran de jeu
 - **Question** : barre du haut (retour, « Pionnières », galerie, réglages), compteur « 12 / 200 » et étiquette du domaine, portrait 2:3 entre les flèches ‹ › (nom, dates et nationalité en bas du portrait), puis les 4 réponses A, B, C, D l'une sous l'autre. Pas de texte d'aide en bas.
-- Après le choix : la bonne réponse passe en vert, un mauvais choix en rouge (0,9 s), puis la **carte biographie** remplace le portrait et les réponses.
+- Après le choix : la bonne réponse passe en vert, un mauvais choix en rouge, pendant 2,5 s (le temps de voir la bonne réponse), puis la **carte biographie** remplace le portrait et les réponses.
 - **Carte biographie** : en haut, petit portrait, nom, dates et nationalité ; puis le verdict (« Bonne réponse » ou « Ce n'était pas ça », et la réponse donnée si elle était fausse), l'accomplissement, la biographie (`bio`), un encadré « Le saviez-vous ? » (`fact`) et le crédit du portrait. Le texte défile dans la carte si besoin (l'écran, lui, ne défile pas). En bas de la carte : ‹, **Suivante** (qui prend le focus) et ›. Téléphone en paysage : identité à gauche, texte à droite.
 - **Navigation** : flèches ‹ › autour du portrait et sur la carte, touches ← →, ou glissement du doigt vers la gauche ou la droite. Au clavier, 1 à 4 ou A à D choisissent une réponse.
 - Tout tient dans l'écran sans défilement, de l'iPhone SE à l'ordinateur. Téléphone en paysage : portrait à gauche, réponses à droite.

@@ -3,14 +3,14 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : sous-chemin de l'URL (['femme', id] | ['galerie'] | ['reglages'] | [])
 
-import { h, icon } from '../../js/core/dom.js?v=1.47.0';
-import { createStore } from '../../js/core/storage.js?v=1.47.0';
-import { DOMAINS, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.47.0';
+import { h, icon } from '../../js/core/dom.js?v=1.48.0';
+import { createStore } from '../../js/core/storage.js?v=1.48.0';
+import { DOMAINS, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.48.0';
 
 const store = createStore('pionnieres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };
 const LETTERS = ['A', 'B', 'C', 'D'];
-const REVEAL_MS = 900; // bonne et mauvaise réponse en couleur, avant la carte biographie
+const REVEAL_MS = 2500; // bonne et mauvaise réponse en couleur, le temps de les lire, avant la carte biographie
 const SOURCES = [
   ['Savanturières. Une histoire naturelle au féminin', 'Muséum national d’Histoire naturelle, 2025'],
   ['AWARE', 'Archives of Women Artists, Research and Exhibitions'],
