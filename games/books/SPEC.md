@@ -9,7 +9,7 @@ On montre au joueur la **couverture** d'un grand livre de la littérature (titre
 - `data/livres.json` contient 300 livres et leurs 246 auteurs : classiques et succès, du Moyen Âge (1320) à aujourd'hui, de toutes les littératures (française, anglaise, américaine, russe, allemande, italienne, espagnole, latino-américaine, africaine, asiatique…). Les titres sont ceux des éditions françaises.
 - `authors` : `id` (slug, stable), `name` (nom usuel en français : « Léon Tolstoï », « Molière »), `alt` (autres réponses acceptées : vrai nom, pseudonyme, autre transcription), `from` (littérature, accordée au féminin : « française », « russe », « franco-libanaise »).
 - `books` : `id` (slug du titre, stable), `title`, `author` (identifiant de l'auteur), `year`.
-- Il n'y a **aucune image** : la couverture est dessinée (couleur choisie d'après l'identifiant du livre, cadre, titre, année). Elle est au format 2:3 et à la même taille que les affiches de cinéma. La taille du titre s'adapte à sa longueur et à son mot le plus long.
+- Il n'y a **aucune image** : la couverture est dessinée (couleur choisie d'après l'identifiant du livre, cadre, titre, année). Elle est au format 2:3, un peu plus petite que les affiches de cinéma (250 px de large au plus, depuis la 1.18.0). La taille du titre s'adapte à sa longueur et à son mot le plus long.
 
 ## Écran de jeu
 - De haut en bas : compteur et « Qui a écrit ce livre ? », couverture entre les flèches ‹ ›, 3 ronds d'essais, champ « Nom de l'auteur » avec **Valider** (Entrée valide aussi), boutons **Précédent** / **Passer** (masqués sur téléphone, où les flèches sont posées sur la couverture). Les flèches ← → du clavier marchent aussi.
@@ -20,7 +20,7 @@ On montre au joueur la **couverture** d'un grand livre de la littérature (titre
   - au 3e, la réponse est donnée (« C'était… »), sans compter comme trouvée.
 - **Presque juste** (« Tu chauffes ! », en orange) : ne coûte pas d'essai. Indices : « Il manque le nom de famille. » (prénom seul), « Précise le prénom. » (Brontë), « Vérifie l'orthographe. ».
 - Bonne réponse : **Bravo !**, le nom de l'auteur (qui s'écrit aussi sur la couverture), puis sur une ligne l'année (cliquable), le titre et la littérature. Ce panneau a la même hauteur que le formulaire : la couverture ne change pas de taille. **Suivant** prend le focus.
-- Les livres trouvés le restent ; les essais sont mémorisés par livre.
+- **Livres révélés gardés en mémoire** : un livre trouvé, ou dont la réponse a été donnée, reste révélé d'une visite à l'autre (auteur sur la couverture, panneau de réponse) ; les essais sont mémorisés par livre. Les Réglages permettent de tout recommencer.
 - Tout tient dans l'écran sans défilement. Téléphone en paysage : couverture à gauche, commandes à droite.
 
 ## Réponses acceptées
@@ -38,7 +38,7 @@ On montre au joueur la **couverture** d'un grand livre de la littérature (titre
 ## Réglages
 - Rappel de la règle.
 - **Ordre** : aléatoire (par défaut, mélange mémorisé, « Mélanger à nouveau ») ou chronologique.
-- **Effacer la progression**, avec une confirmation en deux clics.
+- **Livres révélés** : nombre de livres révélés (trouvés, ou dont la réponse a été donnée) et d'auteurs trouvés, et **Recommencer à zéro**, qui les cache tous à nouveau et efface les essais (confirmation en deux clics : « Confirmer : tout cacher à nouveau », pendant 4 s).
 
 ## Persistance (sur l'appareil)
 `localStorage`, préfixe `little-games:livres:` (format version 1) : `settings` (`order`), `seed`, `current`, `found` (date), `tries` (essais ratés par livre), `given` (réponse donnée après 3 essais).

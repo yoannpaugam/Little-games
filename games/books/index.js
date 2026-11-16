@@ -4,9 +4,9 @@
 //   ctx.navigate : (...path) => change l'URL du jeu
 //   ctx.home     : () => retour à l'accueil
 
-import { h, icon } from '../../js/core/dom.js?v=1.51.0';
-import { createStore } from '../../js/core/storage.js?v=1.51.0';
-import { buildAuthors, checkAuthor, initialsOf } from './answers.js?v=1.51.0';
+import { h, icon } from '../../js/core/dom.js?v=1.52.0';
+import { createStore } from '../../js/core/storage.js?v=1.52.0';
+import { buildAuthors, checkAuthor, initialsOf } from './answers.js?v=1.52.0';
 
 const store = createStore('livres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };
@@ -303,14 +303,30 @@ export async function mount(container, ctx) {
       } }),
       h('span', h('strong', label), desc ? h('small', desc) : null)
     );
+    // Livres révélés : trouvés, ou dont la réponse a été donnée après 3 essais. Ils restent révélés d'une visite à l'autre.
+    const revealed = () => books.filter((b) => found[b.id] || given[b.id]).length;
+    const revealedText = () => {
+      const n = revealed();
+      return `${n} livre${n > 1 ? 's' : ''} révélé${n > 1 ? 's' : ''} sur ${books.length}, dont ${n2(nFound(), 'auteur trouvé', 'auteurs trouvés')}. Ils restent révélés quand tu reviens sur le jeu.`;
+    };
+    const revealedHint = h('p.lv-hint', revealedText());
     let resetArmed = false;
+    let resetTimer = null;
     const resetBtn = h('button.lv-btn.lv-btn-danger', { type: 'button', onclick: () => {
-      if (!resetArmed) { resetArmed = true; resetBtn.textContent = 'Confirmer la remise à zéro'; return; }
+      if (!resetArmed) {
+        resetArmed = true;
+        resetBtn.textContent = 'Confirmer : tout cacher à nouveau';
+        resetTimer = setTimeout(() => { resetArmed = false; resetBtn.textContent = 'Recommencer à zéro'; }, 4000);
+        return;
+      }
+      clearTimeout(resetTimer);
       found = {}; tries = {}; given = {};
       store.set('found', found); store.set('tries', tries); store.set('given', given);
-      resetBtn.textContent = '✓ Progression effacée';
+      revealedHint.textContent = revealedText();
+      resetBtn.textContent = '✓ Tous les livres sont cachés';
       resetBtn.disabled = true;
-    } }, 'Effacer ma progression');
+    } }, 'Recommencer à zéro');
+    cleanup.push(() => clearTimeout(resetTimer));
 
     container.replaceChildren(
       topBar('Réglages', { back: () => ctx.navigate('livre', currentId) }),
@@ -327,8 +343,8 @@ export async function mount(container, ctx) {
             e.currentTarget.textContent = '✓ Ordre aléatoire mélangé';
           } }, 'Mélanger à nouveau')
         ),
-        h('fieldset', h('legend', 'Progression'),
-          h('p.lv-hint', `${n2(nFound(), 'auteur trouvé', 'auteurs trouvés')} sur ${books.length} livres.`),
+        h('fieldset', h('legend', 'Livres révélés'),
+          revealedHint,
           resetBtn
         ),
         h('button.lv-btn.lv-btn-primary.lv-wide', { type: 'button', onclick: () => ctx.navigate('livre', currentId) }, 'Retour au jeu'),
