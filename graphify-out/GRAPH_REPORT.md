@@ -1,9 +1,7 @@
 # Graph Report - little-games  (2026-11-16)
 
 ## Corpus Check
-- 87 files · ~185,681 words
-- Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 13 file(s) not represented in the graph (top: .css 11, (none) 2)
+- cluster-only mode — file stats not available
 
 ## Summary
 - 1036 nodes · 2143 edges · 44 communities
@@ -55,7 +53,7 @@
 - Sécurité et données (SECURITY.md)
 - Workflow GitHub « Portraits (Pionnières) »
 - Spécification Chiens
-- registry.js
+- Routeur et liste des jeux (app.js, registry.js)
 - Consignes pour Claude (CLAUDE.md)
 - Script : portraits des Pionnières (Wikidata, Commons)
 - Chiens : écran de jeu, tirage et photos
@@ -80,10 +78,10 @@
   SECURITY.md → js/core/dom.js
 - `drawDie()` --calls--> `h()`  [EXTRACTED]
   games/zinzin/index.js → js/core/dom.js
-- `mount()` --calls--> `h()`  [EXTRACTED]
-  games/books/index.js → js/core/dom.js
-- `mount()` --calls--> `icon()`  [EXTRACTED]
-  games/books/index.js → js/core/dom.js
+- `buildAnswers()` --calls--> `normalize()`  [EXTRACTED]
+  games/movie-posters/index.js → js/core/fuzzy.js
+- `compact()` --calls--> `normalize()`  [EXTRACTED]
+  games/movie-posters/index.js → js/core/fuzzy.js
 
 ## Import Cycles
 - None detected.
@@ -246,7 +244,7 @@ Nodes (20): default, description, type, force, jobs, photos, name, on (+12 more)
 Cohesion: 0.14
 Nodes (13): Catalogue, 🐕 Chiens : spécification, Fin de partie, Mauvaises réponses (niveaux), Navigation (URL), Persistance (sur l'appareil), Photos, Pistes pour la suite (+5 more)
 
-### Community 41 - "registry.js"
+### Community 41 - "Routeur et liste des jeux (app.js, registry.js)"
 Cohesion: 0.14
 Nodes (16): ./books/index.js?v=1.48.0, ./dogs/index.js?v=1.48.0, ./faces/index.js?v=1.48.0, ./geo/index.js?v=1.48.0, ./movie-posters/index.js?v=1.48.0, ./nonogram/index.js?v=1.48.0, ./path/index.js?v=1.48.0, GAMES (+8 more)
 
@@ -267,23 +265,23 @@ Cohesion: 0.15
 Nodes (12): Catalogue, Compète de zinzin, Galerie, Navigation (URL), Ordre, Persistance (sur l'appareil), ♀️ Pionnières : spécification, Pistes pour la suite (+4 more)
 
 ## Knowledge Gaps
-- **10 isolated node(s):** `./morceaux/index.js?v=1.48.0`, `./movie-posters/index.js?v=1.48.0`, `./faces/index.js?v=1.48.0`, `./books/index.js?v=1.48.0`, `./geo/index.js?v=1.48.0` (+5 more)
+- **10 isolated node(s):** `./morceaux/index.js?v=1.48.0`, `./books/index.js?v=1.48.0`, `./dogs/index.js?v=1.48.0`, `./faces/index.js?v=1.48.0`, `./geo/index.js?v=1.48.0` (+5 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 413 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `h()` connect `Visages : écran Morceaux et jeunesse` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Livres : écran de jeu et réponses acceptées`, `Géoquizz : carte, distances et tirage`, `Compète de zinzin : liaison MQTT et dispatch`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Compète de zinzin : plateau, dé et pions`, `Sécurité et données (SECURITY.md)`, `registry.js`, `Consignes pour Claude (CLAUDE.md)`, `Chiens : écran de jeu, tirage et photos`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : règles du plateau (applyAction) et tests`, `Compète de zinzin : écrans et session multi`?**
-  _High betweenness centrality (0.153) - this node is a cross-community bridge._
+- **Why does `h()` connect `Visages : écran Morceaux et jeunesse` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Livres : écran de jeu et réponses acceptées`, `Géoquizz : carte, distances et tirage`, `Compète de zinzin : liaison MQTT et dispatch`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Compète de zinzin : plateau, dé et pions`, `Sécurité et données (SECURITY.md)`, `Routeur et liste des jeux (app.js, registry.js)`, `Consignes pour Claude (CLAUDE.md)`, `Chiens : écran de jeu, tirage et photos`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : règles du plateau (applyAction) et tests`, `Compète de zinzin : écrans et session multi`?**
+  _High betweenness centrality (0.150) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.48.0`, `./movie-posters/index.js?v=1.48.0`, `./faces/index.js?v=1.48.0` to the rest of the system?**
+- **What connects `./morceaux/index.js?v=1.48.0`, `./books/index.js?v=1.48.0`, `./dogs/index.js?v=1.48.0` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu et grille` be split into smaller, more focused modules?**
   _Cohesion score 0.07093253968253968 - nodes in this community are weakly interconnected._
-- **Why does `icon()` connect `Géoquizz : carte, distances et tirage` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Livres : écran de jeu et réponses acceptées`, `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `registry.js`, `Chiens : écran de jeu, tirage et photos`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : règles du plateau (applyAction) et tests`, `Compète de zinzin : écrans et session multi`?**
-  _High betweenness centrality (0.047) - this node is a cross-community bridge._
+- **Why does `icon()` connect `Géoquizz : carte, distances et tirage` to `Affiches : écran de jeu et grille`, `Compète de zinzin : défis à réponse écrite et catalogues`, `Livres : écran de jeu et réponses acceptées`, `Compète de zinzin : liaison MQTT et dispatch`, `Compète de zinzin : plateau, dé et pions`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Routeur et liste des jeux (app.js, registry.js)`, `Chiens : écran de jeu, tirage et photos`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Compète de zinzin : règles du plateau (applyAction) et tests`, `Compète de zinzin : écrans et session multi`?**
+  _High betweenness centrality (0.061) - this node is a cross-community bridge._
 - **Should `Workflow GitHub « Morceaux historiques »` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
-- **Why does `renderPlay()` connect `Nonogramme : grille, tirage et solveur logique` to `Visages : écran Morceaux et jeunesse`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `mount()` connect `Compète de zinzin : écrans et session multi` to `Compète de zinzin : liaison MQTT et dispatch`, `Géoquizz : carte, distances et tirage`, `Compète de zinzin : plateau, dé et pions`, `Visages : écran Morceaux et jeunesse`, `Compète de zinzin : règles du plateau (applyAction) et tests`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
