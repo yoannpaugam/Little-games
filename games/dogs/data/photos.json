@@ -35,25 +35,25 @@
   "lic": "CC BY-SA 2.0"
  },
  "berger-belge-malinois": {
-  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg/960px-04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg/330px-04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg",
-  "file": "04 - Belgian shepherd dog varieties - Groenendael,Tervuren, Malinois, Laekenois.jpg",
-  "by": "Various, see description. Compiled by User:Adventurous36",
-  "lic": "CC BY-SA 4.0"
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Malinois_portrait.jpg/960px-Malinois_portrait.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Malinois_portrait.jpg/330px-Malinois_portrait.jpg",
+  "file": "Malinois portrait.jpg",
+  "by": "U.S. Department of Defense",
+  "lic": "Public domain"
  },
  "berger-belge-groenendael": {
-  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg/960px-04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg/330px-04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg",
-  "file": "04 - Belgian shepherd dog varieties - Groenendael,Tervuren, Malinois, Laekenois.jpg",
-  "by": "Various, see description. Compiled by User:Adventurous36",
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/I%C2%B4Ker_de_R.Brown.jpg/960px-I%C2%B4Ker_de_R.Brown.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/I%C2%B4Ker_de_R.Brown.jpg/330px-I%C2%B4Ker_de_R.Brown.jpg",
+  "file": "I´Ker de R.Brown.jpg",
+  "by": "Jpiularch",
   "lic": "CC BY-SA 4.0"
  },
  "berger-belge-tervueren": {
-  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg/960px-04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg/330px-04_-_Belgian_shepherd_dog_varieties_-_Groenendael%2CTervuren%2C_Malinois%2C_Laekenois.jpg",
-  "file": "04 - Belgian shepherd dog varieties - Groenendael,Tervuren, Malinois, Laekenois.jpg",
-  "by": "Various, see description. Compiled by User:Adventurous36",
-  "lic": "CC BY-SA 4.0"
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Tervuren.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Tervuren.jpg",
+  "file": "Tervuren.jpg",
+  "by": "Patty Carlson",
+  "lic": "CC BY 2.0"
  },
  "berger-blanc-suisse": {
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/White_Swiss_Shepherd_Dog_Djinn_%28cropped%29.JPG/960px-White_Swiss_Shepherd_Dog_Djinn_%28cropped%29.JPG",
@@ -537,6 +537,13 @@
   "file": "Samojed00.jpg",
   "by": "No machine-readable author provided. Pleple2000 assumed (based on copyright cla…",
   "lic": "CC BY-SA 3.0"
+ },
+ "akita-inu": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/French_akita.jpg/960px-French_akita.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/French_akita.jpg/330px-French_akita.jpg",
+  "file": "French akita.jpg",
+  "by": "Kaiju32",
+  "lic": "CC0"
  },
  "shiba-inu": {
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Taka_Shiba.jpg/960px-Taka_Shiba.jpg",
