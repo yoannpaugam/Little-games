@@ -19,6 +19,15 @@ export const DOMAINS = {
   eco: { label: 'Entreprise et mode', hue: 310 },
 };
 
+/**
+ * Adresse d'un portrait de photos.json : une URL complète (Wikimedia Commons)
+ * ou un chemin relatif au dossier du jeu (« photos/<id>.jpg », photos fournies par Yoann).
+ */
+export function photoUrl(img) {
+  if (!img) return '';
+  return /^https?:/.test(img) ? img : new URL(img, import.meta.url).href.replace(/\?.*$/, '');
+}
+
 /** Nombre pseudo-aléatoire stable (FNV-1a), pour que les réponses restent à la même place. */
 export function hash(str) {
   let x = 2166136261;

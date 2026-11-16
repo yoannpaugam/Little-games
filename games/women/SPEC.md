@@ -18,11 +18,13 @@ Demande de Yoann (16 novembre 2026) : « un jeu féministe, pour faire découvri
 - Les leurres sont écrits à la main pour chaque femme : souvent l'exploit d'une autre femme, ou une invention proche, jamais vrai pour elle. La bonne réponse n'est pas systématiquement la plus longue (environ 1 fois sur 3).
 
 ## Portraits
-- `data/photos.json` : `{ id: { qid, file, img, by, lic } }`. C'est l'image principale (P18) de la femme sur Wikidata : photo, tableau ou gravure de Wikimedia Commons, avec son auteur et sa licence. `img` est une vignette de 600 px de large sur `upload.wikimedia.org`. Aucune image n'est dans le dépôt.
+- **Photos fournies par Yoann** (1.49.0, zip du 16 novembre 2026) : 192 portraits dans `photos/<id>.jpg`, tous au même format, **600 × 900 px** (2:3), JPEG. Ils ont été recadrés sur le visage (détection automatique, réglée à la main pour quelques photos) et redimensionnés. Dans `data/photos.json`, leur entrée est `{ "img": "photos/<id>.jpg" }`, sans crédit pour l'instant : Yoann ajoutera auteur et licence plus tard (`by`, `lic`) ; sans crédit, aucune ligne de crédit n'est affichée. Le script Wikidata ne remplace jamais ces photos.
+- Sans photo (8 femmes au 16 novembre 2026) : portrait dessiné. Elles peuvent recevoir une photo de Yoann ou du workflow Wikidata.
+- `data/photos.json` peut aussi contenir des portraits Wikimedia : `{ id: { qid, file, img, by, lic } }`. C'est l'image principale (P18) de la femme sur Wikidata : photo, tableau ou gravure de Wikimedia Commons, avec son auteur et sa licence. `img` est une vignette de 600 px de large sur `upload.wikimedia.org`. Aucune image n'est dans le dépôt.
 - Il est rempli par `scripts/fetch-pionnieres-photos.mjs` (`npm run pionnieres:photos`), que lance le workflow GitHub **« Portraits (Pionnières) »** (onglet Actions → Run workflow). Le résultat arrive sur la branche `donnees/pionnieres-photos`, à fusionner par une pull request. Le script cherche le nom sur Wikidata (en français, puis en anglais) et garde la première personne, de préférence une femme, qui a une image.
 - **Portrait mal trouvé** (homonyme) : ajouter `qid` ou `search` à la femme dans `femmes.json`, puis relancer le workflow avec « Tout refaire ».
 - Sans photo, le portrait est **dessiné** : fond à la couleur du domaine, initiales et symbole ♀ (icône plate `venus`). Le jeu marche donc avant que les photos soient remplies.
-- Le crédit (auteur · licence) s'affiche dans l'explication, et la galerie a une section **Crédits photo**.
+- Le crédit (auteur · licence), quand il existe, s'affiche sur la carte biographie, et la galerie a une section **Crédits photo**.
 
 ## Écran de jeu
 - **Question** : barre du haut (retour, « Pionnières », galerie, réglages), compteur « 12 / 200 » et étiquette du domaine, portrait 2:3 entre les flèches ‹ › (nom, dates et nationalité en bas du portrait), puis les 4 réponses A, B, C, D l'une sous l'autre. Pas de texte d'aide en bas.

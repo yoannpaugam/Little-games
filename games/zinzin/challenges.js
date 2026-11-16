@@ -6,15 +6,15 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.48.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.48.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.48.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.48.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.48.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.48.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.48.0';
-import { optionsFor, correctIndex, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.48.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.48.0';
+import { h, icon } from '../../js/core/dom.js?v=1.49.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.49.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.49.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.49.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.49.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.49.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.49.0';
+import { optionsFor, correctIndex, photoUrl, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.49.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.49.0';
 
 export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme', 'pionnieres'];
 const TRIES = 3;          // essais des défis à réponse écrite
@@ -345,7 +345,7 @@ function womenChallenge(body, foot, ch, api, L0) {
     h('p.zz-woman-cap', h('strong', w.name), h('small', `${lifespan(w)} · ${w.from}`)));
   const ph = d.photos[w.id];
   if (ph?.img) {
-    const img = h('img.zz-woman-photo', { src: ph.img, alt: '', draggable: false, referrerPolicy: 'no-referrer' });
+    const img = h('img.zz-woman-photo', { src: photoUrl(ph.img), alt: '', draggable: false, referrerPolicy: 'no-referrer' });
     img.addEventListener('error', () => img.remove());
     frame.prepend(img);
   }
@@ -374,7 +374,7 @@ function womenChallenge(body, foot, ch, api, L0) {
   draw();
   return {
     update(L) { Object.assign(st, L); draw(); },
-    reveal() { draw(true); if (ph?.img) frame.append(h('p.zz-credit', [ph.by, ph.lic].filter(Boolean).join(' · '))); },
+    reveal() { draw(true); const c = [ph?.by, ph?.lic].filter(Boolean).join(' · '); if (c) frame.append(h('p.zz-credit', c)); },
     summary() { return `${w.name} : ${w.answer}`; },
     timeout() { api.finish(false, { ...st }); },
   };

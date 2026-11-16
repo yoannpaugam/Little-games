@@ -3,9 +3,9 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : sous-chemin de l'URL (['femme', id] | ['galerie'] | ['reglages'] | [])
 
-import { h, icon } from '../../js/core/dom.js?v=1.48.0';
-import { createStore } from '../../js/core/storage.js?v=1.48.0';
-import { DOMAINS, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.48.0';
+import { h, icon } from '../../js/core/dom.js?v=1.49.0';
+import { createStore } from '../../js/core/storage.js?v=1.49.0';
+import { DOMAINS, photoUrl, optionsFor, correctIndex, playOrder, lifespan, initials } from './quiz.js?v=1.49.0';
 
 const store = createStore('pionnieres', { version: 1 });
 const DEFAULT_SETTINGS = { order: 'random' };
@@ -94,7 +94,7 @@ export async function mount(container, ctx) {
     );
     const ph = photos[w.id];
     if (ph?.img) {
-      const img = h('img.pn-photo', { src: ph.img, alt: `Portrait de ${w.name}`, loading: 'lazy', decoding: 'async', draggable: false, referrerPolicy: 'no-referrer' });
+      const img = h('img.pn-photo', { src: photoUrl(ph.img), alt: `Portrait de ${w.name}`, loading: 'lazy', decoding: 'async', draggable: false, referrerPolicy: 'no-referrer' });
       img.addEventListener('load', () => el.classList.add('has-photo'));
       img.addEventListener('error', () => img.remove());
       el.append(img);
@@ -295,7 +295,7 @@ export async function mount(container, ctx) {
         h('fieldset', h('legend', 'Sources'),
           h('ul.pn-sources', SOURCES.map(([t, d]) => h('li', h('strong', t), h('small', d)))),
           h('p.pn-small', nPhotos
-            ? `${nPhotos} portraits viennent de Wikimedia Commons (auteur et licence dans la galerie).`
+            ? `${nPhotos} femmes ont un portrait ; les autres ont un portrait dessiné.`
             : 'Les portraits sont dessinés en attendant les photos de Wikimedia Commons.')
         ),
         h('button.pn-btn.pn-btn-primary.pn-wide', { type: 'button', onclick: () => ctx.navigate('femme', currentId) }, 'Retour au jeu'),
