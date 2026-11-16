@@ -63,7 +63,7 @@ export async function fetchPhotos(breeds, { fetch: fetchFn = globalThis.fetch } 
   const files = [...new Set(fileOf.values())];
   const info = new Map();
   for (const part of chunks(files, 25)) {
-    const titles = part.map((f) => `File:${f}`);
+    const titles = part.map((f) => `File:${f.replace(/_/g, ' ')}`);
     const q = (await query({
       prop: 'imageinfo', iiprop: 'url|extmetadata', iiurlwidth: String(WIDTH),
       iiextmetadatafilter: 'Artist|LicenseShortName', titles: titles.join('|'),
@@ -74,10 +74,10 @@ export async function fetchPhotos(breeds, { fetch: fetchFn = globalThis.fetch } 
       const ii = pages.get(final(titles[i]));
       if (!ii || !(ii.thumburl || ii.url)) return;
       const meta = ii.extmetadata || {};
-      const img = ii.thumburl || ii.url;
+      const img = (ii.thumburl || ii.url).split('?')[0]; // sans les paramètres de suivi (utm_…)
       info.set(f, {
         img,
-        thumb: ii.thumburl ? thumbOf(ii.thumburl) : img,
+        thumb: ii.thumburl ? thumbOf(img) : img,
         file: f.replace(/_/g, ' '),
         by: plainText(meta.Artist?.value) || 'Auteur inconnu',
         lic: plainText(meta.LicenseShortName?.value, 40) || 'Licence inconnue',

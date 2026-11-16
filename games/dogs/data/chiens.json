@@ -12,7 +12,7 @@
   {"id": "briard", "name": "Briard", "wiki": "Briard", "group": "berger", "origin": "France"},
   {"id": "bobtail", "name": "Bobtail", "wiki": "Old English Sheepdog", "group": "berger", "origin": "Royaume-Uni"},
   {"id": "berger-des-pyrenees", "name": "Berger des Pyrénées", "wiki": "Pyrenean Shepherd", "group": "berger", "origin": "France"},
-  {"id": "puli", "name": "Puli", "wiki": "Puli", "group": "berger", "origin": "Hongrie"},
+  {"id": "puli", "name": "Puli", "wiki": "Puli (dog)", "group": "berger", "origin": "Hongrie"},
   {"id": "komondor", "name": "Komondor", "wiki": "Komondor", "group": "berger", "origin": "Hongrie"},
   {"id": "bouvier-des-flandres", "name": "Bouvier des Flandres", "wiki": "Bouvier des Flandres", "group": "berger", "origin": "Belgique et France"},
   {"id": "welsh-corgi-pembroke", "name": "Welsh corgi pembroke", "wiki": "Pembroke Welsh Corgi", "group": "berger", "origin": "Royaume-Uni"},

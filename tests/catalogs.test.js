@@ -184,7 +184,7 @@ test('catalogue des races de chiens', async () => {
   const names = new Set();
   breeds.forEach((b) => { if (names.has(b.name)) errors.push(`chiens ${b.id} : nom en double`); names.add(b.name); });
   const ids = new Set(breeds.map((b) => b.id));
-  const url = (v) => typeof v === 'string' && v.startsWith('https://upload.wikimedia.org/');
+  const url = (v) => typeof v === 'string' && /^https:\/\/(upload|thumb)\.wikimedia\.org\/[^?]+$/.test(v);
   for (const [id, p] of Object.entries(photos)) {
     if (!ids.has(id)) errors.push(`photos ${id} : race inconnue`);
     if (!url(p.img) || !url(p.thumb)) errors.push(`photos ${id} : URL invalide (${p.img} | ${p.thumb})`);

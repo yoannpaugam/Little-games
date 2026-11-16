@@ -147,10 +147,11 @@ export async function mount(container, ctx) {
       });
       const extra = `${GROUPS[breed.group]} · ${breed.origin}`;
       status.replaceChildren(
-        h('span.dg-verdict', { class: `dg-verdict ${a.pts ? 'is-ok' : 'is-err'}` },
-          a.pts === POINTS.hidden ? 'Coup de poker gagnant ! +2' : a.pts ? 'Bravo ! +1' : a.choice === HIDDEN ? 'Raté, la carte cachée n’était pas la bonne.' : 'Raté !'),
-        h('strong.dg-answer', breed.name),
-        h('span.dg-extra', extra)
+        h('span.dg-line',
+          h('span.dg-verdict', { class: `dg-verdict ${a.pts ? 'is-ok' : 'is-err'}` },
+            a.pts === POINTS.hidden ? 'Poker gagnant ! +2' : a.pts ? 'Bravo ! +1' : a.choice === HIDDEN ? 'Carte cachée ratée !' : 'Raté !'),
+          ' ', h('span.dg-extra', extra)),
+        h('strong.dg-answer', breed.name)
       );
       foot.replaceChildren(status, next);
       stage.classList.add('is-answered');

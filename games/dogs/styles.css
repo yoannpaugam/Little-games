@@ -73,6 +73,7 @@
 .dg-card.is-flipped { border-style: solid; animation: dg-flip .45s ease; }
 .dg-card.is-flipped .dg-card-back { opacity: 0; transform: rotateX(90deg); }
 .dg-card.is-flipped .dg-card-name { opacity: 1; transform: none; }
+.dg-card.is-flipped .dg-card-pts { display: none; }
 @keyframes dg-flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
 
 .dg-card:disabled:not(.is-right):not(.is-chosen) { opacity: .45; }
@@ -82,14 +83,15 @@
 @keyframes dg-shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-6px); } 50% { transform: translateX(6px); } }
 
 /* Ligne du bas : aide avant la réponse, verdict et « Suivant » après. Hauteur fixe : la photo ne bouge pas. */
-.dg-foot { display: flex; align-items: center; gap: .7rem; min-height: 50px; }
+.dg-foot { display: flex; align-items: center; gap: .7rem; height: 50px; }
 .dg-status { flex: 1; min-width: 0; margin: 0; display: grid; gap: .05rem; }
 .dg-hint { color: var(--muted); font-size: .85rem; line-height: 1.35; margin: 0; }
 .dg-status .dg-hint { text-align: center; }
 .dg-verdict { font-weight: 700; font-size: .85rem; }
 .dg-verdict.is-ok { color: var(--ok); }
 .dg-verdict.is-err { color: var(--err); }
-.dg-answer { font-size: 1.15rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dg-line { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+.dg-answer { font-size: 1.1rem; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dg-extra { color: var(--muted); font-size: .8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dg-foot .dg-btn { animation: dg-pop .35s ease; }
 @keyframes dg-pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
@@ -157,7 +159,7 @@
   .dg-question { display: none; }
   .dg-card { min-height: 46px; }
   .dg-cards { gap: .4rem; }
-  .dg-foot { min-height: 46px; }
+  .dg-foot { height: 46px; }
   .dg-foot .dg-btn { min-height: 44px; }
   .dg-status .dg-hint { font-size: .78rem; }
 }
