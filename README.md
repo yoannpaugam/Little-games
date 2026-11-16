@@ -85,7 +85,7 @@ Un jeu de logique (picross) : on noircit les cases d'une grille d'après les chi
 
 ## 🐕 Chiens
 
-On montre la photo d'un chien et il faut trouver sa race, parmi 110. Quatre réponses : 3 visibles et une 4e cachée, qui est la bonne 1 fois sur 4. Une bonne réponse visible vaut 1 point ; la carte cachée, tentée sans la voir, en vaut 2. Parties de 10 chiens, 3 niveaux (les mauvaises réponses sont plus ou moins proches de la bonne), record. Les photos sont les images principales des articles Wikipédia (Wikimedia Commons, licences libres, crédits affichés) : `data/photos.json` est rempli par le workflow « Chiens : photos » (`scripts/fetch-dog-photos.mjs`), et une photo manquante est cherchée en direct. Tirage et score dans `games/dogs/quiz.js`, testés par `tests/dogs.test.js`.
+On montre la photo d'un chien et il faut trouver sa race, parmi 110 : un QCM à 4 réponses, une seule tentative, 1 point par bonne réponse. Parties de 10 chiens, 3 niveaux (les mauvaises réponses sont plus ou moins proches de la bonne), record. Les photos sont les images principales des articles Wikipédia (Wikimedia Commons, licences libres, crédits affichés) : `data/photos.json` est rempli par le workflow « Chiens : photos » (`scripts/fetch-dog-photos.mjs`), et une photo manquante est cherchée en direct. Tirage et score dans `games/dogs/quiz.js`, testés par `tests/dogs.test.js`.
 
 ## ♀️ Pionnières
 

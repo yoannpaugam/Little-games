@@ -1,10 +1,7 @@
 // Jeu « Chiens » : tirage des parties et score, sans DOM (testé par tests/dogs.test.js).
-// Chaque question montre 4 réponses : 3 visibles et une 4e cachée (face retournée).
-// La bonne réponse est à une place tirée au hasard : 1 fois sur 4, c'est la carte cachée.
+// Chaque question est un QCM à 4 réponses visibles ; la bonne est à une place tirée au hasard.
 
 export const ROUND = 10; // chiens par partie
-export const HIDDEN = 3; // index de la carte cachée
-export const POINTS = { visible: 1, hidden: 2 };
 
 export const GROUPS = {
   berger: 'Chien de berger',
@@ -87,14 +84,11 @@ export function newGame(playable, breeds, { level = 'normal', seen = [], rand = 
   };
 }
 
-/** Points d'une réponse : 1 pour une carte visible, 2 pour la carte cachée, 0 si c'est faux. */
-export function pointsFor(q, choice) {
-  if (q.options[choice] !== q.id) return 0;
-  return choice === HIDDEN ? POINTS.hidden : POINTS.visible;
-}
+/** Points d'une réponse : 1 si c'est la bonne race, 0 sinon. */
+export const pointsFor = (q, choice) => (q.options[choice] === q.id ? 1 : 0);
 
-/** Score maximal d'une partie : 2 points quand la bonne réponse est cachée, 1 sinon. */
-export const maxScore = (qs) => qs.reduce((s, q) => s + (q.options[HIDDEN] === q.id ? POINTS.hidden : POINTS.visible), 0);
+/** Score maximal d'une partie : 1 point par chien. */
+export const maxScore = (qs) => qs.length;
 
 /** Liste des races déjà sorties, mise à jour : on la vide quand presque tout est sorti. */
 export function updateSeen(seen, ids, total, round = ROUND) {

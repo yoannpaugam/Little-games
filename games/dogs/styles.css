@@ -58,28 +58,9 @@
 @media (hover: none) { .dg-key { display: none; } }
 .dg-card-name { overflow-wrap: anywhere; }
 
-/* 4e carte : face cachée (dos à motif), retournée après la réponse */
-.dg-card.is-hidden {
-  border-style: dashed; border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-  background:
-    repeating-linear-gradient(45deg, color-mix(in srgb, var(--accent) 14%, transparent) 0 6px, transparent 6px 12px),
-    var(--bg-2);
-}
-.dg-card-face { display: grid; place-items: center; }
-.dg-card-face > * { grid-area: 1 / 1; transition: opacity .25s, transform .35s; }
-.dg-card-back { font-family: var(--font-display); font-size: 1.7rem; color: var(--accent); line-height: 1; }
-.dg-card.is-hidden .dg-card-name { opacity: 0; transform: rotateX(90deg); }
-.dg-card-pts { position: absolute; right: .55rem; top: .3rem; font-size: .65rem; font-weight: 700; color: var(--accent); }
-.dg-card.is-flipped { border-style: solid; animation: dg-flip .45s ease; }
-.dg-card.is-flipped .dg-card-back { opacity: 0; transform: rotateX(90deg); }
-.dg-card.is-flipped .dg-card-name { opacity: 1; transform: none; }
-.dg-card.is-flipped .dg-card-pts { display: none; }
-@keyframes dg-flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
-
 .dg-card:disabled:not(.is-right):not(.is-chosen) { opacity: .45; }
 .dg-card.is-right { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 18%, var(--bg-2)); opacity: 1; }
 .dg-card.is-wrong { border-color: var(--err); background: color-mix(in srgb, var(--err) 18%, var(--bg-2)); animation: dg-shake .4s; }
-.dg-card.is-wrong.is-flipped { animation: dg-flip .45s ease; }
 @keyframes dg-shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-6px); } 50% { transform: translateX(6px); } }
 
 /* Ligne du bas : aide avant la réponse, verdict et « Suivant » après. Hauteur fixe : la photo ne bouge pas. */
