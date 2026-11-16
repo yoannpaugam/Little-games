@@ -13,7 +13,8 @@
    "A mesuré la circonférence de la Terre",
    "A écrit l'Odyssée"
   ],
-  "fact": "Elle enseignait l'astronomie et les mathématiques ; elle fut tuée par une foule chrétienne."
+  "fact": "Elle enseignait l'astronomie et les mathématiques ; elle fut tuée par une foule chrétienne.",
+  "bio": "Fille du mathématicien Théon, elle dirigea à Alexandrie une école de philosophie néoplatonicienne réputée dans tout le monde grec. Elle commenta les grands traités de mathématiques et d'astronomie, comme ceux de Diophante et d'Apollonius. Sa mort violente, en 415, en a fait un symbole de la liberté de penser."
  },
  {
   "id": "murasaki-shikibu",
@@ -29,7 +30,8 @@
    "A fondé le théâtre nô",
    "A écrit « L'Art de la guerre »"
   ],
-  "fact": "Dame de la cour de Heian, vers l'an 1000."
+  "fact": "Dame de la cour de Heian, vers l'an 1000.",
+  "bio": "Dame de compagnie de l'impératrice Shōshi à la cour de Heian, au Japon, elle écrivit aussi un journal et des poèmes. Son « Dit du Genji » suit en 54 chapitres la vie amoureuse et politique du prince Genji. Le livre est toujours lu et étudié comme un sommet de la littérature japonaise."
  },
  {
   "id": "hildegarde-de-bingen",
@@ -45,7 +47,8 @@
    "A écrit la première encyclopédie médicale arabe",
    "A inventé la notation musicale"
   ],
-  "fact": "Elle composa des chants encore joués et écrivit sur les plantes et la médecine."
+  "fact": "Elle composa des chants encore joués et écrivit sur les plantes et la médecine.",
+  "bio": "Placée au couvent dès l'enfance, elle devint abbesse et fonda le monastère du Rupertsberg, près de Bingen. Elle écrivit des livres de visions mystiques, des traités de médecine et de plantes, et une pièce musicale, l'« Ordo Virtutum ». Elle a été proclamée docteure de l'Église en 2012."
  },
  {
   "id": "christine-de-pizan",
@@ -61,7 +64,8 @@
    "A fondé la Sorbonne",
    "A traduit la Bible en français"
   ],
-  "fact": "Veuve à 25 ans, elle écrivit « La Cité des dames » pour défendre les femmes."
+  "fact": "Veuve à 25 ans, elle écrivit « La Cité des dames » pour défendre les femmes.",
+  "bio": "Née à Venise et élevée à la cour du roi Charles V, où son père était astrologue, elle se retrouva veuve avec trois enfants. Elle écrivit poèmes, traités politiques et une biographie de Charles V, pour des princes qui la payaient. Elle prit la défense des femmes dans « La Cité des dames » et salua Jeanne d'Arc de son vivant."
  },
  {
   "id": "louise-labe",
@@ -77,7 +81,8 @@
    "A fondé l'imprimerie de Lyon",
    "A traduit Homère en français"
   ],
-  "fact": "Ses sonnets amoureux, publiés en 1555, revendiquent le droit des femmes au savoir."
+  "fact": "Ses sonnets amoureux, publiés en 1555, revendiquent le droit des femmes au savoir.",
+  "bio": "Fille d'un riche cordier de Lyon, elle reçut une éducation rare pour une femme : latin, italien, musique, équitation. Son unique livre, paru en 1555, réunit des élégies, 24 sonnets et un « Débat de Folie et d'Amour ». Sa préface invite les femmes à s'élever par l'étude et l'écriture."
  },
  {
   "id": "sofonisba-anguissola",
@@ -93,7 +98,8 @@
    "A inventé la perspective",
    "A sculpté la fontaine de Trevi"
   ],
-  "fact": "Michel-Ange l'encouragea ; elle devint portraitiste de Philippe II."
+  "fact": "Michel-Ange l'encouragea ; elle devint portraitiste de Philippe II.",
+  "bio": "Née à Crémone dans une famille noble qui fit instruire ses six filles, elle se fit connaître par ses portraits de famille pleins de vie. Appelée à Madrid, elle fut peintre et dame d'honneur de la reine Élisabeth de Valois. Âgée, elle reçut à Palerme la visite du jeune Van Dyck, qui la dessina."
  },
  {
   "id": "artemisia-gentileschi",
@@ -109,7 +115,8 @@
    "A fondé la première école de peinture pour filles",
    "Première femme peintre officielle des Médicis"
   ],
-  "fact": "Peintre baroque, elle peignit des héroïnes fortes comme Judith décapitant Holopherne."
+  "fact": "Peintre baroque, elle peignit des héroïnes fortes comme Judith décapitant Holopherne.",
+  "bio": "Formée par son père, le peintre Orazio Gentileschi, elle fut violée à 17 ans par un de ses collègues et dut témoigner sous la torture au procès. Elle travailla ensuite à Florence, Rome, Venise, Londres et Naples, pour les plus grands mécènes. Ses tableaux d'héroïnes bibliques, puissants et dramatiques, ont été redécouverts au XXe siècle."
  },
  {
   "id": "judith-leyster",
@@ -125,7 +132,8 @@
    "A inventé la nature morte aux fleurs",
    "Première femme conservatrice d'un musée"
   ],
-  "fact": "Ses tableaux furent longtemps attribués à Frans Hals."
+  "fact": "Ses tableaux furent longtemps attribués à Frans Hals.",
+  "bio": "Fille d'un brasseur de Haarlem, elle eut son propre atelier et des élèves dès 1633. Elle peignait des musiciens, des buveurs et des scènes joyeuses, avec une touche vive. Elle cessa presque de peindre après son mariage avec le peintre Jan Miense Molenaer."
  },
  {
   "id": "madame-de-la-fayette",
@@ -141,7 +149,8 @@
    "A fondé l'Académie française",
    "A écrit « Les Contes de ma mère l'Oye »"
   ],
-  "fact": "Publié anonymement en 1678, souvent vu comme le premier roman psychologique."
+  "fact": "Publié sans nom d'auteur en 1678, son roman est souvent vu comme le premier roman psychologique.",
+  "bio": "Marie-Madeleine Pioche de La Vergne fréquentait les salons et la cour de Louis XIV, amie de Madame de Sévigné et de La Rochefoucauld. Elle publia ses romans sans les signer, comme « Zaïde » et « La Princesse de Montpensier ». « La Princesse de Clèves » raconte un amour auquel l'héroïne renonce par devoir et par lucidité."
  },
  {
   "id": "maria-sibylla-merian",
@@ -157,7 +166,8 @@
    "Première femme admise à la Royal Society",
    "A classé les orchidées d'Europe"
   ],
-  "fact": "À 52 ans, elle partit au Surinam observer chenilles et papillons ; son livre de 1705 fit date."
+  "fact": "À 52 ans, elle partit au Surinam observer chenilles et papillons ; son livre de 1705 fit date.",
+  "bio": "Fille d'un graveur de Francfort, elle élevait des chenilles pour les observer et les peindre, à une époque où l'on croyait encore à la génération spontanée. En 1699, elle partit au Surinam avec sa fille pour étudier insectes et plantes. Son livre « Metamorphosis insectorum Surinamensium » montre chaque insecte avec la plante dont il se nourrit."
  },
  {
   "id": "madeleine-basseporte",
@@ -173,7 +183,8 @@
    "A rapporté le café des Antilles",
    "A fondé le premier herbier de Paris"
   ],
-  "fact": "Elle peignit plantes et animaux pour la collection royale des vélins pendant près de 40 ans."
+  "fact": "Elle peignit plantes et animaux pour la collection royale des vélins pendant près de 40 ans.",
+  "bio": "Élève du pastelliste Rosalba Carriera, elle succéda en 1741 au peintre Claude Aubriet comme peintre du roi pour les vélins, au Jardin du roi (l'actuel Muséum). Elle peignait des fleurs et des oiseaux d'après nature, avec une grande précision. Elle donnait aussi des cours de dessin botanique, notamment aux filles de Louis XV."
  },
  {
   "id": "emilie-du-chatelet",
@@ -189,7 +200,8 @@
    "A inventé le calcul différentiel",
    "A fondé la première école d'ingénieures"
   ],
-  "fact": "Sa traduction commentée, publiée en 1759, est restée la référence en français."
+  "fact": "Sa traduction commentée, publiée en 1759, est restée la référence en français.",
+  "bio": "Mathématicienne et physicienne, elle étudia avec Maupertuis et Clairaut et vécut avec Voltaire au château de Cirey. Elle écrivit les « Institutions de physique » et participa au débat sur la force vive, montrant l'importance du carré de la vitesse. Elle mourut en couches à 42 ans, juste après avoir achevé sa traduction de Newton."
  },
  {
   "id": "nicole-reine-lepaute",
@@ -205,7 +217,8 @@
    "A calculé la masse de la planète Jupiter",
    "A mesuré la longueur du méridien de Paris"
   ],
-  "fact": "Avec Clairaut et Lalande, elle prédit le passage de 1759 à un mois près."
+  "fact": "Avec Clairaut et Lalande, elle prédit le passage de 1759 à un mois près.",
+  "bio": "Fille d'un serviteur de la reine de Navarre, elle épousa un horloger, Jean-André Lepaute, et l'aida dans ses travaux. Avec Lalande et Clairaut, elle passa des mois à calculer l'attraction de Jupiter et de Saturne sur la comète. Elle calcula ensuite des éphémérides et une éclipse de Soleil, et un astéroïde porte son nom."
  },
  {
   "id": "jeanne-baret",
@@ -221,7 +234,8 @@
    "A dessiné les vélins du Muséum",
    "A découvert le fossile d'un ichtyosaure"
   ],
-  "fact": "Déguisée en homme, elle embarqua avec Bougainville (1766-1769) comme assistante du botaniste Commerson."
+  "fact": "Déguisée en homme, elle embarqua avec Bougainville (1766-1769) comme assistante du botaniste Commerson.",
+  "bio": "Paysanne de Bourgogne, elle était l'assistante et la compagne du botaniste Philibert Commerson. Habillée en homme, elle se fit engager comme son valet sur l'expédition de Bougainville. Elle récolta des milliers de plantes, dont la bougainvillée, et une plante, « Solanum baretiae », porte aujourd'hui son nom."
  },
  {
   "id": "angelica-kauffman",
@@ -237,7 +251,8 @@
    "A inventé le pastel",
    "A fondé le musée du Prado"
   ],
-  "fact": "Elle fut l'une des deux femmes fondatrices en 1768."
+  "fact": "Elle fut l'une des deux femmes fondatrices en 1768.",
+  "bio": "Enfant prodige, elle chantait et peignait ; elle se forma en Italie en copiant les grands maîtres. À Londres, elle devint une portraitiste et une peintre d'histoire très demandée, amie de Joshua Reynolds. Elle finit sa vie à Rome, où ses funérailles furent dignes d'une grande artiste."
  },
  {
   "id": "olympe-de-gouges",
@@ -253,7 +268,8 @@
    "Première femme élue députée en France",
    "A fondé le premier journal féminin de Paris"
   ],
-  "fact": "En 1791 ; elle fut guillotinée en 1793."
+  "fact": "Elle écrivit sa Déclaration en 1791 et fut guillotinée en 1793.",
+  "bio": "Née Marie Gouze à Montauban, veuve jeune, elle monta à Paris et écrivit des pièces de théâtre, dont une contre l'esclavage. Pendant la Révolution, elle multiplia brochures et affiches pour l'égalité, le divorce et les droits des enfants nés hors mariage. Proche des Girondins, elle s'opposa à Robespierre, ce qui la conduisit à l'échafaud."
  },
  {
   "id": "caroline-herschel",
@@ -269,7 +285,8 @@
    "A construit le plus grand télescope d'Europe",
    "A dressé la première carte complète de la Lune"
   ],
-  "fact": "Elle découvrit 8 comètes et fut médaillée d'or de la Royal Astronomical Society."
+  "fact": "Elle découvrit 8 comètes et fut médaillée d'or de la Royal Astronomical Society.",
+  "bio": "Sœur du musicien et astronome William Herschel, elle quitta Hanovre pour le rejoindre en Angleterre, d'abord comme chanteuse. Elle polissait les miroirs des télescopes, notait les observations et découvrit de nombreuses nébuleuses. Le roi George III lui versa un salaire d'assistante : elle fut la première femme payée pour faire de la science."
  },
  {
   "id": "elisabeth-vigee-le-brun",
@@ -285,7 +302,8 @@
    "A fondé l'École des beaux-arts",
    "A inventé le portrait en miniature"
   ],
-  "fact": "Elle peignit la reine une trentaine de fois et dut fuir la Révolution."
+  "fact": "Elle peignit la reine une trentaine de fois et dut fuir la Révolution.",
+  "bio": "Fille d'un pastelliste, elle gagnait sa vie comme portraitiste dès l'adolescence. Reçue à l'Académie royale en 1783 grâce à Marie-Antoinette, elle dut s'exiler en 1789. Pendant 12 ans, elle peignit les cours d'Italie, de Vienne et de Russie, et laissa environ 660 portraits et des souvenirs passionnants."
  },
  {
   "id": "marie-anne-lavoisier",
@@ -301,7 +319,8 @@
    "A inventé le baromètre de laboratoire",
    "Première femme membre de l'Académie des sciences"
   ],
-  "fact": "Elle grava les planches du « Traité élémentaire de chimie » et traduisit les chimistes anglais."
+  "fact": "Elle grava les planches du « Traité élémentaire de chimie » et traduisit les chimistes anglais.",
+  "bio": "Mariée à 13 ans au chimiste Antoine Lavoisier, elle devint sa plus proche collaboratrice. Elle apprit le dessin avec David, tenait les carnets d'expériences et traduisit en français l'« Essai sur le phlogistique » de Kirwan. Après l'exécution de son mari en 1794, elle publia ses mémoires et tint un salon scientifique."
  },
  {
   "id": "mary-wollstonecraft",
@@ -317,7 +336,8 @@
    "Première femme élue au Parlement anglais",
    "A fondé le mouvement des suffragettes"
   ],
-  "fact": "En 1792 ; elle est la mère de Mary Shelley."
+  "fact": "Son livre parut en 1792 ; elle est la mère de Mary Shelley, l'autrice de « Frankenstein ».",
+  "bio": "Institutrice, gouvernante puis traductrice à Londres, elle vécut la Révolution française à Paris. Elle y demanda pour les filles la même éducation que pour les garçons et l'indépendance des femmes. Elle mourut à 38 ans, quelques jours après la naissance de sa fille, la future Mary Shelley."
  },
  {
   "id": "sophie-germain",
@@ -333,7 +353,8 @@
    "A calculé le nombre pi à 100 décimales",
    "A fondé l'École normale de jeunes filles"
   ],
-  "fact": "Elle écrivait à Gauss sous un nom d'homme ; les « nombres premiers de Sophie Germain » portent son nom."
+  "fact": "Elle écrivait à Gauss sous un nom d'homme ; les « nombres premiers de Sophie Germain » portent son nom.",
+  "bio": "Enfermée chez ses parents pendant la Terreur, elle apprit seule les mathématiques dans la bibliothèque de son père. Elle suivit les cours de l'École polytechnique sous le nom d'un ancien élève, Antoine Auguste Le Blanc. En 1816, elle remporta le prix de l'Académie des sciences pour sa théorie des surfaces élastiques."
  },
  {
   "id": "barbe-nicole-clicquot",
@@ -349,7 +370,8 @@
    "A créé le premier vin rosé",
    "A fondé la première coopérative de vignerons"
   ],
-  "fact": "Veuve à 27 ans, elle dirigea la maison de champagne, qui porte encore son nom de veuve."
+  "fact": "Veuve à 27 ans, elle dirigea la maison de champagne, qui porte encore son nom de veuve.",
+  "bio": "Fille d'un riche drapier de Reims, elle épousa François Clicquot, qui mourut en 1805. Elle prit la tête de la maison de champagne, une rareté pour une femme à l'époque. Elle fit le premier champagne rosé d'assemblage en 1818 et conquit le marché russe."
  },
  {
   "id": "henriette-dangeville",
@@ -365,7 +387,8 @@
    "Première femme à skier dans les Alpes",
    "A ouvert la route du col du Mont-Cenis"
   ],
-  "fact": "En 1838, en jupe et pantalon, elle atteignit le sommet ; Marie Paradis l'avait précédée en 1808, emmenée par des guides."
+  "fact": "Marie Paradis avait atteint le sommet en 1808, emmenée par des guides ; Henriette d'Angeville fut la première à organiser elle-même l'ascension.",
+  "bio": "Aristocrate savoyarde passionnée de montagne, elle prépara son ascension pendant des années. En septembre 1838, elle atteignit le sommet avec des guides et des porteurs et y écrivit des lettres. Elle fit ensuite une vingtaine d'autres ascensions, la dernière à 69 ans."
  },
  {
   "id": "jeanne-villepreux-power",
@@ -381,7 +404,8 @@
    "A inventé le scaphandre",
    "A créé le premier zoo marin"
   ],
-  "fact": "Couturière devenue naturaliste, elle inventa des cages de verre pour observer l'argonaute."
+  "fact": "Couturière devenue naturaliste, elle inventa des cages de verre pour observer l'argonaute.",
+  "bio": "Fille d'un cordonnier de Corrèze, elle monta à Paris à pied et devint brodeuse, puis épousa un riche Anglais. Installée en Sicile, elle étudia la faune marine avec des cages de verre et en bois immergées. Ses observations montrèrent que l'argonaute fabrique lui-même sa coquille."
  },
  {
   "id": "mary-shelley",
@@ -397,7 +421,8 @@
    "A écrit « Orgueil et Préjugés »",
    "A écrit « Les Hauts de Hurlevent »"
   ],
-  "fact": "Elle l'imagina à 18 ans, au bord du lac Léman, un soir d'orage de 1816."
+  "fact": "Elle l'imagina à 18 ans, au bord du lac Léman, un soir d'orage de 1816.",
+  "bio": "Fille de la féministe Mary Wollstonecraft et du philosophe William Godwin, elle s'enfuit à 16 ans avec le poète Percy Shelley. Lors d'un concours d'histoires de fantômes chez Lord Byron, elle imagina le savant qui fabrique une créature. Paru en 1818, son roman est souvent vu comme le premier roman de science-fiction."
  },
  {
   "id": "sojourner-truth",
@@ -413,7 +438,8 @@
    "Première femme noire élue au Congrès",
    "A écrit « La Case de l'oncle Tom »"
   ],
-  "fact": "Elle gagna en 1828 un procès pour récupérer son fils, vendu illégalement."
+  "fact": "Elle gagna en 1828 un procès pour récupérer son fils, vendu illégalement.",
+  "bio": "Née Isabella Baumfree, esclave dans l'État de New York, elle s'enfuit avec sa fille en 1826. Elle prit le nom de Sojourner Truth en 1843 et parcourut les États-Unis en prêchant contre l'esclavage. Elle défendit aussi le droit de vote des femmes et aida les esclaves libérés pendant la guerre de Sécession."
  },
  {
   "id": "anna-atkins",
@@ -429,7 +455,8 @@
    "A découvert la pénicilline dans des algues",
    "A dessiné le premier atlas des oiseaux"
   ],
-  "fact": "En 1843, elle publia un livre d'algues en cyanotypes, ces images d'un bleu profond."
+  "fact": "En 1843, elle publia un livre d'algues en cyanotypes, ces images d'un bleu profond.",
+  "bio": "Fille d'un scientifique, elle apprit la botanique et le dessin, et connaissait les inventeurs de la photographie. Elle utilisa le cyanotype, inventé par John Herschel, pour faire apparaître des algues posées sur un papier sensible. Ses « Photographs of British Algae » ont été publiés en plusieurs parties à partir de 1843."
  },
  {
   "id": "mary-anning",
@@ -445,7 +472,8 @@
    "A décrit le premier dinosaure à plumes",
    "A cartographié les fonds de la Manche"
   ],
-  "fact": "Chasseuse de fossiles à Lyme Regis, longtemps ignorée par la Société géologique."
+  "fact": "Chasseuse de fossiles à Lyme Regis, longtemps ignorée par la Société géologique.",
+  "bio": "Fille d'un menuisier pauvre de Lyme Regis, elle vendait aux touristes les fossiles trouvés sur la plage. Avec son frère, elle dégagea vers 1811 un squelette complet d'ichtyosaure, puis le premier plésiosaure complet en 1823. Les savants s'appuyèrent sur ses découvertes, souvent sans la citer."
  },
  {
   "id": "george-sand",
@@ -461,7 +489,8 @@
    "Première femme élue à l'Académie française",
    "A fondé le premier journal féministe de France"
   ],
-  "fact": "Elle portait pantalon et redingote et fut la compagne de Musset et de Chopin."
+  "fact": "Elle portait pantalon et redingote et fut la compagne de Musset et de Chopin.",
+  "bio": "Aurore Dupin grandit à Nohant, dans le Berry, qui sert de décor à ses romans champêtres. Elle quitta son mari pour vivre de sa plume à Paris et publia plus de 70 romans, des pièces et une immense correspondance. Elle s'engagea pour la République en 1848."
  },
  {
   "id": "fanny-mendelssohn",
@@ -477,7 +506,8 @@
    "A composé la « Marche nuptiale » des mariages",
    "Pianiste de la cour du roi de Prusse"
   ],
-  "fact": "Certaines de ses mélodies parurent sous le nom de Felix Mendelssohn."
+  "fact": "Certaines de ses mélodies parurent sous le nom de Felix Mendelssohn.",
+  "bio": "Pianiste prodige comme son frère Felix, elle fut poussée par sa famille à renoncer à une carrière publique. Elle organisait à Berlin des concerts du dimanche très courus et composa lieder, pièces pour piano et un quatuor. Elle mourut à 41 ans, quelques mois avant son frère."
  },
  {
   "id": "mary-seacole",
@@ -493,7 +523,8 @@
    "A découvert un remède contre la fièvre jaune",
    "Première femme médecin d'Amérique"
   ],
-  "fact": "Refusée par l'armée, elle ouvrit à ses frais un « hôtel britannique » près du front."
+  "fact": "Refusée par l'armée, elle ouvrit à ses frais un « hôtel britannique » près du front.",
+  "bio": "Fille d'un officier écossais et d'une guérisseuse jamaïcaine, elle apprit les remèdes de sa mère. Elle soigna le choléra et la fièvre jaune en Jamaïque et à Panama. Pendant la guerre de Crimée, elle nourrissait et soignait les soldats, parfois sur le champ de bataille."
  },
  {
   "id": "ada-lovelace",
@@ -509,7 +540,8 @@
    "A découvert les nombres complexes",
    "A fondé le premier club d'échecs féminin"
   ],
-  "fact": "En 1843, pour la machine analytique de Babbage ; elle était la fille de Lord Byron."
+  "fact": "Elle écrivit ce programme en 1843, pour la machine analytique de Charles Babbage.",
+  "bio": "Fille du poète Lord Byron, elle fut élevée dans les mathématiques par sa mère. Elle traduisit et compléta un article sur la machine analytique de Charles Babbage, avec des notes trois fois plus longues que le texte. Elle y comprit que la machine pourrait manipuler bien plus que des nombres, comme de la musique."
  },
  {
   "id": "clara-schumann",
@@ -525,7 +557,8 @@
    "A inventé le métronome",
    "A fondé l'Opéra de Vienne"
   ],
-  "fact": "Elle fit des concerts pendant plus de 60 ans ; elle figurait sur le billet de 100 marks."
+  "fact": "Elle fit des concerts pendant plus de 60 ans ; elle figurait sur le billet de 100 marks.",
+  "bio": "Formée par son père, elle donna son premier concert à 9 ans et fit des tournées dans toute l'Europe. Elle épousa le compositeur Robert Schumann contre l'avis de son père et éleva huit enfants. Amie de Brahms, elle fut l'une des plus grandes pianistes et enseignantes du XIXe siècle."
  },
  {
   "id": "florence-nightingale",
@@ -541,7 +574,8 @@
    "A découvert les microbes",
    "Première femme médecin d'Angleterre"
   ],
-  "fact": "« La dame à la lampe » utilisa aussi des statistiques et des graphiques pour réformer les hôpitaux."
+  "fact": "« La dame à la lampe » utilisa aussi des statistiques et des graphiques pour réformer les hôpitaux.",
+  "bio": "Issue d'une famille aisée, elle choisit le métier d'infirmière contre l'avis de ses parents. Pendant la guerre de Crimée, elle réorganisa l'hôpital de Scutari, où l'hygiène fit baisser fortement la mortalité. Elle fonda à Londres une école d'infirmières et fut la première femme membre de la Royal Statistical Society."
  },
  {
   "id": "clara-barton",
@@ -557,7 +591,8 @@
    "A créé les ambulances militaires",
    "Première femme médecin de l'armée"
   ],
-  "fact": "Infirmière de la guerre de Sécession, surnommée « l'ange du champ de bataille »."
+  "fact": "Infirmière de la guerre de Sécession, surnommée « l'ange du champ de bataille ».",
+  "bio": "Institutrice, puis l'une des premières femmes employées par le gouvernement fédéral, elle apporta des secours sur les champs de bataille de la guerre de Sécession. Après la guerre, elle rechercha les soldats disparus. Elle découvrit la Croix-Rouge en Europe et la fonda aux États-Unis en 1881."
  },
  {
   "id": "elizabeth-blackwell",
@@ -573,7 +608,8 @@
    "A découvert la transmission du choléra par l'eau",
    "A fondé la première école de sages-femmes"
   ],
-  "fact": "Diplômée en 1849, elle fonda ensuite un hôpital pour femmes à New York."
+  "fact": "Diplômée en 1849, elle fonda ensuite un hôpital pour femmes à New York.",
+  "bio": "Née en Angleterre, elle émigra enfant aux États-Unis. Refusée par de nombreuses facultés, elle fut admise au Geneva Medical College, dont les étudiants avaient voté par plaisanterie. Elle ouvrit un dispensaire à New York, puis une école de médecine pour femmes."
  },
  {
   "id": "harriet-tubman",
@@ -589,7 +625,8 @@
    "Première femme noire médecin",
    "A rédigé l'abolition de l'esclavage"
   ],
-  "fact": "Elle fit environ 13 voyages et ne perdit jamais un passager."
+  "fact": "Elle fit environ 13 voyages et ne perdit jamais un passager.",
+  "bio": "Née esclave dans le Maryland, elle s'enfuit en 1849 vers Philadelphie. Elle revint ensuite une douzaine de fois dans le Sud pour libérer sa famille et des dizaines d'autres esclaves. Pendant la guerre de Sécession, elle fut éclaireuse et espionne pour l'armée de l'Union."
  },
  {
   "id": "rosa-bonheur",
@@ -605,7 +642,8 @@
    "Première femme élue à l'Académie des beaux-arts",
    "A peint le plafond de l'Opéra de Paris"
   ],
-  "fact": "Elle obtint une permission pour porter le pantalon, pour aller dans les foires aux bestiaux."
+  "fact": "Elle obtint une permission pour porter le pantalon, pour aller dans les foires aux bestiaux.",
+  "bio": "Fille d'un peintre, elle dessinait les animaux dans les abattoirs et les foires pour connaître leur anatomie. « Le Labourage nivernais » et « Le Marché aux chevaux » la rendirent célèbre en Europe et aux États-Unis. Elle vécut au château de By, près de Fontainebleau, avec une ménagerie et sa compagne."
  },
  {
   "id": "louise-michel",
@@ -621,7 +659,8 @@
    "A écrit « L'Internationale »",
    "A fondé la CGT"
   ],
-  "fact": "Déportée en Nouvelle-Calédonie, elle y enseigna aux Kanaks."
+  "fact": "Déportée en Nouvelle-Calédonie, elle y enseigna aux Kanaks.",
+  "bio": "Institutrice républicaine, elle ouvrit une école à Montmartre. Pendant la Commune de 1871, elle soigna les blessés et combattit sur les barricades. Déportée en Nouvelle-Calédonie, elle revint en 1880 et devint une grande figure anarchiste, au drapeau noir."
  },
  {
   "id": "marianne-north",
@@ -637,7 +676,8 @@
    "A rapporté le thé de Chine en Inde",
    "A fondé le jardin botanique de Singapour"
   ],
-  "fact": "Sa galerie aux 832 tableaux est toujours ouverte dans les jardins de Kew, à Londres."
+  "fact": "Sa galerie aux 832 tableaux est toujours ouverte dans les jardins de Kew, à Londres.",
+  "bio": "Fille d'un député, elle voyagea seule après la mort de son père, à travers les Amériques, l'Asie et l'Océanie. Elle peignait les plantes dans leur milieu naturel, à l'huile, avec des couleurs vives. Elle offrit ses tableaux et une galerie pour les montrer aux jardins botaniques de Kew."
  },
  {
   "id": "isabella-bird",
@@ -653,7 +693,8 @@
    "Première femme à franchir le cap Horn à la voile",
    "A dressé la première carte de l'Himalaya"
   ],
-  "fact": "Elle voyagea des Rocheuses au Japon et en Perse, souvent seule, à cheval."
+  "fact": "Elle voyagea des Rocheuses au Japon et en Perse, souvent seule, à cheval.",
+  "bio": "Fille de pasteur, de santé fragile, elle commença à voyager sur conseil de son médecin. Elle parcourut à cheval les montagnes Rocheuses, Hawaï, le Japon, la Corée, la Perse et le Tibet. Ses récits de voyage, très lus, sont écrits sous forme de lettres à sa sœur."
  },
  {
   "id": "josephine-cochrane",
@@ -669,7 +710,8 @@
    "A inventé la machine à laver",
    "A inventé le grille-pain"
   ],
-  "fact": "Excédée qu'on ébrèche sa vaisselle, elle fit breveter sa machine en 1886."
+  "fact": "Excédée qu'on ébrèche sa vaisselle, elle fit breveter sa machine en 1886.",
+  "bio": "Femme d'un riche marchand de l'Illinois, elle voulait une machine qui lave sans casser la porcelaine. Elle conçut des paniers adaptés aux assiettes et un jet d'eau chaude sous pression. Sa machine fut primée à l'Exposition de Chicago en 1893 et sa société devint plus tard une marque connue."
  },
  {
   "id": "berthe-morisot",
@@ -685,7 +727,8 @@
    "A fondé le musée d'Orsay",
    "Première femme à exposer au Louvre de son vivant"
   ],
-  "fact": "Elle exposa à la première exposition impressionniste, en 1874."
+  "fact": "Elle exposa à la première exposition impressionniste, en 1874.",
+  "bio": "Elle apprit la peinture avec sa sœur Edma et le paysagiste Corot. Proche de Manet, dont elle épousa le frère Eugène, elle peignit surtout des scènes de vie quotidienne et des femmes. Elle participa à sept des huit expositions impressionnistes."
  },
  {
   "id": "madeleine-bres",
@@ -701,7 +744,8 @@
    "A fondé l'Institut Pasteur",
    "A créé le premier planning familial"
   ],
-  "fact": "Thèse soutenue en 1875 ; elle se consacra ensuite aux nourrissons et aux crèches."
+  "fact": "Elle soutint sa thèse en 1875 et se consacra ensuite aux nourrissons et aux crèches.",
+  "bio": "Fille d'un charron de Nîmes, elle accompagnait enfant son père à l'hôpital. Elle obtint en 1868 l'autorisation de s'inscrire à la faculté de médecine de Paris. Elle fonda ensuite une crèche et une revue, et forma des puéricultrices."
  },
  {
   "id": "edmonia-lewis",
@@ -717,7 +761,8 @@
    "A fondé l'université Howard",
    "A peint les premiers portraits d'Indiens"
   ],
-  "fact": "Installée à Rome, elle sculpta « La Mort de Cléopâtre » dans le marbre."
+  "fact": "Installée à Rome, elle sculpta « La Mort de Cléopâtre » dans le marbre.",
+  "bio": "Fille d'un père afro-haïtien et d'une mère ojibwée, elle étudia à l'Oberlin College. Elle s'installa à Rome en 1865 et sculpta le marbre dans un style néoclassique. Ses œuvres évoquent l'abolition de l'esclavage et les peuples amérindiens."
  },
  {
   "id": "mary-cassatt",
@@ -733,7 +778,8 @@
    "A peint les premières affiches de Broadway",
    "Première femme présidente d'une académie d'art"
   ],
-  "fact": "Elle peignait surtout les mères et les enfants et conseilla les collectionneurs américains."
+  "fact": "Elle peignait surtout les mères et les enfants et conseilla les collectionneurs américains.",
+  "bio": "Fille d'un banquier de Pittsburgh, elle s'installa à Paris pour peindre. Degas l'invita à exposer avec les impressionnistes en 1879. Elle peignit surtout des mères et des enfants et réalisa des gravures inspirées des estampes japonaises."
  },
  {
   "id": "sarah-bernhardt",
@@ -749,7 +795,8 @@
    "Première femme à réaliser un film en France",
    "A inventé le music-hall parisien"
   ],
-  "fact": "Amputée d'une jambe en 1915, elle joua encore et alla au front soutenir les soldats."
+  "fact": "Amputée d'une jambe en 1915, elle joua encore et alla au front soutenir les soldats.",
+  "bio": "Formée au Conservatoire, elle entra à la Comédie-Française et triompha dans « Phèdre » et « Ruy Blas ». Elle fonda sa propre troupe, dirigea des théâtres et fit des tournées dans le monde entier. Elle joua aussi dans les premiers films et posa pour les affiches de Mucha."
  },
  {
   "id": "kate-sheppard",
@@ -765,7 +812,8 @@
    "A fondé le parti travailliste australien",
    "Première femme élue au Parlement anglais"
   ],
-  "fact": "En 1893 ; son visage est sur le billet de 10 dollars néo-zélandais."
+  "fact": "Les Néo-Zélandaises votèrent dès 1893 ; son visage est sur le billet de 10 dollars.",
+  "bio": "Née en Angleterre, elle émigra en Nouvelle-Zélande et milita dans une ligue pour la tempérance. Elle organisa de grandes pétitions pour le droit de vote des femmes, dont une de 32 000 signatures. En 1893, la Nouvelle-Zélande devint le premier pays où les femmes votent aux élections nationales."
  },
  {
   "id": "hubertine-auclert",
@@ -781,7 +829,8 @@
    "A fondé le Planning familial",
    "Première femme élue au Sénat"
   ],
-  "fact": "Elle refusa de payer ses impôts, puisqu'elle ne pouvait pas voter."
+  "fact": "Elle refusa de payer ses impôts, puisqu'elle ne pouvait pas voter.",
+  "bio": "Née dans l'Allier, elle monta à Paris et fonda la société « Le droit des femmes », puis le journal « La Citoyenne ». Elle demanda le droit de vote, le droit d'être élue et l'égalité dans le mariage. En 1910, elle se présenta aux élections législatives, bien que les femmes n'y aient pas droit."
  },
  {
   "id": "sofia-kovalevskaia",
@@ -797,7 +846,8 @@
    "A fondé la première université féminine de Russie",
    "A inventé la notation des nombres complexes"
   ],
-  "fact": "Elle enseigna à Stockholm à partir de 1884 et reçut le prix Bordin."
+  "fact": "Elle enseigna à Stockholm à partir de 1884 et reçut le prix Bordin.",
+  "bio": "Interdite d'université en Russie, elle contracta un mariage blanc pour étudier en Allemagne. Élève de Weierstrass, elle obtint un doctorat à Göttingen en 1874. Ses travaux sur la rotation d'un solide lui valurent le prix Bordin de l'Académie des sciences de Paris en 1888."
  },
  {
   "id": "clara-zetkin",
@@ -813,7 +863,8 @@
    "Première femme chancelière allemande",
    "A écrit « Le Capital »"
   ],
-  "fact": "En 1910, à Copenhague ; le 8 mars fut ensuite retenu."
+  "fact": "Elle fit cette proposition en 1910, à Copenhague ; la date du 8 mars fut retenue plus tard.",
+  "bio": "Institutrice socialiste, elle dirigea le journal des femmes social-démocrates allemandes, « Die Gleichheit ». Elle défendit le droit de vote des femmes, le travail des ouvrières et la paix. Elle devint députée communiste et ouvrit, à 75 ans, la session du Reichstag en 1932 en dénonçant le nazisme."
  },
  {
   "id": "cecile-chaminade",
@@ -829,7 +880,8 @@
    "A fondé la Sacem pour les droits d'auteur",
    "Première pianiste à enregistrer un disque"
   ],
-  "fact": "Ses pièces pour piano eurent un immense succès aux États-Unis."
+  "fact": "Ses pièces pour piano eurent un immense succès aux États-Unis.",
+  "bio": "Elle apprit la musique en cachette de son père, puis composa et joua ses œuvres en concert dès 18 ans. Ses pièces pour piano et ses mélodies se vendaient très bien, en Angleterre et aux États-Unis. Son « Concertino pour flûte » est toujours joué."
  },
  {
   "id": "emmeline-pankhurst",
@@ -845,7 +897,8 @@
    "A fondé le Parti travailliste",
    "A fondé la Croix-Rouge britannique"
   ],
-  "fact": "Emprisonnée plusieurs fois, elle fit des grèves de la faim pour le vote des femmes."
+  "fact": "Emprisonnée plusieurs fois, elle fit des grèves de la faim pour le vote des femmes.",
+  "bio": "Avec ses filles, elle fonda en 1903 l'Union sociale et politique des femmes (WSPU). Ses militantes cassaient des vitrines et faisaient des grèves de la faim en prison. Pendant la Première Guerre mondiale, elle soutint l'effort de guerre ; les Britanniques obtinrent le vote à égalité en 1928, l'année de sa mort."
  },
  {
   "id": "selma-lagerlof",
@@ -861,7 +914,8 @@
    "Première femme présidente de l'Académie suédoise",
    "A écrit le conte de « La Petite Sirène »"
   ],
-  "fact": "En 1909 ; on lui doit « Le Merveilleux Voyage de Nils Holgersson »."
+  "fact": "Elle reçut le Nobel en 1909 ; on lui doit « Le Merveilleux Voyage de Nils Holgersson ».",
+  "bio": "Institutrice dans le sud de la Suède, elle publia son premier roman, « La Saga de Gösta Berling », en 1891. Le gouvernement lui commanda un livre pour apprendre la géographie aux enfants : ce fut « Nils Holgersson ». Elle fut aussi la première femme élue à l'Académie suédoise."
  },
  {
   "id": "nettie-stevens",
@@ -877,7 +931,8 @@
    "A décrit la division cellulaire",
    "A inventé le microscope électronique"
   ],
-  "fact": "En 1905, en étudiant des vers de farine, elle montra le rôle du chromosome Y."
+  "fact": "En 1905, en étudiant des vers de farine, elle montra le rôle du chromosome Y.",
+  "bio": "Fille d'un charpentier du Vermont, elle fut institutrice avant de pouvoir étudier la biologie à Stanford. Elle fit son doctorat à 42 ans au Bryn Mawr College. Elle montra que les mâles portent un petit chromosome, le Y, que les femelles n'ont pas."
  },
  {
   "id": "hilma-af-klint",
@@ -893,7 +948,8 @@
    "A dessiné le drapeau et les timbres suédois",
    "Première femme admise au Bauhaus"
   ],
-  "fact": "Elle voulut que ses œuvres restent cachées 20 ans après sa mort."
+  "fact": "Elle voulut que ses œuvres restent cachées 20 ans après sa mort.",
+  "bio": "Formée à l'Académie royale des beaux-arts de Stockholm, elle gagnait sa vie avec des portraits et des paysages. Passionnée de spiritisme, elle peignit dès 1906 de grandes toiles abstraites, colorées et symboliques. Son œuvre, révélée en 1986, a changé l'histoire de l'art abstrait."
  },
  {
   "id": "ida-b-wells",
@@ -909,7 +965,8 @@
    "Première femme noire sénatrice",
    "A créé le Black History Month"
   ],
-  "fact": "Elle refusa de céder sa place dans un train en 1884, 70 ans avant Rosa Parks."
+  "fact": "Elle refusa de céder sa place dans un train en 1884, 70 ans avant Rosa Parks.",
+  "bio": "Née esclave dans le Mississippi en 1862, elle devint institutrice, puis journaliste à Memphis. Elle enquêta sur les lynchages et montra qu'ils n'avaient rien à voir avec les crimes invoqués. Elle participa à la fondation de la NAACP et milita pour le vote des femmes."
  },
  {
   "id": "jeanne-chauvin",
@@ -925,7 +982,8 @@
    "Première femme notaire de France",
    "A fondé l'École de la magistrature"
   ],
-  "fact": "Elle prêta serment en 1900, après une loi votée pour l'y autoriser."
+  "fact": "Elle prêta serment en 1900, après une loi votée pour l'y autoriser.",
+  "bio": "Docteure en droit, elle fut refusée au barreau en 1897 parce qu'elle était une femme. La loi de 1900 ouvrit la profession d'avocat aux femmes. Elle plaida en 1907 et enseigna le droit dans des lycées de jeunes filles."
  },
  {
   "id": "annie-jump-cannon",
@@ -941,7 +999,8 @@
    "A mesuré la vitesse de la lumière",
    "A dirigé le premier observatoire spatial"
   ],
-  "fact": "Presque sourde, elle classa à la main environ 350 000 étoiles."
+  "fact": "Presque sourde, elle classa à la main environ 350 000 étoiles.",
+  "bio": "Diplômée en physique, elle perdit presque toute l'ouïe après une scarlatine. Elle entra en 1896 dans l'équipe des « calculatrices » de l'observatoire de Harvard. Elle classait les spectres des étoiles très vite, et sa classification est toujours utilisée."
  },
  {
   "id": "camille-claudel",
@@ -957,7 +1016,8 @@
    "A sculpté la Statue de la Liberté",
    "Première femme élue à l'Académie des beaux-arts"
   ],
-  "fact": "Élève puis compagne de Rodin, elle passa ses 30 dernières années internée."
+  "fact": "Élève puis compagne de Rodin, elle passa ses 30 dernières années internée.",
+  "bio": "Sœur aînée de l'écrivain Paul Claudel, elle sculptait depuis l'enfance. Elle entra dans l'atelier de Rodin, devint sa collaboratrice et sa compagne, puis rompit avec lui. Internée à 48 ans à la demande de sa famille, elle ne sculpta plus jamais ; un musée lui est consacré à Nogent-sur-Seine."
  },
  {
   "id": "marguerite-durand",
@@ -973,7 +1033,8 @@
    "Première femme ministre de la République",
    "A créé la fête des mères en France"
   ],
-  "fact": "Dès 1897 ; sa bibliothèque féministe à Paris porte son nom."
+  "fact": "Son journal parut dès 1897 ; sa bibliothèque féministe à Paris porte son nom.",
+  "bio": "Actrice de la Comédie-Française, puis journaliste au « Figaro », elle fonda « La Fronde » en 1897. Le journal était écrit, imprimé et distribué par des femmes. Elle organisa en 1910 des candidatures féminines aux élections législatives."
  },
  {
   "id": "nellie-bly",
@@ -989,7 +1050,8 @@
    "A fondé le New York Times",
    "A inventé le reportage photo"
   ],
-  "fact": "En 1889, elle battit le record de « Phileas Fogg » ; elle s'était aussi fait interner pour enquêter."
+  "fact": "En 1889, elle battit le record de « Phileas Fogg » ; elle s'était aussi fait interner pour enquêter.",
+  "bio": "Elizabeth Cochran choisit le pseudonyme de Nellie Bly et entra au journal « The World » de Pulitzer. Elle se fit passer pour folle et dénonça les mauvais traitements de l'asile de Blackwell's Island. Plus tard, elle dirigea une entreprise industrielle et fut correspondante de guerre en 1914."
  },
  {
   "id": "seraphine-louis",
@@ -1005,7 +1067,8 @@
    "A fondé l'art brut",
    "A illustré les fables de La Fontaine"
   ],
-  "fact": "Découverte par le collectionneur Wilhelm Uhde, à Senlis ; un film lui est consacré."
+  "fact": "Découverte par le collectionneur Wilhelm Uhde, à Senlis ; un film lui est consacré.",
+  "bio": "Orpheline, elle travailla comme bergère, puis comme domestique à Senlis. Elle peignait la nuit, avec des couleurs qu'elle fabriquait, des fleurs et des feuillages foisonnants. Elle mourut dans un hôpital psychiatrique pendant la Seconde Guerre mondiale."
  },
  {
   "id": "suzanne-valadon",
@@ -1021,7 +1084,8 @@
    "A fondé le musée de Montmartre",
    "A inventé le cubisme"
   ],
-  "fact": "Elle posa pour Renoir et Toulouse-Lautrec ; elle est la mère du peintre Utrillo."
+  "fact": "Elle posa pour Renoir et Toulouse-Lautrec ; elle est la mère du peintre Utrillo.",
+  "bio": "Ancienne acrobate de cirque, elle posa pour Puvis de Chavannes, Renoir et Toulouse-Lautrec. Degas l'encouragea et acheta ses dessins. Elle peignit des nus féminins sans complaisance, des natures mortes et des portraits aux couleurs fortes."
  },
  {
   "id": "mary-anderson",
@@ -1037,7 +1101,8 @@
    "A inventé la ceinture de sécurité",
    "A inventé le clignotant"
   ],
-  "fact": "Brevet déposé en 1903, après un trajet en tramway sous la neige à New York."
+  "fact": "Elle déposa son brevet en 1903, après un trajet en tramway sous la neige à New York.",
+  "bio": "Elle dirigeait une ferme d'élevage et un domaine viticole en Californie, puis des immeubles en Alabama. Son dispositif, un bras en caoutchouc actionné de l'intérieur, essuyait la neige du pare-brise. Les constructeurs n'en voulurent pas d'abord ; l'essuie-glace devint ensuite standard sur les voitures."
  },
  {
   "id": "kathe-kollwitz",
@@ -1053,7 +1118,8 @@
    "A dessiné l'aigle du drapeau allemand",
    "Peintre officielle de l'empereur Guillaume II"
   ],
-  "fact": "Sa « Pietà » est au cœur du mémorial de la Neue Wache, à Berlin."
+  "fact": "Sa « Pietà » est au cœur du mémorial de la Neue Wache, à Berlin.",
+  "bio": "Fille d'un entrepreneur de Königsberg, elle épousa un médecin des quartiers pauvres de Berlin. Ses gravures montrent les ouvriers, la faim et la guerre, où elle perdit son fils Peter en 1914. Les nazis interdirent ses expositions."
  },
  {
   "id": "madam-cj-walker",
@@ -1069,7 +1135,8 @@
    "A créé la première banque tenue par des Noires",
    "A inventé le premier rouge à lèvres en tube"
   ],
-  "fact": "Fille d'esclaves affranchis, elle fit fortune avec des soins capillaires."
+  "fact": "Fille d'esclaves affranchis, elle fit fortune avec des soins capillaires.",
+  "bio": "Sarah Breedlove, orpheline à 7 ans, travailla comme blanchisseuse. Elle créa des produits capillaires pour les femmes noires et les vendit par un réseau de milliers de représentantes. Elle finança des œuvres et des militants pour les droits civiques."
  },
  {
   "id": "marie-curie",
@@ -1085,7 +1152,8 @@
    "A découvert les rayons X",
    "A découvert l'électron"
   ],
-  "fact": "Nobel de physique (1903) et de chimie (1911) ; elle découvrit le polonium et le radium."
+  "fact": "Elle reçut le Nobel de physique en 1903 et celui de chimie en 1911.",
+  "bio": "Née Maria Skłodowska à Varsovie, elle vint étudier à la Sorbonne et épousa le physicien Pierre Curie. Ensemble, ils découvrirent le polonium et le radium ; après la mort de Pierre, elle prit sa chaire et devint la première femme professeure à la Sorbonne. Pendant la guerre de 1914, elle créa des voitures radiologiques pour soigner les blessés."
  },
  {
   "id": "alexandra-david-neel",
@@ -1101,7 +1169,8 @@
    "A traversé le Sahara à pied",
    "A découvert les sources du Nil"
   ],
-  "fact": "Déguisée en mendiante, elle atteignit la ville interdite en 1924, à 55 ans."
+  "fact": "Déguisée en mendiante, elle atteignit la ville interdite en 1924, à 55 ans.",
+  "bio": "Chanteuse d'opéra, anarchiste et passionnée de bouddhisme, elle partit en Asie en 1911. Elle vécut plusieurs années au Sikkim et au Tibet, où elle apprit la langue et les textes religieux. Elle s'installa à Digne-les-Bains, écrivit une trentaine de livres et voyagea encore à 100 ans passés."
  },
  {
   "id": "gertrude-bell",
@@ -1117,7 +1186,8 @@
    "A traversé l'Australie à cheval",
    "A fondé le musée du Caire"
   ],
-  "fact": "Elle fonda aussi le musée de Bagdad."
+  "fact": "Elle fonda aussi le musée de Bagdad.",
+  "bio": "Première femme diplômée en histoire moderne d'Oxford avec mention très bien, elle parcourut le désert arabe et l'Anatolie comme archéologue. Pendant la Première Guerre mondiale, elle travailla pour les services de renseignement britanniques au Caire. Elle conseilla ensuite la création du royaume d'Irak et le roi Fayçal."
  },
  {
   "id": "henrietta-leavitt",
@@ -1133,7 +1203,8 @@
    "A classé les étoiles selon leur couleur",
    "A photographié la première nébuleuse spirale"
   ],
-  "fact": "Sa loi sur les céphéides permit à Hubble de prouver l'expansion de l'Univers."
+  "fact": "Sa loi sur les céphéides permit à Hubble de prouver l'expansion de l'Univers.",
+  "bio": "Diplômée de Radcliffe, elle travailla à l'observatoire de Harvard parmi les « calculatrices ». En étudiant les plaques photographiques, elle découvrit plus de 2 400 étoiles variables. Elle mourut d'un cancer en 1921, sans voir l'importance de sa loi."
  },
  {
   "id": "annie-londonderry",
@@ -1149,7 +1220,8 @@
    "A inventé le vélo pliant",
    "A gagné le premier Tour de France féminin"
   ],
-  "fact": "Partie de Boston en 1894, elle revint 15 mois plus tard."
+  "fact": "Partie de Boston en 1894, elle revint 15 mois plus tard.",
+  "bio": "Annie Cohen Kopchovsky, mère de trois enfants, partit de Boston en juin 1894 avec une bicyclette. Le pari aurait été lancé par deux riches hommes ; elle vendait de la publicité sur son vélo et ses vêtements. Elle traversa l'Europe et l'Asie, puis les États-Unis, et raconta son voyage dans la presse."
  },
  {
   "id": "charlotte-cooper",
@@ -1165,7 +1237,8 @@
    "A créé le double mixte",
    "Première arbitre de tennis"
   ],
-  "fact": "En tennis, aux Jeux de Paris de 1900."
+  "fact": "Elle gagna le tournoi de tennis des Jeux de Paris, en 1900, les premiers ouverts aux femmes.",
+  "bio": "Joueuse de tennis anglaise, elle gagna Wimbledon cinq fois, de 1895 à 1908. Aux Jeux de Paris de 1900, les premiers ouverts aux femmes, elle remporta le simple. Devenue sourde vers 26 ans, elle continua pourtant à gagner."
  },
  {
   "id": "ynes-mexia",
@@ -1181,7 +1254,8 @@
    "Première femme à gravir l'Aconcagua",
    "A créé la vanille de synthèse"
   ],
-  "fact": "Elle commença la botanique à 55 ans et rapporta environ 145 000 spécimens."
+  "fact": "Elle commença la botanique à 55 ans et rapporta environ 145 000 spécimens.",
+  "bio": "Née à Washington d'un diplomate mexicain, elle vécut plusieurs vies avant de s'inscrire en sciences à l'université de Berkeley. Elle mena des expéditions au Mexique, au Brésil, au Pérou et en Alaska. Elle découvrit environ 500 nouvelles espèces de plantes."
  },
  {
   "id": "alice-guy",
@@ -1197,7 +1271,8 @@
    "A fondé le festival de Cannes en 1946",
    "A réalisé le premier film parlant français"
   ],
-  "fact": "Son film « La Fée aux choux » date de 1896 ; elle fonda ensuite un studio aux États-Unis."
+  "fact": "Son film « La Fée aux choux » date de 1896 ; elle fonda ensuite un studio aux États-Unis.",
+  "bio": "Secrétaire de Léon Gaumont, elle tourna des petits films de fiction dès 1896. Elle dirigea la production de Gaumont, puis fonda avec son mari la société Solax, près de New York. Elle réalisa environ un millier de films, dont certains sonores et en couleurs."
  },
  {
   "id": "colette",
@@ -1213,7 +1288,8 @@
    "Première femme Prix Nobel de littérature",
    "A fondé le magazine Elle"
   ],
-  "fact": "Première femme à recevoir des funérailles nationales en France, en 1954."
+  "fact": "Première femme à recevoir des funérailles nationales en France, en 1954.",
+  "bio": "Sidonie-Gabrielle Colette publia ses premiers « Claudine » sous le nom de son mari, Willy. Elle fut aussi mime au music-hall, journaliste et critique. Elle présida l'Académie Goncourt et écrivit « Chéri », « Sido » et « Gigi »."
  },
  {
   "id": "melitta-bentz",
@@ -1229,7 +1305,8 @@
    "A inventé le café soluble",
    "A inventé le sachet de thé"
   ],
-  "fact": "En 1908, elle perça une casserole et utilisa le papier buvard de son fils."
+  "fact": "En 1908, elle perça une casserole et utilisa le papier buvard de son fils.",
+  "bio": "Ménagère de Dresde, elle trouvait le café trop amer à cause du marc. Elle déposa son brevet en 1908 et fonda une entreprise avec son mari. La société Melitta existe encore, et le mot désigne un filtre en Allemagne."
  },
  {
   "id": "madeleine-pelletier",
@@ -1245,7 +1322,8 @@
    "A fondé l'Ordre des médecins en France",
    "Première femme professeure à la faculté de Paris"
   ],
-  "fact": "Féministe radicale, elle défendit dès 1911 le droit à l'avortement."
+  "fact": "Féministe radicale, elle défendit dès 1911 le droit à l'avortement.",
+  "bio": "Issue d'un milieu très pauvre, elle passa le baccalauréat en candidate libre. Elle obtint le droit de passer le concours d'internat des asiles, jusque-là réservé aux hommes. Militante féministe et socialiste, elle fut arrêtée en 1939 pour avoir pratiqué des avortements et mourut internée."
  },
  {
   "id": "marie-marvingt",
@@ -1261,7 +1339,8 @@
    "A fondé l'Aéro-Club de France",
    "A fondé les Jeux olympiques féminins"
   ],
-  "fact": "Alpiniste, nageuse, pilote : on la surnommait « la fiancée du danger »."
+  "fact": "Alpiniste, nageuse, pilote : on la surnommait « la fiancée du danger ».",
+  "bio": "Elle pratiquait la natation, l'alpinisme, le ski, la boxe, l'escrime et l'aviation. Pilote dès 1910, elle prit part en 1915 à un bombardement, déguisée en homme. Elle consacra des années à promouvoir les avions sanitaires."
  },
  {
   "id": "madeleine-vionnet",
@@ -1277,7 +1356,8 @@
    "A inventé la fermeture éclair",
    "A fondé l'école de la Chambre syndicale"
   ],
-  "fact": "Ses robes drapées épousent le corps sans corset ; on la surnomme « l'architecte de la couture »."
+  "fact": "Ses robes drapées épousent le corps sans corset ; on la surnomme « l'architecte de la couture ».",
+  "bio": "Couturière dès l'âge de 11 ans, elle travailla à Londres puis chez Callot Sœurs et Doucet. Elle ouvrit sa maison en 1912 et habilla les femmes de robes fluides, sans corset. Elle défendit les droits de ses ouvrières et le droit d'auteur des créateurs."
  },
  {
   "id": "paula-modersohn-becker",
@@ -1293,7 +1373,8 @@
    "A fondé l'expressionnisme viennois",
    "A illustré la première édition des contes de Grimm"
   ],
-  "fact": "Elle mourut à 31 ans après avoir peint environ 750 tableaux."
+  "fact": "Elle mourut à 31 ans après avoir peint environ 750 tableaux.",
+  "bio": "Elle vécut dans la colonie d'artistes de Worpswede et fit plusieurs séjours à Paris. Elle peignit des femmes, des enfants et des paysans avec des formes simples et puissantes. Elle mourut quelques jours après la naissance de sa fille."
  },
  {
   "id": "gabriele-munter",
@@ -1309,7 +1390,8 @@
    "A peint « Le Cri » avant Edvard Munch",
    "A créé le fauvisme avec Matisse"
   ],
-  "fact": "Elle cacha les œuvres de Kandinsky aux nazis dans sa cave à Murnau."
+  "fact": "Elle cacha les œuvres de Kandinsky aux nazis dans sa cave à Murnau.",
+  "bio": "Elle étudia la peinture à Munich, où elle rencontra Kandinsky, son professeur puis son compagnon. Ils vécurent à Murnau, où elle peignit des paysages aux couleurs vives. Elle donna en 1957 sa collection au musée de la Lenbachhaus, à Munich."
  },
  {
   "id": "isabelle-eberhardt",
@@ -1325,7 +1407,8 @@
    "A fondé l'oasis de Tamanrasset",
    "A traversé l'Atlantique à la rame"
   ],
-  "fact": "Elle parcourait l'Algérie vêtue en cavalier ; elle mourut dans une crue à 27 ans."
+  "fact": "Elle parcourait l'Algérie vêtue en cavalier ; elle mourut dans une crue à 27 ans.",
+  "bio": "Née à Genève d'une mère russe et d'un précepteur, elle parlait plusieurs langues dont l'arabe. Elle s'installa en Algérie, épousa un spahi algérien et écrivit pour des journaux. Ses carnets et nouvelles ont été publiés après sa mort."
  },
  {
   "id": "eileen-gray",
@@ -1341,7 +1424,8 @@
    "A construit la Cité radieuse",
    "A fondé le Bauhaus"
   ],
-  "fact": "Le Corbusier peignit des fresques sur les murs de sa villa sans son accord."
+  "fact": "Le Corbusier peignit des fresques sur les murs de sa villa sans son accord.",
+  "bio": "Elle apprit la laque auprès d'un artisan japonais à Paris et créa des meubles et des paravents. Sans formation d'architecte, elle construisit la villa E-1027 à Roquebrune-Cap-Martin. Son fauteuil « Dragons » a été vendu plus de 20 millions d'euros en 2009."
  },
  {
   "id": "lise-meitner",
@@ -1357,7 +1441,8 @@
    "A inventé le compteur Geiger",
    "A découvert l'électron"
   ],
-  "fact": "En 1938, exilée en Suède, elle comprit que le noyau d'uranium se coupe en deux."
+  "fact": "En 1938, exilée en Suède, elle comprit que le noyau d'uranium se coupe en deux.",
+  "bio": "Deuxième femme docteure en physique de l'université de Vienne, elle travailla 30 ans à Berlin avec le chimiste Otto Hahn. Juive, elle fuit l'Allemagne nazie en 1938. Hahn reçut seul le Nobel de chimie 1944 ; un élément chimique, le meitnérium, porte son nom."
  },
  {
   "id": "emmy-noether",
@@ -1373,7 +1458,8 @@
    "A démontré le dernier théorème de Fermat",
    "A inventé la théorie des ensembles"
   ],
-  "fact": "Einstein la jugeait géniale ; l'université refusa longtemps de la payer."
+  "fact": "Einstein la jugeait géniale ; l'université refusa longtemps de la payer.",
+  "bio": "Fille d'un mathématicien d'Erlangen, elle dut longtemps enseigner sans titre ni salaire. À Göttingen, elle fonda l'algèbre moderne, avec les anneaux et les idéaux. Chassée par les nazis en 1933, elle enseigna au Bryn Mawr College, aux États-Unis."
  },
  {
   "id": "germaine-dulac",
@@ -1389,7 +1475,8 @@
    "A inventé le travelling",
    "Première femme à gagner un Oscar"
   ],
-  "fact": "« La Coquille et le Clergyman » (1928) est un des premiers films surréalistes."
+  "fact": "« La Coquille et le Clergyman » (1928) est un des premiers films surréalistes.",
+  "bio": "Journaliste et critique, elle tourna ses premiers films en 1915. « La Souriante Madame Beudet » montre l'ennui d'une femme mariée. Elle dirigea ensuite les actualités Gaumont et défendit les ciné-clubs."
  },
  {
   "id": "raymonde-de-laroche",
@@ -1405,7 +1492,8 @@
    "A inventé le parachute",
    "A fondé Air France"
   ],
-  "fact": "Elle obtint son brevet le 8 mars 1910 et battit des records d'altitude."
+  "fact": "Elle obtint son brevet le 8 mars 1910 et battit des records d'altitude.",
+  "bio": "Comédienne, elle se passionna pour l'aviation et apprit à piloter avec Charles Voisin. Elle fut grièvement blessée dans un accident en 1910 mais revint aux commandes. Elle se tua en 1919 en essayant un avion prototype."
  },
  {
   "id": "virginia-woolf",
@@ -1421,7 +1509,8 @@
    "A écrit « Le Seigneur des anneaux »",
    "A fondé la BBC"
   ],
-  "fact": "Elle y explique qu'une femme a besoin d'argent et d'une pièce à elle pour écrire."
+  "fact": "Elle y explique qu'une femme a besoin d'argent et d'une pièce à elle pour écrire.",
+  "bio": "Fille de l'écrivain Leslie Stephen, elle participa au groupe de Bloomsbury avec artistes et intellectuels. Elle fonda une maison d'édition avec son mari, la Hogarth Press. Ses romans, comme « Mrs Dalloway » et « Les Vagues », suivent le flux des pensées des personnages."
  },
  {
   "id": "coco-chanel",
@@ -1437,7 +1526,8 @@
    "A inventé le jean",
    "A créé la première maison de haute couture"
   ],
-  "fact": "Elle libéra les femmes du corset ; son parfum N° 5 date de 1921."
+  "fact": "Elle libéra les femmes du corset ; son parfum N° 5 date de 1921.",
+  "bio": "Gabrielle Chanel grandit dans un orphelinat, puis ouvrit une boutique de chapeaux. Elle utilisa le jersey, des coupes simples et confortables, et le tailleur en tweed. Son parcours pendant l'Occupation reste très controversé."
  },
  {
   "id": "marie-laurencin",
@@ -1453,7 +1543,8 @@
    "A peint le plafond de l'Opéra Garnier",
    "A fondé l'école de Pont-Aven"
   ],
-  "fact": "Seule femme du cercle cubiste du Bateau-Lavoir ; elle illustra aussi des livres."
+  "fact": "Seule femme du cercle cubiste du Bateau-Lavoir ; elle illustra aussi des livres.",
+  "bio": "Elle se forma à l'académie Humbert et devint la compagne d'Apollinaire. Elle peignait des jeunes femmes rêveuses dans des tons gris, roses et bleus. Elle créa aussi des décors et des costumes pour les Ballets russes."
  },
  {
   "id": "alice-milliat",
@@ -1469,7 +1560,8 @@
    "A fondé le Tour de France féminin",
    "Première femme arbitre de football"
   ],
-  "fact": "Face au refus du CIO, elle organisa ses propres jeux en 1922 ; le CIO céda en 1928."
+  "fact": "Face au refus du CIO, elle organisa ses propres jeux en 1922 ; le CIO céda en 1928.",
+  "bio": "Institutrice et traductrice, elle pratiquait l'aviron et présida la Fédération des sociétés féminines sportives. Elle organisa en 1922 à Paris les premiers Jeux mondiaux féminins. Grâce à elle, l'athlétisme féminin entra aux Jeux olympiques de 1928."
  },
  {
   "id": "eleanor-roosevelt",
@@ -1485,7 +1577,8 @@
    "A fondé l'Unicef pour les enfants",
    "A rédigé la Constitution des États-Unis amendée"
   ],
-  "fact": "Ancienne Première dame, elle présida la commission de l'ONU en 1948."
+  "fact": "Ancienne Première dame, elle présida la commission de l'ONU en 1948.",
+  "bio": "Nièce du président Theodore Roosevelt, elle épousa son cousin Franklin et fut Première dame de 1933 à 1945. Elle tenait une chronique dans la presse et défendait les droits des femmes, des Noirs et des pauvres. Elle fut ensuite déléguée des États-Unis à l'ONU."
  },
  {
   "id": "sonia-delaunay",
@@ -1501,7 +1594,8 @@
    "A fondé le Salon d'automne à Paris",
    "A dessiné les costumes de l'Opéra de Paris"
   ],
-  "fact": "Avec Robert Delaunay, elle créa le simultanisme et l'appliqua aux tissus et aux voitures."
+  "fact": "Avec Robert Delaunay, elle créa le simultanisme et l'appliqua aux tissus et aux voitures.",
+  "bio": "Née en Ukraine, elle étudia l'art en Allemagne avant de s'installer à Paris. Avec son mari Robert Delaunay, elle juxtaposa les couleurs pures pour créer du rythme. Elle créa des tissus, des robes, des décors et peignit une voiture aux motifs géométriques."
  },
  {
   "id": "georgia-okeeffe",
@@ -1517,7 +1611,8 @@
    "A créé le pop art avec Andy Warhol",
    "A peint les fresques du Rockefeller Center"
   ],
-  "fact": "En 2014, une de ses toiles devint l'œuvre d'une femme la plus chère vendue aux enchères."
+  "fact": "En 2014, une de ses toiles devint l'œuvre d'une femme la plus chère vendue aux enchères.",
+  "bio": "Elle exposa à New York grâce au photographe Alfred Stieglitz, qu'elle épousa. Elle peignit d'immenses fleurs en gros plan, puis les gratte-ciel. Elle s'installa au Nouveau-Mexique, dont elle peignit les déserts et les os blanchis."
  },
  {
   "id": "nadia-boulanger",
@@ -1533,7 +1628,8 @@
    "Première femme à diriger l'Opéra de Lyon",
    "A composé l'hymne officiel de l'Union européenne"
   ],
-  "fact": "Elle forma Philip Glass, Quincy Jones et Astor Piazzolla, et fut cheffe d'orchestre."
+  "fact": "Elle forma Philip Glass, Quincy Jones et Astor Piazzolla, et fut cheffe d'orchestre.",
+  "bio": "Sœur aînée de Lili Boulanger, elle fut organiste, pianiste et compositrice. Elle enseigna au Conservatoire américain de Fontainebleau et à Paris pendant plus de 60 ans. Elle fut la première femme à diriger plusieurs grands orchestres, comme ceux de Boston et de New York."
  },
  {
   "id": "inge-lehmann",
@@ -1549,7 +1645,8 @@
    "A prédit le premier tremblement de terre",
    "A mesuré l'épaisseur des glaces du Groenland"
   ],
-  "fact": "En 1936, en étudiant les ondes sismiques, elle comprit que le cœur de la Terre est solide."
+  "fact": "En 1936, en étudiant les ondes sismiques, elle comprit que le cœur de la Terre est solide.",
+  "bio": "Elle étudia les mathématiques à Copenhague et à Cambridge, puis dirigea le service de sismologie danois. Elle remarqua des ondes qui ne devaient pas exister si le noyau était entièrement liquide. Elle publia son dernier article à 99 ans et vécut jusqu'à 104 ans."
  },
  {
   "id": "marie-louise-paris",
@@ -1565,7 +1662,8 @@
    "A construit le premier pont suspendu",
    "A fondé l'École des mines"
   ],
-  "fact": "L'École polytechnique féminine, créée en 1925, est devenue l'EPF."
+  "fact": "L'École polytechnique féminine, créée en 1925, est devenue l'EPF.",
+  "bio": "Ingénieure diplômée de l'institut électrotechnique de Grenoble, elle voulait ouvrir le métier aux femmes. Son école, d'abord appelée Institut électromécanique féminin, fut reconnue par l'État en 1938. Elle a formé des milliers d'ingénieures."
  },
  {
   "id": "sophie-taeuber-arp",
@@ -1581,7 +1679,8 @@
    "A fondé le surréalisme",
    "A dessiné le logo de la Croix-Rouge"
   ],
-  "fact": "Elle figure sur l'ancien billet suisse de 50 francs."
+  "fact": "Elle figure sur l'ancien billet suisse de 50 francs.",
+  "bio": "Elle enseigna le textile à l'école des arts appliqués de Zurich. Elle participa aux soirées dada du Cabaret Voltaire et créa des marionnettes. Elle réalisa avec Jean Arp et Theo van Doesburg le décor de l'Aubette, à Strasbourg."
  },
  {
   "id": "elsa-schiaparelli",
@@ -1597,7 +1696,8 @@
    "A créé le premier défilé de mode télévisé",
    "A dessiné les uniformes des hôtesses d'Air France"
   ],
-  "fact": "Elle travailla avec Dalí et Cocteau, dont la robe homard."
+  "fact": "Elle travailla avec Dalí et Cocteau, dont la robe homard.",
+  "bio": "Née à Rome, elle s'installa à Paris dans les années 1920 et commença par des pulls en trompe-l'œil. Elle créa des robes et des chapeaux inspirés du surréalisme, comme le chapeau-chaussure. Elle utilisa la fermeture éclair et des boutons extravagants."
  },
  {
   "id": "alfonsina-strada",
@@ -1613,7 +1713,8 @@
    "A inventé le vélo de course",
    "A fondé le Giro féminin"
   ],
-  "fact": "En 1924, elle termina hors délai mais fut acclamée."
+  "fact": "En 1924, elle termina certaines étapes hors délai, mais le public l'acclama partout.",
+  "bio": "Elle courait à vélo depuis l'enfance dans sa région d'Émilie. En 1924, les organisateurs l'inscrivirent au Tour d'Italie, peut-être pour attirer le public. Elle termina le parcours malgré des chutes et des délais dépassés."
  },
  {
   "id": "zora-neale-hurston",
@@ -1629,7 +1730,8 @@
    "A écrit « La Case de l'oncle Tom »",
    "Première femme noire Prix Nobel"
   ],
-  "fact": "Son roman « Une femme noire » (1937) fut redécouvert par Alice Walker."
+  "fact": "Son roman « Une femme noire » (1937) fut redécouvert par Alice Walker.",
+  "bio": "Elle grandit à Eatonville, en Floride, une des premières villes fondées par des Noirs aux États-Unis. Anthropologue, elle recueillit des contes et des chants afro-américains et des Caraïbes. Elle mourut pauvre et oubliée, avant d'être redécouverte."
  },
  {
   "id": "alice-ball",
@@ -1645,7 +1747,8 @@
    "A découvert la vitamine C dans les agrumes",
    "A isolé le premier antibiotique naturel"
   ],
-  "fact": "Chimiste, elle rendit injectable l'huile de chaulmoogra ; elle mourut à 24 ans."
+  "fact": "Chimiste, elle rendit injectable l'huile de chaulmoogra ; elle mourut à 24 ans.",
+  "bio": "Première femme et première Afro-Américaine diplômée d'un master de l'université d'Hawaï, elle y enseigna la chimie. Elle mit au point une méthode pour injecter l'huile de chaulmoogra. Un collègue publia ses travaux à son nom après sa mort."
  },
  {
   "id": "augusta-savage",
@@ -1661,7 +1764,8 @@
    "A fondé le premier musée afro-américain",
    "A sculpté le mont Rushmore"
   ],
-  "fact": "Sa sculpture « La Harpe » fut l'une des plus vues de l'Exposition universelle de 1939."
+  "fact": "Sa sculpture « La Harpe » fut l'une des plus vues de l'Exposition universelle de 1939.",
+  "bio": "Née en Floride, elle sculptait des figures en argile depuis l'enfance. Elle étudia à Paris et ouvrit à Harlem une école d'art, où passèrent de nombreux artistes. Son buste d'un garçon, « Gamin », est célèbre."
  },
  {
   "id": "bessie-coleman",
@@ -1677,7 +1781,8 @@
    "A traversé l'Atlantique en solitaire",
    "A fondé la première école de pilotage noire"
   ],
-  "fact": "Refusée aux États-Unis, elle apprit à piloter en France et obtint son brevet en 1921."
+  "fact": "Refusée aux États-Unis, elle apprit à piloter en France et obtint son brevet en 1921.",
+  "bio": "Fille de métayers du Texas, elle travaillait comme manucure à Chicago. Elle apprit le français et partit en France apprendre le pilotage. Elle fit des spectacles de voltige et mourut lors d'un vol d'entraînement en 1926."
  },
  {
   "id": "mary-pickford",
@@ -1693,7 +1798,8 @@
    "A créé le premier dessin animé",
    "A fondé Hollywood"
   ],
-  "fact": "En 1919, avec Chaplin, Fairbanks et Griffith, pour contrôler leurs propres films."
+  "fact": "Elle fonda United Artists en 1919 avec Chaplin, Fairbanks et Griffith, pour contrôler leurs propres films.",
+  "bio": "Enfant comédienne de théâtre, elle devint « la petite fiancée de l'Amérique » au cinéma muet. Elle fut l'une des actrices les plus riches et puissantes d'Hollywood. Elle reçut l'Oscar de la meilleure actrice en 1930."
  },
  {
   "id": "berty-albrecht",
@@ -1709,7 +1815,8 @@
    "A fondé la Croix-Rouge française",
    "Première femme préfète"
   ],
-  "fact": "Arrêtée par la Gestapo, elle mourut à Fresnes ; elle est inhumée au Mont-Valérien."
+  "fact": "Arrêtée par la Gestapo, elle mourut à Fresnes ; elle est inhumée au Mont-Valérien.",
+  "bio": "Surintendante d'usine, elle s'occupait de la vie des ouvrières. Avec Henri Frenay, elle fonda un mouvement qui devint Combat et rédigea des journaux clandestins. Arrêtée en 1943, elle mourut à la prison de Fresnes."
  },
  {
   "id": "lili-boulanger",
@@ -1725,7 +1832,8 @@
    "A fondé le Conservatoire américain",
    "Première femme à diriger l'Opéra de Paris"
   ],
-  "fact": "En 1913, à 19 ans ; elle mourut à 24 ans."
+  "fact": "Elle remporta le prix en 1913, à 19 ans, et mourut cinq ans plus tard.",
+  "bio": "Enfant malade, elle grandit dans une famille de musiciens et suivit les cours de sa sœur Nadia. Elle composa des mélodies, des psaumes et des pièces pour orchestre. Elle mourut à 24 ans de la maladie de Crohn."
  },
  {
   "id": "louise-weiss",
@@ -1741,7 +1849,8 @@
    "A fondé l'Unesco",
    "A rédigé le traité de Rome"
   ],
-  "fact": "Ses suffragettes lâchaient des ballons et s'enchaînaient pour le droit de vote."
+  "fact": "Ses suffragettes lâchaient des ballons et s'enchaînaient pour le droit de vote.",
+  "bio": "Journaliste, elle fonda le journal « L'Europe nouvelle » et soutint la paix et la construction européenne. Dans les années 1930, elle mena des actions spectaculaires pour le vote des femmes. Elle devint députée européenne à 86 ans."
  },
  {
   "id": "adrienne-bolland",
@@ -1757,7 +1866,8 @@
    "A survolé le pôle Nord",
    "A battu le record de vitesse en hydravion"
   ],
-  "fact": "Le 1er avril 1921, dans un Caudron G.3, à plus de 4 000 mètres et sans oxygène."
+  "fact": "Elle traversa les Andes le 1er avril 1921, dans un Caudron G.3, à plus de 4 000 mètres et sans oxygène.",
+  "bio": "Elle passa son brevet de pilote en 1920 et fut pilote d'essai pour Caudron. Son vol au-dessus des Andes dura environ 4 heures, entre Mendoza et Santiago. Elle s'engagea ensuite dans la Résistance."
  },
  {
   "id": "dorothea-lange",
@@ -1773,7 +1883,8 @@
    "A inventé le flash",
    "A fondé le magazine National Geographic"
   ],
-  "fact": "Ses images des paysans ruinés devinrent le symbole des années 1930."
+  "fact": "Ses images des paysans ruinés devinrent le symbole des années 1930.",
+  "bio": "Photographe de portraits à San Francisco, elle descendit dans la rue pendant la crise de 1929. Pour le gouvernement, elle photographia les paysans chassés par la sécheresse. Elle photographia aussi l'internement des Japonais-Américains pendant la guerre."
  },
  {
   "id": "eugenie-brazier",
@@ -1789,7 +1900,8 @@
    "A fondé l'école Ferrandi",
    "A fondé une école de cuisine à Lyon"
   ],
-  "fact": "En 1933, elle obtint trois étoiles pour chacun de ses deux restaurants ; Paul Bocuse fut son apprenti."
+  "fact": "En 1933, elle obtint trois étoiles pour chacun de ses deux restaurants ; Paul Bocuse fut son apprenti.",
+  "bio": "Fille de fermiers de l'Ain, elle travailla comme cuisinière dans une famille bourgeoise de Lyon. Elle ouvrit son restaurant rue Royale, puis un autre au col de la Luère. Sa cuisine simple, comme la volaille demi-deuil, a marqué la gastronomie lyonnaise."
  },
  {
   "id": "gerty-cori",
@@ -1805,7 +1917,8 @@
    "A inventé la pilule contraceptive",
    "A décrit le premier gène du cancer"
   ],
-  "fact": "Avec son mari, elle expliqua comment le corps stocke et utilise le sucre (1947)."
+  "fact": "Avec son mari, elle expliqua comment le corps stocke et utilise le sucre (1947).",
+  "bio": "Née à Prague, elle fit ses études de médecine avec son futur mari, Carl Cori. Ils émigrèrent aux États-Unis, où elle fut longtemps moins payée que lui. Ils décrivirent le cycle de Cori, entre le muscle et le foie."
  },
  {
   "id": "amelia-earhart",
@@ -1821,7 +1934,8 @@
    "A battu le record de vitesse en hydravion",
    "Première femme à survoler le pôle Nord en avion"
   ],
-  "fact": "En 1932 ; elle disparut dans le Pacifique en 1937 en tentant le tour du monde."
+  "fact": "Elle réussit cette traversée en 1932 ; elle disparut dans le Pacifique en 1937 en tentant le tour du monde.",
+  "bio": "Infirmière pendant la Première Guerre mondiale, elle découvrit l'aviation dans un meeting. En 1928, elle traversa l'Atlantique en passagère, puis en 1932 seule aux commandes. Elle disparut au-dessus du Pacifique avec son navigateur, Fred Noonan."
  },
  {
   "id": "irene-joliot-curie",
@@ -1837,7 +1951,8 @@
    "A construit la première pile atomique",
    "A découvert le neutron"
   ],
-  "fact": "Nobel de chimie 1935 avec Frédéric Joliot ; elle fut aussi l'une des trois premières femmes ministres en France."
+  "fact": "Elle reçut le Nobel de chimie en 1935 avec Frédéric Joliot ; elle fut aussi l'une des trois premières femmes ministres en France.",
+  "bio": "Fille de Marie Curie, elle travailla avec elle dès la guerre de 1914 comme radiologue. Avec son mari, Frédéric Joliot, elle créa en 1934 des éléments radioactifs artificiels. Elle participa à la création du Commissariat à l'énergie atomique."
  },
  {
   "id": "golda-meir",
@@ -1853,7 +1968,8 @@
    "A fondé le Mossad",
    "Première femme présidente de l'ONU"
   ],
-  "fact": "Elle dirigea le pays de 1969 à 1974."
+  "fact": "Elle dirigea le pays de 1969 à 1974.",
+  "bio": "Née à Kiev, elle émigra aux États-Unis puis en Palestine en 1921. Elle fut ambassadrice en URSS, ministre du Travail, puis des Affaires étrangères. Elle dirigea le pays pendant la guerre du Kippour en 1973."
  },
  {
   "id": "maryse-bastie",
@@ -1869,7 +1985,8 @@
    "A ouvert la ligne de l'Aéropostale",
    "A inventé le pilote automatique"
   ],
-  "fact": "En 1936, en 12 heures ; elle avait aussi battu le record de durée en vol."
+  "fact": "Elle traversa en 1936, en 12 heures ; elle avait aussi battu le record de durée en vol.",
+  "bio": "Ouvrière dans une fabrique de chaussures, elle découvrit l'aviation et obtint son brevet en 1925. Elle battit plusieurs records de durée et de distance. Après la guerre, elle entra dans l'armée de l'air comme lieutenant ; elle mourut en 1952 dans un accident de meeting aérien."
  },
  {
   "id": "tamara-de-lempicka",
@@ -1885,7 +2002,8 @@
    "A peint « Les Demoiselles d'Avignon »",
    "A fondé le musée de l'Orangerie"
   ],
-  "fact": "Ses portraits aux formes lisses et aux voitures de luxe incarnent les années folles."
+  "fact": "Ses portraits aux formes lisses et aux voitures de luxe incarnent les années folles.",
+  "bio": "Née à Varsovie, elle fuit la Russie après la révolution et s'installa à Paris. Élève d'André Lhote, elle peignit des portraits aux formes géométriques et lisses. Son « Autoportrait dans la Bugatti verte » est devenu un symbole."
  },
  {
   "id": "lotte-reiniger",
@@ -1901,7 +2019,8 @@
    "A inventé la pâte à modeler animée",
    "Première femme à recevoir un Oscar d'animation"
   ],
-  "fact": "« Les Aventures du prince Ahmed » (1926), en ombres chinoises découpées."
+  "fact": "Son film « Les Aventures du prince Ahmed » (1926) est fait d'ombres chinoises découpées.",
+  "bio": "Passionnée de théâtre d'ombres, elle découpait des silhouettes dans du papier noir. Elle les animait image par image devant une caméra. Elle réalisa près de 60 films, dont de nombreux contes."
  },
  {
   "id": "suzanne-lenglen",
@@ -1917,7 +2036,8 @@
    "A fondé Roland-Garros",
    "Première championne olympique"
   ],
-  "fact": "Six fois gagnante de Wimbledon, elle jouait en jupe courte et sans corset."
+  "fact": "Six fois gagnante de Wimbledon, elle jouait en jupe courte et sans corset.",
+  "bio": "Entraînée par son père, elle gagna son premier titre à 15 ans. Elle remporta Wimbledon six fois et deux médailles d'or aux Jeux d'Anvers en 1920. Le court central de Roland-Garros porte son nom."
  },
  {
   "id": "cecilia-payne",
@@ -1933,7 +2053,8 @@
    "A calculé l'âge exact du Soleil",
    "A découvert la première étoile à neutrons"
   ],
-  "fact": "Sa thèse de 1925, d'abord contestée, est l'une des plus importantes de l'astronomie."
+  "fact": "Sa thèse de 1925, d'abord contestée, est l'une des plus importantes de l'astronomie.",
+  "bio": "Elle étudia à Cambridge, où l'on ne délivrait pas de diplôme aux femmes, puis partit à Harvard. Sa thèse sur la composition des étoiles est restée célèbre. Elle devint la première femme professeure titulaire à Harvard."
  },
  {
   "id": "funmilayo-ransome-kuti",
@@ -1949,7 +2070,8 @@
    "A fondé l'afrobeat",
    "A fondé l'université de Lagos"
   ],
-  "fact": "Première Nigériane à conduire une voiture ; mère du musicien Fela Kuti."
+  "fact": "On la dit première Nigériane à conduire une voiture ; elle est la mère du musicien Fela Kuti.",
+  "bio": "Institutrice, elle fonda l'Union des femmes d'Abeokuta. Elle mena des manifestations contre l'impôt sur les femmes et contre le roi local. Elle milita pour l'indépendance du Nigeria et le droit de vote des femmes."
  },
  {
   "id": "barbara-mcclintock",
@@ -1965,7 +2087,8 @@
    "A inventé le vaccin contre la polio",
    "A cloné la première plante"
   ],
-  "fact": "Ses travaux sur le maïs, d'abord ignorés, lui valurent le Nobel de médecine en 1983."
+  "fact": "Ses travaux sur le maïs, d'abord ignorés, lui valurent le Nobel de médecine en 1983.",
+  "bio": "Elle étudia la génétique du maïs à Cornell. Elle montra que certains gènes peuvent changer de place dans les chromosomes. Ses travaux ne furent reconnus que des décennies plus tard."
  },
  {
   "id": "germaine-richier",
@@ -1981,7 +2104,8 @@
    "A conçu la tour Eiffel en miniature",
    "A fondé le musée Rodin"
   ],
-  "fact": "Ses sculptures d'êtres hybrides, mi-hommes mi-insectes, firent scandale."
+  "fact": "Ses sculptures d'êtres hybrides, mi-hommes mi-insectes, firent scandale.",
+  "bio": "Élève de Bourdelle, elle sculptait des bronzes aux surfaces déchirées. Ses figures mi-humaines mi-animales évoquent la guerre et la nature. Son Christ d'Assy fit scandale en 1950."
  },
  {
   "id": "charlotte-perriand",
@@ -1997,7 +2121,8 @@
    "A conçu le Centre Pompidou avec Renzo Piano",
    "A dessiné le premier meuble en kit"
   ],
-  "fact": "Elle conçut avec Le Corbusier la chaise longue LC4 en 1928."
+  "fact": "Elle conçut avec Le Corbusier la chaise longue LC4 en 1928.",
+  "bio": "Elle entra dans l'atelier de Le Corbusier en 1927 et y dessina des meubles en tube d'acier. Elle découvrit le Japon et son artisanat, qui l'inspirèrent. Elle conçut la station de ski des Arcs, en Savoie."
  },
  {
   "id": "marguerite-yourcenar",
@@ -2013,7 +2138,8 @@
    "Première femme lauréate du prix Goncourt",
    "A écrit le roman « L'Amant »"
   ],
-  "fact": "Élue en 1980 ; auteure des « Mémoires d'Hadrien »."
+  "fact": "Élue en 1980, elle est l'autrice des « Mémoires d'Hadrien ».",
+  "bio": "Marguerite de Crayencour grandit avec son père et voyagea beaucoup. Elle vécut aux États-Unis, sur l'île des Monts-Déserts, avec sa compagne Grace Frick. Elle écrivit aussi « L'Œuvre au noir », sur un médecin de la Renaissance."
  },
  {
   "id": "gertrude-ederle",
@@ -2029,7 +2155,8 @@
    "A inventé le maillot de bain une pièce",
    "A traversé l'Atlantique à la voile"
   ],
-  "fact": "En 1926, plus vite que tous les hommes avant elle."
+  "fact": "Elle traversa en 1926, plus vite que tous les hommes avant elle.",
+  "bio": "Championne olympique de relais en natation aux Jeux de Paris de 1924, elle battit de nombreux records. Sa traversée de 1926, de Cap Gris-Nez à Kingsdown, dura environ 14 heures 30. New York l'accueillit par un défilé triomphal."
  },
  {
   "id": "grace-hopper",
@@ -2045,7 +2172,8 @@
    "A conçu le premier microprocesseur",
    "A fondé IBM"
   ],
-  "fact": "Amirale de la marine américaine, elle popularisa le mot « bug » et inspira le COBOL."
+  "fact": "Amirale de la marine américaine, elle popularisa le mot « bug » et inspira le COBOL.",
+  "bio": "Docteure en mathématiques de Yale, elle s'engagea dans la marine pendant la Seconde Guerre mondiale et programma l'ordinateur Harvard Mark I. Elle voulait que les programmes s'écrivent avec des mots plutôt qu'en code machine. Elle prit sa retraite à 79 ans avec le grade de contre-amirale."
  },
  {
   "id": "josephine-baker",
@@ -2061,7 +2189,8 @@
    "A fondé le Moulin Rouge",
    "Première actrice noire oscarisée"
   ],
-  "fact": "Elle adopta douze enfants, sa « tribu arc-en-ciel » ; entrée au Panthéon en 2021."
+  "fact": "Elle adopta douze enfants, sa « tribu arc-en-ciel » ; entrée au Panthéon en 2021.",
+  "bio": "Née pauvre à Saint-Louis, dans le Missouri, elle triompha à Paris en 1925 dans « La Revue nègre ». Pendant la guerre, elle travailla pour le contre-espionnage de la France libre. Elle se battit contre le racisme et prit la parole à la marche sur Washington en 1963."
  },
  {
   "id": "frida-kahlo",
@@ -2077,7 +2206,8 @@
    "A fondé le surréalisme",
    "A inventé le muralisme"
   ],
-  "fact": "Clouée au lit après un accident de bus, elle peignit avec un miroir au-dessus d'elle."
+  "fact": "Clouée au lit après un accident de bus, elle peignit avec un miroir au-dessus d'elle.",
+  "bio": "À 18 ans, un accident d'autobus lui brisa la colonne vertébrale ; elle souffrit toute sa vie. Mariée au peintre Diego Rivera, elle peignit des autoportraits pleins de symboles mexicains. Sa maison bleue de Coyoacán, à Mexico, est devenue un musée."
  },
  {
   "id": "germaine-tillion",
@@ -2093,7 +2223,8 @@
    "Première femme générale de l'armée française",
    "A dirigé la libération de Paris en 1944"
   ],
-  "fact": "Déportée à Ravensbrück, elle y écrivit une opérette ; entrée au Panthéon en 2015."
+  "fact": "Déportée à Ravensbrück, elle y écrivit une opérette ; entrée au Panthéon en 2015.",
+  "bio": "Ethnologue, elle étudiait les Chaouis des Aurès, en Algérie, avant la guerre. Entrée dans le réseau du musée de l'Homme, elle fut arrêtée et déportée en 1943, comme sa mère, qui y mourut. Pendant la guerre d'Algérie, elle chercha à arrêter les attentats et dénonça la torture."
  },
  {
   "id": "lee-miller",
@@ -2109,7 +2240,8 @@
    "A inventé le photomontage",
    "A fondé le magazine Life"
   ],
-  "fact": "Ancien mannequin, elle se fit aussi photographier dans la baignoire d'Hitler."
+  "fact": "Ancien mannequin, elle se fit aussi photographier dans la baignoire d'Hitler.",
+  "bio": "Mannequin pour « Vogue », elle devint photographe et compagne de Man Ray à Paris. Correspondante de guerre, elle suivit l'armée américaine de la Normandie jusqu'à Berlin. Elle photographia les camps de Buchenwald et de Dachau."
  },
  {
   "id": "rachel-carson",
@@ -2125,7 +2257,8 @@
    "A découvert le trou dans la couche d'ozone",
    "A créé le premier parc national"
   ],
-  "fact": "Son livre de 1962 mena à l'interdiction du DDT aux États-Unis."
+  "fact": "Son livre de 1962 mena à l'interdiction du DDT aux États-Unis.",
+  "bio": "Biologiste marine, elle travaillait pour le service de la pêche et de la faune des États-Unis. Ses livres sur la mer, comme « Cette mer qui nous entoure », furent des succès. « Printemps silencieux » montra les effets du DDT sur les oiseaux et la chaîne alimentaire."
  },
  {
   "id": "helene-boucher",
@@ -2141,7 +2274,8 @@
    "A traversé l'Atlantique en dirigeable",
    "A dessiné le Concorde"
   ],
-  "fact": "En 1934, elle dépassa 445 km/h, avant de se tuer à l'entraînement."
+  "fact": "En 1934, elle dépassa 445 km/h, avant de se tuer à l'entraînement.",
+  "bio": "Fille d'un architecte parisien, elle passa son brevet de pilote en 1931. Elle battit plusieurs records de vitesse et d'altitude, et fit de la voltige. Elle fut la première femme à recevoir des honneurs funèbres aux Invalides."
  },
  {
   "id": "simone-de-beauvoir",
@@ -2157,7 +2291,8 @@
    "Première femme agrégée de philosophie",
    "A fondé le Mouvement de libération des femmes"
   ],
-  "fact": "« On ne naît pas femme, on le devient » (1949)."
+  "fact": "Elle y écrit : « On ne naît pas femme, on le devient » (1949).",
+  "bio": "Reçue deuxième à l'agrégation de philosophie en 1929, derrière Sartre, elle devint sa compagne. Elle obtint le prix Goncourt en 1954 pour « Les Mandarins ». Elle soutint le mouvement des femmes et signa le manifeste des 343 en 1971."
  },
  {
   "id": "marguerite-perey",
@@ -2173,7 +2308,8 @@
    "A inventé la radiographie",
    "A isolé le fluor"
   ],
-  "fact": "Ancienne assistante de Marie Curie, elle fut en 1962 la première femme élue correspondante de l'Académie des sciences."
+  "fact": "Ancienne assistante de Marie Curie, elle fut en 1962 la première femme élue correspondante de l'Académie des sciences.",
+  "bio": "Entrée à 19 ans comme préparatrice au laboratoire de Marie Curie, elle n'avait pas de diplôme universitaire. Elle découvrit le francium en 1939 en purifiant de l'actinium. Elle mourut d'un cancer lié aux radiations."
  },
  {
   "id": "marie-madeleine-fourcade",
@@ -2189,7 +2325,8 @@
    "Première femme pilote de la France libre",
    "A fait évader le général Giraud seule"
   ],
-  "fact": "Seule femme à la tête d'un grand réseau, avec environ 3 000 agents."
+  "fact": "Elle fut la seule femme à la tête d'un grand réseau, avec environ 3 000 agents.",
+  "bio": "Elle rejoignit le réseau de renseignement Alliance en 1940 et en prit la tête en 1941. Le réseau envoyait des informations aux Britanniques, comme les plans des bases de sous-marins. Arrêtée, elle s'évada en se glissant nue entre les barreaux de sa cellule."
  },
  {
   "id": "rita-levi-montalcini",
@@ -2205,7 +2342,8 @@
    "A réalisé la première greffe de moelle osseuse",
    "A décrit la première la maladie de Parkinson"
   ],
-  "fact": "Chassée par les lois antijuives, elle travailla dans sa chambre ; Nobel en 1986."
+  "fact": "Chassée par les lois antijuives, elle travailla dans sa chambre ; Nobel en 1986.",
+  "bio": "Née à Turin dans une famille juive, elle étudia la médecine malgré l'opposition de son père. Elle travailla aux États-Unis, à Saint-Louis, où elle découvrit le facteur de croissance des nerfs. Elle fut nommée sénatrice à vie en Italie et vécut jusqu'à 103 ans."
  },
  {
   "id": "virginia-apgar",
@@ -2221,7 +2359,8 @@
    "A réalisé la première césarienne sans douleur",
    "A découvert le facteur Rhésus"
   ],
-  "fact": "Le score d'Apgar est utilisé dans les maternités du monde entier depuis 1952."
+  "fact": "Le score d'Apgar est utilisé dans les maternités du monde entier depuis 1952.",
+  "bio": "Elle voulait être chirurgienne, mais on l'orienta vers l'anesthésie. Elle créa un score simple, noté de 0 à 10, pour évaluer un bébé une minute après la naissance. Elle travailla ensuite sur les malformations à la naissance."
  },
  {
   "id": "dorothy-hodgkin",
@@ -2237,7 +2376,8 @@
    "A inventé les rayons X",
    "A découvert la vitamine B12"
   ],
-  "fact": "Prix Nobel de chimie 1964, grâce à la cristallographie aux rayons X."
+  "fact": "Elle reçut le prix Nobel de chimie en 1964.",
+  "bio": "Elle étudia la chimie à Oxford, où elle enseigna ensuite. Elle utilisa les rayons X pour déterminer la forme des molécules. Elle mit 35 ans à résoudre la structure de l'insuline, en 1969."
  },
  {
   "id": "dorothy-vaughan",
@@ -2253,7 +2393,8 @@
    "A conçu la capsule des missions Apollo",
    "Première femme ingénieure chez Boeing"
   ],
-  "fact": "Elle forma ses « calculatrices » à programmer les premiers ordinateurs IBM."
+  "fact": "Elle forma ses « calculatrices » à programmer les premiers ordinateurs IBM.",
+  "bio": "Professeure de mathématiques, elle fut engagée en 1943 à Langley parmi les « calculatrices » noires, séparées des Blancs. Elle dirigea le groupe à partir de 1949. Quand arrivèrent les ordinateurs, elle apprit le Fortran et l'enseigna à son équipe."
  },
  {
   "id": "gerda-taro",
@@ -2269,7 +2410,8 @@
    "A fondé l'agence photo Magnum avec Capa",
    "A pris la photo du baiser de l'Hôtel de Ville"
   ],
-  "fact": "Compagne de Robert Capa, elle mourut pendant la guerre d'Espagne à 26 ans."
+  "fact": "Compagne de Robert Capa, elle mourut pendant la guerre d'Espagne à 26 ans.",
+  "bio": "Née Gerta Pohorylle à Stuttgart, juive, elle fuit l'Allemagne nazie pour Paris. Avec Robert Capa, elle inventa le nom « Capa » pour vendre leurs photos. Elle fut écrasée par un char pendant la bataille de Brunete."
  },
  {
   "id": "irena-sendler",
@@ -2285,7 +2427,8 @@
    "A caché Anne Frank et sa famille",
    "A témoigné au procès de Nuremberg"
   ],
-  "fact": "Elle cacha leurs vrais noms dans des bocaux enterrés sous un pommier."
+  "fact": "Elle cacha leurs vrais noms dans des bocaux enterrés sous un pommier.",
+  "bio": "Assistante sociale à Varsovie, elle entrait dans le ghetto avec un laissez-passer sanitaire. Avec un réseau, elle fit sortir les enfants cachés dans des ambulances ou des caisses. Arrêtée et torturée par la Gestapo, elle survécut grâce à la Résistance."
  },
  {
   "id": "louise-bourgeois",
@@ -2301,7 +2444,8 @@
    "A dessiné la Pyramide du Louvre",
    "A peint « Les Nymphéas »"
   ],
-  "fact": "Sa première grande rétrospective au MoMA n'arriva qu'en 1982, à 70 ans."
+  "fact": "Sa première grande rétrospective au MoMA n'arriva qu'en 1982, à 70 ans.",
+  "bio": "Fille de restaurateurs de tapisseries, elle étudia les mathématiques puis l'art à Paris. Elle s'installa à New York en 1938. Son œuvre parle de l'enfance, de la famille et du corps ; l'araignée représente sa mère."
  },
  {
   "id": "chien-shiung-wu",
@@ -2317,7 +2461,8 @@
    "A inventé le laser",
    "A construit le premier ordinateur chinois"
   ],
-  "fact": "Son expérience de 1956 bouscula la physique ; le Nobel alla à deux collègues masculins."
+  "fact": "Son expérience de 1956 bouscula la physique ; le Nobel alla à deux collègues masculins.",
+  "bio": "Née près de Shanghai, elle partit étudier la physique à Berkeley. Elle travailla au projet Manhattan sur l'enrichissement de l'uranium. Elle fut la première femme présidente de la Société américaine de physique."
  },
  {
   "id": "lucie-aubrac",
@@ -2333,7 +2478,8 @@
    "A dirigé les FFI de Lyon",
    "Première femme Compagnon de la Libération"
   ],
-  "fact": "En 1943 à Lyon, enceinte, elle attaqua le camion qui transportait Raymond Aubrac."
+  "fact": "En 1943 à Lyon, enceinte, elle attaqua le camion qui transportait Raymond Aubrac.",
+  "bio": "Professeure d'histoire, elle fonda avec son mari le mouvement Libération-Sud. Elle organisa des évasions de résistants. Après la guerre, elle témoigna dans les écoles toute sa vie."
  },
  {
   "id": "nancy-wake",
@@ -2349,7 +2495,8 @@
    "Première femme parachutiste",
    "A fondé les SAS"
   ],
-  "fact": "Elle commandait des milliers de maquisards en 1944."
+  "fact": "Elle commandait des milliers de maquisards en 1944.",
+  "bio": "Née en Nouvelle-Zélande et élevée en Australie, elle vivait à Marseille au début de la guerre. Elle aida des soldats alliés à fuir, puis fut parachutée en Auvergne en 1944 par les services secrets britanniques. Elle fut l'une des femmes les plus décorées de la guerre."
  },
  {
   "id": "rosa-parks",
@@ -2365,7 +2512,8 @@
    "Première femme noire au Congrès",
    "A fondé les Black Panthers"
   ],
-  "fact": "Son arrestation, le 1er décembre 1955, lança le boycott des bus."
+  "fact": "Son arrestation, le 1er décembre 1955, lança le boycott des bus.",
+  "bio": "Couturière, elle était secrétaire de la section locale de la NAACP à Montgomery. Le boycott des bus qui suivit son arrestation dura 381 jours et fit connaître Martin Luther King. Elle a été surnommée « la mère du mouvement des droits civiques »."
  },
  {
   "id": "hedy-lamarr",
@@ -2381,7 +2529,8 @@
    "Première femme à réaliser un film parlant",
    "A fondé la Metro-Goldwyn-Mayer"
   ],
-  "fact": "En 1942, elle brevète l'étalement de spectre par saut de fréquence, pour guider des torpilles."
+  "fact": "Elle fit breveter son invention en 1942, pour guider des torpilles sans être brouillée.",
+  "bio": "Née à Vienne, elle devint célèbre avec le film « Extase » en 1933, puis fit carrière à Hollywood. Avec le compositeur George Antheil, elle inventa une technique de changement de fréquence. Le système fut utilisé bien plus tard, dans le GPS, le Bluetooth et le wifi."
  },
  {
   "id": "noor-inayat-khan",
@@ -2397,7 +2546,8 @@
    "A dirigé la résistance indienne en Birmanie",
    "Pilote de chasse de la Royal Air Force"
   ],
-  "fact": "Princesse indienne de naissance, elle fut exécutée à Dachau ; son nom de code était Madeleine."
+  "fact": "Princesse indienne de naissance, elle fut exécutée à Dachau ; son nom de code était Madeleine.",
+  "bio": "Fille d'un musicien soufi indien, elle grandit à Paris et écrivait des contes pour enfants. Elle s'engagea dans l'armée de l'air britannique, puis dans les services secrets. Arrêtée en 1943, elle refusa de parler malgré les mauvais traitements."
  },
  {
   "id": "sister-rosetta-tharpe",
@@ -2413,7 +2563,8 @@
    "A fondé la Motown",
    "A composé « Respect »"
   ],
-  "fact": "Elle influença Elvis, Chuck Berry et Johnny Cash."
+  "fact": "Elle influença Elvis, Chuck Berry et Johnny Cash.",
+  "bio": "Enfant prodige du gospel, elle jouait de la guitare dans les églises de l'Arkansas. Elle joua la musique religieuse dans des clubs et à la radio, avec une guitare électrique. Elle a été intronisée au Rock and Roll Hall of Fame en 2018."
  },
  {
   "id": "edith-piaf",
@@ -2429,7 +2580,8 @@
    "A fondé l'Olympia",
    "A chanté pour l'ouverture des JO de Paris 1924"
   ],
-  "fact": "Elle écrivit elle-même les paroles de « La Vie en rose » en 1945."
+  "fact": "Elle écrivit elle-même les paroles de « La Vie en rose » en 1945.",
+  "bio": "Édith Gassion chanta dans les rues de Paris avant d'être découverte par Louis Leplée. Elle chanta « L'Hymne à l'amour », « Non, je ne regrette rien » et « Milord ». Elle lança des artistes comme Yves Montand et Charles Aznavour."
  },
  {
   "id": "sirimavo-bandaranaike",
@@ -2445,7 +2597,8 @@
    "A fondé le mouvement des non-alignés",
    "Première femme Prix Nobel de la paix d'Asie"
   ],
-  "fact": "Élue Première ministre de Ceylan en 1960."
+  "fact": "Elle fut élue Première ministre de Ceylan, l'actuel Sri Lanka, en 1960.",
+  "bio": "Veuve du Premier ministre Solomon Bandaranaike, assassiné en 1959, elle prit la tête de son parti. Elle fut Première ministre trois fois. Sa fille, Chandrika Kumaratunga, devint présidente du pays."
  },
  {
   "id": "indira-gandhi",
@@ -2461,7 +2614,8 @@
    "A fondé le parti du Congrès",
    "Première femme présidente de l'ONU"
   ],
-  "fact": "Elle gouverna 16 ans et fut assassinée par ses gardes du corps."
+  "fact": "Elle gouverna 16 ans et fut assassinée par ses gardes du corps.",
+  "bio": "Fille de Nehru, premier Premier ministre de l'Inde, elle grandit dans la lutte pour l'indépendance. Elle mena la « révolution verte » pour nourrir le pays. Elle imposa l'état d'urgence de 1975 à 1977, ce qui lui valut de lourdes critiques."
  },
  {
   "id": "jacqueline-auriol",
@@ -2477,7 +2631,8 @@
    "A traversé seule le Pacifique en avion",
    "A dirigé Air Inter"
   ],
-  "fact": "Pilote d'essai, elle devint l'une des femmes les plus rapides du monde en 1953."
+  "fact": "Pilote d'essai, elle devint l'une des femmes les plus rapides du monde en 1953.",
+  "bio": "Belle-fille du président Vincent Auriol, elle apprit à piloter en 1947. Grièvement blessée dans un accident d'hydravion, elle subit de nombreuses opérations du visage. Elle devint pilote d'essai et battit plusieurs records de vitesse."
  },
  {
   "id": "leonora-carrington",
@@ -2493,7 +2648,8 @@
    "A peint « La Persistance de la mémoire »",
    "A créé le premier musée d'art moderne mexicain"
   ],
-  "fact": "Elle s'installa au Mexique en 1942, où elle peignit des mondes peuplés de créatures."
+  "fact": "Elle s'installa au Mexique en 1942, où elle peignit des mondes peuplés de créatures.",
+  "bio": "Fille d'un riche industriel anglais, elle rompit avec sa famille et rejoignit Max Ernst à Paris. Internée en Espagne pendant la guerre, elle raconta cette expérience dans « En bas ». Au Mexique, elle peignit et écrivit des contes et des romans."
  },
  {
   "id": "marion-donovan",
@@ -2509,7 +2665,8 @@
    "A inventé la poussette pliante",
    "A inventé le tampon hygiénique"
   ],
-  "fact": "Elle découpa un rideau de douche pour créer sa première couche-culotte."
+  "fact": "Elle découpa un rideau de douche pour créer sa première couche-culotte.",
+  "bio": "Fille d'un inventeur de l'Indiana, elle mit au point la couche en 1946. Elle déposa une vingtaine de brevets. Elle obtint un diplôme d'architecture à Yale en 1958."
  },
  {
   "id": "gertrude-elion",
@@ -2525,7 +2682,8 @@
    "A inventé la première anesthésie générale",
    "A découvert le groupe sanguin O"
   ],
-  "fact": "Sans doctorat, elle reçut le Nobel de médecine en 1988."
+  "fact": "Sans doctorat, elle reçut le Nobel de médecine en 1988.",
+  "bio": "Elle choisit la recherche après la mort de son grand-père d'un cancer. Refusée dans les laboratoires parce qu'elle était une femme, elle travailla d'abord comme professeure. Avec George Hitchings, elle conçut des médicaments contre la goutte, le paludisme et le rejet des greffes."
  },
  {
   "id": "katherine-johnson",
@@ -2541,7 +2699,8 @@
    "A dirigé le centre de contrôle de Houston",
    "A programmé le premier satellite américain"
   ],
-  "fact": "Une des « figures de l'ombre » ; John Glenn voulut qu'elle vérifie les calculs de l'ordinateur."
+  "fact": "Elle est l'une des « figures de l'ombre » ; John Glenn voulut qu'elle vérifie les calculs de l'ordinateur avant son vol.",
+  "bio": "Enfant douée, elle entra au lycée à 10 ans et à l'université à 15. Elle calcula la trajectoire du vol d'Alan Shepard, puis celui de John Glenn autour de la Terre. Elle travailla aussi sur Apollo 11 et reçut la médaille présidentielle de la Liberté en 2015."
  },
  {
   "id": "genevieve-de-gaulle-anthonioz",
@@ -2557,7 +2716,8 @@
    "A fondé le mouvement Emmaüs",
    "Première femme ministre de la Défense"
   ],
-  "fact": "Nièce du général, elle se battit pour la loi contre la grande pauvreté (1998)."
+  "fact": "Nièce du général, elle se battit pour la loi contre la grande pauvreté (1998).",
+  "bio": "Étudiante en histoire, elle entra dans la Résistance et fut arrêtée en 1943. Déportée à Ravensbrück, elle se lia avec Germaine Tillion. Elle entra au Panthéon en 2015."
  },
  {
   "id": "marie-tharp",
@@ -2573,7 +2733,8 @@
    "A découvert le Titanic",
    "A plongé la première dans la fosse des Mariannes"
   ],
-  "fact": "Sa carte révéla la dorsale médio-atlantique et appuya la dérive des continents."
+  "fact": "Sa carte révéla la dorsale médio-atlantique et appuya la dérive des continents.",
+  "bio": "Géologue, elle travaillait avec Bruce Heezen à l'université Columbia, mais n'avait pas le droit d'aller en mer. À partir des mesures de profondeur, elle dessina les fonds océaniques. Elle découvrit une vallée au centre de la dorsale, preuve de la tectonique des plaques."
  },
  {
   "id": "rosalind-franklin",
@@ -2589,7 +2750,8 @@
    "A inventé le microscope électronique",
    "A découvert la pénicilline"
   ],
-  "fact": "Sa « photo 51 » servit à Watson et Crick, Nobel en 1962, sans qu'elle soit citée."
+  "fact": "Sa « photo 51 » servit à Watson et Crick, Nobel en 1962, sans qu'elle soit citée.",
+  "bio": "Chimiste à King's College, à Londres, elle maîtrisait la diffraction des rayons X. Ses images montraient la forme en hélice de l'ADN. Elle travailla ensuite sur les virus et mourut d'un cancer à 37 ans."
  },
  {
   "id": "sophie-scholl",
@@ -2605,7 +2767,8 @@
    "A caché la famille d'Anne Frank",
    "A dirigé un maquis dans les Alpes bavaroises"
   ],
-  "fact": "Arrêtée en distribuant des tracts à l'université de Munich, exécutée à 21 ans."
+  "fact": "Arrêtée en distribuant des tracts à l'université de Munich, exécutée à 21 ans.",
+  "bio": "Étudiante en biologie et en philosophie à Munich, elle rejoignit son frère Hans dans la Rose blanche. Le groupe imprimait et diffusait des tracts contre le régime nazi. Arrêtée le 18 février 1943, elle fut condamnée à mort et exécutée quatre jours plus tard."
  },
  {
   "id": "micheline-ostermeyer",
@@ -2621,7 +2784,8 @@
    "A fondé la Fédération française d'athlétisme",
    "Première femme arbitre olympique"
   ],
-  "fact": "En 1948, au poids et au disque ; elle joua Liszt en concert pour fêter ses médailles."
+  "fact": "Championne olympique du poids et du disque en 1948, elle joua Liszt en concert pour fêter ses médailles.",
+  "bio": "Pianiste, elle étudia au Conservatoire de Paris et y gagna un premier prix. Aux Jeux de Londres de 1948, elle gagna le poids, le disque et une médaille de bronze en saut en hauteur. Elle fit ensuite carrière comme pianiste et professeure."
  },
  {
   "id": "stephanie-kwolek",
@@ -2637,7 +2801,8 @@
    "A inventé le Téflon",
    "A inventé le Velcro"
   ],
-  "fact": "Chimiste chez DuPont, elle créa en 1965 la fibre des gilets pare-balles."
+  "fact": "Chimiste chez DuPont, elle créa en 1965 la fibre des gilets pare-balles.",
+  "bio": "Elle voulait être médecin, mais entra chez DuPont pour financer ses études. Elle cherchait une fibre légère et solide pour les pneus. Le Kevlar sert dans les gilets pare-balles, les cordages et les casques."
  },
  {
   "id": "marthe-gautier",
@@ -2653,7 +2818,8 @@
    "A découvert le virus du sida",
    "A créé le premier bébé éprouvette français"
   ],
-  "fact": "Sa découverte de 1958 fut longtemps attribuée au seul Jérôme Lejeune."
+  "fact": "Sa découverte de 1958 fut longtemps attribuée au seul Jérôme Lejeune.",
+  "bio": "Pédiatre, elle avait appris aux États-Unis à cultiver des cellules. Elle mit au point la culture des cellules d'enfants trisomiques à Paris. Son nom ne fut longtemps qu'en second, et elle ne fut reconnue qu'en 2014."
  },
  {
   "id": "vivian-maier",
@@ -2669,7 +2835,8 @@
    "A fondé l'agence Magnum",
    "A photographié la Lune pour la NASA"
   ],
-  "fact": "Ses négatifs furent achetés aux enchères en 2007 ; elle n'avait presque rien montré."
+  "fact": "Ses négatifs furent achetés aux enchères en 2007 ; elle n'avait presque rien montré.",
+  "bio": "Née à New York, elle passa une partie de son enfance dans les Hautes-Alpes. Gouvernante à Chicago pendant 40 ans, elle photographiait les rues avec un Rolleiflex. Elle a pris plus de 100 000 photos, dont beaucoup ne furent jamais développées de son vivant."
  },
  {
   "id": "althea-gibson",
@@ -2685,7 +2852,8 @@
    "A fondé la WTA, le circuit féminin",
    "Première championne olympique noire de tennis"
   ],
-  "fact": "À Roland-Garros en 1956, puis à Wimbledon et à l'US Open."
+  "fact": "Elle gagna Roland-Garros en 1956, puis Wimbledon et l'US Open.",
+  "bio": "Elle grandit à Harlem et apprit le tennis dans la rue. Elle fut la première joueuse noire admise dans les grands tournois américains, en 1950. Elle devint ensuite golfeuse professionnelle."
  },
  {
   "id": "gisele-halimi",
@@ -2701,7 +2869,8 @@
    "A fondé Amnesty International",
    "A fondé le Planning familial"
   ],
-  "fact": "En 1972, elle défendit une jeune fille jugée pour avoir avorté."
+  "fact": "En 1972, elle défendit une jeune fille jugée pour avoir avorté.",
+  "bio": "Née en Tunisie, elle devint avocate et défendit des militants algériens. Elle signa le manifeste des 343 et fonda l'association « Choisir la cause des femmes ». Elle défendit aussi des victimes de viol, ce qui conduisit à la loi de 1980."
  },
  {
   "id": "simone-veil",
@@ -2717,7 +2886,8 @@
    "A fondé l'Unicef",
    "A créé le RSA"
   ],
-  "fact": "En 1975 ; rescapée d'Auschwitz, elle présida ensuite le Parlement européen."
+  "fact": "La loi fut votée en 1975 ; rescapée d'Auschwitz, elle présida ensuite le Parlement européen.",
+  "bio": "Déportée à Auschwitz à 16 ans, elle perdit ses parents et son frère. Magistrate, puis ministre de la Santé, elle fit voter la loi sur l'IVG malgré de violentes attaques. Elle fut la première présidente du Parlement européen élu, puis entra au Panthéon en 2018."
  },
  {
   "id": "agnes-varda",
@@ -2733,7 +2903,8 @@
    "A fondé la Cinémathèque française",
    "A réalisé « Les 400 coups »"
   ],
-  "fact": "« La Pointe courte » (1955) annonce la Nouvelle Vague ; elle reçut un Oscar d'honneur."
+  "fact": "« La Pointe courte » (1955) annonce la Nouvelle Vague ; elle reçut un Oscar d'honneur en 2017.",
+  "bio": "Photographe au Théâtre national populaire, elle réalisa ensuite « Cléo de 5 à 7 » et « Sans toit ni loi ». Elle tourna aussi des documentaires, comme « Les Glaneurs et la Glaneuse ». Elle fut mariée au cinéaste Jacques Demy."
  },
  {
   "id": "maya-angelou",
@@ -2749,7 +2920,8 @@
    "Première femme noire élue au Sénat américain",
    "A fondé l'association NAACP pour les droits civiques"
   ],
-  "fact": "Poétesse, elle lut un poème à l'investiture de Bill Clinton en 1993."
+  "fact": "Poétesse, elle lut un poème à l'investiture de Bill Clinton en 1993.",
+  "bio": "Elle fut chanteuse, danseuse, journaliste et militante des droits civiques, aux côtés de Malcolm X et de Martin Luther King. Ses sept autobiographies racontent son enfance dans le Sud raciste et sa vie mouvementée. Barack Obama lui remit la médaille présidentielle de la Liberté."
  },
  {
   "id": "vera-rubin",
@@ -2765,7 +2937,8 @@
    "A photographié le premier trou noir",
    "A dirigé le télescope Hubble"
   ],
-  "fact": "En mesurant la rotation des galaxies, elle montra qu'il y manque de la masse visible."
+  "fact": "En mesurant la rotation des galaxies, elle montra qu'il y manque de la masse visible.",
+  "bio": "Seule femme de sa promotion d'astronomie à Vassar, elle fut refusée à Princeton parce qu'elle était une femme. Avec Kent Ford, elle mesura la vitesse des étoiles dans les galaxies. Un grand télescope du Chili porte son nom."
  },
  {
   "id": "mariama-ba",
@@ -2781,7 +2954,8 @@
    "Première femme ministre du Sénégal",
    "A fondé l'université de Dakar"
   ],
-  "fact": "Ce roman de 1979 sur la polygamie est étudié dans toute l'Afrique francophone."
+  "fact": "Ce roman de 1979 sur la polygamie est étudié dans toute l'Afrique francophone.",
+  "bio": "Institutrice et militante des droits des femmes à Dakar, elle publia son premier roman en 1979. Le livre est une lettre d'une veuve à son amie, sur le mariage et la polygamie. Elle mourut avant la publication de son second roman, « Un chant écarlate »."
  },
  {
   "id": "niki-de-saint-phalle",
@@ -2797,7 +2971,8 @@
    "A sculpté la Tour Eiffel",
    "A dessiné le logo des JO"
   ],
-  "fact": "Elle réalisa aussi le Jardin des tarots en Toscane et la fontaine Stravinsky à Paris."
+  "fact": "Elle réalisa aussi le Jardin des tarots en Toscane et la fontaine Stravinsky à Paris.",
+  "bio": "Mannequin dans sa jeunesse, elle commença à peindre après une dépression. Elle se fit connaître avec ses « Tirs », des tableaux sur lesquels elle tirait à la carabine. Elle collabora avec Jean Tinguely, son compagnon."
  },
  {
   "id": "tu-youyou",
@@ -2812,7 +2987,8 @@
    "A découvert le virus du SRAS",
    "A créé le premier vaccin chinois"
   ],
-  "fact": "Inspirée par un texte du IVe siècle ; prix Nobel de médecine en 2015."
+  "fact": "Elle s'inspira d'un texte chinois du IVe siècle et reçut le prix Nobel de médecine en 2015.",
+  "bio": "Pharmacienne, elle fut chargée en 1969 d'un projet secret de l'armée chinoise contre le paludisme. Elle étudia des milliers de remèdes traditionnels. L'artémisinine a sauvé des millions de vies."
  },
  {
   "id": "toni-morrison",
@@ -2828,7 +3004,8 @@
    "Première femme noire présidente d'une université",
    "A écrit « La Couleur pourpre »"
   ],
-  "fact": "Nobel 1993 ; son roman « Beloved » reçut le prix Pulitzer."
+  "fact": "Elle reçut le Nobel en 1993 ; son roman « Beloved » avait reçu le prix Pulitzer.",
+  "bio": "Chloe Wofford, née dans l'Ohio, fut éditrice à New York avant de publier son premier roman, « L'Œil le plus bleu ». Ses romans racontent l'histoire des Afro-Américains, surtout des femmes. Elle enseigna à Princeton."
  },
  {
   "id": "dian-fossey",
@@ -2844,7 +3021,8 @@
    "A appris la langue des signes à un orang-outan",
    "A fondé le WWF"
   ],
-  "fact": "Elle vécut 18 ans au Rwanda ; son histoire inspira le film « Gorilles dans la brume »."
+  "fact": "Elle vécut 18 ans au Rwanda ; son histoire inspira le film « Gorilles dans la brume ».",
+  "bio": "Ergothérapeute, elle partit en Afrique sur ses économies et rencontra le paléontologue Louis Leakey. Elle fonda un centre de recherche dans les montagnes des Virunga. Elle fut assassinée dans sa cabane en 1985, sans doute par des braconniers."
  },
  {
   "id": "jane-goodall",
@@ -2860,7 +3038,8 @@
    "A fondé Greenpeace",
    "A décrit le premier dinosaure d'Afrique"
   ],
-  "fact": "À Gombe, en 1960, elle vit un chimpanzé effeuiller une brindille pour pêcher des termites."
+  "fact": "À Gombe, en 1960, elle vit un chimpanzé effeuiller une brindille pour pêcher des termites.",
+  "bio": "Sans diplôme, elle partit en Tanzanie en 1960 à la demande de Louis Leakey. Elle donna des noms aux chimpanzés et décrivit leurs émotions et leurs guerres. Elle consacra le reste de sa vie à la protection des animaux et de la nature."
  },
  {
   "id": "assia-djebar",
@@ -2876,7 +3055,8 @@
    "Première femme présidente de l'Algérie",
    "A fondé l'université d'Alger"
   ],
-  "fact": "Élue en 2005 ; ses romans donnent voix aux femmes algériennes."
+  "fact": "Élue en 2005, elle donne voix aux femmes algériennes dans ses romans.",
+  "bio": "Fatima-Zohra Imalayène fut la première Algérienne admise à l'École normale supérieure. Elle fut aussi cinéaste et enseigna aux États-Unis. Ses livres, comme « Femmes d'Alger dans leur appartement », parlent de la guerre et des femmes."
  },
  {
   "id": "margaret-hamilton",
@@ -2891,7 +3071,8 @@
    "A conçu le premier jeu vidéo",
    "A créé le premier moteur de recherche"
   ],
-  "fact": "Elle inventa l'expression « génie logiciel » ; son code fit alunir Apollo 11."
+  "fact": "Elle inventa l'expression « génie logiciel » ; son code fit alunir Apollo 11.",
+  "bio": "Mathématicienne, elle travailla au MIT sur des logiciels de défense. Son équipe écrivit le logiciel qui guidait les modules de commande et lunaire. Pendant l'alunissage, le logiciel ignora des tâches secondaires et évita l'abandon de la mission."
  },
  {
   "id": "delia-derbyshire",
@@ -2907,7 +3088,8 @@
    "A fondé le groupe Kraftwerk",
    "A composé le générique de James Bond"
   ],
-  "fact": "En 1963, à la BBC, en assemblant des bandes magnétiques à la main."
+  "fact": "Elle le créa en 1963, à la BBC, en assemblant des bandes magnétiques à la main.",
+  "bio": "Mathématicienne et musicienne, elle entra au BBC Radiophonic Workshop en 1962. Elle créait des sons à partir d'oscillateurs et de bandes magnétiques coupées. Elle influença la musique électronique."
  },
  {
   "id": "valentina-terechkova",
@@ -2922,7 +3104,8 @@
    "A dirigé la station Mir",
    "A conçu la fusée Soyouz"
   ],
-  "fact": "Le 16 juin 1963, à bord de Vostok 6, elle fit 48 fois le tour de la Terre."
+  "fact": "Le 16 juin 1963, à bord de Vostok 6, elle fit 48 fois le tour de la Terre.",
+  "bio": "Ouvrière dans une usine de textile, elle pratiquait le parachutisme dans un club. Elle fut choisie parmi plus de 400 candidates. Elle devint ensuite femme politique en URSS, puis en Russie."
  },
  {
   "id": "ellen-johnson-sirleaf",
@@ -2937,7 +3120,8 @@
    "A fondé l'Union africaine",
    "A négocié la fin de l'apartheid"
   ],
-  "fact": "Présidente du Liberia de 2006 à 2018 ; prix Nobel de la paix 2011."
+  "fact": "Elle présida le Liberia de 2006 à 2018 et reçut le prix Nobel de la paix en 2011.",
+  "bio": "Économiste formée à Harvard, elle fut ministre des Finances, puis travailla à la Banque mondiale et à l'ONU. Emprisonnée et exilée sous plusieurs régimes, elle revint au Liberia. Élue en 2005, elle reconstruisit le pays après la guerre civile."
  },
  {
   "id": "claudette-colvin",
@@ -2952,7 +3136,8 @@
    "Première avocate noire de l'Alabama",
    "A fondé l'association NAACP à Montgomery"
   ],
-  "fact": "Elle avait 15 ans en mars 1955 ; son cas servit au procès qui interdit la ségrégation dans les bus."
+  "fact": "Elle avait 15 ans en mars 1955 ; son cas servit au procès qui interdit la ségrégation dans les bus.",
+  "bio": "Lycéenne à Montgomery, elle étudiait l'histoire des Noirs américains en classe. Les militants préférèrent mettre en avant Rosa Parks, plus âgée. Son casier judiciaire ne fut effacé qu'en 2021."
  },
  {
   "id": "junko-tabei",
@@ -2968,7 +3153,8 @@
    "A traversé l'Antarctique à pied",
    "Première femme à plonger à 100 mètres"
   ],
-  "fact": "Le 16 mai 1975 ; elle gravit ensuite les sept plus hauts sommets des continents."
+  "fact": "Elle atteignit le sommet le 16 mai 1975.",
+  "bio": "Elle commença l'escalade à 10 ans et fonda un club d'alpinisme féminin. Elle fut ensevelie par une avalanche au camp II avant d'atteindre le sommet. Elle fut la première femme à gravir les sept sommets les plus hauts de chaque continent."
  },
  {
   "id": "wangari-maathai",
@@ -2984,7 +3170,8 @@
    "Première femme présidente du Kenya",
    "A créé le parc national du Serengeti"
   ],
-  "fact": "Son mouvement de la ceinture verte planta des dizaines de millions d'arbres."
+  "fact": "Son mouvement de la ceinture verte planta des dizaines de millions d'arbres.",
+  "bio": "Elle fut la première femme d'Afrique de l'Est à obtenir un doctorat, en biologie vétérinaire. Elle fonda le mouvement de la ceinture verte en 1977 avec des femmes rurales. Emprisonnée pour ses combats, elle devint députée et vice-ministre de l'Environnement."
  },
  {
   "id": "wilma-rudolph",
@@ -3000,7 +3187,8 @@
    "A fondé les Jeux paralympiques",
    "Première femme entraîneuse d'une équipe NFL"
   ],
-  "fact": "Aux Jeux de Rome, en 1960 ; on la surnommait « la gazelle noire »."
+  "fact": "Elle gagna ses trois titres aux Jeux de Rome, en 1960 ; on la surnommait « la gazelle noire ».",
+  "bio": "Vingtième de 22 enfants, elle porta un appareil orthopédique à la jambe pendant son enfance. Elle gagna le 100 m, le 200 m et le relais. Elle devint enseignante et entraîneuse."
  },
  {
   "id": "katia-krafft",
@@ -3016,7 +3204,8 @@
    "A inventé le sismographe portable",
    "A découvert un volcan sous-marin"
   ],
-  "fact": "Avec son mari Maurice, elle filma des centaines d'éruptions ; ils moururent au mont Unzen."
+  "fact": "Avec son mari Maurice, elle filma des centaines d'éruptions ; ils moururent au mont Unzen.",
+  "bio": "Née en Alsace, elle étudia la géochimie à Strasbourg, où elle rencontra Maurice Krafft. Ils parcouraient le monde pour filmer les volcans, du Stromboli au Kilauea. Leurs images ont aidé à prévenir les populations des dangers des éruptions."
  },
  {
   "id": "jocelyn-bell-burnell",
@@ -3031,7 +3220,8 @@
    "A détecté les ondes gravitationnelles",
    "A découvert l'énergie sombre"
   ],
-  "fact": "Doctorante en 1967, elle repéra le signal ; le Nobel 1974 alla à son directeur."
+  "fact": "Doctorante en 1967, elle repéra le signal ; le Nobel 1974 alla à son directeur.",
+  "bio": "Elle construisit avec d'autres étudiants le radiotélescope de Cambridge. Elle repéra un signal régulier que l'on surnomma d'abord « petit homme vert ». Elle offrit son prix Breakthrough de 2018 pour financer des bourses."
  },
  {
   "id": "francoise-barre-sinoussi",
@@ -3046,7 +3236,8 @@
    "A découvert le virus Ebola",
    "A créé le premier vaccin contre l'hépatite"
   ],
-  "fact": "Prix Nobel de médecine 2008 avec Luc Montagnier, pour l'identification du VIH en 1983."
+  "fact": "Elle reçut le prix Nobel de médecine en 2008, avec Luc Montagnier.",
+  "bio": "Chercheuse à l'Institut Pasteur, elle travaillait sur les rétrovirus. En 1983, elle isola le virus responsable du sida. Elle s'engagea ensuite auprès des malades."
  },
  {
   "id": "kathrine-switzer",
@@ -3061,7 +3252,8 @@
    "A fondé le marathon de New York",
    "Première femme à courir 100 km en moins de 8 heures"
   ],
-  "fact": "En 1967, un organisateur tenta de lui arracher son dossard pendant la course."
+  "fact": "En 1967, un organisateur tenta de lui arracher son dossard pendant la course.",
+  "bio": "Étudiante en journalisme à l'université de Syracuse, elle s'inscrivit sous « K. V. Switzer ». La photo de l'organisateur Jock Semple tentant de l'arrêter fit le tour du monde. Le marathon de Boston s'ouvrit aux femmes en 1972."
  },
  {
   "id": "zaha-hadid",
@@ -3077,7 +3269,8 @@
    "A dessiné le Louvre Abou Dhabi",
    "Architecte de l'Opéra de Sydney"
   ],
-  "fact": "En 2004 ; on lui doit le centre aquatique des JO de Londres."
+  "fact": "Elle reçut le Pritzker en 2004 ; on lui doit aussi le centre aquatique des JO de Londres.",
+  "bio": "Née à Bagdad, elle étudia les mathématiques à Beyrouth, puis l'architecture à Londres. Elle dessinait des bâtiments aux formes courbes et dynamiques. On lui doit l'opéra de Canton et le musée MAXXI de Rome."
  },
  {
   "id": "sally-ride",
@@ -3093,7 +3286,8 @@
    "A découvert de l'eau sur Mars",
    "A conçu le télescope Hubble"
   ],
-  "fact": "En 1983, à bord de Challenger ; elle était aussi physicienne."
+  "fact": "Elle vola en 1983, à bord de la navette Challenger.",
+  "bio": "Docteure en physique de Stanford, elle fut choisie parmi 8 000 candidats. Elle participa à l'enquête après les accidents de Challenger et de Columbia. Elle fonda une société pour encourager les filles à faire des sciences."
  },
  {
   "id": "benazir-bhutto",
@@ -3109,7 +3303,8 @@
    "A fondé le Pakistan",
    "A fondé l'université d'Islamabad"
   ],
-  "fact": "Première ministre du Pakistan en 1988 ; assassinée en 2007."
+  "fact": "Elle devint Première ministre en 1988, à 35 ans, et fut assassinée en 2007.",
+  "bio": "Fille du Premier ministre Zulfikar Ali Bhutto, exécuté en 1979, elle étudia à Harvard et à Oxford. Elle fut Première ministre de 1988 à 1990, puis de 1993 à 1996. Elle fut tuée lors d'un attentat pendant la campagne électorale."
  },
  {
   "id": "mae-jemison",
@@ -3124,7 +3319,8 @@
    "A dirigé la NASA",
    "A conçu le robot martien Curiosity"
   ],
-  "fact": "En 1992, à bord d'Endeavour ; elle est aussi médecin."
+  "fact": "Elle vola en 1992, à bord de la navette Endeavour.",
+  "bio": "Ingénieure chimiste et médecin, elle fut médecin du Corps de la paix en Sierra Leone et au Liberia. Elle passa huit jours dans l'espace. Elle fit une apparition dans « Star Trek »."
  },
  {
   "id": "claudie-haignere",
@@ -3139,7 +3335,8 @@
    "A conçu la fusée Ariane",
    "A découvert une comète"
   ],
-  "fact": "En 1996, à bord de la station Mir ; elle fut ensuite ministre de la Recherche."
+  "fact": "Elle partit en 1996 sur la station Mir ; elle fut ensuite ministre de la Recherche.",
+  "bio": "Rhumatologue, elle fut sélectionnée comme astronaute par le CNES en 1985. En 2001, elle fut la première Européenne à séjourner dans la Station spatiale internationale. Elle dirigea ensuite la Cité des sciences."
  },
  {
   "id": "florence-arthaud",
@@ -3155,7 +3352,8 @@
    "A fondé le Vendée Globe",
    "Championne olympique de voile"
   ],
-  "fact": "En 1990 ; on l'appelait « la petite fiancée de l'Atlantique »."
+  "fact": "Elle gagna la course en 1990 ; on l'appelait « la petite fiancée de l'Atlantique ».",
+  "bio": "Elle apprit la voile avec son père, éditeur, et participa à sa première course à 18 ans. Elle battit le record de la traversée de l'Atlantique en solitaire en 1990. Elle mourut dans un accident d'hélicoptère en Argentine."
  },
  {
   "id": "maryam-mirzakhani",
@@ -3171,7 +3369,8 @@
    "A inventé un algorithme de cryptographie",
    "Première femme championne du monde d'échecs"
   ],
-  "fact": "Médaille Fields 2014 pour ses travaux sur les surfaces courbes ; elle mourut à 40 ans."
+  "fact": "Elle reçut la médaille Fields en 2014 pour ses travaux sur les surfaces courbes ; elle mourut à 40 ans.",
+  "bio": "Elle remporta deux médailles d'or aux Olympiades internationales de mathématiques. Professeure à Stanford, elle étudia la géométrie des surfaces. Elle mourut d'un cancer du sein."
  },
  {
   "id": "malala-yousafzai",
@@ -3186,6 +3385,7 @@
    "A fondé l'Unesco",
    "A écrit la Déclaration des droits de l'enfant"
   ],
-  "fact": "Blessée par les talibans à 15 ans pour avoir défendu l'école des filles ; Nobel à 17 ans."
+  "fact": "Blessée par les talibans à 15 ans pour avoir défendu l'école des filles ; Nobel à 17 ans.",
+  "bio": "Elle écrivait, sous un pseudonyme, un blog pour la BBC sur la vie sous les talibans. Après l'attentat de 2012, elle fut soignée en Angleterre. Elle fonda une association pour l'éducation des filles et étudia à Oxford."
  }
 ]
