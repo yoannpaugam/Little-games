@@ -229,8 +229,17 @@ test('portraits des Pionnières : uniquement des femmes du catalogue, avec créd
   const photos = await load('games/women/data/photos.json');
   assert.equal(typeof photos, 'object');
   assert.deepEqual(Object.keys(photos).filter((id) => !ids.has(id)), []);
+  const { existsSync } = await import('node:fs');
   for (const [id, p] of Object.entries(photos)) {
-    assert.match(p.img, /^https:\/\/upload\.wikimedia\.org\//, id);
-    assert.ok(text(p.by) && text(p.lic), `${id} : auteur et licence obligatoires`);
+    if (/^https:/.test(p.img)) {
+      // Portrait Wikimedia Commons : auteur et licence obligatoires
+      assert.match(p.img, /^https:\/\/upload\.wikimedia\.org\//, id);
+      assert.ok(text(p.by) && text(p.lic), `${id} : auteur et licence obligatoires`);
+    } else {
+      // Photo fournie par Yoann, dans le dépôt : crédit facultatif (à compléter plus tard)
+      assert.equal(p.img, `photos/${id}.jpg`, id);
+      assert.ok(existsSync(new URL(`../games/women/${p.img}`, import.meta.url)), `${id} : fichier absent`);
+      for (const k of ['by', 'lic']) if (p[k] != null) assert.ok(text(p[k]), `${id} : ${k}`);
+    }
   }
 });

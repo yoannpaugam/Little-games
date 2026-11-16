@@ -79,7 +79,7 @@ const misses = [];
 let added = 0;
 
 for (const [i, w] of women.entries()) {
-  if (!force && photos[w.id]?.img) continue;
+  if (photos[w.id]?.img && (!force || !/^https?:/.test(photos[w.id].img))) continue; // photo du dépôt : jamais remplacée
   process.stdout.write(`[${i + 1}/${women.length}] ${w.name}… `);
   try {
     const r = await resolve(w);
