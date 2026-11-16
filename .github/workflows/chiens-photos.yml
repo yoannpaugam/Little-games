@@ -1,0 +1,62 @@
+# Remplit games/dogs/data/photos.json (photo, auteur et licence de chaque race de chiens) depuis Wikipédia et Commons.
+# Se lance tout seul quand le catalogue change sur une branche jeu/chiens-* ou outils/chiens-*,
+# ou à la main (onglet Actions → « Chiens : photos » → Run workflow, option « tout rechercher »).
+# Le résultat est enregistré sur la même branche.
+
+name: 'Chiens : photos'
+
+on:
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Tout rechercher (sinon seulement les races sans photo)'
+        type: boolean
+        default: false
+  push:
+    branches: ['jeu/chiens-*', 'outils/chiens-*']
+    paths: ['games/dogs/data/chiens.json', 'games/dogs/wiki.js', 'scripts/fetch-dog-photos.mjs', '.github/workflows/chiens-photos.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chiens-photos-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Chercher les photos
+        run: |
+          set -o pipefail
+          node scripts/fetch-dog-photos.mjs ${{ inputs.all && '--all' || '' }} 2>&1 | tee photos.log
+
+      - name: Vérifier les catalogues
+        run: npm test
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Chiens : photos'
+            echo '```'
+            cat photos.log 2>/dev/null || echo 'Aucun journal.'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enregistrer photos.json sur la branche
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add games/dogs/data/photos.json
+          if git diff --cached --quiet; then echo "Rien de nouveau."; exit 0; fi
+          git commit -m "Chiens : photos.json rempli (workflow)"
+          git push origin HEAD:${GITHUB_REF_NAME}

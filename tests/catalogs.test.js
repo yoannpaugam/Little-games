@@ -167,3 +167,28 @@ test('carte du Géoquizz (contours des pays)', async () => {
   }
   assert.deepEqual(errors, []);
 });
+
+test('catalogue des races de chiens', async () => {
+  const { GROUPS } = await import('../games/dogs/quiz.js');
+  const breeds = await load('games/dogs/data/chiens.json');
+  const photos = await load('games/dogs/data/photos.json');
+  assert.ok(Array.isArray(breeds) && breeds.length >= 100);
+  const errors = checkEntries(breeds, {
+    id: [true, (v) => SLUG.test(v)],
+    name: [true, text],
+    wiki: [true, text],
+    group: [true, (v) => v in GROUPS],
+    origin: [true, text],
+    file: [false, text],
+  }, 'chiens');
+  const names = new Set();
+  breeds.forEach((b) => { if (names.has(b.name)) errors.push(`chiens ${b.id} : nom en double`); names.add(b.name); });
+  const ids = new Set(breeds.map((b) => b.id));
+  const url = (v) => typeof v === 'string' && v.startsWith('https://upload.wikimedia.org/');
+  for (const [id, p] of Object.entries(photos)) {
+    if (!ids.has(id)) errors.push(`photos ${id} : race inconnue`);
+    if (!url(p.img) || !url(p.thumb)) errors.push(`photos ${id} : URL invalide`);
+    if (!text(p.by) || !text(p.lic) || !text(p.file)) errors.push(`photos ${id} : auteur, licence ou fichier manquant`);
+  }
+  assert.deepEqual(errors, []);
+});
