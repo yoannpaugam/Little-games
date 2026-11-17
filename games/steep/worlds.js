@@ -10,21 +10,34 @@ export const COURSE_TYPES = {
   balade: {
     slope: [0.2, 0.28],
     features: { run: 5, bumps: 3, kicker: 1 },
-    gap: 0.04, cliff: 0.06,
+    trap: 0.14, cliff: 0.06,
+    traps: { gap: 3, rockLanding: 1, stepUp: 0.6, island: 0.4 },
     rocks: 0.35, // probabilité d'un obstacle sur une ligne droite
   },
   bosses: {
     slope: [0.24, 0.32],
     features: { run: 1, bumps: 5, kicker: 4 },
-    gap: 0.1, cliff: 0.12,
+    trap: 0.24, cliff: 0.12,
+    traps: { gap: 2, rockLanding: 1.5, stepUp: 1, island: 1, wide: 1, pillars: 0.5 },
     rocks: 0.5,
   },
   abimes: {
     slope: [0.3, 0.4],
     features: { run: 3, bumps: 1, kicker: 2 },
-    gap: 0.42, cliff: 0.28,
+    trap: 0.55, cliff: 0.25,
+    traps: { gap: 1.5, rockLanding: 2, stepUp: 1.5, island: 2, wide: 2, pillars: 2 },
     rocks: 0.55,
   },
+};
+
+/** Les pièges : plus ou moins loin, plus ou moins tôt, il faut bien juger son saut. */
+export const TRAP_NAMES = {
+  gap: 'Trou',
+  wide: 'Grand trou (saut chargé)',
+  island: 'Îlot entre deux trous',
+  pillars: 'Piliers',
+  rockLanding: 'Obstacle à la réception',
+  stepUp: 'Bord d’en face plus haut',
 };
 
 export const COURSE_ORDER = ['balade', 'bosses', 'abimes'];

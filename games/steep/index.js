@@ -2,11 +2,11 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (choix du monde) | [monde, parcours] (descente) | ['reglages']
 
-import { h, icon } from '../../js/core/dom.js?v=1.58.0';
-import { createStore } from '../../js/core/storage.js?v=1.58.0';
-import { WORLDS, COURSE_ORDER, worldById, isCourse } from './worlds.js?v=1.58.0';
-import { createRun, step, distanceM, totalScore, crashText, POINTS } from './engine.js?v=1.58.0';
-import { drawFrame, createCamera, followCamera } from './render.js?v=1.58.0';
+import { h, icon } from '../../js/core/dom.js?v=1.59.0';
+import { createStore } from '../../js/core/storage.js?v=1.59.0';
+import { WORLDS, COURSE_ORDER, worldById, isCourse } from './worlds.js?v=1.59.0';
+import { createRun, step, distanceM, totalScore, crashText, autoPilot, POINTS } from './engine.js?v=1.59.0';
+import { drawFrame, createCamera, followCamera } from './render.js?v=1.59.0';
 
 const store = createStore('steep', { version: 1 });
 
@@ -106,14 +106,14 @@ export function mount(container, ctx) {
     let demo = null, demoT = 0;
     const cam = createCamera();
     const fx = { particles: [], spray: [] };
-    const newDemo = () => { demo = createRun({ world: W.id, course: 'bosses', seed: 7 + Math.floor(Math.random() * 1000) }); cam.ready = false; demoT = 0; };
+    const newDemo = () => { demo = createRun({ world: W.id, course: 'abimes', seed: 7 + Math.floor(Math.random() * 1000) }); cam.ready = false; demoT = 0; };
     newDemo();
     const c2d = preview.getContext('2d');
     fitCanvas(preview, previewBox);
     let last = performance.now();
     const loop = (now) => {
       const dt = Math.min(1 / 30, (now - last) / 1000); last = now;
-      const input = botInput(demo);
+      const input = autoPilot(demo, { flips: true });
       step(demo, dt, input);
       demo.events.length = 0;
       if (demo.state === 'crashed' && demo.t - demo.crash.t > 1.2) newDemo();
@@ -126,16 +126,6 @@ export function mount(container, ctx) {
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-  }
-
-  // Le planchiste de l'aperçu : saute avant les obstacles, fait un salto sur les grands sauts
-  function botInput(run) {
-    const T = run.terrain;
-    const ahead = T.hazards.find((hz) => (hz.type === 'rock' || hz.type === 'gap') && hz.x0 - run.x > 0 && hz.x0 - run.x < (hz.type === 'rock' ? 70 : 30) + run.vx * 0.05);
-    const pressed = run.grounded && !!ahead;
-    if (pressed) run.__flip = Math.random() < 0.5;
-    const held = !run.grounded && run.__flip && run.airTime < 0.6 && Math.abs(run.airSpin) < Math.PI * 1.7;
-    return { pressed, held };
   }
 
   // ================================================================ descente
@@ -164,13 +154,13 @@ export function mount(container, ctx) {
         stage));
 
     const c2d = canvas.getContext('2d');
-    let run, cam, fx, phase, held = false, pressed = false, paused = false, popTimer = 0, crashShown = false;
+    let run, cam, fx, phase, held = false, fresh = false, releaseAfter = false, paused = false, popTimer = 0, crashShown = false;
     function reset() {
       run = createRun({ world: W.id, course, seed: (Math.random() * 2 ** 31) >>> 0 });
       cam = createCamera();
       fx = { particles: [], spray: [] };
       phase = 'ready';
-      held = false; pressed = false; crashShown = false;
+      held = false; fresh = false; releaseAfter = false; crashShown = false;
       showReady();
       updateHud();
       draw(0);
@@ -183,9 +173,9 @@ export function mount(container, ctx) {
         h('h2.st-card-title', W.courses[course]),
         h('p.st-card-sub', COURSE_LABEL[course]),
         h('ul.st-rules',
-          h('li', h('strong', 'Touche'), ' pour sauter par-dessus les obstacles et les trous.'),
-          h('li', h('strong', 'Reste appuyé'), ' en l’air pour un salto arrière.'),
-          h('li', 'Pose la planche à plat : une réception parfaite donne de la vitesse.')),
+          h('li', h('strong', 'Appuie'), ' : tu te baisses et tu prends de la vitesse.'),
+          h('li', h('strong', 'Lâche'), ' pour sauter : plus tu es resté baissé, plus tu sautes loin. Choisis bien le moment !'),
+          h('li', h('strong', 'En l’air'), ', appuie à nouveau et reste appuyé pour un salto arrière.')),
         b ? h('p.st-card-best', 'Record : ', h('strong', b.score), ' pts · ', b.dist, ' m') : null,
         h('p.st-go', 'Touche l’écran pour partir')));
       overlay.hidden = false;
@@ -276,8 +266,10 @@ export function mount(container, ctx) {
     const loop = (now) => {
       const dt = Math.min(1 / 30, (now - last) / 1000); last = now;
       if (phase === 'ride' && !paused) {
-        step(run, dt, { held, pressed });
-        pressed = false;
+        step(run, dt, { held });
+        // Un appui très bref (appui et relâchement dans la même image) compte quand même
+        fresh = false;
+        if (releaseAfter) { held = false; releaseAfter = false; }
         handleEvents();
         updateHud();
         if (run.state === 'crashed' && !crashShown && run.t - run.crash.t > 0.9) { phase = 'over'; showCrash(); }
@@ -293,9 +285,9 @@ export function mount(container, ctx) {
     function press() {
       if (phase === 'ready') { phase = 'ride'; overlay.hidden = true; overlay.replaceChildren(); sound.unlock(); last = performance.now(); return; }
       if (phase !== 'ride' || paused) return;
-      held = true; pressed = true;
+      held = true; fresh = true;
     }
-    const release = () => { held = false; };
+    const release = () => { if (fresh) releaseAfter = true; else held = false; };
     listen(stage, 'pointerdown', (e) => {
       if (e.target.closest('button')) return;
       if (e.button != null && e.button > 0) return;
@@ -349,8 +341,10 @@ export function mount(container, ctx) {
             h('h2', 'Règle du jeu'),
             h('p', 'Une descente sans fin. Ton planchiste avance tout seul : à toi d’éviter les obstacles et de sauter les trous.'),
             h('ul',
-              h('li', h('strong', 'Touche l’écran'), ' (ou Espace, ↑) pour sauter. On peut sauter encore un instant après avoir quitté le sol.'),
-              h('li', h('strong', 'Reste appuyé'), ' en l’air pour tourner en salto arrière ; relâche pour te redresser.'),
+              h('li', h('strong', 'Appuie'), ' (écran, Espace ou ↑) : le planchiste plie les jambes et accélère.'),
+              h('li', h('strong', 'Lâche'), ' pour sauter. Un appui bref donne un petit saut ; resté baissé un peu plus d’une demi-seconde, le saut est complètement chargé. On peut encore sauter un instant après avoir quitté le sol.'),
+              h('li', h('strong', 'Pièges'), ' : grands trous (saut chargé), îlots et piliers entre deux trous (ni trop court, ni trop loin), obstacle juste après la réception, bord d’en face plus haut. Il faut choisir à la fois la force et le moment du saut.'),
+              h('li', h('strong', 'En l’air'), ', appuie à nouveau et reste appuyé pour tourner en salto arrière ; relâche pour te redresser.'),
               h('li', 'Pour te poser, la planche doit suivre la pente (à 54° près). Réception parfaite : +25 pts et un coup d’accélérateur.'),
               h('li', 'Salto : +100 pts, double salto : +400. Les saltos enchaînés sans tomber multiplient les points (jusqu’à ×5).'),
               h('li', 'Pièce : +10 pts. Chaque mètre parcouru : +1 pt.'),
