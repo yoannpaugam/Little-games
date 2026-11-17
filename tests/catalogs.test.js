@@ -269,11 +269,11 @@ test('catalogue de Dans la rue', async () => {
   assert.ok(fr >= 40 && events.length - fr >= 40, `${fr} en France sur ${events.length}`);
 });
 
-test('enquêtes de La taupe', async () => {
+test('enquêtes d’origine de Murdoku', async () => {
   const cases = await load('games/mole/data/enquetes.json');
-  const { OBJECTS, BASE_POINTS } = await import('../games/mole/logic.js');
+  const { OBJECTS } = await import('../games/mole/logic.js');
   const { AV } = await import('../games/mole/art.js');
-  assert.equal(cases.length, BASE_POINTS.length, 'une enquête par ligne du barème');
+  assert.deepEqual(cases.map((c) => c.n), [4, 5, 6], 'une enquête d’origine pour les niveaux Facile, Moyen et Difficile');
   const cell = (n) => (v) => Array.isArray(v) && v.length === 2 && v.every((k) => Number.isInteger(k) && k >= 0 && k < n);
   const errors = [];
   for (const cs of cases) {

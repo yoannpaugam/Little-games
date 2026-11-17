@@ -18,9 +18,9 @@ export const AV = {
   10: { bg: '#78858a', skin: '#f1cba6', sk2: '#d4a27c', hair: '#222222', style: 'short', acc: 'glasses', eye: '#3a2a1c', suit: '#37485a', shirt: '#eceff0', tie: '#6a7a88', f: 0 }
 };
 
-/** Portrait n° i (64 × 64). dead : barré de rouge (la victime). */
-export function avatar(i, dead) {
-  const a = AV[i] || AV[0], u = `mh${++seq}`, hc = a.hair;
+/** Portrait (64 × 64) : numéro d'un portrait d'AV, ou apparence générée par makeLook(). dead : barré de rouge (la victime). */
+export function avatar(look, dead) {
+  const a = (look && typeof look === 'object') ? look : (AV[look] || AV[0]), u = `mh${++seq}`, hc = a.hair;
   const hairBack = a.style === 'long' ? `<path d="M15 30c-1-14 6-22 17-22s18 8 17 22l1 20c-3 3-7 3-9 1l-1-16H24l-1 16c-2 2-6 2-9-1z" fill="url(#${u}h)"/>` : '';
   const hairFront = {
     short: `<path d="M19.5 28c-1.5-12 4-19 12.5-19s14 7 12.5 19c-1-5-3-8-5-9-4 2-12 2-16 0-2 1-3 4-4 9z" fill="url(#${u}h)"/><path d="M25 12c4-2 10-2 14 1" stroke="rgba(255,255,255,.22)" stroke-width="1.2" fill="none" stroke-linecap="round"/>`,
@@ -74,7 +74,13 @@ const ART = {
   bureau: `${SH}<g ${IN}><rect x="6" y="24" width="4" height="12" fill="#a8803f"/><rect x="30" y="24" width="4" height="12" fill="#a8803f"/><path d="M3 20h34v5H3z" fill="#d3ab5e"/><path d="M5 9h30l2 11H3z" fill="#f3d98f"/><path d="M13 11h14l1 7H12z" fill="#4a5360"/><path d="M14.500 12.300h11l.6 4.500H13.900z" fill="#82e4ec" stroke="none"/><rect x="7" y="12" width="4.500" height="5.500" fill="#fff" transform="rotate(-8 9 15)"/><circle cx="31.500" cy="15" r="2.300" fill="#fff"/><path d="M33.800 14.300q1.500.7 0 1.800" fill="none"/></g>`,
   ecran: `${SH}<g ${IN}><path d="M16 27h8l2 6H14z" fill="#59606e"/><rect x="10" y="33" width="20" height="3.500" rx="1.700" fill="#3f4450"/><rect x="4" y="4" width="32" height="24" rx="2.800" fill="#3b3f4a"/><rect x="7" y="7" width="26" height="18" rx="1.200" fill="#7fe3ea" stroke-width="1"/><circle cx="20" cy="16" r="5.500" fill="none" stroke="#12636d" stroke-width="1.300"/><path d="M20 8.500v5M20 18.500v5M12.500 16h5M22.500 16h5" stroke="#12636d" stroke-width="1.200" fill="none"/><path d="M9 22l4-3 3 2" stroke="#12636d" stroke-width="1" fill="none"/><circle cx="31" cy="26" r=".9" fill="#5dff9a" stroke="none"/></g>`,
   plante: `${SH}<g ${IN}><path d="M20 24C13 21 9 13 11 5c6 3 9 10 9 19z" fill="#58b45f"/><path d="M20 24C27 21 31 13 29 5c-6 3-9 10-9 19z" fill="#58b45f"/><path d="M20 25C16 17 16 9 20 2c4 7 4 15 0 23z" fill="#3f9a4d"/><path d="M20 24C12 25 6 21 4 15c7-1 13 2 16 9z" fill="#4aa957"/><path d="M20 24c8 1 14-3 16-9-7-1-13 2-16 9z" fill="#4aa957"/><path d="M11 24h18l-2.500 12h-13z" fill="#dd7a4b"/><rect x="10" y="22.500" width="20" height="4.200" rx="1.300" fill="#c4633a"/></g>`,
-  etagere: `${SH}<g ${IN}><rect x="5" y="2" width="30" height="34" rx="2" fill="#b98250"/><rect x="8" y="5" width="24" height="28" fill="#6f4624"/><path d="M8 14h24M8 24h24" stroke="#b98250" stroke-width="2" fill="none"/><g stroke="none"><rect x="9.500" y="6" width="3" height="8" fill="#c0463f"/><rect x="13" y="7.500" width="2.800" height="6.500" fill="#3777b5"/><rect x="16.300" y="6" width="3.500" height="8" fill="#e0b84a"/><rect x="20.300" y="8" width="2.800" height="6" fill="#4c9a5c"/><rect x="23.600" y="6.500" width="3.200" height="7.500" fill="#8b5fb0"/><rect x="27.300" y="6" width="3.200" height="8" fill="#d9822f"/><rect x="9.500" y="17" width="4" height="7" fill="#3f9a9a"/><rect x="14" y="16" width="3" height="8" fill="#c0463f"/><rect x="18" y="18" width="3.500" height="6" fill="#e0b84a"/><rect x="23" y="16" width="8" height="8" fill="#e6dfcd"/><rect x="9.500" y="27" width="6" height="6" fill="#7b8a96"/><rect x="16.500" y="28" width="3.500" height="5" fill="#c0463f"/><rect x="21" y="26.500" width="3" height="6.500" fill="#3777b5"/><rect x="25" y="27.500" width="3.500" height="5.500" fill="#e0b84a"/></g></g>`
+  etagere: `${SH}<g ${IN}><rect x="5" y="2" width="30" height="34" rx="2" fill="#b98250"/><rect x="8" y="5" width="24" height="28" fill="#6f4624"/><path d="M8 14h24M8 24h24" stroke="#b98250" stroke-width="2" fill="none"/><g stroke="none"><rect x="9.500" y="6" width="3" height="8" fill="#c0463f"/><rect x="13" y="7.500" width="2.800" height="6.500" fill="#3777b5"/><rect x="16.300" y="6" width="3.500" height="8" fill="#e0b84a"/><rect x="20.300" y="8" width="2.800" height="6" fill="#4c9a5c"/><rect x="23.600" y="6.500" width="3.200" height="7.500" fill="#8b5fb0"/><rect x="27.300" y="6" width="3.200" height="8" fill="#d9822f"/><rect x="9.500" y="17" width="4" height="7" fill="#3f9a9a"/><rect x="14" y="16" width="3" height="8" fill="#c0463f"/><rect x="18" y="18" width="3.500" height="6" fill="#e0b84a"/><rect x="23" y="16" width="8" height="8" fill="#e6dfcd"/><rect x="9.500" y="27" width="6" height="6" fill="#7b8a96"/><rect x="16.500" y="28" width="3.500" height="5" fill="#c0463f"/><rect x="21" y="26.500" width="3" height="6.500" fill="#3777b5"/><rect x="25" y="27.500" width="3.500" height="5.500" fill="#e0b84a"/></g></g>`,
+  // meubles ajoutés pour les enquêtes générées
+  canape: `${SH}<g ${IN}><path d="M5 20V10a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v10z" fill="#c97f6a"/><rect x="2" y="15" width="7" height="19" rx="3" fill="#b86e5a"/><rect x="31" y="15" width="7" height="19" rx="3" fill="#b86e5a"/><path d="M9 20h11v9H9zM20 20h11v9H20z" fill="#e0a08c"/><path d="M9 29h22v4a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2z" fill="#c4826e"/></g>`,
+  chaise: `${SH}<g ${IN}><rect x="11" y="4" width="18" height="12" rx="3" fill="#b07a45"/><path d="M14 8h12M14 12h12" stroke="#8a5a2e" fill="none"/><path d="M12 26v9M28 26v9" stroke-width="2.4"/><rect x="10" y="16" width="20" height="11" rx="2.5" fill="#d9a066"/></g>`,
+  table: `${SH}<g ${IN}><path d="M5 20c1 7 8 12 15 12s14-5 15-12" fill="#e6dfcf"/><ellipse cx="20" cy="18" rx="16" ry="11" fill="#f7f4ec"/><ellipse cx="20" cy="18" rx="11" ry="7" fill="none" stroke="#d8cfbd"/><path d="M20 16v-5" stroke="#3f8a4a"/><circle cx="17.500" cy="10.500" r="2.200" fill="#e05a5a"/><circle cx="22.500" cy="11" r="2" fill="#f0b43c"/><rect x="17" y="15" width="6" height="5" rx="1.500" fill="#7fb6d9"/></g>`,
+  piano: `${SH}<g ${IN}><path d="M6 5h19c6 0 10 6 10 12v6c0 7-5 12-11 12H11a5 5 0 0 1-5-5z" fill="#22252b"/><path d="M9 11h15c4 0 7 3 7 7v5c0 5-3 8-7 8H12a3 3 0 0 1-3-3z" fill="#3a3f48" stroke="none"/><rect x="5" y="4" width="18" height="6" fill="#f6f4ee"/><path d="M8 4v4M11 4v4M14 4v4M17 4v4M20 4v4" stroke-width=".9"/></g>`,
+  coffre: `${SH}<g ${IN}><rect x="6" y="5" width="28" height="30" rx="3" fill="#7d8792"/><rect x="9" y="8" width="22" height="24" rx="2" fill="#97a1ab"/><circle cx="20" cy="20" r="6" fill="#d7dde2"/><circle cx="20" cy="20" r="2" fill="#4a525b"/><path d="M20 13v2M20 25v2M13 20h2M25 20h2"/><rect x="27" y="16" width="3" height="8" rx="1.500" fill="#4a525b"/></g>`,
 };
 export function furniture(t) {
   return `<svg viewBox="0 0 40 40" aria-hidden="true">${ART[t]}</svg>`;
@@ -121,4 +127,35 @@ export function walls(cs) {
     if (w.side === 'right') deco += `<rect x="${x0 + 86}" y="${y0 + 22}" width="13" height="56" rx="6" ${g}/><rect x="${x0 + 90}" y="${y0 + 30}" width="5" height="40" rx="2.500" fill="#8fd0f2"/>`;
   });
   return `<svg class="mh-walls" viewBox="0 0 ${n * 100} ${n * 100}" preserveAspectRatio="none" aria-hidden="true"><g stroke="${W}" stroke-width="7" stroke-linecap="square" fill="none">${walls}</g>${deco}</svg>`;
+}
+
+/* ---------- Apparences générées (enquêtes infinies) ---------- */
+const PAL = {
+  bg: ['#b8433a', '#7b4a9c', '#2f7bb0', '#1f9a86', '#cf6a1c', '#bd2b6a', '#5f7186', '#3d8b4f', '#a8722a', '#6a4fb3', '#c0396b', '#2a8fa0', '#8a3f2f', '#4c6fb5'],
+  skin: [['#f2cda8', '#d3a47e'], ['#f1cba6', '#d4a27c'], ['#e3b894', '#c98f6a'], ['#dba67c', '#b97f55'], ['#c88a52', '#a26a3a'], ['#8f5d3e', '#6e4128'], ['#80502f', '#5e3820'], ['#6a4026', '#4c2b17']],
+  hair: ['#0f0f10', '#17141c', '#2a1d15', '#3f2514', '#5b3a29', '#6b4423', '#a85a22', '#c8a060', '#d9c08a', '#8a8a8a', '#cfcfcf', '#7a2a1a'],
+  eye: ['#2c2018', '#4a3320', '#3d6a52', '#5b7a96', '#3a2412', '#1c120b', '#4b6b8a'],
+  suit: ['#2e3b48', '#26242d', '#1f2428', '#5a3a2c', '#2a3d52', '#1e1e22', '#1c2733', '#3b2f45', '#2f4535', '#4a2f2f'],
+  shirt: ['#f2f2ee', '#e9d9e6', '#dfe3e6', '#f6f1e8', '#e9edf0', '#cfd3d8', '#f4f4f1', '#e8e1cf'],
+  tie: ['#8c1c25', '#2a2f36', '#d9a441', '#3b5b86', '#2f6b46', '#6a3a8a', '#b5462f'],
+  lip: ['#9c3a4a', '#b34e50', '#7e2c3a', '#a8504d', '#c0566a'],
+  ear: ['#d4af37', '#c0c0c8'],
+};
+
+/** Apparence au hasard (rnd : générateur 0–1). g : 'm' | 'f'. victim : fond gris, comme les victimes du catalogue. */
+export function makeLook(rnd, g, { victim = false } = {}) {
+  const pick = (list) => list[Math.floor(rnd() * list.length)];
+  const f = g === 'f' ? 1 : 0;
+  const [skin, sk2] = pick(PAL.skin);
+  const hair = pick(PAL.hair);
+  const look = {
+    bg: victim ? '#78858a' : pick(PAL.bg), skin, sk2, hair,
+    style: f ? pick(['long', 'long', 'bun', 'short']) : pick(['short', 'short', 'short', 'bald']),
+    acc: pick(f ? ['none', 'none', 'glasses', 'shades', 'headset'] : ['none', 'none', 'glasses', 'shades', 'headset', 'mustache']),
+    eye: pick(PAL.eye), suit: victim ? '#37485a' : pick(PAL.suit), shirt: pick(PAL.shirt),
+    tie: f ? null : (rnd() < 0.75 ? pick(PAL.tie) : null), f,
+  };
+  if (f) { look.lip = pick(PAL.lip); if (rnd() < 0.7) look.ear = pick(PAL.ear); }
+  else if (rnd() < 0.35) look.beard = rnd() < 0.5 ? 1 : 2;
+  return look;
 }

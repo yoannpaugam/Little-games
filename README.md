@@ -14,7 +14,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 🐕 Chiens | `games/dogs/` | ✅ jouable |
 | ♀️ Pionnières | `games/women/` | ✅ jouable |
 | 📣 Dans la rue | `games/movements/` | ✅ jouable |
-| 🔎 La taupe | `games/mole/` | ✅ jouable |
+| 🔎 Murdoku | `games/mole/` | ✅ jouable (grilles infinies) |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -97,9 +97,9 @@ Un jeu de frise chronologique sur les mouvements sociaux : 124 grèves, révolte
 
 Faire découvrir 202 femmes célèbres ou, surtout, oubliées de l'histoire : scientifiques et naturalistes, artistes, exploratrices, aviatrices, inventrices, militantes, résistantes, sportives… On voit le portrait de chaque femme, son nom, ses dates et son domaine, et on devine ce qu'elle a accompli. Quatre réponses visibles, une seule tentative, sans points. Après la réponse, une carte biographie la présente (biographie, anecdote, crédit du portrait) ; les femmes révélées sont gardées en mémoire (« Recommencer à zéro » dans les réglages). Flèches, touches ← → ou glissement pour passer d'une femme à l'autre. Galerie des 202 portraits, et un défi Pionnières dans Compète de zinzin. Sources d'inspiration : *Savanturières* (Muséum national d'Histoire naturelle), AWARE, Les femmes de l'histoire, Parcours de pionnières. Les 202 portraits sont fournis par Yoann (`games/women/photos/`, 600 × 900 px) ; le workflow « Portraits (Pionnières) » (`scripts/fetch-pionnieres-photos.mjs`) peut compléter depuis Wikimedia Commons. Règles dans `games/women/quiz.js`, testées par `tests/pionnieres.test.js`.
 
-## 🔎 La taupe
+## 🔎 Murdoku
 
-Une enquête par déduction, en 3 dossiers de plus en plus grands (plans de 4 × 4, 5 × 5 et 6 × 6). Un agent a été éliminé dans le bâtiment : d'après les indices de chaque suspect (« Il était à côté d’une étagère », « Elle était dans les archives », « Il était plus au nord que Lynx »…), on place tout le monde sur le plan, une seule personne par ligne et par colonne, victime comprise, jamais sur un bureau, un écran, une plante ou une étagère. Une fois le plan vérifié, on désigne la taupe : la seule personne présente dans la pièce de la victime. Score sur 100 (34 + 33 + 33), avec des pénalités pour un plan faux, un indice ou une mauvaise accusation. Adapté du fichier « mole-hunt » fourni par Yoann. Règles et solveur dans `games/mole/logic.js` ; `tests/taupe.test.js` vérifie que chaque enquête n'a qu'une solution.
+Une enquête par déduction, à grilles infinies. Une victime a été retrouvée dans un bâtiment : d'après les indices de chaque suspect (« Il était à côté d’un piano », « Elle était dans la voiture-bar », « Il était plus à l’est que Lynx »…), on place tout le monde sur le plan, une seule personne par ligne et par colonne, victime comprise, jamais sur un meuble interdit. Une fois le plan vérifié, on démasque la taupe : la seule personne présente dans la pièce de la victime. 4 niveaux (Facile 4 × 4, Moyen 5 × 5, Difficile 6 × 6, Expert 7 × 7) ; on enchaîne les grilles comme on veut. Chaque grille est tirée par `games/mole/generator.js` : lieu (agence, ambassade, train de nuit, casino, manoir, base polaire), pièces, portes, fenêtres, meubles, personnages (noms de code et portraits dessinés), scénario et indices, puis le solveur de `logic.js` vérifie qu'il n'y a qu'une solution. Les 3 enquêtes d'origine (fichier « mole-hunt » de Yoann) sont la première grille des niveaux Facile, Moyen et Difficile. `tests/murdoku.test.js` vérifie 100 grilles générées.
 
 ## 🎲 Compète de zinzin
 
@@ -194,11 +194,12 @@ games/dogs/              Le jeu « Chiens » (trouver la race d'après la photo)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/movements/         Le jeu « Dans la rue » (frise des mouvements sociaux), autonome
   └─ data/evenements.json  124 événements
-games/mole/              Le jeu « La taupe » (enquête par déduction), autonome
-  ├─ index.js            Vues (présentation, plan, accusation, bilan, réglages)
-  ├─ logic.js            Indices, solveur (solution unique), score (testé)
-  ├─ art.js              Portraits, meubles, murs et fenêtres en SVG
-  ├─ data/enquetes.json  3 enquêtes
+games/mole/              Le jeu « Murdoku » (enquête par déduction, grilles infinies), autonome
+  ├─ index.js            Vues (niveau et présentation, plan, accusation, verdict, réglages)
+  ├─ logic.js            Indices, solveur (solution unique), niveaux, score (testé)
+  ├─ generator.js        Générateur de grilles : lieux, plans, personnages, indices (testé)
+  ├─ art.js              Portraits (fixes ou générés), meubles, murs et fenêtres en SVG
+  ├─ data/enquetes.json  3 enquêtes d'origine
   ├─ styles.css          Styles du jeu (préfixe .mh-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 202 femmes), autonome
