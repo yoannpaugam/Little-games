@@ -13,6 +13,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 🧩 Nonogramme | `games/nonogram/` | ✅ jouable |
 | 🐕 Chiens | `games/dogs/` | ✅ jouable |
 | ♀️ Pionnières | `games/women/` | ✅ jouable |
+| 📣 Dans la rue | `games/movements/` | ✅ jouable |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -86,6 +87,10 @@ Un jeu de logique (picross) : on noircit les cases d'une grille d'après les chi
 ## 🐕 Chiens
 
 On montre la photo d'un chien et il faut trouver sa race, parmi 110 : un QCM à 4 réponses, une seule tentative, 1 point par bonne réponse. Parties de 10 chiens, 3 niveaux (les mauvaises réponses sont plus ou moins proches de la bonne), record. Les photos sont les images principales des articles Wikipédia (Wikimedia Commons, licences libres, crédits affichés) : `data/photos.json` est rempli par le workflow « Chiens : photos » (`scripts/fetch-dog-photos.mjs`), et une photo manquante est cherchée en direct. Tirage et score dans `games/dogs/quiz.js`, testés par `tests/dogs.test.js`.
+
+## 📣 Dans la rue
+
+Un jeu de frise chronologique sur les mouvements sociaux : 124 grèves, révoltes et luttes (étudiants, ouvriers, antiracisme, paix, écologie, droits des femmes, droits LGBT…), en France et dans le monde, de 1789 à aujourd'hui. Une carte est posée sur la frise ; pour chaque événement résumé, on touche la période où il s'est passé (avant, entre ou après les cartes déjà posées). La frise horizontale défile au doigt et se remplit au fil de la partie. Parties de 10 cartes, score sur 10 et record. Réglages : terrain (France, monde ou les deux), année de départ (1789, 1900, 1945, 1968, 1990, 2000) et thèmes. Règles dans `games/movements/frise.js`, testées par `tests/rue.test.js`.
 
 ## ♀️ Pionnières
 
@@ -182,6 +187,8 @@ games/dogs/              Le jeu « Chiens » (trouver la race d'après la photo)
   ├─ data/chiens.json    110 races ; data/photos.json : photos (workflow « Chiens : photos »)
   ├─ styles.css          Styles du jeu (préfixe .dg-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
+games/movements/         Le jeu « Dans la rue » (frise des mouvements sociaux), autonome
+  └─ data/evenements.json  124 événements
 games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 202 femmes), autonome
   ├─ index.js            Logique et vues (jeu, galerie, réglages)
   ├─ quiz.js             Réponses (4 visibles), ordre de jeu, dates (testé)

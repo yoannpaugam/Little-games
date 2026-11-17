@@ -24,6 +24,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 🧩 Nonogramme | `nonogramme` | `games/nonogram/` | `.ng-` | `nonogramme` | — |
 | 🐕 Chiens | `chiens` | `games/dogs/` | `.dg-` | `chiens` | — |
 | ♀️ Pionnières | `pionnieres` | `games/women/` | `.pn-` | `pionnieres` | — |
+| 📣 Dans la rue | `rue` | `games/movements/` | `.dr-` | `rue` | — |
 | 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)

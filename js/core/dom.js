@@ -60,6 +60,8 @@ export function icon(name) {
     dog: 'M6.5 5.5C8 4.5 9.8 4 12 4s4 .5 5.5 1.5V13a5.5 5.5 0 01-11 0zM6.5 5.5L3 7.5l1.5 5 2-1M17.5 5.5l3.5 2-1.5 5-2-1M10 10.5h.01M14 10.5h.01M10.8 14.5h2.4L12 16z',
     // Pionnières
     venus: 'M12 15a6 6 0 100-12 6 6 0 000 12zM12 15v7M9 19h6',
+    // Dans la rue
+    megaphone: 'M3 10v4a1 1 0 001 1h3l8 5V4L7 9H4a1 1 0 00-1 1zM7 15l1.5 5H11l-1-4.4M18.5 9a4 4 0 010 6',
     share: 'M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M12 3v12M7.5 7.5L12 3l4.5 4.5',
   };
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
