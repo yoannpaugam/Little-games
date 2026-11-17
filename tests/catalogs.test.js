@@ -268,3 +268,32 @@ test('catalogue de Dans la rue', async () => {
   const fr = events.filter((e) => e.scope === 'france').length;
   assert.ok(fr >= 40 && events.length - fr >= 40, `${fr} en France sur ${events.length}`);
 });
+
+test('enquêtes de La taupe', async () => {
+  const cases = await load('games/mole/data/enquetes.json');
+  const { OBJECTS, BASE_POINTS } = await import('../games/mole/logic.js');
+  const { AV } = await import('../games/mole/art.js');
+  assert.equal(cases.length, BASE_POINTS.length, 'une enquête par ligne du barème');
+  const cell = (n) => (v) => Array.isArray(v) && v.length === 2 && v.every((k) => Number.isInteger(k) && k >= 0 && k < n);
+  const errors = [];
+  for (const cs of cases) {
+    const n = cs.n;
+    const rooms = new Set(cs.rooms.join(''));
+    errors.push(...checkEntries([cs], {
+      id: [true, (v) => SLUG.test(v)],
+      title: [true, (v) => text(v) && v.length <= 40],
+      teaser: [true, (v) => text(v) && v.length <= 200],
+      n: [true, (v) => Number.isInteger(v) && v >= 4 && v <= 7],
+      rooms: [true, (v) => v.length === n && v.every((r) => typeof r === 'string' && r.length === n)],
+      roomNames: [true, (v) => [...rooms].every((r) => text(v[r]?.name) && /^dans /.test(v[r]?.in)) && Object.keys(v).length === rooms.size],
+      objects: [true, (v) => v.every(([y, x, t]) => cell(n)([y, x]) && t in OBJECTS)],
+      windows: [true, (v) => v.every(([y, x, s]) => cell(n)([y, x]) && ({ top: y === 0, bottom: y === n - 1, left: x === 0, right: x === n - 1 })[s])],
+      doors: [true, (v) => v.every(([y, x, d, k]) => cell(n)([y, x]) && (d === 'right' || d === 'down') && (k === 'door' || k === 'arch')
+        && (d === 'right' ? x + 1 < n && cs.rooms[y][x] !== cs.rooms[y][x + 1] : y + 1 < n && cs.rooms[y][x] !== cs.rooms[y + 1][x]))],
+      victim: [true, (v) => text(v.name) && (v.g === 'm' || v.g === 'f') && v.av in AV && cell(n)(v.cell)],
+      suspects: [true, (v) => v.length === n - 1 && v.every((s) => SLUG.test(s.id) && text(s.name) && (s.g === 'm' || s.g === 'f') && s.av in AV && cell(n)(s.cell) && s.clues.length > 0)],
+      murderer: [true, (v) => cs.suspects.some((s) => s.id === v)],
+    }, 'enquetes'));
+  }
+  assert.deepEqual(errors, []);
+});
