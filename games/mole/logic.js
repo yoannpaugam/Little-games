@@ -1,4 +1,4 @@
-// La taupe : règles, textes des indices, solveur et score. Sans DOM (testé par tests/taupe.test.js).
+// Murdoku : règles, textes des indices, solveur et score. Sans DOM (testé par tests/murdoku.test.js).
 //
 // Une enquête (data/enquetes.json) :
 //   n : taille du plan (n × n) ; rooms : n lignes de lettres (une lettre = une pièce) ;
@@ -6,7 +6,7 @@
 //   doors : [y, x, 'right' | 'down', 'door' | 'arch'] ; victim : { name, g, av, cell } ;
 //   suspects : [{ id, name, g, av, cell, clues }] ; murderer : id.
 // Indices (clues) : { t: 'next', o } (case voisine, même pièce, avec ce meuble) · { t: 'on', o } ·
-//   { t: 'window' } · { t: 'room', r } · { t: 'north' | 'south', of: id d'un autre suspect }.
+//   { t: 'window' } · { t: 'room', r } · { t: 'north' | 'south' | 'east' | 'west', of: id d'un autre suspect }.
 
 /** Meubles : occupables (occ) ou non, nom et article. */
 export const OBJECTS = {
@@ -17,17 +17,31 @@ export const OBJECTS = {
   ecran: { occ: false, label: 'écran', un: 'un' },
   plante: { occ: false, label: 'plante', un: 'une' },
   etagere: { occ: false, label: 'étagère', un: 'une' },
+  canape: { occ: true, label: 'canapé', un: 'un' },
+  chaise: { occ: true, label: 'chaise', un: 'une' },
+  table: { occ: false, label: 'table', un: 'une' },
+  piano: { occ: false, label: 'piano', un: 'un' },
+  coffre: { occ: false, label: 'coffre-fort', un: 'un' },
 };
 export const OCCUPIABLE = Object.keys(OBJECTS).filter((t) => OBJECTS[t].occ);
 export const BLOCKING = Object.keys(OBJECTS).filter((t) => !OBJECTS[t].occ);
 
-export const BASE_POINTS = [34, 33, 33]; // points maximum par enquête (total 100)
-export const CHECK_PENALTY = 3;
-export const ACCUSE_PENALTY = 10;
-export const HINT_PENALTY = 5;
+export const MAX_POINTS = 100; // points d'une grille, avant pénalités
+export const CHECK_PENALTY = 10;
+export const ACCUSE_PENALTY = 30;
+export const HINT_PENALTY = 15;
 export const MAX_HINTS = 3;
 
+/** Niveaux : taille du plan (n × n). */
+export const LEVELS = [
+  { n: 4, id: 'facile', label: 'Facile' },
+  { n: 5, id: 'moyen', label: 'Moyen' },
+  { n: 6, id: 'difficile', label: 'Difficile' },
+  { n: 7, id: 'expert', label: 'Expert' },
+];
+
 export const VICTIM = 'victime';
+export const RELATIVE = ['north', 'south', 'east', 'west']; // indices qui comparent deux suspects
 export const key = (y, x) => `${y},${x}`;
 export const roomAt = (cs, y, x) => cs.rooms[y][x];
 
@@ -68,6 +82,8 @@ export function clueText(clue, person, cs) {
     case 'room': return `${p} était ${cs.roomNames[clue.r].in}.`;
     case 'north': return `${p} était plus au nord que ${other(clue.of)}.`;
     case 'south': return `${p} était plus au sud que ${other(clue.of)}.`;
+    case 'east': return `${p} était plus à l’est que ${other(clue.of)}.`;
+    case 'west': return `${p} était plus à l’ouest que ${other(clue.of)}.`;
     default: return '';
   }
 }
@@ -91,6 +107,8 @@ export function clueHolds(clue, cs, [y, x], cells = {}, objs = objectMap(cs)) {
     }
     case 'north': return cells[clue.of] ? y < cells[clue.of][0] : true;
     case 'south': return cells[clue.of] ? y > cells[clue.of][0] : true;
+    case 'east': return cells[clue.of] ? x > cells[clue.of][1] : true;
+    case 'west': return cells[clue.of] ? x < cells[clue.of][1] : true;
     default: return false;
   }
 }
@@ -112,32 +130,50 @@ export function aloneWithVictim(cs, cells) {
 export function solve(cs, limit = 2) {
   const objs = objectMap(cs);
   const S = cs.suspects;
-  const out = [];
-  const cells = {};
+  const idx = new Map(S.map((s, i) => [s.id, i]));
+  // Cases possibles de chaque suspect d'après ses indices sur lui seul (pièce, meuble, fenêtre…)
+  const dom = S.map((s) => {
+    const out = [];
+    for (let y = 0; y < cs.n; y++) for (let x = 0; x < cs.n; x++) {
+      if (isBlocked(cs, y, x, objs)) continue;
+      if (s.clues.every((c) => RELATIVE.includes(c.t) || clueHolds(c, cs, [y, x], {}, objs))) out.push([y, x]);
+    }
+    return out;
+  });
+  // Indices relatifs, rangés par suspect concerné (le sien et ceux qui le visent)
+  const rel = S.map(() => []);
+  S.forEach((s, i) => s.clues.forEach((c) => {
+    if (!RELATIVE.includes(c.t) || !idx.has(c.of)) return;
+    const j = idx.get(c.of);
+    rel[i].push([i, j, c]);
+    rel[j].push([i, j, c]);
+  }));
+  const order = S.map((_, i) => i).sort((a, b) => dom[a].length - dom[b].length);
+  const pos = Array(S.length).fill(null);
   const rows = new Set(), cols = new Set();
-  // les indices nord / sud ne sont vérifiés qu'une fois les deux suspects placés
-  const ready = (clue) => (clue.t === 'north' || clue.t === 'south') ? Boolean(cells[clue.of]) : true;
-  function okAll() {
-    return S.every((s) => !cells[s.id] || s.clues.every((c) => !ready(c) || clueHolds(c, cs, cells[s.id], cells, objs)));
-  }
-  (function place(i) {
+  const out = [];
+  const relOk = ([y, x], [oy, ox], t) => (t === 'north' ? y < oy : t === 'south' ? y > oy : t === 'east' ? x > ox : x < ox);
+  (function place(k) {
     if (out.length >= limit) return;
-    if (i === S.length) {
-      const y = [...Array(cs.n).keys()].find((k) => !rows.has(k));
-      const x = [...Array(cs.n).keys()].find((k) => !cols.has(k));
-      if (y == null || x == null || isBlocked(cs, y, x, objs)) return;
-      out.push({ ...cells, [VICTIM]: [y, x] });
+    if (k === S.length) {
+      let y = 0; while (rows.has(y)) y++;
+      let x = 0; while (cols.has(x)) x++;
+      if (y >= cs.n || x >= cs.n || isBlocked(cs, y, x, objs)) return;
+      const sol = { [VICTIM]: [y, x] };
+      S.forEach((s, i) => { sol[s.id] = pos[i]; });
+      out.push(sol);
       return;
     }
-    const s = S[i];
-    for (let y = 0; y < cs.n; y++) {
-      if (rows.has(y)) continue;
-      for (let x = 0; x < cs.n; x++) {
-        if (cols.has(x) || isBlocked(cs, y, x, objs)) continue;
-        cells[s.id] = [y, x]; rows.add(y); cols.add(x);
-        if (okAll()) place(i + 1);
-        delete cells[s.id]; rows.delete(y); cols.delete(x);
+    const i = order[k];
+    for (const c of dom[i]) {
+      if (rows.has(c[0]) || cols.has(c[1])) continue;
+      pos[i] = c;
+      if (rel[i].every(([a, b, cl]) => !pos[a] || !pos[b] || relOk(pos[a], pos[b], cl.t))) {
+        rows.add(c[0]); cols.add(c[1]);
+        place(k + 1);
+        rows.delete(c[0]); cols.delete(c[1]);
       }
+      pos[i] = null;
     }
   })(0);
   return out;
@@ -151,9 +187,9 @@ export function wrongPlaced(cs, placed) {
   }).map((p) => p.id);
 }
 
-/** Points d'une enquête, d'après les pénalités. */
-export function caseScore(i, { fails = 0, wrong = 0, hints = 0 } = {}) {
-  return Math.max(0, (BASE_POINTS[i] ?? 33) - fails * CHECK_PENALTY - wrong * ACCUSE_PENALTY - hints * HINT_PENALTY);
+/** Points d'une grille, d'après les pénalités. */
+export function caseScore({ fails = 0, wrong = 0, hints = 0 } = {}) {
+  return Math.max(0, MAX_POINTS - fails * CHECK_PENALTY - wrong * ACCUSE_PENALTY - hints * HINT_PENALTY);
 }
 
 /** Personne à révéler pour un indice : un suspect mal placé d'abord, la victime en dernier. */
