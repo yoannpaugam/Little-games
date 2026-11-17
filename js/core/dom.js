@@ -67,6 +67,10 @@ export function icon(name) {
     // Portrait-robot : un portrait dans un cadre
     portrait: 'M4 3h16v18H4zM12 13a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM7.5 21a4.5 4.5 0 019 0M9 4.5h6',
     share: 'M4 13v6a2 2 0 002 2h12a2 2 0 002-2v-6M12 3v12M7.5 7.5L12 3l4.5 4.5',
+    // Steep : une pente de montagne
+    mountain: 'M2 20L9.5 7l3.5 6 2.5-4L22 20zM7.6 10.3L9.5 12l1.8-1.6M3 20h18',
+    pause: 'M8 5v14M16 5v14',
+    replay: 'M3 12a9 9 0 109-9 9.7 9.7 0 00-6.7 2.8L3 8M3 3v5h5',
   };
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 24 24');

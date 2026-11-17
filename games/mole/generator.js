@@ -3,8 +3,8 @@
 // une solution et des indices, puis vérifie avec le solveur qu'il n'y a qu'une seule solution.
 // Le résultat a le même format que data/enquetes.json (les portraits sont des apparences `look`).
 
-import { OBJECTS, RELATIVE, VICTIM, key, solve, aloneWithVictim, objectMap, isBlocked } from './logic.js?v=1.57.0';
-import { makeLook } from './art.js?v=1.57.0';
+import { OBJECTS, RELATIVE, VICTIM, key, solve, aloneWithVictim, objectMap, isBlocked } from './logic.js?v=1.58.0';
+import { makeLook } from './art.js?v=1.58.0';
 
 export const GENERATOR_VERSION = 1;
 export const DOSSIER_SIZES = [4, 5, 6]; // les 3 enquêtes d'un dossier

@@ -27,6 +27,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 📣 Dans la rue | `rue` | `games/movements/` | `.dr-` | `rue` | — |
 | 🔎 Murdoku | `murdoku` | `games/mole/` | `.mh-` | `taupe` | — |
 | 🕵️ Portrait-robot | `robot` | `games/sketch/` | `.pr-` | `robot` | — |
+| 🏔️ Steep | `steep` | `games/steep/` | `.st-` | `steep` | — |
 | 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)
