@@ -16,6 +16,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | 📣 Dans la rue | `games/movements/` | ✅ jouable |
 | 🔎 Murdoku | `games/mole/` | ✅ jouable (grilles infinies) |
 | 🕵️ Portrait-robot | `games/sketch/` | ✅ jouable |
+| 🏔️ Steep | `games/steep/` | ✅ jouable (5 mondes, 3 parcours chacun) |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -105,6 +106,10 @@ Une enquête par déduction, à grilles infinies. Une victime a été retrouvée
 ## 🕵️ Portrait-robot
 
 Un témoin décrit le suspect, parfois son physique, parfois juste son genre (« un vrai bourgeois, une tête à jouer à la pétanque le dimanche »). On compose le portrait-robot pièce par pièce : 16 parties (tête, teint, cheveux et leur couleur, sourcils, yeux et leur couleur, nez, bouche, oreilles, barbe, signes particuliers, lunettes, chapeau, bijoux et maquillage, tenue), une dizaine de propositions chacune, toutes dessinées en SVG. Puis on montre le portrait au témoin, qui dit à combien de pour cent il ressemble et ce qui manque. 58 dépositions, ou sa propre description pour décrire quelqu'un de la bande ; un dé pour un visage farfelu ; album des portraits et export en image. Dessin et ressemblance dans `games/sketch/parts.js`, testés par `tests/robot.test.js`.
+
+## 🏔️ Steep
+
+Une descente sans fin en planche, à travers 5 mondes dessinés en code : les Cimes (neige et sapins), les Dunes (sandboard entre les cactus), la Forêt rousse (bouleaux et troncs couchés), le Volcan (cendres et coulées de lave) et la Banquise (glace bleue sous le ciel de nuit, ça glisse plus vite). Chaque monde a 3 parcours : Balade (facile), Bosses (collines et tremplins pour les figures) et Abîmes (crevasses et falaises). Le terrain est tiré au hasard à chaque descente et durcit au fil des mètres. On touche pour sauter, on reste appuyé en l'air pour un salto arrière ; une réception à plat donne de la vitesse, une réception de travers fait tomber. Points : 1 par mètre, 10 par pièce, 100 par salto (400 pour un double), multipliés par les enchaînements. Cycle jour et nuit, météo propre à chaque monde, sons générés. Jeu original : personnage, mondes et dessins créés pour Little Games. Moteur (terrain, physique, figures) dans `games/steep/engine.js`, testé par `tests/steep.test.js`.
 
 ## 🎲 Compète de zinzin
 
@@ -212,6 +217,13 @@ games/sketch/            Le jeu « Portrait-robot » (composer un visage d'aprè
   ├─ parts.js            Pièces du visage, dessin SVG, ressemblance (testé)
   ├─ data/temoins.json   58 dépositions et leurs critères
   ├─ styles.css          Styles du jeu (préfixe .pr-)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/steep/             Le jeu « Steep » (descente en planche, 5 mondes), autonome
+  ├─ index.js            Vues (choix du monde et du parcours, descente, règles et records), commandes, sons
+  ├─ engine.js           Terrain procédural, physique, sauts, saltos, score (testé, sans DOM)
+  ├─ worlds.js           Les 5 mondes (physique, couleurs, décor) et les 3 types de parcours
+  ├─ render.js           Dessin sur canvas : ciel, montagnes, terrain, obstacles, planchiste, météo
+  ├─ styles.css          Styles du jeu (préfixe .st-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 202 femmes), autonome
   ├─ index.js            Logique et vues (jeu, galerie, réglages)
