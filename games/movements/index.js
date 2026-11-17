@@ -4,12 +4,12 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (partie) | ['reglages']
 
-import { h, icon } from '../../js/core/dom.js?v=1.58.0';
-import { createStore } from '../../js/core/storage.js?v=1.58.0';
+import { h, icon } from '../../js/core/dom.js?v=1.59.0';
+import { createStore } from '../../js/core/storage.js?v=1.59.0';
 import {
   THEMES, SCOPES, SINCE, MIN_POOL, DEFAULT_SETTINGS,
   filterEvents, drawGame, isRightZone, insertIndex, zoneLabel,
-} from './frise.js?v=1.58.0';
+} from './frise.js?v=1.59.0';
 
 const store = createStore('rue', { version: 1 });
 

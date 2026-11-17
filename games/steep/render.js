@@ -1,7 +1,7 @@
 // Steep : dessin d'une descente sur un canvas 2D (ciel, montagnes, terrain, obstacles, pièces, planchiste, météo).
 // Tout est dessiné en code : aucune image.
 
-import { worldById } from './worlds.js?v=1.58.0';
+import { worldById } from './worlds.js?v=1.59.0';
 
 const TAU = Math.PI * 2;
 const DAY = 140; // durée d'un cycle jour → nuit → jour (s)
@@ -247,6 +247,15 @@ export function drawFrame(ctx, run, cam, view, fx, opts = {}) {
 
   // ---------------- planchiste
   drawRider(ctx, run, sx(run.x), sy(run.y), s * 1.35, W);
+  // Jauge du saut : un arc qui se remplit au-dessus du planchiste tant qu'on reste baissé
+  if (run.state === 'ride' && run.holdGround) {
+    const gx = sx(run.x), gy = sy(run.y) - 62 * s, r = 9 * s + 4;
+    ctx.lineWidth = Math.max(3, 3.5 * s); ctx.lineCap = 'round';
+    ctx.strokeStyle = 'rgba(13,12,15,.45)';
+    ctx.beginPath(); ctx.arc(gx, gy, r, Math.PI * 0.75, Math.PI * 2.25); ctx.stroke();
+    ctx.strokeStyle = run.charge >= 1 ? '#ffe27a' : '#8fd3ff';
+    ctx.beginPath(); ctx.arc(gx, gy, r, Math.PI * 0.75, Math.PI * (0.75 + 1.5 * run.charge)); ctx.stroke();
+  }
 
   // ---------------- décor du premier plan
   for (const d of T.decor) if (!d.back && d.x > x0 - 60 && d.x < x1 + 60) drawDecor(ctx, W, sx(d.x), sy(d.y) + 10 * s, s * d.size, d.kind, t, 1, night);
@@ -412,7 +421,8 @@ export function drawRider(ctx, run, x, y, s, W, colors = {}) {
   ctx.beginPath(); ctx.moveTo(-15, -1.5); ctx.lineTo(13, -1.5); ctx.quadraticCurveTo(17, -1.5, 18, -4); ctx.stroke();
   ctx.strokeStyle = W.board === 'sandboard' ? '#7fd0f0' : '#ff8a3d'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(-12, -1.5); ctx.lineTo(10, -1.5); ctx.stroke();
-  const crouch = run.grounded ? 0 : Math.min(1, run.airTime * 4) * 3; // on se ramasse en l'air
+  // Baissé quand on charge le saut (jusqu'à 7 unités), ramassé en l'air
+  const crouch = run.grounded || run.holdGround ? (run.holdGround ? 2 + run.charge * 5 : 0) : Math.min(1, run.airTime * 4) * 3;
   // Jambes
   ctx.strokeStyle = pants; ctx.lineWidth = 4.2;
   ctx.beginPath(); ctx.moveTo(-6, -4); ctx.lineTo(-4, -11 + crouch); ctx.lineTo(-1, -17 + crouch); ctx.stroke();

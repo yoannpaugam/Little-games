@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createTerrain, createRun, step, wrapAngle, distanceM, totalScore, crashText, MAX_GAP, rngFrom } from '../games/steep/engine.js';
+import { createTerrain, createRun, step, wrapAngle, distanceM, totalScore, crashText, rngFrom, autoPilot, jump, predictJump, jumpImpulse, JUMP_MIN, JUMP_MAX, CHARGE_TIME } from '../games/steep/engine.js';
 import { WORLDS, COURSE_TYPES, COURSE_ORDER, worldById } from '../games/steep/worlds.js';
 
 test('les mondes ont tout ce qu’il faut', () => {
@@ -33,13 +33,10 @@ test('le terrain est reproductible, continu et franchissable', () => {
       assert.ok(a.ground(29000).y < a.ground(1000)?.y ?? 0);
       for (const hz of a.hazards) {
         if (hz.type === 'gap') {
-          assert.ok(hz.x1 - hz.x0 <= MAX_GAP + 1e-9, 'crevasse franchissable');
-          assert.ok(hz.yFar < hz.yNear, 'on arrive plus bas qu’on part');
+          assert.ok(hz.x1 - hz.x0 <= 225, 'trou pas trop large');
+          assert.ok(hz.yFar < hz.yNear + 33, 'bord d’en face au plus un peu plus haut');
         }
       }
-      // Jamais deux dangers collés
-      const xs = a.hazards.map((hz) => hz.x0).sort((p, q) => p - q);
-      for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i - 1] > 150, `obstacles espacés (${xs[i - 1]} → ${xs[i]})`);
     }
   }
 });
@@ -47,26 +44,67 @@ test('le terrain est reproductible, continu et franchissable', () => {
 test('les parcours se distinguent : Abîmes a bien plus de trous que Balade', () => {
   const count = (course) => {
     let n = 0;
-    for (let seed = 1; seed <= 10; seed++) { const T = createTerrain({ course, seed }); T.extend(40000); n += T.hazards.filter((h) => h.type !== 'rock').length; }
+    for (let seed = 1; seed <= 10; seed++) { const T = createTerrain({ course, seed }); T.extend(40000); n += T.hazards.filter((h) => h.type === 'gap').length; }
     return n;
   };
   assert.ok(count('abimes') > count('balade') * 3);
 });
 
-// Planchiste automatique : saute devant chaque obstacle et chaque trou
-function bot(run) {
-  const ahead = run.terrain.hazards.find((hz) => (hz.type === 'rock' || hz.type === 'gap') && hz.x0 - run.x > 0 && hz.x0 - run.x < (hz.type === 'rock' ? 70 : 30) + run.vx * 0.05);
-  return { pressed: run.grounded && !!ahead, held: false };
-}
-
-test('un joueur qui saute au bon moment descend loin dans tous les mondes', () => {
+test('chaque piège est franchissable : le pilote automatique descend 2 km partout', () => {
   for (const w of WORLDS) {
-    for (const course of ['balade', 'bosses']) {
-      const run = createRun({ world: w.id, course, seed: 3 });
-      for (let i = 0; i < 60 * 60 && run.state === 'ride'; i++) step(run, 1 / 60, bot(run));
-      assert.ok(distanceM(run) > 600, `${w.id}/${course} : ${distanceM(run)} m (${run.crash?.reason})`);
+    for (const course of COURSE_ORDER) {
+      for (const seed of [1, 2, 3]) {
+        const run = createRun({ world: w.id, course, seed });
+        for (let i = 0; i < 60 * 150 && run.state === 'ride' && distanceM(run) < 2000; i++) { step(run, 1 / 60, autoPilot(run)); run.events.length = 0; }
+        assert.ok(distanceM(run) >= 2000, `${w.id}/${course}/${seed} : ${distanceM(run)} m (${run.crash?.reason})`);
+      }
     }
   }
+});
+
+test('les pièges demandent de bien juger : sauter toujours pareil fait tomber', () => {
+  let falls = 0;
+  for (let seed = 1; seed <= 12; seed++) {
+    const run = createRun({ world: 'cimes', course: 'abimes', seed });
+    for (let i = 0; i < 60 * 120 && run.state === 'ride'; i++) {
+      const hz = run.terrain.hazards.find((z) => (z.type === 'rock' || z.type === 'gap') && z.x0 > run.x);
+      if (run.grounded && hz && hz.x0 - run.x < 25) jump(run, 0.3);
+      step(run, 1 / 60, {}); run.events.length = 0;
+    }
+    if (run.state === 'crashed') falls++;
+  }
+  assert.ok(falls >= 10, `${falls}/12 chutes`);
+});
+
+test('appuyer charge le saut, relâcher saute ; un saut chargé va plus loin', () => {
+  const run = createRun({ world: 'cimes', course: 'balade', seed: 4 });
+  step(run, 0.5, {});
+  const v0 = run.vx;
+  for (let i = 0; i < 40; i++) step(run, 1 / 60, { held: true });
+  assert.ok(run.grounded && run.charge >= 1, 'chargé au bout de ' + CHARGE_TIME + ' s');
+  assert.ok(run.vx >= v0 * 0.95, 'baissé, on ne ralentit pas');
+  step(run, 1 / 60, { held: false });
+  assert.ok(!run.grounded, 'le relâchement fait sauter');
+  assert.equal(run.charge, 0);
+  assert.equal(jumpImpulse(0), JUMP_MIN);
+  assert.equal(jumpImpulse(1), JUMP_MAX);
+  const r2 = createRun({ world: 'cimes', course: 'balade', seed: 4 });
+  step(r2, 0.5, {});
+  const short = predictJump(r2, 0), long = predictJump(r2, 1);
+  assert.ok(short.ok && long.ok && long.x > short.x + 80, `${short.x} → ${long.x}`);
+  // Un appui commencé au sol ne fait pas de salto en l'air
+  const r3 = createRun({ world: 'cimes', course: 'balade', seed: 4 });
+  step(r3, 0.5, {});
+  step(r3, 1 / 60, { held: true });
+  assert.ok(r3.holdGround);
+  // Il quitte le sol sans avoir relâché (bord d'une bosse) : pas de salto tant qu'on n'a pas réappuyé
+  const g = r3.terrain.ground(r3.x);
+  Object.assign(r3, { grounded: false, sinceGround: 1, airTime: 0.3, y: g.y + 80, vy: 200 });
+  for (let i = 0; i < 10; i++) step(r3, 1 / 60, { held: true });
+  assert.ok(Math.abs(r3.spin) < 0.5);
+  step(r3, 1 / 60, { held: false });
+  for (let i = 0; i < 10; i++) step(r3, 1 / 60, { held: true });
+  assert.ok(r3.spin > 3, 'un nouvel appui en l’air fait tourner');
 });
 
 test('sans sauter, on finit par tomber sur un parcours Abîmes', () => {
@@ -81,9 +119,10 @@ test('un salto réussi rapporte des points', () => {
   for (let seed = 1; seed <= 4; seed++) {
     const run = createRun({ world: 'cimes', course: 'bosses', seed });
     step(run, 2, {});
-    step(run, 1 / 120, { pressed: true, held: true });
+    jump(run, 1);
+    step(run, 1 / 120, { held: false });
     // On tourne presque un tour, puis on lâche : le redressement automatique termine la rotation
-    for (let i = 0; i < 1000 && run.state === 'ride' && !run.grounded; i++) step(run, 1 / 120, { held: Math.abs(run.airSpin) < Math.PI * 2 - 0.3 });
+    for (let i = 0; i < 1000 && run.state === 'ride' && !run.grounded; i++) step(run, 1 / 120, { held: Math.abs(run.airSpin) < Math.PI * 2 - 1 });
     assert.equal(run.state, 'ride', `seed ${seed} : réception réussie`);
     assert.equal(run.flips, 1);
     assert.ok(run.score >= 100);
@@ -104,6 +143,7 @@ test('une réception à l’envers fait tomber, une réception à plat non', () 
 });
 
 test('pièces, score total et angles', () => {
+  const bot = (r) => autoPilot(r);
   assert.equal(wrapAngle(Math.PI * 3), Math.PI);
   assert.ok(Math.abs(wrapAngle(-Math.PI * 2.5) + Math.PI / 2) < 1e-9);
   const run = createRun({ world: 'dunes', course: 'balade', seed: 9 });

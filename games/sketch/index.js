@@ -4,11 +4,11 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (portrait) | ['album'] | ['album', id] | ['reglages']
 
-import { h, icon } from '../../js/core/dom.js?v=1.58.0';
-import { createStore } from '../../js/core/storage.js?v=1.58.0';
+import { h, icon } from '../../js/core/dom.js?v=1.59.0';
+import { createStore } from '../../js/core/storage.js?v=1.59.0';
 import {
   CATEGORIES, DEFAULT_FACE, cleanFace, choose, isChosen, randomFace, renderFace, scoreFace, checkText, reaction, quips,
-} from './parts.js?v=1.58.0';
+} from './parts.js?v=1.59.0';
 
 const store = createStore('robot', { version: 1 });
 const ALBUM_MAX = 60;
