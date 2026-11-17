@@ -15,6 +15,7 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | ♀️ Pionnières | `games/women/` | ✅ jouable |
 | 📣 Dans la rue | `games/movements/` | ✅ jouable |
 | 🔎 Murdoku | `games/mole/` | ✅ jouable (grilles infinies) |
+| 🕵️ Portrait-robot | `games/sketch/` | ✅ jouable |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -100,6 +101,10 @@ Faire découvrir 202 femmes célèbres ou, surtout, oubliées de l'histoire : sc
 ## 🔎 Murdoku
 
 Une enquête par déduction, à grilles infinies. Une victime a été retrouvée dans un bâtiment : d'après les indices de chaque suspect (« Il était à côté d’un piano », « Elle était dans la voiture-bar », « Il était plus à l’est que Lynx »…), on place tout le monde sur le plan, une seule personne par ligne et par colonne, victime comprise, jamais sur un meuble interdit. Une fois le plan vérifié, on démasque la taupe : la seule personne présente dans la pièce de la victime. 4 niveaux (Facile 4 × 4, Moyen 5 × 5, Difficile 6 × 6, Expert 7 × 7) ; on enchaîne les grilles comme on veut. Chaque grille est tirée par `games/mole/generator.js` : lieu (agence, ambassade, train de nuit, casino, manoir, base polaire), pièces, portes, fenêtres, meubles, personnages (noms de code et portraits dessinés), scénario et indices, puis le solveur de `logic.js` vérifie qu'il n'y a qu'une solution. Les 3 enquêtes d'origine (fichier « mole-hunt » de Yoann) sont la première grille des niveaux Facile, Moyen et Difficile. `tests/murdoku.test.js` vérifie 100 grilles générées.
+
+## 🕵️ Portrait-robot
+
+Un témoin décrit le suspect, parfois son physique, parfois juste son genre (« un vrai bourgeois, une tête à jouer à la pétanque le dimanche »). On compose le portrait-robot pièce par pièce : 16 parties (tête, teint, cheveux et leur couleur, sourcils, yeux et leur couleur, nez, bouche, oreilles, barbe, signes particuliers, lunettes, chapeau, bijoux et maquillage, tenue), une dizaine de propositions chacune, toutes dessinées en SVG. Puis on montre le portrait au témoin, qui dit à combien de pour cent il ressemble et ce qui manque. 58 dépositions, ou sa propre description pour décrire quelqu'un de la bande ; un dé pour un visage farfelu ; album des portraits et export en image. Dessin et ressemblance dans `games/sketch/parts.js`, testés par `tests/robot.test.js`.
 
 ## 🎲 Compète de zinzin
 
@@ -201,6 +206,12 @@ games/mole/              Le jeu « Murdoku » (enquête par déduction, grilles 
   ├─ art.js              Portraits (fixes ou générés), meubles, murs et fenêtres en SVG
   ├─ data/enquetes.json  3 enquêtes d'origine
   ├─ styles.css          Styles du jeu (préfixe .mh-)
+  └─ SPEC.md             Spécification fonctionnelle du jeu
+games/sketch/            Le jeu « Portrait-robot » (composer un visage d'après un témoin), autonome
+  ├─ index.js            Vues (déposition, composition, verdict, album, réglages)
+  ├─ parts.js            Pièces du visage, dessin SVG, ressemblance (testé)
+  ├─ data/temoins.json   58 dépositions et leurs critères
+  ├─ styles.css          Styles du jeu (préfixe .pr-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 202 femmes), autonome
   ├─ index.js            Logique et vues (jeu, galerie, réglages)

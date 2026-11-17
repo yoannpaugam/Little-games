@@ -86,6 +86,14 @@ export const GAMES = [
     load: () => import('./mole/index.js?v=1.56.0'),
   },
   {
+    id: 'robot',
+    title: 'Portrait-robot',
+    description: 'Un témoin décrit le suspect : compose son portrait, des sourcils au chapeau.',
+    icon: 'portrait',
+    accent: '#e8e2d0',
+    load: () => import('./sketch/index.js?v=1.55.0'),
+  },
+  {
     id: 'zinzin',
     title: 'Compète de zinzin',
     description: 'Le jeu de plateau qui enchaîne les défis de tous les jeux, sur un ou plusieurs téléphones.',
