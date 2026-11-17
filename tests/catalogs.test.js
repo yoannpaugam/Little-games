@@ -243,3 +243,28 @@ test('portraits des Pionnières : uniquement des femmes du catalogue, avec créd
     }
   }
 });
+
+test('catalogue de Dans la rue', async () => {
+  const events = await load('games/movements/data/evenements.json');
+  const { THEMES } = await import('../games/movements/frise.js');
+  assert.ok(events.length >= 100);
+  const errors = checkEntries(events, {
+    id: [true, (v) => SLUG.test(v)],
+    title: [true, (v) => text(v) && v.length <= 60],
+    year: [true, (v) => Number.isInteger(v) && v >= 1789 && v <= THIS_YEAR],
+    scope: [true, (v) => v === 'france' || v === 'monde'],
+    place: [true, (v) => text(v) && v.length <= 45],
+    theme: [true, (v) => v in THEMES],
+    summary: [true, (v) => text(v) && v.length >= 100 && v.length <= 330],
+  }, 'evenements');
+  // Le titre et le résumé ne doivent pas donner l'année (ni aucune autre année)
+  events.forEach((e) => {
+    if (/\b(1[789]\d\d|20\d\d)\b/.test(`${e.title} ${e.summary}`)) errors.push(`evenements ${e.id} : une année apparaît dans le texte`);
+  });
+  const titles = events.map((e) => e.title);
+  titles.forEach((t, i) => { if (titles.indexOf(t) !== i) errors.push(`evenements : « ${t} » en double`); });
+  assert.deepEqual(errors, []);
+  // Équilibre France / monde
+  const fr = events.filter((e) => e.scope === 'france').length;
+  assert.ok(fr >= 40 && events.length - fr >= 40, `${fr} en France sur ${events.length}`);
+});
