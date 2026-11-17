@@ -1,0 +1,59 @@
+[
+  {
+    "id": "courrier",
+    "title": "Le courrier disparu",
+    "teaser": "Le courrier de M a été retrouvé sans vie dans le bâtiment. Il transportait une clé de chiffrement. Trois suspects, un seul coupable.",
+    "n": 4,
+    "rooms": ["AABB","AABB","CCCB","CCCC"],
+    "roomNames": {"A":{"name":"Sas d’entrée","in":"dans le sas d’entrée"},"B":{"name":"Salle des codes","in":"dans la salle des codes"},"C":{"name":"Archives","in":"dans les archives"}},
+    "objects": [[3,0,"ecran"],[2,0,"bureau"],[2,3,"lit"],[2,1,"tapis"],[1,3,"etagere"],[3,3,"fauteuil"],[3,2,"plante"]],
+    "windows": [[3,1,"bottom"],[3,3,"right"],[0,0,"left"]],
+    "doors": [[0,1,"right","arch"],[1,0,"down","door"]],
+    "victim": {"name":"Le Courrier","g":"m","av":8,"cell":[2,2]},
+    "suspects": [
+      {"id":"lynx","name":"Lynx","g":"m","av":4,"cell":[0,3],"clues":[{"t":"next","o":"etagere"}]},
+      {"id":"vesper","name":"Vesper","g":"f","av":1,"cell":[3,1],"clues":[{"t":"window"},{"t":"next","o":"tapis"}]},
+      {"id":"cobra","name":"Cobra","g":"m","av":0,"cell":[1,0],"clues":[{"t":"room","r":"A"},{"t":"south","of":"lynx"}]}
+    ],
+    "murderer": "vesper"
+  },
+  {
+    "id": "archives",
+    "title": "Les archives muettes",
+    "teaser": "L’archiviste de l’agence a été éliminée avant d’avoir pu parler. Quatre suspects étaient dans le bâtiment : qui était seul avec elle ?",
+    "n": 5,
+    "rooms": ["AAABB","CCABB","CCCDD","EEEDD","EEEDD"],
+    "roomNames": {"A":{"name":"Sas d’entrée","in":"dans le sas d’entrée"},"B":{"name":"Salle des codes","in":"dans la salle des codes"},"C":{"name":"Laboratoire","in":"dans le laboratoire"},"D":{"name":"Salle de crise","in":"dans la salle de crise"},"E":{"name":"Archives","in":"dans les archives"}},
+    "objects": [[2,0,"tapis"],[4,4,"fauteuil"],[1,1,"etagere"],[4,0,"ecran"],[1,2,"lit"],[1,4,"plante"],[3,2,"bureau"],[0,2,"bureau"],[3,1,"tapis"],[4,3,"tapis"]],
+    "windows": [[4,2,"bottom"],[0,4,"top"],[2,0,"left"],[0,0,"top"]],
+    "doors": [[2,2,"right","door"],[0,0,"down","door"],[0,2,"right","arch"],[2,0,"down","door"],[4,2,"right","arch"]],
+    "victim": {"name":"L’Archiviste","g":"f","av":9,"cell":[4,2]},
+    "suspects": [
+      {"id":"cobra","name":"Cobra","g":"m","av":0,"cell":[1,0],"clues":[{"t":"next","o":"etagere"}]},
+      {"id":"vesper","name":"Vesper","g":"f","av":1,"cell":[3,1],"clues":[{"t":"on","o":"tapis"},{"t":"room","r":"E"}]},
+      {"id":"faucon","name":"Faucon","g":"m","av":2,"cell":[2,3],"clues":[{"t":"room","r":"D"},{"t":"north","of":"vesper"}]},
+      {"id":"panthere","name":"Panthère","g":"f","av":5,"cell":[0,4],"clues":[{"t":"next","o":"plante"},{"t":"window"}]}
+    ],
+    "murderer": "vesper"
+  },
+  {
+    "id": "code",
+    "title": "Le dernier code",
+    "teaser": "Le cryptologue de HOR.A a été retrouvé sans vie juste avant la transmission du dernier code. Cinq suspects. La taupe est l’un d’eux.",
+    "n": 6,
+    "rooms": ["AAABBC","AAABBC","DDEEEC","DDEEFF","GGEEFF","GGGGFF"],
+    "roomNames": {"A":{"name":"Hall","in":"dans le hall"},"B":{"name":"Atelier de Q","in":"dans l’atelier de Q"},"C":{"name":"Couloir","in":"dans le couloir"},"D":{"name":"Salle des serveurs","in":"dans la salle des serveurs"},"E":{"name":"Salle de crise","in":"dans la salle de crise"},"F":{"name":"Archives","in":"dans les archives"},"G":{"name":"Cafétéria","in":"dans la cafétéria"}},
+    "objects": [[3,5,"ecran"],[2,4,"plante"],[3,3,"tapis"],[0,0,"lit"],[3,4,"bureau"],[2,3,"fauteuil"],[2,2,"etagere"],[0,3,"plante"],[5,0,"ecran"],[5,1,"ecran"],[1,5,"plante"],[1,4,"tapis"],[0,4,"ecran"],[4,4,"etagere"]],
+    "windows": [[0,0,"left"],[5,4,"bottom"],[5,5,"right"],[2,5,"right"],[3,0,"left"]],
+    "doors": [[1,2,"down","door"],[3,1,"right","door"],[3,0,"down","door"],[2,4,"right","arch"],[3,3,"right","door"],[1,4,"right","arch"],[1,0,"down","door"],[5,3,"right","door"]],
+    "victim": {"name":"Le Cryptologue","g":"m","av":10,"cell":[2,1]},
+    "suspects": [
+      {"id":"vesper","name":"Vesper","g":"f","av":1,"cell":[4,3],"clues":[{"t":"next","o":"tapis"},{"t":"room","r":"E"}]},
+      {"id":"spectre","name":"Spectre","g":"m","av":6,"cell":[3,0],"clues":[{"t":"window"},{"t":"north","of":"vesper"},{"t":"room","r":"D"}]},
+      {"id":"cobra","name":"Cobra","g":"m","av":0,"cell":[1,4],"clues":[{"t":"on","o":"tapis"},{"t":"room","r":"B"}]},
+      {"id":"lynx","name":"Lynx","g":"m","av":4,"cell":[5,5],"clues":[{"t":"room","r":"F"},{"t":"window"}]},
+      {"id":"faucon","name":"Faucon","g":"m","av":2,"cell":[0,2],"clues":[{"t":"room","r":"A"}]}
+    ],
+    "murderer": "spectre"
+  }
+]

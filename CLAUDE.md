@@ -25,6 +25,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | 🐕 Chiens | `chiens` | `games/dogs/` | `.dg-` | `chiens` | — |
 | ♀️ Pionnières | `pionnieres` | `games/women/` | `.pn-` | `pionnieres` | — |
 | 📣 Dans la rue | `rue` | `games/movements/` | `.dr-` | `rue` | — |
+| 🔎 La taupe | `taupe` | `games/mole/` | `.mh-` | `taupe` | — |
 | 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)
