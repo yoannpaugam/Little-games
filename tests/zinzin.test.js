@@ -284,3 +284,35 @@ test('arrivée : une équipe qui quitte pendant le choix revient à sa case', ()
   assert.equal(G.turn.final, null);
   assert.equal(G.turn.team, 0);
 });
+
+// ---------------------------------------------------------------- 1.60.0 : tous les jeux ont un défi, +10 s, indices de Livres
+test('chaque jeu de l’accueil a un défi et une durée', async () => {
+  const { GAMES: ALL } = await import('../games/registry.js');
+  const { CHALLENGE_GAMES } = await import('../games/zinzin/challenges.js');
+  const { DURATION } = await import('../games/zinzin/logic.js');
+  for (const g of ALL.filter((x) => x.id !== 'zinzin')) {
+    assert.ok(CHALLENGE_GAMES.includes(g.id), `défi manquant : ${g.id}`);
+    assert.ok(DURATION[g.id] >= 40, `durée trop courte : ${g.id}`);
+  }
+});
+
+test('Livres : nom à trous (initiales + 3 lettres du nom et du prénom, même graine → mêmes lettres)', async () => {
+  const { maskedName } = await import('../games/zinzin/challenges.js');
+  const shown = (w) => [...w].filter((c) => c !== '_').length;
+  const [first, last] = maskedName('Victor Hugo', 7);
+  assert.equal(shown(first), 4); // V + 3 lettres
+  assert.equal(shown(last), 3);  // H + 2 lettres : il reste toujours une lettre cachée
+  assert.ok(first.startsWith('V') && last.startsWith('H'));
+  assert.deepEqual(maskedName('Victor Hugo', 7), maskedName('Victor Hugo', 7));
+  const parts = maskedName('Antoine de Saint-Exupéry', 3);
+  assert.equal(parts[1], 'de'); // particule écrite en entier
+  assert.ok(parts[2].startsWith('S') && parts[2].includes('-E'));
+  const mid = maskedName('Gabriel García Márquez', 1)[1];
+  assert.equal(shown(mid), 1); // mot du milieu : l'initiale seulement
+});
+
+test('Murdoku : la graine tirée donne une grille', async () => {
+  const ch = await import('../games/zinzin/challenges.js');
+  const p = ch.pick('murdoku', [], seq(0.1, 0.5, 0.9));
+  assert.ok(Number.isInteger(p.seed));
+});

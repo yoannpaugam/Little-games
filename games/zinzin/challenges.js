@@ -6,21 +6,30 @@
 // (send(L)), puis donne le résultat (finish(ok, L)). Sur les autres téléphones, il affiche en direct l'état reçu
 // (update(L)), sans rien pouvoir toucher.
 
-import { h, icon } from '../../js/core/dom.js?v=1.59.0';
-import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.59.0';
-import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.59.0';
-import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.59.0';
-import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.59.0';
-import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.59.0';
-import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.59.0';
-import { optionsFor, correctIndex, photoUrl, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.59.0';
-import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.59.0';
+import { h, icon } from '../../js/core/dom.js?v=1.60.0';
+import { buildAnswers as filmAnswers, ownersOf as filmOwners, judge as judgeFilm } from '../movie-posters/index.js?v=1.60.0';
+import { buildAnswers as faceAnswers, buildOwners as faceOwners, checkAnswer as checkFace } from '../faces/morceaux/answers.js?v=1.60.0';
+import { isUpright, portraitRect } from '../faces/morceaux/framing.js?v=1.60.0';
+import { buildAuthors, checkAuthor, initialsOf } from '../books/answers.js?v=1.60.0';
+import { EASY, distanceToCountry, geometry } from '../geo/geo.js?v=1.60.0';
+import { generate as makeNonogram, cluesOf, isSolved } from '../nonogram/nonogram.js?v=1.60.0';
+import { optionsFor, correctIndex, photoUrl, DOMAINS, lifespan, initials } from '../women/quiz.js?v=1.60.0';
+import { makeOptions as dogOptions, GROUPS as DOG_GROUPS, rng as seeded } from '../dogs/quiz.js?v=1.60.0';
+import { insertIndex, isRightZone, zoneLabel, THEMES as RUE_THEMES } from '../movements/frise.js?v=1.60.0';
+import { OBJECTS as MH_OBJECTS, key as mhKey, roomAt, objectMap, peopleOf, clueText, victimText, wrongPlaced } from '../mole/logic.js?v=1.60.0';
+import { generateCase } from '../mole/generator.js?v=1.60.0';
+import { avatar, furniture, walls } from '../mole/art.js?v=1.60.0';
+import { randomPath, PATH_LANES, PATH_STEPS, PATH_SHOW_MS, PATH_ERRORS } from './logic.js?v=1.60.0';
 
-export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme', 'pionnieres'];
+export const CHALLENGE_GAMES = ['affiches', 'visages', 'livres', 'geoquizz', 'chemin', 'nonogramme', 'chiens', 'pionnieres', 'rue', 'murdoku'];
 const TRIES = 3;          // essais des défis à réponse écrite
 const GEO_COUNT = 3;      // Géoquizz : 3 pays à placer…
 const GEO_TOTAL_KM = 3000; // … réussi si l'écart total reste inférieur ou égal à 3 000 km
 const POSTER = 'https://image.tmdb.org/t/p/w342';
+const RUE_CARDS = 4;      // Dans la rue : 4 événements à placer…
+const RUE_ERRORS = 2;     // … raté à la 2e erreur (une erreur permise)
+const MH_SIZE = 4;        // Murdoku : plan 4 × 4 (3 suspects et la victime)
+const MH_FAILS = 2;       // … raté à la 2e vérification fausse
 
 // ---------------------------------------------------------------- catalogues
 const V = new URL(import.meta.url).search;
@@ -52,6 +61,14 @@ const LOADERS = {
     const world = await json('../geo/data/world.json');
     return { world, countries: new Map(world.countries.map((c) => [c.c, c])), ids: world.countries.filter((c) => EASY.has(c.c)).map((c) => c.c) };
   },
+  async chiens() {
+    const [breeds, photos] = await Promise.all([json('../dogs/data/chiens.json'), json('../dogs/data/photos.json')]);
+    return { breeds, byId: new Map(breeds.map((b) => [b.id, b])), photos, ids: breeds.filter((b) => photos[b.id]?.img).map((b) => b.id) };
+  },
+  async rue() {
+    const events = await json('../movements/data/evenements.json');
+    return { events: new Map(events.map((e) => [e.id, e])), ids: events.map((e) => e.id) };
+  },
   async pionnieres() {
     const women = await json('../women/data/femmes.json');
     let photos = {};
@@ -74,6 +91,9 @@ const shuffle = (arr, rnd) => { const a = arr.slice(); for (let i = a.length - 1
 export function pick(game, used = [], rnd = Math.random) {
   if (game === 'chemin') return { path: randomPath(rnd) };
   if (game === 'nonogramme') return { sol: makeNonogram(5, rnd).grid.join('') };
+  if (game === 'murdoku') { // grille tirée par le générateur de Murdoku : chaque téléphone la refait à partir de la graine
+    for (;;) { const seed = Math.floor(rnd() * 2 ** 32); if (murdokuCase(seed)) return { seed }; }
+  }
   const d = D[game];
   if (!d?.ids?.length) return null;
   const fresh = d.ids.filter((id) => !used.includes(id));
@@ -81,6 +101,12 @@ export function pick(game, used = [], rnd = Math.random) {
   const id = pool[Math.floor(rnd() * pool.length)];
   if (game === 'visages') return { id, bands: shuffle(['yeux', 'nez', 'bouche'], rnd) };
   if (game === 'pionnieres') return { id, seed: Math.floor(rnd() * 1e6) }; // seed : place des 4 réponses
+  if (game === 'livres') return { id, seed: Math.floor(rnd() * 1e6) }; // seed : lettres montrées au 2e indice
+  if (game === 'chiens') return { id, options: dogOptions(d.byId.get(id), d.breeds, 'normal', rnd) };
+  if (game === 'rue') { // un événement de départ, déjà posé, puis RUE_CARDS à placer
+    const ids = shuffle(pool.length > RUE_CARDS ? pool : d.ids, rnd).slice(0, RUE_CARDS + 1);
+    return { id: ids[0], ids };
+  }
   if (game === 'geoquizz') { // plusieurs pays différents
     const ids = shuffle(pool.length >= GEO_COUNT ? pool : d.ids, rnd).slice(0, GEO_COUNT);
     return { id: ids[0], ids };
@@ -95,6 +121,7 @@ export function answerOf(ch) {
   if (ch?.game === 'visages') return D.visages?.people.get(id)?.name;
   if (ch?.game === 'livres') { const b = D.livres?.books.get(id); return b && D.livres.authors.get(b.author)?.name; }
   if (ch?.game === 'pionnieres') return D.pionnieres?.women.get(id)?.answer;
+  if (ch?.game === 'chiens') return D.chiens?.byId.get(id)?.name;
   if (ch?.game === 'geoquizz') return null; // le bandeau donne l'écart total (voir summary du défi)
   return null;
 }
@@ -314,8 +341,10 @@ const KINDS = {
       const cover = h('div.zz-frame.zz-cover', { style: `--hue: ${hash % 360}` }, h('div.zz-cover-in', who, title, h('p.zz-cover-year', String(b.year)), hint));
       body.append(cover);
       return {
+        // 1er raté : les initiales ; 2e raté : en plus, 3 lettres au hasard du nom et 3 du prénom
         setTries(n) {
-          hint.textContent = n >= 2 ? `Littérature ${a.from} · ${initialsOf(a.name)}` : n >= 1 ? `Littérature ${a.from}` : '';
+          if (n >= 2) hint.replaceChildren(...maskedName(a.name, ch.p.seed ?? hash).map((w) => h('span.zz-mask', w)));
+          else hint.textContent = n >= 1 ? `Initiales : ${initialsOf(a.name)}` : '';
         },
         reveal() { who.textContent = a.name; },
       };
@@ -330,7 +359,37 @@ const KINDS = {
   chemin: pathChallenge,
   nonogramme: nonogramChallenge,
   pionnieres: womenChallenge,
+  chiens: dogChallenge,
+  rue: rueChallenge,
+  murdoku: murdokuChallenge,
 };
+
+// ---------------------------------------------------------------- Livres : nom de l'auteur à trous
+const PARTICLES = new Set(['de', 'd', 'di', 'da', 'du', 'del', 'della', 'van', 'von', 'der', 'den', 'dos', 'le', 'la', 'ben']);
+const isLetter = (c) => /\p{L}/u.test(c);
+/**
+ * Nom de l'auteur à trous, mot par mot (« Vi_to_ », « H_go ») : les initiales, plus 3 lettres tirées au hasard
+ * dans le nom de famille (dernier mot) et 3 dans le prénom (premier mot). Les particules (« de », « Le ») restent écrites.
+ * Il reste toujours au moins une lettre cachée par mot. Même graine → mêmes lettres sur tous les téléphones.
+ */
+export function maskedName(name, seed = 0) {
+  const rnd = seeded(seed + 1);
+  const words = String(name).split(/\s+/).filter(Boolean);
+  const main = words.map((w, i) => i).filter((i) => !PARTICLES.has(words[i].toLowerCase().replace(/[’']/g, '')));
+  const last = main[main.length - 1], first = main.length > 1 ? main[0] : null;
+  return words.map((w, i) => {
+    const chars = [...w];
+    if (!main.includes(i)) return w;
+    const show = new Set();
+    chars.forEach((c, k) => { if (isLetter(c) && (k === 0 || chars[k - 1] === '-')) show.add(k); }); // initiales
+    if (i === last || i === first) {
+      const hidden = chars.map((c, k) => k).filter((k) => isLetter(chars[k]) && !show.has(k));
+      const n = Math.min(3, hidden.length - 1);
+      shuffle(hidden, rnd).slice(0, Math.max(0, n)).forEach((k) => show.add(k));
+    }
+    return chars.map((c, k) => (!isLetter(c) || show.has(k) ? c : '_')).join('');
+  });
+}
 
 // ---------------------------------------------------------------- Pionnières : 4 réponses visibles
 // Une seule tentative. L = { pick } (position de la réponse choisie).
@@ -742,5 +801,263 @@ function nonogramChallenge(body, foot, ch, api, L0) {
     update(L) { if (L?.c) { cells = L.c.split('').map(Number); draw(); } },
     reveal(ok) { if (!ok) els.forEach((el, i) => el.classList.toggle('is-sol', sol[i] === 1 && cells[i] !== 1)); table.classList.add('is-over'); },
     timeout() { api.finish(false, { c: cells.join('') }); },
+  };
+}
+
+// ---------------------------------------------------------------- Chiens : photo, 4 races au choix
+// Une seule tentative. L = { pick } (position de la réponse choisie).
+function dogChallenge(body, foot, ch, api, L0) {
+  const d = D.chiens, b = d.byId.get(ch.p.id), ph = d.photos[b.id] || {};
+  const st = { pick: null, ...(L0 || {}) };
+  const options = (ch.p.options || [b.id]).map((id) => d.byId.get(id)).filter(Boolean);
+  const good = options.findIndex((o) => o.id === b.id);
+  const img = h('img.zz-dog', { src: ph.img, alt: '', draggable: false, referrerPolicy: 'no-referrer' });
+  const bg = h('img.zz-dog-bg', { src: ph.img, alt: '', draggable: false, referrerPolicy: 'no-referrer' });
+  const frame = h('div.zz-frame.zz-dog-frame', bg, img);
+  img.addEventListener('error', () => frame.replaceChildren(h('p.zz-frame-alt', icon('dog'), ' Photo indisponible')));
+  body.append(frame);
+  const btns = options.map((o, i) => h('button.zz-qcm', { type: 'button', disabled: !api.active, onclick: () => choose(i) }, o.name));
+  foot.append(h('div.zz-qcm-list.zz-qcm-list--2', btns));
+  function choose(i) {
+    if (!api.active || api.done || st.pick != null) return;
+    st.pick = i;
+    draw();
+    api.finish(i === good, { ...st });
+  }
+  function draw(final = false) {
+    btns.forEach((el, i) => {
+      el.classList.toggle('is-picked', st.pick === i);
+      if (final || st.pick != null) el.disabled = true;
+      if (final) {
+        el.classList.toggle('is-good', i === good);
+        el.classList.toggle('is-bad', st.pick === i && i !== good);
+      }
+    });
+  }
+  draw();
+  return {
+    update(L) { Object.assign(st, L); draw(); },
+    reveal() { draw(true); const c = [ph.by, ph.lic].filter(Boolean).join(' · '); if (c) frame.append(h('p.zz-credit', c)); },
+    summary() { return `${b.name} · ${DOG_GROUPS[b.group] || ''}`.replace(/ · $/, ''); },
+    timeout() { api.finish(false, { ...st }); },
+  };
+}
+
+// ---------------------------------------------------------------- Dans la rue : placer 4 événements sur la frise
+// Un événement de départ est déjà posé (avec son année). Pour chaque carte, on touche l'endroit de la frise où elle va.
+// Une carte mal placée est posée à sa vraie place. Réussi si au plus une erreur ; raté dès la 2e.
+// L = { res: [true | false, …] } : résultat de chaque carte déjà jouée, dans l'ordre.
+function rueChallenge(body, foot, ch, api, L0) {
+  const d = D.rue;
+  const ids = ch.p.ids || [ch.p.id];
+  const ev = (id) => d.events.get(id);
+  const cards = ids.slice(1);
+  let L = { res: [], ...(L0 || {}) };
+  const errors = () => L.res.filter((r) => !r).length;
+  const card = h('div.zz-rue-card');
+  const line = h('ol.zz-rue-line');
+  body.append(h('div.zz-rue', card, line));
+  const dotsEl = h('span');
+  const msg = h('p.zz-msg');
+  foot.append(h('div.zz-foot-row', dotsEl, msg));
+
+  // événements posés, dans l'ordre de la frise : le départ, puis chaque carte jouée à sa place (juste ou vraie)
+  function placed() {
+    const list = [ids[0]];
+    L.res.forEach((ok, i) => {
+      const e = ev(cards[i]);
+      list.splice(insertIndex(list.map((id) => ev(id).year), e.year), 0, cards[i]);
+    });
+    return list;
+  }
+  function choose(zi) {
+    if (!api.active || api.done || L.res.length >= cards.length) return;
+    const list = placed();
+    const ok = isRightZone(list.map((id) => ev(id).year), zi, ev(cards[L.res.length]).year);
+    L = { res: [...L.res, ok] };
+    if (!ok) navigator.vibrate?.(60);
+    draw();
+    if (errors() >= RUE_ERRORS) api.finish(false, L);
+    else if (L.res.length >= cards.length) api.finish(true, L);
+    else api.send(L);
+  }
+  let over = false;
+  function draw() {
+    const k = L.res.length;
+    const cur = !over && k < cards.length ? ev(cards[k]) : null;
+    const th = (e) => RUE_THEMES[e.theme] || { hue: 230, label: '' };
+    if (cur) {
+      card.style.setProperty('--hue', th(cur).hue);
+      card.replaceChildren(
+        h('small', `Carte ${k + 1}/${cards.length} · ${cur.place}`),
+        h('strong', cur.title),
+        h('p', cur.summary));
+    } else card.replaceChildren();
+    card.hidden = !cur;
+    const list = placed();
+    const years = list.map((id) => ev(id).year);
+    const lastId = k ? cards[k - 1] : null;
+    const rows = [];
+    list.forEach((id, i) => {
+      if (cur) rows.push(zoneBtn(years, i));
+      const e = ev(id);
+      const cls = ['zz-rue-ev'];
+      if (id === lastId) cls.push(L.res[k - 1] ? 'is-ok' : 'is-ko');
+      if (id === ids[0]) cls.push('is-start');
+      rows.push(h('li', { class: cls.join(' '), style: `--hue: ${th(e).hue}` }, h('b', String(e.year)), h('span', e.title)));
+    });
+    if (cur) rows.push(zoneBtn(years, list.length));
+    line.replaceChildren(...rows);
+    dotsEl.replaceChildren(dots(errors(), RUE_ERRORS));
+    if (k) {
+      const e = ev(lastId), ok = L.res[k - 1];
+      msg.textContent = ok ? `✓ Bien placé : ${e.year}` : `✗ C’était en ${e.year}`;
+      msg.className = 'zz-msg ' + (ok ? 'is-ok' : 'is-err');
+    } else { msg.textContent = api.active ? 'Touche l’endroit de la frise' : ''; msg.className = 'zz-msg'; }
+  }
+  function zoneBtn(years, zi) {
+    const [a, b] = zoneLabel(years, zi);
+    return h('li.zz-rue-zone', h('button', { type: 'button', disabled: !api.active, onclick: () => choose(zi) }, `${a} ${b}`.trim()));
+  }
+  draw();
+  return {
+    update(nL) { if (nL?.res) { L = { res: [], ...nL }; draw(); } },
+    reveal() { over = true; draw(); },
+    summary() { const ok = L.res.filter(Boolean).length; return `${ok} bien placé${ok > 1 ? 's' : ''} sur ${L.res.length || cards.length}`; },
+    timeout() { api.finish(false, L); },
+  };
+}
+
+// ---------------------------------------------------------------- Murdoku 4 × 4
+// Grille du générateur de Murdoku (graine tirée par l'arbitre). On place les 4 personnes d'après leurs indices
+// (une par ligne et par colonne), puis « Vérifier ». Réussi si le plan est juste ; raté à la 2e vérification fausse.
+// L = { placed: { id: [y, x] }, fails, bad: [ids], sel }
+const mhCases = new Map();
+function murdokuCase(seed) {
+  if (!mhCases.has(seed)) {
+    if (mhCases.size > 20) mhCases.clear();
+    mhCases.set(seed, generateCase(seed, MH_SIZE));
+  }
+  return mhCases.get(seed);
+}
+function svgEl(str, cls) {
+  const doc = new DOMParser().parseFromString(str.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" '), 'image/svg+xml');
+  const el = document.importNode(doc.documentElement, true);
+  if (cls) el.setAttribute('class', cls);
+  return el;
+}
+function murdokuChallenge(body, foot, ch, api, L0) {
+  const cs = murdokuCase(ch.p.seed);
+  if (!cs) return pathChallenge(body, foot, { ...ch, p: { path: randomPath() } }, api, null);
+  const people = peopleOf(cs);
+  const look = (p) => p.look || p.av;
+  const person = (id) => people.find((p) => p.id === id);
+  const objs = objectMap(cs);
+  const roomKeys = Object.keys(cs.roomNames);
+  let L = { placed: {}, fails: 0, bad: [], sel: null, ...(L0 || {}) };
+  let over = false;
+  const at = (y, x) => Object.keys(L.placed).find((id) => L.placed[id][0] === y && L.placed[id][1] === x) || null;
+
+  const cells = [];
+  for (let y = 0; y < cs.n; y++) for (let x = 0; x < cs.n; x++) {
+    const t = objs[mhKey(y, x)];
+    const el = h('button', {
+      type: 'button', class: `zz-mh-cell r${roomKeys.indexOf(roomAt(cs, y, x)) % 7}${t && !MH_OBJECTS[t].occ ? ' is-blocked' : ''}`,
+      'aria-label': `Ligne ${y + 1}, colonne ${x + 1}, ${cs.roomNames[roomAt(cs, y, x)].name}${t ? `, ${MH_OBJECTS[t].label}` : ''}`,
+      disabled: !api.active, onclick: () => onCell(y, x),
+    }, t ? svgEl(furniture(t), 'zz-mh-obj') : null);
+    cells.push(el);
+  }
+  const labels = roomKeys.map((rk) => { // nom de la pièce sur une de ses cases, libre et en bas de préférence
+    const spots = [];
+    for (let y = 0; y < cs.n; y++) for (let x = 0; x < cs.n; x++) if (cs.rooms[y][x] === rk) spots.push([y, x]);
+    spots.sort((a, b) => Number(Boolean(objs[mhKey(...a)])) - Number(Boolean(objs[mhKey(...b)])) || b[0] - a[0] || a[1] - b[1]);
+    const [y, x] = spots[0];
+    return h('span.zz-mh-label', { style: `left: ${(x * 100) / cs.n}%; top: ${(y * 100) / cs.n}%; width: ${100 / cs.n}%; height: ${100 / cs.n}%` }, h('span', cs.roomNames[rk].name));
+  });
+  const board = h('div.zz-mh-board', { style: `--n: ${cs.n}` }, cells, svgEl(walls(cs), 'zz-mh-walls'), h('div.zz-mh-labels', labels));
+  body.append(h('div.zz-mh-wrap', board));
+
+  const chips = people.map((p) => h('button.zz-mh-chip', { type: 'button', onclick: () => pick(p.id), 'aria-label': p.name },
+    h('span.zz-mh-av', svgEl(avatar(look(p), p.dead))), h('span', p.name)));
+  const clue = h('p.zz-mh-clue');
+  const dotsEl = h('span');
+  const check = api.active ? h('button.zz-btn.zz-btn--go', { type: 'button', onclick: verify }, 'Vérifier') : null;
+  foot.append(h('div.zz-mh-chips', chips), clue, h('div.zz-foot-row', dotsEl, h('p.zz-msg'), check));
+  const msg = foot.querySelector('.zz-msg');
+  let note = '';
+
+  function pick(id) {
+    if (!api.active || api.done) return;
+    if (L.placed[id]) { const { [id]: _, ...rest } = L.placed; L = { ...L, placed: rest, sel: id }; }
+    else L = { ...L, sel: L.sel === id ? null : id };
+    note = '';
+    draw(); api.send(L);
+  }
+  function onCell(y, x) {
+    if (!api.active || api.done) return;
+    const t = objs[mhKey(y, x)];
+    if (t && !MH_OBJECTS[t].occ) { note = `On ne peut pas se tenir sur ${MH_OBJECTS[t].un} ${MH_OBJECTS[t].label}.`; return draw(); }
+    const occ = at(y, x);
+    const placed = { ...L.placed };
+    if (L.sel) {
+      if (occ) delete placed[occ];
+      placed[L.sel] = [y, x];
+      const next = people.find((p) => !placed[p.id]);
+      L = { ...L, placed, bad: L.bad.filter((b) => b !== L.sel), sel: next ? next.id : null };
+    } else if (occ) {
+      delete placed[occ];
+      L = { ...L, placed, sel: occ };
+    } else { note = 'Choisis d’abord une personne.'; return draw(); }
+    note = '';
+    draw(); api.send(L);
+  }
+  function verify() {
+    if (!api.active || api.done) return;
+    if (Object.keys(L.placed).length < people.length) { note = 'Place d’abord tout le monde.'; return draw(); }
+    const wrong = wrongPlaced(cs, L.placed);
+    if (!wrong.length) { L = { ...L, bad: [], sel: null }; draw(); api.finish(true, L); return; }
+    L = { ...L, fails: L.fails + 1, bad: wrong, sel: null };
+    note = `${wrong.length} mal placé${wrong.length > 1 ? 's' : ''} (en rouge)`;
+    navigator.vibrate?.(120);
+    draw();
+    if (L.fails >= MH_FAILS) api.finish(false, L);
+    else api.send(L);
+  }
+  function draw() {
+    if (!L.sel && !over && !people.every((p) => L.placed[p.id])) L.sel = (people.find((p) => !L.placed[p.id]) || {}).id || null;
+    const shown = over ? Object.fromEntries(people.map((p) => [p.id, p.cell])) : L.placed;
+    const rows = new Set(Object.values(L.placed).map((c) => c[0])), cols = new Set(Object.values(L.placed).map((c) => c[1]));
+    const bad = new Set(L.bad);
+    cells.forEach((el, i) => {
+      const y = Math.floor(i / cs.n), x = i % cs.n;
+      const id = Object.keys(shown).find((k) => shown[k][0] === y && shown[k][1] === x);
+      el.querySelector('.zz-mh-token')?.remove();
+      if (id) el.append(h('span.zz-mh-token', svgEl(avatar(look(person(id)), person(id).dead))));
+      el.classList.toggle('is-line', !over && !id && (rows.has(y) || cols.has(x)));
+      el.classList.toggle('is-bad', !over && Boolean(id) && bad.has(id));
+      el.classList.toggle('is-sel', !over && Boolean(id) && id === L.sel);
+    });
+    chips.forEach((c, i) => {
+      const p = people[i];
+      c.classList.toggle('is-sel', p.id === L.sel);
+      c.classList.toggle('is-placed', Boolean(L.placed[p.id]));
+      c.classList.toggle('is-bad', bad.has(p.id));
+      c.disabled = !api.active || over;
+    });
+    const p = person(L.sel) || people[0];
+    clue.replaceChildren(h('b', p.name, p.dead ? ' (victime) ' : ' '), ...(p.dead ? [victimText(cs)] : p.clues.map((c) => clueText(c, p, cs))).map((t) => h('span', t + ' ')));
+    clue.hidden = over;
+    dotsEl.replaceChildren(dots(L.fails, MH_FAILS));
+    msg.textContent = note || (L.fails ? '1 vérification fausse : encore une chance' : '1 par ligne et par colonne');
+    msg.className = 'zz-msg' + (note || L.fails ? ' is-err' : '');
+    if (check) check.disabled = over || Object.keys(L.placed).length < people.length;
+  }
+  draw();
+  return {
+    update(nL) { if (nL) { L = { placed: {}, fails: 0, bad: [], sel: null, ...nL }; draw(); } },
+    reveal() { over = true; draw(); },
+    summary() { const m = cs.suspects.find((s) => s.id === cs.murderer); return `La taupe : ${m.name}`; },
+    timeout() { api.finish(false, L); },
   };
 }

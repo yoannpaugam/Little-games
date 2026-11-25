@@ -17,8 +17,11 @@ export const REVEAL_MS = 4500;   // la réponse reste affichée sur tous les éc
 export const GRACE_MS = 4000;
 export const FINAL_COUNT = 2;    // à l'arrivée : 2 défis à réussir à la suite, dans des jeux choisis par l'équipe    // l'arbitre déclare le défi raté s'il n'a pas reçu de résultat après le délai + cette marge
 
-// Durée de chaque défi (secondes)
-export const DURATION = { affiches: 45, visages: 45, livres: 40, geoquizz: 50, chemin: 40, nonogramme: 90, pionnieres: 30 };
+// Durée de chaque défi (secondes), 10 s de plus pour tous depuis la 1.60.0
+export const DURATION = {
+  affiches: 55, visages: 55, livres: 50, geoquizz: 60, chemin: 50, nonogramme: 100, pionnieres: 40,
+  chiens: 40, rue: 70, murdoku: 130,
+};
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
@@ -287,7 +290,7 @@ function openChallenge(G, game, startAt, env) {
   for (const id of payload.ids || (payload.id != null ? [payload.id] : [])) used.push(id); // déjà sortis
   while (used.length > 200) used.shift();
   const T = G.turn;
-  T.ch = { id: (T.ch?.id || 0) + 1, game: g, cell: game, p: payload, startAt, deadline: startAt + (DURATION[g] || 45) * 1000 };
+  T.ch = { id: (T.ch?.id || 0) + 1, game: g, cell: game, p: payload, startAt, deadline: startAt + (DURATION[g] || 55) * 1000 };
   if (T.final) T.ch.final = { k: T.final.k, n: T.final.n || T.final.games.length }; // « Arrivée 1/2 »
   T.live = null;
   T.stage = 'challenge';

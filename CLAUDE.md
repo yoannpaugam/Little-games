@@ -26,8 +26,6 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 | ♀️ Pionnières | `pionnieres` | `games/women/` | `.pn-` | `pionnieres` | — |
 | 📣 Dans la rue | `rue` | `games/movements/` | `.dr-` | `rue` | — |
 | 🔎 Murdoku | `murdoku` | `games/mole/` | `.mh-` | `taupe` | — |
-| 🕵️ Portrait-robot | `robot` | `games/sketch/` | `.pr-` | `robot` | — |
-| 🏔️ Steep | `steep` | `games/steep/` | `.st-` | `steep` | — |
 | 🎲 Compète de zinzin | `zinzin` | `games/zinzin/` | `.zz-` | `zinzin` | — |
 
 ## Carte du code (Graphify)
@@ -47,7 +45,7 @@ scripts/                   set-version.mjs, fetch-posters.mjs, celeb-quiz-builde
 ## Contrat d'un jeu
 - `games/<dossier>/index.js` exporte `mount(container, ctx)`. Il renvoie `{ update(path), destroy() }`.
 - `ctx` contient `path`, `navigate(...path)`, `home()` et `version`.
-- Le jeu n'importe que `js/core/`, jamais un autre jeu. **Seule exception : Compète de zinzin** (`games/zinzin/challenges.js`), qui importe les modules sans DOM des autres jeux et lit leurs catalogues pour ses défis. Un changement d'API de ces modules (`answers.js`, `framing.js`, `geo.js`, `nonogram.js`, `buildAnswers`/`judge` d'Affiches) doit donc être répercuté dans ce fichier.
+- Le jeu n'importe que `js/core/`, jamais un autre jeu. **Seule exception : Compète de zinzin** (`games/zinzin/challenges.js`), qui importe les modules sans DOM des autres jeux et lit leurs catalogues pour ses défis. Un changement d'API de ces modules (`answers.js`, `framing.js`, `geo.js`, `nonogram.js`, `dogs/quiz.js`, `movements/frise.js`, `mole/logic.js`, `generator.js` et `art.js`, `buildAnswers`/`judge` d'Affiches) doit donc être répercuté dans ce fichier.
 - **Ordre de l'accueil** : Compète de zinzin (`last: true`) reste toujours en dernier, juste avant « Bientôt ». Un nouveau jeu s'ajoute à la fin de `GAMES` ; pour qu'il ait une case sur le plateau, on ajoute son défi dans `games/zinzin/challenges.js`. Il charge ses styles (`ensureStyles()`) et ses données par une URL relative à `import.meta.url`.
 - **Tous les imports et les fichiers chargés portent `?v=<version>`.** C'est `node scripts/set-version.mjs x.y.z` qui les met à jour, jamais à la main.
 - Écran de jeu : il tient dans `100dvh` sans défilement, de l'iPhone SE (320 × 568) à l'ordinateur, téléphone en paysage compris. Les images de jeu sont en 2:3, à la même taille que les affiches.
