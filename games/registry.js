@@ -11,7 +11,7 @@ export const GAMES = [
     description: 'Retrouve le film derrière l’affiche floutée.',
     icon: 'film',
     accent: '#e8b04a',
-    load: () => import('./movie-posters/index.js?v=1.59.0'),
+    load: () => import('./movie-posters/index.js?v=1.60.0'),
   },
   {
     id: 'visages',
@@ -19,7 +19,7 @@ export const GAMES = [
     description: 'Reconnais la célébrité : en morceaux ou sur une photo de jeunesse.',
     icon: 'user',
     accent: '#ff8a65',
-    load: () => import('./faces/index.js?v=1.59.0'),
+    load: () => import('./faces/index.js?v=1.60.0'),
   },
   {
     id: 'livres',
@@ -27,7 +27,7 @@ export const GAMES = [
     description: 'Retrouve l’auteur de 300 grands livres, en 3 essais.',
     icon: 'book',
     accent: '#c9a0dc',
-    load: () => import('./books/index.js?v=1.59.0'),
+    load: () => import('./books/index.js?v=1.60.0'),
   },
   {
     id: 'geoquizz',
@@ -35,7 +35,7 @@ export const GAMES = [
     description: 'Place 10 pays sur la carte du monde, au plus près.',
     icon: 'globe',
     accent: '#4fb3d9',
-    load: () => import('./geo/index.js?v=1.59.0'),
+    load: () => import('./geo/index.js?v=1.60.0'),
   },
   {
     id: 'chemin',
@@ -43,7 +43,7 @@ export const GAMES = [
     description: 'Mémorise le chemin lumineux, puis retrace-le case par case.',
     icon: 'route',
     accent: '#7b86ff',
-    load: () => import('./path/index.js?v=1.59.0'),
+    load: () => import('./path/index.js?v=1.60.0'),
   },
   {
     id: 'nonogramme',
@@ -51,7 +51,7 @@ export const GAMES = [
     description: 'Noircis les bonnes cases d’après les chiffres : 3 niveaux, grilles infinies.',
     icon: 'nonogram',
     accent: '#5fc9a8',
-    load: () => import('./nonogram/index.js?v=1.59.0'),
+    load: () => import('./nonogram/index.js?v=1.60.0'),
   },
   {
     id: 'chiens',
@@ -59,7 +59,7 @@ export const GAMES = [
     description: 'Trouve la race du chien sur la photo : 110 races, 4 réponses au choix.',
     icon: 'dog',
     accent: '#e0995e',
-    load: () => import('./dogs/index.js?v=1.59.0'),
+    load: () => import('./dogs/index.js?v=1.60.0'),
   },
   {
     id: 'pionnieres',
@@ -67,7 +67,7 @@ export const GAMES = [
     description: 'Découvre 202 femmes célèbres ou oubliées : devine ce qu’elles ont accompli.',
     icon: 'venus',
     accent: '#b4d455',
-    load: () => import('./women/index.js?v=1.59.0'),
+    load: () => import('./women/index.js?v=1.60.0'),
   },
   {
     id: 'rue',
@@ -75,7 +75,7 @@ export const GAMES = [
     description: 'Place 124 grèves, révoltes et grands mouvements sociaux sur la frise du temps.',
     icon: 'megaphone',
     accent: '#a66bff',
-    load: () => import('./movements/index.js?v=1.59.0'),
+    load: () => import('./movements/index.js?v=1.60.0'),
   },
   {
     id: 'murdoku',
@@ -83,23 +83,7 @@ export const GAMES = [
     description: 'Place les suspects d’après les indices et démasque le coupable : grilles infinies, 4 niveaux.',
     icon: 'loupe',
     accent: '#ffd23f',
-    load: () => import('./mole/index.js?v=1.59.0'),
-  },
-  {
-    id: 'robot',
-    title: 'Portrait-robot',
-    description: 'Un témoin décrit le suspect : compose son portrait, des sourcils au chapeau.',
-    icon: 'portrait',
-    accent: '#e8e2d0',
-    load: () => import('./sketch/index.js?v=1.59.0'),
-  },
-  {
-    id: 'steep',
-    title: 'Steep',
-    description: 'Dévale 5 mondes en planche : saute les obstacles, enchaîne les saltos.',
-    icon: 'mountain',
-    accent: '#8fd3ff',
-    load: () => import('./steep/index.js?v=1.59.0'),
+    load: () => import('./mole/index.js?v=1.60.0'),
   },
   {
     id: 'zinzin',
@@ -108,7 +92,7 @@ export const GAMES = [
     icon: 'pawn',
     accent: '#ff5fa2',
     last: true, // toujours en avant-dernière position, juste avant « Bientôt »
-    load: () => import('./zinzin/index.js?v=1.59.0'),
+    load: () => import('./zinzin/index.js?v=1.60.0'),
   },
 ];
 GAMES.sort((a, b) => Number(Boolean(a.last)) - Number(Boolean(b.last))); // tri stable : l'ordre des autres jeux ne change pas

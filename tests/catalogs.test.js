@@ -298,15 +298,3 @@ test('enquêtes d’origine de Murdoku', async () => {
   assert.deepEqual(errors, []);
 });
 
-test('témoins de Portrait-robot', async () => {
-  const list = await load('games/sketch/data/temoins.json');
-  const { CAT } = await import('../games/sketch/parts.js');
-  assert.ok(list.length >= 40, 'au moins 40 témoins');
-  const errors = checkEntries(list, {
-    id: [true, (v) => SLUG.test(v)],
-    text: [true, (v) => text(v) && v.length >= 40 && v.length <= 260],
-    want: [true, (v) => Array.isArray(v) && v.length >= 3 && v.every((w) => Array.isArray(w) && w.length === 2 && CAT[w[0]]
-      && Array.isArray(w[1]) && w[1].length > 0 && w[1].every((k) => k !== 'aucun' && CAT[w[0]].options.some(([id]) => id === k)))],
-  }, 'temoins');
-  assert.deepEqual(errors, []);
-});

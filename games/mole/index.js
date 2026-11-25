@@ -6,14 +6,14 @@
 // Contrat de module : export mount(container, ctx) → { update(path), destroy() }
 //   ctx.path : [] (partie) | ['reglages']
 
-import { h, icon } from '../../js/core/dom.js?v=1.59.0';
-import { createStore } from '../../js/core/storage.js?v=1.59.0';
+import { h, icon } from '../../js/core/dom.js?v=1.60.0';
+import { createStore } from '../../js/core/storage.js?v=1.60.0';
 import {
   OBJECTS, MAX_POINTS, CHECK_PENALTY, ACCUSE_PENALTY, HINT_PENALTY, MAX_HINTS, LEVELS,
   key, roomAt, objectMap, peopleOf, clueText, victimText, wrongPlaced, caseScore, hintTarget,
-} from './logic.js?v=1.59.0';
-import { generateCase } from './generator.js?v=1.59.0';
-import { avatar, furniture, walls } from './art.js?v=1.59.0';
+} from './logic.js?v=1.60.0';
+import { generateCase } from './generator.js?v=1.60.0';
+import { avatar, furniture, walls } from './art.js?v=1.60.0';
 
 // Format 2 (1.56.0) : une grille en cours par niveau. Le format 1 (dossier de 3 enquêtes) n'est pas repris.
 const store = createStore('taupe', {

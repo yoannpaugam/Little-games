@@ -15,8 +15,6 @@ Application web **100 % statique** (HTML + CSS + JavaScript, sans framework ni b
 | ♀️ Pionnières | `games/women/` | ✅ jouable |
 | 📣 Dans la rue | `games/movements/` | ✅ jouable |
 | 🔎 Murdoku | `games/mole/` | ✅ jouable (grilles infinies) |
-| 🕵️ Portrait-robot | `games/sketch/` | ✅ jouable |
-| 🏔️ Steep | `games/steep/` | ✅ jouable (5 mondes, 3 parcours chacun) |
 | 🎲 Compète de zinzin | `games/zinzin/` | ✅ jouable (1 ou plusieurs téléphones) |
 
 ---
@@ -103,17 +101,9 @@ Faire découvrir 202 femmes célèbres ou, surtout, oubliées de l'histoire : sc
 
 Une enquête par déduction, à grilles infinies. Une victime a été retrouvée dans un bâtiment : d'après les indices de chaque suspect (« Il était à côté d’un piano », « Elle était dans la voiture-bar », « Il était plus à l’est que Lynx »…), on place tout le monde sur le plan, une seule personne par ligne et par colonne, victime comprise, jamais sur un meuble interdit. Une fois le plan vérifié, on démasque la taupe : la seule personne présente dans la pièce de la victime. 4 niveaux (Facile 4 × 4, Moyen 5 × 5, Difficile 6 × 6, Expert 7 × 7) ; on enchaîne les grilles comme on veut. Chaque grille est tirée par `games/mole/generator.js` : lieu (agence, ambassade, train de nuit, casino, manoir, base polaire), pièces, portes, fenêtres, meubles, personnages (noms de code et portraits dessinés), scénario et indices, puis le solveur de `logic.js` vérifie qu'il n'y a qu'une solution. Les 3 enquêtes d'origine (fichier « mole-hunt » de Yoann) sont la première grille des niveaux Facile, Moyen et Difficile. `tests/murdoku.test.js` vérifie 100 grilles générées.
 
-## 🕵️ Portrait-robot
-
-Un témoin décrit le suspect, parfois son physique, parfois juste son genre (« un vrai bourgeois, une tête à jouer à la pétanque le dimanche »). On compose le portrait-robot pièce par pièce : 16 parties (tête, teint, cheveux et leur couleur, sourcils, yeux et leur couleur, nez, bouche, oreilles, barbe, signes particuliers, lunettes, chapeau, bijoux et maquillage, tenue), une dizaine de propositions chacune, toutes dessinées en SVG. Puis on montre le portrait au témoin, qui dit à combien de pour cent il ressemble et ce qui manque. 58 dépositions, ou sa propre description pour décrire quelqu'un de la bande ; un dé pour un visage farfelu ; album des portraits et export en image. Dessin et ressemblance dans `games/sketch/parts.js`, testés par `tests/robot.test.js`.
-
-## 🏔️ Steep
-
-Une descente sans fin en planche, à travers 5 mondes dessinés en code : les Cimes (neige et sapins), les Dunes (sandboard entre les cactus), la Forêt rousse (bouleaux et troncs couchés), le Volcan (cendres et coulées de lave) et la Banquise (glace bleue sous le ciel de nuit, ça glisse plus vite). Chaque monde a 3 parcours : Balade (facile), Bosses (collines et tremplins pour les figures) et Abîmes (crevasses et falaises). Le terrain est tiré au hasard à chaque descente et durcit au fil des mètres. On appuie pour se baisser et prendre de la vitesse, on lâche pour sauter (plus on est resté baissé, plus on saute loin), on réappuie en l'air pour un salto arrière. Des pièges obligent à bien choisir la force et le moment du saut : grands trous, îlots et piliers entre deux trous, obstacle juste après la réception, bord d'en face plus haut ; une réception à plat donne de la vitesse, une réception de travers fait tomber. Points : 1 par mètre, 10 par pièce, 100 par salto (400 pour un double), multipliés par les enchaînements. Cycle jour et nuit, météo propre à chaque monde, sons générés. Jeu original : personnage, mondes et dessins créés pour Little Games. Moteur (terrain, physique, figures) dans `games/steep/engine.js`, testé par `tests/steep.test.js`.
-
 ## 🎲 Compète de zinzin
 
-Un jeu de plateau entre équipes : on lance le dé, le pion avance, et chaque case donne un défi court tiré d'un autre jeu (affiche floutée, visage, auteur d'un livre, pays à placer, chemin à retracer, nonogramme 5 × 5, accomplissement d'une pionnière). Tant que le défi n'est pas réussi, l'équipe reste sur la case ; pour gagner, il faut finir ses tours de plateau puis réussir 2 défis à la suite, dans 2 jeux choisis par l'équipe. On joue sur un seul téléphone ou avec un téléphone par équipe : code à 5 chiffres, salle d'attente, et tout le monde voit en direct le dé, les pions et le défi en cours. La synchronisation passe par deux relais MQTT publics (HiveMQ et EMQX), sans serveur à nous ; mqtt.js (MIT) est livré dans `games/zinzin/vendor/`. Règles dans `games/zinzin/logic.js`, testées par `tests/zinzin.test.js`. Le jeu reste toujours en avant-dernière position de l'accueil (`last: true`).
+Un jeu de plateau entre équipes : on lance le dé, le pion avance, et chaque case donne un défi court tiré d'un autre jeu (affiche floutée, visage, auteur d'un livre, pays à placer, chemin à retracer, nonogramme 5 × 5, race d'un chien, accomplissement d'une pionnière, événements à placer sur la frise, Murdoku 4 × 4) : tous les jeux de l'application ont leur défi. Tant que le défi n'est pas réussi, l'équipe reste sur la case ; pour gagner, il faut finir ses tours de plateau puis réussir 2 défis à la suite, dans 2 jeux choisis par l'équipe. On joue sur un seul téléphone ou avec un téléphone par équipe : code à 5 chiffres, salle d'attente, et tout le monde voit en direct le dé, les pions et le défi en cours. La synchronisation passe par deux relais MQTT publics (HiveMQ et EMQX), sans serveur à nous ; mqtt.js (MIT) est livré dans `games/zinzin/vendor/`. Règles dans `games/zinzin/logic.js`, testées par `tests/zinzin.test.js`. Le jeu reste toujours en avant-dernière position de l'accueil (`last: true`).
 
 ## 🧩 Morceaux et 🧒 Portraits de jeunesse (modes de Visages)
 
@@ -211,19 +201,6 @@ games/mole/              Le jeu « Murdoku » (enquête par déduction, grilles 
   ├─ art.js              Portraits (fixes ou générés), meubles, murs et fenêtres en SVG
   ├─ data/enquetes.json  3 enquêtes d'origine
   ├─ styles.css          Styles du jeu (préfixe .mh-)
-  └─ SPEC.md             Spécification fonctionnelle du jeu
-games/sketch/            Le jeu « Portrait-robot » (composer un visage d'après un témoin), autonome
-  ├─ index.js            Vues (déposition, composition, verdict, album, réglages)
-  ├─ parts.js            Pièces du visage, dessin SVG, ressemblance (testé)
-  ├─ data/temoins.json   58 dépositions et leurs critères
-  ├─ styles.css          Styles du jeu (préfixe .pr-)
-  └─ SPEC.md             Spécification fonctionnelle du jeu
-games/steep/             Le jeu « Steep » (descente en planche, 5 mondes), autonome
-  ├─ index.js            Vues (choix du monde et du parcours, descente, règles et records), commandes, sons
-  ├─ engine.js           Terrain procédural, physique, sauts, saltos, score (testé, sans DOM)
-  ├─ worlds.js           Les 5 mondes (physique, couleurs, décor) et les 3 types de parcours
-  ├─ render.js           Dessin sur canvas : ciel, montagnes, terrain, obstacles, planchiste, météo
-  ├─ styles.css          Styles du jeu (préfixe .st-)
   └─ SPEC.md             Spécification fonctionnelle du jeu
 games/women/             Le jeu « Pionnières » (deviner l'accomplissement de 202 femmes), autonome
   ├─ index.js            Logique et vues (jeu, galerie, réglages)

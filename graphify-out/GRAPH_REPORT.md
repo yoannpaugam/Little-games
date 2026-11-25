@@ -1,15 +1,15 @@
-# Graph Report - little-games  (2026-11-17)
+# Graph Report - lg  (2026-11-25)
 
 ## Corpus Check
 - cluster-only mode — file stats not available
 
 ## Summary
-- 1367 nodes · 3003 edges · 51 communities
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.86)
+- 1204 nodes · 2624 edges · 42 communities
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 27 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c35600eb`
+- Built from commit: `b4246a50`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -44,31 +44,22 @@
 - Scripts Python : catalogue Morceaux et carte du Géoquizz
 - Spécification Le chemin
 - Murdoku : plan, indices, générateur et solveur
-- Compète de zinzin : écrans et défis
+- Compète de zinzin : plateau, règles, défis et réseau
 - Spécification Murdoku
-- Steep : moteur, mondes, dessin et écrans
-- Spécification Steep
+- Script : portraits des Pionnières (Commons)
 - Workflow GitHub « Chiens : photos »
 - Spécification Compète de zinzin
 - Spécification Dans la rue
 - Pionnières : écran de jeu, réponses et galerie
-- Portrait-robot : pièces du visage, dessin et écrans
 - Workflow GitHub « Portraits (Pionnières) »
 - Spécification Chiens
-- Compète de zinzin : défis et logique
-- Consignes pour Claude (CLAUDE.md)
-- Compète de zinzin : logique et tests
 - Chiens : écran de jeu, tirage et photos
 - Spécification Pionnières
-- Routeur, accueil et liste des jeux
-- Compète de zinzin : écrans et réseau
-- Compète de zinzin : écran de partie
-- Compète de zinzin : centre du plateau
-- Spécification Portrait-robot
+- Coquille : routeur et liste des jeux
 
 ## God Nodes (most connected - your core abstractions)
-1. `h()` - 144 edges
-2. `icon()` - 79 edges
+1. `h()` - 126 edges
+2. `icon()` - 66 edges
 3. `mount()` - 38 edges
 4. `mount()` - 31 edges
 5. `renderPlay()` - 30 edges
@@ -93,7 +84,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (51 total, 0 thin omitted)
+## Communities (42 total, 0 thin omitted)
 
 ### Community 0 - "Affiches : écran de jeu, réponses et recherche des affiches"
 Cohesion: 0.07
@@ -104,16 +95,16 @@ Cohesion: 0.08
 Nodes (23): runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, group, jobs, build (+15 more)
 
 ### Community 2 - "Livres : écran, réponses acceptées et tolérance aux fautes"
-Cohesion: 0.08
-Nodes (53): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+45 more)
+Cohesion: 0.07
+Nodes (48): buildAuthors(), checkAuthor(), compact(), initialsOf(), isParticle(), key(), lastTolerance(), nameParts() (+40 more)
 
 ### Community 3 - "Géoquizz : carte, distances et tirage"
-Cohesion: 0.06
+Cohesion: 0.07
 Nodes (61): angle(), cache, closestOnArc(), cross(), decodeRing(), distanceToCountry(), dot(), EASY (+53 more)
 
 ### Community 4 - "Scripts : affiches TMDB, version et tests des catalogues"
-Cohesion: 0.05
-Nodes (42): api(), CATALOG, commons(), credit(), FEMALE, force, ids(), image() (+34 more)
+Cohesion: 0.06
+Nodes (27): args, DOWNLOAD, downloadCropped(), fetchRetry(), FILMS, findMovie(), FORCE, GAME (+19 more)
 
 ### Community 5 - "Workflow GitHub « Affiches (TMDB) »"
 Cohesion: 0.09
@@ -140,12 +131,12 @@ Cohesion: 0.18
 Nodes (10): 🎬 Affiches (affiches de cinéma) : spécification, Catalogue, Grille de toutes les affiches, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ### Community 11 - "README"
-Cohesion: 0.09
-Nodes (21): Ajouter un jeu, 🧱 Architecture (pensée pour migrer facilement), 🐕 Chiens, 🎲 Compète de zinzin, 📣 Dans la rue, 🌍 Géoquizz, 👣 Le chemin, 🖼️ Les affiches (+13 more)
+Cohesion: 0.10
+Nodes (19): Ajouter un jeu, 🧱 Architecture (pensée pour migrer facilement), 🐕 Chiens, 🎲 Compète de zinzin, 📣 Dans la rue, 🌍 Géoquizz, 👣 Le chemin, 🖼️ Les affiches (+11 more)
 
 ### Community 12 - "Dans la rue : frise, tirage et écrans (avec Visages et dom.js)"
-Cohesion: 0.08
-Nodes (50): DEFAULT_SETTINGS, drawGame(), filterEvents(), GAME_CARDS, insertIndex(), isRightZone(), MIN_POOL, rng() (+42 more)
+Cohesion: 0.05
+Nodes (77): Agents, Architecture, Carte du code (Graphify), Contrat d'un jeu, Little Games : consignes pour Claude, Livraison (règle de Yoann), Règles de coordination, Sécurité et données (détails dans `SECURITY.md`) (+69 more)
 
 ### Community 13 - "Visages : spécification Morceaux et jeunesse"
 Cohesion: 0.15
@@ -188,8 +179,8 @@ Cohesion: 0.50
 Nodes (3): Ce que tu produis, Contraintes, Format du rapport
 
 ### Community 23 - "Visages : écran Morceaux et jeunesse"
-Cohesion: 0.08
-Nodes (55): ensureStyles(), mount(), closeSub(), openSub(), renderHome(), subCard(), subCountText(), update() (+47 more)
+Cohesion: 0.10
+Nodes (50): buildAnswers(), buildOwners(), checkAnswer(), compact(), PARTICLES, clamp(), faceResolution(), isUpright() (+42 more)
 
 ### Community 24 - "Le chemin : grille, tirage du chemin et score"
 Cohesion: 0.11
@@ -212,24 +203,20 @@ Cohesion: 0.18
 Nodes (10): Différences avec le fichier d'origine, Grille et chemin, 👣 Le chemin : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages (+2 more)
 
 ### Community 29 - "Murdoku : plan, indices, générateur et solveur"
-Cohesion: 0.07
-Nodes (74): ART, AV, avatar(), furniture(), makeLook(), PAL, walls(), attemptCase() (+66 more)
+Cohesion: 0.06
+Nodes (91): rng(), ART, AV, avatar(), furniture(), makeLook(), PAL, walls() (+83 more)
 
-### Community 30 - "Compète de zinzin : écrans et défis"
-Cohesion: 0.20
-Nodes (23): loadCatalogs(), mountChallenge(), mount(), closeChallenge(), connectHost(), dispatch(), endSession(), flushPending() (+15 more)
+### Community 30 - "Compète de zinzin : plateau, règles, défis et réseau"
+Cohesion: 0.05
+Nodes (87): CHALLENGE_GAMES, faceZones(), loadCatalogs(), mountChallenge(), CID, DEFAULTS, ensureStyles(), mount() (+79 more)
 
 ### Community 31 - "Spécification Murdoku"
 Cohesion: 0.15
 Nodes (12): Dessins, Génération d'une grille, 🔎 Murdoku : spécification, Navigation (URL), Niveaux, Persistance (sur l'appareil), Pistes pour la suite, Principe (+4 more)
 
-### Community 32 - "Steep : moteur, mondes, dessin et écrans"
-Cohesion: 0.05
-Nodes (80): autoPilot(), between(), CHARGE_TIME, COYOTE, crash(), crashText(), createRun(), createTerrain() (+72 more)
-
-### Community 33 - "Spécification Steep"
+### Community 32 - "Script : portraits des Pionnières (Commons)"
 Cohesion: 0.14
-Nodes (13): Chutes, Commandes, Mondes, Navigation (URL), Parcours, Persistance (sur l'appareil), Physique, Pistes pour la suite (+5 more)
+Nodes (19): api(), CATALOG, commons(), credit(), FEMALE, force, ids(), image() (+11 more)
 
 ### Community 34 - "Workflow GitHub « Chiens : photos »"
 Cohesion: 0.07
@@ -244,12 +231,8 @@ Cohesion: 0.17
 Nodes (11): Catalogue, 📣 Dans la rue : spécification, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, Principe, Réglages de la partie, Réglages (page) (+3 more)
 
 ### Community 37 - "Pionnières : écran de jeu, réponses et galerie"
-Cohesion: 0.08
-Nodes (39): DEFAULT_SETTINGS, ensureStyles(), LETTERS, mount(), computeOrder(), later(), onKey(), portrait() (+31 more)
-
-### Community 38 - "Portrait-robot : pièces du visage, dessin et écrans"
-Cohesion: 0.09
-Nodes (60): ensureStyles(), exportImage(), mount(), newCase(), pickWitness(), renderAlbum(), renderDraw(), drawChips() (+52 more)
+Cohesion: 0.13
+Nodes (35): DEFAULT_SETTINGS, ensureStyles(), LETTERS, mount(), computeOrder(), later(), onKey(), portrait() (+27 more)
 
 ### Community 39 - "Workflow GitHub « Portraits (Pionnières) »"
 Cohesion: 0.10
@@ -259,64 +242,36 @@ Nodes (20): default, description, type, force, jobs, photos, name, on (+12 more)
 Cohesion: 0.14
 Nodes (13): Catalogue, 🐕 Chiens : spécification, Fin de partie, Mauvaises réponses (niveaux), Navigation (URL), Persistance (sur l'appareil), Photos, Pistes pour la suite (+5 more)
 
-### Community 41 - "Compète de zinzin : défis et logique"
-Cohesion: 0.11
-Nodes (25): CHALLENGE_GAMES, D, faceZones(), KINDS, LOADERS, pick(), shuffle(), applyAction() (+17 more)
-
-### Community 42 - "Consignes pour Claude (CLAUDE.md)"
-Cohesion: 0.22
-Nodes (8): Agents, Architecture, Carte du code (Graphify), Contrat d'un jeu, Little Games : consignes pour Claude, Livraison (règle de Yoann), Règles de coordination, Sécurité et données (détails dans `SECURITY.md`)
-
-### Community 43 - "Compète de zinzin : logique et tests"
-Cohesion: 0.14
-Nodes (15): weightRows(), BOARD_COLS, BOARD_ROWS, BOARD_SIZE, boardCounts(), clamp(), FINAL_COUNT, GRACE_MS (+7 more)
-
 ### Community 44 - "Chiens : écran de jeu, tirage et photos"
 Cohesion: 0.08
-Nodes (47): DEFAULT_SETTINGS, ensureStyles(), mount(), onKey(), photo(), renderBreeds(), renderEnd(), renderPlay() (+39 more)
+Nodes (45): DEFAULT_SETTINGS, ensureStyles(), mount(), onKey(), photo(), renderBreeds(), renderEnd(), renderPlay() (+37 more)
 
 ### Community 45 - "Spécification Pionnières"
 Cohesion: 0.15
 Nodes (12): Catalogue, Compète de zinzin, Galerie, Navigation (URL), Ordre, Persistance (sur l'appareil), ♀️ Pionnières : spécification, Pistes pour la suite (+4 more)
 
-### Community 46 - "Routeur, accueil et liste des jeux"
-Cohesion: 0.11
-Nodes (20): ./books/index.js?v=1.59.0, ./dogs/index.js?v=1.59.0, ./faces/index.js?v=1.59.0, ./geo/index.js?v=1.59.0, ./mole/index.js?v=1.59.0, ./movements/index.js?v=1.59.0, ./movie-posters/index.js?v=1.59.0, ./nonogram/index.js?v=1.59.0 (+12 more)
-
-### Community 47 - "Compète de zinzin : écrans et réseau"
-Cohesion: 0.14
-Nodes (15): CID, DEFAULTS, ensureStyles(), newCode(), store, DICE_MS, MAX_LAPS, MAX_TEAMS (+7 more)
-
-### Community 48 - "Compète de zinzin : écran de partie"
-Cohesion: 0.29
-Nodes (10): gameScreen(), buildBoard(), drawDie(), placePawns(), shownSteps(), updateEnd(), updatePills(), cellPos() (+2 more)
-
-### Community 49 - "Compète de zinzin : centre du plateau"
-Cohesion: 0.67
-Nodes (3): updateCenter(), cellOf(), finalChoices()
-
-### Community 52 - "Spécification Portrait-robot"
-Cohesion: 0.18
-Nodes (10): Album, Déroulé, Les pièces du visage, Les témoins, Navigation (URL), Persistance (sur l'appareil), Pistes pour la suite, 🕵️ Portrait-robot : spécification (+2 more)
+### Community 46 - "Coquille : routeur et liste des jeux"
+Cohesion: 0.12
+Nodes (18): ./books/index.js?v=1.60.0, ./dogs/index.js?v=1.60.0, ./faces/index.js?v=1.60.0, ./geo/index.js?v=1.60.0, ./mole/index.js?v=1.60.0, ./movements/index.js?v=1.60.0, ./movie-posters/index.js?v=1.60.0, ./nonogram/index.js?v=1.60.0 (+10 more)
 
 ## Knowledge Gaps
-- **14 isolated node(s):** `./morceaux/index.js?v=1.59.0`, `./books/index.js?v=1.59.0`, `./dogs/index.js?v=1.59.0`, `./faces/index.js?v=1.59.0`, `./geo/index.js?v=1.59.0` (+9 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 506 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **12 isolated node(s):** `./morceaux/index.js?v=1.60.0`, `./books/index.js?v=1.60.0`, `./dogs/index.js?v=1.60.0`, `./faces/index.js?v=1.60.0`, `./geo/index.js?v=1.60.0` (+7 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 459 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `h()` connect `Dans la rue : frise, tirage et écrans (avec Visages et dom.js)` to `Affiches : écran de jeu, réponses et recherche des affiches`, `Livres : écran, réponses acceptées et tolérance aux fautes`, `Géoquizz : carte, distances et tirage`, `Nonogramme : grille, tirage et solveur logique`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Murdoku : plan, indices, générateur et solveur`, `Compète de zinzin : écrans et défis`, `Steep : moteur, mondes, dessin et écrans`, `Pionnières : écran de jeu, réponses et galerie`, `Portrait-robot : pièces du visage, dessin et écrans`, `Compète de zinzin : défis et logique`, `Consignes pour Claude (CLAUDE.md)`, `Compète de zinzin : logique et tests`, `Chiens : écran de jeu, tirage et photos`, `Routeur, accueil et liste des jeux`, `Compète de zinzin : écrans et réseau`, `Compète de zinzin : écran de partie`, `Compète de zinzin : centre du plateau`?**
-  _High betweenness centrality (0.184) - this node is a cross-community bridge._
+- **Why does `h()` connect `Dans la rue : frise, tirage et écrans (avec Visages et dom.js)` to `Affiches : écran de jeu, réponses et recherche des affiches`, `Livres : écran, réponses acceptées et tolérance aux fautes`, `Géoquizz : carte, distances et tirage`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Chiens : écran de jeu, tirage et photos`, `Coquille : routeur et liste des jeux`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Murdoku : plan, indices, générateur et solveur`, `Compète de zinzin : plateau, règles, défis et réseau`?**
+  _High betweenness centrality (0.211) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `h()` (e.g. with `Sécurité et données (détails dans `SECURITY.md`)` and `Protections en place`) actually correct?**
   _`h()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `./morceaux/index.js?v=1.59.0`, `./books/index.js?v=1.59.0`, `./dogs/index.js?v=1.59.0` to the rest of the system?**
-  _14 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `./morceaux/index.js?v=1.60.0`, `./books/index.js?v=1.60.0`, `./dogs/index.js?v=1.60.0` to the rest of the system?**
+  _12 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Affiches : écran de jeu, réponses et recherche des affiches` be split into smaller, more focused modules?**
   _Cohesion score 0.07093253968253968 - nodes in this community are weakly interconnected._
-- **Why does `icon()` connect `Portrait-robot : pièces du visage, dessin et écrans` to `Affiches : écran de jeu, réponses et recherche des affiches`, `Steep : moteur, mondes, dessin et écrans`, `Livres : écran, réponses acceptées et tolérance aux fautes`, `Géoquizz : carte, distances et tirage`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Compète de zinzin : défis et logique`, `Compète de zinzin : logique et tests`, `Chiens : écran de jeu, tirage et photos`, `Dans la rue : frise, tirage et écrans (avec Visages et dom.js)`, `Routeur, accueil et liste des jeux`, `Compète de zinzin : écrans et réseau`, `Compète de zinzin : écran de partie`, `Compète de zinzin : centre du plateau`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Murdoku : plan, indices, générateur et solveur`, `Compète de zinzin : écrans et défis`?**
-  _High betweenness centrality (0.079) - this node is a cross-community bridge._
+- **Why does `icon()` connect `Géoquizz : carte, distances et tirage` to `Affiches : écran de jeu, réponses et recherche des affiches`, `Livres : écran, réponses acceptées et tolérance aux fautes`, `Pionnières : écran de jeu, réponses et galerie`, `Nonogramme : grille, tirage et solveur logique`, `Chiens : écran de jeu, tirage et photos`, `Dans la rue : frise, tirage et écrans (avec Visages et dom.js)`, `Coquille : routeur et liste des jeux`, `Visages : écran Morceaux et jeunesse`, `Le chemin : grille, tirage du chemin et score`, `Murdoku : plan, indices, générateur et solveur`, `Compète de zinzin : plateau, règles, défis et réseau`?**
+  _High betweenness centrality (0.056) - this node is a cross-community bridge._
 - **Should `Workflow GitHub « Morceaux historiques »` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
-- **Why does `renderPlay()` connect `Géoquizz : carte, distances et tirage` to `Dans la rue : frise, tirage et écrans (avec Visages et dom.js)`, `Portrait-robot : pièces du visage, dessin et écrans`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `renderPlay()` connect `Nonogramme : grille, tirage et solveur logique` to `Dans la rue : frise, tirage et écrans (avec Visages et dom.js)`?**
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
